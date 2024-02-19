@@ -43,7 +43,7 @@ https://github.com/luisbocanegra/plasma-panel-colorizer/assets/15076387/ec1148e2
 
 * Install from KDE Store or use `Get new widgets..`
   * ~~Plasma 5 version~~ maybe?
-  * ~~[Plasma 6 version](#)~~ soon
+  * [Plasma 6 version](https://store.kde.org/p/2130967)
 
 ### Manual install
 
