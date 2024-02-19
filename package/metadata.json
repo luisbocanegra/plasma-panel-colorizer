@@ -1,0 +1,24 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "luisbocanegra17b@gmail.com",
+                "Name": "Luis Bocanegra"
+            }
+        ],
+        "BugReportUrl": "https://github.com/luisbocanegra/plasma-panel-colorizer/issues",
+        "Category": "Utilities",
+        "Description": "Powerful fully-featured panel colorizer for a WM status bar like appearance",
+        "Id": "luisbocanegra.panel.colorizer",
+        "EnabledByDefault": false,
+        "Icon":"desktop",
+        "License": "GPL-3.0",
+        "Name": "Panel colorizer",
+        "Version": "0.1.0",
+        "Website": "https://github.com/luisbocanegra/plasma-panel-colorizer"
+    },
+    "X-Plasma-NotificationArea": "true",
+    "X-Plasma-NotificationAreaCategory": "SystemServices",
+    "X-Plasma-API-Minimum-Version": "6.0"
+}

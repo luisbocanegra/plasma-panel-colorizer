@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="32"
+   height="32"
+   version="1.1"
+   id="svg2"
+   sodipodi:docname="icon.svg"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview2"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="9.5459416"
+     inkscape:cx="20.375151"
+     inkscape:cy="22.365525"
+     inkscape:window-width="1920"
+     inkscape:window-height="1048"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="22-22-material-you" />
+  <defs
+     id="materia">
+    <style
+       id="current-color-scheme"
+       type="text/css">
+   .ColorScheme-Background {color:#181818; } .ColorScheme-ButtonBackground { color:#343434; } .ColorScheme-Highlight { color:#4285f4; } .ColorScheme-Text { color:#dfdfdf; } .ColorScheme-ViewBackground { color:#242424; } .ColorScheme-NegativeText { color:#f44336; } .ColorScheme-PositiveText { color:#4caf50; } .ColorScheme-NeutralText { color:#ff9800; }
+  </style>
+  </defs>
+  <g
+     id="22-22-material-you"
+     transform="translate(27,5.0000005)"
+     style="opacity:1;fill:currentColor"
+     class="ColorScheme-Text">
+    <path
+       d="M 20.190487,9.6 V 8.8 a 0.8,0.8 0 0 0 -0.8,-0.8 h -9.6 a 0.8,0.8 0 0 0 -0.8,0.8 V 12 a 0.8,0.8 0 0 0 0.8,0.8 h 9.6 a 0.8,0.8 0 0 0 0.8,-0.8 v -0.8 h 0.8 v 3.2 h -8 v 8.8 a 0.8,0.8 0 0 0 0.8,0.8 h 1.6 a 0.8,0.8 0 0 0 0.8,-0.8 V 16 h 6.4 V 9.6 Z"
+       id="path1-3"
+       style="fill:currentColor;stroke-width:0.8" />
+    <rect
+       style="opacity:0.00100002"
+       width="22"
+       height="22"
+       x="4.7904868"
+       y="5"
+       id="rect1" />
+  </g>
+  <g
+     id="material-you"
+     class="ColorScheme-Text"
+     style="opacity:1;fill:currentColor"
+     transform="translate(35.302961,-8.4852813)">
+    <rect
+       style="opacity:0.00100002"
+       width="32"
+       height="32"
+       x="-35.302959"
+       y="8.485281"
+       id="rect2" />
+    <path
+       d="m -12.702959,14.885281 v -1.2 a 1.2,1.2 0 0 0 -1.2,-1.2 h -14.4 a 1.2,1.2 0 0 0 -1.2,1.2 v 4.8 a 1.2,1.2 0 0 0 1.2,1.2 h 14.4 a 1.2,1.2 0 0 0 1.2,-1.2 v -1.2 h 1.2 v 4.8 h -12 v 13.2 a 1.2,1.2 0 0 0 1.2,1.2 h 2.4 a 1.2,1.2 0 0 0 1.2,-1.2 v -10.8 h 9.5999996 v -9.6 z"
+       id="path1"
+       style="stroke-width:1.2" />
+  </g>
+</svg>

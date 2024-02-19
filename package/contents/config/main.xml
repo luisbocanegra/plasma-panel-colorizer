@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg
+    xmlns="http://www.kde.org/standards/kcfg/1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0 http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+  <kcfgfile name="" />
+
+  <group name="General">
+    <entry
+        name="enabled"
+        type="Bool">
+        <default>true</default>
+    </entry>
+
+    <!-- modes: static, animated-->
+    <entry
+        name="mode"
+        type="Int">
+      <default>0</default>
+    </entry>
+
+    <!-- color modes: single, accent, custom list, random -->
+    <entry
+        name="colorMode"
+        type="Int">
+      <default>3</default>
+    </entry>
+
+    <entry
+        name="singleColor"
+        type="String">
+        <default>#7182ff</default>
+    </entry>
+
+    <entry
+        name="customColors"
+        type="String">
+        <default>#ED8796 #A6DA95 #EED49F #8AADF4 #F5BDE6 #8BD5CA #f5a97f</default>
+    </entry>
+
+    <entry
+        name="opacity"
+        type="Double">
+        <default>0.2</default>
+    </entry>
+    <entry
+        name="radius"
+        type="Int">
+        <default>5</default>
+    </entry>
+    <entry
+        name="rainbowSaturation"
+        type="Double">
+        <default>1.0</default>
+    </entry>
+    <entry
+        name="rainbowLightness"
+        type="Double">
+        <default>0.65</default>
+    </entry>
+    <entry
+        name="rainbowInterval"
+        type="Int">
+        <default>3000</default>
+    </entry>
+    <entry
+        name="rainbowTransition"
+        type="Int">
+        <default>800</default>
+    </entry>
+
+    <entry
+        name="blacklist"
+        type="String">
+        <default>spacer
+separator
+org.kde.plasma.taskmanager
+org.kde.plasma.icontasks
+        </default>
+    </entry>
+
+    <entry
+        name="paddingRules"
+        type="String">
+        <default>org.kde.plasma.appmenu -8 0</default>
+    </entry>
+
+
+
+
+  </group>
+</kcfg>
