@@ -1,8 +1,8 @@
-import QtQuick
-import QtQuick.Layouts
-import org.kde.kirigami as Kirigami
-import org.kde.plasma.core as PlasmaCore
-import org.kde.plasma.plasmoid
+import QtQuick 2.5
+import QtQuick.Layouts 1.1
+import org.kde.kirigami 2.10 as Kirigami
+import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.plasma.plasmoid 2.0
 import "components" as Components
 
 MouseArea {
@@ -17,6 +17,7 @@ MouseArea {
     hoverEnabled: true
     onClicked: {
         main.enabled = !main.enabled
+        console.log("AAAAA");
     }
 
 
@@ -28,7 +29,7 @@ MouseArea {
 
         Components.PlasmoidIcon {
             id: plasmoidIcon
-            height: Kirigami.Units.iconSizes.roundedIconSize(Math.min(parent.width, parent.height))
+            height: PlasmaCore.Units.roundToIconSize(Math.min(parent.width, parent.height))
             width: height
             source: icon
         }

@@ -1,14 +1,15 @@
-import QtQuick
-import QtQuick.Controls
-import QtQuick.Layouts
-import org.kde.kirigami as Kirigami
-import org.kde.plasma.core as PlasmaCore
-import org.kde.plasma.plasmoid
+import QtQuick 2.5
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.1
+import org.kde.kirigami 2.10 as Kirigami
+import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.plasma.plasmoid 2.0
 
-PlasmoidItem {
+Item {
     id: main
 
-    preferredRepresentation: compactRepresentation
+    Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
+    // Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
     property bool onDesktop: plasmoid.location === PlasmaCore.Types.Floating
 
     property string iconName: !onDesktop ? "icon" : "error"
@@ -54,15 +55,21 @@ PlasmoidItem {
         }
     }
 
-    toolTipSubText: onDesktop ? "<font color='"+Kirigami.Theme.neutralTextColor+"'>Panel not found, this widget must be child of a panel</font>" : Plasmoid.metaData.description
-    toolTipTextFormat: Text.RichText
+    Plasmoid.toolTipSubText: onDesktop ? "<font color='"+Kirigami.Theme.neutralTextColor+"'>Panel not found, this widget must be child of a panel</font>" : Plasmoid.metaData.description
+    Plasmoid.toolTipTextFormat: Text.RichText
 
-    compactRepresentation: CompactRepresentation {
+    // FIXME: Figure out why representation element doesn't work
+    // Plasmoid.compactRepresentation: CompactRepresentation {
+    //    icon: main.icon
+    //    onDesktop: main.onDesktop
+    //}
+    // Plasmoid.fullRepresentation: ColumnLayout {}
+
+    CompactRepresentation {
         icon: main.icon
         onDesktop: main.onDesktop
     }
-
-    fullRepresentation: ColumnLayout {}
+    Layout.preferredWidth: Math.min(main.height,main.width)
 
     onModeChanged: {
         if (!isLoaded) return
@@ -89,6 +96,7 @@ PlasmoidItem {
     }
 
     onEnabledChanged: {
+        console.log(isLoaded);
         if (!isLoaded) return
         console.error("ENABLED CHANGEDD:",enabled);
         createRects()
@@ -163,25 +171,25 @@ PlasmoidItem {
                 // if (!child.visible) continue;
 
                 if (!child.applet) continue
-                console.error(child.applet.plasmoid.pluginName);
+                console.error(child.applet.pluginName);
                 // TODO: Code for handling expanded widget action is here but not used yet
-                if (child.applet && (child.applet.plasmoid.pluginName === "org.kde.plasma.systemtray")) {
-                    rectangles.append({
-                        "comp":rectComponent.createObject(
-                            child,
-                            {
-                                "z": -1,
-                                "target": child.applet.plasmoid.internalSystray.systemTrayState,
-                                "color": getColor()
+                // if (child.applet && (child.applet.pluginName === "org.kde.plasma.systemtray")) {
+                //     rectangles.append({
+                //         "comp":rectComponent.createObject(
+                //             child,
+                //             {
+                //                 "z": -1,
+                //                 "target": child.applet.internalSystray.systemTrayState,
+                //                 "color": getColor()
                                 
-                            }
-                        )
-                    })
-                    continue
-                }
+                //             }
+                //         )
+                //     })
+                //     continue
+                // }
 
                 
-                const name = child.applet.plasmoid.pluginName
+                const name = child.applet.pluginName
                 if (blacklisted.some(function(target) {return name.includes(target)})) continue
 
                 var x = 0
@@ -220,7 +228,7 @@ PlasmoidItem {
                     newColor = singleColor
                     break
                 case 1:
-                    newColor = Kirigami.Theme.highlightColor
+                    newColor = PlasmaCore.Theme.highlightColor
                     break
                 case 2:
                     newColor = nextCustomColor()
@@ -271,8 +279,9 @@ PlasmoidItem {
         repeat: false//(rectangles.count===0)
         interval: 1000
         onTriggered: {
-            createRects()
+            console.log("STARTED");
             isLoaded = true
+            createRects()
             init()
         }
     }

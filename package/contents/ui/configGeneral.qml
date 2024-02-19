@@ -1,12 +1,12 @@
-import QtQuick
-import QtQuick.Controls
-import QtQuick.Layouts
-import org.kde.kcmutils as KCM
-import org.kde.kirigami as Kirigami
-import org.kde.plasma.plasmoid
+import QtQuick 2.5
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.1
+// import org.kde.kcmutils as KCM
+import org.kde.kirigami 2.10 as Kirigami
+import org.kde.plasma.plasmoid 2.0
 import "components" as Components
 
-KCM.SimpleKCM {
+ColumnLayout {
     id:root
     property bool cfg_enabled: enabled.checked
     property int cfg_mode: plasmoid.configuration.mode
