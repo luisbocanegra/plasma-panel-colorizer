@@ -1,10 +1,8 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Qt.labs.settings
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
-import org.kde.plasma.plasma5support as P5Support
 import org.kde.plasma.plasmoid
 import "components" as Components
 

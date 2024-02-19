@@ -2,12 +2,8 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
-import org.kde.plasma.components as PlasmaComponents3
 import org.kde.plasma.core as PlasmaCore
-import org.kde.plasma.plasma5support as P5Support
 import org.kde.plasma.plasmoid
-import org.kde.plasma.private.keyboardindicator as KeyboardIndicator
-import org.kde.plasma.workspace.components
 
 PlasmoidItem {
     id: main
@@ -119,19 +115,6 @@ PlasmoidItem {
         const l = rainbowLightness
         const a = 1.0
         return Qt.hsla(h,s,l,a)
-    }
-
-    P5Support.DataSource {
-        id: executable
-        engine: "executable"
-        connectedSources: []
-        onNewData: function(source) {
-            disconnectSource(source) // cmd finished
-        }
-
-        function exec(cmd) {
-            executable.connectSource(cmd)
-        }
     }
 
     function dumpProps(obj) {
