@@ -15,10 +15,6 @@ https://github.com/luisbocanegra/plasma-panel-colorizer/assets/15076387/ec1148e2
 
 </details>
 
-## Requirements
-
-* Plasma 6
-
 ## Current & planned features
 
 * [x] Opacity
