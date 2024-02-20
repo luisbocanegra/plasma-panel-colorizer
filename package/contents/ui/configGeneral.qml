@@ -21,17 +21,10 @@ KCM.SimpleKCM {
     property int cfg_rainbowTransition: rainbowTransition.value
     property string cfg_blacklist: blacklist.text
     property string cfg_paddingRules: paddingRules.text
+    property bool cfg_hideWidget: hideWidget.text
 
     Kirigami.FormLayout {
 
-        // Label {
-        //     text: i18n("")
-        //     font: Kirigami.Theme.smallFont
-        //     opacity: 0.7
-        // }
-
-
-        // Visibility ----------------------------------------------------------
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
             Kirigami.FormData.label: i18n("General")
@@ -42,6 +35,20 @@ KCM.SimpleKCM {
             id: enabled
             checked: cfg_enabled
             onCheckedChanged: cfg_enabled = checked
+        }
+
+        CheckBox {
+            Kirigami.FormData.label: i18n("Hide widget:")
+            id: hideWidget
+            checked: cfg_hideWidget
+            onCheckedChanged: cfg_hideWidget = checked
+        }
+
+        Label {
+            text: i18n("Widget will show only in panel Edit Mode")
+            opacity: 0.7
+            Layout.maximumWidth: 300
+            wrapMode: Text.Wrap
         }
 
         TextField {
@@ -181,12 +188,6 @@ KCM.SimpleKCM {
             }
         }
 
-        // Component.onCompleted: {
-        //     if (cfg_mode === 1 && cfg_colorMode !== 3) {
-        //         listColorRadio.checked
-        //     }
-        // }
-        
         TextField {
             id: singleColor
             Kirigami.FormData.label: i18n("Color:")
