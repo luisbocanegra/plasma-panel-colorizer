@@ -31,10 +31,13 @@ Item {
     property int rainbowTransition: plasmoid.configuration.rainbowTransition
     property string blacklist: plasmoid.configuration.blacklist
     property string paddingRules: plasmoid.configuration.paddingRules
+    property bool hideWidget: plasmoid.configuration.hideWidget
 
     property bool isLoaded: false
-
     property bool isConfiguring: plasmoid.userConfiguring
+
+    property bool inEditMode: Plasmoid.containment.corona?.editMode ? true : false
+    Plasmoid.status: inEditMode || !hideWidget ? PlasmaCore.Types.ActiveStatus : PlasmaCore.Types.HiddenStatus
 
     property Component rectComponent: Rectangle {
         property var target // holds element with expanded property
@@ -81,8 +84,6 @@ Item {
     function init() {
         if (enabled) {
             colorize()
-            // colorize()
-            // return
             if (mode === 1) { 
                 rainbowTimer.start()
             } else {
@@ -162,8 +163,7 @@ Item {
             console.log("creating rects");
             const blacklisted = blacklist.split("\n").map(function(line) {return line.trim()})
             const paddingLines = paddingRules.split("\n").map(function(line) {return line.trim()})
-            // name height width
-            // const rules = paddingLines.map(function(line) { return line.split(" ")})
+
             for (var i in panelLayout.children) {
                 let heightOffset = 0
                 let widthOffset = 0
@@ -195,6 +195,7 @@ Item {
                 var x = 0
                 var y = 0
                 for (var line of paddingLines) {
+                    // name height width
                     const parts = line.split(" ")
                     const match = parts[0]
 
@@ -223,19 +224,19 @@ Item {
 
     function getColor() {
         var newColor="transparent"
-            switch(colorMode) {
-                case 0:
-                    newColor = singleColor
-                    break
-                case 1:
-                    newColor = PlasmaCore.Theme.highlightColor
-                    break
-                case 2:
-                    newColor = nextCustomColor()
-                    break
-                case 3:
-                    newColor = getRandomColor()
-            }
+        switch(colorMode) {
+            case 0:
+                newColor = singleColor
+                break
+            case 1:
+                newColor = Kirigami.Theme.highlightColor
+                break
+            case 2:
+                newColor = nextCustomColor()
+                break
+            case 3:
+                newColor = getRandomColor()
+        }
         return newColor
     }
 
@@ -266,6 +267,10 @@ Item {
     }
 
     Component.onCompleted: {
+        Plasmoid.setAction("hide", i18n("Hide widget (visible in panel Edit Mode)"))
+        var action = Plasmoid.action("hide");
+        action.checkable = true;
+        action.checked = Qt.binding(function() {return Plasmoid.configuration.hideWidget});
         if (!onDesktop) {
             startTimer.start()
         } else {
