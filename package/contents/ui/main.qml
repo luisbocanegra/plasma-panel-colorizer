@@ -36,7 +36,7 @@ Item {
     property bool isLoaded: false
     property bool isConfiguring: plasmoid.userConfiguring
 
-    property bool inEditMode: Plasmoid.containment.corona?.editMode ? true : false
+    property bool inEditMode: Plasmoid.editMode
     Plasmoid.status: inEditMode || !hideWidget ? PlasmaCore.Types.ActiveStatus : PlasmaCore.Types.HiddenStatus
 
     property Component rectComponent: Rectangle {
@@ -266,11 +266,15 @@ Item {
         }
     }
 
+    function action_hide() {
+        Plasmoid.configuration.hideWidget = Plasmoid.action("hide").checked;
+    }
+
     Component.onCompleted: {
         Plasmoid.setAction("hide", i18n("Hide widget (visible in panel Edit Mode)"))
         var action = Plasmoid.action("hide");
         action.checkable = true;
-        action.checked = Qt.binding(function() {return Plasmoid.configuration.hideWidget});
+        action.checked = Qt.binding(function() {Plasmoid.configuration.hideWidget});
         if (!onDesktop) {
             startTimer.start()
         } else {
