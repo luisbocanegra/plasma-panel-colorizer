@@ -16,7 +16,7 @@ PlasmoidItem {
 
     property var panelPosition: {}
 
-    property bool isEnabled: true
+    property bool isEnabled: plasmoid.configuration.isEnabled
     property int mode: plasmoid.configuration.mode
     property int colorMode: plasmoid.configuration.colorMode
     property string singleColor: plasmoid.configuration.singleColor
@@ -30,7 +30,7 @@ PlasmoidItem {
     property int rainbowTransition: plasmoid.configuration.rainbowTransition
     property string blacklist: plasmoid.configuration.blacklist
     property string paddingRules: plasmoid.configuration.paddingRules
-    property bool hideWidget: false
+    property bool hideWidget: plasmoid.configuration.hideWidget
 
     property bool isLoaded: false
     property bool isConfiguring: plasmoid.userConfiguring
@@ -40,8 +40,10 @@ PlasmoidItem {
 
     property GridLayout panelLayout
     property int childCount: 0
-    property bool errorCreatingRects: false
     property bool wasEditing: false
+    property bool destroyRequired: false
+
+    property color accentColor: Kirigami.Theme.highlightColor
 
     Plasmoid.contextualActions: [
         PlasmaCore.Action {
@@ -85,7 +87,6 @@ PlasmoidItem {
     fullRepresentation: ColumnLayout {}
 
     onModeChanged: {
-        // if (!isLoaded) return
         console.error("MODE CHANGED:",mode);
         plasmoid.configuration.mode = mode
         init()
@@ -93,33 +94,16 @@ PlasmoidItem {
 
     function init() {
         if (isEnabled) {
-            // colorize()
-            startTimer.start()
+            initTimer.start()
         } else {
             rainbowTimer.stop()
             destroyRects()
         }
-
     }
 
     onIsEnabledChanged: {
-        // if (!isLoaded) return
         console.error("ENABLED CHANGEDD:",isEnabled);
         plasmoid.configuration.isEnabled = isEnabled
-        init()
-    }
-
-    onColorModeChanged: {
-        // if (!isLoaded) return
-        console.error("COLOR MODE CHANGED:",colorMode);
-        init()
-    }
-
-    onRainbowLightnessChanged: {
-        init()
-    }
-
-    onRainbowSaturationChanged: {
         init()
     }
 
@@ -127,8 +111,18 @@ PlasmoidItem {
         wasEditing = !inEditMode
     }
 
-    onHideWidgetChanged: {
-        console.error("HIDE WIDGET:",hideWidget);
+    onAccentColorChanged: {
+        if (colorMode === 1) init()
+    }
+
+    Connections {
+        target: plasmoid.configuration
+        onValueChanged: {
+            console.log("CONFIG CHANGED");
+            isEnabled = plasmoid.configuration.isEnabled
+            mode = plasmoid.configuration.mode
+            init()
+        }
     }
 
     function getRandomColor() {
@@ -238,7 +232,7 @@ PlasmoidItem {
                 newColor = singleColor
                 break
             case 1:
-                newColor = Kirigami.Theme.highlightColor
+                newColor = accentColor
                 break
             case 2:
                 newColor = nextCustomColor()
@@ -282,13 +276,25 @@ PlasmoidItem {
     }
 
     Timer {
-        id: startTimer
-        running: true
+        id: initTimer
+        running: false
         repeat: false
-        interval: !isLoaded ? 1000 : 1
+        interval: !isLoaded ? 1000 : 100
         onTriggered: {
-            createRects()
+            if (destroyRequired) destroyRects()
+            startTimer.start()
+        }
+    }
+
+    Timer {
+        id: startTimer
+        running: false
+        repeat: false
+        interval: 50
+        onTriggered: {
+            if (destroyRequired) createRects()
             isLoaded = true
+            destroyRequired = false
             rainbowTimer.interval = 10
             rainbowTimer.start()
         }
@@ -305,6 +311,7 @@ PlasmoidItem {
             }
             rectangles.remove(i)
         }
+        destroyRequired = true
     }
 
     Timer {
@@ -324,6 +331,7 @@ PlasmoidItem {
                 destroyRects()
                 childCount = newChildCount
                 wasEditing = false
+                destroyRequired = true
                 init()
             }
         }
