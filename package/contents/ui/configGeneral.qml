@@ -13,7 +13,7 @@ KCM.SimpleKCM {
     property int cfg_colorMode: plasmoid.configuration.colorMode
     property string cfg_singleColor: singleColor.text
     property string cfg_customColors: customColors.text
-    property real cfg_opacity: bgOpacity.opacity
+    property real cfg_opacity: parseFloat(bgOpacity.text)
     property int cfg_radius: bgRadius.radius
     property real cfg_rainbowSaturation: rainbowSaturation.value
     property real cfg_rainbowLightness: rainbowLightness.value
@@ -22,6 +22,10 @@ KCM.SimpleKCM {
     property string cfg_blacklist: blacklist.text
     property string cfg_paddingRules: paddingRules.text
     property bool cfg_hideWidget: hideWidget.text
+
+    property bool cfg_fgColorEnabled: fgColorEnabled.checked
+    property string cfg_customFgColor: customFgColor.text
+    property real cfg_fgOpacity: parseFloat(fgOpacity.text)
 
     Kirigami.FormLayout {
 
@@ -49,6 +53,63 @@ KCM.SimpleKCM {
             opacity: 0.7
             Layout.maximumWidth: 300
             wrapMode: Text.Wrap
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: false
+            Layout.preferredHeight: Kirigami.Units.gridUnit
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: false
+            Kirigami.FormData.label: i18n("<strong>Text / icons</strong>")
+            Layout.fillWidth: true
+        }
+
+        CheckBox {
+            Kirigami.FormData.label: i18n("Custom color:")
+            id: fgColorEnabled
+            checked: cfg_fgColorEnabled
+            onCheckedChanged: cfg_fgColorEnabled = checked
+        }
+
+        TextField {
+            id: customTextColor
+            Kirigami.FormData.label: i18n("Color:")
+            text: cfg_customFgColor
+            enabled: fgColorEnabled.checked
+            onTextChanged: cfg_customFgColor = text
+        }
+
+        TextField {
+            id: fgOpacity
+            Kirigami.FormData.label: i18n("Opacity:")
+            placeholderText: "0-1"
+            horizontalAlignment: TextInput.AlignHCenter
+            text: parseFloat(cfg_fgOpacity)
+
+            validator: DoubleValidator {
+                bottom: 0.0
+                top: 1.0
+                decimals: 2
+                notation: DoubleValidator.StandardNotation
+            }
+
+            onTextChanged: {
+                const newVal = parseFloat(text)
+                cfg_fgOpacity = isNaN(newVal) ? 0 : newVal
+            }
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: false
+            Layout.preferredHeight: Kirigami.Units.gridUnit
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: false
+            Kirigami.FormData.label: i18n("<strong>Background</strong>")
+            Layout.fillWidth: true
         }
 
         TextField {

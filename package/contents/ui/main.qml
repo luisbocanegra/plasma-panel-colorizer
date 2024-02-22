@@ -44,6 +44,10 @@ PlasmoidItem {
     property bool destroyRequired: false
 
     property color accentColor: Kirigami.Theme.highlightColor
+    property color defaultTextColor: Kirigami.Theme.textColor
+    property color customFgColor: plasmoid.configuration.customFgColor
+    property real fgOpacity: plasmoid.configuration.fgOpacity
+    property bool fgColorEnabled: plasmoid.configuration.fgColorEnabled
 
     Plasmoid.contextualActions: [
         PlasmaCore.Action {
@@ -97,6 +101,7 @@ PlasmoidItem {
             initTimer.start()
         } else {
             rainbowTimer.stop()
+            updateFgColor()
             destroyRects()
         }
     }
@@ -250,8 +255,48 @@ PlasmoidItem {
                 var comp = rectangles.get(i)["comp"]
                 const newColor = isEnabled ? getColor() : "transparent"
                 comp.changeColor(newColor)
+                applyFgColor(comp.parent)
             } catch (e) {
                 console.error("Error colorizing rect", i, "E:" , e);
+            }
+        }
+    }
+
+    function applyFgColor(element) {
+        var newColor = defaultTextColor
+        if (isEnabled && fgColorEnabled) {
+            newColor = customFgColor
+        }
+
+        if (element.hasOwnProperty("color")) {
+            element.Kirigami.Theme.textColor = newColor
+        }
+
+        if ([Text,ToolButton,Label,Canvas,Kirigami.Icon].some(function(type) {return element instanceof type})) {
+            if (element.color) {
+                element.color = newColor
+            }
+            if (isEnabled) {
+                element.opacity = fgOpacity
+            } else {
+                element.opacity = 1
+            }
+            element.Kirigami.Theme.textColor = newColor
+        }
+
+        for (var i = 0; i < element.children.length; i++) {
+            applyFgColor(element.children[i]);
+        }
+    }
+
+    function updateFgColor() {
+        for(let i = 0; i < rectangles.count; i++) {
+            try {
+                const newColor = getColor()
+                var comp = rectangles.get(i)["comp"]
+                applyFgColor(comp.parent)
+            } catch (e) {
+                console.error("Error updating text in rect", i, "E:" , e);
             }
         }
     }

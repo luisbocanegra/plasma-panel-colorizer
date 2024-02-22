@@ -81,5 +81,21 @@ org.kde.plasma.icontasks
         type="Bool">
         <default>false</default>
     </entry>
+
+    <entry
+        name="fgColorEnabled"
+        type="Bool">
+        <default>false</default>
+    </entry>
+    <entry
+        name="customFgColor"
+        type="String">
+        <default>#686868</default>
+    </entry>
+    <entry
+        name="fgOpacity"
+        type="Double">
+        <default>1.0</default>
+    </entry>
   </group>
 </kcfg>
