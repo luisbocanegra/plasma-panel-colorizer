@@ -6,7 +6,7 @@
   <kcfgfile name="" />
   <group name="General">
     <entry
-        name="enabled"
+        name="isEnabled"
         type="Bool">
         <default>true</default>
     </entry>

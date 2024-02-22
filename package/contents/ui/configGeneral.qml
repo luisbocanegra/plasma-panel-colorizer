@@ -8,7 +8,7 @@ import "components" as Components
 
 KCM.SimpleKCM {
     id:root
-    property bool cfg_enabled: enabled.checked
+    property bool cfg_isEnabled: isEnabled.checked
     property int cfg_mode: plasmoid.configuration.mode
     property int cfg_colorMode: plasmoid.configuration.colorMode
     property string cfg_singleColor: singleColor.text
@@ -32,9 +32,9 @@ KCM.SimpleKCM {
 
         CheckBox {
             Kirigami.FormData.label: i18n("Enabled:")
-            id: enabled
-            checked: cfg_enabled
-            onCheckedChanged: cfg_enabled = checked
+            id: isEnabled
+            checked: cfg_isEnabled
+            onCheckedChanged: cfg_isEnabled = checked
         }
 
         CheckBox {

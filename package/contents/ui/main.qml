@@ -16,7 +16,7 @@ PlasmoidItem {
 
     property var panelPosition: {}
 
-    property bool enabled: plasmoid.configuration.enabled
+    property bool isEnabled: true
     property int mode: plasmoid.configuration.mode
     property int colorMode: plasmoid.configuration.colorMode
     property string singleColor: plasmoid.configuration.singleColor
@@ -30,13 +30,18 @@ PlasmoidItem {
     property int rainbowTransition: plasmoid.configuration.rainbowTransition
     property string blacklist: plasmoid.configuration.blacklist
     property string paddingRules: plasmoid.configuration.paddingRules
-    property bool hideWidget: plasmoid.configuration.hideWidget
+    property bool hideWidget: false
 
     property bool isLoaded: false
     property bool isConfiguring: plasmoid.userConfiguring
 
     property bool inEditMode: Plasmoid.containment.corona?.editMode ? true : false
     Plasmoid.status: inEditMode || !hideWidget ? PlasmaCore.Types.ActiveStatus : PlasmaCore.Types.HiddenStatus
+
+    property GridLayout panelLayout
+    property int childCount: 0
+    property bool errorCreatingRects: false
+    property bool wasEditing: false
 
     Plasmoid.contextualActions: [
         PlasmaCore.Action {
@@ -45,7 +50,7 @@ PlasmoidItem {
             icon.name: "visibility-symbolic"
             checked: Plasmoid.configuration.hideWidget
             onTriggered: checked => {
-                Plasmoid.configuration.hideWidget = checked;
+                plasmoid.configuration.hideWidget = checked;
             }
         }
     ]
@@ -80,36 +85,32 @@ PlasmoidItem {
     fullRepresentation: ColumnLayout {}
 
     onModeChanged: {
-        if (!isLoaded) return
+        // if (!isLoaded) return
         console.error("MODE CHANGED:",mode);
         plasmoid.configuration.mode = mode
         init()
     }
 
     function init() {
-        if (enabled) {
-            colorize()
-            if (mode === 1) { 
-                rainbowTimer.start()
-            } else {
-                rainbowTimer.stop()
-            }
+        if (isEnabled) {
+            // colorize()
+            startTimer.start()
         } else {
             rainbowTimer.stop()
             destroyRects()
         }
-        
+
     }
 
-    onEnabledChanged: {
-        if (!isLoaded) return
-        console.error("ENABLED CHANGEDD:",enabled);
-        createRects()
+    onIsEnabledChanged: {
+        // if (!isLoaded) return
+        console.error("ENABLED CHANGEDD:",isEnabled);
+        plasmoid.configuration.isEnabled = isEnabled
         init()
     }
 
     onColorModeChanged: {
-        if (!isLoaded) return
+        // if (!isLoaded) return
         console.error("COLOR MODE CHANGED:",colorMode);
         init()
     }
@@ -120,6 +121,14 @@ PlasmoidItem {
 
     onRainbowSaturationChanged: {
         init()
+    }
+
+    onInEditModeChanged: {
+        wasEditing = !inEditMode
+    }
+
+    onHideWidgetChanged: {
+        console.error("HIDE WIDGET:",hideWidget);
     }
 
     function getRandomColor() {
@@ -137,7 +146,7 @@ PlasmoidItem {
     }
 
     // Search the actual gridLayout of the panel
-    property GridLayout panelLayout: {
+    function getGrid() {
         let candidate = main.parent;
         while (candidate) {
             if (candidate instanceof GridLayout) {
@@ -145,7 +154,7 @@ PlasmoidItem {
             }
             candidate = candidate.parent;
         }
-        return null;
+        return null
     }
 
     ListModel {
@@ -153,16 +162,15 @@ PlasmoidItem {
     }
 
     function nextCustomColor() {
-        console.log(customColors);
         const colors = customColors.split(" ")
         let next = colors[currentCustomColorIndex]
         currentCustomColorIndex= currentCustomColorIndex < colors.length - 1 ? currentCustomColorIndex + 1 : 0
-        console.log("Next custom color:",currentCustomColorIndex, next);
         return next
     }
 
 
     function createRects() {
+        if(!panelLayout) return
         if (rectangles.count === 0) {
             console.log("creating rects");
             const blacklisted = blacklist.split("\n").map(function(line) {return line.trim()})
@@ -183,9 +191,7 @@ PlasmoidItem {
                             child,
                             {
                                 "z": -1,
-                                "target": child.applet.plasmoid.internalSystray.systemTrayState,
-                                "color": getColor()
-                                
+                                "target": child.applet.plasmoid.internalSystray.systemTrayState
                             }
                         )
                     })
@@ -215,10 +221,9 @@ PlasmoidItem {
                         child,
                         {
                             "z": -1,
-                            "target":child.applet,
+                            "target":child,
                             "heightOffset":x,
-                            "widthOffset":y,
-                            "color":getColor()
+                            "widthOffset":y
                         }
                     )
                 })
@@ -245,34 +250,32 @@ PlasmoidItem {
     }
 
     function colorize() {
-        console.log("colorize mode:",colorMode,rectangles.count);
+        console.log("colorize mode:",colorMode,"rects:",rectangles.count,"widget id:",Plasmoid.id, "screen:", screen, "position", plasmoid.location);
         for(let i = 0; i < rectangles.count; i++) {
-            const newColor = getColor()
-            rectangles.get(i)["comp"].changeColor(newColor)
-        }
-    }
-
-    function destroyRects() {
-        for (var i = rectangles.count - 1; i >= 0; i--) {
-            var comp = rectangles.get(i)["comp"]
-            comp.destroy()
-            rectangles.remove(i)
+            try {
+                var comp = rectangles.get(i)["comp"]
+                const newColor = isEnabled ? getColor() : "transparent"
+                comp.changeColor(newColor)
+            } catch (e) {
+                console.error("Error colorizing rect", i, "E:" , e);
+            }
         }
     }
 
     Timer {
         id: rainbowTimer
         running: false
-        repeat: true
+        repeat: (mode === 1)
         interval: rainbowInterval
         onTriggered: {
             colorize()
+            interval = rainbowInterval
         }
     }
 
     Component.onCompleted: {
         if (!onDesktop) {
-            startTimer.start()
+            init()
         } else {
             console.error("Panel not detected, aborted");
         }
@@ -281,12 +284,48 @@ PlasmoidItem {
     Timer {
         id: startTimer
         running: true
-        repeat: false//(rectangles.count===0)
-        interval: 1000
+        repeat: false
+        interval: !isLoaded ? 1000 : 1
         onTriggered: {
             createRects()
             isLoaded = true
-            init()
+            rainbowTimer.interval = 10
+            rainbowTimer.start()
+        }
+    }
+
+    function destroyRects() {
+        console.log("Destroying rects:",rectangles.count,"widget id:",Plasmoid.id, "screen:", screen, "position", plasmoid.location);
+        for (var i = rectangles.count - 1; i >= 0; i--) {
+            var comp = rectangles.get(i)["comp"]
+            try {
+                comp.destroy()
+            } catch (e) {
+                console.error("Error destroying rect", i, "E:" , e);
+            }
+            rectangles.remove(i)
+        }
+    }
+
+    Timer {
+        id: initRects
+        running: true
+        repeat: true
+        interval: 100
+        onTriggered: {
+            panelLayout = getGrid()
+            if (!panelLayout) return
+            // check for widget add/removal
+            const newChildCount = panelLayout.children.length
+            if(newChildCount !== childCount || wasEditing ) {
+                if(wasEditing) console.log("END EDITING");
+                console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                console.log("Number of childs changed from " + childCount + " to " + newChildCount);
+                destroyRects()
+                childCount = newChildCount
+                wasEditing = false
+                init()
+            }
         }
     }
 }

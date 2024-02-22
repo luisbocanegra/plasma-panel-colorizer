@@ -13,10 +13,10 @@ MouseArea {
 
     property string icon
     property bool onDesktop
-    property bool isEnabled: main.enabled
+    property bool isEnabled: main.isEnabled
     hoverEnabled: true
     onClicked: {
-        main.enabled = !main.enabled
+        main.isEnabled = !main.isEnabled
     }
 
 

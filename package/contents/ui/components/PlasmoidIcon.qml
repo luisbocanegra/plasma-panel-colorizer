@@ -16,7 +16,7 @@ Item {
         source: root.source
         active: compact.containsMouse
         isMask: true
-        color: compact.onDesktop ? Kirigami.Theme.negativeTextColor : (compact.containsMouse ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor)
+        color: compact.onDesktop ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.textColor
         opacity: compact.isEnabled ? 1 : 0.5
     }
 }
