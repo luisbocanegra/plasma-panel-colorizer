@@ -74,7 +74,9 @@ org.kde.plasma.icontasks
     <entry
         name="paddingRules"
         type="String">
-        <default>org.kde.plasma.appmenu -8 0</default>
+        <default>org.kde.plasma.appmenu -8 0
+org.kde.plasma.activitybar -8 0
+        </default>
     </entry>
     <entry
         name="hideWidget"
