@@ -14,13 +14,13 @@
     <entry
         name="mode"
         type="Int">
-      <default>0</default>
+       <default>1</default>
     </entry>
     <!-- color modes: single, accent, custom list, random -->
     <entry
         name="colorMode"
         type="Int">
-      <default>3</default>
+        <default>2</default>
     </entry>
     <entry
         name="singleColor"
@@ -35,7 +35,7 @@
     <entry
         name="opacity"
         type="Double">
-        <default>0.2</default>
+        <default>1.0</default>
     </entry>
     <entry
         name="radius"
@@ -50,7 +50,7 @@
     <entry
         name="rainbowLightness"
         type="Double">
-        <default>0.65</default>
+        <default>0.84</default>
     </entry>
     <entry
         name="rainbowInterval"
@@ -87,17 +87,17 @@ org.kde.plasma.activitybar -8 0
     <entry
         name="fgColorEnabled"
         type="Bool">
-        <default>false</default>
+        <default>true</default>
     </entry>
     <entry
         name="customFgColor"
         type="String">
-        <default>#686868</default>
+        <default>#000000</default>
     </entry>
     <entry
         name="fgOpacity"
         type="Double">
-        <default>1.0</default>
+        <default>0.78</default>
     </entry>
   </group>
 </kcfg>
