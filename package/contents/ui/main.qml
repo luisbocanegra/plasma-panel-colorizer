@@ -186,6 +186,19 @@ PlasmoidItem {
                 const child = panelLayout.children[i];
 
                 if (!child.applet) continue
+                if (!child.applet.plasmoid) {
+                    continue
+                }
+
+                // name may not be available while gragging into the panel and
+                // other situations
+                try {
+                    console.error(child.applet.plasmoid.pluginName);
+                } catch (e) {
+                    console.error(e);
+                    continue
+                }
+
                 // TODO: Code for handling expanded widget action is here but not used yet
                 const name = child.applet.plasmoid.pluginName
                 if (name === "org.kde.plasma.systemtray") {
