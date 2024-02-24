@@ -17,6 +17,7 @@ MouseArea {
     hoverEnabled: true
     onClicked: {
         main.isEnabled = !main.isEnabled
+        main.isEnabled = !main.isEnabled
     }
 
 
@@ -31,6 +32,13 @@ MouseArea {
             height: Kirigami.Units.iconSizes.roundedIconSize(Math.min(parent.width, parent.height))
             width: height
             source: icon
+            NumberAnimation on rotation {
+                from: 0
+                to: 360
+                running: main.showToUpdate
+                loops: Animation.Infinite
+                duration: 5000
+            }
         }
     }
 

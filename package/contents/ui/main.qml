@@ -36,7 +36,9 @@ PlasmoidItem {
     property bool isConfiguring: plasmoid.userConfiguring
 
     property bool inEditMode: Plasmoid.containment.corona?.editMode ? true : false
-    Plasmoid.status: inEditMode || !hideWidget ? PlasmaCore.Types.ActiveStatus : PlasmaCore.Types.HiddenStatus
+    Plasmoid.status: (inEditMode || !hideWidget || showToUpdate || isConfiguring) ?
+                        PlasmaCore.Types.ActiveStatus :
+                        PlasmaCore.Types.HiddenStatus
 
     property GridLayout panelLayout
     property int childCount: 0
@@ -48,6 +50,8 @@ PlasmoidItem {
     property color customFgColor: plasmoid.configuration.customFgColor
     property real fgOpacity: plasmoid.configuration.fgOpacity
     property bool fgColorEnabled: plasmoid.configuration.fgColorEnabled
+
+    property bool showToUpdate: false
 
     Plasmoid.contextualActions: [
         PlasmaCore.Action {
@@ -103,13 +107,13 @@ PlasmoidItem {
             rainbowTimer.stop()
             updateFgColor()
             destroyRects()
+            destroyRequired = true
         }
     }
 
     onIsEnabledChanged: {
         console.error("ENABLED CHANGEDD:",isEnabled);
         plasmoid.configuration.isEnabled = isEnabled
-        init()
     }
 
     onInEditModeChanged: {
@@ -139,6 +143,7 @@ PlasmoidItem {
     }
 
     function dumpProps(obj) {
+        console.error("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         for (var k of Object.keys(obj)) {
             print(k + "=" + obj[k]+"\n")
         }
@@ -179,15 +184,14 @@ PlasmoidItem {
                 let heightOffset = 0
                 let widthOffset = 0
                 const child = panelLayout.children[i];
-                // if (!child.visible) continue;
 
                 if (!child.applet) continue
-                console.error(child.applet.plasmoid.pluginName);
                 // TODO: Code for handling expanded widget action is here but not used yet
-                if (child.applet && (child.applet.plasmoid.pluginName === "org.kde.plasma.systemtray")) {
+                const name = child.applet.plasmoid.pluginName
+                if (name === "org.kde.plasma.systemtray") {
                     rectangles.append({
                         "comp":rectComponent.createObject(
-                            child,
+                            child.applet,
                             {
                                 "z": -1,
                                 "target": child.applet.plasmoid.internalSystray.systemTrayState
@@ -197,8 +201,6 @@ PlasmoidItem {
                     continue
                 }
 
-                
-                const name = child.applet.plasmoid.pluginName
                 if (blacklisted.some(function(target) {return name.includes(target)})) continue
 
                 var x = 0
@@ -217,7 +219,7 @@ PlasmoidItem {
 
                 rectangles.append({
                     "comp":rectComponent.createObject(
-                        child,
+                        child.applet,
                         {
                             "z": -1,
                             "target":child,
@@ -292,7 +294,6 @@ PlasmoidItem {
     function updateFgColor() {
         for(let i = 0; i < rectangles.count; i++) {
             try {
-                const newColor = getColor()
                 var comp = rectangles.get(i)["comp"]
                 applyFgColor(comp.parent)
             } catch (e) {
@@ -324,9 +325,12 @@ PlasmoidItem {
         id: initTimer
         running: false
         repeat: false
-        interval: !isLoaded ? 1000 : 100
+        interval: 100
         onTriggered: {
-            if (destroyRequired) destroyRects()
+            console.log("initTimer");
+            if (destroyRequired) {
+                destroyRects()
+            }
             startTimer.start()
         }
     }
@@ -335,12 +339,13 @@ PlasmoidItem {
         id: startTimer
         running: false
         repeat: false
-        interval: 50
+        interval: 200
         onTriggered: {
+            console.log("startTimer");
             if (destroyRequired) createRects()
             isLoaded = true
             destroyRequired = false
-            rainbowTimer.interval = 10
+            rainbowTimer.interval = 100
             rainbowTimer.start()
         }
     }
@@ -356,12 +361,22 @@ PlasmoidItem {
             }
             rectangles.remove(i)
         }
-        destroyRequired = true
+    }
+
+    Timer {
+        id: panelModifiedTimer
+        running: false
+        interval: 5000
+        repeat: false
+        onTriggered: {
+            showToUpdate = false
+            init()
+        }
     }
 
     Timer {
         id: initRects
-        running: true
+        running: isEnabled && !onDesktop
         repeat: true
         interval: 100
         onTriggered: {
@@ -369,15 +384,17 @@ PlasmoidItem {
             if (!panelLayout) return
             // check for widget add/removal
             const newChildCount = panelLayout.children.length
-            if(newChildCount !== childCount || wasEditing ) {
+            if(newChildCount !== childCount || wasEditing) {
                 if(wasEditing) console.log("END EDITING");
                 console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                 console.log("Number of childs changed from " + childCount + " to " + newChildCount);
-                destroyRects()
                 childCount = newChildCount
-                wasEditing = false
                 destroyRequired = true
-                init()
+                wasEditing = false
+                if(isLoaded) {
+                    showToUpdate = true
+                    panelModifiedTimer.start()
+                }
             }
         }
     }
