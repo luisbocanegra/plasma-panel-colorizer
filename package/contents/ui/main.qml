@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.plasmoid
+import org.kde.plasma.extras 2.0 as PlasmaExtras
 
 PlasmoidItem {
     id: main
@@ -278,6 +279,9 @@ PlasmoidItem {
     }
 
     function applyFgColor(element) {
+        // don't go into the tray
+        if (element instanceof PlasmaExtras.Representation) return
+
         var newColor = defaultTextColor
         if (isEnabled && fgColorEnabled) {
             newColor = customFgColor
