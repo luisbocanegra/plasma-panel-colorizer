@@ -291,6 +291,8 @@ PlasmoidItem {
             if (element.color) {
                 element.color = newColor
             }
+            // fixes notification applet artifact when appearing
+            if (element.scale !== 1) return
             if (isEnabled) {
                 element.opacity = fgOpacity
             } else {
