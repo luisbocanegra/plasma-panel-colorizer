@@ -1,3 +1,4 @@
+import QtCore
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -5,6 +6,9 @@ import org.kde.kirigami as Kirigami
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.plasmoid
 import org.kde.plasma.extras 2.0 as PlasmaExtras
+import Qt.labs.platform
+import org.kde.plasma.plasma5support as P5Support
+import "components" as Components
 
 PlasmoidItem {
     id: main
@@ -53,6 +57,67 @@ PlasmoidItem {
     property bool fgColorEnabled: plasmoid.configuration.fgColorEnabled
 
     property bool showToUpdate: false
+
+    property string homeDir: StandardPaths.writableLocation(
+                            StandardPaths.HomeLocation).toString().substring(7)
+    property string schemeFile: homeDir + "/.local/share/color-schemes/PanelColorizer.colors"
+
+    property string saveSchemeCmd: "echo '" + schemeContent.text + "' > " + schemeFile
+
+    property string fgColor: isEnabled && fgColorEnabled ? customFgColor : defaultTextColor
+    property string opacityComponent: {
+        return opacityToHex(isEnabled ? fgOpacity : 1)
+    }
+
+    property string fgWighAlpha: {
+        return "#" + opacityComponent + fgColor.substring(1)
+    }
+    property string fgContrast: {
+        if (Kirigami.ColorUtils.brightnessForColor(fgColor) === Kirigami.ColorUtils.Light) {
+            return "#000000"
+        } else {
+            return "#ffffff"
+        }
+    }
+
+    function opacityToHex(opacity) {
+        const op = Math.max(0, Math.min(1, opacity))
+        const intOpacity = Math.round(op * 255)
+        return intOpacity.toString(16).padStart(2, '0')
+    }
+
+    P5Support.DataSource {
+        id: runCommand
+        engine: "executable"
+        connectedSources: []
+
+        onNewData: function(source, data) {
+            var exitCode = data["exit code"]
+            var exitStatus = data["exit status"]
+            var stdout = data["stdout"]
+            var stderr = data["stderr"]
+            exited(source, exitCode, exitStatus, stdout, stderr)
+            disconnectSource(source) // cmd finished
+        }
+
+        function exec(cmd) {
+            console.log(cmd);
+            runCommand.connectSource(cmd)
+        }
+
+        signal exited(string cmd, int exitCode, int exitStatus, string stdout, string stderr)
+    }
+
+    onFgColorChanged: {
+        if (isLoaded) runCommand.exec(saveSchemeCmd)
+    }
+
+    Components.Scheme {
+        id: schemeContent
+        fgContrast: main.fgContrast
+        fgWighAlpha: main.fgWighAlpha
+        opacityComponent: main.opacityComponent
+    }
 
     Plasmoid.contextualActions: [
         PlasmaCore.Action {
@@ -109,6 +174,7 @@ PlasmoidItem {
             updateFgColor()
             destroyRects()
             destroyRequired = true
+            runCommand.exec(saveSchemeCmd)
         }
     }
 
@@ -291,6 +357,11 @@ PlasmoidItem {
             element.Kirigami.Theme.textColor = newColor
         }
 
+
+        if (element.hasOwnProperty("scheme")) {
+            element.scheme = schemeFile
+        }
+
         if ([Text,ToolButton,Label,Canvas,Kirigami.Icon].some(function(type) {return element instanceof type})) {
             if (element.color) {
                 element.color = newColor
@@ -360,6 +431,7 @@ PlasmoidItem {
             if (destroyRequired) {
                 destroyRects()
             }
+            runCommand.exec(saveSchemeCmd)
             startTimer.start()
         }
     }
@@ -368,7 +440,7 @@ PlasmoidItem {
         id: startTimer
         running: false
         repeat: false
-        interval: 200
+        interval: 400
         onTriggered: {
             console.log("startTimer");
             if (destroyRequired) createRects()
@@ -425,6 +497,16 @@ PlasmoidItem {
                     panelModifiedTimer.start()
                 }
             }
+        }
+    }
+
+    function printProps(element) {
+        dumpProps(element)
+        for (let p of Object.keys(element)) {
+            dumpProps(element[p])
+        }
+        for (var i = 0; i < element.children.length; i++) {
+            printProps(element.children[i]);
         }
     }
 }
