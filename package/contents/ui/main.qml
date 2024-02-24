@@ -313,6 +313,16 @@ PlasmoidItem {
         }
     }
 
+    Timer {
+        id: fgUpdateTimer
+        running: isEnabled && fgColorEnabled
+        repeat: true
+        interval: 250
+        onTriggered: {
+            updateFgColor()
+        }
+    }
+
     Component.onCompleted: {
         if (!onDesktop) {
             init()
