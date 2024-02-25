@@ -17,23 +17,35 @@ https://github.com/luisbocanegra/plasma-panel-colorizer/assets/15076387/ec1148e2
 
 ## Current & planned features
 
-* [x] Opacity
-* [x] Border radius
-* [x] Color modes
-  * [x] Static
-  * [x] Animated
-    * [x] Interval
-    * [x] Fading
-* [x] Colors
-  * [x] Single
-  * [x] Accent
-  * [x] Custom list
-  * [x] Random
-    * [x] Saturation
-    * [x] Lightness
-* [x] Blacklist
+> [!IMPORTANT]
+> List bellow represents the development status of the main branch, to see the current latest release features look at the readme of each tag e.g. [v0.2.0](https://github.com/luisbocanegra/plasma-panel-colorizer/tree/v0.2.0). Additionally, changes are ported to [plasma5](https://github.com/luisbocanegra/plasma-panel-colorizer/tree/plasma5) branch only after a new tag is created and may take some time.
+
+* [x] Widget Background
+  * [x] Opacity
+  * [x] Border radius
+  * [x] Color modes
+    * [x] Static
+    * [x] Animated
+      * [x] Interval
+      * [x] Fading
+  * [x] Colors
+    * [x] Single
+    * [x] Accent
+    * [x] Custom list
+    * [x] Random
+      * [x] Saturation
+      * [x] Lightness
+* [x] Foreground (most icons and text)
+  * [x] Color
+  * [x] Opacity
+    * [ ] Force Kirigami.Icon color to specific plasmoids with `isMask`
+* [ ] Panel background (over real background)
+  * [ ] Opacity
+  * [ ] Color
+* [x] Widget Blacklist
 * [x] Background padding rules
-* [ ] Survive edit mode
+* [x] Handle widgets added/removed form panel
+* [ ] Panel padding (same around all sides of the panel)
 
 ## Installing
 
@@ -46,11 +58,12 @@ https://github.com/luisbocanegra/plasma-panel-colorizer/assets/15076387/ec1148e2
 1. Install these dependencies (please let me know if I missed or added something unnecessary)
 
     ```txt
-    cmake extra-cmake-modules libplasma
+    cmake extra-cmake-modules libplasma plasma5support
     ```
 
 2. Run `./install.sh`
 
-## Acknowledgement
+## Acknowledgements
 
-* [Google LLC. / Pictogrammers](https://pictogrammers.com/library/mdi/) for the panel icons
+* [Search the actual gridLayout of the panel from Plasma panel spacer](https://invent.kde.org/plasma/plasma-workspace/-/blob/Plasma/5.27/applets/panelspacer/package/contents/ui/main.qml?ref_type=heads#L37) code that inspired this project.
+* [Google LLC. / Pictogrammers](https://pictogrammers.com/library/mdi/) for the panel icons.
