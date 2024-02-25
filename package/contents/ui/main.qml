@@ -101,7 +101,6 @@ PlasmoidItem {
         }
 
         function exec(cmd) {
-            console.log(cmd);
             runCommand.connectSource(cmd)
         }
 

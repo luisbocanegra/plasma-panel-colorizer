@@ -86,7 +86,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Opacity:")
             placeholderText: "0-1"
             horizontalAlignment: TextInput.AlignHCenter
-            text: parseFloat(cfg_fgOpacity)
+            text: parseFloat(cfg_fgOpacity).toFixed(validator.decimals)
 
             validator: DoubleValidator {
                 bottom: 0.0
@@ -98,6 +98,23 @@ KCM.SimpleKCM {
             onTextChanged: {
                 const newVal = parseFloat(text)
                 cfg_fgOpacity = isNaN(newVal) ? 0 : newVal
+            }
+
+            Components.ValueMouseControl {
+                height: parent.height - 8
+                width: height
+                anchors.right: parent.right
+                anchors.rightMargin: 4
+                anchors.verticalCenter: parent.verticalCenter
+
+                from: parent.validator.bottom
+                to: parent.validator.top
+                decimals: parent.validator.decimals
+                stepSize: 0.1
+                value: cfg_fgOpacity
+                onValueChanged: {
+                    cfg_fgOpacity = parseFloat(value)
+                }
             }
         }
 
@@ -117,7 +134,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Opacity:")
             placeholderText: "0-1"
             horizontalAlignment: TextInput.AlignHCenter
-            text: parseFloat(cfg_opacity)
+            text: parseFloat(cfg_opacity).toFixed(validator.decimals)
 
             validator: DoubleValidator {
                 bottom: 0.0
@@ -129,6 +146,23 @@ KCM.SimpleKCM {
             onTextChanged: {
                 const newVal = parseFloat(text)
                 cfg_opacity = isNaN(newVal) ? 0 : newVal
+            }
+
+            Components.ValueMouseControl {
+                height: parent.height - 8
+                width: height
+                anchors.right: parent.right
+                anchors.rightMargin: 4
+                anchors.verticalCenter: parent.verticalCenter
+
+                from: parent.validator.bottom
+                to: parent.validator.top
+                decimals: parent.validator.decimals
+                stepSize: 0.1
+                value: cfg_opacity
+                onValueChanged: {
+                    cfg_opacity = parseFloat(value)
+                }
             }
         }
 
@@ -183,6 +217,7 @@ KCM.SimpleKCM {
             id: rainbowInterval
             from: 0
             to: 30000
+            stepSize: 100
             value: cfg_rainbowInterval
             onValueModified: {
                 cfg_rainbowInterval = value
@@ -195,6 +230,7 @@ KCM.SimpleKCM {
             id: rainbowTransition
             from: 0
             to: rainbowInterval.value
+            stepSize: 100
             value: cfg_rainbowTransition
             onValueModified: {
                 cfg_rainbowTransition = value
@@ -271,7 +307,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Saturation:")
             placeholderText: "0-1"
             horizontalAlignment: TextInput.AlignHCenter
-            text: parseFloat(cfg_rainbowSaturation)
+            text: parseFloat(cfg_rainbowSaturation).toFixed(validator.decimals)
             enabled: randomColorRadio.checked
 
             validator: DoubleValidator {
@@ -285,6 +321,23 @@ KCM.SimpleKCM {
                 const newVal = parseFloat(text)
                 cfg_rainbowSaturation = isNaN(newVal) ? 0 : newVal
             }
+
+            Components.ValueMouseControl {
+                height: parent.height - 8
+                width: height
+                anchors.right: parent.right
+                anchors.rightMargin: 4
+                anchors.verticalCenter: parent.verticalCenter
+
+                from: parent.validator.bottom
+                to: parent.validator.top
+                decimals: parent.validator.decimals
+                stepSize: 0.1
+                value: cfg_rainbowSaturation
+                onValueChanged: {
+                    cfg_rainbowSaturation = parseFloat(value)
+                }
+            }
         }
 
         TextField {
@@ -292,7 +345,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Lightness:")
             placeholderText: "0-1"
             horizontalAlignment: TextInput.AlignHCenter
-            text: parseFloat(cfg_rainbowLightness)
+            text: parseFloat(cfg_rainbowLightness).toFixed(validator.decimals)
             enabled: randomColorRadio.checked
 
             validator: DoubleValidator {
@@ -305,6 +358,23 @@ KCM.SimpleKCM {
             onTextChanged: {
                 const newVal = parseFloat(text)
                 cfg_rainbowLightness = isNaN(newVal) ? 0 : newVal
+            }
+
+            Components.ValueMouseControl {
+                height: parent.height - 8
+                width: height
+                anchors.right: parent.right
+                anchors.rightMargin: 4
+                anchors.verticalCenter: parent.verticalCenter
+
+                from: parent.validator.bottom
+                to: parent.validator.top
+                decimals: parent.validator.decimals
+                stepSize: 0.1
+                value: cfg_rainbowLightness
+                onValueChanged: {
+                    cfg_rainbowLightness = parseFloat(value)
+                }
             }
         }
 
