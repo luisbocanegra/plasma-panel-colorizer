@@ -34,6 +34,11 @@ PlasmoidItem {
     property string paddingRules: plasmoid.configuration.paddingRules
     property bool hideWidget: plasmoid.configuration.hideWidget
 
+    property bool panelBgEnabled: plasmoid.configuration.panelBgEnabled
+    property string panelBgColor: plasmoid.configuration.panelBgColor
+    property real panelBgOpacity: plasmoid.configuration.panelBgOpacity
+    property real panelBgRadius: isFloating ? plasmoid.configuration.panelBgRadius : 0
+
     property bool isLoaded: false
     property bool isConfiguring: plasmoid.userConfiguring
 
@@ -80,6 +85,10 @@ PlasmoidItem {
     property int panelPadding: plasmoid.configuration.panelPadding
     property bool isVertical: Plasmoid.formFactor === PlasmaCore.Types.Vertical
     property var panelBg: panelElement?.children ? panelElement.children[2] : null
+    property bool isFloating: !panelElement ? false : Boolean(panelElement.floatingness)
+    property int panelBGP: isFloating ? 12 : 12
+
+    property var panelBGE
 
 
     function opacityToHex(opacity) {
@@ -151,6 +160,15 @@ PlasmoidItem {
         }
     }
 
+    property Component rectComponentTest: Rectangle {
+        color: panelBgColor
+        opacity: panelBgOpacity
+        radius: panelBgRadius
+        anchors.centerIn: parent
+        width: panelBg.width
+        height: panelBg.height
+    }
+
     toolTipSubText: onDesktop ? "<font color='"+Kirigami.Theme.neutralTextColor+"'>Panel not found, this widget must be child of a panel</font>" : Plasmoid.metaData.description
     toolTipTextFormat: Text.RichText
 
@@ -176,6 +194,7 @@ PlasmoidItem {
             paddingTimer.start()
             updateFgColor()
             destroyRects()
+            setPanelBg()
             destroyRequired = true
             runCommand.exec(saveSchemeCmd)
         }
@@ -444,6 +463,7 @@ PlasmoidItem {
         interval: 100
         onTriggered: {
             console.log("initTimer");
+            setPanelBg()
             if (destroyRequired) {
                 destroyRects()
             }
@@ -538,6 +558,7 @@ PlasmoidItem {
     function updatePadding() {
         if (isEnabled && enableCustomPadding) {
             panelLayout.anchors.centerIn = panelLayout.parent
+
             if (!isVertical) {
                 panelLayout.width = panelBg.width - panelPadding
                 panelLayout.height = panelBg.height
@@ -565,6 +586,28 @@ PlasmoidItem {
         target: plasmoid
         onLocationChanged: {
             paddingTimer.start()
+        }
+    }
+
+    onIsFloatingChanged: {
+        console.error("FL:", isFloating,panelBGP);
+    }
+
+    function setPanelBg() {
+        destroyPanelBg()
+        if (isEnabled && panelBgEnabled) {
+            panelBGE = rectComponentTest.createObject(
+                panelLayout.parent,
+                {
+                    "z": -1
+                }
+            )
+        }
+    }
+
+    function destroyPanelBg() {
+        if (panelBGE) {
+            panelBGE.destroy()
         }
     }
 }

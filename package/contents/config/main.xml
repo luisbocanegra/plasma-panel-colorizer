@@ -109,5 +109,25 @@ org.kde.plasma.activitybar -8 0
         type="Int">
         <default>8</default>
     </entry>
+    <entry
+        name="panelBgEnabled"
+        type="Bool">
+        <default>true</default>
+    </entry>
+    <entry
+        name="panelBgColor"
+        type="String">
+        <default>#000000</default>
+    </entry>
+    <entry
+        name="panelBgOpacity"
+        type="Double">
+        <default>1</default>
+    </entry>
+    <entry
+        name="panelBgRadius"
+        type="Int">
+        <default>3</default>
+    </entry>
   </group>
 </kcfg>

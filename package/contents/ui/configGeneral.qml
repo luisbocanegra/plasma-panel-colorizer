@@ -14,7 +14,7 @@ KCM.SimpleKCM {
     property string cfg_singleColor: singleColor.text
     property string cfg_customColors: customColors.text
     property real cfg_opacity: parseFloat(bgOpacity.text)
-    property int cfg_radius: bgRadius.radius
+    property int cfg_radius: bgRadius.value
     property real cfg_rainbowSaturation: rainbowSaturation.value
     property real cfg_rainbowLightness: rainbowLightness.value
     property int cfg_rainbowInterval: rainbowInterval.value
@@ -30,6 +30,11 @@ KCM.SimpleKCM {
 
     property int cfg_panelPadding: panelPadding.value
     property int cfg_enableCustomPadding: enableCustomPadding.value
+
+    property bool cfg_panelBgEnabled: panelBgEnabled.checked
+    property string cfg_panelBgColor: panelBgColor.text
+    property real cfg_panelBgOpacity: parseFloat(panelBgOpacity.text)
+    property int cfg_panelBgRadius: panelBgRadius.value
 
     Kirigami.FormLayout {
 
@@ -425,6 +430,78 @@ KCM.SimpleKCM {
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
             Kirigami.FormData.label: i18n("Panel")
+        }
+
+        CheckBox {
+            Kirigami.FormData.label: i18n("Custom background:")
+            id: panelBgEnabled
+            checked: cfg_panelBgEnabled
+            onCheckedChanged: cfg_panelBgEnabled = checked
+        }
+
+        TextField {
+            id: panelBgColor
+            Kirigami.FormData.label: i18n("Color:")
+            text: cfg_panelBgColor
+            enabled: panelBgEnabled.checked
+            onTextChanged: cfg_panelBgColor = text
+        }
+
+        TextField {
+            id: panelBgOpacity
+            Kirigami.FormData.label: i18n("Opacity:")
+            placeholderText: "0-1"
+            horizontalAlignment: TextInput.AlignHCenter
+            text: parseFloat(cfg_panelBgOpacity).toFixed(validator.decimals)
+            enabled: panelBgEnabled.checked
+
+            validator: DoubleValidator {
+                bottom: 0.0
+                top: 1.0
+                decimals: 2
+                notation: DoubleValidator.StandardNotation
+            }
+
+            onTextChanged: {
+                const newVal = parseFloat(text)
+                cfg_panelBgOpacity = isNaN(newVal) ? 0 : newVal
+            }
+
+            Components.ValueMouseControl {
+                height: parent.height - 8
+                width: height
+                anchors.right: parent.right
+                anchors.rightMargin: 4
+                anchors.verticalCenter: parent.verticalCenter
+
+                from: parent.validator.bottom
+                to: parent.validator.top
+                decimals: parent.validator.decimals
+                stepSize: 0.1
+                value: cfg_panelBgOpacity
+                onValueChanged: {
+                    cfg_panelBgOpacity = parseFloat(value)
+                }
+            }
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Radius:")
+            id: panelBgRadius
+            value: cfg_panelBgRadius
+            from: 0
+            to: 99
+            enabled: panelBgEnabled.checked
+            onValueModified: {
+                cfg_panelBgRadius = value
+            }
+        }
+
+        Label {
+            text: i18n("Custom background is drawn above the panel background, this may change in the future if I find out how to hide the original one")
+            opacity: 0.7
+            Layout.maximumWidth: 300
+            wrapMode: Text.Wrap
         }
 
         CheckBox {
