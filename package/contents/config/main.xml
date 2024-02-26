@@ -40,7 +40,7 @@
     <entry
         name="radius"
         type="Int">
-        <default>5</default>
+        <default>3</default>
     </entry>
     <entry
         name="rainbowSaturation"
@@ -98,6 +98,16 @@ org.kde.plasma.activitybar -8 0
         name="fgOpacity"
         type="Double">
         <default>0.78</default>
+    </entry>
+    <entry
+        name="enableCustomPadding"
+        type="Bool">
+        <default>false</default>
+    </entry>
+    <entry
+        name="panelPadding"
+        type="Int">
+        <default>8</default>
     </entry>
   </group>
 </kcfg>

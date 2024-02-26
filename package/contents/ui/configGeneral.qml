@@ -27,6 +27,10 @@ KCM.SimpleKCM {
     property string cfg_customFgColor: customFgColor.text
     property real cfg_fgOpacity: parseFloat(fgOpacity.text)
 
+
+    property int cfg_panelPadding: panelPadding.value
+    property int cfg_enableCustomPadding: enableCustomPadding.value
+
     Kirigami.FormLayout {
 
         Kirigami.Separator {
@@ -413,6 +417,37 @@ KCM.SimpleKCM {
 
         Label {
             text: i18n("Some widgets may fill or let margins around even when their elements could fit in a smaller/bigger size, making their tinted area bigger/smaller, this option allows setting height and width offset to circumvent this.")
+            opacity: 0.7
+            Layout.maximumWidth: 300
+            wrapMode: Text.Wrap
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: true
+            Kirigami.FormData.label: i18n("Panel")
+        }
+
+        CheckBox {
+            Kirigami.FormData.label: i18n("Custom fixed side padding:")
+            id: enableCustomPadding
+            checked: cfg_enableCustomPadding
+            onCheckedChanged: cfg_enableCustomPadding = checked
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Padding (px):")
+            id: panelPadding
+            value: cfg_panelPadding
+            from: 0
+            to: 99
+            enabled: enableCustomPadding.checked
+            onValueModified: {
+                cfg_panelPadding = value
+            }
+        }
+
+        Label {
+            text: i18n("Changing panel visibility settings with this option enabled may cause some jankiness, specially in edit mode. Disable and restart Plasma or logout to restore the original padding.")
             opacity: 0.7
             Layout.maximumWidth: 300
             wrapMode: Text.Wrap

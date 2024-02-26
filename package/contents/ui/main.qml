@@ -6,7 +6,6 @@ import org.kde.kirigami as Kirigami
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.plasmoid
 import org.kde.plasma.extras 2.0 as PlasmaExtras
-import Qt.labs.platform
 import org.kde.plasma.plasma5support as P5Support
 import "components" as Components
 
@@ -18,8 +17,6 @@ PlasmoidItem {
 
     property string iconName: !onDesktop ? "icon" : "error"
     property string icon: Qt.resolvedUrl("../icons/" + iconName + ".svg").toString().replace("file://", "")
-
-    property var panelPosition: {}
 
     property bool isEnabled: plasmoid.configuration.isEnabled
     property int mode: plasmoid.configuration.mode
@@ -45,7 +42,6 @@ PlasmoidItem {
                         PlasmaCore.Types.ActiveStatus :
                         PlasmaCore.Types.HiddenStatus
 
-    property GridLayout panelLayout
     property int childCount: 0
     property bool wasEditing: false
     property bool destroyRequired: false
@@ -79,6 +75,12 @@ PlasmoidItem {
             return "#ffffff"
         }
     }
+
+    property int enableCustomPadding: plasmoid.configuration.enableCustomPadding
+    property int panelPadding: plasmoid.configuration.panelPadding
+    property bool isVertical: Plasmoid.formFactor === PlasmaCore.Types.Vertical
+    property var panelBg: panelElement?.children ? panelElement.children[2] : null
+
 
     function opacityToHex(opacity) {
         const op = Math.max(0, Math.min(1, opacity))
@@ -168,8 +170,10 @@ PlasmoidItem {
     function init() {
         if (isEnabled) {
             initTimer.start()
+            paddingTimer.start()
         } else {
             rainbowTimer.stop()
+            paddingTimer.start()
             updateFgColor()
             destroyRects()
             destroyRequired = true
@@ -184,6 +188,7 @@ PlasmoidItem {
 
     onInEditModeChanged: {
         wasEditing = !inEditMode
+        paddingTimer.start()
     }
 
     onAccentColorChanged: {
@@ -216,10 +221,22 @@ PlasmoidItem {
     }
 
     // Search the actual gridLayout of the panel
-    function getGrid() {
+    property GridLayout panelLayout: {
         let candidate = main.parent;
         while (candidate) {
             if (candidate instanceof GridLayout) {
+                return candidate;
+            }
+            candidate = candidate.parent;
+        }
+        return null
+    }
+
+    // Search for the element containing the panel background
+    property var panelElement: {
+        let candidate = main.parent;
+        while (candidate) {
+            if (candidate.hasOwnProperty("floating") ) {
                 return candidate;
             }
             candidate = candidate.parent;
@@ -480,7 +497,6 @@ PlasmoidItem {
         repeat: true
         interval: 100
         onTriggered: {
-            panelLayout = getGrid()
             if (!panelLayout) return
             // check for widget add/removal
             const newChildCount = panelLayout.children.length
@@ -506,6 +522,49 @@ PlasmoidItem {
         }
         for (var i = 0; i < element.children.length; i++) {
             printProps(element.children[i]);
+        }
+    }
+
+    Timer {
+        id: paddingTimer
+        interval: 1000;
+        running: true;
+        repeat: false;
+        onTriggered: {
+            updatePadding()
+        }
+    }
+
+    function updatePadding() {
+        if (isEnabled && enableCustomPadding) {
+            panelLayout.anchors.centerIn = panelLayout.parent
+            if (!isVertical) {
+                panelLayout.width = panelBg.width - panelPadding
+                panelLayout.height = panelBg.height
+            }
+
+            if (isVertical) {
+                panelLayout.width = panelBg.width
+                panelLayout.height = panelBg.height - panelPadding
+            }
+        }
+    }
+
+    Connections {
+        target: panelBg
+        onWidthChanged: {
+            updatePadding()
+        }
+
+        onHeightChanged: {
+            updatePadding()
+        }
+    }
+
+    Connections {
+        target: plasmoid
+        onLocationChanged: {
+            paddingTimer.start()
         }
     }
 }
