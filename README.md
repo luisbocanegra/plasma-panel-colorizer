@@ -4,7 +4,10 @@ Powerful fully-featured KDE Plasma panel colorizer for a WM status bar like appe
 
 This is a plasmoid whose sole purpose is to inject/manage the background of other widgets in the same panel, the goal was to replicate the famous WM status bar look without actually making other widgets or modifying the panel itself.
 
+![tooltip](screenshots/panel.png)
+
 ## Demo
+
 
 https://github.com/luisbocanegra/plasma-panel-colorizer/assets/15076387/ec1148e2-f81e-472e-af58-b16f177d4983
 
@@ -45,7 +48,7 @@ https://github.com/luisbocanegra/plasma-panel-colorizer/assets/15076387/ec1148e2
 * [x] Widget Blacklist
 * [x] Background padding rules
 * [x] Handle widgets added/removed form panel
-* [ ] Panel padding (same around all sides of the panel)
+* [x] Panel side padding (force same padding on all sides)
 
 ## Installing
 
