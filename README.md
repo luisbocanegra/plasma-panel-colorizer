@@ -41,10 +41,11 @@ https://github.com/luisbocanegra/plasma-panel-colorizer/assets/15076387/ec1148e2
 * [x] Foreground (most icons and text)
   * [x] Color
   * [x] Opacity
-    * [ ] Force Kirigami.Icon color to specific plasmoids with `isMask`
-* [ ] Panel background (over real background)
-  * [ ] Opacity
-  * [ ] Color
+    * [x] Force Kirigami.Icon color to specific plasmoids with `isMask`
+* [x] Custom panel background (drawn over original background)
+  * [x] Opacity
+  * [x] Color
+  * [x] Border radius
 * [x] Widget Blacklist
 * [x] Background padding rules
 * [x] Handle widgets added/removed form panel
