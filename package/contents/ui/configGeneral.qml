@@ -60,7 +60,7 @@ KCM.SimpleKCM {
         }
 
         Label {
-            text: i18n("Widget will show only in panel Edit Mode")
+            text: i18n("Widget will show in panel Edit Mode")
             opacity: 0.7
             Layout.maximumWidth: 300
             wrapMode: Text.Wrap
@@ -309,8 +309,6 @@ KCM.SimpleKCM {
             text: cfg_customColors
             enabled: listColorRadio.checked
             onTextChanged: cfg_customColors = text
-            // Layout.minimumWidth: 300
-            // Layout.maximumWidth: 300
         }
 
         TextField {
@@ -546,7 +544,7 @@ KCM.SimpleKCM {
         }
 
         Label {
-            text: i18n(" Force Kirigami.Icon color to specific plasmoids using the isMask property. Disable and restart Plasma or logout to restore the original color for those icons.")
+            text: i18n("Force Kirigami.Icon color to specific plasmoids using the isMask property. Disable and restart Plasma or logout to restore the original color for those icons.")
             opacity: 0.7
             Layout.maximumWidth: 300
             wrapMode: Text.Wrap
