@@ -39,6 +39,8 @@ PlasmoidItem {
     property real panelBgOpacity: plasmoid.configuration.panelBgOpacity
     property real panelBgRadius: isFloating ? plasmoid.configuration.panelBgRadius : 0
 
+    property string forceRecolor: plasmoid.configuration.forceRecolor
+
     property bool isLoaded: false
     property bool isConfiguring: plasmoid.userConfiguring
 
@@ -372,16 +374,22 @@ PlasmoidItem {
                 var comp = rectangles.get(i)["comp"]
                 const newColor = isEnabled ? getColor() : "transparent"
                 comp.changeColor(newColor)
-                applyFgColor(comp.parent)
+                applyFgColor(comp.parent,false)
             } catch (e) {
                 console.error("Error colorizing rect", i, "E:" , e);
             }
         }
     }
 
-    function applyFgColor(element) {
+    function applyFgColor(element, forceMask) {
         // don't go into the tray
         if (element instanceof PlasmaExtras.Representation) return
+
+        if (element.plasmoid?.pluginName) {
+            const name = element.plasmoid.pluginName
+            const maskList = forceRecolor.split("\n").map(function(line) {return line.trim()})
+            forceMask = (maskList.some(function(target) {return name.includes(target)}))
+        }
 
         var newColor = defaultTextColor
         if (isEnabled && fgColorEnabled) {
@@ -408,11 +416,14 @@ PlasmoidItem {
             } else {
                 element.opacity = 1
             }
+            if (element.hasOwnProperty("isMask") && forceMask) {
+                element.isMask = true
+            }
             element.Kirigami.Theme.textColor = newColor
         }
 
         for (var i = 0; i < element.children.length; i++) {
-            applyFgColor(element.children[i]);
+            applyFgColor(element.children[i],forceMask);
         }
     }
 
@@ -420,7 +431,7 @@ PlasmoidItem {
         for(let i = 0; i < rectangles.count; i++) {
             try {
                 var comp = rectangles.get(i)["comp"]
-                applyFgColor(comp.parent)
+                applyFgColor(comp.parent,false)
             } catch (e) {
                 console.error("Error updating text in rect", i, "E:" , e);
             }

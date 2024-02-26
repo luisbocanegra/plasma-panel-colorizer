@@ -36,6 +36,8 @@ KCM.SimpleKCM {
     property real cfg_panelBgOpacity: parseFloat(panelBgOpacity.text)
     property int cfg_panelBgRadius: panelBgRadius.value
 
+    property string cfg_forceRecolor: forceRecolor.text
+
     Kirigami.FormLayout {
 
         Kirigami.Separator {
@@ -525,6 +527,26 @@ KCM.SimpleKCM {
 
         Label {
             text: i18n("Changing panel visibility settings with this option enabled may cause some jankiness, specially in edit mode. Disable and restart Plasma or logout to restore the original padding.")
+            opacity: 0.7
+            Layout.maximumWidth: 300
+            wrapMode: Text.Wrap
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: true
+            Kirigami.FormData.label: i18n("Force icon color")
+        }
+
+        TextArea {
+            Kirigami.FormData.label: i18n("Plasmoids (one per line):")
+            Layout.minimumWidth: 300
+            id: forceRecolor
+            text: cfg_forceRecolor
+            onTextChanged: cfg_forceRecolor = text
+        }
+
+        Label {
+            text: i18n(" Force Kirigami.Icon color to specific plasmoids using the isMask property. Disable and restart Plasma or logout to restore the original color for those icons.")
             opacity: 0.7
             Layout.maximumWidth: 300
             wrapMode: Text.Wrap
