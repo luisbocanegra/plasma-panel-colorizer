@@ -192,6 +192,7 @@ PlasmoidItem {
         if (isEnabled) {
             initTimer.start()
             paddingTimer.start()
+            updateFgColor()
         } else {
             rainbowTimer.stop()
             paddingTimer.start()
@@ -216,6 +217,14 @@ PlasmoidItem {
 
     onAccentColorChanged: {
         if (colorMode === 1) init()
+    }
+    
+    onBlacklistChanged: {
+        destroyRequired = true
+    }
+
+    onPaddingRulesChanged: {
+        destroyRequired = true
     }
 
     Connections {
@@ -376,14 +385,14 @@ PlasmoidItem {
                 var comp = rectangles.get(i)["comp"]
                 const newColor = isEnabled ? getColor() : "transparent"
                 comp.changeColor(newColor)
-                applyFgColor(comp.parent,false)
+                applyFgColor(comp.parent,false,false)
             } catch (e) {
                 console.error("Error colorizing rect", i, "E:" , e);
             }
         }
     }
 
-    function applyFgColor(element, forceMask) {
+    function applyFgColor(element, forceMask, ignore) {
         // don't go into the tray
         if (element instanceof PlasmaExtras.Representation) return
 
@@ -391,10 +400,12 @@ PlasmoidItem {
             const name = element.plasmoid.pluginName
             const maskList = forceRecolor.split("\n").map(function(line) {return line.trim()})
             forceMask = maskList.some(function(target) {return target.length > 0 && name.includes(target)})
+            const blacklisted = blacklist.split("\n").map(function(line) {return line.trim()})
+            ignore = blacklisted.some(function(target) {return target.length > 0 && name.includes(target)})
         }
 
         var newColor = defaultTextColor
-        if (isEnabled && fgColorEnabled) {
+        if (isEnabled && fgColorEnabled && !ignore) {
             newColor = customFgColor
         }
 
@@ -413,7 +424,7 @@ PlasmoidItem {
             }
             // fixes notification applet artifact when appearing
             if (element.scale !== 1) return
-            if (isEnabled) {
+            if (isEnabled && !ignore) {
                 element.opacity = fgOpacity
             } else {
                 element.opacity = 1
@@ -425,7 +436,7 @@ PlasmoidItem {
         }
 
         for (var i = 0; i < element.children.length; i++) {
-            applyFgColor(element.children[i],forceMask);
+            applyFgColor(element.children[i],forceMask,ignore);
         }
     }
 
@@ -433,7 +444,7 @@ PlasmoidItem {
         for(let i = 0; i < rectangles.count; i++) {
             try {
                 var comp = rectangles.get(i)["comp"]
-                applyFgColor(comp.parent,false)
+                applyFgColor(comp.parent,false,false)
             } catch (e) {
                 console.error("Error updating text in rect", i, "E:" , e);
             }
