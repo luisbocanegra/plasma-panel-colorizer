@@ -132,7 +132,7 @@ org.kde.plasma.activitybar -8 0
     <entry
         name="forceRecolor"
         type="String">
-        <default>org.kde.kdeconnect</default>
+        <default></default>
     </entry>
   </group>
 </kcfg>
