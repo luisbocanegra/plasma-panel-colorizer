@@ -35,8 +35,9 @@ KCM.SimpleKCM {
     property string cfg_panelBgColor: panelBgColor.text
     property real cfg_panelBgOpacity: parseFloat(panelBgOpacity.text)
     property int cfg_panelBgRadius: panelBgRadius.value
-
     property string cfg_forceRecolor: forceRecolor.text
+    property bool cfg_hideRealPanelBG: hideRealPanelBG.checked 
+    property real cfg_panelRealBgOpacity: parseFloat(panelRealBgOpacity.text)
 
     Kirigami.FormLayout {
 
@@ -497,8 +498,45 @@ KCM.SimpleKCM {
             }
         }
 
+        TextField {
+            id: panelRealBgOpacity
+            Kirigami.FormData.label: i18n("Real background opacity:")
+            placeholderText: "0-1"
+            horizontalAlignment: TextInput.AlignHCenter
+            text: parseFloat(cfg_panelRealBgOpacity).toFixed(validator.decimals)
+
+            validator: DoubleValidator {
+                bottom: 0.0
+                top: 1.0
+                decimals: 2
+                notation: DoubleValidator.StandardNotation
+            }
+
+            onTextChanged: {
+                const newVal = parseFloat(text)
+                cfg_panelRealBgOpacity = isNaN(newVal) ? 0 : newVal
+            }
+
+            Components.ValueMouseControl {
+                height: parent.height - 8
+                width: height
+                anchors.right: parent.right
+                anchors.rightMargin: 4
+                anchors.verticalCenter: parent.verticalCenter
+
+                from: parent.validator.bottom
+                to: parent.validator.top
+                decimals: parent.validator.decimals
+                stepSize: 0.1
+                value: cfg_panelRealBgOpacity
+                onValueChanged: {
+                    cfg_panelRealBgOpacity = parseFloat(value)
+                }
+            }
+        }
+
         Label {
-            text: i18n("Custom background is drawn above the panel background, this may change in the future if I find out how to hide the original one")
+            text: i18n("Note: Even when the real panel background is fully transparent, contrast and blur will still be drawn behind the panel")
             opacity: 0.7
             Layout.maximumWidth: 300
             wrapMode: Text.Wrap

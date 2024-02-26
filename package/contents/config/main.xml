@@ -112,7 +112,7 @@ org.kde.plasma.activitybar -8 0
     <entry
         name="panelBgEnabled"
         type="Bool">
-        <default>true</default>
+        <default>false</default>
     </entry>
     <entry
         name="panelBgColor"
@@ -133,6 +133,11 @@ org.kde.plasma.activitybar -8 0
         name="forceRecolor"
         type="String">
         <default></default>
+    </entry>
+    <entry
+        name="panelRealBgOpacity"
+        type="Double">
+        <default>1</default>
     </entry>
   </group>
 </kcfg>

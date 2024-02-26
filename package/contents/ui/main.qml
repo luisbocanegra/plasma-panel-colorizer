@@ -38,6 +38,7 @@ PlasmoidItem {
     property string panelBgColor: plasmoid.configuration.panelBgColor
     property real panelBgOpacity: plasmoid.configuration.panelBgOpacity
     property real panelBgRadius: isFloating ? plasmoid.configuration.panelBgRadius : 0
+    property real panelRealBgOpacity: plasmoid.configuration.panelRealBgOpacity
 
     property string forceRecolor: plasmoid.configuration.forceRecolor
 
@@ -162,7 +163,7 @@ PlasmoidItem {
         }
     }
 
-    property Component rectComponentTest: Rectangle {
+    property Component rectBgComponent: Rectangle {
         color: panelBgColor
         opacity: panelBgOpacity
         radius: panelBgRadius
@@ -197,6 +198,7 @@ PlasmoidItem {
             updateFgColor()
             destroyRects()
             setPanelBg()
+            hideRealPanelBg()
             destroyRequired = true
             runCommand.exec(saveSchemeCmd)
         }
@@ -318,7 +320,7 @@ PlasmoidItem {
                     continue
                 }
 
-                if (blacklisted.some(function(target) {return name.includes(target)})) continue
+                if (blacklisted.some(function(target) {return target.length > 0 && name.includes(target)})) continue
 
                 var x = 0
                 var y = 0
@@ -327,7 +329,7 @@ PlasmoidItem {
                     const parts = line.split(" ")
                     const match = parts[0]
 
-                    if (name.includes(match)){
+                    if (match.length > 0 && name.includes(match)){
                         x = parts[1]
                         y = parts[2]
                         break
@@ -388,7 +390,7 @@ PlasmoidItem {
         if (element.plasmoid?.pluginName) {
             const name = element.plasmoid.pluginName
             const maskList = forceRecolor.split("\n").map(function(line) {return line.trim()})
-            forceMask = (maskList.some(function(target) {return name.includes(target)}))
+            forceMask = maskList.some(function(target) {return target.length > 0 && name.includes(target)})
         }
 
         var newColor = defaultTextColor
@@ -475,6 +477,7 @@ PlasmoidItem {
         onTriggered: {
             console.log("initTimer");
             setPanelBg()
+            hideRealPanelBg()
             if (destroyRequired) {
                 destroyRects()
             }
@@ -607,7 +610,7 @@ PlasmoidItem {
     function setPanelBg() {
         destroyPanelBg()
         if (isEnabled && panelBgEnabled) {
-            panelBGE = rectComponentTest.createObject(
+            panelBGE = rectBgComponent.createObject(
                 panelLayout.parent,
                 {
                     "z": -1
@@ -619,6 +622,16 @@ PlasmoidItem {
     function destroyPanelBg() {
         if (panelBGE) {
             panelBGE.destroy()
+        }
+    }
+
+    function hideRealPanelBg() {
+        for (let i in panelElement.children) {
+            const current = panelElement.children[i]
+
+            if (current.imagePath && current.imagePath.toString().includes("panel-background")) {
+                current.opacity = panelRealBgOpacity
+            }
         }
     }
 }
