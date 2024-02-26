@@ -127,7 +127,7 @@ org.kde.plasma.activitybar -8 0
     <entry
         name="panelBgRadius"
         type="Int">
-        <default>3</default>
+        <default>6</default>
     </entry>
     <entry
         name="forceRecolor"
