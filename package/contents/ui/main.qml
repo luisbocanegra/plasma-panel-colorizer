@@ -383,7 +383,7 @@ PlasmoidItem {
     }
 
     function colorize() {
-        console.log("colorize mode:",colorMode,"rects:",rectangles.count,"widget id:",Plasmoid.id, "screen:", screen, "position", plasmoid.location);
+        //console.log("colorize mode:",colorMode,"rects:",rectangles.count,"widget id:",Plasmoid.id, "screen:", screen, "position", plasmoid.location);
         for(let i = 0; i < rectangles.count; i++) {
             try {
                 var comp = rectangles.get(i)["comp"]
