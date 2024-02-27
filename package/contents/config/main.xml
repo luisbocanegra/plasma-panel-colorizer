@@ -69,6 +69,9 @@
 separator
 org.kde.plasma.taskmanager
 org.kde.plasma.icontasks
+org.kde.plasma.pager
+org.kde.plasma.activitypager
+org.kde.plasma.systemmonitor
         </default>
     </entry>
     <entry
@@ -97,7 +100,7 @@ org.kde.plasma.activitybar -8 0
     <entry
         name="blacklistedFgColor"
         type="String">
-        <default>#0000ff</default>
+        <default>#ffffff</default>
     </entry>
     <entry
         name="fgBlacklistedColorEnabled"
