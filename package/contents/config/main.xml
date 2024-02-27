@@ -95,6 +95,16 @@ org.kde.plasma.activitybar -8 0
         <default>#000000</default>
     </entry>
     <entry
+        name="blacklistedFgColor"
+        type="String">
+        <default>#0000ff</default>
+    </entry>
+    <entry
+        name="fgBlacklistedColorEnabled"
+        type="Bool">
+        <default>true</default>
+    </entry>
+    <entry
         name="fgOpacity"
         type="Double">
         <default>0.78</default>

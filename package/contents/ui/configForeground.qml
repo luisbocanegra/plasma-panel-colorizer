@@ -14,22 +14,10 @@ KCM.SimpleKCM {
     property real cfg_fgOpacity: parseFloat(fgOpacity.text)
     property string cfg_forceRecolor: forceRecolor.text
 
+    property bool cfg_fgBlacklistedColorEnabled: fgBlacklistedColorEnabled.checked
+    property string cfg_blacklistedFgColor: blacklistedFgColor.text
+
     Kirigami.FormLayout {
-
-        CheckBox {
-            Kirigami.FormData.label: i18n("Custom color:")
-            id: fgColorEnabled
-            checked: cfg_fgColorEnabled
-            onCheckedChanged: cfg_fgColorEnabled = checked
-        }
-
-        TextField {
-            id: customTextColor
-            Kirigami.FormData.label: i18n("Color:")
-            text: cfg_customFgColor
-            enabled: fgColorEnabled.checked
-            onTextChanged: cfg_customFgColor = text
-        }
 
         TextField {
             id: fgOpacity
@@ -66,6 +54,36 @@ KCM.SimpleKCM {
                     cfg_fgOpacity = parseFloat(value)
                 }
             }
+        }
+
+        CheckBox {
+            Kirigami.FormData.label: i18n("Custom color:")
+            id: fgColorEnabled
+            checked: cfg_fgColorEnabled
+            onCheckedChanged: cfg_fgColorEnabled = checked
+        }
+
+        TextField {
+            id: customTextColor
+            Kirigami.FormData.label: i18n("Color:")
+            text: cfg_customFgColor
+            enabled: fgColorEnabled.checked
+            onTextChanged: cfg_customFgColor = text
+        }
+
+        CheckBox {
+            Kirigami.FormData.label: i18n("Custom blacklisted color:")
+            id: fgBlacklistedColorEnabled
+            checked: cfg_fgBlacklistedColorEnabled 
+            onCheckedChanged: cfg_fgBlacklistedColorEnabled = checked
+        }
+
+        TextField {
+            id: blacklistedFgColor
+            Kirigami.FormData.label: i18n("Color:")
+            text: cfg_blacklistedFgColor
+            enabled: fgBlacklistedColorEnabled.checked
+            onTextChanged: cfg_blacklistedFgColor = text
         }
 
         Kirigami.Separator {

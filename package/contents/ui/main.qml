@@ -60,6 +60,9 @@ PlasmoidItem {
     property real fgOpacity: plasmoid.configuration.fgOpacity
     property bool fgColorEnabled: plasmoid.configuration.fgColorEnabled
 
+    property color blacklistedFgColor: plasmoid.configuration.blacklistedFgColor
+    property bool fgBlacklistedColorEnabled: plasmoid.configuration.fgBlacklistedColorEnabled
+
     property bool showToUpdate: false
 
     property string homeDir: StandardPaths.writableLocation(
@@ -69,6 +72,7 @@ PlasmoidItem {
     property string saveSchemeCmd: "echo '" + schemeContent.text + "' > " + schemeFile
 
     property string fgColor: isEnabled && fgColorEnabled ? customFgColor : defaultTextColor
+    property color fgBlacklistColor: isEnabled && fgBlacklistedColorEnabled ? blacklistedFgColor : defaultTextColor
     property string opacityComponent: {
         return opacityToHex(isEnabled ? fgOpacity : 1)
     }
@@ -385,7 +389,6 @@ PlasmoidItem {
                 var comp = rectangles.get(i)["comp"]
                 const newColor = isEnabled ? getColor() : "transparent"
                 comp.changeColor(newColor)
-                applyFgColor(comp.parent,false,false)
             } catch (e) {
                 console.error("Error colorizing rect", i, "E:" , e);
             }
@@ -409,6 +412,10 @@ PlasmoidItem {
             newColor = customFgColor
         }
 
+        if (fgBlacklistedColorEnabled && ignore) {
+            newColor = blacklistedFgColor
+        }
+
         if (element.hasOwnProperty("color")) {
             element.Kirigami.Theme.textColor = newColor
         }
@@ -422,17 +429,13 @@ PlasmoidItem {
             if (element.color) {
                 element.color = newColor
             }
-            // fixes notification applet artifact when appearing
-            if (element.scale !== 1) return
-            if (isEnabled && !ignore) {
-                element.opacity = fgOpacity
-            } else {
-                element.opacity = 1
-            }
             if (element.hasOwnProperty("isMask") && forceMask) {
                 element.isMask = true
             }
             element.Kirigami.Theme.textColor = newColor
+            // fixes notification applet artifact when appearing
+            if (element.scale !== 1) return
+            element.opacity = fgOpacity
         }
 
         for (var i = 0; i < element.children.length; i++) {
@@ -441,12 +444,27 @@ PlasmoidItem {
     }
 
     function updateFgColor() {
-        for(let i = 0; i < rectangles.count; i++) {
+        for(let i = 0; i < panelLayout.children.length; i++) {
+            const child = panelLayout.children[i];
+
+            if (!child.applet) continue
+            if (!child.applet.plasmoid) {
+                continue
+            }
+
+            // name may not be available while gragging into the panel and
+            // other situations
             try {
-                var comp = rectangles.get(i)["comp"]
-                applyFgColor(comp.parent,false,false)
+                console.error(child.applet.plasmoid.pluginName);
             } catch (e) {
-                console.error("Error updating text in rect", i, "E:" , e);
+                console.error(e);
+                continue
+            }
+            
+            try {
+                applyFgColor(child.parent,false,false)
+            } catch (e) {
+                console.error("Error updating text in child", i, "E:" , e);
             }
         }
     }
@@ -614,9 +632,9 @@ PlasmoidItem {
         }
     }
 
-    onIsFloatingChanged: {
-        console.error("FL:", isFloating,panelBGP);
-    }
+    // onIsFloatingChanged: {
+    //     console.error("FL:", isFloating,panelBGP);
+    // }
 
     function setPanelBg() {
         destroyPanelBg()
