@@ -447,24 +447,18 @@ PlasmoidItem {
         for(let i = 0; i < panelLayout.children.length; i++) {
             const child = panelLayout.children[i];
 
-            if (!child.applet) continue
-            if (!child.applet.plasmoid) {
-                continue
-            }
-
             // name may not be available while gragging into the panel and
             // other situations
-            try {
-                console.error(child.applet.plasmoid.pluginName);
-            } catch (e) {
-                console.error(e);
-                continue
-            }
-            
-            try {
-                applyFgColor(child.parent,false,false)
-            } catch (e) {
-                console.error("Error updating text in child", i, "E:" , e);
+            if (!child.applet?.plasmoid?.pluginName) continue
+
+            const target = child.children.find(function (child) {return child instanceof PlasmoidItem})
+            if (target) {
+                try {
+                    // console.error(child.applet.plasmoid.pluginName);
+                    applyFgColor(target,false,false)
+                } catch (e) {
+                    console.error("Error updating text in child", i, "E:" , e);
+                }
             }
         }
     }
