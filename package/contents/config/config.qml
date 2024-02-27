@@ -4,31 +4,31 @@ import org.kde.plasma.configuration 2.0
 ConfigModel {
     ConfigCategory {
         name: i18n("General")
-        icon: "configure-symbolic"
+        icon: "preferences-desktop"
         source: "configGeneral.qml"
     }
 
     ConfigCategory {
         name: i18n("Widget background")
-        icon: "box-symbolic"
+        icon: "preferences-desktop-theme-global"
         source: "configWidgetBg.qml"
     }
 
     ConfigCategory {
         name: i18n("Text and icons")
-        icon: "format-text-color-symbolic"
+        icon: "preferences-desktop-icons"
         source: "configForeground.qml"
     }
 
     ConfigCategory {
         name: i18n("Panel background")
-        icon: "desktop-symbolic"
+        icon: "preferences-desktop-plasma-theme"
         source: "configPanelBg.qml"
     }
 
     ConfigCategory {
-        name: i18n("Widget rules")
-        icon: "view-list-details-symbolic"
+        name: i18n("Blacklist")
+        icon: "preferences-desktop-filter"
         source: "configWidgetRules.qml"
     }
 }
