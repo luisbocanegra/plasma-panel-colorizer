@@ -24,13 +24,11 @@ https://github.com/luisbocanegra/plasma-panel-colorizer/assets/15076387/ec1148e2
 > List bellow represents the development status of the main branch, to see the current latest release features look at the readme of each tag e.g. [v0.2.0](https://github.com/luisbocanegra/plasma-panel-colorizer/tree/v0.2.0). Additionally, changes are ported to [plasma5](https://github.com/luisbocanegra/plasma-panel-colorizer/tree/plasma5) branch only after a new tag is created and may take some time.
 
 * [x] Widget Background
-  * [x] Opacity
-  * [x] Border radius
   * [x] Color modes
     * [x] Static
     * [x] Animated
       * [x] Interval
-      * [x] Fading
+        * [x] Fading
   * [x] Colors
     * [x] Single
     * [x] Accent
@@ -38,17 +36,33 @@ https://github.com/luisbocanegra/plasma-panel-colorizer/assets/15076387/ec1148e2
     * [x] Random
       * [x] Saturation
       * [x] Lightness
+    * [ ] Contrast check
+  * [ ] Style
+    * [x] Padding rules
+    * [x] Border radius
+    * [x] Opacity
+    * [ ] Line mode
 * [x] Foreground (most icons and text)
-  * [x] Color
+  * [x] Color Modes
+    * [x] Static
+    * [ ] Interval
+    * [ ] Follow widget background
+      * [ ] Ensure contrast
+  * [ ] Colors
+    * [x] Single
+    * [ ] Accent
+    * [ ] Custom list
+    * [ ] Random
+      * [ ] Saturation
+      * [ ] Lightness
   * [x] Opacity
+  * [x] Blacklisted color
     * [x] Force Kirigami.Icon color to specific plasmoids with `isMask`
 * [x] Custom panel background (drawn over original background)
   * [x] Opacity
   * [x] Color
   * [x] Border radius
 * [x] Widget Blacklist
-* [x] Background padding rules
-* [x] Handle widgets added/removed form panel
 * [x] Panel side padding (force same padding on all sides)
 
 ## Installing
