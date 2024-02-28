@@ -91,7 +91,13 @@ PlasmoidItem {
     property int enableCustomPadding: plasmoid.configuration.enableCustomPadding
     property int panelPadding: plasmoid.configuration.panelPadding
     property bool isVertical: Plasmoid.formFactor === PlasmaCore.Types.Vertical
-    property var panelBg: panelElement?.children ? panelElement.children[2] : null
+    property var panelPrefixes: ["north","south","west","east"]
+    property var panelBg: {
+        return panelElement?.children ? panelElement.children.find(function(child) {
+            return panelPrefixes.some(function(target) {return child.prefix.toString().includes(target)})
+            }
+        ) : null
+    }
     property bool isFloating: !panelElement ? false : Boolean(panelElement.floatingness)
     property int panelBGP: isFloating ? 12 : 12
 
