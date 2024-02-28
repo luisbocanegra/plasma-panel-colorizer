@@ -21,6 +21,8 @@ KCM.SimpleKCM {
     property int cfg_rainbowTransition: rainbowTransition.value
     property string cfg_paddingRules: paddingRules.text
 
+    property bool cfg_widgetBgEnabled: widgetBgEnabled.checked
+
     property bool clearing: false
 
     ListModel {
@@ -71,6 +73,13 @@ KCM.SimpleKCM {
     }
 
     Kirigami.FormLayout {
+
+        CheckBox {
+            Kirigami.FormData.label: i18n("Custom background:")
+            id: widgetBgEnabled
+            checked: cfg_widgetBgEnabled
+            onCheckedChanged: cfg_widgetBgEnabled = checked
+        }
 
         TextField {
             id: bgOpacity

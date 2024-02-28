@@ -10,6 +10,11 @@
         type="Bool">
         <default>true</default>
     </entry>
+    <entry
+        name="widgetBgEnabled"
+        type="Bool">
+        <default>true</default>
+    </entry>
     <!-- modes: static, animated-->
     <entry
         name="mode"

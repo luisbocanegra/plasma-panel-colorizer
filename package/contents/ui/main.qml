@@ -24,6 +24,7 @@ PlasmoidItem {
     property string singleColor: plasmoid.configuration.singleColor
     property string customColors: plasmoid.configuration.customColors
     property int currentCustomColorIndex: 0
+    property bool widgetBgEnabled:plasmoid.configuration.widgetBgEnabled
     property real bgOpacity: plasmoid.configuration.opacity
     property int bgRadius: plasmoid.configuration.radius
     property real rainbowSaturation: plasmoid.configuration.rainbowSaturation
@@ -243,6 +244,7 @@ PlasmoidItem {
             console.log("CONFIG CHANGED");
             isEnabled = plasmoid.configuration.isEnabled
             mode = plasmoid.configuration.mode
+            if (!widgetBgEnabled) destroyRequired = true
             init()
         }
     }
@@ -300,6 +302,7 @@ PlasmoidItem {
 
     function createRects() {
         if(!panelLayout) return
+        if (!widgetBgEnabled && !isEnabled) return
         if (rectangles.count === 0) {
             console.log("creating rects");
             const blacklisted = blacklist.split("\n").map(function(line) {return line.trim()})
@@ -393,7 +396,7 @@ PlasmoidItem {
         for(let i = 0; i < rectangles.count; i++) {
             try {
                 var comp = rectangles.get(i)["comp"]
-                const newColor = isEnabled ? getColor() : "transparent"
+                const newColor = isEnabled && widgetBgEnabled ? getColor() : "transparent"
                 comp.changeColor(newColor)
             } catch (e) {
                 console.error("Error colorizing rect", i, "E:" , e);
