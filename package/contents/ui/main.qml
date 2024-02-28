@@ -67,7 +67,7 @@ PlasmoidItem {
 
     property string homeDir: StandardPaths.writableLocation(
                             StandardPaths.HomeLocation).toString().substring(7)
-    property string schemeFile: homeDir + "/.local/share/color-schemes/PanelColorizer.colors"
+    property string schemeFile: homeDir + "/.local/share/color-schemes/PanelColorizer-"+plasmoid.id+".colors"
 
     property string saveSchemeCmd: "echo '" + schemeContent.text + "' > " + schemeFile
 

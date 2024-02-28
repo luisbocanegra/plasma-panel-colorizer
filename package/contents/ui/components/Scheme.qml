@@ -7,7 +7,7 @@ Item {
 
     property string text:`[General]
 ColorScheme=PanelColorizer
-Name=Panel colorizer for Window Buttons Applet
+Name=Panel colorizer for Window Buttons (${plasmoid.id})
 shadeSortColumn=true
 
 [ColorEffects:Disabled]
