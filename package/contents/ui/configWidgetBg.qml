@@ -10,15 +10,65 @@ KCM.SimpleKCM {
     id:root
     property int cfg_mode: plasmoid.configuration.mode
     property int cfg_colorMode: plasmoid.configuration.colorMode
-    property string cfg_singleColor: singleColor.text
+    property string cfg_singleColor: singleColor.color
     property string cfg_customColors: customColors.text
+
     property real cfg_opacity: parseFloat(bgOpacity.text)
     property int cfg_radius: bgRadius.value
-    property real cfg_rainbowSaturation: rainbowSaturation.value
-    property real cfg_rainbowLightness: rainbowLightness.value
+    property real cfg_rainbowSaturation: rainbowSaturation.text
+    property real cfg_rainbowLightness: rainbowLightness.text
     property int cfg_rainbowInterval: rainbowInterval.value
     property int cfg_rainbowTransition: rainbowTransition.value
     property string cfg_paddingRules: paddingRules.text
+
+    property bool clearing: false
+
+    ListModel {
+        id: customColorsModel
+    }
+
+    Connections {
+        target: customColorsModel
+        onCountChanged: {
+            if (clearing) return
+            console.log("model count changed:", customColorsModel.count);
+            updateString()
+        }
+    }
+
+    function initModel() {
+        clearing = true
+        customColorsModel.clear()
+        const colors = cfg_customColors.split(" ")
+        for (let i in colors) {
+            customColorsModel.append({"color": colors[i]})
+        }
+        clearing = false
+    }
+
+    function getRandomColor() {
+        const h = Math.random()
+        const s = Math.random()
+        const l = Math.random()
+        const a = 1.0
+        console.log(h,s,l);
+        return Qt.hsla(h,s,l,a)
+    }
+
+    function updateString() {
+        console.log("updateString()");
+        let colors_list = []
+        for (let i = 0; i < customColorsModel.count; i++) {
+            let c = customColorsModel.get(i).color
+            console.log(c);
+            colors_list.push(c)
+        }
+        cfg_customColors = colors_list.join(" ")
+    }
+
+    Component.onCompleted: {
+        initModel()
+    }
 
     Kirigami.FormLayout {
 
@@ -178,19 +228,133 @@ KCM.SimpleKCM {
             }
         }
 
-        TextField {
+        Components.ColorButton {
             id: singleColor
             Kirigami.FormData.label: i18n("Color:")
-            text: cfg_singleColor
-            enabled: singleColorRadio.checked
-            onTextChanged: cfg_singleColor = text
+            showAlphaChannel: false
+            dialogTitle: i18n("Widget background")
+            color: cfg_singleColor
+            visible: singleColorRadio.checked
+            onAccepted: {
+                cfg_singleColor = color
+            }
         }
-        TextField {
-            id: customColors
-            Kirigami.FormData.label: i18n("Colors list")
-            text: cfg_customColors
-            enabled: listColorRadio.checked
-            onTextChanged: cfg_customColors = text
+
+        
+        GroupBox {
+            Kirigami.FormData.label: i18n("Colors list:")
+            visible: listColorRadio.checked
+            ColumnLayout {
+                Layout.alignment: Qt.AlignTop
+                Repeater {
+                    id: customColorsRepeater
+                    model: customColorsModel
+                    delegate : RowLayout {
+
+                        TextMetrics {
+                            id: metrics
+                            text: (model.length + 1).toString()
+                        }
+
+                        Label {
+                            text: (index + 1).toString() + "."
+                            Layout.preferredWidth: metrics.width
+                        }
+
+                        TextMetrics {
+                            id: colorMetrics
+                            text: "#FFFFFF"
+                        }
+
+                        TextArea {
+                            text: modelData
+                            font.capitalization: Font.AllUppercase
+                            Kirigami.SpellCheck.enabled: false
+                            Layout.preferredWidth: colorMetrics.width * 1.4
+                        }
+
+                        Components.ColorButton {
+                            showAlphaChannel: false
+                            dialogTitle: i18n("Widget background") + "("+index+")"
+                            color: modelData
+                            showCurentColor: false
+                            onAccepted: (color) => {
+                                customColorsModel.set(index, {"color": color.toString()})
+                                updateString()
+                            }
+                        }
+
+                        Button {
+                            icon.name: "randomize-symbolic"
+                            onClicked: {
+                                customColorsModel.set(index, {"color": getRandomColor().toString() })
+                                updateString()
+                            }
+                        }
+
+                        Button {
+                            // text: "up"
+                            icon.name: "arrow-up"
+                            enabled: index>0
+                            onClicked: {
+                                let prevIndex = index-1
+                                let prev = customColorsModel.get(prevIndex).color
+                                customColorsModel.set(prevIndex, customColorsModel.get(index))
+                                customColorsModel.set(index, {"color":prev})
+                                updateString()
+                            }
+                        }
+
+                        Button {
+                            icon.name: "arrow-down"
+                            // anchors.right: parent.right
+                            enabled: index < customColorsModel.count - 1
+                            onClicked: {
+                                let nextIndex = index+1
+                                let next = customColorsModel.get(nextIndex).color
+                                customColorsModel.set(nextIndex, customColorsModel.get(index))
+                                customColorsModel.set(index, {"color":next})
+                                updateString()
+                            }
+                        }
+
+                        Button {
+                            // text: "Remove"
+                            icon.name: "edit-delete-remove"
+                            // anchors.right: parent.right
+                            onClicked: {
+                                customColorsModel.remove(index)
+                            }
+                        }
+
+                        Button {
+                            icon.name: "list-add-symbolic"
+                            onClicked: {
+                                customColorsModel.insert(index+1, {"color": getRandomColor().toString() })
+                            }
+                        }
+                    }
+                }
+
+                RowLayout {
+                    TextArea {
+                        id: customColors
+                        text: cfg_customColors
+                        onTextChanged: {
+                            cfg_customColors = text
+                        }
+                        Layout.preferredWidth: 300
+                        wrapMode: TextEdit.WordWrap
+                        font.capitalization: Font.AllUppercase
+                        Kirigami.SpellCheck.enabled: false
+                    }
+                    Button {
+                        id: btn
+                        icon.name: "view-refresh-symbolic"
+                        onClicked: initModel()
+                    }
+                }
+            }
         }
 
         TextField {
@@ -199,7 +363,7 @@ KCM.SimpleKCM {
             placeholderText: "0-1"
             horizontalAlignment: TextInput.AlignHCenter
             text: parseFloat(cfg_rainbowSaturation).toFixed(validator.decimals)
-            enabled: randomColorRadio.checked
+            visible: randomColorRadio.checked
 
             validator: DoubleValidator {
                 bottom: 0.0
@@ -237,7 +401,7 @@ KCM.SimpleKCM {
             placeholderText: "0-1"
             horizontalAlignment: TextInput.AlignHCenter
             text: parseFloat(cfg_rainbowLightness).toFixed(validator.decimals)
-            enabled: randomColorRadio.checked
+            visible: randomColorRadio.checked
 
             validator: DoubleValidator {
                 bottom: 0.0

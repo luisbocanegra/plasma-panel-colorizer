@@ -9,7 +9,7 @@ import "components" as Components
 KCM.SimpleKCM {
     id:root
     property bool cfg_panelBgEnabled: panelBgEnabled.checked
-    property string cfg_panelBgColor: panelBgColor.text
+    property string cfg_panelBgColor: panelBgColor.color
     property real cfg_panelBgOpacity: parseFloat(panelBgOpacity.text)
     property int cfg_panelBgRadius: panelBgRadius.value
     property real cfg_panelRealBgOpacity: parseFloat(panelRealBgOpacity.text)
@@ -25,12 +25,15 @@ KCM.SimpleKCM {
             onCheckedChanged: cfg_panelBgEnabled = checked
         }
 
-        TextField {
+        Components.ColorButton {
             id: panelBgColor
-            Kirigami.FormData.label: i18n("Color:")
-            text: cfg_panelBgColor
+            showAlphaChannel: false
+            dialogTitle: i18n("Panel background")
+            color: cfg_panelBgColor
             enabled: panelBgEnabled.checked
-            onTextChanged: cfg_panelBgColor = text
+            onAccepted: {
+                cfg_panelBgColor = color
+            }
         }
 
         TextField {

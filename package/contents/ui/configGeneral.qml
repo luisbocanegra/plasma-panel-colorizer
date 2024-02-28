@@ -4,7 +4,6 @@ import QtQuick.Layouts
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
-import "components" as Components
 
 KCM.SimpleKCM {
     id:root

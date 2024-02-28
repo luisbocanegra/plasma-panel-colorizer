@@ -10,7 +10,7 @@ KCM.SimpleKCM {
     id:root
 
     property bool cfg_fgColorEnabled: fgColorEnabled.checked
-    property string cfg_customFgColor: customFgColor.text
+    property string cfg_customFgColor: customFgColor.color
     property real cfg_fgOpacity: parseFloat(fgOpacity.text)
     property string cfg_forceRecolor: forceRecolor.text
 
@@ -63,12 +63,15 @@ KCM.SimpleKCM {
             onCheckedChanged: cfg_fgColorEnabled = checked
         }
 
-        TextField {
-            id: customTextColor
-            Kirigami.FormData.label: i18n("Color:")
-            text: cfg_customFgColor
+        Components.ColorButton {
+            id: customFgColor
+            showAlphaChannel: false
+            dialogTitle: i18n("Text/icons")
+            color: cfg_customFgColor
             enabled: fgColorEnabled.checked
-            onTextChanged: cfg_customFgColor = text
+            onAccepted: {
+                cfg_customFgColor = color
+            }
         }
 
         CheckBox {
@@ -78,12 +81,15 @@ KCM.SimpleKCM {
             onCheckedChanged: cfg_fgBlacklistedColorEnabled = checked
         }
 
-        TextField {
+        Components.ColorButton {
             id: blacklistedFgColor
-            Kirigami.FormData.label: i18n("Color:")
-            text: cfg_blacklistedFgColor
+            showAlphaChannel: false
+            dialogTitle: i18n("Blacklisted text/icons")
+            color: cfg_blacklistedFgColor
             enabled: fgBlacklistedColorEnabled.checked
-            onTextChanged: cfg_blacklistedFgColor = text
+            onAccepted: {
+                cfg_blacklistedFgColor = color
+            }
         }
 
         Kirigami.Separator {
