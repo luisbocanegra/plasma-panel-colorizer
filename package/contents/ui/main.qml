@@ -435,7 +435,7 @@ PlasmoidItem {
             element.Kirigami.Theme.textColor = newColor
             // fixes notification applet artifact when appearing
             if (element.scale !== 1) return
-            element.opacity = fgOpacity
+            element.opacity = isEnabled ? fgOpacity : 1
         }
 
         for (var i = 0; i < element.children.length; i++) {
@@ -653,7 +653,7 @@ PlasmoidItem {
             const current = panelElement.children[i]
 
             if (current.imagePath && current.imagePath.toString().includes("panel-background")) {
-                current.opacity = panelRealBgOpacity
+                current.opacity = isEnabled && panelBgEnabled ? panelRealBgOpacity : 1
             }
         }
     }

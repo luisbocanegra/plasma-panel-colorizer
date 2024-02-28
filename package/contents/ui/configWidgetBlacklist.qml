@@ -27,7 +27,7 @@ KCM.SimpleKCM {
         }
 
         Label {
-            text: i18n("Widgets that contain any of the strings in the list will not be colorized")
+            text: i18n("Widget IDs that contain any of the words in the list will not be colorized")
             opacity: 0.7
             Layout.maximumWidth: 300
             wrapMode: Text.Wrap

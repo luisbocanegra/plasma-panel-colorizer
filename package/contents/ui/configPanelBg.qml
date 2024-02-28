@@ -92,6 +92,7 @@ KCM.SimpleKCM {
             placeholderText: "0-1"
             horizontalAlignment: TextInput.AlignHCenter
             text: parseFloat(cfg_panelRealBgOpacity).toFixed(validator.decimals)
+            enabled: panelBgEnabled.checked
 
             validator: DoubleValidator {
                 bottom: 0.0

@@ -29,6 +29,6 @@ ConfigModel {
     ConfigCategory {
         name: i18n("Blacklist")
         icon: "preferences-desktop-filter"
-        source: "configWidgetRules.qml"
+        source: "configWidgetBlacklist.qml"
     }
 }
