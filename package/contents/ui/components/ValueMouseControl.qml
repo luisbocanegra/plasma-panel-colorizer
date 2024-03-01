@@ -45,9 +45,9 @@ Item {
         onExited: {}
         onWheel: {
             if(wheel.angleDelta.y > 0 && value < to) {
-                value += 0.1
+                value += stepSize
             } else if (wheel.angleDelta.y < 0 && value > from) {
-                value -= 0.1
+                value -= stepSize
             }
             value = Math.max(0, Math.min(1, value)).toFixed(decimals)
         }

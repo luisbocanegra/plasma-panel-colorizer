@@ -110,7 +110,7 @@ KCM.SimpleKCM {
                 from: parent.validator.bottom
                 to: parent.validator.top
                 decimals: parent.validator.decimals
-                stepSize: 0.1
+                stepSize: 0.05
                 value: cfg_opacity
                 onValueChanged: {
                     cfg_opacity = parseFloat(value)
@@ -396,7 +396,7 @@ KCM.SimpleKCM {
                 from: parent.validator.bottom
                 to: parent.validator.top
                 decimals: parent.validator.decimals
-                stepSize: 0.1
+                stepSize: 0.05
                 value: cfg_rainbowSaturation
                 onValueChanged: {
                     cfg_rainbowSaturation = parseFloat(value)
@@ -434,7 +434,7 @@ KCM.SimpleKCM {
                 from: parent.validator.bottom
                 to: parent.validator.top
                 decimals: parent.validator.decimals
-                stepSize: 0.1
+                stepSize: 0.05
                 value: cfg_rainbowLightness
                 onValueChanged: {
                     cfg_rainbowLightness = parseFloat(value)

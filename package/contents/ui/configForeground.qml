@@ -117,7 +117,7 @@ KCM.SimpleKCM {
                 from: parent.validator.bottom
                 to: parent.validator.top
                 decimals: parent.validator.decimals
-                stepSize: 0.1
+                stepSize: 0.05
                 value: cfg_fgOpacity
                 onValueChanged: {
                     cfg_fgOpacity = parseFloat(value)
@@ -399,7 +399,7 @@ KCM.SimpleKCM {
                 from: parent.validator.bottom
                 to: parent.validator.top
                 decimals: parent.validator.decimals
-                stepSize: 0.1
+                stepSize: 0.05
                 value: cfg_fgSaturation
                 onValueChanged: {
                     cfg_fgSaturation = parseFloat(value)
@@ -438,7 +438,7 @@ KCM.SimpleKCM {
                 from: parent.validator.bottom
                 to: parent.validator.top
                 decimals: parent.validator.decimals
-                stepSize: 0.1
+                stepSize: 0.05
                 value: cfg_fgLightness
                 onValueChanged: {
                     cfg_fgLightness = parseFloat(value)

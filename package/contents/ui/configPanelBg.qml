@@ -67,7 +67,7 @@ KCM.SimpleKCM {
                 from: parent.validator.bottom
                 to: parent.validator.top
                 decimals: parent.validator.decimals
-                stepSize: 0.1
+                stepSize: 0.05
                 value: cfg_panelBgOpacity
                 onValueChanged: {
                     cfg_panelBgOpacity = parseFloat(value)
@@ -117,7 +117,7 @@ KCM.SimpleKCM {
                 from: parent.validator.bottom
                 to: parent.validator.top
                 decimals: parent.validator.decimals
-                stepSize: 0.1
+                stepSize: 0.05
                 value: cfg_panelRealBgOpacity
                 onValueChanged: {
                     cfg_panelRealBgOpacity = parseFloat(value)
