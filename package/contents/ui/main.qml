@@ -41,6 +41,19 @@ PlasmoidItem {
     property real panelBgRadius: isFloating ? plasmoid.configuration.panelBgRadius : 0
     property bool hideRealPanelBg: plasmoid.configuration.hideRealPanelBg
     property real panelRealBgOpacity: plasmoid.configuration.panelRealBgOpacity
+    property color widgetOutlineColor: plasmoid.configuration.widgetOutlineColor
+    property int widgetOutlineWidth: plasmoid.configuration.widgetOutlineWidth
+    property color widgetShadowColor: plasmoid.configuration.widgetShadowColor
+    property int widgetShadowSize: plasmoid.configuration.widgetShadowSize
+    property int widgetShadowX: plasmoid.configuration.widgetShadowX
+    property int widgetShadowY: plasmoid.configuration.widgetShadowY
+
+    property color panelOutlineColor: plasmoid.configuration.panelOutlineColor
+    property int panelOutlineWidth: plasmoid.configuration.panelOutlineWidth
+    property color panelShadowColor: plasmoid.configuration.panelShadowColor
+    property int panelShadowSize: plasmoid.configuration.panelShadowSize
+    property int panelShadowX: plasmoid.configuration.panelShadowX
+    property int panelShadowY: plasmoid.configuration.panelShadowY
 
     property string forceRecolor: plasmoid.configuration.forceRecolor
 
@@ -201,7 +214,7 @@ PlasmoidItem {
         }
     ]
 
-    property Component rectComponent: Rectangle {
+    property Component rectComponent: Kirigami.ShadowedRectangle {
         property var target // holds element with expanded property
         property int heightOffset: 0
         property int widthOffset: 0
@@ -211,22 +224,41 @@ PlasmoidItem {
         height: parent.height + heightOffset
         width: parent.width + widthOffset
         anchors.centerIn: parent
+        border {
+            color: widgetOutlineColor
+            width: widgetOutlineWidth
+        }
+        shadow {
+            size: widgetShadowSize
+            color: widgetShadowColor
+            xOffset: widgetShadowX
+            yOffset: widgetShadowY
+        }
 
         ColorAnimation on color { id:anim; to: color; duration: rainbowTransition }
-
         function changeColor(newColor) {
             anim.to = newColor
             anim.restart()
         }
     }
 
-    property Component rectBgComponent: Rectangle {
+    property Component rectBgComponent: Kirigami.ShadowedRectangle {
         color: panelBgColor
         opacity: panelBgOpacity
         radius: panelBgRadius
         anchors.centerIn: parent
         width: panelBg.width
         height: panelBg.height
+        border {
+            color: panelOutlineColor
+            width: panelOutlineWidth
+        }
+        shadow {
+            size: panelShadowSize
+            color: panelShadowColor
+            xOffset: panelShadowX
+            yOffset: panelShadowY
+        }
     }
 
     toolTipSubText: onDesktop ? "<font color='"+Kirigami.Theme.neutralTextColor+"'>Panel not found, this widget must be child of a panel</font>" : Plasmoid.metaData.description
@@ -297,7 +329,7 @@ PlasmoidItem {
         }
     }
 
-    function getRandomColor() {
+    function getRandomCcfg_widgetShadowSizeolor() {
         const h = Math.random()
         const s = rainbowSaturation
         const l = rainbowLightness
@@ -380,7 +412,7 @@ PlasmoidItem {
                 if (name === "org.kde.plasma.systemtray") {
                     rectangles.append({
                         "comp":rectComponent.createObject(
-                            child.applet,
+                            child,
                             {
                                 "z": -1,
                                 "target": child.applet.plasmoid.internalSystray.systemTrayState
@@ -408,7 +440,7 @@ PlasmoidItem {
 
                 rectangles.append({
                     "comp":rectComponent.createObject(
-                        child.applet,
+                        child,
                         {
                             "z": -1,
                             "target":child,
@@ -528,7 +560,7 @@ PlasmoidItem {
 
             const name = child.applet.plasmoid.pluginName
             const ignore = blacklisted.some(function(target) {return name.includes(target)})
-            const rect = child.applet.children.find(function (child) {return child instanceof Rectangle})
+            const rect = child.children.find(function (child) {return child instanceof Kirigami.ShadowedRectangle})
 
             let newColor = defaultTextColor
             if (isEnabled && fgColorEnabled && !ignore) {

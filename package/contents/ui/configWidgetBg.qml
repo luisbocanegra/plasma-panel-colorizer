@@ -22,6 +22,13 @@ KCM.SimpleKCM {
     property int cfg_rainbowTransition: rainbowTransition.value
     property string cfg_paddingRules: paddingRules.text
 
+    property string cfg_widgetOutlineColor: widgetOutlineColor.color
+    property int cfg_widgetOutlineWidth: widgetOutlineWidth.value
+    property int cfg_widgetShadowSize: widgetShadowSize.value
+    property string cfg_widgetShadowColor: widgetShadowColor.color
+    property int cfg_widgetShadowX: widgetShadowColorX.value
+    property int cfg_widgetShadowY: widgetShadowColorY.value
+
 
     property bool clearing: false
 
@@ -126,6 +133,84 @@ KCM.SimpleKCM {
             to: 99
             onValueModified: {
                 cfg_radius = value
+            }
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: false
+            Kirigami.FormData.label: i18n("Outline")
+            Layout.fillWidth: true
+        }
+
+        Components.ColorButton {
+            id: widgetOutlineColor
+            Kirigami.FormData.label: i18n("Color:")
+            showAlphaChannel: true
+            dialogTitle: i18n("Widget outline")
+            color: cfg_widgetOutlineColor
+            onAccepted: {
+                cfg_widgetOutlineColor = color
+            }
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Width:")
+            id: widgetOutlineWidth
+            value: cfg_widgetOutlineWidth
+            from: 0
+            to: 99
+            onValueModified: {
+                cfg_widgetOutlineWidth = value
+            }
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: false
+            Kirigami.FormData.label: i18n("Shadow")
+            Layout.fillWidth: true
+        }
+
+        Components.ColorButton {
+            id: widgetShadowColor
+            Kirigami.FormData.label: i18n("Color:")
+            showAlphaChannel: true
+            dialogTitle: i18n("Widget shadow")
+            color: cfg_widgetShadowColor
+            onAccepted: {
+                cfg_widgetShadowColor = color
+            }
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Size:")
+            id: widgetShadowSize
+            value: cfg_widgetShadowSize
+            from: 0
+            to: 99
+            onValueModified: {
+                cfg_widgetShadowSize = value
+            }
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("X offset:")
+            id: widgetShadowX
+            value: cfg_widgetShadowX
+            from: -99
+            to: 99
+            onValueModified: {
+                cfg_widgetShadowX = value
+            }
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Y offset:")
+            id: widgetShadowY
+            value: cfg_widgetShadowY
+            from: -99
+            to: 99
+            onValueModified: {
+                cfg_widgetShadowY = value
             }
         }
 

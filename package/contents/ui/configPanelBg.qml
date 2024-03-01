@@ -17,6 +17,13 @@ KCM.SimpleKCM {
     property int cfg_enableCustomPadding: enableCustomPadding.value
     property int cfg_panelPadding: panelPadding.value
 
+    property string cfg_panelOutlineColor: panelOutlineColor.color
+    property int cfg_panelOutlineWidth: panelOutlineWidth.value
+    property int cfg_panelShadowSize: panelShadowSize.value
+    property string cfg_panelShadowColor: panelShadowColor.color
+    property int cfg_panelShadowX: panelShadowColorX.value
+    property int cfg_panelShadowY: panelShadowColorY.value
+
     Kirigami.FormLayout {
 
         Kirigami.Separator {
@@ -175,6 +182,90 @@ KCM.SimpleKCM {
             enabled: panelBgEnabled.checked
             onValueModified: {
                 cfg_panelBgRadius = value
+            }
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: false
+            Kirigami.FormData.label: i18n("Outline")
+            Layout.fillWidth: true
+        }
+
+        Components.ColorButton {
+            id: panelOutlineColor
+            Kirigami.FormData.label: i18n("Color:")
+            showAlphaChannel: true
+            dialogTitle: i18n("Panel outline")
+            color: cfg_panelOutlineColor
+            enabled: panelBgEnabled.checked
+            onAccepted: {
+                cfg_panelOutlineColor = color
+            }
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Width:")
+            id: panelOutlineWidth
+            value: cfg_panelOutlineWidth
+            from: 0
+            to: 99
+            enabled: panelBgEnabled.checked
+            onValueModified: {
+                cfg_panelOutlineWidth = value
+            }
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: false
+            Kirigami.FormData.label: i18n("Shadow")
+            Layout.fillWidth: true
+        }
+
+        Components.ColorButton {
+            id: panelShadowColor
+            Kirigami.FormData.label: i18n("Color:")
+            showAlphaChannel: true
+            dialogTitle: i18n("Panel shadow")
+            color: cfg_panelShadowColor
+            enabled: panelBgEnabled.checked
+            onAccepted: {
+                cfg_panelShadowColor = color
+            }
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Size:")
+            id: panelShadowSize
+            value: cfg_panelShadowSize
+            from: 0
+            to: 99
+            enabled: panelBgEnabled.checked
+            onValueModified: {
+                cfg_panelShadowSize = value
+            }
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("X offset:")
+            id: panelShadowX
+            value: cfg_panelShadowX
+            from: -99
+            to: 99
+            enabled: panelBgEnabled.checked
+            onValueModified: {
+                cfg_panelShadowX = value
+            }
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Y offset:")
+            id: panelShadowY
+            value: cfg_panelShadowY
+            from: -99
+            to: 99
+            enabled: panelBgEnabled.checked
+            onValueModified: {
+                cfg_panelShadowY = value
             }
         }
     }
