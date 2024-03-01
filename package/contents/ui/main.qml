@@ -329,7 +329,7 @@ PlasmoidItem {
         }
     }
 
-    function getRandomCcfg_widgetShadowSizeolor() {
+    function getRandomColor() {
         const h = Math.random()
         const s = rainbowSaturation
         const l = rainbowLightness
@@ -695,7 +695,6 @@ PlasmoidItem {
         repeat: (fgMode === 1)
         interval: fgRainbowInterval
         onTriggered: {
-            console.log("rainbowfgTimer");
             addingColors = true
             interval = fgRainbowInterval
         }
@@ -849,7 +848,6 @@ PlasmoidItem {
         if ( tries == 0 || object == null ) return ;
         if ( object.toString().indexOf("ContainmentItem_QML") > -1 ) {
             main.containmentItem = object ;
-            dumpProps(main.containmentItem.parent)
             console.log( "ContainmentItemFound At " + ( depth - tries ) + " recursive call" ) ;
         } else {
             lookForContainer( object.parent , tries-1 ) ;
