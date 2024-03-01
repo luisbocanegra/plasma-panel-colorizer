@@ -70,12 +70,12 @@
     <entry
         name="widgetOutlineColor"
         type="String">
-        <default>#00000000</default>
+        <default>#000000</default>
     </entry>
     <entry
         name="widgetOutlineWidth"
         type="Int">
-        <default>1</default>
+        <default>0</default>
     </entry>
     <entry
         name="widgetShadowColor"
@@ -131,13 +131,13 @@ org.kde.plasma.activitybar -8 0
     <entry
         name="fgMode"
         type="Int">
-       <default>1</default>
+       <default>0</default>
     </entry>
     <!-- color modes: single, accent, custom list, random, follow widget bg-->
     <entry
         name="fgColorMode"
         type="Int">
-        <default>2</default>
+        <default>4</default>
     </entry>
     <entry
         name="fgSingleColor"
@@ -188,7 +188,7 @@ org.kde.plasma.activitybar -8 0
     <entry
         name="fgContrastFixEnabled"
         type="Bool">
-        <default>false</default>
+        <default>true</default>
     </entry>
     <entry
         name="fgSaturation"
@@ -198,7 +198,7 @@ org.kde.plasma.activitybar -8 0
     <entry
         name="fgLightness"
         type="Double">
-        <default>0.3</default>
+        <default>0.2</default>
     </entry>
     <entry
         name="enableCustomPadding"
@@ -248,17 +248,17 @@ org.kde.plasma.activitybar -8 0
     <entry
         name="panelOutlineColor"
         type="String">
-        <default>#00000000</default>
+        <default>#000000</default>
     </entry>
     <entry
         name="panelOutlineWidth"
         type="Int">
-        <default>1</default>
+        <default>0</default>
     </entry>
     <entry
         name="panelShadowColor"
         type="String">
-        <default>#00000000</default>
+        <default>#7f000000</default>
     </entry>
     <entry
         name="panelShadowSize"
