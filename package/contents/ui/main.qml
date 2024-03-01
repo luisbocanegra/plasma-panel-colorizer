@@ -60,7 +60,7 @@ PlasmoidItem {
     property bool isLoaded: false
     property bool isConfiguring: plasmoid.userConfiguring
 
-    property bool inEditMode: Plasmoid.containment.corona?.editMode ? true : false
+    property bool inEditMode: Plasmoid.editMode
     Plasmoid.status: (inEditMode || !hideWidget || showToUpdate || isConfiguring) ?
                         PlasmaCore.Types.ActiveStatus :
                         PlasmaCore.Types.HiddenStatus

@@ -18,5 +18,6 @@
         "Version": "0.3.0",
         "Website": "https://github.com/luisbocanegra/plasma-panel-colorizer"
     },
-    "X-Plasma-API-Minimum-Version": "6.0"
+    "X-Plasma-API": "declarativeappletscript",
+    "X-Plasma-MainScript": "ui/main.qml"
 }
