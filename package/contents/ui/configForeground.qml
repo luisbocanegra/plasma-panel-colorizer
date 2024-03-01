@@ -481,6 +481,7 @@ KCM.SimpleKCM {
             id: forceRecolor
             text: cfg_forceRecolor
             onTextChanged: cfg_forceRecolor = text
+            Kirigami.SpellCheck.enabled: false
         }
 
         Label {

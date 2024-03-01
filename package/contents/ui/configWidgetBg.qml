@@ -538,6 +538,7 @@ KCM.SimpleKCM {
             id: paddingRules
             text: cfg_paddingRules
             onTextChanged: cfg_paddingRules = text
+            Kirigami.SpellCheck.enabled: false
         }
 
         Label {

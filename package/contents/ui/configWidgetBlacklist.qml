@@ -24,6 +24,7 @@ KCM.SimpleKCM {
             id: blacklist
             text: cfg_blacklist
             onTextChanged: cfg_blacklist = text
+            Kirigami.SpellCheck.enabled: false
         }
 
         Label {
