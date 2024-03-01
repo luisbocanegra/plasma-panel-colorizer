@@ -28,7 +28,7 @@ https://github.com/luisbocanegra/plasma-panel-colorizer/assets/15076387/ec1148e2
     * [x] Static
     * [x] Animated
       * [x] Interval
-        * [x] Fading
+      * [x] Fading
   * [x] Colors
     * [x] Single
     * [x] Accent
@@ -36,34 +36,34 @@ https://github.com/luisbocanegra/plasma-panel-colorizer/assets/15076387/ec1148e2
     * [x] Random
       * [x] Saturation
       * [x] Lightness
-    * [ ] Contrast check
   * [ ] Style
     * [x] Padding rules
     * [x] Border radius
     * [x] Opacity
     * [ ] Line mode
+    * [ ] Shadow
 * [x] Foreground (most icons and text)
   * [x] Color Modes
     * [x] Static
-    * [ ] Interval
-    * [ ] Follow widget background
-      * [ ] Ensure contrast
-  * [ ] Colors
+    * [x] Interval
+    * [x] Follow widget background
+  * [x] Colors
     * [x] Single
-    * [ ] Accent
-    * [ ] Custom list
-    * [ ] Random
-      * [ ] Saturation
-      * [ ] Lightness
+    * [x] Accent
+    * [x] Custom list
+    * [x] Random
+    * [x] Contrast correction
   * [x] Opacity
   * [x] Blacklisted color
-    * [x] Force Kirigami.Icon color to specific plasmoids with `isMask`
-* [x] Custom panel background (drawn over original background)
+    * [x] Force color to on specific plasmoids that use Kirigami.Icon
+* [ ] Custom panel background (drawn over original background)
   * [x] Opacity
   * [x] Color
   * [x] Border radius
+  * [x] Panel side padding (force same padding on all sides)
+  * [ ] Shadow
+  * [ ] Remove original panel background
 * [x] Widget Blacklist
-* [x] Panel side padding (force same padding on all sides)
 
 ## Installing
 
