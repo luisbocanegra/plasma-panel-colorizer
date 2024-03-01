@@ -182,7 +182,7 @@ org.kde.plasma.activitybar -8 0
     <entry
         name="fgOpacity"
         type="Double">
-        <default>0.78</default>
+        <default>1</default>
     </entry>
     <!-- contrast -->
     <entry
