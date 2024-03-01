@@ -8,6 +8,7 @@ import "components" as Components
 
 KCM.SimpleKCM {
     id:root
+    property bool cfg_widgetBgEnabled: widgetBgEnabled.checked
     property int cfg_mode: plasmoid.configuration.mode
     property int cfg_colorMode: plasmoid.configuration.colorMode
     property string cfg_singleColor: singleColor.color
@@ -21,7 +22,6 @@ KCM.SimpleKCM {
     property int cfg_rainbowTransition: rainbowTransition.value
     property string cfg_paddingRules: paddingRules.text
 
-    property bool cfg_widgetBgEnabled: widgetBgEnabled.checked
 
     property bool clearing: false
 

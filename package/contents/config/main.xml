@@ -91,21 +91,58 @@ org.kde.plasma.activitybar -8 0
         type="Bool">
         <default>false</default>
     </entry>
-
+    <!-- Foreground -->
     <entry
         name="fgColorEnabled"
         type="Bool">
         <default>true</default>
     </entry>
+    <!-- modes: static, animated-->
     <entry
-        name="customFgColor"
+        name="fgMode"
+        type="Int">
+       <default>1</default>
+    </entry>
+    <!-- color modes: single, accent, custom list, random, follow widget bg-->
+    <entry
+        name="fgColorMode"
+        type="Int">
+        <default>2</default>
+    </entry>
+    <entry
+        name="fgSingleColor"
         type="String">
         <default>#000000</default>
+    </entry>
+    <entry
+        name="fgCustomColors"
+        type="String">
+        <default>#ED8796 #A6DA95 #EED49F #8AADF4 #F5BDE6 #8BD5CA #f5a97f</default>
     </entry>
     <entry
         name="blacklistedFgColor"
         type="String">
         <default>#ffffff</default>
+    </entry>
+    <entry
+        name="fgRainbowSaturation"
+        type="Double">
+        <default>1.0</default>
+    </entry>
+    <entry
+        name="fgRainbowLightness"
+        type="Double">
+        <default>0.84</default>
+    </entry>
+    <entry
+        name="fgRainbowInterval"
+        type="Int">
+        <default>3000</default>
+    </entry>
+    <entry
+        name="fgRainbowTransition"
+        type="Int">
+        <default>800</default>
     </entry>
     <entry
         name="fgBlacklistedColorEnabled"
@@ -116,6 +153,22 @@ org.kde.plasma.activitybar -8 0
         name="fgOpacity"
         type="Double">
         <default>0.78</default>
+    </entry>
+    <!-- contrast -->
+    <entry
+        name="fgContrastFixEnabled"
+        type="Bool">
+        <default>false</default>
+    </entry>
+    <entry
+        name="fgSaturation"
+        type="Double">
+        <default>1</default>
+    </entry>
+    <entry
+        name="fgLightness"
+        type="Double">
+        <default>0.3</default>
     </entry>
     <entry
         name="enableCustomPadding"

@@ -29,6 +29,7 @@ KCM.SimpleKCM {
             id: panelBgColor
             showAlphaChannel: false
             dialogTitle: i18n("Panel background")
+            Kirigami.FormData.label: i18n("Color:")
             color: cfg_panelBgColor
             enabled: panelBgEnabled.checked
             onAccepted: {
@@ -151,7 +152,7 @@ KCM.SimpleKCM {
         }
 
         Label {
-            text: i18n("Changing panel visibility settings with this option enabled may cause some jankiness, specially in edit mode. Disable and restart Plasma or logout to restore the original padding.")
+            text: i18n("This option makes the widgets always stay at the same distance from borders in floating mode. Changing panel visibility settings with this option enabled may cause some jankiness, specially in edit mode. Disable and restart Plasma or logout to restore the original behavior.")
             opacity: 0.7
             Layout.maximumWidth: 300
             wrapMode: Text.Wrap

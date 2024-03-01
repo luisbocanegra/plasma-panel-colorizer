@@ -21,10 +21,10 @@ PlasmoidItem {
     property bool isEnabled: plasmoid.configuration.isEnabled
     property int mode: plasmoid.configuration.mode
     property int colorMode: plasmoid.configuration.colorMode
-    property string singleColor: plasmoid.configuration.singleColor
-    property string customColors: plasmoid.configuration.customColors
-    property int currentCustomColorIndex: 0
-    property bool widgetBgEnabled:plasmoid.configuration.widgetBgEnabled
+    property color singleColor: plasmoid.configuration.singleColor
+    property var customColors: []
+    property int nextCustomColorIndex: 0
+    property bool widgetBgEnabled: plasmoid.configuration.widgetBgEnabled
     property real bgOpacity: plasmoid.configuration.opacity
     property int bgRadius: plasmoid.configuration.radius
     property real rainbowSaturation: plasmoid.configuration.rainbowSaturation
@@ -57,7 +57,6 @@ PlasmoidItem {
 
     property color accentColor: Kirigami.Theme.highlightColor
     property color defaultTextColor: Kirigami.Theme.textColor
-    property color customFgColor: plasmoid.configuration.customFgColor
     property real fgOpacity: plasmoid.configuration.fgOpacity
     property bool fgColorEnabled: plasmoid.configuration.fgColorEnabled
 
@@ -66,19 +65,38 @@ PlasmoidItem {
 
     property bool showToUpdate: false
 
-    property string homeDir: StandardPaths.writableLocation(
-                            StandardPaths.HomeLocation).toString().substring(7)
-    property string schemeFile: homeDir + "/.local/share/color-schemes/PanelColorizer-"+plasmoid.id+".colors"
+    property string runtimeDir: StandardPaths.writableLocation(
+                            StandardPaths.RuntimeLocation).toString().substring(7)
+    property string schemeFile: runtimeDir + "/PanelColorizer-"+plasmoid.id+".colors"
 
     property string saveSchemeCmd: "echo '" + schemeContent.text + "' > " + schemeFile
 
-    property string fgColor: isEnabled && fgColorEnabled ? customFgColor : defaultTextColor
+    property int fgMode: plasmoid.configuration.fgMode
+    property int fgColorMode: plasmoid.configuration.fgColorMode
+    property color fgSingleColor: plasmoid.configuration.fgSingleColor
+    property var fgCustomColors: []
+    property real fgRainbowSaturation: plasmoid.configuration.fgRainbowSaturation
+    property real fgRainbowLightness: plasmoid.configuration.fgRainbowLightness
+    property int nextfgCustomColorIndex: 0
+    property bool addingColors: true
+    property var currentFgColors: []
+    property int fgRainbowInterval: plasmoid.configuration.fgRainbowInterval
+
+    property bool fgContrastFixEnabled: plasmoid.configuration.fgContrastFixEnabled
+    property string fgBlendColor: plasmoid.configuration.blendFgColor
+    property real fgBlendAmount: plasmoid.configuration.fgBlendAmount
+    property real fgSaturation: plasmoid.configuration.fgSaturation
+    property real fgLightness: plasmoid.configuration.fgLightness
+
+    property string fgColor: isEnabled && fgColorEnabled ? fgSingleColor : defaultTextColor
     property color fgBlacklistColor: isEnabled && fgBlacklistedColorEnabled ? blacklistedFgColor : defaultTextColor
     property string opacityComponent: {
         return opacityToHex(isEnabled ? fgOpacity : 1)
     }
 
-    property string fgWighAlpha: {
+    property color tmpColor
+
+    property string fgWithAlpha: {
         return "#" + opacityComponent + fgColor.substring(1)
     }
     property string fgContrast: {
@@ -111,6 +129,12 @@ PlasmoidItem {
         return intOpacity.toString(16).padStart(2, '0')
     }
 
+    function hexToAlpha(color, opacity) {
+        var colo = Kirigami.ColorUtils.adjustColor(color, {"alpha": 50})
+        console.log(colo);
+        return colo
+    }
+
     P5Support.DataSource {
         id: runCommand
         engine: "executable"
@@ -136,10 +160,28 @@ PlasmoidItem {
         if (isLoaded) runCommand.exec(saveSchemeCmd)
     }
 
+    function hexToRgb(hex) {
+        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+        } : null;
+    }
+
+    function readColors(colorsString) {
+        let colors = []
+        for (let hex of colorsString.split(" ")) {
+            const rgb = hexToRgb(hex)
+            if (rgb) {
+                colors.push(Qt.rgba(rgb.r / 255, rgb.g / 255, rgb.b / 255, 1))
+            }
+        }
+        return colors
+    }
+
     Components.Scheme {
         id: schemeContent
-        fgContrast: main.fgContrast
-        fgWighAlpha: main.fgWighAlpha
         opacityComponent: main.opacityComponent
     }
 
@@ -244,6 +286,8 @@ PlasmoidItem {
             console.log("CONFIG CHANGED");
             isEnabled = plasmoid.configuration.isEnabled
             mode = plasmoid.configuration.mode
+            customColors = readColors(plasmoid.configuration.customColors)
+            fgCustomColors = readColors(plasmoid.configuration.fgCustomColors)
             if (!widgetBgEnabled) destroyRequired = true
             init()
         }
@@ -253,6 +297,14 @@ PlasmoidItem {
         const h = Math.random()
         const s = rainbowSaturation
         const l = rainbowLightness
+        const a = 1.0
+        return Qt.hsla(h,s,l,a)
+    }
+
+    function getRandomFgColor() {
+        const h = Math.random()
+        const s = Math.random()//fgRainbowSaturation
+        const l = Math.random()//fgRainbowLightness
         const a = 1.0
         return Qt.hsla(h,s,l,a)
     }
@@ -291,14 +343,6 @@ PlasmoidItem {
     ListModel {
         id: rectangles
     }
-
-    function nextCustomColor() {
-        const colors = customColors.split(" ")
-        let next = colors[currentCustomColorIndex]
-        currentCustomColorIndex= currentCustomColorIndex < colors.length - 1 ? currentCustomColorIndex + 1 : 0
-        return next
-    }
-
 
     function createRects() {
         if(!panelLayout) return
@@ -373,6 +417,16 @@ PlasmoidItem {
         }
     }
 
+    function getNextElement(index, array) {
+        // const elements = string.split(" ")
+        var c = array[index]
+        const nextIndex = index < array.length - 1 ? index + 1 : 0
+        if (c === undefined) {
+            console.log(index, c, nextIndex);
+        }
+        return [c, nextIndex]
+    }
+
     function getColor() {
         var newColor="transparent"
         switch(colorMode) {
@@ -383,7 +437,7 @@ PlasmoidItem {
                 newColor = accentColor
                 break
             case 2:
-                newColor = nextCustomColor()
+                [newColor, nextCustomColorIndex] = getNextElement(nextCustomColorIndex, customColors)
                 break
             case 3:
                 newColor = getRandomColor()
@@ -391,8 +445,25 @@ PlasmoidItem {
         return newColor
     }
 
+    function getFgColor() {
+        var newColor="transparent"
+        switch(fgColorMode) {
+            case 0:
+                newColor = Qt.rgba(fgSingleColor.r, fgSingleColor.g, fgSingleColor.b, 1)// fgSingleColor
+                break
+            case 1:
+                newColor = Qt.rgba(accentColor.r, accentColor.g, accentColor.b, 1);
+                break
+            case 2:
+                [newColor, nextfgCustomColorIndex] = getNextElement(nextfgCustomColorIndex, fgCustomColors)
+                break
+            case 3:
+                newColor = getRandomFgColor()
+        }
+        return newColor
+    }
+
     function colorize() {
-        //console.log("colorize mode:",colorMode,"rects:",rectangles.count,"widget id:",Plasmoid.id, "screen:", screen, "position", plasmoid.location);
         for(let i = 0; i < rectangles.count; i++) {
             try {
                 var comp = rectangles.get(i)["comp"]
@@ -404,7 +475,7 @@ PlasmoidItem {
         }
     }
 
-    function applyFgColor(element, forceMask, ignore) {
+    function applyFgColor(element, forceMask, ignore, newColor) {
         // don't go into the tray
         if (element instanceof PlasmaExtras.Representation) return
 
@@ -412,23 +483,11 @@ PlasmoidItem {
             const name = element.plasmoid.pluginName
             const maskList = forceRecolor.split("\n").map(function(line) {return line.trim()})
             forceMask = maskList.some(function(target) {return target.length > 0 && name.includes(target)})
-            const blacklisted = blacklist.split("\n").map(function(line) {return line.trim()})
-            ignore = blacklisted.some(function(target) {return target.length > 0 && name.includes(target)})
-        }
-
-        var newColor = defaultTextColor
-        if (isEnabled && fgColorEnabled && !ignore) {
-            newColor = customFgColor
-        }
-
-        if (fgBlacklistedColorEnabled && ignore) {
-            newColor = blacklistedFgColor
         }
 
         if (element.hasOwnProperty("color")) {
             element.Kirigami.Theme.textColor = newColor
         }
-
 
         if (element.hasOwnProperty("scheme")) {
             element.scheme = schemeFile
@@ -448,11 +507,14 @@ PlasmoidItem {
         }
 
         for (var i = 0; i < element.children.length; i++) {
-            applyFgColor(element.children[i],forceMask,ignore);
+            applyFgColor(element.children[i],forceMask,ignore,newColor);
         }
     }
 
     function updateFgColor() {
+        if (addingColors) currentFgColors = []
+        var idx=0
+        const blacklisted = blacklist.split("\n").map(function(line) {return line.trim()})
         for(let i = 0; i < panelLayout.children.length; i++) {
             const child = panelLayout.children[i];
 
@@ -460,40 +522,70 @@ PlasmoidItem {
             // other situations
             if (!child.applet?.plasmoid?.pluginName) continue
 
+            const name = child.applet.plasmoid.pluginName
+            const ignore = blacklisted.some(function(target) {return name.includes(target)})
+            const rect = child.applet.children.find(function (child) {return child instanceof Rectangle})
+
+            let newColor = defaultTextColor
+            if (isEnabled && fgColorEnabled && !ignore) {
+                if (addingColors) {
+                    var bgColor = ""
+                    if (fgColorMode === 4) {
+                        if (rect) {
+                            bgColor = Qt.hsla(rect.color.hslHue, rect.color.hslSaturation, rect.color.hslLightness, 1);
+                        } else {
+                            bgColor = Qt.hsla(defaultTextColor.hslHue, defaultTextColor.hslSaturation, defaultTextColor.hslLightness, 1);
+                        }
+                    } else {
+                        bgColor = getFgColor()
+                    }
+                    if (fgContrastFixEnabled) {
+                        bgColor.hslLightness = fgLightness
+                        bgColor.hslSaturation = fgSaturation
+                    }
+                    newColor = bgColor
+                    currentFgColors.push(newColor)
+                } else {
+                    newColor = currentFgColors[idx]
+                    idx++
+                }
+            }
+            if (fgBlacklistedColorEnabled && ignore) {
+                newColor = blacklistedFgColor
+            }
+
+            if (name === "org.kde.windowbuttons" && addingColors) {
+                schemeContent.opacityComponent = opacityToHex(isEnabled ? fgOpacity : 1)
+                schemeContent.fgWithAlpha = "#" + schemeContent.opacityComponent + newColor.toString().substring(1)
+                schemeContent.fgContrast = (Kirigami.ColorUtils.brightnessForColor(newColor) === Kirigami.ColorUtils.Dark) ? "#ffffff" : "#000000"
+                runCommand.exec(saveSchemeCmd)
+            }
+
             const target = child.children.find(function (child) {return child instanceof PlasmoidItem})
             if (target) {
                 try {
-                    // console.error(child.applet.plasmoid.pluginName);
-                    applyFgColor(target,false,false)
+                    applyFgColor(target,false,ignore,newColor)
                 } catch (e) {
                     console.error("Error updating text in child", i, "E:" , e);
                 }
             }
         }
+        addingColors = false
     }
 
-    Timer {
-        id: rainbowTimer
-        running: false
-        repeat: (mode === 1)
-        interval: rainbowInterval
-        onTriggered: {
-            colorize()
-            interval = rainbowInterval
-        }
-    }
-
-    Timer {
-        id: fgUpdateTimer
-        running: isEnabled && fgColorEnabled
-        repeat: true
-        interval: 250
-        onTriggered: {
-            updateFgColor()
-        }
-    }
+    // Timer {
+    //     id: debugTimer
+    //     running: true
+    //     repeat: true
+    //     interval: 1000
+    //     onTriggered: {
+    //         console.log("fgMode:", fgMode, "fgInterval", fgRainbowInterval, (fgMode === 1));
+    //     }
+    // }
 
     Component.onCompleted: {
+        customColors = readColors(plasmoid.configuration.customColors)
+        fgCustomColors = readColors(plasmoid.configuration.fgCustomColors)
         if (!onDesktop) {
             init()
         } else {
@@ -530,6 +622,46 @@ PlasmoidItem {
             destroyRequired = false
             rainbowTimer.interval = 100
             rainbowTimer.start()
+            rainbowfgTimer.interval = 100
+            rainbowfgTimer.start()
+        }
+    }
+
+    Timer {
+        id: fgUpdateTimer
+        running: isEnabled && fgColorEnabled
+        repeat: true
+        interval: 250
+        onTriggered: {
+            updateFgColor()
+        }
+    }
+
+    Timer {
+        id: rainbowTimer
+        running: false
+        repeat: (mode === 1)
+        interval: rainbowInterval
+        onTriggered: {
+            colorize()
+            interval = rainbowInterval
+            if (fgColorMode === 4 && fgMode !== 1) {
+                addingColors = true
+                rainbowfgTimer.interval = rainbowTransition
+                rainbowfgTimer.restart()
+            }
+        }
+    }
+
+    Timer {
+        id: rainbowfgTimer
+        running: false
+        repeat: (fgMode === 1)
+        interval: fgRainbowInterval
+        onTriggered: {
+            console.log("rainbowfgTimer");
+            addingColors = true
+            interval = fgRainbowInterval
         }
     }
 

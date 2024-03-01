@@ -2,7 +2,7 @@ import QtQuick
 Item {
     id: scheme
     property string fgContrast
-    property string fgWighAlpha
+    property string fgWithAlpha
     property string opacityComponent: "FF"
 
     property string text:`[General]
@@ -148,7 +148,7 @@ contrast=4
 [WM]
 activeBackground=${fgContrast}
 activeBlend=227,229,231
-activeForeground=${fgWighAlpha}
+activeForeground=${fgWithAlpha}
 inactiveBackground=#fff1dcf4
 inactiveBlend=239,240,241
 inactiveForeground=#4c444d`
