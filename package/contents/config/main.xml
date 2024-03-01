@@ -191,6 +191,11 @@ org.kde.plasma.activitybar -8 0
         <default>#000000</default>
     </entry>
     <entry
+        name="hideRealPanelBg"
+        type="Bool">
+        <default>false</default>
+    </entry>
+    <entry
         name="panelBgOpacity"
         type="Double">
         <default>1</default>

@@ -39,6 +39,7 @@ PlasmoidItem {
     property string panelBgColor: plasmoid.configuration.panelBgColor
     property real panelBgOpacity: plasmoid.configuration.panelBgOpacity
     property real panelBgRadius: isFloating ? plasmoid.configuration.panelBgRadius : 0
+    property bool hideRealPanelBg: plasmoid.configuration.hideRealPanelBg
     property real panelRealBgOpacity: plasmoid.configuration.panelRealBgOpacity
 
     property string forceRecolor: plasmoid.configuration.forceRecolor
@@ -119,6 +120,9 @@ PlasmoidItem {
     }
     property bool isFloating: !panelElement ? false : Boolean(panelElement.floatingness)
     property int panelBGP: isFloating ? 12 : 12
+
+    property ContainmentItem containmentItem: null
+    readonly property int depth : 14
 
     property var panelBGE
 
@@ -252,7 +256,7 @@ PlasmoidItem {
             updateFgColor()
             destroyRects()
             setPanelBg()
-            hideRealPanelBg()
+            panelOpacity()
             destroyRequired = true
             runCommand.exec(saveSchemeCmd)
         }
@@ -601,7 +605,7 @@ PlasmoidItem {
         onTriggered: {
             console.log("initTimer");
             setPanelBg()
-            hideRealPanelBg()
+            panelOpacity()
             if (destroyRequired) {
                 destroyRects()
             }
@@ -789,12 +793,48 @@ PlasmoidItem {
         }
     }
 
-    function hideRealPanelBg() {
+    function panelOpacity() {
         for (let i in panelElement.children) {
             const current = panelElement.children[i]
 
             if (current.imagePath && current.imagePath.toString().includes("panel-background")) {
                 current.opacity = isEnabled && panelBgEnabled ? panelRealBgOpacity : 1
+            }
+        }
+        lookForContainerTimer.start()
+    }
+
+    // Taken from https://github.com/sanjay-kr-commit/panelTransparencyToggleForPlasma6
+
+    function toggleTransparency(enabled) {
+        if ( main.containmentItem == null ) lookForContainer( main.parent , depth ) ;
+        if ( main.containmentItem != null ) {
+            main.containmentItem.Plasmoid.backgroundHints = enabled ? PlasmaCore.Types.NoBackground : PlasmaCore.Types.DefaultBackground ;
+        }
+    }
+
+    function lookForContainer( object , tries ) {
+        if ( tries == 0 || object == null ) return ;
+        if ( object.toString().indexOf("ContainmentItem_QML") > -1 ) {
+            main.containmentItem = object ;
+            dumpProps(main.containmentItem.parent)
+            console.log( "ContainmentItemFound At " + ( depth - tries ) + " recursive call" ) ;
+        } else {
+            lookForContainer( object.parent , tries-1 ) ;
+        }
+    }
+
+    Timer {
+        id: lookForContainerTimer
+        interval: 1200
+        property int step: 0
+        readonly property int maxStep:4
+        onTriggered: {
+            console.log("enabling transparency mode attempt : " + (step+1) )
+            main.toggleTransparency(hideRealPanelBg)
+            if ( main.containmentItem == null && step<maxStep ) {
+                step = step + 1;
+                start();
             }
         }
     }
