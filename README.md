@@ -41,7 +41,7 @@ https://github.com/luisbocanegra/plasma-panel-colorizer/assets/15076387/ec1148e2
     * [x] Border radius
     * [x] Opacity
     * [ ] Line mode
-    * [ ] Shadow
+    * [x] Shadow
 * [x] Foreground (most icons and text)
   * [x] Color Modes
     * [x] Static
@@ -56,13 +56,13 @@ https://github.com/luisbocanegra/plasma-panel-colorizer/assets/15076387/ec1148e2
   * [x] Opacity
   * [x] Blacklisted color
     * [x] Force color to on specific plasmoids that use Kirigami.Icon
-* [ ] Custom panel background (drawn over original background)
+* [x] Custom panel background (drawn over original background)
   * [x] Opacity
   * [x] Color
   * [x] Border radius
   * [x] Panel side padding (force same padding on all sides)
-  * [ ] Shadow
-  * [ ] Remove original panel background
+  * [x] Shadow
+  * [x] Remove original panel background
 * [x] Widget Blacklist
 
 ## Installing
@@ -85,3 +85,4 @@ https://github.com/luisbocanegra/plasma-panel-colorizer/assets/15076387/ec1148e2
 
 * [Search the actual gridLayout of the panel from Plasma panel spacer](https://invent.kde.org/plasma/plasma-workspace/-/blob/Plasma/5.27/applets/panelspacer/package/contents/ui/main.qml?ref_type=heads#L37) code that inspired this project.
 * [Google LLC. / Pictogrammers](https://pictogrammers.com/library/mdi/) for the panel icons.
+* [sanjay-kr-commit/panelTransparencyToggleForPlasma6](https://github.com/sanjay-kr-commit/panelTransparencyToggleForPlasma6) / [psifidotos/paneltransparencybutton](https://github.com/psifidotos/paneltransparencybutton)
