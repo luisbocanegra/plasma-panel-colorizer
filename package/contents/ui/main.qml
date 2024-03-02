@@ -1,18 +1,18 @@
-import QtCore
-import QtQuick
-import QtQuick.Controls
-import QtQuick.Layouts
-import org.kde.kirigami as Kirigami
-import org.kde.plasma.core as PlasmaCore
-import org.kde.plasma.plasmoid
+import Qt.labs.platform 1.1
+import QtQuick 2.5
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.1
+import org.kde.kirigami 2.10 as Kirigami
+import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.extras 2.0 as PlasmaExtras
-import org.kde.plasma.plasma5support as P5Support
+import QtGraphicalEffects 1.12
 import "components" as Components
 
-PlasmoidItem {
+Item {
     id: main
 
-    preferredRepresentation: compactRepresentation
+    Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
     property bool onDesktop: plasmoid.location === PlasmaCore.Types.Floating
 
     property string iconName: !onDesktop ? "icon" : "error"
@@ -110,31 +110,24 @@ PlasmoidItem {
 
     property color tmpColor
 
-    property string fgWithAlpha: {
-        return "#" + opacityComponent + fgColor.substring(1)
-    }
-    property string fgContrast: {
-        if (Kirigami.ColorUtils.brightnessForColor(fgColor) === Kirigami.ColorUtils.Light) {
-            return "#000000"
-        } else {
-            return "#ffffff"
-        }
-    }
-
     property int enableCustomPadding: plasmoid.configuration.enableCustomPadding
     property int panelPadding: plasmoid.configuration.panelPadding
     property bool isVertical: Plasmoid.formFactor === PlasmaCore.Types.Vertical
     property var panelPrefixes: ["north","south","west","east"]
     property var panelBg: {
-        return panelElement?.children ? panelElement.children.find(function(child) {
-            return panelPrefixes.some(function(target) {return child.prefix.toString().includes(target)})
-            }
-        ) : null
+        if (panelElement && panelElement.children) {
+            return panelElement.children.find(function(child) {
+                return panelPrefixes.some(function(target) {return child.prefix.toString().includes(target)})
+            });
+        } else {
+            return null;
+        }
     }
+
     property bool isFloating: !panelElement ? false : Boolean(panelElement.floatingness)
     property int panelBGP: isFloating ? 12 : 12
 
-    property ContainmentItem containmentItem: null
+    property Item containmentItem: null
     readonly property int depth : 14
 
     property var panelBGE
@@ -152,7 +145,7 @@ PlasmoidItem {
         return colo
     }
 
-    P5Support.DataSource {
+    PlasmaCore.DataSource {
         id: runCommand
         engine: "executable"
         connectedSources: []
@@ -202,19 +195,8 @@ PlasmoidItem {
         opacityComponent: main.opacityComponent
     }
 
-    Plasmoid.contextualActions: [
-        PlasmaCore.Action {
-            text: i18n("Hide widget (visible in panel Edit Mode)")
-            checkable: true
-            icon.name: "visibility-symbolic"
-            checked: Plasmoid.configuration.hideWidget
-            onTriggered: checked => {
-                plasmoid.configuration.hideWidget = checked;
-            }
-        }
-    ]
 
-    property Component rectComponent: Kirigami.ShadowedRectangle {
+    property Component rectComponent: Rectangle {
         property var target // holds element with expanded property
         property int heightOffset: 0
         property int widthOffset: 0
@@ -224,16 +206,16 @@ PlasmoidItem {
         height: parent.height + heightOffset
         width: parent.width + widthOffset
         anchors.centerIn: parent
-        border {
-            color: widgetOutlineColor
-            width: widgetOutlineWidth
-        }
-        shadow {
-            size: widgetShadowSize
-            color: widgetShadowColor
-            xOffset: widgetShadowX
-            yOffset: widgetShadowY
-        }
+        // border {
+        //     color: widgetOutlineColor
+        //     width: widgetOutlineWidth
+        // }
+        // shadow {
+        //     size: widgetShadowSize
+        //     color: widgetShadowColor
+        //     xOffset: widgetShadowX
+        //     yOffset: widgetShadowY
+        // }
 
         ColorAnimation on color { id:anim; to: color; duration: rainbowTransition }
         function changeColor(newColor) {
@@ -242,34 +224,59 @@ PlasmoidItem {
         }
     }
 
-    property Component rectBgComponent: Kirigami.ShadowedRectangle {
+    property Component rectBgComponent: Rectangle {
         color: panelBgColor
         opacity: panelBgOpacity
         radius: panelBgRadius
         anchors.centerIn: parent
         width: panelBg.width
         height: panelBg.height
-        border {
-            color: panelOutlineColor
-            width: panelOutlineWidth
-        }
-        shadow {
-            size: panelShadowSize
-            color: panelShadowColor
-            xOffset: panelShadowX
-            yOffset: panelShadowY
-        }
+        // border {
+        //     color: panelOutlineColor
+        //     width: panelOutlineWidth
+        // }
+        // shadow {
+        //     size: panelShadowSize
+        //     color: panelShadowColor
+        //     xOffset: panelShadowX
+        //     yOffset: panelShadowY
+        // }
     }
 
-    toolTipSubText: onDesktop ? "<font color='"+Kirigami.Theme.neutralTextColor+"'>Panel not found, this widget must be child of a panel</font>" : Plasmoid.metaData.description
-    toolTipTextFormat: Text.RichText
+    property Component overlayComponent: ColorOverlay {
+        property var target // holds element with expanded property
+        property int heightOffset: 0
+        property int widthOffset: 0
+        color: "transparent"
+        height: parent.height + heightOffset
+        width: parent.width + widthOffset
+        anchors.centerIn: parent
+    }
 
-    compactRepresentation: CompactRepresentation {
+    property Component colorizeComponent: Colorize {
+        property var target // holds element with expanded property
+        property int heightOffset: 0
+        property int widthOffset: 0
+        height: parent.height + heightOffset
+        width: parent.width + widthOffset
+        anchors.centerIn: parent
+    }
+
+    Plasmoid.toolTipSubText: onDesktop ? "<font color='"+Kirigami.Theme.neutralTextColor+"'>Panel not found, this widget must be child of a panel</font>" : Plasmoid.metaData.description
+    Plasmoid.toolTipTextFormat: Text.RichText
+
+    // FIXME: Figure out why representation element doesn't work
+    // Plasmoid.compactRepresentation: CompactRepresentation {
+    //    icon: main.icon
+    //    onDesktop: main.onDesktop
+    //}
+    // Plasmoid.fullRepresentation: ColumnLayout {}
+
+    CompactRepresentation {
         icon: main.icon
         onDesktop: main.onDesktop
     }
-
-    fullRepresentation: ColumnLayout {}
+    Layout.preferredWidth: Math.min(main.height,main.width)
 
     onModeChanged: {
         console.error("MODE CHANGED:",mode);
@@ -281,11 +288,11 @@ PlasmoidItem {
         if (isEnabled) {
             initTimer.start()
             paddingTimer.start()
-            updateFgColor()
+            //updateFgColor()
         } else {
             rainbowTimer.stop()
             paddingTimer.start()
-            updateFgColor()
+            //updateFgColor()
             destroyRects()
             setPanelBg()
             panelOpacity()
@@ -394,30 +401,40 @@ PlasmoidItem {
                 const child = panelLayout.children[i];
 
                 if (!child.applet) continue
-                if (!child.applet.plasmoid) {
-                    continue
-                }
+                // if (!child.applet.plasmoid) {
+                //     continue
+                // }
 
                 // name may not be available while gragging into the panel and
                 // other situations
                 try {
-                    console.error(child.applet.plasmoid.pluginName);
+                    console.error(child.applet.pluginName);
                 } catch (e) {
                     console.error(e);
                     continue
                 }
 
                 // TODO: Code for handling expanded widget action is here but not used yet
-                const name = child.applet.plasmoid.pluginName
+                const name = child.applet.pluginName
                 if (name === "org.kde.plasma.systemtray") {
                     rectangles.append({
                         "comp":rectComponent.createObject(
                             child,
                             {
                                 "z": -1,
-                                "target": child.applet.plasmoid.internalSystray.systemTrayState
+                                "target": child.applet//.plasmoid.internalSystray.systemTrayState
                             }
                         )
+                    })
+                    // colorizeComponent.createObject(child.applet, {
+                    //     "source": child.applet,
+                    //     "hue": 0,
+                    //     "saturation": 1,
+                    //     "lightness": 0.5
+                    // })
+                    overlayComponent.createObject(child.applet, {
+                        "source": child.applet,
+                        "color": getRandomFgColor()
                     })
                     continue
                 }
@@ -448,6 +465,11 @@ PlasmoidItem {
                             "widthOffset":y
                         }
                     )
+                })
+
+                overlayComponent.createObject(child.applet, {
+                    "source": child.applet,
+                    "color": getRandomFgColor()
                 })
             }
         }
@@ -515,8 +537,8 @@ PlasmoidItem {
         // don't go into the tray
         if (element instanceof PlasmaExtras.Representation) return
 
-        if (element.plasmoid?.pluginName) {
-            const name = element.plasmoid.pluginName
+        if (element.pluginName) {
+            const name = element.pluginName
             const maskList = forceRecolor.split("\n").map(function(line) {return line.trim()})
             forceMask = maskList.some(function(target) {return target.length > 0 && name.includes(target)})
         }
@@ -524,17 +546,23 @@ PlasmoidItem {
         if (element.hasOwnProperty("color")) {
             element.Kirigami.Theme.textColor = newColor
         }
+        element.Kirigami.Theme.textColor = newColor
 
         if (element.hasOwnProperty("scheme")) {
             element.scheme = schemeFile
         }
 
-        if ([Text,ToolButton,Label,Canvas,Kirigami.Icon].some(function(type) {return element instanceof type})) {
+        if ([Text,ToolButton,Label,Canvas,PlasmaCore.IconItem,PlasmaCore.SvgItem,PlasmaCore.Svg].some(function(type) {return element instanceof type})) {
             if (element.color) {
                 element.color = newColor
             }
             if (element.hasOwnProperty("isMask") && forceMask) {
                 element.isMask = true
+            }
+            if (element.hasOwnProperty("colorGroup")) {
+                element.colorGroup= PlasmaCore.Theme.ComplementaryColorGroup
+                element.Kirigami.Theme.colorGroup= Kirigami.Theme.Tooltip
+                element.color.PlasmaCore.ColorScope.backgroundColor
             }
             element.Kirigami.Theme.textColor = newColor
             // fixes notification applet artifact when appearing
@@ -556,11 +584,15 @@ PlasmoidItem {
 
             // name may not be available while gragging into the panel and
             // other situations
-            if (!child.applet?.plasmoid?.pluginName) continue
+            if (!(child.applet && child.applet.pluginName)) continue
 
-            const name = child.applet.plasmoid.pluginName
+            const name = child.applet.pluginName
             const ignore = blacklisted.some(function(target) {return name.includes(target)})
-            const rect = child.children.find(function (child) {return child instanceof Kirigami.ShadowedRectangle})
+            var rect //= child.children.find(function (ch) {return ch.hasOwnProperty("color")})
+            for (let i in child.children) {
+                if (child.children[i].hasOwnProperty("color"))
+                rect = child.children[i]
+            }
 
             let newColor = defaultTextColor
             if (isEnabled && fgColorEnabled && !ignore) {
@@ -597,10 +629,10 @@ PlasmoidItem {
                 runCommand.exec(saveSchemeCmd)
             }
 
-            const target = child.children.find(function (child) {return child instanceof PlasmoidItem})
-            if (target) {
+            //const target = child.children.find(function (child) {return child instanceof PlasmoidItem})
+            if (true) {
                 try {
-                    applyFgColor(target,false,ignore,newColor)
+                    applyFgColor(child,false,ignore,newColor)
                 } catch (e) {
                     console.error("Error updating text in child", i, "E:" , e);
                 }
@@ -618,8 +650,16 @@ PlasmoidItem {
     //         console.log("fgMode:", fgMode, "fgInterval", fgRainbowInterval, (fgMode === 1));
     //     }
     // }
+    function action_hide() {
+        Plasmoid.configuration.hideWidget = Plasmoid.action("hide").checked;
+    }
 
     Component.onCompleted: {
+        Plasmoid.setAction("hide", i18n("Hide widget (visible in panel Edit Mode)"))
+        var action = Plasmoid.action("hide");
+        action.checkable = true;
+        action.checked = Qt.binding(function() {return Plasmoid.configuration.hideWidget});
+
         customColors = readColors(plasmoid.configuration.customColors)
         fgCustomColors = readColors(plasmoid.configuration.fgCustomColors)
         if (!onDesktop) {
@@ -663,15 +703,15 @@ PlasmoidItem {
         }
     }
 
-    Timer {
-        id: fgUpdateTimer
-        running: isEnabled && fgColorEnabled
-        repeat: true
-        interval: 250
-        onTriggered: {
-            updateFgColor()
-        }
-    }
+    // Timer {
+    //     id: fgUpdateTimer
+    //     running: isEnabled && fgColorEnabled
+    //     repeat: true
+    //     interval: 250
+    //     onTriggered: {
+    //         updateFgColor()
+    //     }
+    // }
 
     Timer {
         id: rainbowTimer
@@ -701,7 +741,7 @@ PlasmoidItem {
     }
 
     function destroyRects() {
-        console.log("Destroying rects:",rectangles.count,"widget id:",Plasmoid.id, "screen:", screen, "position", plasmoid.location);
+        console.log("Destroying rects:",rectangles.count,"widget id:",Plasmoid.id, "screen:", plasmoid.screen, "position", plasmoid.location);
         for (var i = rectangles.count - 1; i >= 0; i--) {
             var comp = rectangles.get(i)["comp"]
             try {

@@ -1,4 +1,4 @@
-import QtQuick
+import QtQuick 2.5
 Item {
     id: scheme
     property string fgContrast
