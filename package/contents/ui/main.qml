@@ -409,17 +409,11 @@ PlasmoidItem {
 
                 // TODO: Code for handling expanded widget action is here but not used yet
                 const name = child.applet.plasmoid.pluginName
+                var expandedTarget
                 if (name === "org.kde.plasma.systemtray") {
-                    rectangles.append({
-                        "comp":rectComponent.createObject(
-                            child,
-                            {
-                                "z": -1,
-                                "target": child.applet.plasmoid.internalSystray.systemTrayState
-                            }
-                        )
-                    })
-                    continue
+                    expandedTarget = child.applet.plasmoid.internalSystray.systemTrayState
+                } else {
+                    expandedTarget = child
                 }
 
                 if (blacklisted.some(function(target) {return target.length > 0 && name.includes(target)})) continue
@@ -443,9 +437,9 @@ PlasmoidItem {
                         child,
                         {
                             "z": -1,
-                            "target":child,
-                            "heightOffset":x,
-                            "widthOffset":y
+                            "target": expandedTarget,
+                            "heightOffset": x,
+                            "widthOffset": y
                         }
                     )
                 })
