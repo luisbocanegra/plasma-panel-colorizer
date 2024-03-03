@@ -1,4 +1,4 @@
-# Panel Colorizer plasmoid
+# Panel Colorizer
 
 Powerful fully-featured KDE Plasma panel colorizer for a WM status bar like appearance
 
@@ -62,12 +62,17 @@ Inspired by the Latte Dock (now unmaintained) theming and boosted by the lazines
 * Color
 * Border radius
 * Panel side padding (force same padding on all sides)
+    > [!WARNING]
+    > Changing panel settings (position, alignment, width etc.) with this option enabled may cause some jankiness (including visual overflow or widget position freezes). Restarting Plasma or logging out may fix those, if not, disable it and logout to restore the original behavior.
 * Shadow
 * Remove original panel background
 
 ### Other
 
 * Widget Blacklist
+
+> [!NOTE]
+> Changes to the panel are not permanent and can be removed by disabling them from widget settings or removing it from the panel and restarting Plasma or logging out.
 
 ## Installing
 
@@ -103,7 +108,7 @@ Background is drawn by creating rectangle areas bellow widgets/panel, text and i
 
 ### Performance
 
-Some widgets really like to create/destroy/recolor their own widget elements (e.g. Global Menu), to account for this text and icons color are re-applied every 250ms I tried to optimize it so cpu usage only increases of around 1-2% on my testings but could vary depending on how many widgets are in your panels.
+Some widgets really like to create/destroy/recolor their own widget elements (e.g. Global Menu), to account for this text and icons color are re-applied every 250ms I tried to optimize it so CPU usage only increases around 1-2% on my computer but could vary depending on your System or how many widgets are in your panels.
 
 ## Acknowledgements
 
