@@ -20,46 +20,54 @@ Inspired by the Latte Dock (now unmaintained) theming and boosted by the lazines
 
 ## Features
 
-* [x] Widget Background
-  * [x] Color modes
-    * [x] Static
-    * [x] Animated
-      * [x] Interval
-      * [x] Fading
-  * [x] Colors
-    * [x] Single
-    * [x] Accent
-    * [x] Custom list
-    * [x] Random
-      * [x] Saturation
-      * [x] Lightness
-  * [ ] Style
-    * [x] Padding rules
-    * [x] Border radius
-    * [x] Opacity
-    * [x] Shadow
-* [x] Foreground (most icons and text)
-  * [x] Color Modes
-    * [x] Static
-    * [x] Interval
-    * [x] Follow widget background
-  * [x] Colors
-    * [x] Single
-    * [x] Accent
-    * [x] Custom list
-    * [x] Random
-    * [x] Contrast correction
-  * [x] Opacity
-  * [x] Blacklisted color
-    * [x] Force color to on specific plasmoids that use Kirigami.Icon
-* [x] Custom panel background (drawn over original background)
-  * [x] Opacity
-  * [x] Color
-  * [x] Border radius
-  * [x] Panel side padding (force same padding on all sides)
-  * [x] Shadow
-  * [x] Remove original panel background
-* [x] Widget Blacklist
+### Widget Background
+
+* Color modes
+  * Static
+  * Animated
+    * Interval
+    * Fading
+* Colors
+  * Single
+  * Accent
+  * Custom list
+  * Random
+    * Saturation
+    * Lightness
+* Style
+  * Padding rules
+  * Border radius
+  * Opacity
+  * Shadow
+
+### Icons and text
+
+* Color Modes
+  * Static
+  * Interval
+  * Follow widget background
+* Colors
+  * Single
+  * Accent
+  * Custom list
+  * Random
+  * Contrast correction
+* Opacity
+* Blacklisted widgets color
+* Force icon color to on specific plasmoids that use Kirigami.Icon
+
+### Panel background
+
+* Opacity
+* Color
+* Border radius
+* Panel side padding (force same padding on all sides)
+* Shadow
+* Remove original panel background
+
+### Other
+
+* Widget Blacklist
 
 ## Installing
 
@@ -91,11 +99,11 @@ This widget works by inject/managing the background and colors of other widgets 
 
 ### Technical
 
-Background is drawn by creating rectangle areas bellow widgets/panel, text and icons repaint is done by editing some elements color property and overwriting `Kirigami.Theme.something` colors for others, while this works for most widgets, there are some that won't because they draw text and icons differently to what this project matches, if you find a widget that doesn't get colors let me know [here](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/12) and I will try supporting it.
+Background is drawn by creating rectangle areas bellow widgets/panel, text and icons repaint is done by editing some elements color property and overwriting `Kirigami.Theme.<something>Color` colors for others, while this works for most widgets, there are some that won't because they draw text and icons differently to what this project matches, if you find a widget that doesn't get colors let me know [here](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/12) and I will try supporting it.
 
 ### Performance
 
-Some widgets really like to create/destroy/recolor their own widget elements (e.g. Global Menu), to account for this text and icons color are re-applied every 250ms I tried to optimize it so cpu usage only increases of around 1-2% on my testings but could vary depending on how many widget are in your panels.
+Some widgets really like to create/destroy/recolor their own widget elements (e.g. Global Menu), to account for this text and icons color are re-applied every 250ms I tried to optimize it so cpu usage only increases of around 1-2% on my testings but could vary depending on how many widgets are in your panels.
 
 ## Acknowledgements
 
