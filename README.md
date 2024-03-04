@@ -62,8 +62,10 @@ Inspired by the Latte Dock (now unmaintained) theming and boosted by the lazines
 * Color
 * Border radius
 * Panel side padding (force same padding on all sides)
-    > [!WARNING]
-    > Changing panel settings (position, alignment, width etc.) with this option enabled may cause some jankiness (including visual overflow or widget position freezes). Restarting Plasma or logging out may fix those, if not, disable it and logout to restore the original behavior.
+
+> [!WARNING]
+> Changing panel settings (position, alignment, width etc.) with this option enabled may cause some jankiness (including visual overflow or widget position freezes). Restarting Plasma or logging out may fix those, if not, disable it and logout to restore the original behavior.
+
 * Shadow
 * Remove original panel background
 
@@ -108,7 +110,7 @@ Background is drawn by creating rectangle areas bellow widgets/panel, text and i
 
 ### Performance
 
-Some widgets really like to create/destroy/recolor their own widget elements (e.g. Global Menu), to account for this text and icons color are re-applied every 250ms I tried to optimize it so CPU usage only increases around 1-2% on my computer but could vary depending on your System or how many widgets are in your panels.
+Some widgets really like to create/destroy/recolor their own widget elements (e.g. Global Menu), to account for this, text and icons color are re-applied every 250ms. I tried to optimize it so CPU usage only increases around 1-2% on my computer, but usage could vary depending on your System or how many widgets are in your panels.
 
 ## Acknowledgements
 
