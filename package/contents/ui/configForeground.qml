@@ -15,8 +15,6 @@ KCM.SimpleKCM {
     property string cfg_fgSingleColor: fgSingleColor.color
     property string cfg_fgCustomColors: fgCustomColors.text
 
-    property real cfg_fgRainbowSaturation: cfg_fgRainbowSaturation.text
-    property real cfg_fgRainbowLightness: fgRainbowLightness.text
     property int cfg_fgRainbowInterval: fgRainbowInterval.value
     property bool widgetBgEnabled: plasmoid.configuration.widgetBgEnabled
     

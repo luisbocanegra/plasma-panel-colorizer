@@ -59,10 +59,10 @@ PlasmoidItem {
     property string forceRecolor: plasmoid.configuration.forceRecolor
 
     property bool isLoaded: false
-    property bool isConfiguring: plasmoid.userConfiguring
+    // property bool isConfiguring: plasmoid.userConfiguring
 
     property bool inEditMode: Plasmoid.containment.corona?.editMode ? true : false
-    Plasmoid.status: (inEditMode || !hideWidget || showToUpdate || isConfiguring) ?
+    Plasmoid.status: (inEditMode || !hideWidget || showToUpdate) ?
                         PlasmaCore.Types.ActiveStatus :
                         PlasmaCore.Types.HiddenStatus
 
@@ -90,50 +90,27 @@ PlasmoidItem {
     property int fgColorMode: plasmoid.configuration.fgColorMode
     property color fgSingleColor: plasmoid.configuration.fgSingleColor
     property var fgCustomColors: []
-    property real fgRainbowSaturation: plasmoid.configuration.fgRainbowSaturation
-    property real fgRainbowLightness: plasmoid.configuration.fgRainbowLightness
     property int nextfgCustomColorIndex: 0
     property bool addingColors: true
     property var currentFgColors: []
     property int fgRainbowInterval: plasmoid.configuration.fgRainbowInterval
 
     property bool fgContrastFixEnabled: plasmoid.configuration.fgContrastFixEnabled
-    property string fgBlendColor: plasmoid.configuration.blendFgColor
-    property real fgBlendAmount: plasmoid.configuration.fgBlendAmount
     property real fgSaturation: plasmoid.configuration.fgSaturation
     property real fgLightness: plasmoid.configuration.fgLightness
-
-    property string fgColor: isEnabled && fgColorEnabled ? fgSingleColor : defaultTextColor
-    property color fgBlacklistColor: isEnabled && fgBlacklistedColorEnabled ? blacklistedFgColor : defaultTextColor
-    property string opacityComponent: {
-        return opacityToHex(isEnabled ? fgOpacity : 1)
-    }
-
-    property color tmpColor
-
-    property string fgWithAlpha: {
-        return "#" + opacityComponent + fgColor.substring(1)
-    }
-    property string fgContrast: {
-        if (Kirigami.ColorUtils.brightnessForColor(fgColor) === Kirigami.ColorUtils.Light) {
-            return "#000000"
-        } else {
-            return "#ffffff"
-        }
-    }
 
     property int enableCustomPadding: plasmoid.configuration.enableCustomPadding
     property int panelPadding: plasmoid.configuration.panelPadding
     property bool isVertical: Plasmoid.formFactor === PlasmaCore.Types.Vertical
     property var panelPrefixes: ["north","south","west","east"]
     property var panelBg: {
-        return panelElement?.children ? panelElement.children.find(function(child) {
-            return panelPrefixes.some(function(target) {return child.prefix.toString().includes(target)})
-            }
-        ) : null
+        return panelElement?.children ? panelElement.children.find(function (child) {
+            return panelPrefixes.some(function (target) {
+                return child.prefix.toString().includes(target)
+            })
+        }) : null
     }
     property bool isFloating: !panelElement ? false : Boolean(panelElement.floatingness)
-    property int panelBGP: isFloating ? 12 : 12
 
     property ContainmentItem containmentItem: null
     readonly property int depth : 14
@@ -147,18 +124,12 @@ PlasmoidItem {
         return intOpacity.toString(16).padStart(2, '0')
     }
 
-    function hexToAlpha(color, opacity) {
-        var colo = Kirigami.ColorUtils.adjustColor(color, {"alpha": 50})
-        console.log(colo);
-        return colo
-    }
-
     P5Support.DataSource {
         id: runCommand
         engine: "executable"
         connectedSources: []
 
-        onNewData: function(source, data) {
+        onNewData: function (source, data) {
             var exitCode = data["exit code"]
             var exitStatus = data["exit status"]
             var stdout = data["stdout"]
@@ -172,10 +143,6 @@ PlasmoidItem {
         }
 
         signal exited(string cmd, int exitCode, int exitStatus, string stdout, string stderr)
-    }
-
-    onFgColorChanged: {
-        if (isLoaded) runCommand.exec(saveSchemeCmd)
     }
 
     function hexToRgb(hex) {
@@ -200,7 +167,6 @@ PlasmoidItem {
 
     Components.Scheme {
         id: schemeContent
-        opacityComponent: main.opacityComponent
     }
 
     Plasmoid.contextualActions: [
@@ -215,7 +181,7 @@ PlasmoidItem {
         }
     ]
 
-    property Component rectComponent: Kirigami.ShadowedRectangle {
+    property Component widgetBgComponent: Kirigami.ShadowedRectangle {
         property var target // holds element with expanded property
         property int heightOffset: 0
         property int widthOffset: 0
@@ -236,14 +202,19 @@ PlasmoidItem {
             yOffset: widgetShadowY
         }
 
-        ColorAnimation on color { id:anim; to: color; duration: rainbowTransition }
+        ColorAnimation on color {
+            id:anim
+            to: color
+            duration: rainbowTransition
+        }
+
         function changeColor(newColor) {
             anim.to = newColor
             anim.restart()
         }
     }
 
-    property Component rectBgComponent: Kirigami.ShadowedRectangle {
+    property Component panelBgComponent: Kirigami.ShadowedRectangle {
         color: panelBgColor
         opacity: panelBgOpacity
         radius: panelBgRadius
@@ -340,8 +311,8 @@ PlasmoidItem {
 
     function getRandomFgColor() {
         const h = Math.random()
-        const s = Math.random()//fgRainbowSaturation
-        const l = Math.random()//fgRainbowLightness
+        const s = Math.random()
+        const l = Math.random()
         const a = 1.0
         return Qt.hsla(h,s,l,a)
     }
@@ -369,7 +340,7 @@ PlasmoidItem {
     property var panelElement: {
         let candidate = main.parent;
         while (candidate) {
-            if (candidate.hasOwnProperty("floating") ) {
+            if (candidate.hasOwnProperty("floating")) {
                 return candidate;
             }
             candidate = candidate.parent;
@@ -384,72 +355,72 @@ PlasmoidItem {
     function createRects() {
         if(!panelLayout) return
         if (!widgetBgEnabled && !isEnabled) return
-        if (rectangles.count === 0) {
-            console.log("creating rects");
-            const blacklisted = blacklist.split("\n").map(function(line) {return line.trim()})
-            const paddingLines = paddingRules.split("\n").map(function(line) {return line.trim()})
+        const blacklisted = blacklist.split("\n").map(function (line) { return line.trim() })
+        const paddingLines = paddingRules.split("\n").map(function (line) { return line.trim() })
 
-            for (var i in panelLayout.children) {
-                let heightOffset = 0
-                let widthOffset = 0
-                const child = panelLayout.children[i];
+        console.log("creating widget background rects");
+        for (var i in panelLayout.children) {
+            let heightOffset = 0
+            let widthOffset = 0
+            const child = panelLayout.children[i];
 
-                if (!child.applet) continue
-                if (!child.applet.plasmoid) {
-                    continue
-                }
-
-                // name may not be available while gragging into the panel and
-                // other situations
-                try {
-                    console.error(child.applet.plasmoid.pluginName);
-                } catch (e) {
-                    console.error(e);
-                    continue
-                }
-
-                // TODO: Code for handling expanded widget action is here but not used yet
-                const name = child.applet.plasmoid.pluginName
-                var expandedTarget
-                if (name === "org.kde.plasma.systemtray") {
-                    expandedTarget = child.applet.plasmoid.internalSystray.systemTrayState
-                } else {
-                    expandedTarget = child
-                }
-
-                if (blacklisted.some(function(target) {return target.length > 0 && name.includes(target)})) continue
-
-                var x = 0
-                var y = 0
-                for (var line of paddingLines) {
-                    // name height width
-                    const parts = line.split(" ")
-                    const match = parts[0]
-
-                    if (match.length > 0 && name.includes(match)){
-                        x = parts[1]
-                        y = parts[2]
-                        break
-                    }
-                }
-
-                rectangles.append({
-                    "comp":rectComponent.createObject(
-                        child,
-                        {
-                            "z": -1,
-                            "target": expandedTarget,
-                            "heightOffset": x,
-                            "widthOffset": y
-                        }
-                    )
-                })
+            if (!child.applet) continue
+            if (!child.applet.plasmoid) {
+                continue
             }
+
+            // name may not be available while gragging into the panel and
+            // other situations
+            try {
+                console.error(child.applet.plasmoid.pluginName);
+            } catch (e) {
+                console.error(e);
+                continue
+            }
+
+            // TODO: Code for handling expanded widget action is here but not used yet
+            const name = child.applet.plasmoid.pluginName
+            var expandedTarget
+            if (name === "org.kde.plasma.systemtray") {
+                expandedTarget = child.applet.plasmoid.internalSystray.systemTrayState
+            } else {
+                expandedTarget = child
+            }
+
+            if (blacklisted.some(function (target) {
+                    return target.length > 0 && name.includes(target)
+                })
+            ) continue
+
+            var x = 0
+            var y = 0
+            for (var line of paddingLines) {
+                // name height width
+                const parts = line.split(" ")
+                const match = parts[0]
+
+                if (match.length > 0 && name.includes(match)){
+                    x = parts[1]
+                    y = parts[2]
+                    break
+                }
+            }
+
+            rectangles.append({
+                "comp":widgetBgComponent.createObject(
+                    child,
+                    {
+                        "z": -1,
+                        "target": expandedTarget,
+                        "heightOffset": x,
+                        "widthOffset": y
+                    }
+                )
+            })
         }
     }
 
     function getNextElement(index, array) {
-        // const elements = string.split(" ")
         var c = array[index]
         const nextIndex = index < array.length - 1 ? index + 1 : 0
         if (c === undefined) {
@@ -480,7 +451,7 @@ PlasmoidItem {
         var newColor="transparent"
         switch(fgColorMode) {
             case 0:
-                newColor = Qt.rgba(fgSingleColor.r, fgSingleColor.g, fgSingleColor.b, 1)// fgSingleColor
+                newColor = Qt.rgba(fgSingleColor.r, fgSingleColor.g, fgSingleColor.b, 1)
                 break
             case 1:
                 newColor = Qt.rgba(accentColor.r, accentColor.g, accentColor.b, 1);
@@ -506,14 +477,15 @@ PlasmoidItem {
         }
     }
 
-    function applyFgColor(element, forceMask, ignore, newColor) {
-        // don't go into the tray
+    function applyFgColor(element, forceMask, ignore, newColor, maskList) {
+        // don't go into expanded widgets
         if (element instanceof PlasmaExtras.Representation) return
 
         if (element.plasmoid?.pluginName) {
             const name = element.plasmoid.pluginName
-            const maskList = forceRecolor.split("\n").map(function(line) {return line.trim()})
-            forceMask = maskList.some(function(target) {return target.length > 0 && name.includes(target)})
+            forceMask = maskList.some(function (target) {
+                return target.length > 0 && name.includes(target)
+            })
         }
 
         if (element.hasOwnProperty("color")) {
@@ -524,7 +496,7 @@ PlasmoidItem {
             element.scheme = schemeFile
         }
 
-        if ([Text,ToolButton,Label,Canvas,Kirigami.Icon].some(function(type) {return element instanceof type})) {
+        if ([Text,ToolButton,Label,Canvas,Kirigami.Icon].some(function (type) {return element instanceof type})) {
             if (element.color) {
                 element.color = newColor
             }
@@ -541,20 +513,20 @@ PlasmoidItem {
             element.color = newColor
             // label contrast
             element.children[0].color = (Kirigami.ColorUtils.brightnessForColor(element.color) === Kirigami.ColorUtils.Dark) ? "#ffffff" : "#000000"
-            dumpProps(element)
             element.opacity = isEnabled ? fgOpacity : 1
             return
         }
 
         for (var i = 0; i < element.children.length; i++) {
-            applyFgColor(element.children[i], forceMask, ignore, newColor);
+            applyFgColor(element.children[i], forceMask, ignore, newColor, maskList);
         }
     }
 
     function updateFgColor() {
         if (addingColors) currentFgColors = []
         var idx=0
-        const blacklisted = blacklist.split("\n").map(function(line) {return line.trim()})
+        const blacklisted = blacklist.split("\n").map(function (line) { return line.trim() })
+        const maskList = forceRecolor.split("\n").map(function (line) { return line.trim() })
         for(let i = 0; i < panelLayout.children.length; i++) {
             const child = panelLayout.children[i];
 
@@ -562,8 +534,12 @@ PlasmoidItem {
             // other situations
             if (!child.applet?.plasmoid?.pluginName) continue
 
+            // only get root element of widgets
+            const target = child.children.find(function (child) {return child instanceof PlasmoidItem})
+            if (!target) return
+
             const name = child.applet.plasmoid.pluginName
-            const ignore = blacklisted.some(function(target) {return name.includes(target)})
+            const ignore = blacklisted.some(function (target) {return name.includes(target)})
             const rect = child.children.find(function (child) {return child instanceof Kirigami.ShadowedRectangle})
 
             let newColor = defaultTextColor
@@ -601,13 +577,10 @@ PlasmoidItem {
                 runCommand.exec(saveSchemeCmd)
             }
 
-            const target = child.children.find(function (child) {return child instanceof PlasmoidItem})
-            if (target) {
-                try {
-                    applyFgColor(target, false, ignore, newColor)
-                } catch (e) {
-                    console.error("Error updating text in child", i, "E:" , e);
-                }
+            try {
+                applyFgColor(target, false, ignore, newColor, maskList)
+            } catch (e) {
+                console.error("Error updating fg color in child", i, "E:" , e);
             }
         }
         addingColors = false
@@ -806,14 +779,10 @@ PlasmoidItem {
         }
     }
 
-    // onIsFloatingChanged: {
-    //     console.error("FL:", isFloating,panelBGP);
-    // }
-
     function setPanelBg() {
         destroyPanelBg()
         if (isEnabled && panelBgEnabled) {
-            panelBGE = rectBgComponent.createObject(
+            panelBGE = panelBgComponent.createObject(
                 panelLayout.parent,
                 {
                     "z": -1

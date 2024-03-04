@@ -155,16 +155,6 @@ org.kde.plasma.activitybar -8 0
         <default>#ffffff</default>
     </entry>
     <entry
-        name="fgRainbowSaturation"
-        type="Double">
-        <default>1.0</default>
-    </entry>
-    <entry
-        name="fgRainbowLightness"
-        type="Double">
-        <default>0.84</default>
-    </entry>
-    <entry
         name="fgRainbowInterval"
         type="Int">
         <default>3000</default>
