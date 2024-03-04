@@ -7,6 +7,7 @@ import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.plasmoid
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.plasma5support as P5Support
+import org.kde.plasma.workspace.components as WorkspaceComponents
 import "components" as Components
 
 PlasmoidItem {
@@ -535,9 +536,18 @@ PlasmoidItem {
             if (element.scale !== 1) return
             element.opacity = isEnabled ? fgOpacity : 1
         }
+        // fix unreadable badges
+        if (element instanceof WorkspaceComponents.BadgeOverlay) {
+            element.color = newColor
+            // label contrast
+            element.children[0].color = (Kirigami.ColorUtils.brightnessForColor(element.color) === Kirigami.ColorUtils.Dark) ? "#ffffff" : "#000000"
+            dumpProps(element)
+            element.opacity = isEnabled ? fgOpacity : 1
+            return
+        }
 
         for (var i = 0; i < element.children.length; i++) {
-            applyFgColor(element.children[i],forceMask,ignore,newColor);
+            applyFgColor(element.children[i], forceMask, ignore, newColor);
         }
     }
 
@@ -594,7 +604,7 @@ PlasmoidItem {
             const target = child.children.find(function (child) {return child instanceof PlasmoidItem})
             if (target) {
                 try {
-                    applyFgColor(target,false,ignore,newColor)
+                    applyFgColor(target, false, ignore, newColor)
                 } catch (e) {
                     console.error("Error updating text in child", i, "E:" , e);
                 }
