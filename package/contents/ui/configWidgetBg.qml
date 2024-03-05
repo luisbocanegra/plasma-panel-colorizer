@@ -20,7 +20,10 @@ KCM.SimpleKCM {
     property real cfg_rainbowLightness: rainbowLightness.text
     property int cfg_rainbowInterval: rainbowInterval.value
     property int cfg_rainbowTransition: rainbowTransition.value
-    property string cfg_paddingRules: paddingRules.text
+
+    property int cfg_widgetBgHMargin: widgetBgHMargin.value
+    property int cfg_widgetBgVMargin: widgetBgHMargin.value
+    property string cfg_marginRules: marginRules.text
 
     property string cfg_widgetOutlineColor: widgetOutlineColor.color
     property int cfg_widgetOutlineWidth: widgetOutlineWidth.value
@@ -529,20 +532,45 @@ KCM.SimpleKCM {
 
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
-            Kirigami.FormData.label: i18n("Background padding rules")
+            Kirigami.FormData.label: i18n("Background margin rules")
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Vertical:")
+            id: widgetBgVMargin
+            from: 0
+            to: 999
+            stepSize: 1
+            value: cfg_widgetBgVMargin
+            onValueModified: {
+                cfg_widgetBgVMargin = value
+            }
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Horizontal:")
+            id: widgetBgHMargin
+            from: 0
+            to: 999
+            stepSize: 1
+            value: cfg_widgetBgHMargin
+            onValueModified: {
+                cfg_widgetBgHMargin = value
+            }
         }
 
         TextArea {
-            Kirigami.FormData.label: i18n("Rules (one per line):")
+            Kirigami.FormData.label: i18n("Extra margins (one per line):")
             Layout.minimumWidth: 300
-            id: paddingRules
-            text: cfg_paddingRules
-            onTextChanged: cfg_paddingRules = text
+            id: marginRules
+            text: cfg_marginRules
+            onTextChanged: cfg_marginRules = text
             Kirigami.SpellCheck.enabled: false
+            placeholderText: "org.kde.plasma.digitalclock 0 4"
         }
 
         Label {
-            text: i18n("Some widgets may fill or let margins around even when their elements could fit in a smaller/bigger size, making their tinted area bigger/smaller, this option allows setting height and width offset to circumvent this.")
+            text: i18n("This option is useful for widgets that require extra margins e.g when they get too close/cutoff by background rounded corners.\nThe format is WIDGET_ID VERTICAL_MARGIN HORIZONTAL_MARGIN")
             opacity: 0.7
             Layout.maximumWidth: 300
             wrapMode: Text.Wrap

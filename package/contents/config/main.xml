@@ -110,11 +110,19 @@ org.kde.plasma.systemmonitor
         </default>
     </entry>
     <entry
-        name="paddingRules"
+        name="widgetBgVMargin"
+        type="Int">
+        <default>4</default>
+    </entry>
+    <entry
+        name="widgetBgHMargin"
+        type="Int">
+        <default>0</default>
+    </entry>
+    <entry
+        name="marginRules"
         type="String">
-        <default>org.kde.plasma.appmenu -8 0
-org.kde.plasma.activitybar -8 0
-        </default>
+        <default></default>
     </entry>
     <entry
         name="hideWidget"
