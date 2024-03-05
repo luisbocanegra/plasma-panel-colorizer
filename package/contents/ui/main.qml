@@ -33,7 +33,9 @@ PlasmoidItem {
     property int rainbowInterval: plasmoid.configuration.rainbowInterval
     property int rainbowTransition: plasmoid.configuration.rainbowTransition
     property string blacklist: plasmoid.configuration.blacklist
-    property string paddingRules: plasmoid.configuration.paddingRules
+    property int widgetBgHMargin: plasmoid.configuration.widgetBgHMargin
+    property int widgetBgVMargin: plasmoid.configuration.widgetBgVMargin
+    property string marginRules: plasmoid.configuration.marginRules
     property bool hideWidget: plasmoid.configuration.hideWidget
 
     property bool panelBgEnabled: plasmoid.configuration.panelBgEnabled
@@ -284,7 +286,15 @@ PlasmoidItem {
         destroyRequired = true
     }
 
-    onPaddingRulesChanged: {
+    onMarginRulesChanged: {
+        destroyRequired = true
+    }
+
+    onWidgetBgHMarginChanged: {
+        destroyRequired = true
+    }
+
+    onWidgetBgVMarginChanged: {
         destroyRequired = true
     }
 
@@ -356,12 +366,10 @@ PlasmoidItem {
         if(!panelLayout) return
         if (!widgetBgEnabled && !isEnabled) return
         const blacklisted = blacklist.split("\n").map(function (line) { return line.trim() })
-        const paddingLines = paddingRules.split("\n").map(function (line) { return line.trim() })
+        const marginLines = marginRules.split("\n").map(function (line) { return line.trim() })
 
         console.log("creating widget background rects");
         for (var i in panelLayout.children) {
-            let heightOffset = 0
-            let widthOffset = 0
             const child = panelLayout.children[i];
 
             if (!child.applet) continue
@@ -394,16 +402,31 @@ PlasmoidItem {
 
             var x = 0
             var y = 0
-            for (var line of paddingLines) {
+            for (var line of marginLines) {
                 // name height width
                 const parts = line.split(" ")
                 const match = parts[0]
 
                 if (match.length > 0 && name.includes(match)){
-                    x = parts[1]
-                    y = parts[2]
+                    y = parseInt(parts[1])
+                    x = parseInt(parts[2])
                     break
                 }
+            }
+
+            child.Layout.leftMargin = widgetBgHMargin + x
+            child.Layout.rightMargin = widgetBgHMargin + x
+            child.Layout.topMargin = widgetBgVMargin + y
+            child.Layout.bottomMargin = widgetBgVMargin + y
+
+            let heightOffset = 0
+            let widthOffset = 0
+
+            if (isVertical) {
+                let heightOffset = (widgetBgVMargin + y) * 2
+                let widthOffset = -widgetBgHMargin / 2
+            } else {
+                widthOffset = (widgetBgHMargin + x) * 2
             }
 
             rectangles.append({
@@ -412,8 +435,8 @@ PlasmoidItem {
                     {
                         "z": -1,
                         "target": expandedTarget,
-                        "heightOffset": x,
-                        "widthOffset": y
+                        "heightOffset": heightOffset,
+                        "widthOffset": widthOffset
                     }
                 )
             })
