@@ -48,12 +48,22 @@
         <default>3</default>
     </entry>
     <entry
-        name="rainbowSaturation"
+        name="bgContrastFixEnabled"
+        type="Bool">
+        <default>false</default>
+    </entry>
+    <entry
+        name="bgSaturationEnabled"
+        type="Bool">
+        <default>false</default>
+    </entry>
+    <entry
+        name="bgSaturation"
         type="Double">
         <default>1.0</default>
     </entry>
     <entry
-        name="rainbowLightness"
+        name="bgLightness"
         type="Double">
         <default>0.84</default>
     </entry>
@@ -150,7 +160,7 @@ org.kde.plasma.systemmonitor
     <entry
         name="fgSingleColor"
         type="String">
-        <default>#000000</default>
+        <default>#7182ff</default>
     </entry>
     <entry
         name="fgCustomColors"
@@ -187,6 +197,11 @@ org.kde.plasma.systemmonitor
         name="fgContrastFixEnabled"
         type="Bool">
         <default>true</default>
+    </entry>
+    <entry
+        name="fgSaturationEnabled"
+        type="Bool">
+        <default>false</default>
     </entry>
     <entry
         name="fgSaturation"

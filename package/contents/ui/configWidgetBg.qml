@@ -16,8 +16,10 @@ KCM.SimpleKCM {
 
     property real cfg_opacity: parseFloat(bgOpacity.text)
     property int cfg_radius: bgRadius.value
-    property real cfg_rainbowSaturation: rainbowSaturation.text
-    property real cfg_rainbowLightness: rainbowLightness.text
+    property bool cfg_bgContrastFixEnabled: bgContrastFixEnabled.checked
+    property bool cfg_bgSaturationEnabled: bgSaturationEnabled.checked
+    property real cfg_bgSaturation: bgSaturation.text
+    property real cfg_bgLightness: bgLightness.text
     property int cfg_rainbowInterval: rainbowInterval.value
     property int cfg_rainbowTransition: rainbowTransition.value
 
@@ -454,13 +456,29 @@ KCM.SimpleKCM {
             }
         }
 
+        CheckBox {
+            Kirigami.FormData.label: i18n("Contrast correction:")
+            id: bgContrastFixEnabled
+            checked: cfg_bgContrastFixEnabled
+            onCheckedChanged: cfg_bgContrastFixEnabled = checked
+        }
+
+        CheckBox {
+            Kirigami.FormData.label: i18n("Saturation:")
+            text: i18n("Enable")
+            id: bgSaturationEnabled
+            checked: cfg_bgSaturationEnabled
+            onCheckedChanged: cfg_bgSaturationEnabled = checked
+            enabled: bgContrastFixEnabled.checked
+        }
+
         TextField {
-            id: rainbowSaturation
+            id: bgSaturation
             Kirigami.FormData.label: i18n("Saturation:")
             placeholderText: "0-1"
             horizontalAlignment: TextInput.AlignHCenter
-            text: parseFloat(cfg_rainbowSaturation).toFixed(validator.decimals)
-            visible: randomColorRadio.checked
+            text: parseFloat(cfg_bgSaturation).toFixed(validator.decimals)
+            enabled: bgContrastFixEnabled.checked && bgSaturationEnabled.checked
 
             validator: DoubleValidator {
                 bottom: 0.0
@@ -471,7 +489,7 @@ KCM.SimpleKCM {
 
             onTextChanged: {
                 const newVal = parseFloat(text)
-                cfg_rainbowSaturation = isNaN(newVal) ? 0 : newVal
+                cfg_bgSaturation = isNaN(newVal) ? 0 : newVal
             }
 
             Components.ValueMouseControl {
@@ -485,20 +503,20 @@ KCM.SimpleKCM {
                 to: parent.validator.top
                 decimals: parent.validator.decimals
                 stepSize: 0.05
-                value: cfg_rainbowSaturation
+                value: cfg_bgSaturation
                 onValueChanged: {
-                    cfg_rainbowSaturation = parseFloat(value)
+                    cfg_bgSaturation = parseFloat(value)
                 }
             }
         }
 
         TextField {
-            id: rainbowLightness
+            id: bgLightness
             Kirigami.FormData.label: i18n("Lightness:")
             placeholderText: "0-1"
             horizontalAlignment: TextInput.AlignHCenter
-            text: parseFloat(cfg_rainbowLightness).toFixed(validator.decimals)
-            visible: randomColorRadio.checked
+            text: parseFloat(cfg_bgLightness).toFixed(validator.decimals)
+            enabled: bgContrastFixEnabled.checked
 
             validator: DoubleValidator {
                 bottom: 0.0
@@ -509,7 +527,7 @@ KCM.SimpleKCM {
 
             onTextChanged: {
                 const newVal = parseFloat(text)
-                cfg_rainbowLightness = isNaN(newVal) ? 0 : newVal
+                cfg_bgLightness = isNaN(newVal) ? 0 : newVal
             }
 
             Components.ValueMouseControl {
@@ -523,9 +541,9 @@ KCM.SimpleKCM {
                 to: parent.validator.top
                 decimals: parent.validator.decimals
                 stepSize: 0.05
-                value: cfg_rainbowLightness
+                value: cfg_bgLightness
                 onValueChanged: {
-                    cfg_rainbowLightness = parseFloat(value)
+                    cfg_bgLightness = parseFloat(value)
                 }
             }
         }

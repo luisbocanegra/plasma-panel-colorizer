@@ -28,8 +28,10 @@ PlasmoidItem {
     property bool widgetBgEnabled: plasmoid.configuration.widgetBgEnabled
     property real bgOpacity: plasmoid.configuration.opacity
     property int bgRadius: plasmoid.configuration.radius
-    property real rainbowSaturation: plasmoid.configuration.rainbowSaturation
-    property real rainbowLightness: plasmoid.configuration.rainbowLightness
+    property bool bgContrastFixEnabled: plasmoid.configuration.bgContrastFixEnabled
+    property bool bgSaturationEnabled: plasmoid.configuration.bgSaturationEnabled
+    property real bgSaturation: plasmoid.configuration.bgSaturation
+    property real bgLightness: plasmoid.configuration.bgLightness
     property int rainbowInterval: plasmoid.configuration.rainbowInterval
     property int rainbowTransition: plasmoid.configuration.rainbowTransition
     property string blacklist: plasmoid.configuration.blacklist
@@ -98,6 +100,7 @@ PlasmoidItem {
     property int fgRainbowInterval: plasmoid.configuration.fgRainbowInterval
 
     property bool fgContrastFixEnabled: plasmoid.configuration.fgContrastFixEnabled
+    property bool fgSaturationEnabled: plasmoid.configuration.fgSaturationEnabled
     property real fgSaturation: plasmoid.configuration.fgSaturation
     property real fgLightness: plasmoid.configuration.fgLightness
 
@@ -313,14 +316,6 @@ PlasmoidItem {
 
     function getRandomColor() {
         const h = Math.random()
-        const s = rainbowSaturation
-        const l = rainbowLightness
-        const a = 1.0
-        return Qt.hsla(h,s,l,a)
-    }
-
-    function getRandomFgColor() {
-        const h = Math.random()
         const s = Math.random()
         const l = Math.random()
         const a = 1.0
@@ -452,47 +447,40 @@ PlasmoidItem {
         return [c, nextIndex]
     }
 
-    function getColor() {
+    function getColor(mode, colors, nextIndex=0, fg = false) {
         var newColor="transparent"
-        switch(colorMode) {
+        switch(mode) {
             case 0:
-                newColor = singleColor
-                break
-            case 1:
-                newColor = accentColor
-                break
-            case 2:
-                [newColor, nextCustomColorIndex] = getNextElement(nextCustomColorIndex, customColors)
-                break
-            case 3:
-                newColor = getRandomColor()
-        }
-        return newColor
-    }
-
-    function getFgColor() {
-        var newColor="transparent"
-        switch(fgColorMode) {
-            case 0:
-                newColor = Qt.rgba(fgSingleColor.r, fgSingleColor.g, fgSingleColor.b, 1)
+                newColor = fg ? Qt.rgba(fgSingleColor.r, fgSingleColor.g, fgSingleColor.b, 1) : Qt.rgba(singleColor.r, singleColor.g, singleColor.b, 1)
                 break
             case 1:
                 newColor = Qt.rgba(accentColor.r, accentColor.g, accentColor.b, 1);
                 break
             case 2:
-                [newColor, nextfgCustomColorIndex] = getNextElement(nextfgCustomColorIndex, fgCustomColors)
+                [newColor, nextIndex] = getNextElement(nextIndex, colors)
                 break
             case 3:
-                newColor = getRandomFgColor()
+                newColor = getRandomColor()
         }
-        return newColor
+        return [newColor, nextIndex]
+    }
+
+    function scaleColor(color, saturation, lightness) {
+        return Qt.hsla(color.hslHue, saturation, lightness, 1);
     }
 
     function colorize() {
         for(let i = 0; i < rectangles.count; i++) {
             try {
                 var comp = rectangles.get(i)["comp"]
-                const newColor = isEnabled && widgetBgEnabled ? getColor() : "transparent"
+                var newColor = "transparent"
+                if (isEnabled && widgetBgEnabled) {
+                    [newColor, nextCustomColorIndex] = getColor(colorMode, customColors, nextCustomColorIndex)
+                    if (bgContrastFixEnabled) {
+                        const newSat = bgSaturationEnabled ? bgSaturation : newColor.hslSaturation
+                        newColor = scaleColor(newColor, newSat, bgLightness)
+                    }
+                }
                 comp.changeColor(newColor)
             } catch (e) {
                 console.error("Error colorizing rect", i, "E:" , e);
@@ -576,11 +564,11 @@ PlasmoidItem {
                             bgColor = Qt.hsla(defaultTextColor.hslHue, defaultTextColor.hslSaturation, defaultTextColor.hslLightness, 1);
                         }
                     } else {
-                        bgColor = getFgColor()
+                        [bgColor, nextfgCustomColorIndex] = getColor(fgColorMode ,fgCustomColors, nextfgCustomColorIndex, true)
                     }
                     if (fgContrastFixEnabled) {
-                        bgColor.hslLightness = fgLightness
-                        bgColor.hslSaturation = fgSaturation
+                        const newSat = fgSaturationEnabled ? fgSaturation : bgColor.hslSaturation
+                        bgColor = scaleColor(bgColor, newSat, fgLightness)
                     }
                     newColor = bgColor
                     currentFgColors.push(newColor)

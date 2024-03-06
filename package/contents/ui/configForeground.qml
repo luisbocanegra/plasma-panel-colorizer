@@ -25,6 +25,7 @@ KCM.SimpleKCM {
     property string cfg_blacklistedFgColor: blacklistedFgColor.text
 
     property bool cfg_fgContrastFixEnabled: fgContrastFixEnabled.checked
+    property bool cfg_fgSaturationEnabled: fgSaturationEnabled.checked
     property real cfg_fgSaturation: fgSaturation.text
     property real cfg_fgLightness: fgLightness.text
 
@@ -366,14 +367,22 @@ KCM.SimpleKCM {
             // visible: !randomColorRadio.checked
         }
 
+        CheckBox {
+            Kirigami.FormData.label: i18n("Saturation:")
+            text: i18n("Enable")
+            id: fgSaturationEnabled
+            checked: cfg_fgSaturationEnabled
+            onCheckedChanged: cfg_fgSaturationEnabled = checked
+            enabled: fgContrastFixEnabled.checked
+        }
+
+        
         TextField {
             id: fgSaturation
-            Kirigami.FormData.label: i18n("Saturation:")
             placeholderText: "0-1"
             horizontalAlignment: TextInput.AlignHCenter
             text: parseFloat(cfg_fgSaturation).toFixed(validator.decimals)
-            // visible: !randomColorRadio.checked
-            enabled: fgContrastFixEnabled.checked
+            enabled: fgContrastFixEnabled.checked && fgSaturationEnabled.checked
 
             validator: DoubleValidator {
                 bottom: 0.0
@@ -411,7 +420,6 @@ KCM.SimpleKCM {
             placeholderText: "0-1"
             horizontalAlignment: TextInput.AlignHCenter
             text: parseFloat(cfg_fgLightness).toFixed(validator.decimals)
-            // visible: !randomColorRadio.checked
             enabled: fgContrastFixEnabled.checked
 
             validator: DoubleValidator {
@@ -480,6 +488,7 @@ KCM.SimpleKCM {
             text: cfg_forceRecolor
             onTextChanged: cfg_forceRecolor = text
             Kirigami.SpellCheck.enabled: false
+            placeholderText: "org.kde.plasma.brightness"
         }
 
         Label {
