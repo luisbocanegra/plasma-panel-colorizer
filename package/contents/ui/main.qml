@@ -504,6 +504,7 @@ PlasmoidItem {
         }
 
         if (element.hasOwnProperty("scheme")) {
+            element.scheme = null
             element.scheme = schemeFile
         }
 
