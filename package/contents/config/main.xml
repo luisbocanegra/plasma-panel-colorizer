@@ -288,5 +288,10 @@ org.kde.plasma.systemmonitor
         type="Int">
         <default>1</default>
     </entry>
+    <entry
+        name="panelWidgets"
+        type="String">
+        <default></default>
+    </entry>
   </group>
 </kcfg>

@@ -80,8 +80,67 @@ KCM.SimpleKCM {
         cfg_customColors = colors_list.join(" ")
     }
 
+    property string cfg_panelWidgets
+
+    ListModel {
+        id: widgetsModel
+    }
+
+    function initWidgets(){
+        const lines = cfg_panelWidgets.trim().split("\n")
+        for (let i in lines) {
+            const parts = lines[i].split("|")
+            const name = parts[0]
+            const title = parts[1]
+            const icon = parts[2]
+            widgetsModel.append(
+                {
+                    "name": name,
+                    "title": title,
+                    "icon": icon,
+                    "enabled": false,
+                    "vExtraMargin": 0,
+                    "hExtraMargin": 0
+                }
+            )
+        }
+    }
+
+    function updateWidgetsModel(){
+        let widgeList = []
+        const forceRecolorList = cfg_marginRules.trim().split("\n")
+        for (let i = 0; i < widgetsModel.count; i++) {
+            let widget = widgetsModel.get(i)
+            let name = ""
+            let vMargin = 0
+            let hMargin = 0 
+            for (let j in forceRecolorList) {
+                const parts = forceRecolorList[j].split(" ")
+                //console.error(widget.name, parts.join(" "));
+                name = parts[0]
+                if(widget.name.includes(name)) {
+                    vMargin = parseInt(parts[1])
+                    hMargin = parseInt(parts[2])
+                    widgetsModel.set(i, {"vExtraMargin": vMargin, "hExtraMargin": hMargin})
+                    break
+                }
+            }
+        }
+    }
+
+    function updateWidgetsString(){
+        var newString = ""
+        for (let i = 0; i < widgetsModel.count; i++) {
+            let widget = widgetsModel.get(i)
+            newString += widget.name + " " + widget.vExtraMargin + " " + widget.hExtraMargin + "\n"
+        }
+        cfg_marginRules = newString
+    }
+
     Component.onCompleted: {
         initModel()
+        initWidgets()
+        updateWidgetsModel()
     }
 
     Kirigami.FormLayout {
@@ -577,21 +636,73 @@ KCM.SimpleKCM {
             }
         }
 
-        TextArea {
-            Kirigami.FormData.label: i18n("Extra margins (one per line):")
-            Layout.minimumWidth: 300
-            id: marginRules
-            text: cfg_marginRules
-            onTextChanged: cfg_marginRules = text
-            Kirigami.SpellCheck.enabled: false
-            placeholderText: "org.kde.plasma.digitalclock 0 4"
+        Label {
+            text: i18n("Extra margins per widget:")
+            Layout.maximumWidth: widgetCards.width
+            wrapMode: Text.Wrap
         }
 
-        Label {
-            text: i18n("This option is useful for widgets that require extra margins e.g when they get too close/cutoff by background rounded corners.\nThe format is WIDGET_ID VERTICAL_MARGIN HORIZONTAL_MARGIN")
-            opacity: 0.7
-            Layout.maximumWidth: 300
-            wrapMode: Text.Wrap
+        ColumnLayout {
+            id: widgetCards
+            Repeater {
+                model: widgetsModel
+                delegate: Kirigami.AbstractCard {
+                    contentItem: RowLayout {
+                        Kirigami.Icon {
+                            width: Kirigami.Units.gridUnit
+                            height: width
+                            source: widgetsModel.get(index).icon
+                            // active: compact.containsMouse
+                        }
+                        ColumnLayout {
+                            // anchors.fill: parent
+                            Label {
+                                text: widgetsModel.get(index).title
+                            }
+                            Label {
+                                text: widgetsModel.get(index).name
+                                opacity: 0.6
+                            }
+                        }
+                        Item {
+                            Layout.fillWidth: true
+                        }
+
+                        ColumnLayout {
+                            RowLayout {
+                                Layout.alignment: Qt.AlignRight
+                                Label {
+                                    text: i18n("V:")
+                                }
+                                SpinBox {
+                                    from: 0
+                                    to: 999
+                                    value: widgetsModel.get(index).vExtraMargin
+                                    onValueChanged: {
+                                        widgetsModel.set(index, {"vExtraMargin": value})
+                                        updateWidgetsString()
+                                    }
+                                }
+                            }
+                            RowLayout {
+                                Layout.alignment: Qt.AlignRight
+                                Label {
+                                    text: i18n("H:")
+                                }
+                                SpinBox {
+                                    from: 0
+                                    to: 999
+                                    value: widgetsModel.get(index).hExtraMargin
+                                    onValueChanged: {
+                                        widgetsModel.set(index, {"hExtraMargin": value})
+                                        updateWidgetsString()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

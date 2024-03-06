@@ -122,6 +122,8 @@ PlasmoidItem {
 
     property var panelBGE
 
+    // property string panelWidgets: plasmoid.configuration.panelWidgets
+
 
     function opacityToHex(opacity) {
         const op = Math.max(0, Math.min(1, opacity))
@@ -364,6 +366,7 @@ PlasmoidItem {
         const marginLines = marginRules.split("\n").map(function (line) { return line.trim() })
 
         console.log("creating widget background rects");
+        plasmoid.configuration.panelWidgets = ""
         for (var i in panelLayout.children) {
             const child = panelLayout.children[i];
 
@@ -383,6 +386,9 @@ PlasmoidItem {
 
             // TODO: Code for handling expanded widget action is here but not used yet
             const name = child.applet.plasmoid.pluginName
+            const title = child.applet.plasmoid.title
+            const icon = child.applet.plasmoid.icon
+            plasmoid.configuration.panelWidgets += name + "|" + title + "|" + icon + "\n"
             var expandedTarget
             if (name === "org.kde.plasma.systemtray") {
                 expandedTarget = child.applet.plasmoid.internalSystray.systemTrayState
@@ -391,7 +397,7 @@ PlasmoidItem {
             }
 
             if (blacklisted.some(function (target) {
-                    return target.length > 0 && name.includes(target)
+                    return target.length > 1 && name.includes(target)
                 })
             ) continue
 
@@ -554,6 +560,7 @@ PlasmoidItem {
         }
         var idx=0
         const blacklisted = blacklist.split("\n").map(function (line) { return line.trim() })
+        // console.log(blacklist);
         const maskList = forceRecolor.split("\n").map(function (line) { return line.trim() })
         for(let i = 0; i < panelLayout.children.length; i++) {
             const child = panelLayout.children[i];
@@ -567,7 +574,7 @@ PlasmoidItem {
             if (!target) return
 
             const name = child.applet.plasmoid.pluginName
-            const ignore = blacklisted.some(function (target) {return name.includes(target)})
+            const ignore = blacklisted.some(function (target) {return target.length > 0 && name.includes(target)})
             const rect = child.children.find(function (child) {return child instanceof Kirigami.ShadowedRectangle})
 
             let newColor = defaultTextColor
@@ -620,7 +627,8 @@ PlasmoidItem {
     //     repeat: true
     //     interval: 1000
     //     onTriggered: {
-    //         console.log("fgMode:", fgMode, "fgInterval", fgRainbowInterval, (fgMode === 1));
+    //         // console.log("fgMode:", fgMode, "fgInterval", fgRainbowInterval, (fgMode === 1));
+    //         // console.log(plasmoid.configuration.panelWidgets);
     //     }
     // }
 

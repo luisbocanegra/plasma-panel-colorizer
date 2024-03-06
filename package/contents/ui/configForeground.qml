@@ -29,6 +29,8 @@ KCM.SimpleKCM {
     property real cfg_fgSaturation: fgSaturation.text
     property real cfg_fgLightness: fgLightness.text
 
+    property string cfg_panelWidgets
+
     property bool clearing: false
 
     ListModel {
@@ -74,8 +76,49 @@ KCM.SimpleKCM {
         cfg_fgCustomColors = colors_list.join(" ")
     }
 
+    ListModel {
+        id: widgetsModel
+    }
+
+    function initWidgets(){
+        const lines = cfg_panelWidgets.trim().split("\n")
+        for (let i in lines) {
+            const parts = lines[i].split("|")
+            const name = parts[0]
+            const title = parts[1]
+            const icon = parts[2]
+            widgetsModel.append({"name": name, "title": title, "icon": icon, "enabled": false})
+        }
+    }
+
+    function updateWidgetsModel(){
+        let widgeList = []
+        const forceRecolorList = cfg_forceRecolor.trim().split("\n")
+        console.log(forceRecolorList.join(" "));
+        for (let i = 0; i < widgetsModel.count; i++) {
+            let widget = widgetsModel.get(i)
+            if (forceRecolorList.includes(widget.name)) {
+                widgetsModel.set(i, {"enabled": true})
+                break
+            }
+        }
+    }
+
+    function updateWidgetsString(){
+        var newString = ""
+        for (let i = 0; i < widgetsModel.count; i++) {
+            let widget = widgetsModel.get(i)
+            if (widget.enabled) {
+                newString += widget.name + "\n"
+            }
+        }
+        cfg_forceRecolor = newString
+    }
+
     Component.onCompleted: {
         initModel()
+        initWidgets()
+        updateWidgetsModel()
     }
 
     Kirigami.FormLayout {
@@ -481,21 +524,48 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Force icon color")
         }
 
-        TextArea {
-            Kirigami.FormData.label: i18n("Plasmoids (one per line):")
-            Layout.minimumWidth: 300
-            id: forceRecolor
-            text: cfg_forceRecolor
-            onTextChanged: cfg_forceRecolor = text
-            Kirigami.SpellCheck.enabled: false
-            placeholderText: "org.kde.plasma.brightness"
-        }
-
         Label {
             text: i18n("Force Kirigami.Icon color to specific plasmoids using the isMask property. Disable and restart Plasma or logout to restore the original color for those icons.")
             opacity: 0.7
-            Layout.maximumWidth: 300
+            Layout.maximumWidth: 400
             wrapMode: Text.Wrap
+        }
+
+        ColumnLayout {
+            id: widgetCards
+            Repeater {
+                model: widgetsModel
+                delegate: Kirigami.AbstractCard {
+                    contentItem: RowLayout {
+                        Kirigami.Icon {
+                            width: Kirigami.Units.gridUnit
+                            height: width
+                            source: widgetsModel.get(index).icon
+                        }
+                        ColumnLayout {
+                            Label {
+                                text: widgetsModel.get(index).title
+                            }
+                            Label {
+                                text: widgetsModel.get(index).name
+                                opacity: 0.6
+                            }
+                        }
+                        Item {
+                            Layout.fillWidth: true
+                        }
+                        Button {
+                            checkable: true
+                            checked: widgetsModel.get(index).enabled
+                            icon.name: checked ? "checkmark-symbolic" : "edit-delete-remove-symbolic"
+                            onCheckedChanged: {
+                                widgetsModel.set(index, {"enabled": checked})
+                                updateWidgetsString()
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
