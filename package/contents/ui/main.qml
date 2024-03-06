@@ -488,7 +488,7 @@ PlasmoidItem {
         }
     }
 
-    function applyFgColor(element, forceMask, ignore, newColor, maskList) {
+    function applyFgColor(element, forceMask, ignore, newColor, maskList, addingColors) {
         // don't go into expanded widgets
         if (element instanceof PlasmaExtras.Representation) return
 
@@ -503,7 +503,7 @@ PlasmoidItem {
             element.Kirigami.Theme.textColor = newColor
         }
 
-        if (element.hasOwnProperty("scheme")) {
+        if (element.hasOwnProperty("scheme") && addingColors) {
             element.scheme = null
             element.scheme = schemeFile
         }
@@ -530,7 +530,7 @@ PlasmoidItem {
         }
 
         for (var i = 0; i < element.children.length; i++) {
-            applyFgColor(element.children[i], forceMask, ignore, newColor, maskList);
+            applyFgColor(element.children[i], forceMask, ignore, newColor, maskList, addingColors);
         }
     }
 
@@ -590,7 +590,7 @@ PlasmoidItem {
             }
 
             try {
-                applyFgColor(target, false, ignore, newColor, maskList)
+                applyFgColor(target, false, ignore, newColor, maskList, addingColors)
             } catch (e) {
                 console.error("Error updating fg color in child", i, "E:" , e);
             }
