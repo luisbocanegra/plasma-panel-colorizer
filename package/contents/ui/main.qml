@@ -24,7 +24,7 @@ PlasmoidItem {
     property int colorMode: plasmoid.configuration.colorMode
     property color singleColor: plasmoid.configuration.singleColor
     property var customColors: []
-    property int nextCustomColorIndex: 0
+    property int bgColorStart:0
     property bool widgetBgEnabled: plasmoid.configuration.widgetBgEnabled
     property real bgOpacity: plasmoid.configuration.opacity
     property int bgRadius: plasmoid.configuration.radius
@@ -94,7 +94,7 @@ PlasmoidItem {
     property int fgColorMode: plasmoid.configuration.fgColorMode
     property color fgSingleColor: plasmoid.configuration.fgSingleColor
     property var fgCustomColors: []
-    property int nextfgCustomColorIndex: 0
+    property int fgColorStart: 0
     property bool addingColors: true
     property var currentFgColors: []
     property int fgRainbowInterval: plasmoid.configuration.fgRainbowInterval
@@ -447,7 +447,7 @@ PlasmoidItem {
         return [c, nextIndex]
     }
 
-    function getColor(mode, colors, nextIndex=0, fg = false) {
+    function getColor(mode, fg = false) {
         var newColor="transparent"
         switch(mode) {
             case 0:
@@ -456,26 +456,36 @@ PlasmoidItem {
             case 1:
                 newColor = Qt.rgba(accentColor.r, accentColor.g, accentColor.b, 1);
                 break
-            case 2:
-                [newColor, nextIndex] = getNextElement(nextIndex, colors)
-                break
             case 3:
                 newColor = getRandomColor()
         }
-        return [newColor, nextIndex]
+        return newColor
     }
 
     function scaleColor(color, saturation, lightness) {
         return Qt.hsla(color.hslHue, saturation, lightness, 1);
     }
 
+    function getNextColors(arr, start, length){
+        var result = [];
+        for (var j = 0; j < length; j++) {
+            result.push(arr[(start + j) % arr.length]);
+        }
+        return [result, start]
+    }
+
     function colorize() {
+        var bgColors = []
+        if (colorMode === 2) {
+            [bgColors, bgColorStart] = getNextColors(customColors, bgColorStart, rectangles.count)
+            bgColorStart = (bgColorStart + 1) % customColors.length;
+        }
         for(let i = 0; i < rectangles.count; i++) {
             try {
                 var comp = rectangles.get(i)["comp"]
                 var newColor = "transparent"
                 if (isEnabled && widgetBgEnabled) {
-                    [newColor, nextCustomColorIndex] = getColor(colorMode, customColors, nextCustomColorIndex)
+                    newColor = colorMode === 2 ? bgColors[i] : getColor(colorMode)
                     if (bgContrastFixEnabled) {
                         const newSat = bgSaturationEnabled ? bgSaturation : newColor.hslSaturation
                         newColor = scaleColor(newColor, newSat, bgLightness)
@@ -535,7 +545,13 @@ PlasmoidItem {
     }
 
     function updateFgColor() {
-        if (addingColors) currentFgColors = []
+        if (addingColors) {
+            currentFgColors = []
+            if (fgColorMode === 2) {
+                [currentFgColors, fgColorStart] = getNextColors(fgCustomColors, fgColorStart, rectangles.count)
+                fgColorStart = (fgColorStart + 1) % fgCustomColors.length;
+            }
+        }
         var idx=0
         const blacklisted = blacklist.split("\n").map(function (line) { return line.trim() })
         const maskList = forceRecolor.split("\n").map(function (line) { return line.trim() })
@@ -565,7 +581,7 @@ PlasmoidItem {
                             bgColor = Qt.hsla(defaultTextColor.hslHue, defaultTextColor.hslSaturation, defaultTextColor.hslLightness, 1);
                         }
                     } else {
-                        [bgColor, nextfgCustomColorIndex] = getColor(fgColorMode ,fgCustomColors, nextfgCustomColorIndex, true)
+                        bgColor = fgColorMode === 2 ? currentFgColors[idx] : getColor(fgColorMode, true)
                     }
                     if (fgContrastFixEnabled) {
                         const newSat = fgSaturationEnabled ? fgSaturation : bgColor.hslSaturation
@@ -575,8 +591,8 @@ PlasmoidItem {
                     currentFgColors.push(newColor)
                 } else {
                     newColor = currentFgColors[idx]
-                    idx++
                 }
+                idx++
             }
             if (fgBlacklistedColorEnabled && ignore) {
                 newColor = blacklistedFgColor
