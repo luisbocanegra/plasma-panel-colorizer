@@ -27,7 +27,7 @@ KCM.SimpleKCM {
         }
 
         Label {
-            text: i18n("Widget will show in panel Edit Mode")
+            text: i18n("Widget will show when configuring or panel Edit Mode")
             opacity: 0.7
             Layout.maximumWidth: 300
             wrapMode: Text.Wrap

@@ -129,40 +129,41 @@ KCM.SimpleKCM {
             checked: cfg_fgColorEnabled
             onCheckedChanged: cfg_fgColorEnabled = checked
         }
+        RowLayout {
+            TextField {
+                id: fgOpacity
+                Kirigami.FormData.label: i18n("Opacity:")
+                placeholderText: "0-1"
+                text: parseFloat(cfg_fgOpacity).toFixed(validator.decimals)
+                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
 
-        TextField {
-            id: fgOpacity
-            Kirigami.FormData.label: i18n("Opacity:")
-            placeholderText: "0-1"
-            horizontalAlignment: TextInput.AlignHCenter
-            text: parseFloat(cfg_fgOpacity).toFixed(validator.decimals)
+                validator: DoubleValidator {
+                    bottom: 0.0
+                    top: 1.0
+                    decimals: 2
+                    notation: DoubleValidator.StandardNotation
+                }
 
-            validator: DoubleValidator {
-                bottom: 0.0
-                top: 1.0
-                decimals: 2
-                notation: DoubleValidator.StandardNotation
-            }
+                onTextChanged: {
+                    const newVal = parseFloat(text)
+                    cfg_fgOpacity = isNaN(newVal) ? 0 : newVal
+                }
 
-            onTextChanged: {
-                const newVal = parseFloat(text)
-                cfg_fgOpacity = isNaN(newVal) ? 0 : newVal
-            }
+                Components.ValueMouseControl {
+                    height: parent.height - 8
+                    width: height
+                    anchors.right: parent.right
+                    anchors.rightMargin: 4
+                    anchors.verticalCenter: parent.verticalCenter
 
-            Components.ValueMouseControl {
-                height: parent.height - 8
-                width: height
-                anchors.right: parent.right
-                anchors.rightMargin: 4
-                anchors.verticalCenter: parent.verticalCenter
-
-                from: parent.validator.bottom
-                to: parent.validator.top
-                decimals: parent.validator.decimals
-                stepSize: 0.05
-                value: cfg_fgOpacity
-                onValueChanged: {
-                    cfg_fgOpacity = parseFloat(value)
+                    from: parent.validator.bottom
+                    to: parent.validator.top
+                    decimals: parent.validator.decimals
+                    stepSize: 0.05
+                    value: cfg_fgOpacity
+                    onValueChanged: {
+                        cfg_fgOpacity = parseFloat(value)
+                    }
                 }
             }
         }
@@ -419,78 +420,80 @@ KCM.SimpleKCM {
             enabled: fgContrastFixEnabled.checked
         }
 
-        
-        TextField {
-            id: fgSaturation
-            placeholderText: "0-1"
-            horizontalAlignment: TextInput.AlignHCenter
-            text: parseFloat(cfg_fgSaturation).toFixed(validator.decimals)
-            enabled: fgContrastFixEnabled.checked && fgSaturationEnabled.checked
+        RowLayout {
+            TextField {
+                id: fgSaturation
+                placeholderText: "0-1"
+                text: parseFloat(cfg_fgSaturation).toFixed(validator.decimals)
+                enabled: fgContrastFixEnabled.checked && fgSaturationEnabled.checked
+                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
 
-            validator: DoubleValidator {
-                bottom: 0.0
-                top: 1.0
-                decimals: 2
-                notation: DoubleValidator.StandardNotation
-            }
+                validator: DoubleValidator {
+                    bottom: 0.0
+                    top: 1.0
+                    decimals: 2
+                    notation: DoubleValidator.StandardNotation
+                }
 
-            onTextChanged: {
-                const newVal = parseFloat(text)
-                cfg_fgSaturation = isNaN(newVal) ? 0 : newVal
-            }
+                onTextChanged: {
+                    const newVal = parseFloat(text)
+                    cfg_fgSaturation = isNaN(newVal) ? 0 : newVal
+                }
 
-            Components.ValueMouseControl {
-                height: parent.height - 8
-                width: height
-                anchors.right: parent.right
-                anchors.rightMargin: 4
-                anchors.verticalCenter: parent.verticalCenter
+                Components.ValueMouseControl {
+                    height: parent.height - 8
+                    width: height
+                    anchors.right: parent.right
+                    anchors.rightMargin: 4
+                    anchors.verticalCenter: parent.verticalCenter
 
-                from: parent.validator.bottom
-                to: parent.validator.top
-                decimals: parent.validator.decimals
-                stepSize: 0.05
-                value: cfg_fgSaturation
-                onValueChanged: {
-                    cfg_fgSaturation = parseFloat(value)
+                    from: parent.validator.bottom
+                    to: parent.validator.top
+                    decimals: parent.validator.decimals
+                    stepSize: 0.05
+                    value: cfg_fgSaturation
+                    onValueChanged: {
+                        cfg_fgSaturation = parseFloat(value)
+                    }
                 }
             }
         }
+        RowLayout {
+            TextField {
+                id: fgLightness
+                Kirigami.FormData.label: i18n("Lightness:")
+                placeholderText: "0-1"
+                text: parseFloat(cfg_fgLightness).toFixed(validator.decimals)
+                enabled: fgContrastFixEnabled.checked
+                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
 
-        TextField {
-            id: fgLightness
-            Kirigami.FormData.label: i18n("Lightness:")
-            placeholderText: "0-1"
-            horizontalAlignment: TextInput.AlignHCenter
-            text: parseFloat(cfg_fgLightness).toFixed(validator.decimals)
-            enabled: fgContrastFixEnabled.checked
+                validator: DoubleValidator {
+                    bottom: 0.0
+                    top: 1.0
+                    decimals: 2
+                    notation: DoubleValidator.StandardNotation
+                }
 
-            validator: DoubleValidator {
-                bottom: 0.0
-                top: 1.0
-                decimals: 2
-                notation: DoubleValidator.StandardNotation
-            }
+                onTextChanged: {
+                    const newVal = parseFloat(text)
+                    cfg_fgLightness = isNaN(newVal) ? 0 : newVal
+                }
 
-            onTextChanged: {
-                const newVal = parseFloat(text)
-                cfg_fgLightness = isNaN(newVal) ? 0 : newVal
-            }
+                Components.ValueMouseControl {
+                    height: parent.height - 8
+                    width: height
+                    anchors.right: parent.right
+                    anchors.rightMargin: 4
+                    anchors.verticalCenter: parent.verticalCenter
 
-            Components.ValueMouseControl {
-                height: parent.height - 8
-                width: height
-                anchors.right: parent.right
-                anchors.rightMargin: 4
-                anchors.verticalCenter: parent.verticalCenter
-
-                from: parent.validator.bottom
-                to: parent.validator.top
-                decimals: parent.validator.decimals
-                stepSize: 0.05
-                value: cfg_fgLightness
-                onValueChanged: {
-                    cfg_fgLightness = parseFloat(value)
+                    from: parent.validator.bottom
+                    to: parent.validator.top
+                    decimals: parent.validator.decimals
+                    stepSize: 0.05
+                    value: cfg_fgLightness
+                    onValueChanged: {
+                        cfg_fgLightness = parseFloat(value)
+                    }
                 }
             }
         }
@@ -525,7 +528,7 @@ KCM.SimpleKCM {
         }
 
         Label {
-            text: i18n("Force Kirigami.Icon color to specific plasmoids using the isMask property. Disable and restart Plasma or logout to restore the original color for those icons.")
+            text: i18n("Force icon color to specific plasmoids. Disable and restart Plasma or logout to restore the original color for those icons.")
             opacity: 0.7
             Layout.maximumWidth: 400
             wrapMode: Text.Wrap

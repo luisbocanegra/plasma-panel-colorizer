@@ -157,39 +157,41 @@ KCM.SimpleKCM {
             onCheckedChanged: cfg_widgetBgEnabled = checked
         }
 
-        TextField {
-            id: bgOpacity
-            Kirigami.FormData.label: i18n("Opacity:")
-            placeholderText: "0-1"
-            horizontalAlignment: TextInput.AlignHCenter
-            text: parseFloat(cfg_opacity).toFixed(validator.decimals)
+        RowLayout {
+            TextField {
+                id: bgOpacity
+                Kirigami.FormData.label: i18n("Opacity:")
+                placeholderText: "0-1"
+                text: parseFloat(cfg_opacity).toFixed(validator.decimals)
+                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
 
-            validator: DoubleValidator {
-                bottom: 0.0
-                top: 1.0
-                decimals: 2
-                notation: DoubleValidator.StandardNotation
-            }
+                validator: DoubleValidator {
+                    bottom: 0.0
+                    top: 1.0
+                    decimals: 2
+                    notation: DoubleValidator.StandardNotation
+                }
 
-            onTextChanged: {
-                const newVal = parseFloat(text)
-                cfg_opacity = isNaN(newVal) ? 0 : newVal
-            }
+                onTextChanged: {
+                    const newVal = parseFloat(text)
+                    cfg_opacity = isNaN(newVal) ? 0 : newVal
+                }
 
-            Components.ValueMouseControl {
-                height: parent.height - 8
-                width: height
-                anchors.right: parent.right
-                anchors.rightMargin: 4
-                anchors.verticalCenter: parent.verticalCenter
+                Components.ValueMouseControl {
+                    height: parent.height - 8
+                    width: height
+                    anchors.right: parent.right
+                    anchors.rightMargin: 4
+                    anchors.verticalCenter: parent.verticalCenter
 
-                from: parent.validator.bottom
-                to: parent.validator.top
-                decimals: parent.validator.decimals
-                stepSize: 0.05
-                value: cfg_opacity
-                onValueChanged: {
-                    cfg_opacity = parseFloat(value)
+                    from: parent.validator.bottom
+                    to: parent.validator.top
+                    decimals: parent.validator.decimals
+                    stepSize: 0.05
+                    value: cfg_opacity
+                    onValueChanged: {
+                        cfg_opacity = parseFloat(value)
+                    }
                 }
             }
         }
@@ -616,79 +618,81 @@ KCM.SimpleKCM {
             onCheckedChanged: cfg_bgSaturationEnabled = checked
             enabled: bgContrastFixEnabled.checked
         }
+        RowLayout {
+            TextField {
+                id: bgSaturation
+                Kirigami.FormData.label: i18n("Saturation:")
+                placeholderText: "0-1"
+                text: parseFloat(cfg_bgSaturation).toFixed(validator.decimals)
+                enabled: bgContrastFixEnabled.checked && bgSaturationEnabled.checked
+                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
 
-        TextField {
-            id: bgSaturation
-            Kirigami.FormData.label: i18n("Saturation:")
-            placeholderText: "0-1"
-            horizontalAlignment: TextInput.AlignHCenter
-            text: parseFloat(cfg_bgSaturation).toFixed(validator.decimals)
-            enabled: bgContrastFixEnabled.checked && bgSaturationEnabled.checked
+                validator: DoubleValidator {
+                    bottom: 0.0
+                    top: 1.0
+                    decimals: 2
+                    notation: DoubleValidator.StandardNotation
+                }
 
-            validator: DoubleValidator {
-                bottom: 0.0
-                top: 1.0
-                decimals: 2
-                notation: DoubleValidator.StandardNotation
-            }
+                onTextChanged: {
+                    const newVal = parseFloat(text)
+                    cfg_bgSaturation = isNaN(newVal) ? 0 : newVal
+                }
 
-            onTextChanged: {
-                const newVal = parseFloat(text)
-                cfg_bgSaturation = isNaN(newVal) ? 0 : newVal
-            }
+                Components.ValueMouseControl {
+                    height: parent.height - 8
+                    width: height
+                    anchors.right: parent.right
+                    anchors.rightMargin: 4
+                    anchors.verticalCenter: parent.verticalCenter
 
-            Components.ValueMouseControl {
-                height: parent.height - 8
-                width: height
-                anchors.right: parent.right
-                anchors.rightMargin: 4
-                anchors.verticalCenter: parent.verticalCenter
-
-                from: parent.validator.bottom
-                to: parent.validator.top
-                decimals: parent.validator.decimals
-                stepSize: 0.05
-                value: cfg_bgSaturation
-                onValueChanged: {
-                    cfg_bgSaturation = parseFloat(value)
+                    from: parent.validator.bottom
+                    to: parent.validator.top
+                    decimals: parent.validator.decimals
+                    stepSize: 0.05
+                    value: cfg_bgSaturation
+                    onValueChanged: {
+                        cfg_bgSaturation = parseFloat(value)
+                    }
                 }
             }
         }
+        RowLayout {
+            TextField {
+                id: bgLightness
+                Kirigami.FormData.label: i18n("Lightness:")
+                placeholderText: "0-1"
+                text: parseFloat(cfg_bgLightness).toFixed(validator.decimals)
+                enabled: bgContrastFixEnabled.checked
+                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
 
-        TextField {
-            id: bgLightness
-            Kirigami.FormData.label: i18n("Lightness:")
-            placeholderText: "0-1"
-            horizontalAlignment: TextInput.AlignHCenter
-            text: parseFloat(cfg_bgLightness).toFixed(validator.decimals)
-            enabled: bgContrastFixEnabled.checked
+                validator: DoubleValidator {
+                    bottom: 0.0
+                    top: 1.0
+                    decimals: 2
+                    notation: DoubleValidator.StandardNotation
+                }
 
-            validator: DoubleValidator {
-                bottom: 0.0
-                top: 1.0
-                decimals: 2
-                notation: DoubleValidator.StandardNotation
-            }
+                onTextChanged: {
+                    const newVal = parseFloat(text)
+                    cfg_bgLightness = isNaN(newVal) ? 0 : newVal
+                }
 
-            onTextChanged: {
-                const newVal = parseFloat(text)
-                cfg_bgLightness = isNaN(newVal) ? 0 : newVal
-            }
+                Components.ValueMouseControl {
+                    height: parent.height - 8
+                    width: height
+                    anchors.right: parent.right
+                    anchors.rightMargin: 4
+                    anchors.verticalCenter: parent.verticalCenter
 
-            Components.ValueMouseControl {
-                height: parent.height - 8
-                width: height
-                anchors.right: parent.right
-                anchors.rightMargin: 4
-                anchors.verticalCenter: parent.verticalCenter
-
-                from: parent.validator.bottom
-                to: parent.validator.top
-                decimals: parent.validator.decimals
-                stepSize: 0.05
-                value: cfg_bgLightness
-                onValueChanged: {
-                    cfg_bgLightness = parseFloat(value)
+                    from: parent.validator.bottom
+                    to: parent.validator.top
+                    decimals: parent.validator.decimals
+                    stepSize: 0.05
+                    value: cfg_bgLightness
+                    onValueChanged: {
+                        cfg_bgLightness = parseFloat(value)
+                    }
                 }
             }
         }

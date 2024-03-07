@@ -37,41 +37,42 @@ KCM.SimpleKCM {
             checked: cfg_hideRealPanelBg
             onCheckedChanged: cfg_hideRealPanelBg = checked
         }
+        RowLayout {
+            TextField {
+                id: panelRealBgOpacity
+                Kirigami.FormData.label: i18n("Opacity:")
+                placeholderText: "0-1"
+                text: parseFloat(cfg_panelRealBgOpacity).toFixed(validator.decimals)
+                enabled: !hideRealPanelBg.checked
+                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
 
-        TextField {
-            id: panelRealBgOpacity
-            Kirigami.FormData.label: i18n("Opacity:")
-            placeholderText: "0-1"
-            horizontalAlignment: TextInput.AlignHCenter
-            text: parseFloat(cfg_panelRealBgOpacity).toFixed(validator.decimals)
-            enabled: !hideRealPanelBg.checked
+                validator: DoubleValidator {
+                    bottom: 0.0
+                    top: 1.0
+                    decimals: 2
+                    notation: DoubleValidator.StandardNotation
+                }
 
-            validator: DoubleValidator {
-                bottom: 0.0
-                top: 1.0
-                decimals: 2
-                notation: DoubleValidator.StandardNotation
-            }
+                onTextChanged: {
+                    const newVal = parseFloat(text)
+                    cfg_panelRealBgOpacity = isNaN(newVal) ? 0 : newVal
+                }
 
-            onTextChanged: {
-                const newVal = parseFloat(text)
-                cfg_panelRealBgOpacity = isNaN(newVal) ? 0 : newVal
-            }
+                Components.ValueMouseControl {
+                    height: parent.height - 8
+                    width: height
+                    anchors.right: parent.right
+                    anchors.rightMargin: 4
+                    anchors.verticalCenter: parent.verticalCenter
 
-            Components.ValueMouseControl {
-                height: parent.height - 8
-                width: height
-                anchors.right: parent.right
-                anchors.rightMargin: 4
-                anchors.verticalCenter: parent.verticalCenter
-
-                from: parent.validator.bottom
-                to: parent.validator.top
-                decimals: parent.validator.decimals
-                stepSize: 0.05
-                value: cfg_panelRealBgOpacity
-                onValueChanged: {
-                    cfg_panelRealBgOpacity = parseFloat(value)
+                    from: parent.validator.bottom
+                    to: parent.validator.top
+                    decimals: parent.validator.decimals
+                    stepSize: 0.05
+                    value: cfg_panelRealBgOpacity
+                    onValueChanged: {
+                        cfg_panelRealBgOpacity = parseFloat(value)
+                    }
                 }
             }
         }
@@ -79,7 +80,7 @@ KCM.SimpleKCM {
         Label {
             text: i18n("Hiding the background also removes the contrast and blur, just changing the opacity does not.")
             opacity: 0.7
-            Layout.maximumWidth: 300
+            Layout.maximumWidth: 400
             wrapMode: Text.Wrap
         }
 
@@ -103,9 +104,9 @@ KCM.SimpleKCM {
         }
 
         Label {
-            text: i18n("This option makes the widgets always stay at the same distance from borders in floating mode. Changing panel visibility settings with this option enabled may cause some jankiness, specially in edit mode. Disable and restart Plasma or logout to restore the original behavior.")
+            text: i18n("This option makes the widgets always stay at the same distance from the sides of the panel. Changing panel settings with this option enabled may cause some jankiness, specially in edit mode and vertical panels. Disable and restart Plasma or logout to restore the original behavior.")
             opacity: 0.7
-            Layout.maximumWidth: 300
+            Layout.maximumWidth: 400
             wrapMode: Text.Wrap
         }
 
@@ -134,41 +135,42 @@ KCM.SimpleKCM {
                 cfg_panelBgColor = color
             }
         }
+        RowLayout {
+            TextField {
+                id: panelBgOpacity
+                Kirigami.FormData.label: i18n("Opacity:")
+                placeholderText: "0-1"
+                text: parseFloat(cfg_panelBgOpacity).toFixed(validator.decimals)
+                enabled: panelBgEnabled.checked
+                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
 
-        TextField {
-            id: panelBgOpacity
-            Kirigami.FormData.label: i18n("Opacity:")
-            placeholderText: "0-1"
-            horizontalAlignment: TextInput.AlignHCenter
-            text: parseFloat(cfg_panelBgOpacity).toFixed(validator.decimals)
-            enabled: panelBgEnabled.checked
+                validator: DoubleValidator {
+                    bottom: 0.0
+                    top: 1.0
+                    decimals: 2
+                    notation: DoubleValidator.StandardNotation
+                }
 
-            validator: DoubleValidator {
-                bottom: 0.0
-                top: 1.0
-                decimals: 2
-                notation: DoubleValidator.StandardNotation
-            }
+                onTextChanged: {
+                    const newVal = parseFloat(text)
+                    cfg_panelBgOpacity = isNaN(newVal) ? 0 : newVal
+                }
 
-            onTextChanged: {
-                const newVal = parseFloat(text)
-                cfg_panelBgOpacity = isNaN(newVal) ? 0 : newVal
-            }
+                Components.ValueMouseControl {
+                    height: parent.height - 8
+                    width: height
+                    anchors.right: parent.right
+                    anchors.rightMargin: 4
+                    anchors.verticalCenter: parent.verticalCenter
 
-            Components.ValueMouseControl {
-                height: parent.height - 8
-                width: height
-                anchors.right: parent.right
-                anchors.rightMargin: 4
-                anchors.verticalCenter: parent.verticalCenter
-
-                from: parent.validator.bottom
-                to: parent.validator.top
-                decimals: parent.validator.decimals
-                stepSize: 0.05
-                value: cfg_panelBgOpacity
-                onValueChanged: {
-                    cfg_panelBgOpacity = parseFloat(value)
+                    from: parent.validator.bottom
+                    to: parent.validator.top
+                    decimals: parent.validator.decimals
+                    stepSize: 0.05
+                    value: cfg_panelBgOpacity
+                    onValueChanged: {
+                        cfg_panelBgOpacity = parseFloat(value)
+                    }
                 }
             }
         }
