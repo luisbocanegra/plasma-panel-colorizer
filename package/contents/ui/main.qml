@@ -122,7 +122,11 @@ PlasmoidItem {
 
     property var panelBGE
 
-    // property string panelWidgets: plasmoid.configuration.panelWidgets
+    property bool bgLineModeEnabled: plasmoid.configuration.bgLineModeEnabled
+    property int bgLinePosition: plasmoid.configuration.bgLinePosition
+    property int bgLineWidth: plasmoid.configuration.bgLineWidth
+    property int bgLineXOffset: plasmoid.configuration.bgLineXOffset
+    property int bgLineYOffset: plasmoid.configuration.bgLineYOffset
 
 
     function opacityToHex(opacity) {
@@ -192,12 +196,36 @@ PlasmoidItem {
         property var target // holds element with expanded property
         property int heightOffset: 0
         property int widthOffset: 0
+        property int linePosition: bgLinePosition
+        property int lineWidth: bgLineWidth
+        property bool lineMode: bgLineModeEnabled
+        property int lineXOffset: -bgLineXOffset
+        property int lineYOffset: -bgLineYOffset
         color: "transparent"
         opacity: bgOpacity
         radius: bgRadius
-        height: parent.height + heightOffset
-        width: parent.width + widthOffset
-        anchors.centerIn: parent
+        height: lineMode && linePosition <= 1 ? lineWidth : parent.height + heightOffset
+        width: lineMode && linePosition >= 2 ? lineWidth : parent.width + widthOffset
+
+        anchors.centerIn: lineMode ? undefined : parent
+
+        // top
+        anchors.bottom: lineMode && linePosition === 0 ? parent.top : undefined
+        anchors.bottomMargin: lineMode && linePosition === 0 ? lineYOffset : 0
+        // bottom
+        anchors.top: lineMode && linePosition === 1 ? parent.bottom : undefined
+        anchors.topMargin: lineMode && linePosition === 1 ? lineYOffset : 0
+        // left
+        anchors.left: lineMode && linePosition === 2 ? parent.left : undefined
+        anchors.leftMargin: lineMode && linePosition === 2 ? lineXOffset : 0
+        // right
+        anchors.right: lineMode && linePosition === 3 ? parent.right : undefined
+        anchors.rightMargin: lineMode && linePosition === 3 ? lineXOffset : 0
+
+        // centering
+        anchors.horizontalCenter: lineMode && linePosition <= 1 ? parent.horizontalCenter : undefined
+        anchors.verticalCenter: lineMode && linePosition >= 2 ? parent.verticalCenter : undefined
+        
         border {
             color: widgetOutlineColor
             width: widgetOutlineWidth
@@ -300,6 +328,10 @@ PlasmoidItem {
     }
 
     onWidgetBgVMarginChanged: {
+        destroyRequired = true
+    }
+
+    onBgLinePositionChanged: {
         destroyRequired = true
     }
 

@@ -34,6 +34,11 @@ KCM.SimpleKCM {
     property int cfg_widgetShadowX: widgetShadowColorX.value
     property int cfg_widgetShadowY: widgetShadowColorY.value
 
+    property bool cfg_bgLineModeEnabled: bgLineModeEnabled.checked
+    property int cfg_bgLinePosition: plasmoid.configuration.bgLinePosition
+    property int cfg_bgLineWidth: bgLineWidth.value
+    property int cfg_bgLineXOffset: bgLineXOffset.value
+    property int cfg_bgLineYOffset: bgLineYOffset.value
 
     property bool clearing: false
 
@@ -198,6 +203,87 @@ KCM.SimpleKCM {
             onValueModified: {
                 cfg_radius = value
             }
+        }
+
+        CheckBox {
+            Kirigami.FormData.label: i18n("Line:")
+            text: i18n("Enabled")
+            id: bgLineModeEnabled
+            checked: cfg_bgLineModeEnabled
+            onCheckedChanged: cfg_bgLineModeEnabled = checked
+        }
+
+        RadioButton {
+            Kirigami.FormData.label: i18n("Position:")
+            text: i18n("Top")
+            ButtonGroup.group: bgLinePositionGroup
+            property int index: 0
+            checked: plasmoid.configuration.bgLinePosition === index
+            enabled: bgLineModeEnabled.checked
+        }
+        RadioButton {
+            text: i18n("Bottom")
+            ButtonGroup.group: bgLinePositionGroup
+            property int index: 1
+            checked: plasmoid.configuration.bgLinePosition === index
+            enabled: bgLineModeEnabled.checked
+        }
+        RadioButton {
+            text: i18n("Left")
+            ButtonGroup.group: bgLinePositionGroup
+            property int index: 2
+            checked: plasmoid.configuration.bgLinePosition === index
+            enabled: bgLineModeEnabled.checked
+        }
+        RadioButton {
+            text: i18n("Right")
+            ButtonGroup.group: bgLinePositionGroup
+            property int index: 3
+            checked: plasmoid.configuration.bgLinePosition === index
+            enabled: bgLineModeEnabled.checked
+        }
+        ButtonGroup {
+            id: bgLinePositionGroup
+            onCheckedButtonChanged: {
+                if (checkedButton) {
+                    cfg_bgLinePosition = checkedButton.index
+                }
+            }
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Width:")
+            id: bgLineWidth
+            value: cfg_bgLineWidth
+            from: 0
+            to: 99
+            onValueModified: {
+                cfg_bgLineWidth = value
+            }
+            enabled: bgLineModeEnabled.checked
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("X offset:")
+            id: bgLineXOffset
+            value: cfg_bgLineXOffset
+            from: -99
+            to: 99
+            onValueModified: {
+                cfg_bgLineXOffset = value
+            }
+            enabled: bgLineModeEnabled.checked
+        }
+        SpinBox {
+            Kirigami.FormData.label: i18n("Y offset:")
+            id: bgLineYOffset
+            value: cfg_bgLineYOffset
+            from: -99
+            to: 99
+            onValueModified: {
+                cfg_bgLineYOffset = value
+            }
+            enabled: bgLineModeEnabled.checked
         }
 
         Kirigami.Separator {
@@ -637,7 +723,7 @@ KCM.SimpleKCM {
         }
 
         Label {
-            text: i18n("Extra margins per widget:")
+            text: i18n("Extra horizontal/vertical margins per widget:")
             Layout.maximumWidth: widgetCards.width
             wrapMode: Text.Wrap
         }
@@ -675,7 +761,7 @@ KCM.SimpleKCM {
                                     text: i18n("V:")
                                 }
                                 SpinBox {
-                                    from: 0
+                                    from: -999
                                     to: 999
                                     value: widgetsModel.get(index).vExtraMargin
                                     onValueChanged: {
@@ -690,7 +776,7 @@ KCM.SimpleKCM {
                                     text: i18n("H:")
                                 }
                                 SpinBox {
-                                    from: 0
+                                    from: -999
                                     to: 999
                                     value: widgetsModel.get(index).hExtraMargin
                                     onValueChanged: {
