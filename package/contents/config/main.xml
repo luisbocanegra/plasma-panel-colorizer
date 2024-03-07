@@ -19,7 +19,7 @@
     <entry
         name="mode"
         type="Int">
-       <default>1</default>
+       <default>0</default>
     </entry>
     <!-- color modes: single, accent, custom list, random -->
     <entry
