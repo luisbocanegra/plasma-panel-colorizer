@@ -398,7 +398,6 @@ PlasmoidItem {
         const marginLines = marginRules.split("\n").map(function (line) { return line.trim() })
 
         console.log("creating widget background rects");
-        plasmoid.configuration.panelWidgets = ""
         for (var i in panelLayout.children) {
             const child = panelLayout.children[i];
 
@@ -418,9 +417,6 @@ PlasmoidItem {
 
             // TODO: Code for handling expanded widget action is here but not used yet
             const name = child.applet.plasmoid.pluginName
-            const title = child.applet.plasmoid.title
-            const icon = child.applet.plasmoid.icon
-            plasmoid.configuration.panelWidgets += name + "|" + title + "|" + icon + "\n"
             var expandedTarget
             if (name === "org.kde.plasma.systemtray") {
                 expandedTarget = child.applet.plasmoid.internalSystray.systemTrayState
@@ -533,6 +529,34 @@ PlasmoidItem {
             } catch (e) {
                 console.error("Error colorizing rect", i, "E:" , e);
             }
+        }
+    }
+
+    function findWidgets() {
+        plasmoid.configuration.panelWidgets = ""
+        plasmoid.configuration.panelWidgetsWithTray = ""
+        function findPlasmoid(child) {
+            if (child instanceof PlasmaExtras.Representation) return
+            if (child.plasmoid?.pluginName && child.plasmoid.pluginName !== "org.kde.plasma.private.systemtray") {
+                const name = child.plasmoid.pluginName
+                const title = child.plasmoid.title
+                const icon = child.plasmoid.icon
+                const inTray = child.plasmoid.containmentDisplayHints & PlasmaCore.Types.ContainmentDrawsPlasmoidHeading
+                console.log(inTray, name);
+                if (!inTray) {
+                    plasmoid.configuration.panelWidgets += name + "|" + title + "|" + icon + "\n"
+                }
+                if (name !== "org.kde.plasma.systemtray") {
+                    plasmoid.configuration.panelWidgetsWithTray += name + "|" + title + "|" + icon + "\n"
+                }
+            }
+            for (var i = 0; i < child.children.length; i++) {
+                findPlasmoid(child.children[i]);
+            }
+        }
+        for (var i in panelLayout.children) {
+            const child = panelLayout.children[i];
+            findPlasmoid(child)
         }
     }
 
@@ -661,6 +685,7 @@ PlasmoidItem {
     //     onTriggered: {
     //         // console.log("fgMode:", fgMode, "fgInterval", fgRainbowInterval, (fgMode === 1));
     //         // console.log(plasmoid.configuration.panelWidgets);
+    //         findWidgets()
     //     }
     // }
 
@@ -789,6 +814,7 @@ PlasmoidItem {
                     showToUpdate = true
                     panelModifiedTimer.start()
                 }
+                findWidgets()
             }
         }
     }

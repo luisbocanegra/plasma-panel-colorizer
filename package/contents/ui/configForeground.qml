@@ -29,7 +29,7 @@ KCM.SimpleKCM {
     property real cfg_fgSaturation: fgSaturation.text
     property real cfg_fgLightness: fgLightness.text
 
-    property string cfg_panelWidgets
+    property string cfg_panelWidgetsWithTray
 
     property bool clearing: false
 
@@ -81,7 +81,7 @@ KCM.SimpleKCM {
     }
 
     function initWidgets(){
-        const lines = cfg_panelWidgets.trim().split("\n")
+        const lines = cfg_panelWidgetsWithTray.trim().split("\n")
         for (let i in lines) {
             const parts = lines[i].split("|")
             const name = parts[0]

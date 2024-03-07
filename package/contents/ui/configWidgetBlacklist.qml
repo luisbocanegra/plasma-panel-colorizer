@@ -64,7 +64,7 @@ KCM.SimpleKCM {
         }
 
         Label {
-            text: i18n("Widget selected below will not be colorized")
+            text: i18n("Unchecked widgets will not be colorized")
             opacity: 0.7
             Layout.maximumWidth: widgetCards.width
             wrapMode: Text.Wrap
@@ -96,7 +96,7 @@ KCM.SimpleKCM {
                         Button {
                             checkable: true
                             checked: widgetsModel.get(index).enabled
-                            icon.name: checked ? "checkmark-symbolic" : "edit-delete-remove-symbolic"
+                            icon.name: checked ? "edit-delete-remove-symbolic" : "checkmark-symbolic"
                             onCheckedChanged: {
                                 widgetsModel.set(index, {"enabled": checked})
                                 updateWidgetsString()
