@@ -43,6 +43,11 @@ Button {
                 color: root.color
                 height: currentColorText.implicitHeight
                 width: height
+                border {
+                    width: 1
+                    color: Kirigami.Theme.textColor
+                }
+                radius: 2
             }
 
             Label {
