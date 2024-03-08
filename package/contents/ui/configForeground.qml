@@ -81,9 +81,10 @@ KCM.SimpleKCM {
     }
 
     function initWidgets(){
-        const lines = cfg_panelWidgetsWithTray.trim().split("\n")
+        const lines = cfg_panelWidgetsWithTray.trim().split("|")
         for (let i in lines) {
-            const parts = lines[i].split("|")
+            if (lines[i].length < 1) continue
+            const parts = lines[i].split(",")
             const name = parts[0]
             const title = parts[1]
             const icon = parts[2]
@@ -93,7 +94,7 @@ KCM.SimpleKCM {
 
     function updateWidgetsModel(){
         let widgeList = []
-        const forceRecolorList = cfg_forceRecolor.trim().split("\n")
+        const forceRecolorList = cfg_forceRecolor.trim().split("|")
         console.log(forceRecolorList.join(" "));
         for (let i = 0; i < widgetsModel.count; i++) {
             let widget = widgetsModel.get(i)
@@ -109,7 +110,7 @@ KCM.SimpleKCM {
         for (let i = 0; i < widgetsModel.count; i++) {
             let widget = widgetsModel.get(i)
             if (widget.enabled) {
-                newString += widget.name + "\n"
+                newString += widget.name + "|"
             }
         }
         cfg_forceRecolor = newString

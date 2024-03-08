@@ -92,9 +92,10 @@ KCM.SimpleKCM {
     }
 
     function initWidgets(){
-        const lines = cfg_panelWidgets.trim().split("\n")
+        const lines = cfg_panelWidgets.trim().split("|")
         for (let i in lines) {
-            const parts = lines[i].split("|")
+            if (lines[i].length < 1) continue
+            const parts = lines[i].split(",")
             const name = parts[0]
             const title = parts[1]
             const icon = parts[2]
@@ -113,14 +114,16 @@ KCM.SimpleKCM {
 
     function updateWidgetsModel(){
         let widgeList = []
-        const forceRecolorList = cfg_marginRules.trim().split("\n")
+        const forceRecolorList = cfg_marginRules.split("|")
         for (let i = 0; i < widgetsModel.count; i++) {
             let widget = widgetsModel.get(i)
+            // if (widget.length < 1) continue
             let name = ""
             let vMargin = 0
             let hMargin = 0 
             for (let j in forceRecolorList) {
-                const parts = forceRecolorList[j].split(" ")
+                if (forceRecolorList[j].length < 1) continue
+                const parts = forceRecolorList[j].split(",")
                 //console.error(widget.name, parts.join(" "));
                 name = parts[0]
                 if(widget.name.includes(name)) {
@@ -137,7 +140,7 @@ KCM.SimpleKCM {
         var newString = ""
         for (let i = 0; i < widgetsModel.count; i++) {
             let widget = widgetsModel.get(i)
-            newString += widget.name + " " + widget.vExtraMargin + " " + widget.hExtraMargin + "\n"
+            newString += widget.name + "," + widget.vExtraMargin + "," + widget.hExtraMargin + "|"
         }
         cfg_marginRules = newString
     }
