@@ -110,14 +110,7 @@
     <entry
         name="blacklist"
         type="String">
-        <default>spacer
-separator
-org.kde.plasma.taskmanager
-org.kde.plasma.icontasks
-org.kde.plasma.pager
-org.kde.plasma.activitypager
-org.kde.plasma.systemmonitor
-        </default>
+        <default>spacer|separator|org.kde.plasma.taskmanager|org.kde.plasma.icontasks|org.kde.plasma.pager|org.kde.plasma.activitypager|org.kde.plasma.systemmonitor</default>
     </entry>
     <entry
         name="widgetBgVMargin"
