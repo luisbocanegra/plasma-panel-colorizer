@@ -104,7 +104,7 @@ PlasmoidItem {
     property real fgSaturation: plasmoid.configuration.fgSaturation
     property real fgLightness: plasmoid.configuration.fgLightness
 
-    property int enableCustomPadding: plasmoid.configuration.enableCustomPadding
+    property bool enableCustomPadding: plasmoid.configuration.enableCustomPadding
     property int panelPadding: plasmoid.configuration.panelPadding
     property bool isVertical: Plasmoid.formFactor === PlasmaCore.Types.Vertical
     property var panelPrefixes: ["north","south","west","east"]
@@ -335,6 +335,10 @@ PlasmoidItem {
         destroyRequired = true
     }
 
+    onBgLineModeEnabledChanged: {
+        destroyRequired = true
+    }
+
     Connections {
         target: plasmoid.configuration
         onValueChanged: {
@@ -394,9 +398,8 @@ PlasmoidItem {
     function createRects() {
         if(!panelLayout) return
         if (!widgetBgEnabled && !isEnabled) return
-        const blacklisted = blacklist.split("\n").map(function (line) { return line.trim() })
-        const marginLines = marginRules.split("\n").map(function (line) { return line.trim() })
-
+        const blacklisted = blacklist.split("|").map(function (line) { return line.trim() })
+        const marginLines = marginRules.split("|").map(function (line) { return line.trim() })
         console.log("creating widget background rects");
         for (var i in panelLayout.children) {
             const child = panelLayout.children[i];
@@ -433,7 +436,7 @@ PlasmoidItem {
             var y = 0
             for (var line of marginLines) {
                 // name height width
-                const parts = line.split(" ")
+                const parts = line.split(",")
                 const match = parts[0]
 
                 if (match.length > 0 && name.includes(match)){
@@ -542,12 +545,12 @@ PlasmoidItem {
                 const title = child.plasmoid.title
                 const icon = child.plasmoid.icon
                 const inTray = child.plasmoid.containmentDisplayHints & PlasmaCore.Types.ContainmentDrawsPlasmoidHeading
-                console.log(inTray, name);
+                // console.log(inTray, name);
                 if (!inTray) {
-                    plasmoid.configuration.panelWidgets += name + "|" + title + "|" + icon + "\n"
+                    plasmoid.configuration.panelWidgets += name + "," + title + "," + icon + "|"
                 }
                 if (name !== "org.kde.plasma.systemtray") {
-                    plasmoid.configuration.panelWidgetsWithTray += name + "|" + title + "|" + icon + "\n"
+                    plasmoid.configuration.panelWidgetsWithTray += name + "," + title + "," + icon + "|"
                 }
             }
             for (var i = 0; i < child.children.length; i++) {
@@ -615,9 +618,8 @@ PlasmoidItem {
             }
         }
         var idx=0
-        const blacklisted = blacklist.split("\n").map(function (line) { return line.trim() })
-        // console.log(blacklist);
-        const maskList = forceRecolor.split("\n").map(function (line) { return line.trim() })
+        const blacklisted = blacklist.split("|").map(function (line) { return line.trim() })
+        const maskList = forceRecolor.split("|").map(function (line) { return line.trim() })
         for(let i = 0; i < panelLayout.children.length; i++) {
             const child = panelLayout.children[i];
 

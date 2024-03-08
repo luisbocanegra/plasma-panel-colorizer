@@ -14,7 +14,7 @@ KCM.SimpleKCM {
     property real cfg_panelBgOpacity: parseFloat(panelBgOpacity.text)
     property int cfg_panelBgRadius: panelBgRadius.value
     property real cfg_panelRealBgOpacity: parseFloat(panelRealBgOpacity.text)
-    property int cfg_enableCustomPadding: enableCustomPadding.value
+    property bool cfg_enableCustomPadding: enableCustomPadding.checked
     property int cfg_panelPadding: panelPadding.value
 
     property string cfg_panelOutlineColor: panelOutlineColor.color
