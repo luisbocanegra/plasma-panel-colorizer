@@ -25,7 +25,7 @@ KCM.SimpleKCM {
 
     property int cfg_widgetBgHMargin: widgetBgHMargin.value
     property int cfg_widgetBgVMargin: widgetBgHMargin.value
-    property string cfg_marginRules: marginRules.text
+    property string cfg_marginRules: ""
 
     property string cfg_widgetOutlineColor: widgetOutlineColor.color
     property int cfg_widgetOutlineWidth: widgetOutlineWidth.value

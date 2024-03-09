@@ -19,7 +19,7 @@ KCM.SimpleKCM {
     property bool widgetBgEnabled: plasmoid.configuration.widgetBgEnabled
     
     property real cfg_fgOpacity: parseFloat(fgOpacity.text)
-    property string cfg_forceRecolor: forceRecolor.text
+    property string cfg_forceRecolor: ""
 
     property bool cfg_fgBlacklistedColorEnabled: fgBlacklistedColorEnabled.checked
     property string cfg_blacklistedFgColor: blacklistedFgColor.text

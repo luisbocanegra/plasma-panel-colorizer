@@ -8,7 +8,7 @@ import "components" as Components
 
 KCM.SimpleKCM {
     id:root
-    property string cfg_blacklist: blacklist.text
+    property string cfg_blacklist: ""
     property string cfg_panelWidgets
 
     ListModel {
