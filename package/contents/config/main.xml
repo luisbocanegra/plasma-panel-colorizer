@@ -317,5 +317,10 @@
         type="Int">
         <default>-2</default>
     </entry>
+    <entry
+        name="lastPreset"
+        type="String">
+        <default></default>
+    </entry>
   </group>
 </kcfg>

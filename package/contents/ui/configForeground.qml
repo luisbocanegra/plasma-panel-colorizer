@@ -121,25 +121,43 @@ KCM.SimpleKCM {
         updateWidgetsModel()
     }
 
-    ColumnLayout {
+    header: RowLayout {
         RowLayout {
-            Layout.alignment: Qt.AlignHCenter
-            // horizontalAlignment: TextInput.AlignHCenter
-            Label {
-                text: "Enabled:"
+            Layout.leftMargin: Kirigami.Units.mediumSpacing
+            Layout.rightMargin: Kirigami.Units.smallSpacing
+            RowLayout {
+                Layout.alignment: Qt.AlignRight
+                Label {
+                    text: i18n("Enabled:")
+                }
+                CheckBox {
+                    id: fgColorEnabled
+                    checked: cfg_fgColorEnabled
+                    onCheckedChanged: cfg_fgColorEnabled = checked
+                }
             }
-            CheckBox {
-                // Kirigami.FormData.label: i18n("Enabled:")
-                id: fgColorEnabled
-                checked: cfg_fgColorEnabled
-                onCheckedChanged: cfg_fgColorEnabled = checked
+            Item {
+                Layout.fillWidth: true
+            }
+            RowLayout {
+                Layout.alignment: Qt.AlignRight
+                Label {
+                    text: i18n("Last preset loaded:")
+                }
+                Label {
+                    text: plasmoid.configuration.lastPreset || "None"
+                    font.weight: Font.DemiBold
+                }
             }
         }
+    }
+
+    ColumnLayout {
     Kirigami.FormLayout {
         RowLayout {
+            Kirigami.FormData.label: i18n("Opacity:")
             TextField {
                 id: fgOpacity
-                Kirigami.FormData.label: i18n("Opacity:")
                 placeholderText: "0-1"
                 text: parseFloat(cfg_fgOpacity).toFixed(validator.decimals)
                 Layout.preferredWidth: Kirigami.Units.gridUnit * 4
@@ -428,6 +446,7 @@ KCM.SimpleKCM {
         }
 
         RowLayout {
+            Kirigami.FormData.label: i18n("Saturation:")
             TextField {
                 id: fgSaturation
                 placeholderText: "0-1"
@@ -466,9 +485,9 @@ KCM.SimpleKCM {
             }
         }
         RowLayout {
+            Kirigami.FormData.label: i18n("Lightness:")
             TextField {
                 id: fgLightness
-                Kirigami.FormData.label: i18n("Lightness:")
                 placeholderText: "0-1"
                 text: parseFloat(cfg_fgLightness).toFixed(validator.decimals)
                 enabled: fgContrastFixEnabled.checked
