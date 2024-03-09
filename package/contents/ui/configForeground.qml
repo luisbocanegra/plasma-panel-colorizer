@@ -100,7 +100,6 @@ KCM.SimpleKCM {
             let widget = widgetsModel.get(i)
             if (forceRecolorList.includes(widget.name)) {
                 widgetsModel.set(i, {"enabled": true})
-                break
             }
         }
     }
