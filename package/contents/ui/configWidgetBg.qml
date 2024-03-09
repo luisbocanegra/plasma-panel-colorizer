@@ -151,13 +151,23 @@ KCM.SimpleKCM {
         updateWidgetsModel()
     }
 
-    Kirigami.FormLayout {
+    ColumnLayout {
+        RowLayout {
+            Layout.alignment: Qt.AlignHCenter
+            Label {
+                text: "Enabled:"
+            }
+            CheckBox {
+                id: widgetBgEnabled
+                checked: cfg_widgetBgEnabled
+                onCheckedChanged: cfg_widgetBgEnabled = checked
+            }
+        }
 
-        CheckBox {
-            Kirigami.FormData.label: i18n("Custom background:")
-            id: widgetBgEnabled
-            checked: cfg_widgetBgEnabled
-            onCheckedChanged: cfg_widgetBgEnabled = checked
+    Kirigami.FormLayout {
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: true
+            Kirigami.FormData.label: i18n("Shape")
         }
 
         RowLayout {
@@ -797,5 +807,6 @@ KCM.SimpleKCM {
                 }
             }
         }
+    }
     }
 }

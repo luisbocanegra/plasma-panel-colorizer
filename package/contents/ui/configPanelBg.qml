@@ -28,7 +28,7 @@ KCM.SimpleKCM {
 
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
-            Kirigami.FormData.label: i18n("Panel background")
+            Kirigami.FormData.label: i18n("Original background")
         }
 
         CheckBox {

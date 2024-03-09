@@ -207,28 +207,54 @@ KCM.SimpleKCM {
         runCommand.exec(listPresetsCmd)
     }
 
+    // actions: [
+    //     Kirigami.Action {
+    //         text: i18nc("@action:button Plasma-specific notifications", "System Notifications…")
+    //         icon.name: "notifications-symbolic"
+    //         enabled: true//root.notificationsAvailable
+    //         // onTriggered: root.openSystemNotificationSettings()
+    //     },
+    //     Kirigami.Action {
+    //         text: i18nc("@action:button Application-specific notifications", "Application Settings…")
+    //         icon.name: "applications-all-symbolic"
+    //         enabled: true//root.notificationsAvailable
+    //         // onTriggered: root.openSourcesSettings()
+    //     }
+    // ]
+    ColumnLayout {
+        RowLayout {
+            Layout.alignment: Qt.AlignHCenter
+            // horizontalAlignment: TextInput.AlignHCenter
+            Label {
+                text: "Enabled:"
+            }
+            CheckBox {
+                // Kirigami.FormData.label: i18n("Enabled:")
+                id: isEnabled
+                checked: cfg_isEnabled
+                onCheckedChanged: cfg_isEnabled = checked
+            }
+        }
     Kirigami.FormLayout {
 
-        CheckBox {
-            Kirigami.FormData.label: i18n("Enabled:")
-            id: isEnabled
-            checked: cfg_isEnabled
-            onCheckedChanged: cfg_isEnabled = checked
-        }
 
-        CheckBox {
+        RowLayout {
             Kirigami.FormData.label: i18n("Hide widget:")
-            id: hideWidget
-            checked: cfg_hideWidget
-            onCheckedChanged: cfg_hideWidget = checked
+            Layout.alignment: Qt.AlignTop
+            
+            CheckBox {
+                id: hideWidget
+                checked: cfg_hideWidget
+                onCheckedChanged: cfg_hideWidget = checked
+            }
+            Label {
+                text: i18n("Widget will show when configuring or panel Edit Mode")
+                opacity: 0.7
+                wrapMode: Text.Wrap
+            }
         }
+    
 
-        Label {
-            text: i18n("Widget will show when configuring or panel Edit Mode")
-            opacity: 0.7
-            Layout.maximumWidth: 300
-            wrapMode: Text.Wrap
-        }
 
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
@@ -274,11 +300,7 @@ KCM.SimpleKCM {
 
         ColumnLayout {
             id: presetCards
-            Layout.minimumWidth: 400
-            Label {
-                text: i18n("Presets")
-                font.bold: true
-            }
+            Layout.minimumWidth: 500
             RowLayout {
                 Layout.preferredWidth: presetCards.width
                 Button {
@@ -309,24 +331,25 @@ KCM.SimpleKCM {
                         }
 
                         Button {
+                            id: loadBtn
+                            text: i18n("Load")
+                            Layout.preferredHeight: saveBtn.height
+                            onClicked: {
+                                applyPreset(modelData)
+                            }
+                        }
+                        Button {
+                            id: saveBtn
                             icon.name: "document-save-symbolic"
-                            text: i18n("Update")
+                            // text: i18n("Update")
                             onClicked: {
                                 if (modelData.length > 0) {
                                     savePreset(modelData)
                                 }
                             }
                         }
-                        
                         Button {
-                            text: i18n("Apply")
-                            icon.name: "checkmark-symbolic"
-                            onClicked: {
-                                applyPreset(modelData)
-                            }
-                        }
-                        Button {
-                            text: i18n("Delete")
+                            // text: i18n("Delete")
                             icon.name: "edit-delete-remove-symbolic"
                             onClicked: {
                                 deletePreset(modelData)
@@ -337,5 +360,6 @@ KCM.SimpleKCM {
                 }
             }
         }
+    }
     }
 }
