@@ -121,14 +121,21 @@ KCM.SimpleKCM {
         updateWidgetsModel()
     }
 
-    Kirigami.FormLayout {
-
-        CheckBox {
-            Kirigami.FormData.label: i18n("Enabled:")
-            id: fgColorEnabled
-            checked: cfg_fgColorEnabled
-            onCheckedChanged: cfg_fgColorEnabled = checked
+    ColumnLayout {
+        RowLayout {
+            Layout.alignment: Qt.AlignHCenter
+            // horizontalAlignment: TextInput.AlignHCenter
+            Label {
+                text: "Enabled:"
+            }
+            CheckBox {
+                // Kirigami.FormData.label: i18n("Enabled:")
+                id: fgColorEnabled
+                checked: cfg_fgColorEnabled
+                onCheckedChanged: cfg_fgColorEnabled = checked
+            }
         }
+    Kirigami.FormLayout {
         RowLayout {
             TextField {
                 id: fgOpacity
@@ -570,5 +577,6 @@ KCM.SimpleKCM {
                 }
             }
         }
+    }
     }
 }

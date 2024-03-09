@@ -56,20 +56,15 @@ KCM.SimpleKCM {
         updateWidgetsModel()
     }
 
-    Kirigami.FormLayout {
-
-        
-        Kirigami.Separator {
-            Kirigami.FormData.isSection: true
-            Kirigami.FormData.label: "Blacklist"
-        }
-
+    ColumnLayout {
         Label {
+            Layout.alignment: Qt.AlignHCenter
             text: i18n("Unchecked widgets will not be colorized")
-            opacity: 0.7
             Layout.maximumWidth: widgetCards.width
             wrapMode: Text.Wrap
         }
+
+    Kirigami.FormLayout {
 
         ColumnLayout {
             id: widgetCards
@@ -107,5 +102,6 @@ KCM.SimpleKCM {
                 }
             }
         }
+    }
     }
 }
