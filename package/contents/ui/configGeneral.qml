@@ -161,7 +161,6 @@ KCM.SimpleKCM {
                 const val = parts[1]
                 const cfgKey = "cfg_" + key;
                 if (ignoredConfigs.some(function (k) { return key.includes(k)})) continue
-                // console.error(key);
                 // console.log(key, val);
                 root[cfgKey] = parseValues(val)
             }
@@ -256,17 +255,18 @@ KCM.SimpleKCM {
                 id: saveNameField
                 Layout.fillWidth: true
                 placeholderText: i18n("New preset name")
+                validator: RegularExpressionValidator {
+                    regularExpression: /^(?![\s\.])([a-zA-Z0-9. _\-]+)(?<![\.|\s])$/
+                }
             }
             Button {
                 icon.name: "document-save-symbolic"
                 text: i18n("Save")
-                enabled: saveNameField.text.length > 0
+                enabled: saveNameField.acceptableInput
                 onClicked: {
-                    if (saveNameField.text.length > 0) {
-                        savePreset(saveNameField.text)
-                        saveNameField.text = ""
-                    }
+                    savePreset(saveNameField.text)
                     runCommand.exec(listPresetsCmd)
+                    saveNameField.text = ""
                 }
             }
             
