@@ -24,6 +24,26 @@ KCM.SimpleKCM {
     property int cfg_panelShadowX: panelShadowColorX.value
     property int cfg_panelShadowY: panelShadowColorY.value
 
+    header: RowLayout {
+        RowLayout {
+            Layout.leftMargin: Kirigami.Units.mediumSpacing
+            Layout.rightMargin: Kirigami.Units.smallSpacing
+            Item {
+                Layout.fillWidth: true
+            }
+            RowLayout {
+                Layout.alignment: Qt.AlignRight
+                Label {
+                    text: i18n("Last preset loaded:")
+                }
+                Label {
+                    text: plasmoid.configuration.lastPreset || "None"
+                    font.weight: Font.DemiBold
+                }
+            }
+        }
+    }
+
     Kirigami.FormLayout {
 
         Kirigami.Separator {
@@ -38,9 +58,9 @@ KCM.SimpleKCM {
             onCheckedChanged: cfg_hideRealPanelBg = checked
         }
         RowLayout {
+            Kirigami.FormData.label: i18n("Opacity:")
             TextField {
                 id: panelRealBgOpacity
-                Kirigami.FormData.label: i18n("Opacity:")
                 placeholderText: "0-1"
                 text: parseFloat(cfg_panelRealBgOpacity).toFixed(validator.decimals)
                 enabled: !hideRealPanelBg.checked
@@ -136,9 +156,9 @@ KCM.SimpleKCM {
             }
         }
         RowLayout {
+            Kirigami.FormData.label: i18n("Opacity:")
             TextField {
                 id: panelBgOpacity
-                Kirigami.FormData.label: i18n("Opacity:")
                 placeholderText: "0-1"
                 text: parseFloat(cfg_panelBgOpacity).toFixed(validator.decimals)
                 enabled: panelBgEnabled.checked

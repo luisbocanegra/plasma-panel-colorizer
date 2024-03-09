@@ -78,6 +78,15 @@ KCM.SimpleKCM {
     property int cfg_bgLineWidth
     property int cfg_bgLineXOffset
     property int cfg_bgLineYOffset
+    property string lastPreset
+    property string cfg_lastPreset
+
+    Connections {
+        target: plasmoid.configuration
+        onValueChanged: {
+            plasmoid.configuration.lastPreset = lastPreset
+        }
+    }
 
     P5Support.DataSource {
         id: runCommand
@@ -139,6 +148,7 @@ KCM.SimpleKCM {
     function applyPreset(filename) {
         console.log("Reading preset:", filename);
         runCommand.exec("cat '" + presetsDir + filename+"'")
+        lastPreset = filename
         loadPresetTimer.start()
     }
 
@@ -152,7 +162,7 @@ KCM.SimpleKCM {
 
     function loadPreset() {
         console.log("Loading preset contents...");
-        const ignoredConfigs = ["panelWidgetsWithTray", "panelWidgets", "objectName"]
+        const ignoredConfigs = ["panelWidgetsWithTray", "panelWidgets", "objectName", "lastPreset"]
         for (let i in presetContent) {
             const line = presetContent[i]
             if (line.includes("=")) {
@@ -170,7 +180,7 @@ KCM.SimpleKCM {
     function restoreSettings() {
         console.log("Restoring default settings");
         var config = plasmoid.configuration
-        const ignoredConfigs = ["panelWidgetsWithTray", "panelWidgets", "objectName"]
+        const ignoredConfigs = ["panelWidgetsWithTray", "panelWidgets", "objectName", "lastPreset"]
         for (var key of Object.keys(config)) {
             if (typeof config[key] === "function") continue
             if (key.endsWith("Default")) {
@@ -180,6 +190,7 @@ KCM.SimpleKCM {
                 root[cfgKey] = config[key]
             }
         }
+        lastPreset = ""
     }
 
     function savePreset(filename) {
@@ -202,65 +213,87 @@ KCM.SimpleKCM {
         runCommand.exec("rm '" + presetsDir + filename + "'" )
     }
 
+    function dumpProps(obj) {
+        console.error("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        for (var k of Object.keys(obj)) {
+            print(k + "=" + obj[k]+"\n")
+        }
+    }
+
+    property Component widgetBgComponent: Kirigami.ShadowedRectangle {
+        property var target // holds element with expanded property
+        
+        color: "red"
+        height: parent.height
+        width:  parent.width
+        opacity: 0.5
+
+    }
+
     Component.onCompleted: {
         runCommand.exec(cratePresetsDirCmd)
         runCommand.exec(listPresetsCmd)
     }
 
-    // actions: [
-    //     Kirigami.Action {
-    //         text: i18nc("@action:button Plasma-specific notifications", "System Notifications…")
-    //         icon.name: "notifications-symbolic"
-    //         enabled: true//root.notificationsAvailable
-    //         // onTriggered: root.openSystemNotificationSettings()
-    //     },
-    //     Kirigami.Action {
-    //         text: i18nc("@action:button Application-specific notifications", "Application Settings…")
-    //         icon.name: "applications-all-symbolic"
-    //         enabled: true//root.notificationsAvailable
-    //         // onTriggered: root.openSourcesSettings()
-    //     }
-    // ]
-    ColumnLayout {
+    header: RowLayout {
         RowLayout {
-            Layout.alignment: Qt.AlignHCenter
-            // horizontalAlignment: TextInput.AlignHCenter
-            Label {
-                text: "Enabled:"
+            Layout.leftMargin: Kirigami.Units.mediumSpacing
+            Layout.rightMargin: Kirigami.Units.smallSpacing
+            RowLayout {
+                Layout.alignment: Qt.AlignRight
+                Label {
+                    text: i18n("Enabled:")
+                }
+                CheckBox {
+                    id: isEnabled
+                    checked: cfg_isEnabled
+                    onCheckedChanged: cfg_isEnabled = checked
+                }
             }
-            CheckBox {
-                // Kirigami.FormData.label: i18n("Enabled:")
-                id: isEnabled
-                checked: cfg_isEnabled
-                onCheckedChanged: cfg_isEnabled = checked
+            Item {
+                Layout.fillWidth: true
+            }
+            RowLayout {
+                Layout.alignment: Qt.AlignRight
+                Label {
+                    text: i18n("Last preset loaded:")
+                }
+                Label {
+                    text: plasmoid.configuration.lastPreset || "None"
+                    font.weight: Font.DemiBold
+                }
             }
         }
+    }
+
+    ColumnLayout {
     Kirigami.FormLayout {
-
-
         RowLayout {
             Kirigami.FormData.label: i18n("Hide widget:")
-            Layout.alignment: Qt.AlignTop
-            
+            Kirigami.FormData.labelAlignment: Qt.AlignTop
+            RowLayout {
             CheckBox {
+                Layout.alignment: Qt.AlignTop
                 id: hideWidget
                 checked: cfg_hideWidget
                 onCheckedChanged: cfg_hideWidget = checked
             }
             Label {
+                Layout.alignment: Qt.AlignTop
                 text: i18n("Widget will show when configuring or panel Edit Mode")
                 opacity: 0.7
                 wrapMode: Text.Wrap
+                Layout.maximumWidth: 300
+            }
             }
         }
-    
+    }
 
-
-        Kirigami.Separator {
-            Kirigami.FormData.isSection: true
-            Kirigami.FormData.label: i18n("Presets")
-        }
-
+        Kirigami.FormLayout  {
+            Item {
+                Kirigami.FormData.isSection: true
+                Kirigami.FormData.label: i18n("Presets")
+            }
         RowLayout {
             Layout.preferredWidth: presetCards.width
             Layout.minimumWidth: 300
@@ -360,6 +393,6 @@ KCM.SimpleKCM {
                 }
             }
         }
-    }
+        }
     }
 }

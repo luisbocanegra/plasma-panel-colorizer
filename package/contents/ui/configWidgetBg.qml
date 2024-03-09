@@ -8,6 +8,7 @@ import "components" as Components
 
 KCM.SimpleKCM {
     id:root
+    property bool cfg_isEnabled: isEnabled.checked
     property bool cfg_widgetBgEnabled: widgetBgEnabled.checked
     property int cfg_mode: plasmoid.configuration.mode
     property int cfg_colorMode: plasmoid.configuration.colorMode
@@ -151,19 +152,38 @@ KCM.SimpleKCM {
         updateWidgetsModel()
     }
 
-    ColumnLayout {
+    header: RowLayout {
         RowLayout {
-            Layout.alignment: Qt.AlignHCenter
-            Label {
-                text: "Enabled:"
+            Layout.leftMargin: Kirigami.Units.mediumSpacing
+            Layout.rightMargin: Kirigami.Units.smallSpacing
+            RowLayout {
+                Layout.alignment: Qt.AlignRight
+                Label {
+                    text: i18n("Enabled:")
+                }
+                CheckBox {
+                    id: widgetBgEnabled
+                    checked: cfg_widgetBgEnabled
+                    onCheckedChanged: cfg_widgetBgEnabled = checked
+                }
             }
-            CheckBox {
-                id: widgetBgEnabled
-                checked: cfg_widgetBgEnabled
-                onCheckedChanged: cfg_widgetBgEnabled = checked
+            Item {
+                Layout.fillWidth: true
+            }
+            RowLayout {
+                Layout.alignment: Qt.AlignRight
+                Label {
+                    text: i18n("Last preset loaded:")
+                }
+                Label {
+                    text: plasmoid.configuration.lastPreset || "None"
+                    font.weight: Font.DemiBold
+                }
             }
         }
+    }
 
+    ColumnLayout {
     Kirigami.FormLayout {
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
@@ -171,9 +191,9 @@ KCM.SimpleKCM {
         }
 
         RowLayout {
+            Kirigami.FormData.label: i18n("Opacity:")
             TextField {
                 id: bgOpacity
-                Kirigami.FormData.label: i18n("Opacity:")
                 placeholderText: "0-1"
                 text: parseFloat(cfg_opacity).toFixed(validator.decimals)
                 Layout.preferredWidth: Kirigami.Units.gridUnit * 4
@@ -632,9 +652,9 @@ KCM.SimpleKCM {
             enabled: bgContrastFixEnabled.checked
         }
         RowLayout {
+            Kirigami.FormData.label: i18n("Saturation:")
             TextField {
                 id: bgSaturation
-                Kirigami.FormData.label: i18n("Saturation:")
                 placeholderText: "0-1"
                 text: parseFloat(cfg_bgSaturation).toFixed(validator.decimals)
                 enabled: bgContrastFixEnabled.checked && bgSaturationEnabled.checked
@@ -671,9 +691,9 @@ KCM.SimpleKCM {
             }
         }
         RowLayout {
+            Kirigami.FormData.label: i18n("Lightness:")
             TextField {
                 id: bgLightness
-                Kirigami.FormData.label: i18n("Lightness:")
                 placeholderText: "0-1"
                 text: parseFloat(cfg_bgLightness).toFixed(validator.decimals)
                 enabled: bgContrastFixEnabled.checked

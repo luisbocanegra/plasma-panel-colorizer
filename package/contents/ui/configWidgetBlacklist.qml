@@ -56,6 +56,26 @@ KCM.SimpleKCM {
         updateWidgetsModel()
     }
 
+    header: RowLayout {
+        RowLayout {
+            Layout.leftMargin: Kirigami.Units.mediumSpacing
+            Layout.rightMargin: Kirigami.Units.smallSpacing
+            Item {
+                Layout.fillWidth: true
+            }
+            RowLayout {
+                Layout.alignment: Qt.AlignRight
+                Label {
+                    text: i18n("Last preset loaded:")
+                }
+                Label {
+                    text: plasmoid.configuration.lastPreset || "None"
+                    font.weight: Font.DemiBold
+                }
+            }
+        }
+    }
+
     ColumnLayout {
         Label {
             Layout.alignment: Qt.AlignHCenter
