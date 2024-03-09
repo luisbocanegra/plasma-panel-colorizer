@@ -620,6 +620,7 @@ PlasmoidItem {
         var idx=0
         const blacklisted = blacklist.split("|").map(function (line) { return line.trim() })
         const maskList = forceRecolor.split("|").map(function (line) { return line.trim() })
+        // console.error(forceRecolor);
         for(let i = 0; i < panelLayout.children.length; i++) {
             const child = panelLayout.children[i];
 
