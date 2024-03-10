@@ -80,6 +80,7 @@ KCM.SimpleKCM {
     property int cfg_bgLineYOffset
     property string lastPreset
     property string cfg_lastPreset
+    property string editingPreset
 
     Connections {
         target: plasmoid.configuration
@@ -145,10 +146,43 @@ KCM.SimpleKCM {
         return value;
     }
 
+    Kirigami.PromptDialog {
+        id: deletePresetDialog
+        title: "Delete preset '"+editingPreset+"?"
+        subtitle: i18n("This will permanently delete the file from your system!")
+        standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
+        onAccepted: {
+            deletePreset(editingPreset)
+            runCommand.exec(listPresetsCmd)
+        }
+    }
+
+    Kirigami.PromptDialog {
+        id: updatePresetDialog
+        title: "Update preset '"+editingPreset+"'?"
+        subtitle: i18n("Preset configuration will be overwritten!")
+        standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
+        onAccepted: {
+            savePreset(editingPreset)
+            runCommand.exec(listPresetsCmd)
+        }
+    }
+
+    Kirigami.PromptDialog {
+        id: newPresetDialog
+        title: "Create preset '"+editingPreset+"'?"
+        subtitle: i18n("Any existing preset with the same name will be overwritten!")
+        standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
+        onAccepted: {
+            savePreset(editingPreset)
+            runCommand.exec(listPresetsCmd)
+            saveNameField.text = ""
+        }
+    }
+
     function applyPreset(filename) {
         console.log("Reading preset:", filename);
         runCommand.exec("cat '" + presetsDir + filename+"'")
-        lastPreset = filename
         loadPresetTimer.start()
     }
 
@@ -178,7 +212,7 @@ KCM.SimpleKCM {
     }
 
     function restoreSettings() {
-        console.log("Restoring default settings");
+        console.log("Restoring default configuration");
         var config = plasmoid.configuration
         const ignoredConfigs = ["panelWidgetsWithTray", "panelWidgets", "objectName", "lastPreset"]
         for (var key of Object.keys(config)) {
@@ -313,7 +347,7 @@ KCM.SimpleKCM {
             TextField {
                 id: saveNameField
                 Layout.fillWidth: true
-                placeholderText: i18n("New preset name")
+                placeholderText: i18n("New from current settings")
                 validator: RegularExpressionValidator {
                     regularExpression: /^(?![\s\.])([a-zA-Z0-9. _\-]+)(?<![\.|\s])$/
                 }
@@ -323,9 +357,8 @@ KCM.SimpleKCM {
                 text: i18n("Save")
                 enabled: saveNameField.acceptableInput
                 onClicked: {
-                    savePreset(saveNameField.text)
-                    runCommand.exec(listPresetsCmd)
-                    saveNameField.text = ""
+                    editingPreset = saveNameField.text
+                    newPresetDialog.open()
                 }
             }
             
@@ -368,7 +401,8 @@ KCM.SimpleKCM {
                             text: i18n("Load")
                             Layout.preferredHeight: saveBtn.height
                             onClicked: {
-                                applyPreset(modelData)
+                                lastPreset = modelData
+                                applyPreset(lastPreset)
                             }
                         }
                         Button {
@@ -376,17 +410,16 @@ KCM.SimpleKCM {
                             icon.name: "document-save-symbolic"
                             // text: i18n("Update")
                             onClicked: {
-                                if (modelData.length > 0) {
-                                    savePreset(modelData)
-                                }
+                                editingPreset = modelData
+                                updatePresetDialog.open()
                             }
                         }
                         Button {
                             // text: i18n("Delete")
                             icon.name: "edit-delete-remove-symbolic"
                             onClicked: {
-                                deletePreset(modelData)
-                                runCommand.exec(listPresetsCmd)
+                                editingPreset = modelData
+                                onClicked: deletePresetDialog.open()
                             }
                         }
                     }
