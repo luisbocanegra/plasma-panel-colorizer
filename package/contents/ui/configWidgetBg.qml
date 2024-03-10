@@ -732,7 +732,7 @@ KCM.SimpleKCM {
 
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
-            Kirigami.FormData.label: i18n("Background margin rules")
+            Kirigami.FormData.label: i18n("Background margin")
         }
 
         SpinBox {

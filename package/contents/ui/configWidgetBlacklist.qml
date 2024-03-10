@@ -79,7 +79,7 @@ KCM.SimpleKCM {
     ColumnLayout {
         Label {
             Layout.alignment: Qt.AlignHCenter
-            text: i18n("Unchecked widgets will not be colorized")
+            text: i18n("Unchecked widgets will not be colorized.")
             Layout.maximumWidth: widgetCards.width
             wrapMode: Text.Wrap
         }

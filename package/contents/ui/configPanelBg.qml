@@ -98,14 +98,14 @@ KCM.SimpleKCM {
         }
 
         Label {
-            text: i18n("Hiding the background also removes the contrast and blur, just changing the opacity does not.")
+            text: i18n("Hiding the background also removes the contrast and blur. Changing just the opacity does not.")
             opacity: 0.7
             Layout.maximumWidth: 400
             wrapMode: Text.Wrap
         }
 
         CheckBox {
-            Kirigami.FormData.label: i18n("Custom fixed side padding:")
+            Kirigami.FormData.label: i18n("Fixed side padding:")
             id: enableCustomPadding
             checked: cfg_enableCustomPadding
             onCheckedChanged: cfg_enableCustomPadding = checked
@@ -124,7 +124,7 @@ KCM.SimpleKCM {
         }
 
         Label {
-            text: i18n("This option makes the widgets always stay at the same distance from the sides of the panel. Changing panel settings with this option enabled may cause some jankiness, specially in edit mode and vertical panels. Disable and restart Plasma or logout to restore the original behavior.")
+            text: i18n("This option makes the widgets always stay at the same distance from the sides of the floating panel. Changing panel settings with this option enabled may cause some jankiness, specially in edit mode and vertical panels. Disable and restart Plasma or logout to restore the original behavior.")
             opacity: 0.7
             Layout.maximumWidth: 400
             wrapMode: Text.Wrap
