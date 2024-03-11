@@ -4,8 +4,14 @@ import org.kde.plasma.configuration 2.0
 ConfigModel {
     ConfigCategory {
         name: i18n("General")
-        icon: "preferences-desktop"
+        icon: "preferences"
         source: "configGeneral.qml"
+    }
+
+    ConfigCategory {
+        name: i18n("Presets autoloading")
+        icon: "system-run"
+        source: "configPresetAutoload.qml"
     }
 
     ConfigCategory {

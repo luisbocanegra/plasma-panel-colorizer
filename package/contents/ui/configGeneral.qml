@@ -18,6 +18,7 @@ KCM.SimpleKCM {
     property string listPresetsCmd: "find "+presetsDir+" -type f -print0 | while IFS= read -r -d '' file; do basename \"$file\"; done | sort"
     property var presets: []
     property var presetContent: ""
+    property var ignoredConfigs: ["panelWidgetsWithTray", "panelWidgets", "objectName", "lastPreset"]
 
     property bool cfg_widgetBgEnabled
     property int cfg_mode
@@ -85,7 +86,7 @@ KCM.SimpleKCM {
     Connections {
         target: plasmoid.configuration
         onValueChanged: {
-            plasmoid.configuration.lastPreset = lastPreset
+            cfg_lastPreset = lastPreset
         }
     }
 
@@ -190,13 +191,12 @@ KCM.SimpleKCM {
         id: loadPresetTimer
         interval: 500
         onTriggered: {
-            loadPreset(presetContent)
+            loadPreset()
         }
     }
 
     function loadPreset() {
         console.log("Loading preset contents...");
-        const ignoredConfigs = ["panelWidgetsWithTray", "panelWidgets", "objectName", "lastPreset"]
         for (let i in presetContent) {
             const line = presetContent[i]
             if (line.includes("=")) {
@@ -214,7 +214,6 @@ KCM.SimpleKCM {
     function restoreSettings() {
         console.log("Restoring default configuration");
         var config = plasmoid.configuration
-        const ignoredConfigs = ["panelWidgetsWithTray", "panelWidgets", "objectName", "lastPreset"]
         for (var key of Object.keys(config)) {
             if (typeof config[key] === "function") continue
             if (key.endsWith("Default")) {
@@ -224,7 +223,7 @@ KCM.SimpleKCM {
                 root[cfgKey] = config[key]
             }
         }
-        lastPreset = ""
+        cfg_lastPreset = ""
     }
 
     function savePreset(filename) {

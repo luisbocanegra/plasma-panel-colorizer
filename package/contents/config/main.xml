@@ -317,10 +317,21 @@
         type="Int">
         <default>-2</default>
     </entry>
+    <!-- presets -->
     <entry
         name="lastPreset"
         type="String">
         <default></default>
+    </entry>
+    <entry
+        name="normalPreset"
+        type="Int">
+        <default>0</default>
+    </entry>
+    <entry
+        name="floatingPreset"
+        type="Int">
+        <default>0</default>
     </entry>
   </group>
 </kcfg>

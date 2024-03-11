@@ -129,6 +129,14 @@ PlasmoidItem {
     property int bgLineXOffset: plasmoid.configuration.bgLineXOffset
     property int bgLineYOffset: plasmoid.configuration.bgLineYOffset
 
+    property string presetsDir: StandardPaths.writableLocation(
+                    StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/"
+    property string listPresetsCmd: "find "+presetsDir+" -type f -print0 | while IFS= read -r -d '' file; do basename \"$file\"; done | sort"
+    property var presets: []
+    property var presetContent: ""
+    property var ignoredConfigs: ["panelWidgetsWithTray", "panelWidgets", "objectName", "lastPreset"]
+    property int floatingPreset: plasmoid.configuration.floatingPreset
+    property int normalPreset: plasmoid.configuration.normalPreset
 
     function opacityToHex(opacity) {
         const op = Math.max(0, Math.min(1, opacity))
@@ -155,6 +163,80 @@ PlasmoidItem {
         }
 
         signal exited(string cmd, int exitCode, int exitStatus, string stdout, string stderr)
+    }
+
+    Connections {
+        target: runCommand
+        function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
+            // console.log(cmd);
+            if (exitCode!==0) return
+            if(cmd === listPresetsCmd) {
+                if (stdout.length > 0) {
+                    presets = ("none\n"+stdout).trim().split("\n")
+                } else {
+                    presets = []
+                }
+            }
+            if (cmd.startsWith("cat")) {
+                presetContent = stdout.trim().split("\n")
+            }
+        }
+    }
+
+    function parseValues(value) {
+        if (typeof value === 'boolean') {
+            return value;
+        }
+
+        if (value === 'true' || value === 'false') {
+            return value === 'true';
+        }
+
+        const numericValue = parseFloat(value);
+        if (!isNaN(numericValue)) {
+            return numericValue;
+        }
+
+        return value;
+    }
+
+    function applyPreset(presetIndex) {
+        const filename = presets[presetIndex]
+        console.log("Reading preset:", filename);
+        plasmoid.configuration["lastPreset"] = filename
+        runCommand.exec("cat '" + presetsDir + filename+"'")
+        loadPresetTimer.start()
+    }
+
+    Timer {
+        id: loadPresetTimer
+        interval: 500
+        onTriggered: {
+            loadPreset()
+        }
+    }
+
+    function loadPreset() {
+        console.log("Loading preset contents...");
+        for (let i in presetContent) {
+            const line = presetContent[i]
+            if (line.includes("=")) {
+                const parts = line.split("=")
+                const key = parts[0]
+                const val = parts[1]
+                if (ignoredConfigs.some(function (k) { return key.includes(k)})) continue
+                plasmoid.configuration[key] = parseValues(val)
+            }
+        }
+    }
+
+    onIsFloatingChanged: {
+        console.log("FLOATING:", isFloating);
+        if (isFloating) {
+            applyPreset(floatingPreset)
+        } else {
+            applyPreset(normalPreset)
+        }
     }
 
     function hexToRgb(hex) {
@@ -730,6 +812,7 @@ PlasmoidItem {
         customColors = readColors(plasmoid.configuration.customColors)
         fgCustomColors = readColors(plasmoid.configuration.fgCustomColors)
         if (!onDesktop) {
+            runCommand.exec(listPresetsCmd)
             init()
         } else {
             console.error("Panel not detected, aborted");
