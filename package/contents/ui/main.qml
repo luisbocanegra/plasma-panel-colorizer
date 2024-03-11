@@ -544,12 +544,21 @@ PlasmoidItem {
         plasmoid.configuration.panelWidgetsWithTray = ""
         function findPlasmoid(child) {
             if (child instanceof PlasmaExtras.Representation) return
+            // App tray icons
+            if (child.itemModel) {
+                const model = child.itemModel
+                if (model.itemType==="StatusNotifier") {
+                    const name = model.Id
+                    const title = model.ToolTipTitle !== "" ? model.ToolTipTitle : model.Title
+                    const icon = model.IconName
+                    plasmoid.configuration.panelWidgetsWithTray += name + "," + title + "," + icon + "|"
+                }
+            }
             if (child.plasmoid?.pluginName && child.plasmoid.pluginName !== "org.kde.plasma.private.systemtray") {
                 const name = child.plasmoid.pluginName
                 const title = child.plasmoid.title
                 const icon = child.plasmoid.icon
                 const inTray = child.plasmoid.containmentDisplayHints & PlasmaCore.Types.ContainmentDrawsPlasmoidHeading
-                // console.log(inTray, name);
                 if (!inTray) {
                     plasmoid.configuration.panelWidgets += name + "," + title + "," + icon + "|"
                 }
@@ -576,6 +585,16 @@ PlasmoidItem {
             forceMask = maskList.some(function (target) {
                 return target.length > 0 && name.includes(target)
             })
+        }
+        // App tray icons
+        if (element.itemModel) {
+            const model = element.itemModel
+            if (model.itemType==="StatusNotifier") {
+                const name = model.Id
+                forceMask = maskList.some(function (target) {
+                    return target.length > 0 && name.includes(target)
+                })
+            }
         }
 
         if (element.hasOwnProperty("color")) {
@@ -734,7 +753,10 @@ PlasmoidItem {
         interval: 400
         onTriggered: {
             console.log("startTimer");
-            if (destroyRequired) createRects()
+            if (destroyRequired) {
+                createRects()
+                findWidgets()
+            }
             isLoaded = true
             destroyRequired = false
             rainbowTimer.interval = 100
