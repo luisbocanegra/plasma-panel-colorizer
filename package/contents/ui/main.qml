@@ -514,8 +514,12 @@ PlasmoidItem {
     function colorize() {
         var bgColors = []
         if (colorMode === 2) {
-            [bgColors, bgColorStart] = getNextColors(customColors, bgColorStart, rectangles.count)
-            bgColorStart = (bgColorStart + 1) % customColors.length;
+            if (mode === 1) {
+                [bgColors, bgColorStart] = getNextColors(customColors, bgColorStart, rectangles.count)
+                bgColorStart = (bgColorStart + 1) % customColors.length;
+            } else {
+                [bgColors, bgColorStart] = getNextColors(customColors, 0, rectangles.count)
+            }
         }
         for(let i = 0; i < rectangles.count; i++) {
             try {
@@ -613,8 +617,12 @@ PlasmoidItem {
         if (addingColors) {
             currentFgColors = []
             if (fgColorMode === 2) {
-                [currentFgColors, fgColorStart] = getNextColors(fgCustomColors, fgColorStart, rectangles.count)
-                fgColorStart = (fgColorStart + 1) % fgCustomColors.length;
+                if (fgMode === 1){
+                    [currentFgColors, fgColorStart] = getNextColors(fgCustomColors, fgColorStart, rectangles.count)
+                    fgColorStart = (fgColorStart + 1) % fgCustomColors.length;
+                } else {
+                    [currentFgColors, fgColorStart] = getNextColors(fgCustomColors, 0, rectangles.count)
+                }
             }
         }
         var idx=0
