@@ -69,6 +69,7 @@ PlasmoidItem {
     Plasmoid.status: (inEditMode || !hideWidget || showToUpdate) ?
                         PlasmaCore.Types.ActiveStatus :
                         PlasmaCore.Types.HiddenStatus
+    property bool widgetConfiguring: Plasmoid.userConfiguring
 
     property int childCount: 0
     property bool wasEditing: false
@@ -339,6 +340,11 @@ PlasmoidItem {
         destroyRequired = true
     }
 
+    onWidgetConfiguringChanged: {
+        // user should always see the latest widgets when configuring the widget
+        if (widgetConfiguring) findWidgets()
+    }
+
     Connections {
         target: plasmoid.configuration
         onValueChanged: {
@@ -540,6 +546,7 @@ PlasmoidItem {
     }
 
     function findWidgets() {
+        console.log("Updating panel widgets list");
         plasmoid.configuration.panelWidgets = ""
         plasmoid.configuration.panelWidgetsWithTray = ""
         function findPlasmoid(child) {
