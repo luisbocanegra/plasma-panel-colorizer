@@ -8,6 +8,8 @@ import org.kde.plasma.plasmoid
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.plasma5support as P5Support
 import org.kde.plasma.workspace.components as WorkspaceComponents
+import org.kde.taskmanager 0.1 as TaskManager
+
 import "components" as Components
 
 PlasmoidItem {
@@ -134,9 +136,18 @@ PlasmoidItem {
     property string listPresetsCmd: "find "+presetsDir+" -type f -print0 | while IFS= read -r -d '' file; do basename \"$file\"; done | sort"
     property var presets: []
     property var presetContent: ""
-    property var ignoredConfigs: ["panelWidgetsWithTray", "panelWidgets", "objectName", "lastPreset"]
+    property var ignoredConfigs: [
+        "panelWidgetsWithTray",
+        "panelWidgets",
+        "objectName",
+        "lastPreset",
+        "floatingPreset",
+        "normalPreset",
+        "maximizedPreset"
+    ]
     property int floatingPreset: plasmoid.configuration.floatingPreset
     property int normalPreset: plasmoid.configuration.normalPreset
+    property int maximizedPreset: plasmoid.configuration.maximizedPreset
 
     function opacityToHex(opacity) {
         const op = Math.max(0, Math.min(1, opacity))
@@ -202,8 +213,8 @@ PlasmoidItem {
 
     function applyPreset(presetIndex) {
         const filename = presets[presetIndex]
-        console.log("Reading preset:", filename);
-        plasmoid.configuration["lastPreset"] = filename
+        console.log("Reading preset:", presetIndex, filename, presets);
+        plasmoid.configuration.lastPreset = filename
         runCommand.exec("cat '" + presetsDir + filename+"'")
         loadPresetTimer.start()
     }
@@ -231,9 +242,20 @@ PlasmoidItem {
     }
 
     onIsFloatingChanged: {
+        if (floatingPreset===0) return
         console.log("FLOATING:", isFloating);
-        if (isFloating) {
+        if (isFloating && floatingPreset !== 0) {
             applyPreset(floatingPreset)
+        } else {
+            applyPreset(normalPreset)
+        }
+    }
+
+    onCurrentWindowMaximizedChanged: {
+        if (maximizedPreset===0) return
+        console.log("MAXIMIZED:", currentWindowMaximized);
+        if (currentWindowMaximized) {
+            applyPreset(maximizedPreset)
         } else {
             applyPreset(normalPreset)
         }
@@ -369,8 +391,8 @@ PlasmoidItem {
 
     function init() {
         if (isEnabled) {
-            initTimer.start()
-            paddingTimer.start()
+            initTimer.restart()
+            paddingTimer.restart()
             updateFgColor()
         } else {
             rainbowTimer.stop()
@@ -1057,5 +1079,64 @@ PlasmoidItem {
                 start();
             }
         }
+    }
+
+    // From https://github.com/KDE/plasma-active-window-control/blob/master/package/contents/ui/main.qml
+    property var activeTaskLocal: null
+    property bool noWindowActive: true
+    property bool currentWindowMaximized: false
+    TaskManager.TasksModel {
+        id: tasksModel
+        sortMode: TaskManager.TasksModel.SortVirtualDesktop
+        groupMode: TaskManager.TasksModel.GroupDisabled
+
+        screenGeometry: main.screenGeometry
+        filterByScreen: true
+
+        onActiveTaskChanged: {
+            updateActiveWindowInfo()
+        }
+        onDataChanged: {
+            updateActiveWindowInfo()
+        }
+        onCountChanged: {
+            updateActiveWindowInfo()
+        }
+    }
+
+    function activeTask() {
+        return activeTaskLocal
+    }
+
+    function activeTaskExists() {
+        return activeTaskLocal.display !== undefined
+    }
+
+    function updateActiveWindowInfo() {
+
+        var activeTaskIndex = tasksModel.activeTask
+
+        // fallback for Plasma 5.8
+        var abstractTasksModel = TaskManager.AbstractTasksModel || {}
+        var isActive = abstractTasksModel.IsActive || 271
+        var appName = abstractTasksModel.AppName || 258
+        var isMaximized = abstractTasksModel.IsMaximized || 276
+        var virtualDesktop = abstractTasksModel.VirtualDesktop || 286
+
+        if (!tasksModel.data(activeTaskIndex, isActive)) {
+            activeTaskLocal = {}
+        } else {
+            activeTaskLocal = {
+                display: tasksModel.data(activeTaskIndex, Qt.DisplayRole),
+                decoration: tasksModel.data(activeTaskIndex, Qt.DecorationRole),
+                AppName: tasksModel.data(activeTaskIndex, appName),
+                IsMaximized: tasksModel.data(activeTaskIndex, isMaximized),
+                VirtualDesktop: tasksModel.data(activeTaskIndex, virtualDesktop)
+            }
+        }
+
+        var actTask = activeTask()
+        noWindowActive = !activeTaskExists()
+        currentWindowMaximized = !noWindowActive && actTask.IsMaximized === true
     }
 }

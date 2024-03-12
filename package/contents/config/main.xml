@@ -333,5 +333,10 @@
         type="Int">
         <default>0</default>
     </entry>
+    <entry
+        name="maximizedPreset"
+        type="Int">
+        <default>0</default>
+    </entry>
   </group>
 </kcfg>

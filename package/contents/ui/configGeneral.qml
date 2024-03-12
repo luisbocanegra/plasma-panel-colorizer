@@ -18,7 +18,15 @@ KCM.SimpleKCM {
     property string listPresetsCmd: "find "+presetsDir+" -type f -print0 | while IFS= read -r -d '' file; do basename \"$file\"; done | sort"
     property var presets: []
     property var presetContent: ""
-    property var ignoredConfigs: ["panelWidgetsWithTray", "panelWidgets", "objectName", "lastPreset"]
+    property var ignoredConfigs: [
+        "panelWidgetsWithTray",
+        "panelWidgets",
+        "objectName",
+        "lastPreset",
+        "floatingPreset",
+        "normalPreset",
+        "maximizedPreset"
+    ]
 
     property bool cfg_widgetBgEnabled
     property int cfg_mode

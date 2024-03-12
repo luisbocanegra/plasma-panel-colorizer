@@ -21,6 +21,17 @@ KCM.SimpleKCM {
 
     property alias cfg_normalPreset: normalPreset.currentIndex
     property alias cfg_floatingPreset: floatingPreset.currentIndex
+    property alias cfg_maximizedPreset: maximizedPreset.currentIndex
+
+    property var ignoredConfigs: [
+        "panelWidgetsWithTray",
+        "panelWidgets",
+        "objectName",
+        "lastPreset",
+        "floatingPreset",
+        "normalPreset",
+        "maximizedPreset"
+    ]
 
     ListModel {
         id: presetsModel
@@ -146,7 +157,6 @@ KCM.SimpleKCM {
 
     function loadPreset() {
         console.log("Loading preset contents...");
-        const ignoredConfigs = ["panelWidgetsWithTray", "panelWidgets", "objectName", "lastPreset"]
         for (let i in presetContent) {
             const line = presetContent[i]
             if (line.includes("=")) {
@@ -164,7 +174,6 @@ KCM.SimpleKCM {
     function restoreSettings() {
         console.log("Restoring default configuration");
         var config = plasmoid.configuration
-        const ignoredConfigs = ["panelWidgetsWithTray", "panelWidgets", "objectName", "lastPreset"]
         for (var key of Object.keys(config)) {
             if (typeof config[key] === "function") continue
             if (key.endsWith("Default")) {
@@ -239,9 +248,17 @@ KCM.SimpleKCM {
             }
             ComboBox {
                 id: floatingPreset
-                Kirigami.FormData.label: i18n("Floating:")
+                Kirigami.FormData.label: i18n("Floating panel:")
                 model: presetsModel
                 textRole: "name"
+                enabled: cfg_maximizedPreset === 0
+            }
+            ComboBox {
+                id: maximizedPreset
+                Kirigami.FormData.label: i18n("Active window aximized:")
+                model: presetsModel
+                textRole: "name"
+                enabled: cfg_floatingPreset === 0
             }
         }
     }
