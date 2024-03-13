@@ -149,6 +149,8 @@ PlasmoidItem {
     property int normalPreset: plasmoid.configuration.normalPreset
     property int maximizedPreset: plasmoid.configuration.maximizedPreset
 
+    property string lastPreset
+
     function opacityToHex(opacity) {
         const op = Math.max(0, Math.min(1, opacity))
         const intOpacity = Math.round(op * 255)
@@ -214,7 +216,7 @@ PlasmoidItem {
     function applyPreset(presetIndex) {
         const filename = presets[presetIndex]
         console.log("Reading preset:", presetIndex, filename, presets);
-        plasmoid.configuration.lastPreset = filename
+        lastPreset = filename
         runCommand.exec("cat '" + presetsDir + filename+"'")
         loadPresetTimer.start()
     }
@@ -239,6 +241,8 @@ PlasmoidItem {
                 plasmoid.configuration[key] = parseValues(val)
             }
         }
+        plasmoid.configuration.lastPreset = lastPreset
+        plasmoid.configuration.writeConfig();
     }
 
     onIsFloatingChanged: {
@@ -452,6 +456,15 @@ PlasmoidItem {
     Connections {
         target: plasmoid.configuration
         onValueChanged: {
+            configChangedTimer.restart()
+        }
+    }
+
+    Timer {
+        id: configChangedTimer
+        interval: 100
+        onTriggered: {
+            console.error("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
             console.log("CONFIG CHANGED");
             isEnabled = plasmoid.configuration.isEnabled
             mode = plasmoid.configuration.mode
@@ -514,19 +527,9 @@ PlasmoidItem {
         for (var i in panelLayout.children) {
             const child = panelLayout.children[i];
 
-            if (!child.applet) continue
-            if (!child.applet.plasmoid) {
-                continue
-            }
-
             // name may not be available while gragging into the panel and
             // other situations
-            try {
-                console.error(child.applet.plasmoid.pluginName);
-            } catch (e) {
-                console.error(e);
-                continue
-            }
+            if (!child.applet?.plasmoid?.pluginName) continue
 
             // TODO: Code for handling expanded widget action is here but not used yet
             const name = child.applet.plasmoid.pluginName
@@ -867,7 +870,6 @@ PlasmoidItem {
             console.log("startTimer");
             if (destroyRequired) {
                 createRects()
-                findWidgets()
             }
             isLoaded = true
             destroyRequired = false

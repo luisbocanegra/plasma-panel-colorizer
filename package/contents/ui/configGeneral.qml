@@ -11,7 +11,6 @@ KCM.SimpleKCM {
     id:root
     property bool cfg_isEnabled: isEnabled.checked
     property bool cfg_hideWidget: hideWidget.checked
-    property int slotCount: 0
     property string presetsDir: StandardPaths.writableLocation(
                     StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/"
     property string cratePresetsDirCmd: "mkdir -p " + presetsDir
