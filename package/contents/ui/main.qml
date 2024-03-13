@@ -246,7 +246,7 @@ PlasmoidItem {
     }
 
     onIsFloatingChanged: {
-        if (floatingPreset===0) return
+        if (floatingPreset === 0) return
         console.log("FLOATING:", isFloating);
         if (isFloating && floatingPreset !== 0) {
             applyPreset(floatingPreset)
@@ -255,10 +255,10 @@ PlasmoidItem {
         }
     }
 
-    onCurrentWindowMaximizedChanged: {
-        if (maximizedPreset===0) return
-        console.log("MAXIMIZED:", currentWindowMaximized);
-        if (currentWindowMaximized) {
+    onMaximizedWindowExistsChanged: {
+        if (maximizedPreset === 0) return
+        console.log("MAXIMIZED:", maximizedWindowExists);
+        if (maximizedWindowExists) {
             applyPreset(maximizedPreset)
         } else {
             applyPreset(normalPreset)
@@ -829,7 +829,8 @@ PlasmoidItem {
     //     onTriggered: {
     //         // console.log("fgMode:", fgMode, "fgInterval", fgRainbowInterval, (fgMode === 1));
     //         // console.log(plasmoid.configuration.panelWidgets);
-    //         findWidgets()
+    //         // findWidgets()
+    //         console.error("MAX", maximizedWindowExists );
     //     }
     // }
 
@@ -837,7 +838,6 @@ PlasmoidItem {
         customColors = readColors(plasmoid.configuration.customColors)
         fgCustomColors = readColors(plasmoid.configuration.fgCustomColors)
         if (!onDesktop) {
-            runCommand.exec(listPresetsCmd)
             init()
         } else {
             console.error("Panel not detected, aborted");
@@ -858,6 +858,7 @@ PlasmoidItem {
             }
             runCommand.exec(saveSchemeCmd)
             startTimer.start()
+            if (!isLoaded) runCommand.exec(listPresetsCmd)
         }
     }
 
@@ -1083,62 +1084,56 @@ PlasmoidItem {
         }
     }
 
-    // From https://github.com/KDE/plasma-active-window-control/blob/master/package/contents/ui/main.qml
+    // Based on https://github.com/KDE/plasma-active-window-control/blob/master/package/contents/ui/main.qml
     property var activeTaskLocal: null
     property bool noWindowActive: true
     property bool currentWindowMaximized: false
+    property bool maximizedWindowExists: false
+
+    TaskManager.VirtualDesktopInfo {
+        id: virtualDesktopInfo
+    }
+
+    TaskManager.ActivityInfo {
+        id: activityInfo
+        readonly property string nullUuid: "00000000-0000-0000-0000-000000000000"
+    }
+
     TaskManager.TasksModel {
         id: tasksModel
         sortMode: TaskManager.TasksModel.SortVirtualDesktop
         groupMode: TaskManager.TasksModel.GroupDisabled
-
+        virtualDesktop: virtualDesktopInfo.currentDesktop
+        activity: activityInfo.currentActivity
+        filterByVirtualDesktop: true
         screenGeometry: main.screenGeometry
         filterByScreen: true
+        filterByActivity: true
+        filterMinimized: true
 
         onActiveTaskChanged: {
-            updateActiveWindowInfo()
+            hasMaximized()
         }
         onDataChanged: {
-            updateActiveWindowInfo()
+            hasMaximized()
         }
         onCountChanged: {
-            updateActiveWindowInfo()
+            hasMaximized()
         }
     }
 
-    function activeTask() {
-        return activeTaskLocal
-    }
-
-    function activeTaskExists() {
-        return activeTaskLocal.display !== undefined
-    }
-
-    function updateActiveWindowInfo() {
-
-        var activeTaskIndex = tasksModel.activeTask
-
-        // fallback for Plasma 5.8
+    function hasMaximized() {
         var abstractTasksModel = TaskManager.AbstractTasksModel || {}
-        var isActive = abstractTasksModel.IsActive || 271
-        var appName = abstractTasksModel.AppName || 258
-        var isMaximized = abstractTasksModel.IsMaximized || 276
-        var virtualDesktop = abstractTasksModel.VirtualDesktop || 286
+        var IsMaximized = abstractTasksModel.IsMaximized || 276
+        var IsActive = abstractTasksModel.IsActive || 271
+        var isMaximized = false
 
-        if (!tasksModel.data(activeTaskIndex, isActive)) {
-            activeTaskLocal = {}
-        } else {
-            activeTaskLocal = {
-                display: tasksModel.data(activeTaskIndex, Qt.DisplayRole),
-                decoration: tasksModel.data(activeTaskIndex, Qt.DecorationRole),
-                AppName: tasksModel.data(activeTaskIndex, appName),
-                IsMaximized: tasksModel.data(activeTaskIndex, isMaximized),
-                VirtualDesktop: tasksModel.data(activeTaskIndex, virtualDesktop)
-            }
+        for (var i = 0; i < tasksModel.count; i++) {
+            const currentTask = tasksModel.index(i,0)
+            if (currentTask === undefined) continue
+            isMaximized = Boolean(tasksModel.data(currentTask, IsMaximized))
+            if (isMaximized) break
         }
-
-        var actTask = activeTask()
-        noWindowActive = !activeTaskExists()
-        currentWindowMaximized = !noWindowActive && actTask.IsMaximized === true
+        maximizedWindowExists = isMaximized
     }
 }

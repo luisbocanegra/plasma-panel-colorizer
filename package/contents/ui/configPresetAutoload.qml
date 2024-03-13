@@ -255,7 +255,7 @@ KCM.SimpleKCM {
             }
             ComboBox {
                 id: maximizedPreset
-                Kirigami.FormData.label: i18n("Active window aximized:")
+                Kirigami.FormData.label: i18n("Maximized window is shown:")
                 model: presetsModel
                 textRole: "name"
                 enabled: cfg_floatingPreset === 0
