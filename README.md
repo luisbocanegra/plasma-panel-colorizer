@@ -20,6 +20,14 @@ Inspired by the Latte Dock (now unmaintained) theming and boosted by the lazines
 
 ## Features
 
+### Presets
+
+* Create your own configuration presets
+* Restore defaults
+* Preset auto-loading
+  * Floating panel
+  * Maximized window shown
+
 ### Widget Background
 
 * Color modes
@@ -28,17 +36,19 @@ Inspired by the Latte Dock (now unmaintained) theming and boosted by the lazines
     * Interval
     * Fading
 * Colors
-  * Single
-  * Accent
+  * Custom
+  * System
   * Custom list
   * Random
-    * Saturation
-    * Lightness
+* Contrast correction
 * Style
-  * Padding rules
+  * Spacing
+  * Margin rules
   * Border radius
+  * Outline
   * Opacity
   * Shadow
+  * Line mode
 
 ### Icons and text
 
@@ -47,21 +57,23 @@ Inspired by the Latte Dock (now unmaintained) theming and boosted by the lazines
   * Interval
   * Follow widget background
 * Colors
-  * Single
-  * Accent
+  * Custom
+  * System
   * Custom list
   * Random
   * Contrast correction
 * Opacity
 * Blacklisted widgets color
 * Force icon color to on specific plasmoids that use Kirigami.Icon
+* Recolor applications tray icon
 
 ### Panel background
 
 * Opacity
 * Color
 * Border radius
-* Panel side padding (force same padding on all sides)
+* Outline
+* Constant floating panel side padding
 
 > [!WARNING]
 > Changing panel settings (position, alignment, width etc.) with this option enabled may cause some jankiness (including visual overflow or widget position freezes). Restarting Plasma or logging out may fix those, if not, disable it and logout to restore the original behavior.
@@ -80,9 +92,9 @@ Inspired by the Latte Dock (now unmaintained) theming and boosted by the lazines
 
 Install from KDE Store or use `Get new widgets..`
 
-* ~~[Plasma 5](https://store.kde.org/p/2131149)~~ version v0.2.0 **[No longer maintained](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/10)**
+* ~~[Plasma 5](https://store.kde.org/p/2131149) version v0.2.0~~ **[No longer maintained](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/10)**
 
-* [Plasma 6 version](https://store.kde.org/p/2130967)
+* [Plasma 6](https://store.kde.org/p/2130967)
 
 ### Or manually
 
