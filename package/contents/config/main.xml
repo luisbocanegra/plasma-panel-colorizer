@@ -325,18 +325,18 @@
     </entry>
     <entry
         name="normalPreset"
-        type="Int">
-        <default>0</default>
+        type="String">
+        <default></default>
     </entry>
     <entry
         name="floatingPreset"
-        type="Int">
-        <default>0</default>
+        type="String">
+        <default></default>
     </entry>
     <entry
         name="maximizedPreset"
-        type="Int">
-        <default>0</default>
+        type="String">
+        <default></default>
     </entry>
   </group>
 </kcfg>

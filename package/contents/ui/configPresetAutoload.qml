@@ -9,29 +9,14 @@ import org.kde.plasma.plasma5support as P5Support
 
 KCM.SimpleKCM {
     id:root
-    property int slotCount: 0
     property string presetsDir: StandardPaths.writableLocation(
                     StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/"
     property string cratePresetsDirCmd: "mkdir -p " + presetsDir
     property string listPresetsCmd: "find "+presetsDir+" -type f -print0 | while IFS= read -r -d '' file; do basename \"$file\"; done | sort"
-    property var presets: []
-    property var presetContent: ""
-    property string lastPreset
-    property string editingPreset
 
-    property alias cfg_normalPreset: normalPreset.currentIndex
-    property alias cfg_floatingPreset: floatingPreset.currentIndex
-    property alias cfg_maximizedPreset: maximizedPreset.currentIndex
-
-    property var ignoredConfigs: [
-        "panelWidgetsWithTray",
-        "panelWidgets",
-        "objectName",
-        "lastPreset",
-        "floatingPreset",
-        "normalPreset",
-        "maximizedPreset"
-    ]
+    property string cfg_normalPreset
+    property string cfg_floatingPreset
+    property string cfg_maximizedPreset
 
     ListModel {
         id: presetsModel
@@ -64,146 +49,36 @@ KCM.SimpleKCM {
             // console.log(cmd);
             if (exitCode!==0) return
             // console.log(stdout);
+            var presets = []
             if(cmd === listPresetsCmd) {
-                if (stdout.length > 0) {
+                if (stdout.length < 1) return
+                presetsModel.append(
+                    {
+                        "name": i18n("Do nothing"),
+                        "value": ""
+                    }
+                )
+                presets = stdout.trim().split("\n")
+                for (let i = 0; i < presets.length; i++) {
+                    presets[i]
                     presetsModel.append(
                         {
-                            "name": i18n("Do nothing"),
+                            "name": presets[i],
+                            "value": presets[i],
                         }
                     )
-                    presets = stdout.trim().split("\n")
-                    for (let i = 0; i < presets.length; i++) {
-                        presets[i]
-                        presetsModel.append(
-                            {
-                                "name": presets[i],
-                            }
-                        )
-                    }
-                } else {
-                    presets = []
                 }
             }
-            if (cmd.startsWith("cat")) {
-                presetContent = stdout.trim().split("\n")
+        }
+    }
+
+    function getIndex(model, savedValue) {
+        for (let i = 0; i < model.count; i++) {
+            if (model.get(i).value === savedValue) {
+                return i;
             }
         }
-    }
-
-    function parseValues(value) {
-        if (typeof value === 'boolean') {
-            return value;
-        }
-
-        if (value === 'true' || value === 'false') {
-            return value === 'true';
-        }
-
-        const numericValue = parseFloat(value);
-        if (!isNaN(numericValue)) {
-            return numericValue;
-        }
-
-        return value;
-    }
-
-    Kirigami.PromptDialog {
-        id: deletePresetDialog
-        title: "Delete preset '"+editingPreset+"?"
-        subtitle: i18n("This will permanently delete the file from your system!")
-        standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
-        onAccepted: {
-            deletePreset(editingPreset)
-            runCommand.exec(listPresetsCmd)
-        }
-    }
-
-    Kirigami.PromptDialog {
-        id: updatePresetDialog
-        title: "Update preset '"+editingPreset+"'?"
-        subtitle: i18n("Preset configuration will be overwritten!")
-        standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
-        onAccepted: {
-            savePreset(editingPreset)
-            runCommand.exec(listPresetsCmd)
-        }
-    }
-
-    Kirigami.PromptDialog {
-        id: newPresetDialog
-        title: "Create preset '"+editingPreset+"'?"
-        subtitle: i18n("Any existing preset with the same name will be overwritten!")
-        standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
-        onAccepted: {
-            savePreset(editingPreset)
-            runCommand.exec(listPresetsCmd)
-            saveNameField.text = ""
-        }
-    }
-
-    function applyPreset(filename) {
-        console.log("Reading preset:", filename);
-        runCommand.exec("cat '" + presetsDir + filename+"'")
-        loadPresetTimer.start()
-    }
-
-    Timer {
-        id: loadPresetTimer
-        interval: 500
-        onTriggered: {
-            loadPreset(presetContent)
-        }
-    }
-
-    function loadPreset() {
-        console.log("Loading preset contents...");
-        for (let i in presetContent) {
-            const line = presetContent[i]
-            if (line.includes("=")) {
-                const parts = line.split("=")
-                const key = parts[0]
-                const val = parts[1]
-                const cfgKey = "cfg_" + key;
-                if (ignoredConfigs.some(function (k) { return key.includes(k)})) continue
-                // console.log(key, val);
-                root[cfgKey] = parseValues(val)
-            }
-        }
-    }
-
-    function restoreSettings() {
-        console.log("Restoring default configuration");
-        var config = plasmoid.configuration
-        for (var key of Object.keys(config)) {
-            if (typeof config[key] === "function") continue
-            if (key.endsWith("Default")) {
-                let newName = key.slice(0, -7)
-                const cfgKey = "cfg_" + newName;
-                if (ignoredConfigs.some(function (k) { return key.includes(k)})) continue
-                root[cfgKey] = config[key]
-            }
-        }
-        lastPreset = ""
-    }
-
-    function savePreset(filename) {
-        console.log("Saving preset ", filename);
-        var config = plasmoid.configuration
-        var output = ""
-        for (var k of Object.keys(config)) {
-            if (typeof config[k] === "function") continue
-            if (k.endsWith("Default")) {
-                let name = k.slice(0, -7)
-                output += name+"="+config[name] + "\n"
-                // output += k+"="+config[k] + "\n"
-            }
-        }
-        runCommand.exec("echo '" + output + "' > '" + presetsDir + filename + "'")
-    }
-
-    function deletePreset(filename) {
-        console.error("rm '" + presetsDir + filename + "'" );
-        runCommand.exec("rm '" + presetsDir + filename + "'" )
+        return -1;
     }
 
     function dumpProps(obj) {
@@ -240,25 +115,41 @@ KCM.SimpleKCM {
 
     ColumnLayout {
         Kirigami.FormLayout {
+
             ComboBox {
                 id: normalPreset
-                Kirigami.FormData.label: i18n("Normal:")
                 model: presetsModel
                 textRole: "name"
+                Kirigami.FormData.label: i18n("Normal:")
+                onCurrentIndexChanged: {
+                    cfg_normalPreset = model.get(currentIndex)["value"]
+                }
+                currentIndex: getIndex(model, cfg_normalPreset)
             }
+
             ComboBox {
                 id: floatingPreset
-                Kirigami.FormData.label: i18n("Floating panel:")
                 model: presetsModel
                 textRole: "name"
-                enabled: cfg_maximizedPreset === 0
+                Kirigami.FormData.label: i18n("Floating panel:")
+                onCurrentIndexChanged: {
+                    cfg_floatingPreset = model.get(currentIndex)["value"]
+                }
+                currentIndex: getIndex(model, cfg_floatingPreset)
+                enabled: cfg_maximizedPreset === ""
             }
+
             ComboBox {
                 id: maximizedPreset
-                Kirigami.FormData.label: i18n("Maximized window is shown:")
                 model: presetsModel
                 textRole: "name"
-                enabled: cfg_floatingPreset === 0
+                Kirigami.FormData.label: i18n("Maximized window is shown:")
+                onCurrentIndexChanged: {
+                    console.log(model.get(currentIndex)["value"]);
+                    cfg_maximizedPreset = model.get(currentIndex)["value"]
+                }
+                currentIndex: getIndex(model, cfg_maximizedPreset)
+                enabled: cfg_floatingPreset === ""
             }
         }
     }

@@ -134,7 +134,6 @@ PlasmoidItem {
     property string presetsDir: StandardPaths.writableLocation(
                     StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/"
     property string listPresetsCmd: "find "+presetsDir+" -type f -print0 | while IFS= read -r -d '' file; do basename \"$file\"; done | sort"
-    property var presets: []
     property var presetContent: ""
     property var ignoredConfigs: [
         "panelWidgetsWithTray",
@@ -145,9 +144,9 @@ PlasmoidItem {
         "normalPreset",
         "maximizedPreset"
     ]
-    property int floatingPreset: plasmoid.configuration.floatingPreset
-    property int normalPreset: plasmoid.configuration.normalPreset
-    property int maximizedPreset: plasmoid.configuration.maximizedPreset
+    property string floatingPreset: plasmoid.configuration.floatingPreset
+    property string normalPreset: plasmoid.configuration.normalPreset
+    property string maximizedPreset: plasmoid.configuration.maximizedPreset
 
     property string lastPreset
 
@@ -181,7 +180,7 @@ PlasmoidItem {
     Connections {
         target: runCommand
         function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
-            // console.log(cmd);
+            var presets = []
             if (exitCode!==0) return
             if(cmd === listPresetsCmd) {
                 if (stdout.length > 0) {
@@ -213,11 +212,10 @@ PlasmoidItem {
         return value;
     }
 
-    function applyPreset(presetIndex) {
-        const filename = presets[presetIndex]
-        console.log("Reading preset:", presetIndex, filename, presets);
-        lastPreset = filename
-        runCommand.exec("cat '" + presetsDir + filename+"'")
+    function applyPreset(presetName) {
+        console.log("Reading preset:", presetName);
+        lastPreset = presetName
+        runCommand.exec("cat '" + presetsDir + presetName+"'")
         loadPresetTimer.start()
     }
 
@@ -246,9 +244,9 @@ PlasmoidItem {
     }
 
     onIsFloatingChanged: {
-        if (floatingPreset === 0) return
+        if (floatingPreset === "") return
         console.log("FLOATING:", isFloating);
-        if (isFloating && floatingPreset !== 0) {
+        if (isFloating) {
             applyPreset(floatingPreset)
         } else {
             applyPreset(normalPreset)
@@ -256,7 +254,7 @@ PlasmoidItem {
     }
 
     onMaximizedWindowExistsChanged: {
-        if (maximizedPreset === 0) return
+        if (maximizedPreset === "") return
         console.log("MAXIMIZED:", maximizedWindowExists);
         if (maximizedWindowExists) {
             applyPreset(maximizedPreset)
