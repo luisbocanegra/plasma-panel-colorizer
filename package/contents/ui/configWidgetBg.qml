@@ -44,6 +44,7 @@ KCM.SimpleKCM {
     property int cfg_bgLineWidth: bgLineWidth.value
     property int cfg_bgLineXOffset: bgLineXOffset.value
     property int cfg_bgLineYOffset: bgLineYOffset.value
+    property int cfg_panelSpacing: panelSpacing.value
 
     property bool clearing: false
 
@@ -818,6 +819,18 @@ KCM.SimpleKCM {
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
             Kirigami.FormData.label: i18n("Background margin")
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Spacing:")
+            id: panelSpacing
+            from: 0
+            to: 999
+            stepSize: 1
+            value: cfg_panelSpacing
+            onValueModified: {
+                cfg_panelSpacing = value
+            }
         }
 
         SpinBox {

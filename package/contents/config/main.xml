@@ -398,5 +398,10 @@
         type="String">
         <default></default>
     </entry>
+    <entry
+        name="panelSpacing"
+        type="Int">
+        <default>4</default>
+    </entry>
   </group>
 </kcfg>

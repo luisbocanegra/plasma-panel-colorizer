@@ -201,8 +201,9 @@ PlasmoidItem {
     property string floatingPreset: plasmoid.configuration.floatingPreset
     property string normalPreset: plasmoid.configuration.normalPreset
     property string maximizedPreset: plasmoid.configuration.maximizedPreset
-
     property string lastPreset
+
+    property int panelSpacing: plasmoid.configuration.panelSpacing
 
     function opacityToHex(opacity) {
         const op = Math.max(0, Math.min(1, opacity))
@@ -916,6 +917,8 @@ PlasmoidItem {
             runCommand.exec(saveSchemeCmd)
             startTimer.start()
             if (!isLoaded) runCommand.exec(listPresetsCmd)
+            panelLayout.columnSpacing = panelSpacing
+            panelLayout.rowSpacing = panelSpacing
         }
     }
 

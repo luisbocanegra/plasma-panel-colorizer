@@ -101,6 +101,7 @@ KCM.SimpleKCM {
     property int cfg_panelOutlineColorMode
     property int cfg_panelOutlineColorModeTheme
     property real cfg_panelOutlineOpacity
+    property int cfg_panelSpacing
 
     Connections {
         target: plasmoid.configuration
