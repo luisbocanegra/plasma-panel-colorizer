@@ -191,291 +191,6 @@ KCM.SimpleKCM {
     Kirigami.FormLayout {
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
-            Kirigami.FormData.label: i18n("Shape")
-        }
-
-        RowLayout {
-            Kirigami.FormData.label: i18n("Opacity:")
-            TextField {
-                id: bgOpacity
-                placeholderText: "0-1"
-                text: parseFloat(cfg_opacity).toFixed(validator.decimals)
-                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
-
-                validator: DoubleValidator {
-                    bottom: 0.0
-                    top: 1.0
-                    decimals: 2
-                    notation: DoubleValidator.StandardNotation
-                }
-
-                onTextChanged: {
-                    const newVal = parseFloat(text)
-                    cfg_opacity = isNaN(newVal) ? 0 : newVal
-                }
-
-                Components.ValueMouseControl {
-                    height: parent.height - 8
-                    width: height
-                    anchors.right: parent.right
-                    anchors.rightMargin: 4
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    from: parent.validator.bottom
-                    to: parent.validator.top
-                    decimals: parent.validator.decimals
-                    stepSize: 0.05
-                    value: cfg_opacity
-                    onValueChanged: {
-                        cfg_opacity = parseFloat(value)
-                    }
-                }
-            }
-        }
-
-        SpinBox {
-            Kirigami.FormData.label: i18n("Radius:")
-            id: bgRadius
-            value: cfg_radius
-            from: 0
-            to: 99
-            onValueModified: {
-                cfg_radius = value
-            }
-        }
-
-        CheckBox {
-            Kirigami.FormData.label: i18n("Line:")
-            text: i18n("Enabled")
-            id: bgLineModeEnabled
-            checked: cfg_bgLineModeEnabled
-            onCheckedChanged: cfg_bgLineModeEnabled = checked
-        }
-
-        RadioButton {
-            Kirigami.FormData.label: i18n("Position:")
-            text: i18n("Top")
-            ButtonGroup.group: bgLinePositionGroup
-            property int index: 0
-            checked: plasmoid.configuration.bgLinePosition === index
-            enabled: bgLineModeEnabled.checked
-        }
-        RadioButton {
-            text: i18n("Bottom")
-            ButtonGroup.group: bgLinePositionGroup
-            property int index: 1
-            checked: plasmoid.configuration.bgLinePosition === index
-            enabled: bgLineModeEnabled.checked
-        }
-        RadioButton {
-            text: i18n("Left")
-            ButtonGroup.group: bgLinePositionGroup
-            property int index: 2
-            checked: plasmoid.configuration.bgLinePosition === index
-            enabled: bgLineModeEnabled.checked
-        }
-        RadioButton {
-            text: i18n("Right")
-            ButtonGroup.group: bgLinePositionGroup
-            property int index: 3
-            checked: plasmoid.configuration.bgLinePosition === index
-            enabled: bgLineModeEnabled.checked
-        }
-        ButtonGroup {
-            id: bgLinePositionGroup
-            onCheckedButtonChanged: {
-                if (checkedButton) {
-                    cfg_bgLinePosition = checkedButton.index
-                }
-            }
-        }
-
-        SpinBox {
-            Kirigami.FormData.label: i18n("Width:")
-            id: bgLineWidth
-            value: cfg_bgLineWidth
-            from: 0
-            to: 99
-            onValueModified: {
-                cfg_bgLineWidth = value
-            }
-            enabled: bgLineModeEnabled.checked
-        }
-
-        SpinBox {
-            Kirigami.FormData.label: i18n("X offset:")
-            id: bgLineXOffset
-            value: cfg_bgLineXOffset
-            from: -99
-            to: 99
-            onValueModified: {
-                cfg_bgLineXOffset = value
-            }
-            enabled: bgLineModeEnabled.checked
-        }
-        SpinBox {
-            Kirigami.FormData.label: i18n("Y offset:")
-            id: bgLineYOffset
-            value: cfg_bgLineYOffset
-            from: -99
-            to: 99
-            onValueModified: {
-                cfg_bgLineYOffset = value
-            }
-            enabled: bgLineModeEnabled.checked
-        }
-
-        Kirigami.Separator {
-            Kirigami.FormData.isSection: false
-            Kirigami.FormData.label: i18n("Outline")
-            Layout.fillWidth: true
-        }
-
-        RadioButton {
-            Kirigami.FormData.label: i18n("Color:")
-            text: i18n("Custom")
-            id: singleOutlineColorRadio
-            ButtonGroup.group: outlineColorModeGroup
-            property int index: 0
-            checked: plasmoid.configuration.widgetOutlineColorMode === index
-        }
-        RadioButton {
-            text: i18n("System")
-            id: accentOutlineColorRadio
-            ButtonGroup.group: outlineColorModeGroup
-            property int index: 1
-            checked: plasmoid.configuration.widgetOutlineColorMode === index
-        }
-
-        ButtonGroup {
-            id: outlineColorModeGroup
-            onCheckedButtonChanged: {
-                if (checkedButton) {
-                    cfg_widgetOutlineColorMode = checkedButton.index
-                }
-            }
-        }
-
-        Components.ColorButton {
-            id: widgetOutlineColor
-            showAlphaChannel: false
-            dialogTitle: i18n("Widget outline")
-            color: cfg_widgetOutlineColor
-            onAccepted: {
-                cfg_widgetOutlineColor = color
-            }
-            visible: singleOutlineColorRadio.checked
-        }
-        
-        ComboBox {
-            id: widgetOutlineColorModeTheme
-            model: [i18n("Accent"), i18n("Text"), i18n("Background")]
-            visible: accentOutlineColorRadio.checked
-        }
-
-        RowLayout {
-            Kirigami.FormData.label: i18n("Opacity:")
-            TextField {
-                id: widgetOutlineOpacity
-                placeholderText: "0-1"
-                text: parseFloat(cfg_widgetOutlineOpacity).toFixed(validator.decimals)
-                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
-
-                validator: DoubleValidator {
-                    bottom: 0.0
-                    top: 1.0
-                    decimals: 2
-                    notation: DoubleValidator.StandardNotation
-                }
-
-                onTextChanged: {
-                    const newVal = parseFloat(text)
-                    cfg_widgetOutlineOpacity = isNaN(newVal) ? 0 : newVal
-                }
-
-                Components.ValueMouseControl {
-                    height: parent.height - 8
-                    width: height
-                    anchors.right: parent.right
-                    anchors.rightMargin: 4
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    from: parent.validator.bottom
-                    to: parent.validator.top
-                    decimals: parent.validator.decimals
-                    stepSize: 0.05
-                    value: cfg_widgetOutlineOpacity
-                    onValueChanged: {
-                        cfg_widgetOutlineOpacity = parseFloat(value)
-                    }
-                }
-            }
-        }
-
-
-        SpinBox {
-            Kirigami.FormData.label: i18n("Width:")
-            id: widgetOutlineWidth
-            value: cfg_widgetOutlineWidth
-            from: 0
-            to: 99
-            onValueModified: {
-                cfg_widgetOutlineWidth = value
-            }
-        }
-
-        Kirigami.Separator {
-            Kirigami.FormData.isSection: false
-            Kirigami.FormData.label: i18n("Shadow")
-            Layout.fillWidth: true
-        }
-
-        Components.ColorButton {
-            id: widgetShadowColor
-            Kirigami.FormData.label: i18n("Color:")
-            showAlphaChannel: true
-            dialogTitle: i18n("Widget shadow")
-            color: cfg_widgetShadowColor
-            onAccepted: {
-                cfg_widgetShadowColor = color
-            }
-        }
-
-        SpinBox {
-            Kirigami.FormData.label: i18n("Size:")
-            id: widgetShadowSize
-            value: cfg_widgetShadowSize
-            from: 0
-            to: 99
-            onValueModified: {
-                cfg_widgetShadowSize = value
-            }
-        }
-
-        SpinBox {
-            Kirigami.FormData.label: i18n("X offset:")
-            id: widgetShadowX
-            value: cfg_widgetShadowX
-            from: -99
-            to: 99
-            onValueModified: {
-                cfg_widgetShadowX = value
-            }
-        }
-
-        SpinBox {
-            Kirigami.FormData.label: i18n("Y offset:")
-            id: widgetShadowY
-            value: cfg_widgetShadowY
-            from: -99
-            to: 99
-            onValueModified: {
-                cfg_widgetShadowY = value
-            }
-        }
-
-        Kirigami.Separator {
-            Kirigami.FormData.isSection: true
             Kirigami.FormData.label: i18n("Color mode")
         }
 
@@ -813,6 +528,292 @@ KCM.SimpleKCM {
                 }
             }
         }
+
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: true
+            Kirigami.FormData.label: i18n("Shape")
+        }
+
+        RowLayout {
+            Kirigami.FormData.label: i18n("Opacity:")
+            TextField {
+                id: bgOpacity
+                placeholderText: "0-1"
+                text: parseFloat(cfg_opacity).toFixed(validator.decimals)
+                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
+
+                validator: DoubleValidator {
+                    bottom: 0.0
+                    top: 1.0
+                    decimals: 2
+                    notation: DoubleValidator.StandardNotation
+                }
+
+                onTextChanged: {
+                    const newVal = parseFloat(text)
+                    cfg_opacity = isNaN(newVal) ? 0 : newVal
+                }
+
+                Components.ValueMouseControl {
+                    height: parent.height - 8
+                    width: height
+                    anchors.right: parent.right
+                    anchors.rightMargin: 4
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    from: parent.validator.bottom
+                    to: parent.validator.top
+                    decimals: parent.validator.decimals
+                    stepSize: 0.05
+                    value: cfg_opacity
+                    onValueChanged: {
+                        cfg_opacity = parseFloat(value)
+                    }
+                }
+            }
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Radius:")
+            id: bgRadius
+            value: cfg_radius
+            from: 0
+            to: 99
+            onValueModified: {
+                cfg_radius = value
+            }
+        }
+
+        CheckBox {
+            Kirigami.FormData.label: i18n("Line:")
+            text: i18n("Enabled")
+            id: bgLineModeEnabled
+            checked: cfg_bgLineModeEnabled
+            onCheckedChanged: cfg_bgLineModeEnabled = checked
+        }
+
+        RadioButton {
+            Kirigami.FormData.label: i18n("Position:")
+            text: i18n("Top")
+            ButtonGroup.group: bgLinePositionGroup
+            property int index: 0
+            checked: plasmoid.configuration.bgLinePosition === index
+            enabled: bgLineModeEnabled.checked
+        }
+        RadioButton {
+            text: i18n("Bottom")
+            ButtonGroup.group: bgLinePositionGroup
+            property int index: 1
+            checked: plasmoid.configuration.bgLinePosition === index
+            enabled: bgLineModeEnabled.checked
+        }
+        RadioButton {
+            text: i18n("Left")
+            ButtonGroup.group: bgLinePositionGroup
+            property int index: 2
+            checked: plasmoid.configuration.bgLinePosition === index
+            enabled: bgLineModeEnabled.checked
+        }
+        RadioButton {
+            text: i18n("Right")
+            ButtonGroup.group: bgLinePositionGroup
+            property int index: 3
+            checked: plasmoid.configuration.bgLinePosition === index
+            enabled: bgLineModeEnabled.checked
+        }
+        ButtonGroup {
+            id: bgLinePositionGroup
+            onCheckedButtonChanged: {
+                if (checkedButton) {
+                    cfg_bgLinePosition = checkedButton.index
+                }
+            }
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Width:")
+            id: bgLineWidth
+            value: cfg_bgLineWidth
+            from: 0
+            to: 99
+            onValueModified: {
+                cfg_bgLineWidth = value
+            }
+            enabled: bgLineModeEnabled.checked
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("X offset:")
+            id: bgLineXOffset
+            value: cfg_bgLineXOffset
+            from: -99
+            to: 99
+            onValueModified: {
+                cfg_bgLineXOffset = value
+            }
+            enabled: bgLineModeEnabled.checked
+        }
+        SpinBox {
+            Kirigami.FormData.label: i18n("Y offset:")
+            id: bgLineYOffset
+            value: cfg_bgLineYOffset
+            from: -99
+            to: 99
+            onValueModified: {
+                cfg_bgLineYOffset = value
+            }
+            enabled: bgLineModeEnabled.checked
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: false
+            Kirigami.FormData.label: i18n("Outline")
+            Layout.fillWidth: true
+        }
+
+        RadioButton {
+            Kirigami.FormData.label: i18n("Color:")
+            text: i18n("Custom")
+            id: singleOutlineColorRadio
+            ButtonGroup.group: outlineColorModeGroup
+            property int index: 0
+            checked: plasmoid.configuration.widgetOutlineColorMode === index
+        }
+        RadioButton {
+            text: i18n("System")
+            id: accentOutlineColorRadio
+            ButtonGroup.group: outlineColorModeGroup
+            property int index: 1
+            checked: plasmoid.configuration.widgetOutlineColorMode === index
+        }
+
+        ButtonGroup {
+            id: outlineColorModeGroup
+            onCheckedButtonChanged: {
+                if (checkedButton) {
+                    cfg_widgetOutlineColorMode = checkedButton.index
+                }
+            }
+        }
+
+        Components.ColorButton {
+            id: widgetOutlineColor
+            showAlphaChannel: false
+            dialogTitle: i18n("Widget outline")
+            color: cfg_widgetOutlineColor
+            onAccepted: {
+                cfg_widgetOutlineColor = color
+            }
+            visible: singleOutlineColorRadio.checked
+        }
+        
+        ComboBox {
+            id: widgetOutlineColorModeTheme
+            model: [i18n("Accent"), i18n("Text"), i18n("Background")]
+            visible: accentOutlineColorRadio.checked
+        }
+
+        RowLayout {
+            Kirigami.FormData.label: i18n("Opacity:")
+            TextField {
+                id: widgetOutlineOpacity
+                placeholderText: "0-1"
+                text: parseFloat(cfg_widgetOutlineOpacity).toFixed(validator.decimals)
+                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
+
+                validator: DoubleValidator {
+                    bottom: 0.0
+                    top: 1.0
+                    decimals: 2
+                    notation: DoubleValidator.StandardNotation
+                }
+
+                onTextChanged: {
+                    const newVal = parseFloat(text)
+                    cfg_widgetOutlineOpacity = isNaN(newVal) ? 0 : newVal
+                }
+
+                Components.ValueMouseControl {
+                    height: parent.height - 8
+                    width: height
+                    anchors.right: parent.right
+                    anchors.rightMargin: 4
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    from: parent.validator.bottom
+                    to: parent.validator.top
+                    decimals: parent.validator.decimals
+                    stepSize: 0.05
+                    value: cfg_widgetOutlineOpacity
+                    onValueChanged: {
+                        cfg_widgetOutlineOpacity = parseFloat(value)
+                    }
+                }
+            }
+        }
+
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Width:")
+            id: widgetOutlineWidth
+            value: cfg_widgetOutlineWidth
+            from: 0
+            to: 99
+            onValueModified: {
+                cfg_widgetOutlineWidth = value
+            }
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: false
+            Kirigami.FormData.label: i18n("Shadow")
+            Layout.fillWidth: true
+        }
+
+        Components.ColorButton {
+            id: widgetShadowColor
+            Kirigami.FormData.label: i18n("Color:")
+            showAlphaChannel: true
+            dialogTitle: i18n("Widget shadow")
+            color: cfg_widgetShadowColor
+            onAccepted: {
+                cfg_widgetShadowColor = color
+            }
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Size:")
+            id: widgetShadowSize
+            value: cfg_widgetShadowSize
+            from: 0
+            to: 99
+            onValueModified: {
+                cfg_widgetShadowSize = value
+            }
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("X offset:")
+            id: widgetShadowX
+            value: cfg_widgetShadowX
+            from: -99
+            to: 99
+            onValueModified: {
+                cfg_widgetShadowX = value
+            }
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Y offset:")
+            id: widgetShadowY
+            value: cfg_widgetShadowY
+            from: -99
+            to: 99
+            onValueModified: {
+                cfg_widgetShadowY = value
+            }
+        }
+
 
         Kirigami.Separator {
             Kirigami.FormData.isSection: true

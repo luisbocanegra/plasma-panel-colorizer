@@ -152,45 +152,6 @@ KCM.SimpleKCM {
 
     ColumnLayout {
     Kirigami.FormLayout {
-        RowLayout {
-            Kirigami.FormData.label: i18n("Opacity:")
-            TextField {
-                id: fgOpacity
-                placeholderText: "0-1"
-                text: parseFloat(cfg_fgOpacity).toFixed(validator.decimals)
-                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
-
-                validator: DoubleValidator {
-                    bottom: 0.0
-                    top: 1.0
-                    decimals: 2
-                    notation: DoubleValidator.StandardNotation
-                }
-
-                onTextChanged: {
-                    const newVal = parseFloat(text)
-                    cfg_fgOpacity = isNaN(newVal) ? 0 : newVal
-                }
-
-                Components.ValueMouseControl {
-                    height: parent.height - 8
-                    width: height
-                    anchors.right: parent.right
-                    anchors.rightMargin: 4
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    from: parent.validator.bottom
-                    to: parent.validator.top
-                    decimals: parent.validator.decimals
-                    stepSize: 0.05
-                    value: cfg_fgOpacity
-                    onValueChanged: {
-                        cfg_fgOpacity = parseFloat(value)
-                    }
-                }
-            }
-        }
-
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
             Kirigami.FormData.label: i18n("Color mode")
@@ -428,6 +389,45 @@ KCM.SimpleKCM {
                         id: btn
                         icon.name: "view-refresh-symbolic"
                         onClicked: initModel()
+                    }
+                }
+            }
+        }
+
+        RowLayout {
+            Kirigami.FormData.label: i18n("Opacity:")
+            TextField {
+                id: fgOpacity
+                placeholderText: "0-1"
+                text: parseFloat(cfg_fgOpacity).toFixed(validator.decimals)
+                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
+
+                validator: DoubleValidator {
+                    bottom: 0.0
+                    top: 1.0
+                    decimals: 2
+                    notation: DoubleValidator.StandardNotation
+                }
+
+                onTextChanged: {
+                    const newVal = parseFloat(text)
+                    cfg_fgOpacity = isNaN(newVal) ? 0 : newVal
+                }
+
+                Components.ValueMouseControl {
+                    height: parent.height - 8
+                    width: height
+                    anchors.right: parent.right
+                    anchors.rightMargin: 4
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    from: parent.validator.bottom
+                    to: parent.validator.top
+                    decimals: parent.validator.decimals
+                    stepSize: 0.05
+                    value: cfg_fgOpacity
+                    onValueChanged: {
+                        cfg_fgOpacity = parseFloat(value)
                     }
                 }
             }
