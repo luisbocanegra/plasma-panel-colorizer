@@ -145,7 +145,6 @@ KCM.SimpleKCM {
                 textRole: "name"
                 Kirigami.FormData.label: i18n("Maximized window is shown:")
                 onCurrentIndexChanged: {
-                    console.log(model.get(currentIndex)["value"]);
                     cfg_maximizedPreset = model.get(currentIndex)["value"]
                 }
                 currentIndex: getIndex(model, cfg_maximizedPreset)

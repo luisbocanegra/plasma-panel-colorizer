@@ -29,11 +29,13 @@ KCM.SimpleKCM {
 
     function updateWidgetsModel(){
         let widgeList = []
-        const forceRecolorList = cfg_blacklist.trim().split("|")
+        const blacklist = cfg_blacklist.trim().split("|")
+        console.log(blacklist.join(" "));
         for (let i = 0; i < widgetsModel.count; i++) {
             let widget = widgetsModel.get(i)
-            for (let j in forceRecolorList) {
-                if(widget.name.includes(forceRecolorList[j])) {
+            for (var j of blacklist) {
+                if (j === "") continue
+                if(widget.name.includes(j)) {
                     widgetsModel.set(i, {"enabled": true})
                 }
             }
