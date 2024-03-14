@@ -24,6 +24,7 @@ PlasmoidItem {
     property bool isEnabled: plasmoid.configuration.isEnabled
     property int mode: plasmoid.configuration.mode
     property int colorMode: plasmoid.configuration.colorMode
+    property int colorModeTheme: plasmoid.configuration.colorModeTheme
     property color singleColor: plasmoid.configuration.singleColor
     property var customColors: []
     property int bgColorStart:0
@@ -43,20 +44,51 @@ PlasmoidItem {
     property bool hideWidget: plasmoid.configuration.hideWidget
 
     property bool panelBgEnabled: plasmoid.configuration.panelBgEnabled
-    property string panelBgColor: plasmoid.configuration.panelBgColor
+    property int panelBgColorMode: plasmoid.configuration.panelBgColorMode
+    property int panelBgColorModeTheme: plasmoid.configuration.panelBgColorModeTheme
+    property string panelBgColor: {
+        if (panelBgColorMode === 0) {
+            return plasmoid.configuration.panelBgColor
+        } else {
+            return themeColors[panelBgColorModeTheme]
+        }
+    }
     property real panelBgOpacity: plasmoid.configuration.panelBgOpacity
     property real panelBgRadius: isFloating ? plasmoid.configuration.panelBgRadius : 0
     property bool hideRealPanelBg: plasmoid.configuration.hideRealPanelBg
     property real panelRealBgOpacity: plasmoid.configuration.panelRealBgOpacity
-    property color widgetOutlineColor: plasmoid.configuration.widgetOutlineColor
+    property int widgetOutlineColorMode: plasmoid.configuration.widgetOutlineColorMode
+    property int widgetOutlineColorModeTheme: plasmoid.configuration.widgetOutlineColorModeTheme
+    property real widgetOutlineOpacity: plasmoid.configuration.widgetOutlineOpacity
+    property string widgetOutlineColor: {
+        let c
+        if (widgetOutlineColorMode === 0) {
+            c = hexToRgb(plasmoid.configuration.widgetOutlineColor)
+        } else {
+            c = hexToRgb(themeColors[widgetOutlineColorModeTheme])
+        }
+        return Qt.rgba(c.r / 255, c.g / 255, c.b / 255, widgetOutlineOpacity).toString()
+    }
     property int widgetOutlineWidth: plasmoid.configuration.widgetOutlineWidth
     property color widgetShadowColor: plasmoid.configuration.widgetShadowColor
     property int widgetShadowSize: plasmoid.configuration.widgetShadowSize
     property int widgetShadowX: plasmoid.configuration.widgetShadowX
     property int widgetShadowY: plasmoid.configuration.widgetShadowY
 
-    property color panelOutlineColor: plasmoid.configuration.panelOutlineColor
+    property int panelOutlineColorMode: plasmoid.configuration.panelOutlineColorMode
+    property int panelOutlineColorModeTheme: plasmoid.configuration.panelOutlineColorModeTheme
     property int panelOutlineWidth: plasmoid.configuration.panelOutlineWidth
+    property real panelOutlineOpacity: plasmoid.configuration.panelOutlineOpacity
+    property string panelOutlineColor: {
+        let c
+        if (panelOutlineColorMode === 0) {
+            c = hexToRgb(plasmoid.configuration.panelOutlineColor)
+        } else {
+            c = hexToRgb(themeColors[panelOutlineColorModeTheme])
+        }
+        return Qt.rgba(c.r / 255, c.g / 255, c.b / 255, panelOutlineOpacity).toString()
+    }
+    // plasmoid.configuration.panelOutlineColor
     property color panelShadowColor: plasmoid.configuration.panelShadowColor
     property int panelShadowSize: plasmoid.configuration.panelShadowSize
     property int panelShadowX: plasmoid.configuration.panelShadowX
@@ -77,13 +109,34 @@ PlasmoidItem {
     property bool wasEditing: false
     property bool destroyRequired: false
 
-    property color accentColor: Kirigami.Theme.highlightColor
+    property var themeColors: [
+        Kirigami.Theme.highlightColor,
+        Kirigami.Theme.textColor,
+        Kirigami.Theme.backgroundColor
+    ]
+
+    property color accentColor: {
+        return themeColors[colorModeTheme]
+    }
+    property color fgAcentColor: {
+        return themeColors[fgColorModeTheme]
+    }
     property color defaultTextColor: Kirigami.Theme.textColor
     property real fgOpacity: plasmoid.configuration.fgOpacity
     property bool fgColorEnabled: plasmoid.configuration.fgColorEnabled
 
-    property color blacklistedFgColor: plasmoid.configuration.blacklistedFgColor
     property bool fgBlacklistedColorEnabled: plasmoid.configuration.fgBlacklistedColorEnabled
+    property int fgBlacklistedColorMode: plasmoid.configuration.fgBlacklistedColorMode
+    property int fgBlacklistedColorModeTheme: plasmoid.configuration.fgBlacklistedColorModeTheme
+    property string blacklistedFgColor: {
+        let c
+        if (fgBlacklistedColorMode === 0) {
+            c = hexToRgb(plasmoid.configuration.blacklistedFgColor)
+        } else {
+            c = hexToRgb(themeColors[fgBlacklistedColorModeTheme])
+        }
+        return Qt.rgba(c.r / 255, c.g / 255, c.b / 255, 1).toString()
+    }
 
     property bool showToUpdate: false
 
@@ -95,6 +148,7 @@ PlasmoidItem {
 
     property int fgMode: plasmoid.configuration.fgMode
     property int fgColorMode: plasmoid.configuration.fgColorMode
+    property int fgColorModeTheme: plasmoid.configuration.fgColorModeTheme
     property color fgSingleColor: plasmoid.configuration.fgSingleColor
     property var fgCustomColors: []
     property int fgColorStart: 0
@@ -335,10 +389,10 @@ PlasmoidItem {
         
         border {
             color: widgetOutlineColor
-            width: widgetOutlineWidth
+            width: widgetBgEnabled ? widgetOutlineWidth : 0
         }
         shadow {
-            size: widgetShadowSize
+            size: widgetBgEnabled ? widgetShadowSize : 0
             color: widgetShadowColor
             xOffset: widgetShadowX
             yOffset: widgetShadowY
@@ -420,6 +474,10 @@ PlasmoidItem {
 
     onAccentColorChanged: {
         if (colorMode === 1) init()
+    }
+
+    onFgAcentColorChanged: {
+        if (fgColorMode === 1) init()
     }
     
     onBlacklistChanged: {
@@ -602,7 +660,8 @@ PlasmoidItem {
                 newColor = fg ? Qt.rgba(fgSingleColor.r, fgSingleColor.g, fgSingleColor.b, 1) : Qt.rgba(singleColor.r, singleColor.g, singleColor.b, 1)
                 break
             case 1:
-                newColor = Qt.rgba(accentColor.r, accentColor.g, accentColor.b, 1);
+                let themeColor = fg ? fgAcentColor : accentColor
+                newColor = Qt.rgba(themeColor.r, themeColor.g, themeColor.b, 1);
                 break
             case 3:
                 newColor = getRandomColor()

@@ -89,6 +89,18 @@ KCM.SimpleKCM {
     property string lastPreset
     property string cfg_lastPreset
     property string editingPreset
+    property int cfg_colorModeTheme
+    property int cfg_widgetOutlineColorMode
+    property int cfg_widgetOutlineColorModeTheme
+    property real cfg_widgetOutlineOpacity
+    property int cfg_fgColorModeTheme
+    property int cfg_fgBlacklistedColorMode
+    property int cfg_fgBlacklistedColorModeTheme
+    property int cfg_panelBgColorMode
+    property int cfg_panelBgColorModeTheme
+    property int cfg_panelOutlineColorMode
+    property int cfg_panelOutlineColorModeTheme
+    property real cfg_panelOutlineOpacity
 
     Connections {
         target: plasmoid.configuration

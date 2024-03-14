@@ -12,6 +12,7 @@ KCM.SimpleKCM {
     property bool cfg_widgetBgEnabled: widgetBgEnabled.checked
     property int cfg_mode: plasmoid.configuration.mode
     property int cfg_colorMode: plasmoid.configuration.colorMode
+    property alias cfg_colorModeTheme: colorModeTheme.currentIndex
     property string cfg_singleColor: singleColor.color
     property string cfg_customColors: customColors.text
 
@@ -28,7 +29,10 @@ KCM.SimpleKCM {
     property int cfg_widgetBgVMargin: widgetBgHMargin.value
     property string cfg_marginRules: ""
 
+    property int cfg_widgetOutlineColorMode: plasmoid.configuration.widgetOutlineColorMode
+    property alias cfg_widgetOutlineColorModeTheme: widgetOutlineColorModeTheme.currentIndex
     property string cfg_widgetOutlineColor: widgetOutlineColor.color
+    property real cfg_widgetOutlineOpacity: widgetOutlineOpacity.text
     property int cfg_widgetOutlineWidth: widgetOutlineWidth.value
     property int cfg_widgetShadowSize: widgetShadowSize.value
     property string cfg_widgetShadowColor: widgetShadowColor.color
@@ -327,16 +331,87 @@ KCM.SimpleKCM {
             Layout.fillWidth: true
         }
 
+        RadioButton {
+            Kirigami.FormData.label: i18n("Color:")
+            text: i18n("Custom")
+            id: singleOutlineColorRadio
+            ButtonGroup.group: outlineColorModeGroup
+            property int index: 0
+            checked: plasmoid.configuration.widgetOutlineColorMode === index
+        }
+        RadioButton {
+            text: i18n("System")
+            id: accentOutlineColorRadio
+            ButtonGroup.group: outlineColorModeGroup
+            property int index: 1
+            checked: plasmoid.configuration.widgetOutlineColorMode === index
+        }
+
+        ButtonGroup {
+            id: outlineColorModeGroup
+            onCheckedButtonChanged: {
+                if (checkedButton) {
+                    cfg_widgetOutlineColorMode = checkedButton.index
+                }
+            }
+        }
+
         Components.ColorButton {
             id: widgetOutlineColor
-            Kirigami.FormData.label: i18n("Color:")
-            showAlphaChannel: true
+            showAlphaChannel: false
             dialogTitle: i18n("Widget outline")
             color: cfg_widgetOutlineColor
             onAccepted: {
                 cfg_widgetOutlineColor = color
             }
+            visible: singleOutlineColorRadio.checked
         }
+        
+        ComboBox {
+            id: widgetOutlineColorModeTheme
+            model: [i18n("Accent"), i18n("Text"), i18n("Background")]
+            visible: accentOutlineColorRadio.checked
+        }
+
+        RowLayout {
+            Kirigami.FormData.label: i18n("Opacity:")
+            TextField {
+                id: widgetOutlineOpacity
+                placeholderText: "0-1"
+                text: parseFloat(cfg_widgetOutlineOpacity).toFixed(validator.decimals)
+                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
+
+                validator: DoubleValidator {
+                    bottom: 0.0
+                    top: 1.0
+                    decimals: 2
+                    notation: DoubleValidator.StandardNotation
+                }
+
+                onTextChanged: {
+                    const newVal = parseFloat(text)
+                    cfg_widgetOutlineOpacity = isNaN(newVal) ? 0 : newVal
+                }
+
+                Components.ValueMouseControl {
+                    height: parent.height - 8
+                    width: height
+                    anchors.right: parent.right
+                    anchors.rightMargin: 4
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    from: parent.validator.bottom
+                    to: parent.validator.top
+                    decimals: parent.validator.decimals
+                    stepSize: 0.05
+                    value: cfg_widgetOutlineOpacity
+                    onValueChanged: {
+                        cfg_widgetOutlineOpacity = parseFloat(value)
+                    }
+                }
+            }
+        }
+
 
         SpinBox {
             Kirigami.FormData.label: i18n("Width:")
@@ -465,25 +540,31 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Colors")
         }
 
+        // RowLayout {
         RadioButton {
+            Kirigami.FormData.label: i18n("Color:")
+            text: i18n("Custom")
             id: singleColorRadio
-            Kirigami.FormData.label: i18n("Single")
             ButtonGroup.group: colorModeGroup
             property int index: 0
             checked: plasmoid.configuration.colorMode === index
             enabled: !animatedColorMode.checked
         }
-        RadioButton {
-            id: accentColorRadio
-            Kirigami.FormData.label: i18n("Accent")
-            ButtonGroup.group: colorModeGroup
-            property int index: 1
-            checked: plasmoid.configuration.colorMode === index
-            enabled: !animatedColorMode.checked
-        }
+        // }
+        // RowLayout {
+            RadioButton {
+                text: i18n("System")
+                id: accentColorRadio
+                ButtonGroup.group: colorModeGroup
+                property int index: 1
+                checked: plasmoid.configuration.colorMode === index
+                enabled: !animatedColorMode.checked
+            }
+            
+        // }
         RadioButton {
             id: listColorRadio
-            Kirigami.FormData.label: i18n("Custom list")
+            text: i18n("Custom list")
             ButtonGroup.group: colorModeGroup
             property int index: 2
             checked: plasmoid.configuration.colorMode === index
@@ -491,7 +572,7 @@ KCM.SimpleKCM {
         }
         RadioButton {
             id: randomColorRadio
-            Kirigami.FormData.label: i18n("Random")
+            text: i18n("Random")
             ButtonGroup.group: colorModeGroup
             property int index: 3
             checked: plasmoid.configuration.colorMode === index
@@ -509,7 +590,6 @@ KCM.SimpleKCM {
 
         Components.ColorButton {
             id: singleColor
-            Kirigami.FormData.label: i18n("Color:")
             showAlphaChannel: false
             dialogTitle: i18n("Widget background")
             color: cfg_singleColor
@@ -519,9 +599,13 @@ KCM.SimpleKCM {
             }
         }
 
-        
+        ComboBox {
+            id: colorModeTheme
+            model: [i18n("Accent"), i18n("Text"), i18n("Background")]
+            visible: accentColorRadio.checked
+        }
+
         GroupBox {
-            Kirigami.FormData.label: i18n("Colors list:")
             visible: listColorRadio.checked
             ColumnLayout {
                 Layout.alignment: Qt.AlignTop

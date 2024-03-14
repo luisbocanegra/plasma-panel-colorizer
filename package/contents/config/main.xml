@@ -28,6 +28,11 @@
         <default>2</default>
     </entry>
     <entry
+        name="colorModeTheme"
+        type="Int">
+        <default>0</default>
+    </entry>
+    <entry
         name="singleColor"
         type="String">
         <default>#7182ff</default>
@@ -83,6 +88,21 @@
         <default>#000000</default>
     </entry>
     <entry
+        name="widgetOutlineColorMode"
+        type="Int">
+        <default>1</default>
+    </entry>
+    <entry
+        name="widgetOutlineColorModeTheme"
+        type="Int">
+        <default>1</default>
+    </entry>
+    <entry
+        name="widgetOutlineOpacity"
+        type="Double">
+        <default>0.5</default>
+    </entry>
+    <entry
         name="widgetOutlineWidth"
         type="Int">
         <default>0</default>
@@ -90,12 +110,12 @@
     <entry
         name="widgetShadowColor"
         type="String">
-        <default>#00000000</default>
+        <default>#7f000000</default>
     </entry>
     <entry
         name="widgetShadowSize"
         type="Int">
-        <default>4</default>
+        <default>0</default>
     </entry>
     <entry
         name="widgetShadowX"
@@ -151,6 +171,11 @@
         <default>4</default>
     </entry>
     <entry
+        name="fgColorModeTheme"
+        type="Int">
+        <default>0</default>
+    </entry>
+    <entry
         name="fgSingleColor"
         type="String">
         <default>#7182ff</default>
@@ -179,6 +204,16 @@
         name="fgBlacklistedColorEnabled"
         type="Bool">
         <default>true</default>
+    </entry>
+    <entry
+        name="fgBlacklistedColorMode"
+        type="Int">
+        <default>0</default>
+    </entry>
+    <entry
+        name="fgBlacklistedColorModeTheme"
+        type="Int">
+        <default>0</default>
     </entry>
     <entry
         name="fgOpacity"
@@ -227,6 +262,16 @@
         <default>#000000</default>
     </entry>
     <entry
+        name="panelBgColorMode"
+        type="Int">
+        <default>0</default>
+    </entry>
+    <entry
+        name="panelBgColorModeTheme"
+        type="Int">
+        <default>2</default>
+    </entry>
+    <entry
         name="hideRealPanelBg"
         type="Bool">
         <default>false</default>
@@ -254,12 +299,27 @@
     <entry
         name="panelOutlineColor"
         type="String">
-        <default>#000000</default>
+        <default>#ffffff</default>
+    </entry>
+    <entry
+        name="panelOutlineColorMode"
+        type="Int">
+        <default>0</default>
+    </entry>
+    <entry
+        name="panelOutlineColorModeTheme"
+        type="Int">
+        <default>1</default>
     </entry>
     <entry
         name="panelOutlineWidth"
         type="Int">
         <default>0</default>
+    </entry>
+    <entry
+        name="panelOutlineOpacity"
+        type="Double">
+        <default>0.5</default>
     </entry>
     <entry
         name="panelShadowColor"
@@ -269,7 +329,7 @@
     <entry
         name="panelShadowSize"
         type="Int">
-        <default>4</default>
+        <default>0</default>
     </entry>
     <entry
         name="panelShadowX"

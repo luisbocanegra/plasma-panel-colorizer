@@ -8,6 +8,11 @@ import "components" as Components
 
 KCM.SimpleKCM {
     id:root
+    property bool cfg_fgBlacklistedColorEnabled: fgBlacklistedColorEnabled.checked
+    property int cfg_fgBlacklistedColorMode: plasmoid.configuration.fgBlacklistedColorMode
+    property alias cfg_fgBlacklistedColorModeTheme: fgBlacklistedColorModeTheme.currentIndex
+    property string cfg_blacklistedFgColor: blacklistedFgColor.color
+
     property string cfg_blacklist: ""
     property string cfg_panelWidgets
 
@@ -79,6 +84,63 @@ KCM.SimpleKCM {
     }
 
     ColumnLayout {
+
+        Kirigami.FormLayout {
+        CheckBox {
+            Kirigami.FormData.label: i18n("Custom color:")
+            id: fgBlacklistedColorEnabled
+            checked: cfg_fgBlacklistedColorEnabled 
+            onCheckedChanged: cfg_fgBlacklistedColorEnabled = checked
+        }
+
+        RadioButton {
+            Kirigami.FormData.label: i18n("Color:")
+            text: i18n("Custom")
+            id: fgsingleColorRadio
+            ButtonGroup.group: fgcolorModeGroup
+            property int index: 0
+            checked: plasmoid.configuration.fgBlacklistedColorMode === index
+            enabled: panelBgEnabled.checked
+        }
+        RadioButton {
+            text: i18n("System")
+            id: fgaccentColorRadio
+            ButtonGroup.group: fgcolorModeGroup
+            property int index: 1
+            checked: plasmoid.configuration.fgBlacklistedColorMode === index
+            enabled: panelBgEnabled.checked
+        }
+
+        ButtonGroup {
+            id: fgcolorModeGroup
+            onCheckedButtonChanged: {
+                if (checkedButton) {
+                    cfg_fgBlacklistedColorMode = checkedButton.index
+                }
+            }
+        }
+
+        Components.ColorButton {
+            id: blacklistedFgColor
+            showAlphaChannel: false
+            dialogTitle: i18n("Blacklisted text/icons")
+            color: cfg_blacklistedFgColor
+            visible: fgsingleColorRadio.checked
+            enabled: fgBlacklistedColorEnabled.checked
+            onAccepted: {
+                cfg_blacklistedFgColor = color
+            }
+        }
+
+        ComboBox {
+            id: fgBlacklistedColorModeTheme
+            model: [i18n("Accent"), i18n("Text"), i18n("Background")]
+            visible: fgaccentColorRadio.checked
+            enabled: fgBlacklistedColorEnabled.checked
+        }
+        }
+
+
         Label {
             Layout.alignment: Qt.AlignHCenter
             text: i18n("Unchecked widgets will not be colorized.")

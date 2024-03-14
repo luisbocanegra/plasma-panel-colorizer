@@ -9,6 +9,8 @@ import "components" as Components
 KCM.SimpleKCM {
     id:root
     property bool cfg_panelBgEnabled: panelBgEnabled.checked
+    property int cfg_panelBgColorMode: plasmoid.configuration.panelBgColorMode
+    property alias cfg_panelBgColorModeTheme: colorModeTheme.currentIndex
     property string cfg_panelBgColor: panelBgColor.color
     property bool cfg_hideRealPanelBg: hideRealPanelBg.checked
     property real cfg_panelBgOpacity: parseFloat(panelBgOpacity.text)
@@ -17,8 +19,11 @@ KCM.SimpleKCM {
     property bool cfg_enableCustomPadding: enableCustomPadding.checked
     property int cfg_panelPadding: panelPadding.value
 
+    property int cfg_panelOutlineColorMode: plasmoid.configuration.panelOutlineColorMode
+    property alias cfg_panelOutlineColorModeTheme: panelOutlineColorModeTheme.currentIndex
     property string cfg_panelOutlineColor: panelOutlineColor.color
     property int cfg_panelOutlineWidth: panelOutlineWidth.value
+    property real cfg_panelOutlineOpacity: panelOutlineOpacity.text
     property int cfg_panelShadowSize: panelShadowSize.value
     property string cfg_panelShadowColor: panelShadowColor.color
     property int cfg_panelShadowX: panelShadowColorX.value
@@ -52,7 +57,7 @@ KCM.SimpleKCM {
         }
 
         CheckBox {
-            Kirigami.FormData.label: i18n("Hide")
+            Kirigami.FormData.label: i18n("Hide:")
             id: hideRealPanelBg
             checked: cfg_hideRealPanelBg
             onCheckedChanged: cfg_hideRealPanelBg = checked
@@ -136,7 +141,6 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Custom background")
         }
 
-
         CheckBox {
             Kirigami.FormData.label: i18n("Enabled:")
             id: panelBgEnabled
@@ -144,17 +148,53 @@ KCM.SimpleKCM {
             onCheckedChanged: cfg_panelBgEnabled = checked
         }
 
+        RadioButton {
+            Kirigami.FormData.label: i18n("Color:")
+            text: i18n("Custom")
+            id: singleColorRadio
+            ButtonGroup.group: colorModeGroup
+            property int index: 0
+            checked: plasmoid.configuration.panelBgColorMode === index
+            enabled: panelBgEnabled.checked
+        }
+        RadioButton {
+            text: i18n("System")
+            id: accentColorRadio
+            ButtonGroup.group: colorModeGroup
+            property int index: 1
+            checked: plasmoid.configuration.panelBgColorMode === index
+            enabled: panelBgEnabled.checked
+        }
+
+        ButtonGroup {
+            id: colorModeGroup
+            onCheckedButtonChanged: {
+                if (checkedButton) {
+                    cfg_panelBgColorMode = checkedButton.index
+                }
+            }
+        }
+
         Components.ColorButton {
             id: panelBgColor
             showAlphaChannel: false
             dialogTitle: i18n("Panel background")
-            Kirigami.FormData.label: i18n("Color:")
+            // Kirigami.FormData.label: i18n("Color:")
             color: cfg_panelBgColor
-            enabled: panelBgEnabled.checked
+            visible: singleColorRadio.checked
             onAccepted: {
                 cfg_panelBgColor = color
             }
+            enabled: panelBgEnabled.checked
         }
+
+        ComboBox {
+            id: colorModeTheme
+            model: [i18n("Accent"), i18n("Text"), i18n("Background")]
+            visible: accentColorRadio.checked
+            enabled: panelBgEnabled.checked
+        }
+
         RowLayout {
             Kirigami.FormData.label: i18n("Opacity:")
             TextField {
@@ -213,15 +253,90 @@ KCM.SimpleKCM {
             Layout.fillWidth: true
         }
 
+        RadioButton {
+            Kirigami.FormData.label: i18n("Color:")
+            text: i18n("Custom")
+            id: singleOutlineColorRadio
+            ButtonGroup.group: outlineColorModeGroup
+            property int index: 0
+            checked: plasmoid.configuration.panelOutlineColorMode === index
+            enabled: panelBgEnabled.checked
+        }
+        RadioButton {
+            text: i18n("System")
+            id: accentOutlineColorRadio
+            ButtonGroup.group: outlineColorModeGroup
+            property int index: 1
+            checked: plasmoid.configuration.panelOutlineColorMode === index
+            enabled: panelBgEnabled.checked
+        }
+
+        ButtonGroup {
+            id: outlineColorModeGroup
+            onCheckedButtonChanged: {
+                if (checkedButton) {
+                    cfg_panelOutlineColorMode = checkedButton.index
+                }
+            }
+        }
+
         Components.ColorButton {
             id: panelOutlineColor
-            Kirigami.FormData.label: i18n("Color:")
-            showAlphaChannel: true
+            showAlphaChannel: false
             dialogTitle: i18n("Panel outline")
             color: cfg_panelOutlineColor
-            enabled: panelBgEnabled.checked
+            visible: singleOutlineColorRadio.checked
             onAccepted: {
+                console.error(color);
                 cfg_panelOutlineColor = color
+            }
+            enabled: panelBgEnabled.checked
+        }
+
+        ComboBox {
+            id: panelOutlineColorModeTheme
+            model: [i18n("Accent"), i18n("Text"), i18n("Background")]
+            visible: accentOutlineColorRadio.checked
+            enabled: panelBgEnabled.checked
+        }
+
+        RowLayout {
+            Kirigami.FormData.label: i18n("Opacity:")
+            TextField {
+                id: panelOutlineOpacity
+                placeholderText: "0-1"
+                text: parseFloat(cfg_panelOutlineOpacity).toFixed(validator.decimals)
+                enabled: panelBgEnabled.checked
+                Layout.preferredWidth: Kirigami.Units.gridUnit * 4
+
+                validator: DoubleValidator {
+                    bottom: 0.0
+                    top: 1.0
+                    decimals: 2
+                    notation: DoubleValidator.StandardNotation
+                }
+
+                onTextChanged: {
+                    const newVal = parseFloat(text)
+                    cfg_panelOutlineOpacity = isNaN(newVal) ? 0 : newVal
+                }
+
+                Components.ValueMouseControl {
+                    height: parent.height - 8
+                    width: height
+                    anchors.right: parent.right
+                    anchors.rightMargin: 4
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    from: parent.validator.bottom
+                    to: parent.validator.top
+                    decimals: parent.validator.decimals
+                    stepSize: 0.05
+                    value: cfg_panelOutlineOpacity
+                    onValueChanged: {
+                        cfg_panelOutlineOpacity = parseFloat(value)
+                    }
+                }
             }
         }
 

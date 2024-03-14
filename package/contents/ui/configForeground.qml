@@ -12,6 +12,7 @@ KCM.SimpleKCM {
     property bool cfg_fgColorEnabled: fgColorEnabled.checked
     property int cfg_fgMode: plasmoid.configuration.fgMode
     property int cfg_fgColorMode: plasmoid.configuration.fgColorMode
+    property alias cfg_fgColorModeTheme: fgColorModeTheme.currentIndex
     property string cfg_fgSingleColor: fgSingleColor.color
     property string cfg_fgCustomColors: fgCustomColors.text
 
@@ -20,9 +21,6 @@ KCM.SimpleKCM {
     
     property real cfg_fgOpacity: parseFloat(fgOpacity.text)
     property string cfg_forceRecolor: ""
-
-    property bool cfg_fgBlacklistedColorEnabled: fgBlacklistedColorEnabled.checked
-    property string cfg_blacklistedFgColor: blacklistedFgColor.text
 
     property bool cfg_fgContrastFixEnabled: fgContrastFixEnabled.checked
     property bool cfg_fgSaturationEnabled: fgSaturationEnabled.checked
@@ -246,36 +244,39 @@ KCM.SimpleKCM {
             Kirigami.FormData.isSection: true
             Kirigami.FormData.label: i18n("Colors")
         }
-
-        RadioButton {
-            id: fgSingleColorRadio
-            Kirigami.FormData.label: i18n("Single")
-            ButtonGroup.group: colorModeGroup
-            property int index: 0
-            checked: plasmoid.configuration.fgColorMode === index
-            enabled: !animatedColorMode.checked
-        }
-        RadioButton {
-            id: accentColorRadio
-            Kirigami.FormData.label: i18n("Accent")
-            ButtonGroup.group: colorModeGroup
-            property int index: 1
-            checked: plasmoid.configuration.fgColorMode === index
-            enabled: !animatedColorMode.checked
-        }
+        
+        // RowLayout {
+            RadioButton {
+                id: fgSingleColorRadio
+                Kirigami.FormData.label: i18n("Color:")
+                text: i18n("Single")
+                ButtonGroup.group: colorModeGroup
+                property int index: 0
+                checked: plasmoid.configuration.fgColorMode === index
+                enabled: !animatedColorMode.checked
+            }
+        // }
+        // RowLayout {
+            RadioButton {
+                text: i18n("System")
+                id: accentColorRadio
+                ButtonGroup.group: colorModeGroup
+                property int index: 1
+                checked: plasmoid.configuration.fgColorMode === index
+                enabled: !animatedColorMode.checked
+            }
+        // }
         RadioButton {
             id: followBgColorRadio
-            Kirigami.FormData.label: i18n("Widget background")
             ButtonGroup.group: colorModeGroup
             property int index: 4
             checked: plasmoid.configuration.fgColorMode === index
-            // visible: !staticColorMode.checked
             enabled: !animatedColorMode.checked && widgetBgEnabled
-            text: !widgetBgEnabled ? "Widget background is disabled" : ""
+            text: !widgetBgEnabled ? i18n("Widget background is disabled") : i18n("Widget background")
         }
         RadioButton {
             id: listColorRadio
-            Kirigami.FormData.label: i18n("Custom list")
+            text: i18n("Custom list")
             ButtonGroup.group: colorModeGroup
             property int index: 2
             checked: plasmoid.configuration.fgColorMode === index
@@ -283,7 +284,7 @@ KCM.SimpleKCM {
         }
         RadioButton {
             id: randomColorRadio
-            Kirigami.FormData.label: i18n("Random")
+            text: i18n("Random")
             ButtonGroup.group: colorModeGroup
             property int index: 3
             checked: plasmoid.configuration.fgColorMode === index
@@ -301,7 +302,6 @@ KCM.SimpleKCM {
 
         Components.ColorButton {
             id: fgSingleColor
-            Kirigami.FormData.label: i18n("Color:")
             showAlphaChannel: false
             dialogTitle: i18n("Text/icons")
             color: cfg_fgSingleColor
@@ -311,7 +311,12 @@ KCM.SimpleKCM {
             }
         }
 
-        
+        ComboBox {
+            id: fgColorModeTheme
+            model: [i18n("Accent"), i18n("Text"), i18n("Background")]
+            visible: accentColorRadio.checked
+        }
+
         GroupBox {
             Kirigami.FormData.label: i18n("Colors list:")
             visible: listColorRadio.checked
@@ -521,30 +526,6 @@ KCM.SimpleKCM {
                         cfg_fgLightness = parseFloat(value)
                     }
                 }
-            }
-        }
-
-        Kirigami.Separator {
-            Kirigami.FormData.isSection: true
-            Kirigami.FormData.label: i18n("Blacklisted")
-        }
-
-        CheckBox {
-            Kirigami.FormData.label: i18n("Blacklisted color:")
-            id: fgBlacklistedColorEnabled
-            checked: cfg_fgBlacklistedColorEnabled 
-            onCheckedChanged: cfg_fgBlacklistedColorEnabled = checked
-        }
-
-        Components.ColorButton {
-            id: blacklistedFgColor
-            showAlphaChannel: false
-            dialogTitle: i18n("Blacklisted text/icons")
-            Kirigami.FormData.label: i18n("Color:")
-            color: cfg_blacklistedFgColor
-            enabled: fgBlacklistedColorEnabled.checked
-            onAccepted: {
-                cfg_blacklistedFgColor = color
             }
         }
 
