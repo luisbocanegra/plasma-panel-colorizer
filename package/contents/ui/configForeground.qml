@@ -31,6 +31,12 @@ KCM.SimpleKCM {
 
     property bool clearing: false
 
+    property bool cfg_fgShadowEnabled: fgShadowEnabled.checked
+    property string cfg_fgShadowColor: fgShadowColor.color
+    property int cfg_fgShadowX: fgShadowX.value
+    property int cfg_fgShadowY: fgShadowY.value
+    property int cfg_fgShadowRadius: fgShadowRadius.value
+
     ListModel {
         id: fgCustomColorsModel
     }
@@ -526,6 +532,68 @@ KCM.SimpleKCM {
                         cfg_fgLightness = parseFloat(value)
                     }
                 }
+            }
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: true
+            Kirigami.FormData.label: i18n("Shadow")
+        }
+
+        CheckBox {
+            Kirigami.FormData.label: i18n("Enabled:")
+            id: fgShadowEnabled
+            checked: cfg_fgShadowEnabled
+            onCheckedChanged: cfg_fgShadowEnabled = checked
+            enabled: fgColorEnabled.checked
+        }
+
+
+        Components.ColorButton {
+            id: fgShadowColor
+            Kirigami.FormData.label: i18n("Color:")
+            showAlphaChannel: true
+            dialogTitle: i18n("Panel shadow")
+            color: cfg_fgShadowColor
+            enabled: fgColorEnabled.checked && fgShadowEnabled.checked
+            onAccepted: {
+                cfg_fgShadowColor = color
+            }
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Strength:")
+            id: fgShadowRadius
+            value: cfg_fgShadowRadius
+            from: 0
+            to: 99
+            enabled: fgColorEnabled.checked && fgShadowEnabled.checked
+            onValueModified: {
+                cfg_fgShadowRadius = value
+            }
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("X offset:")
+            id: fgShadowX
+            value: cfg_fgShadowX
+            from: -99
+            to: 99
+            enabled: fgColorEnabled.checked && fgShadowEnabled.checked
+            onValueModified: {
+                cfg_fgShadowX = value
+            }
+        }
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Y offset:")
+            id: fgShadowY
+            value: cfg_fgShadowY
+            from: -99
+            to: 99
+            enabled: fgColorEnabled.checked && fgShadowEnabled.checked
+            onValueModified: {
+                cfg_fgShadowY = value
             }
         }
 

@@ -9,6 +9,7 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.plasma5support as P5Support
 import org.kde.plasma.workspace.components as WorkspaceComponents
 import org.kde.taskmanager 0.1 as TaskManager
+import Qt5Compat.GraphicalEffects
 
 import "components" as Components
 
@@ -204,6 +205,12 @@ PlasmoidItem {
     property string lastPreset
 
     property int panelSpacing: plasmoid.configuration.panelSpacing
+
+    property bool fgShadowEnabled: plasmoid.configuration.fgShadowEnabled
+    property string fgShadowColor: plasmoid.configuration.fgShadowColor
+    property int fgShadowX: plasmoid.configuration.fgShadowX
+    property int fgShadowY: plasmoid.configuration.fgShadowY
+    property int fgShadowRadius: plasmoid.configuration.fgShadowRadius
 
     function opacityToHex(opacity) {
         const op = Math.max(0, Math.min(1, opacity))
@@ -430,6 +437,18 @@ PlasmoidItem {
         }
     }
 
+    property Component shadowComponent: DropShadow {
+        property var target
+        anchors.fill: target
+        horizontalOffset: fgShadowX
+        verticalOffset: fgShadowY
+        radius: fgShadowRadius
+        samples: radius * 2
+        color: fgShadowColor
+        source: target
+        visible: fgShadowEnabled
+    }
+
     toolTipSubText: onDesktop ? "<font color='"+Kirigami.Theme.neutralTextColor+"'>Panel not found, this widget must be child of a panel</font>" : Plasmoid.metaData.description
     toolTipTextFormat: Text.RichText
 
@@ -632,7 +651,7 @@ PlasmoidItem {
             }
 
             rectangles.append({
-                "comp":widgetBgComponent.createObject(
+                "comp": widgetBgComponent.createObject(
                     child,
                     {
                         "z": -1,
@@ -640,8 +659,18 @@ PlasmoidItem {
                         "heightOffset": heightOffset,
                         "widthOffset": widthOffset
                     }
+                ),
+                "shadow": shadowComponent.createObject(
+                    child,
+                    {
+                        "target":child.applet
+                    }
                 )
             })
+            // if (child.applet) {
+            //     const hasShadow = child.applet.children.find(function (child) {return child instanceof DropShadow})
+            //     if (!hasShadow) shadowComponent.createObject(child, {"target":child.applet})
+            // }
         }
     }
 
@@ -982,8 +1011,10 @@ PlasmoidItem {
         console.log("Destroying rects:",rectangles.count,"widget id:",Plasmoid.id, "screen:", screen, "position", plasmoid.location);
         for (var i = rectangles.count - 1; i >= 0; i--) {
             var comp = rectangles.get(i)["comp"]
+            var shadow = rectangles.get(i)["shadow"]
             try {
                 comp.destroy()
+                shadow.destroy()
             } catch (e) {
                 console.error("Error destroying rect", i, "E:" , e);
             }

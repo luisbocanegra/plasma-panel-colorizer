@@ -102,6 +102,11 @@ KCM.SimpleKCM {
     property int cfg_panelOutlineColorModeTheme
     property real cfg_panelOutlineOpacity
     property int cfg_panelSpacing
+    property bool cfg_fgShadowEnabled
+    property string cfg_fgShadowColor
+    property int cfg_fgShadowX
+    property int cfg_fgShadowY
+    property int cfg_fgShadowRadius
 
     Connections {
         target: plasmoid.configuration
