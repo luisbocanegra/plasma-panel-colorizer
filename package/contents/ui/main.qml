@@ -548,6 +548,7 @@ PlasmoidItem {
             customColors = readColors(plasmoid.configuration.customColors)
             fgCustomColors = readColors(plasmoid.configuration.fgCustomColors)
             if (!widgetBgEnabled) destroyRequired = true
+            addingColors = true
             init()
         }
     }
@@ -697,6 +698,14 @@ PlasmoidItem {
             case 3:
                 newColor = getRandomColor()
         }
+        if (fg && fgContrastFixEnabled) {
+            const newSat = fgSaturationEnabled ? fgSaturation : newColor.hslSaturation
+            newColor = scaleColor(newColor, newSat, fgLightness)
+        }
+        if (!fg && bgContrastFixEnabled) {
+            const newSat = bgSaturationEnabled ? bgSaturation : newColor.hslSaturation
+            newColor = scaleColor(newColor, newSat, bgLightness)
+        }
         return newColor
     }
 
@@ -728,10 +737,6 @@ PlasmoidItem {
                 var newColor = "transparent"
                 if (isEnabled && widgetBgEnabled) {
                     newColor = colorMode === 2 ? bgColors[i] : getColor(colorMode)
-                    if (bgContrastFixEnabled) {
-                        const newSat = bgSaturationEnabled ? bgSaturation : newColor.hslSaturation
-                        newColor = scaleColor(newColor, newSat, bgLightness)
-                    }
                 }
                 comp.changeColor(newColor)
             } catch (e) {
@@ -852,6 +857,14 @@ PlasmoidItem {
                 } else {
                     [currentFgColors, fgColorStart] = getNextColors(fgCustomColors, 0, rectangles.count)
                 }
+                if (fgContrastFixEnabled) {
+                    for (let i = 0; i < currentFgColors.length; i++) {
+                        var newColor = Qt.rgba(currentFgColors[i].r, currentFgColors[i].g, currentFgColors[i].b, 1)
+                        const newSat = fgSaturationEnabled ? fgSaturation : newColor.hslSaturation
+                        newColor = scaleColor(newColor, newSat, fgLightness)
+                        currentFgColors[i] = newColor
+                    }
+                }
             }
         }
         var idx=0
@@ -883,12 +896,12 @@ PlasmoidItem {
                         } else {
                             bgColor = Qt.hsla(defaultTextColor.hslHue, defaultTextColor.hslSaturation, defaultTextColor.hslLightness, 1);
                         }
+                        if (fgContrastFixEnabled) {
+                            const newSat = fgSaturationEnabled ? fgSaturation : bgColor.hslSaturation
+                            bgColor = scaleColor(bgColor, newSat, fgLightness)
+                        }
                     } else {
                         bgColor = fgColorMode === 2 ? currentFgColors[idx] : getColor(fgColorMode, true)
-                    }
-                    if (fgContrastFixEnabled) {
-                        const newSat = fgSaturationEnabled ? fgSaturation : bgColor.hslSaturation
-                        bgColor = scaleColor(bgColor, newSat, fgLightness)
                     }
                     newColor = bgColor
                     currentFgColors.push(newColor)
