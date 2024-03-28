@@ -1157,7 +1157,7 @@ PlasmoidItem {
             const current = panelElement.children[i]
 
             if (current.imagePath && current.imagePath.toString().includes("panel-background")) {
-                current.opacity = isEnabled && panelBgEnabled ? panelRealBgOpacity : 1
+                current.opacity = isEnabled ? panelRealBgOpacity : 1
             }
         }
         lookForContainerTimer.start()
@@ -1168,7 +1168,7 @@ PlasmoidItem {
     function toggleTransparency(enabled) {
         if ( main.containmentItem == null ) lookForContainer( main.parent , depth ) ;
         if ( main.containmentItem != null ) {
-            main.containmentItem.Plasmoid.backgroundHints = enabled ? PlasmaCore.Types.NoBackground : PlasmaCore.Types.DefaultBackground ;
+            main.containmentItem.Plasmoid.backgroundHints = enabled ? PlasmaCore.Types.NoBackground : PlasmaCore.Types.DefaultBackground
         }
     }
 
