@@ -36,6 +36,7 @@ KCM.SimpleKCM {
     property int cfg_fgShadowX: fgShadowX.value
     property int cfg_fgShadowY: fgShadowY.value
     property int cfg_fgShadowRadius: fgShadowRadius.value
+    property bool cfg_fixCustomBadges: fixCustomBadgesCheckbox.checked
 
     ListModel {
         id: fgCustomColorsModel
@@ -595,6 +596,25 @@ KCM.SimpleKCM {
             onValueModified: {
                 cfg_fgShadowY = value
             }
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: true
+            Kirigami.FormData.label: i18n("Custom badges")
+        }
+
+        CheckBox {
+            Kirigami.FormData.label: i18n("Fix custom badges:")
+            id: fixCustomBadgesCheckbox
+            checked: cfg_fixCustomBadges
+            onCheckedChanged: cfg_fixCustomBadges = checked
+        }
+
+        Label {
+            text: i18n("Fix unreadable custom badges (e.g. counters) drawn by some widgets.")
+            opacity: 0.7
+            Layout.maximumWidth: 400
+            wrapMode: Text.Wrap
         }
 
         Kirigami.Separator {

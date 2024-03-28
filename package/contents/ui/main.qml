@@ -211,6 +211,7 @@ PlasmoidItem {
     property int fgShadowX: plasmoid.configuration.fgShadowX
     property int fgShadowY: plasmoid.configuration.fgShadowY
     property int fgShadowRadius: plasmoid.configuration.fgShadowRadius
+    property int fixCustomBadges: plasmoid.configuration.fixCustomBadges
 
     function opacityToHex(opacity) {
         const op = Math.max(0, Math.min(1, opacity))
@@ -780,6 +781,14 @@ PlasmoidItem {
     function applyFgColor(element, forceMask, ignore, newColor, maskList, addingColors) {
         // don't go into expanded widgets
         if (element instanceof PlasmaExtras.Representation) return
+
+        if (fixCustomBadges) {
+            if ([Text,Label,Canvas,Kirigami.Icon].some(function (type) {return element instanceof type}) && element.parent instanceof Rectangle) {
+                element.color = (Kirigami.ColorUtils.brightnessForColor(element.parent.color) === Kirigami.ColorUtils.Dark) ? "#ffffff" : "#000000"
+                element.opacity = isEnabled ? fgOpacity : 1
+                return
+            }
+        }
 
         if (element.plasmoid?.pluginName) {
             const name = element.plasmoid.pluginName

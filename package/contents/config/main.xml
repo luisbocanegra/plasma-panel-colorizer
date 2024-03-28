@@ -429,5 +429,10 @@
         type="Int">
         <default>0</default>
     </entry>
+    <entry
+        name="fixCustomBadges"
+        type="Bool">
+        <default>true</default>
+    </entry>
   </group>
 </kcfg>
