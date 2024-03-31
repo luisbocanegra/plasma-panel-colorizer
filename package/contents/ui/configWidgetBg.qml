@@ -143,12 +143,24 @@ KCM.SimpleKCM {
     }
 
     function updateWidgetsString(){
-        var newString = ""
+        console.log("UPDATING STRING");
+        console.log("current:", cfg_marginRules);
+        var currentWidgets = new Map()
+
+        cfg_marginRules.trim().split("|").forEach(function(item) {
+            if (item) {
+                var parts = item.split(",");
+                currentWidgets.set(parts[0], parts.slice(1).join(","));
+            }
+        })
+
         for (let i = 0; i < widgetsModel.count; i++) {
             let widget = widgetsModel.get(i)
-            newString += widget.name + "," + widget.vExtraMargin + "," + widget.hExtraMargin + "|"
+            const widgetMargins = widget.vExtraMargin + "," + widget.hExtraMargin
+            currentWidgets.set(widget.name, widgetMargins)
         }
-        cfg_marginRules = newString
+        cfg_marginRules = Array.from(currentWidgets).map(([k, v]) => k + "," + v).join("|")
+        console.log("new:", cfg_marginRules)
     }
 
     Component.onCompleted: {

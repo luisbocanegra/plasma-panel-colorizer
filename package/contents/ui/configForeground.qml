@@ -110,14 +110,20 @@ KCM.SimpleKCM {
     }
 
     function updateWidgetsString(){
-        var newString = ""
+        console.log("UPDATING STRING");
+        console.log("current:", cfg_forceRecolor);
+        var currentWidgets = new Set(cfg_forceRecolor.trim().split("|"))
+
         for (let i = 0; i < widgetsModel.count; i++) {
-            let widget = widgetsModel.get(i)
+            const widget = widgetsModel.get(i)
             if (widget.enabled) {
-                newString += widget.name + "|"
+                currentWidgets.add(widget.name)
+            } else {
+                currentWidgets.delete(widget.name)
             }
         }
-        cfg_forceRecolor = newString
+        cfg_forceRecolor = Array.from(currentWidgets).join("|")
+        console.log("new:", cfg_forceRecolor)
     }
 
     Component.onCompleted: {

@@ -48,14 +48,20 @@ KCM.SimpleKCM {
     }
 
     function updateWidgetsString(){
-        var newString = ""
+        console.log("UPDATING STRING");
+        console.log("current:", cfg_blacklist);
+        var currentWidgets = new Set(cfg_blacklist.trim().split("|"))
+
         for (let i = 0; i < widgetsModel.count; i++) {
-            let widget = widgetsModel.get(i)
+            const widget = widgetsModel.get(i)
             if (widget.enabled) {
-                newString += widget.name + "|"
+                currentWidgets.add(widget.name)
+            } else {
+                currentWidgets.delete(widget.name)
             }
         }
-        cfg_blacklist = newString
+        cfg_blacklist = Array.from(currentWidgets).join("|")
+        console.log("new:", cfg_blacklist)
     }
 
     Component.onCompleted: {
@@ -100,7 +106,6 @@ KCM.SimpleKCM {
             ButtonGroup.group: fgcolorModeGroup
             property int index: 0
             checked: plasmoid.configuration.fgBlacklistedColorMode === index
-            enabled: panelBgEnabled.checked
         }
         RadioButton {
             text: i18n("System")
@@ -108,7 +113,6 @@ KCM.SimpleKCM {
             ButtonGroup.group: fgcolorModeGroup
             property int index: 1
             checked: plasmoid.configuration.fgBlacklistedColorMode === index
-            enabled: panelBgEnabled.checked
         }
 
         ButtonGroup {
