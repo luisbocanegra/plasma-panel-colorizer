@@ -749,6 +749,8 @@ PlasmoidItem {
         console.log("Updating panel widgets list");
         plasmoid.configuration.panelWidgets = ""
         plasmoid.configuration.panelWidgetsWithTray = ""
+        var panelWidgets = new Set()
+        var panelWidgetsWithTray =new Set()
         function findPlasmoid(child) {
             if (child instanceof PlasmaExtras.Representation) return
             // App tray icons
@@ -758,7 +760,8 @@ PlasmoidItem {
                     const name = model.Id
                     const title = model.ToolTipTitle !== "" ? model.ToolTipTitle : model.Title
                     const icon = model.IconName
-                    plasmoid.configuration.panelWidgetsWithTray += name + "," + title + "," + icon + "|"
+                    const widget = name + "," + title + "," + icon
+                    panelWidgetsWithTray.add(widget)
                 }
             }
             if (child.plasmoid?.pluginName && child.plasmoid.pluginName !== "org.kde.plasma.private.systemtray") {
@@ -766,11 +769,12 @@ PlasmoidItem {
                 const title = child.plasmoid.title
                 const icon = child.plasmoid.icon
                 const inTray = child.plasmoid.containmentDisplayHints & PlasmaCore.Types.ContainmentDrawsPlasmoidHeading
+                const widget = name + "," + title + "," + icon
                 if (!inTray) {
-                    plasmoid.configuration.panelWidgets += name + "," + title + "," + icon + "|"
+                    panelWidgets.add(widget)
                 }
                 if (name !== "org.kde.plasma.systemtray") {
-                    plasmoid.configuration.panelWidgetsWithTray += name + "," + title + "," + icon + "|"
+                    panelWidgetsWithTray.add(widget)
                 }
             }
             for (var i = 0; i < child.children.length; i++) {
@@ -781,6 +785,8 @@ PlasmoidItem {
             const child = panelLayout.children[i];
             findPlasmoid(child)
         }
+        plasmoid.configuration.panelWidgets = Array.from(panelWidgets).join("|")
+        plasmoid.configuration.panelWidgetsWithTray = Array.from(panelWidgetsWithTray).join("|")
     }
 
     function applyFgColor(element, forceMask, ignore, newColor, maskList, addingColors) {
