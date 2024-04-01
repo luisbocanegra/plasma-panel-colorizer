@@ -108,6 +108,11 @@ KCM.SimpleKCM {
     property int cfg_fgShadowY
     property int cfg_fgShadowRadius
     property bool cfg_fixCustomBadges
+    property int cfg_colorModeThemeVariant
+    property int cfg_widgetOutlineColorModeThemeVariant
+    property int cfg_fgColorModeThemeVariant
+    property int cfg_panelBgColorModeThemeVariant
+    property int cfg_panelOutlineColorModeThemeVariant
 
     Connections {
         target: plasmoid.configuration

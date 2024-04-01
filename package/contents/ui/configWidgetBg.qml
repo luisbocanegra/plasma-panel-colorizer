@@ -13,6 +13,7 @@ KCM.SimpleKCM {
     property int cfg_mode: plasmoid.configuration.mode
     property int cfg_colorMode: plasmoid.configuration.colorMode
     property alias cfg_colorModeTheme: colorModeTheme.currentIndex
+    property alias cfg_colorModeThemeVariant: colorModeThemeVariant.currentIndex
     property string cfg_singleColor: singleColor.color
     property string cfg_customColors: customColors.text
 
@@ -31,6 +32,7 @@ KCM.SimpleKCM {
 
     property int cfg_widgetOutlineColorMode: plasmoid.configuration.widgetOutlineColorMode
     property alias cfg_widgetOutlineColorModeTheme: widgetOutlineColorModeTheme.currentIndex
+    property alias cfg_widgetOutlineColorModeThemeVariant: widgetOutlineColorModeThemeVariant.currentIndex
     property string cfg_widgetOutlineColor: widgetOutlineColor.color
     property real cfg_widgetOutlineOpacity: widgetOutlineOpacity.text
     property int cfg_widgetOutlineWidth: widgetOutlineWidth.value
@@ -270,7 +272,7 @@ KCM.SimpleKCM {
 
         // RowLayout {
         RadioButton {
-            Kirigami.FormData.label: i18n("Color:")
+            Kirigami.FormData.label: i18n("Source:")
             text: i18n("Custom")
             id: singleColorRadio
             ButtonGroup.group: colorModeGroup
@@ -329,7 +331,36 @@ KCM.SimpleKCM {
 
         ComboBox {
             id: colorModeTheme
-            model: [i18n("Accent"), i18n("Text"), i18n("Background")]
+            Kirigami.FormData.label: i18n("Color:")
+            model: [
+                i18n("Text"),
+                i18n("Disabled Text"),
+                i18n("Highlighted Text"),
+                i18n("Active Text"),
+                i18n("Link"),
+                i18n("Visited Link"),
+                i18n("Negative Text"),
+                i18n("Neutral Text"),
+                i18n("Positive Text"),
+                i18n("Background"),
+                i18n("Highlight"),
+                i18n("Active Background"),
+                i18n("Link Background"),
+                i18n("Visited Link Background"),
+                i18n("Negative Background"),
+                i18n("Neutral Background"),
+                i18n("Positive Background"),
+                i18n("Alternate Background"),
+                i18n("Focus"),
+                i18n("Hover")
+            ]
+            visible: accentColorRadio.checked
+        }
+
+        ComboBox {
+            id: colorModeThemeVariant
+            Kirigami.FormData.label: i18n("Color set:")
+            model: [i18n("View"), i18n("Window"), i18n("Button"), i18n("Selection"), i18n("Tooltip"), i18n("Complementary"), i18n("Header")]
             visible: accentColorRadio.checked
         }
 
@@ -685,7 +716,7 @@ KCM.SimpleKCM {
         }
 
         RadioButton {
-            Kirigami.FormData.label: i18n("Color:")
+            Kirigami.FormData.label: i18n("Color source:")
             text: i18n("Custom")
             id: singleOutlineColorRadio
             ButtonGroup.group: outlineColorModeGroup
@@ -722,7 +753,36 @@ KCM.SimpleKCM {
         
         ComboBox {
             id: widgetOutlineColorModeTheme
-            model: [i18n("Accent"), i18n("Text"), i18n("Background")]
+            Kirigami.FormData.label: i18n("Color:")
+            model: [
+                i18n("Text"),
+                i18n("Disabled Text"),
+                i18n("Highlighted Text"),
+                i18n("Active Text"),
+                i18n("Link"),
+                i18n("Visited Link"),
+                i18n("Negative Text"),
+                i18n("Neutral Text"),
+                i18n("Positive Text"),
+                i18n("Background"),
+                i18n("Highlight"),
+                i18n("Active Background"),
+                i18n("Link Background"),
+                i18n("Visited Link Background"),
+                i18n("Negative Background"),
+                i18n("Neutral Background"),
+                i18n("Positive Background"),
+                i18n("Alternate Background"),
+                i18n("Focus"),
+                i18n("Hover")
+            ]
+            visible: accentOutlineColorRadio.checked
+        }
+
+        ComboBox {
+            id: widgetOutlineColorModeThemeVariant
+            Kirigami.FormData.label: i18n("Color set:")
+            model: [i18n("View"), i18n("Window"), i18n("Button"), i18n("Selection"), i18n("Tooltip"), i18n("Complementary"), i18n("Header")]
             visible: accentOutlineColorRadio.checked
         }
 

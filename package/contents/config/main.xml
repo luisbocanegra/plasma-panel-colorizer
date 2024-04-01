@@ -33,6 +33,11 @@
         <default>0</default>
     </entry>
     <entry
+        name="colorModeThemeVariant"
+        type="Int">
+        <default>0</default>
+    </entry>
+    <entry
         name="singleColor"
         type="String">
         <default>#7182ff</default>
@@ -96,6 +101,11 @@
         name="widgetOutlineColorModeTheme"
         type="Int">
         <default>1</default>
+    </entry>
+    <entry
+        name="widgetOutlineColorModeThemeVariant"
+        type="Int">
+        <default>0</default>
     </entry>
     <entry
         name="widgetOutlineOpacity"
@@ -172,6 +182,11 @@
     </entry>
     <entry
         name="fgColorModeTheme"
+        type="Int">
+        <default>0</default>
+    </entry>
+    <entry
+        name="fgColorModeThemeVariant"
         type="Int">
         <default>0</default>
     </entry>
@@ -272,6 +287,11 @@
         <default>2</default>
     </entry>
     <entry
+        name="panelBgColorModeThemeVariant"
+        type="Int">
+        <default>0</default>
+    </entry>
+    <entry
         name="hideRealPanelBg"
         type="Bool">
         <default>false</default>
@@ -310,6 +330,11 @@
         name="panelOutlineColorModeTheme"
         type="Int">
         <default>1</default>
+    </entry>
+    <entry
+        name="panelOutlineColorModeThemeVariant"
+        type="Int">
+        <default>0</default>
     </entry>
     <entry
         name="panelOutlineWidth"

@@ -51,8 +51,14 @@ PlasmoidItem {
         if (panelBgColorMode === 0) {
             return plasmoid.configuration.panelBgColor
         } else {
+            Kirigami.Theme.colorSet = panelBgColorScope
+            Kirigami.Theme.inherit = false
             return themeColors[panelBgColorModeTheme]
         }
+    }
+    property int panelBgcolorModeThemeVariant: plasmoid.configuration.panelBgcolorModeThemeVariant
+    property var panelBgColorScope: {
+        return themeScopes[panelBgcolorModeThemeVariant]
     }
     property real panelBgOpacity: plasmoid.configuration.panelBgOpacity
     property real panelBgRadius: isFloating ? plasmoid.configuration.panelBgRadius : 0
@@ -85,11 +91,16 @@ PlasmoidItem {
         if (panelOutlineColorMode === 0) {
             c = hexToRgb(plasmoid.configuration.panelOutlineColor)
         } else {
+            Kirigami.Theme.colorSet = panelOutlineColorScope
+            Kirigami.Theme.inherit = false
             c = hexToRgb(themeColors[panelOutlineColorModeTheme])
         }
         return Qt.rgba(c.r / 255, c.g / 255, c.b / 255, panelOutlineOpacity).toString()
     }
-    // plasmoid.configuration.panelOutlineColor
+    property int panelOutlineColorModeThemeVariant: plasmoid.configuration.panelOutlineColorModeThemeVariant
+    property var panelOutlineColorScope: {
+        return themeScopes[panelOutlineColorModeThemeVariant]
+    }
     property color panelShadowColor: plasmoid.configuration.panelShadowColor
     property int panelShadowSize: plasmoid.configuration.panelShadowSize
     property int panelShadowX: plasmoid.configuration.panelShadowX
@@ -111,16 +122,55 @@ PlasmoidItem {
     property bool destroyRequired: false
 
     property var themeColors: [
-        Kirigami.Theme.highlightColor,
         Kirigami.Theme.textColor,
-        Kirigami.Theme.backgroundColor
+        Kirigami.Theme.disabledTextColor,
+        Kirigami.Theme.highlightedTextColor,
+        Kirigami.Theme.activeTextColor,
+        Kirigami.Theme.linkColor,
+        Kirigami.Theme.visitedLinkColor,
+        Kirigami.Theme.negativeTextColor,
+        Kirigami.Theme.neutralTextColor,
+        Kirigami.Theme.positiveTextColor,
+        Kirigami.Theme.backgroundColor,
+        Kirigami.Theme.highlightColor,
+        Kirigami.Theme.activeBackgroundColor,
+        Kirigami.Theme.linkBackgroundColor,
+        Kirigami.Theme.visitedLinkBackgroundColor,
+        Kirigami.Theme.negativeBackgroundColor,
+        Kirigami.Theme.neutralBackgroundColor,
+        Kirigami.Theme.positiveBackgroundColor,
+        Kirigami.Theme.alternateBackgroundColor,
+        Kirigami.Theme.focusColor,
+        Kirigami.Theme.hoverColor
+    ]
+
+    property var themeScopes: [
+        Kirigami.Theme.View,
+        Kirigami.Theme.Window,
+        Kirigami.Theme.Button,
+        Kirigami.Theme.Selection,
+        Kirigami.Theme.Tooltip,
+        Kirigami.Theme.Complementary,
+        Kirigami.Theme.Header
     ]
 
     property color accentColor: {
+        Kirigami.Theme.colorSet = widgetBgColorScope
+        Kirigami.Theme.inherit = false
         return themeColors[colorModeTheme]
     }
+    property int colorModeThemeVariant: plasmoid.configuration.colorModeThemeVariant
+    property var widgetBgColorScope: {
+        return themeScopes[colorModeThemeVariant]
+    }
     property color fgAcentColor: {
+        Kirigami.Theme.colorSet = fgColorScope
+        Kirigami.Theme.inherit = false
         return themeColors[fgColorModeTheme]
+    }
+    property int fgColorModeThemeVariant: plasmoid.configuration.fgColorModeThemeVariant
+    property var fgColorScope: {
+        return themeScopes[fgColorModeThemeVariant]
     }
     property color defaultTextColor: Kirigami.Theme.textColor
     property real fgOpacity: plasmoid.configuration.fgOpacity
@@ -134,9 +184,15 @@ PlasmoidItem {
         if (fgBlacklistedColorMode === 0) {
             c = hexToRgb(plasmoid.configuration.blacklistedFgColor)
         } else {
+            Kirigami.Theme.colorSet = fgBlacklistedColorScope
+            Kirigami.Theme.inherit = false
             c = hexToRgb(themeColors[fgBlacklistedColorModeTheme])
         }
         return Qt.rgba(c.r / 255, c.g / 255, c.b / 255, 1).toString()
+    }
+    property int fgBlacklistedColorModeThemeVariant: plasmoid.configuration.fgBlacklistedColorModeThemeVariant
+    property var fgBlacklistedColorScope: {
+        return themeScopes[fgBlacklistedColorModeThemeVariant]
     }
 
     property bool showToUpdate: false

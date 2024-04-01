@@ -11,6 +11,7 @@ KCM.SimpleKCM {
     property bool cfg_panelBgEnabled: panelBgEnabled.checked
     property int cfg_panelBgColorMode: plasmoid.configuration.panelBgColorMode
     property alias cfg_panelBgColorModeTheme: colorModeTheme.currentIndex
+    property alias cfg_panelBgcolorModeThemeVariant: colorModeThemeVariant.currentIndex
     property string cfg_panelBgColor: panelBgColor.color
     property bool cfg_hideRealPanelBg: hideRealPanelBg.checked
     property real cfg_panelBgOpacity: parseFloat(panelBgOpacity.text)
@@ -21,6 +22,7 @@ KCM.SimpleKCM {
 
     property int cfg_panelOutlineColorMode: plasmoid.configuration.panelOutlineColorMode
     property alias cfg_panelOutlineColorModeTheme: panelOutlineColorModeTheme.currentIndex
+    property alias cfg_panelOutlineColorModeThemeVariant: panelOutlineColorModeThemeVariant.currentIndex
     property string cfg_panelOutlineColor: panelOutlineColor.color
     property int cfg_panelOutlineWidth: panelOutlineWidth.value
     property real cfg_panelOutlineOpacity: panelOutlineOpacity.text
@@ -149,7 +151,7 @@ KCM.SimpleKCM {
         }
 
         RadioButton {
-            Kirigami.FormData.label: i18n("Color:")
+            Kirigami.FormData.label: i18n("Color source:")
             text: i18n("Custom")
             id: singleColorRadio
             ButtonGroup.group: colorModeGroup
@@ -190,7 +192,16 @@ KCM.SimpleKCM {
 
         ComboBox {
             id: colorModeTheme
+            Kirigami.FormData.label: i18n("Color:")
             model: [i18n("Accent"), i18n("Text"), i18n("Background")]
+            visible: accentColorRadio.checked
+            enabled: panelBgEnabled.checked
+        }
+
+        ComboBox {
+            id: colorModeThemeVariant
+            Kirigami.FormData.label: i18n("Color set:")
+            model: [i18n("View"), i18n("Window"), i18n("Button"), i18n("Selection"), i18n("Tooltip"), i18n("Complementary"), i18n("Header")]
             visible: accentColorRadio.checked
             enabled: panelBgEnabled.checked
         }
@@ -254,7 +265,7 @@ KCM.SimpleKCM {
         }
 
         RadioButton {
-            Kirigami.FormData.label: i18n("Color:")
+            Kirigami.FormData.label: i18n("Color source:")
             text: i18n("Custom")
             id: singleOutlineColorRadio
             ButtonGroup.group: outlineColorModeGroup
@@ -295,10 +306,20 @@ KCM.SimpleKCM {
 
         ComboBox {
             id: panelOutlineColorModeTheme
+            Kirigami.FormData.label: i18n("Color:")
             model: [i18n("Accent"), i18n("Text"), i18n("Background")]
             visible: accentOutlineColorRadio.checked
             enabled: panelBgEnabled.checked
         }
+
+        ComboBox {
+            id: panelOutlineColorModeThemeVariant
+            Kirigami.FormData.label: i18n("Color set:")
+            model: [i18n("View"), i18n("Window"), i18n("Button"), i18n("Selection"), i18n("Tooltip"), i18n("Complementary"), i18n("Header")]
+            visible: accentOutlineColorRadio.checked
+            enabled: panelBgEnabled.checked
+        }
+
 
         RowLayout {
             Kirigami.FormData.label: i18n("Opacity:")

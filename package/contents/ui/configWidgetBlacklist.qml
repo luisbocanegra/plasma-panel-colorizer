@@ -11,6 +11,7 @@ KCM.SimpleKCM {
     property bool cfg_fgBlacklistedColorEnabled: fgBlacklistedColorEnabled.checked
     property int cfg_fgBlacklistedColorMode: plasmoid.configuration.fgBlacklistedColorMode
     property alias cfg_fgBlacklistedColorModeTheme: fgBlacklistedColorModeTheme.currentIndex
+    property alias cfg_fgBlacklistedColorModeThemeVariant: fgBlacklistedColorModeThemeVariant.currentIndex
     property string cfg_blacklistedFgColor: blacklistedFgColor.color
 
     property string cfg_blacklist: ""
@@ -100,7 +101,7 @@ KCM.SimpleKCM {
         }
 
         RadioButton {
-            Kirigami.FormData.label: i18n("Color:")
+            Kirigami.FormData.label: i18n("Source:")
             text: i18n("Custom")
             id: fgsingleColorRadio
             ButtonGroup.group: fgcolorModeGroup
@@ -138,7 +139,36 @@ KCM.SimpleKCM {
 
         ComboBox {
             id: fgBlacklistedColorModeTheme
-            model: [i18n("Accent"), i18n("Text"), i18n("Background")]
+            Kirigami.FormData.label: i18n("Color:")
+            model: [
+                i18n("Text"),
+                i18n("Disabled Text"),
+                i18n("Highlighted Text"),
+                i18n("Active Text"),
+                i18n("Link"),
+                i18n("Visited Link"),
+                i18n("Negative Text"),
+                i18n("Neutral Text"),
+                i18n("Positive Text"),
+                i18n("Background"),
+                i18n("Highlight"),
+                i18n("Active Background"),
+                i18n("Link Background"),
+                i18n("Visited Link Background"),
+                i18n("Negative Background"),
+                i18n("Neutral Background"),
+                i18n("Positive Background"),
+                i18n("Alternate Background"),
+                i18n("Focus"),
+                i18n("Hover")
+            ]
+            visible: fgaccentColorRadio.checked
+            enabled: fgBlacklistedColorEnabled.checked
+        }
+        ComboBox {
+            id: fgBlacklistedColorModeThemeVariant
+            Kirigami.FormData.label: i18n("Color set:")
+            model: [i18n("View"), i18n("Window"), i18n("Button"), i18n("Selection"), i18n("Tooltip"), i18n("Complementary"), i18n("Header")]
             visible: fgaccentColorRadio.checked
             enabled: fgBlacklistedColorEnabled.checked
         }
