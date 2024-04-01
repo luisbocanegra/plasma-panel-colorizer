@@ -1,5 +1,24 @@
 # Changelog
 
+## v0.5.0 Text/icons shadow
+
+### New features
+
+- Configurable icons/text shadow
+- Added option to fix custom badges text
+- Allow picking any System (Kirigami.Theme) color
+
+### Bug fixes
+
+- Fixed contrast correction for some color modes
+- Fixed original panel opacity requiring custom background to work
+- Don't remove widget rules when they are not in the panel being configured
+
+### Other
+
+- Only show a single instance of each widget when configuring
+- Now available in AUR [plasma6-applets-panel-colorizer](https://aur.archlinux.org/packages/plasma6-applets-panel-colorizer)
+
 ## v0.4.0 Preset management & auto-loading
 
 ### New features
