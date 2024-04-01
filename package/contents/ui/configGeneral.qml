@@ -357,7 +357,7 @@ KCM.SimpleKCM {
             Layout.preferredWidth: presetCards.width
             Layout.minimumWidth: 300
             Button {
-                text: i18n("Restore defaults")
+                text: i18n("Restore default preset")
                 icon.name: "kt-restore-defaults-symbolic"
                 onClicked: {
                     restoreSettings()
