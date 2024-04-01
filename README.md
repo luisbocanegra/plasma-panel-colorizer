@@ -1,10 +1,19 @@
+<div align="center">
+
 # Panel Colorizer
 
-Powerful fully-featured KDE Plasma panel colorizer for a WM status bar like appearance
+[![AUR version](https://img.shields.io/aur/version/plasma6-applets-panel-colorizer?style=for-the-badge&logo=archlinux&labelColor=2d333b&color=1f425f)](https://aur.archlinux.org/packages/plasma6-applets-panel-colorizer)
+[![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fluisbocanegra%2Fplasma-panel-colorizer%2Fmain%2Fpackage%2Fmetadata.json&query=KPlugin.Version&style=for-the-badge&color=1f425f&labelColor=2d333b&logo=kde&label=Plasmoid)](https://store.kde.org/p/2130967)
+[![Liberapay](https://img.shields.io/liberapay/patrons/luisbocanegra?style=for-the-badge&logo=liberapay&logoColor=%23F6C814&labelColor=%232D333B&label=supporters)](https://liberapay.com/luisbocanegra/)
 
-Inspired by the Latte Dock (now unmaintained) theming and boosted by the laziness to learn editing Plasma themes (which can only change background and other small things) created this project that helps you make the Plasma panels look _almost_ however you want.
+Fully-featured widget to bring Latte-Dock and WM status bar customization features to the default Plasma panel.
 
 ![panel](screenshots/panel.png)
+
+
+</div>
+
+Inspired by the Latte Dock (now unmaintained) theming and boosted by the laziness to learn editing Plasma themes (which can only change background and other small things) created this project that helps you make the Plasma panels look _almost_ however you want.
 
 ## Demo
 
@@ -94,7 +103,7 @@ Install from KDE Store or use `Get new widgets..`
 
 * [Plasma 6](https://store.kde.org/p/2130967)
 
-### Or manually
+### Manually
 
   1. Install these dependencies (please let me know if I missed something)
 
@@ -103,6 +112,14 @@ Install from KDE Store or use `Get new widgets..`
       ```
 
   2. Run `./install.sh`
+
+### Arch Linux
+
+[aur/plasma6-applets-panel-colorizer](https://aur.archlinux.org/packages/plasma6-applets-panel-colorizer) use your preferred AUR helper e.g:
+
+```sh
+yay -S plasma6-applets-panel-colorizer
+```
 
 ## How to use
 
@@ -125,6 +142,14 @@ Background is drawn by creating rectangle areas bellow widgets/panel, text and i
 ### Performance
 
 Some widgets really like to create/destroy/recolor their own widget elements (e.g. Global Menu), to account for this, text and icons color are re-applied every 250ms. I tried to optimize it so CPU usage only increases around 1-2% on my computer, but usage could vary depending on your System or how many widgets are in your panels.
+
+## Support the development
+
+If you like the project you can:
+
+[!["Buy Me A Coffee"](https://img.shields.io/badge/Buy%20me%20a%20coffe-supporter?logo=buymeacoffee&logoColor=%23282828&labelColor=%23FF803F&color=%23FF803F)](https://www.buymeacoffee.com/luisbocanegra) [![Liberapay](https://img.shields.io/badge/Become%20a%20supporter-supporter?logo=liberapay&logoColor=%23282828&labelColor=%23F6C814&color=%23F6C814)](https://liberapay.com/luisbocanegra/)
+
+Thank you ❤️
 
 ## Acknowledgements
 
