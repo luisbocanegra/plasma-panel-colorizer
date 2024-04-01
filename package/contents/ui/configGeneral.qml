@@ -107,6 +107,7 @@ KCM.SimpleKCM {
     property int cfg_fgShadowX
     property int cfg_fgShadowY
     property int cfg_fgShadowRadius
+    property bool cfg_fixCustomBadges
 
     Connections {
         target: plasmoid.configuration
