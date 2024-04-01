@@ -66,6 +66,7 @@ Inspired by the Latte Dock (now unmaintained) theming and boosted by the lazines
 * Blacklisted widgets color
 * Force icon color to on specific plasmoids that use Kirigami.Icon
 * Recolor applications tray icon
+* Icons/text shadow
 
 ### Panel background
 
@@ -84,9 +85,6 @@ Inspired by the Latte Dock (now unmaintained) theming and boosted by the lazines
 ### Other
 
 * Widget Blacklist
-
-> [!NOTE]
-> Changes to the panel are not permanent and can be removed by disabling them from widget settings or removing it from the panel and restarting Plasma or logging out.
 
 ## Installing
 
@@ -111,6 +109,10 @@ Install from KDE Store or use `Get new widgets..`
 1. Put the widget on any of your panels
 2. Go to the widget settings to change the current panel appearance (right click > Configure...)
 3. Widget can set to only show in panel **Edit Mode** (right click > Hide widget or from the widget settings)
+
+### Restore the original panel appearance
+
+Changes to the panel are not permanent and can be removed by disabling them from **Widget Settings** > **General tab** > **Enabled** checkbox or removing it from the panel and restarting Plasma/logging out.
 
 ## How it works / hacking
 
