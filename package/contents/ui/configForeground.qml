@@ -223,7 +223,7 @@ KCM.SimpleKCM {
             RadioButton {
                 id: fgSingleColorRadio
                 Kirigami.FormData.label: i18n("Color:")
-                text: i18n("Single")
+                text: i18n("Custom")
                 ButtonGroup.group: colorModeGroup
                 property int index: 0
                 checked: plasmoid.configuration.fgColorMode === index
