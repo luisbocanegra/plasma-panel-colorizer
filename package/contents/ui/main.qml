@@ -451,11 +451,20 @@ PlasmoidItem {
         // centering
         anchors.horizontalCenter: lineMode && linePosition <= 1 ? parent.horizontalCenter : undefined
         anchors.verticalCenter: lineMode && linePosition >= 2 ? parent.verticalCenter : undefined
-        
-        border {
-            color: widgetOutlineColor
-            width: widgetBgEnabled ? widgetOutlineWidth : 0
+
+        // outline as separate rectangle so it draws inside the background
+        Rectangle {
+            anchors.centerIn: parent
+            width: parent.width
+            height: parent.height
+            color: "transparent"
+            radius: parent.radius
+            border {
+                color: widgetOutlineColor
+                width: widgetOutlineWidth
+            }
         }
+
         shadow {
             size: widgetBgEnabled ? widgetShadowSize : 0
             color: widgetShadowColor
@@ -482,15 +491,24 @@ PlasmoidItem {
         anchors.centerIn: parent
         width: panelBg.width
         height: panelBg.height
-        border {
-            color: panelOutlineColor
-            width: panelOutlineWidth
-        }
         shadow {
             size: panelShadowSize
             color: panelShadowColor
             xOffset: panelShadowX
             yOffset: panelShadowY
+        }
+
+        // outline as separate rectangle so it draws inside the background
+        Rectangle {
+            anchors.centerIn: parent
+            width: parent.width
+            height: parent.height
+            color: "transparent"
+            radius: parent.radius
+            border {
+                color: panelOutlineColor
+                width: panelOutlineWidth
+            }
         }
     }
 
