@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.5.1 Bugfix release
+
+### Bug fixes
+
+- Added button to restore default block/margin/force recolor rules to fix rules not being deleted even after removing the matched widgets.
+
+    **Only required if you updated or have presets from version 0.4.0 or older**
+
+    Instructions to fix all broken presets have been provided [here](https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#fix-blacklistmarginforce-recolor-not-working-after-updating-to-version-050)
+
+- Fixed missing color options for panel background
+
+### Other
+
+- Added click support to increase/decrease value in floating text fields
+
 ## v0.5.0 Text/icons shadow
 
 ### New features
