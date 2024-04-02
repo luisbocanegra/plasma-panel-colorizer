@@ -140,7 +140,7 @@
     <entry
         name="blacklist"
         type="String">
-        <default>spacer|separator|org.kde.plasma.taskmanager|org.kde.plasma.icontasks|org.kde.plasma.pager|org.kde.plasma.activitypager|org.kde.plasma.systemmonitor</default>
+        <default>org.kde.plasma.panelspacer|luisbocanegra.panelspacer.extended|org.kde.plasma.marginsseparator|org.kde.plasma.taskmanager|org.kde.plasma.icontasks|org.kde.plasma.pager|org.kde.plasma.activitypager|org.kde.plasma.systemmonitor.memory|org.kde.plasma.systemmonitor.diskusage|org.kde.plasma.systemmonitor.cpu|org.kde.plasma.systemmonitor.diskactivity|org.kde.plasma.systemmonitor.net|org.kde.plasma.systemmonitor|org.kde.plasma.systemmonitor.cpucore</default>
     </entry>
     <entry
         name="widgetBgVMargin"

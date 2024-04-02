@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
+import org.kde.kcmutils
 import "components" as Components
 
 KCM.SimpleKCM {
@@ -22,6 +23,7 @@ KCM.SimpleKCM {
     }
 
     function initWidgets(){
+        widgetsModel.clear()
         const lines = cfg_panelWidgets.trim().split("|")
         for (let i in lines) {
             if (lines[i].length < 1) continue
@@ -36,7 +38,7 @@ KCM.SimpleKCM {
     function updateWidgetsModel(){
         let widgeList = []
         const blacklist = cfg_blacklist.trim().split("|")
-        console.log(blacklist.join(" "));
+        console.log(cfg_blacklist);
         for (let i = 0; i < widgetsModel.count; i++) {
             let widget = widgetsModel.get(i)
             for (var j of blacklist) {
@@ -183,6 +185,23 @@ KCM.SimpleKCM {
         }
 
     Kirigami.FormLayout {
+        RowLayout {
+            Layout.preferredWidth: widgetCards.width
+            Layout.minimumWidth: 100
+            Button {
+                text: i18n("Restore default blacklist")
+                icon.name: "kt-restore-defaults-symbolic"
+                onClicked: {
+                    cfg_blacklist = plasmoid.configuration.blacklistDefault
+                    initWidgets()
+                    updateWidgetsModel()
+                }
+                Layout.fillWidth: true
+            }
+            KCM.ContextualHelpButton {
+                toolTipText: "Since version <strong>0.5.0</strong> partial widget names e.g. <i>spacer</i> are no longer allowed.<br><br>If widgets are not blacklisted properly you can use this option to restore the default which has the correct format"
+            }
+        }
 
         ColumnLayout {
             id: widgetCards
@@ -193,14 +212,14 @@ KCM.SimpleKCM {
                         Kirigami.Icon {
                             width: Kirigami.Units.gridUnit
                             height: width
-                            source: widgetsModel.get(index).icon
+                            source: model.icon
                         }
                         ColumnLayout {
                             Label {
-                                text: widgetsModel.get(index).title
+                                text: model.title
                             }
                             Label {
-                                text: widgetsModel.get(index).name
+                                text: model.name
                                 opacity: 0.6
                             }
                         }
@@ -208,8 +227,9 @@ KCM.SimpleKCM {
                             Layout.fillWidth: true
                         }
                         Button {
+                            id: checkBtn
                             checkable: true
-                            checked: widgetsModel.get(index).enabled
+                            checked: model.enabled
                             icon.name: checked ? "edit-delete-remove-symbolic" : "checkmark-symbolic"
                             onCheckedChanged: {
                                 widgetsModel.set(index, {"enabled": checked})

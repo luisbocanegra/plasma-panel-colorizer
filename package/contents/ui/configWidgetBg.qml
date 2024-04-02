@@ -100,6 +100,7 @@ KCM.SimpleKCM {
     }
 
     function initWidgets(){
+        widgetsModel.clear()
         const lines = cfg_panelWidgets.trim().split("|")
         for (let i in lines) {
             if (lines[i].length < 1) continue
@@ -935,6 +936,24 @@ KCM.SimpleKCM {
             wrapMode: Text.Wrap
         }
 
+        RowLayout {
+            Layout.preferredWidth: widgetCards.width
+            Layout.minimumWidth: 100
+            Button {
+                text: i18n("Restore default rules")
+                icon.name: "kt-restore-defaults-symbolic"
+                onClicked: {
+                    cfg_marginRules = plasmoid.configuration.marginRulesDefault
+                    initWidgets()
+                    updateWidgetsModel()
+                }
+                Layout.fillWidth: true
+            }
+            KCM.ContextualHelpButton {
+                toolTipText: "Since version <strong>0.5.0</strong> partial widget names e.g. <i>clock</i> are no longer allowed.<br><br>If margins are not applied properly you can use this option to restore the default which has the correct format"
+            }
+        }
+
         ColumnLayout {
             id: widgetCards
             Repeater {
@@ -944,16 +963,16 @@ KCM.SimpleKCM {
                         Kirigami.Icon {
                             width: Kirigami.Units.gridUnit
                             height: width
-                            source: widgetsModel.get(index).icon
+                            source: model.icon
                             // active: compact.containsMouse
                         }
                         ColumnLayout {
                             // anchors.fill: parent
                             Label {
-                                text: widgetsModel.get(index).title
+                                text: model.title
                             }
                             Label {
-                                text: widgetsModel.get(index).name
+                                text: model.name
                                 opacity: 0.6
                             }
                         }
@@ -970,7 +989,7 @@ KCM.SimpleKCM {
                                 SpinBox {
                                     from: -999
                                     to: 999
-                                    value: widgetsModel.get(index).vExtraMargin
+                                    value: model.vExtraMargin
                                     onValueChanged: {
                                         widgetsModel.set(index, {"vExtraMargin": value})
                                         updateWidgetsString()
@@ -985,7 +1004,7 @@ KCM.SimpleKCM {
                                 SpinBox {
                                     from: -999
                                     to: 999
-                                    value: widgetsModel.get(index).hExtraMargin
+                                    value: model.hExtraMargin
                                     onValueChanged: {
                                         widgetsModel.set(index, {"hExtraMargin": value})
                                         updateWidgetsString()
