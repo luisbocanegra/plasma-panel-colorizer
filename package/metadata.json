@@ -9,7 +9,7 @@
         ],
         "BugReportUrl": "https://github.com/luisbocanegra/plasma-panel-colorizer/issues",
         "Category": "Utilities",
-        "Description": "Powerful fully-featured panel colorizer for a WM status bar like appearance",
+        "Description": "Latte-Dock and WM status bar customization features for the default Plasma panel",
         "Id": "luisbocanegra.panel.colorizer",
         "EnabledByDefault": false,
         "Icon":"desktop",
