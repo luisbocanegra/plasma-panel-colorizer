@@ -10,7 +10,6 @@ Fully-featured widget to bring Latte-Dock and WM status bar customization featur
 
 ![panel](screenshots/panel.png)
 
-
 </div>
 
 Inspired by the Latte Dock (now unmaintained) theming and boosted by the laziness to learn editing Plasma themes (which can only change background and other small things) created this project that helps you make the Plasma panels look _almost_ however you want.
@@ -105,13 +104,19 @@ Install from KDE Store or use `Get new widgets..`
 
 ### Manually
 
-  1. Install these dependencies (please let me know if I missed something)
+  1. Install these dependencies or their equivalents for your distribution
 
       ```txt
       cmake extra-cmake-modules libplasma plasma5support
       ```
 
-  2. Run `./install.sh`
+  2. Run
+
+      ```sh
+      git clone https://github.com/luisbocanegra/plasma-panel-colorizer
+      cd plasma-panel-colorizer
+      ./install.sh
+      ```
 
 ### Arch Linux
 
@@ -130,6 +135,20 @@ yay -S plasma6-applets-panel-colorizer
 ### Restore the original panel appearance
 
 Changes to the panel are not permanent and can be removed by disabling them from **Widget Settings** > **General tab** > **Enabled** checkbox or removing it from the panel and restarting Plasma/logging out.
+
+## Fix Blacklist/Margin/Force recolor not working after updating to version 0.5.0
+
+Since version **0.5.0** partial widget names e.g. _weather_ are no longer allowed. This causes previous rules to stay even after removing the matched widgets.
+
+A button to restore/clear the default rules has been added to the relevant sections. To fix all saved profiles a script is provided:
+
+```sh
+git clone https://github.com/luisbocanegra/plasma-panel-colorizer
+cd plasma-panel-colorizer
+./fix-presets-widget-rules.sh
+```
+
+The same script can be used to maintain the same widget rules for all presets
 
 ## How it works / hacking
 
