@@ -22,37 +22,54 @@ Item {
     Kirigami.Icon {
         source: "arrow-up"
         height: parent.height / 2
-        width: height
+        width: parent.width
         anchors.top: parent.top
         anchors.topMargin: 0
         anchors.horizontalCenter: parent.horizontalCenter
+        color: upMouse.containsMouse ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
+        MouseArea {
+            id: upMouse
+            anchors.fill: parent
+            hoverEnabled: true
+            onClicked: {
+                root.parent.forceActiveFocus()
+                if (value < to) value += stepSize
+                value = Math.max(from, Math.min(to, value)).toFixed(decimals)
+            }
+        }
     }
 
     Kirigami.Icon {
         source: "arrow-down"
         height: parent.height / 2
-        width: height
+        width: parent.width
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 0
         anchors.horizontalCenter: parent.horizontalCenter
+        color: downMouse.containsMouse ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
+        MouseArea {
+            id: downMouse
+            anchors.fill: parent
+            hoverEnabled: true
+            onClicked: {
+                root.parent.forceActiveFocus()
+                if (value > from) value -= stepSize
+                value = Math.max(from, Math.min(to, value)).toFixed(decimals)
+            }
+        }
     }
 
     MouseArea {
         anchors.fill: parent
-        cursorShape: Qt.SizeVerCursor
-        hoverEnabled: false
-        onEntered: {}
-        onExited: {}
+        propagateComposedEvents: true
         onWheel: {
+            root.parent.forceActiveFocus()
             if(wheel.angleDelta.y > 0 && value < to) {
                 value += stepSize
             } else if (wheel.angleDelta.y < 0 && value > from) {
                 value -= stepSize
             }
-            value = Math.max(0, Math.min(1, value)).toFixed(decimals)
-        }
-        onClicked: {
-            root.parent.forceActiveFocus()
+            value = Math.max(from, Math.min(to, value)).toFixed(decimals)
         }
     }
 }
