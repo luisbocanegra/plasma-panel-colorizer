@@ -8,6 +8,6 @@ BLACKLIST_WIDGETS="org.kde.plasma.panelspacer|luisbocanegra.panelspacer.extended
 MARGIN_WIDGET_RULES="org.kde.plasma.kickoff,0,0|"
 FORCE_ICON_COLOR_WIDGETS=""
 
-find ~/.config/panel-colorizer/ -type f -exec sed -i "s/^blacklist=.*/blacklist=/$BLACKLIST_WIDGETS" {} \;
-find ~/.config/panel-colorizer/ -type f -exec sed -i "s/^marginRules=.*/marginRules=$MARGIN_WIDGET_RULES" {} \;
-find ~/.config/panel-colorizer/ -type f -exec sed -i "s/^forceRecolor=.*/forceRecolor=$FORCE_ICON_COLOR_WIDGETS" {} \;
+find ~/.config/panel-colorizer/ -type f -exec sed -i "s/^blacklist=.*/blacklist=$BLACKLIST_WIDGETS/" {} \;
+find ~/.config/panel-colorizer/ -type f -exec sed -i "s/^marginRules=.*/marginRules=$MARGIN_WIDGET_RULES/" {} \;
+find ~/.config/panel-colorizer/ -type f -exec sed -i "s/^forceRecolor=.*/forceRecolor=$FORCE_ICON_COLOR_WIDGETS/" {} \;
