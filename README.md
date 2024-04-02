@@ -140,7 +140,10 @@ Changes to the panel are not permanent and can be removed by disabling them from
 
 Since version **0.5.0** partial widget names e.g. _weather_ are no longer allowed. This causes previous rules to stay even after removing the matched widgets.
 
-A button to restore/clear the default rules has been added to the relevant sections. To fix all saved profiles a script is provided:
+A button to restore/clear the default rules has been added to the relevant sections.
+![image](https://github.com/luisbocanegra/plasma-panel-colorizer/assets/15076387/c94b307b-4c92-49e2-949e-3270e01e3501)
+
+To fix all saved presets a script is provided:
 
 ```sh
 git clone https://github.com/luisbocanegra/plasma-panel-colorizer
