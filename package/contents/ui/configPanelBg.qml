@@ -193,7 +193,28 @@ KCM.SimpleKCM {
         ComboBox {
             id: colorModeTheme
             Kirigami.FormData.label: i18n("Color:")
-            model: [i18n("Accent"), i18n("Text"), i18n("Background")]
+            model: [
+                i18n("Text"),
+                i18n("Disabled Text"),
+                i18n("Highlighted Text"),
+                i18n("Active Text"),
+                i18n("Link"),
+                i18n("Visited Link"),
+                i18n("Negative Text"),
+                i18n("Neutral Text"),
+                i18n("Positive Text"),
+                i18n("Background"),
+                i18n("Highlight"),
+                i18n("Active Background"),
+                i18n("Link Background"),
+                i18n("Visited Link Background"),
+                i18n("Negative Background"),
+                i18n("Neutral Background"),
+                i18n("Positive Background"),
+                i18n("Alternate Background"),
+                i18n("Focus"),
+                i18n("Hover")
+            ]
             visible: accentColorRadio.checked
             enabled: panelBgEnabled.checked
         }
@@ -307,7 +328,28 @@ KCM.SimpleKCM {
         ComboBox {
             id: panelOutlineColorModeTheme
             Kirigami.FormData.label: i18n("Color:")
-            model: [i18n("Accent"), i18n("Text"), i18n("Background")]
+            model: [
+                i18n("Text"),
+                i18n("Disabled Text"),
+                i18n("Highlighted Text"),
+                i18n("Active Text"),
+                i18n("Link"),
+                i18n("Visited Link"),
+                i18n("Negative Text"),
+                i18n("Neutral Text"),
+                i18n("Positive Text"),
+                i18n("Background"),
+                i18n("Highlight"),
+                i18n("Active Background"),
+                i18n("Link Background"),
+                i18n("Visited Link Background"),
+                i18n("Negative Background"),
+                i18n("Neutral Background"),
+                i18n("Positive Background"),
+                i18n("Alternate Background"),
+                i18n("Focus"),
+                i18n("Hover")
+            ]
             visible: accentOutlineColorRadio.checked
             enabled: panelBgEnabled.checked
         }
