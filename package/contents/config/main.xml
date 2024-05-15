@@ -419,6 +419,11 @@
         <default></default>
     </entry>
     <entry
+        name="touchingWindowPreset"
+        type="String">
+        <default></default>
+    </entry>
+    <entry
         name="maximizedPreset"
         type="String">
         <default></default>

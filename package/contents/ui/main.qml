@@ -230,6 +230,7 @@ PlasmoidItem {
         }) : null
     }
     property bool isFloating: !panelElement ? false : Boolean(panelElement.floatingness)
+    property bool isTouchingWindow: !panelElement ? false : Boolean(panelElement.touchingWindow)
 
     property ContainmentItem containmentItem: null
     readonly property int depth : 14
@@ -252,10 +253,12 @@ PlasmoidItem {
         "objectName",
         "lastPreset",
         "floatingPreset",
+        "touchingWindowPreset",
         "normalPreset",
         "maximizedPreset"
     ]
     property string floatingPreset: plasmoid.configuration.floatingPreset
+    property string touchingWindowPreset: plasmoid.configuration.touchingWindowPreset
     property string normalPreset: plasmoid.configuration.normalPreset
     property string maximizedPreset: plasmoid.configuration.maximizedPreset
     property string lastPreset
@@ -362,24 +365,32 @@ PlasmoidItem {
         plasmoid.configuration.writeConfig();
     }
 
-    onIsFloatingChanged: {
-        if (floatingPreset === "") return
-        console.log("FLOATING:", isFloating);
-        if (isFloating) {
-            applyPreset(floatingPreset)
-        } else {
-            applyPreset(normalPreset)
+    function switchPreset() {
+        if (maximizedWindowExists && maximizedPreset !== "") {
+            applyPreset(maximizedPreset)
+            return
         }
+        if (isTouchingWindow && touchingWindowPreset !== "") {
+            applyPreset(touchingWindowPreset)
+            return
+        }
+        if (isFloating && floatingPreset !== "") {
+            applyPreset(floatingPreset)
+            return
+        }
+        applyPreset(normalPreset)
+    }
+
+    onIsFloatingChanged: {
+        switchPreset()
+    }
+
+    onIsTouchingWindowChanged: {
+        switchPreset()
     }
 
     onMaximizedWindowExistsChanged: {
-        if (maximizedPreset === "") return
-        console.log("MAXIMIZED:", maximizedWindowExists);
-        if (maximizedWindowExists) {
-            applyPreset(maximizedPreset)
-        } else {
-            applyPreset(normalPreset)
-        }
+        switchPreset()
     }
 
     function hexToRgb(hex) {

@@ -16,6 +16,7 @@ KCM.SimpleKCM {
 
     property string cfg_normalPreset
     property string cfg_floatingPreset
+    property string cfg_touchingWindowPreset
     property string cfg_maximizedPreset
 
     ListModel {
@@ -114,6 +115,19 @@ KCM.SimpleKCM {
     }
 
     ColumnLayout {
+        Label {
+            text: i18n("Here you can switch between different panel presets based on the Panel and window states below.")
+            Layout.maximumWidth: root.width - (Kirigami.Units.gridUnit * 2)
+            wrapMode: Text.Wrap
+            Layout.alignment: Qt.AlignHCenter
+        }
+
+        Label {
+            text: i18n("Priorities go from lowest to highest. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the <b>Maximized</b> preset will be applied.")
+            Layout.maximumWidth: root.width - (Kirigami.Units.gridUnit * 2)
+            wrapMode: Text.Wrap
+            Layout.alignment: Qt.AlignHCenter
+        }
         Kirigami.FormLayout {
 
             ComboBox {
@@ -136,7 +150,17 @@ KCM.SimpleKCM {
                     cfg_floatingPreset = model.get(currentIndex)["value"]
                 }
                 currentIndex: getIndex(model, cfg_floatingPreset)
-                enabled: cfg_maximizedPreset === ""
+            }
+
+            ComboBox {
+                id: touchingWindowPreset
+                model: presetsModel
+                textRole: "name"
+                Kirigami.FormData.label: i18n("Window touching panel:")
+                onCurrentIndexChanged: {
+                    cfg_touchingWindowPreset = model.get(currentIndex)["value"]
+                }
+                currentIndex: getIndex(model, cfg_touchingWindowPreset)
             }
 
             ComboBox {
@@ -148,7 +172,6 @@ KCM.SimpleKCM {
                     cfg_maximizedPreset = model.get(currentIndex)["value"]
                 }
                 currentIndex: getIndex(model, cfg_maximizedPreset)
-                enabled: cfg_floatingPreset === ""
             }
         }
     }
