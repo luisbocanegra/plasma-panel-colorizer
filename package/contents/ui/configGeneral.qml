@@ -363,7 +363,7 @@ KCM.SimpleKCM {
             Layout.preferredWidth: presetCards.width
             Layout.minimumWidth: 300
             Button {
-                text: i18n("Restore default preset")
+                text: i18n("Restore default panel appearance")
                 icon.name: "kt-restore-defaults-symbolic"
                 onClicked: {
                     restoreSettings()
@@ -402,7 +402,7 @@ KCM.SimpleKCM {
                 Layout.preferredWidth: presetCards.width
                 Button {
                     Layout.fillWidth: true
-                    text: i18n("Refresh")
+                    text: i18n("Refresh presets")
                     icon.name: "view-refresh-symbolic"
                     onClicked: {
                         runCommand.exec(listPresetsCmd)
