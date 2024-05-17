@@ -56,9 +56,9 @@ PlasmoidItem {
             return themeColors[panelBgColorModeTheme]
         }
     }
-    property int panelBgcolorModeThemeVariant: plasmoid.configuration.panelBgcolorModeThemeVariant
+    property int panelBgColorModeThemeVariant: plasmoid.configuration.panelBgColorModeThemeVariant
     property var panelBgColorScope: {
-        return themeScopes[panelBgcolorModeThemeVariant]
+        return themeScopes[panelBgColorModeThemeVariant]
     }
     property real panelBgOpacity: plasmoid.configuration.panelBgOpacity
     property real panelBgRadius: isFloating ? plasmoid.configuration.panelBgRadius : 0

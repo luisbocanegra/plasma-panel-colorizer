@@ -11,7 +11,7 @@ KCM.SimpleKCM {
     property bool cfg_panelBgEnabled: panelBgEnabled.checked
     property int cfg_panelBgColorMode: plasmoid.configuration.panelBgColorMode
     property alias cfg_panelBgColorModeTheme: colorModeTheme.currentIndex
-    property alias cfg_panelBgcolorModeThemeVariant: colorModeThemeVariant.currentIndex
+    property alias cfg_panelBgColorModeThemeVariant: colorModeThemeVariant.currentIndex
     property string cfg_panelBgColor: panelBgColor.color
     property bool cfg_hideRealPanelBg: hideRealPanelBg.checked
     property real cfg_panelBgOpacity: parseFloat(panelBgOpacity.text)
