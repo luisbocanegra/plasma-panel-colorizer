@@ -147,6 +147,7 @@ KCM.SimpleKCM {
                     id: fgColorEnabled
                     checked: cfg_fgColorEnabled
                     onCheckedChanged: cfg_fgColorEnabled = checked
+                    text: checked ? "Enabled" : "⚠️ Disabled"
                 }
             }
             Item {

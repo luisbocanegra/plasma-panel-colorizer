@@ -306,12 +306,13 @@ KCM.SimpleKCM {
             RowLayout {
                 Layout.alignment: Qt.AlignRight
                 Label {
-                    text: i18n("Enabled:")
+                    text: i18n("Enable:")
                 }
                 CheckBox {
                     id: isEnabled
                     checked: cfg_isEnabled
                     onCheckedChanged: cfg_isEnabled = checked
+                    text: checked ? "Enabled" : "⚠️ Disabled"
                 }
             }
             Item {

@@ -185,6 +185,7 @@ KCM.SimpleKCM {
                     id: widgetBgEnabled
                     checked: cfg_widgetBgEnabled
                     onCheckedChanged: cfg_widgetBgEnabled = checked
+                    text: checked ? "Enabled" : "⚠️ Disabled"
                 }
             }
             Item {

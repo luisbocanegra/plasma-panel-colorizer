@@ -13,7 +13,7 @@
     <entry
         name="widgetBgEnabled"
         type="Bool">
-        <default>true</default>
+        <default>false</default>
     </entry>
     <!-- modes: static, animated-->
     <entry
@@ -25,12 +25,12 @@
     <entry
         name="colorMode"
         type="Int">
-        <default>2</default>
+        <default>1</default>
     </entry>
     <entry
         name="colorModeTheme"
         type="Int">
-        <default>0</default>
+        <default>10</default>
     </entry>
     <entry
         name="colorModeThemeVariant"
@@ -50,7 +50,7 @@
     <entry
         name="opacity"
         type="Double">
-        <default>1.0</default>
+        <default>0.18</default>
     </entry>
     <entry
         name="radius"
@@ -140,7 +140,7 @@
     <entry
         name="blacklist"
         type="String">
-        <default>org.kde.plasma.panelspacer|luisbocanegra.panelspacer.extended|org.kde.plasma.marginsseparator|org.kde.plasma.taskmanager|org.kde.plasma.icontasks|org.kde.plasma.pager|org.kde.plasma.activitypager|org.kde.plasma.systemmonitor.memory|org.kde.plasma.systemmonitor.diskusage|org.kde.plasma.systemmonitor.cpu|org.kde.plasma.systemmonitor.diskactivity|org.kde.plasma.systemmonitor.net|org.kde.plasma.systemmonitor|org.kde.plasma.systemmonitor.cpucore</default>
+        <default></default>
     </entry>
     <entry
         name="widgetBgVMargin"
@@ -166,7 +166,7 @@
     <entry
         name="fgColorEnabled"
         type="Bool">
-        <default>true</default>
+        <default>false</default>
     </entry>
     <!-- modes: static, animated-->
     <entry
@@ -178,7 +178,7 @@
     <entry
         name="fgColorMode"
         type="Int">
-        <default>4</default>
+        <default>1</default>
     </entry>
     <entry
         name="fgColorModeTheme"
@@ -218,7 +218,7 @@
     <entry
         name="fgBlacklistedColorEnabled"
         type="Bool">
-        <default>true</default>
+        <default>false</default>
     </entry>
     <entry
         name="fgBlacklistedColorMode"
@@ -239,7 +239,7 @@
     <entry
         name="fgContrastFixEnabled"
         type="Bool">
-        <default>true</default>
+        <default>false</default>
     </entry>
     <entry
         name="fgSaturationEnabled"
@@ -254,7 +254,7 @@
     <entry
         name="fgLightness"
         type="Double">
-        <default>0.2</default>
+        <default>0.82</default>
     </entry>
     <entry
         name="enableCustomPadding"
