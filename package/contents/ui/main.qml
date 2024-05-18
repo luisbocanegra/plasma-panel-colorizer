@@ -202,7 +202,11 @@ PlasmoidItem {
             width: 10
             height: 10
             color: {
-                return Kirigami.Theme[main.blacklistedFgColor]
+                if (main.blacklistedFgColor.startsWith("#")) {
+                    return main.blacklistedFgColor
+                } else {
+                    return Kirigami.Theme[main.blacklistedFgColor]
+                }
             }
             visible: true
             opacity: 0
@@ -689,8 +693,9 @@ PlasmoidItem {
         systemColorHolder.color = Kirigami.Theme[main.systemColor]
         fgSystemColorHolder.color = "transparent"
         fgSystemColorHolder.color = Kirigami.Theme[main.fgSystemColor]
+        const tmp = fgBlacklistColorHolder.color
         fgBlacklistColorHolder.color = "transparent"
-        fgBlacklistColorHolder.color = Kirigami.Theme[main.blacklistedFgColor]
+        fgBlacklistColorHolder.color = tmp
     }
 
     Connections {

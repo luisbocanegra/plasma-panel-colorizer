@@ -223,10 +223,15 @@
     <entry
         name="fgBlacklistedColorMode"
         type="Int">
-        <default>0</default>
+        <default>1</default>
     </entry>
     <entry
         name="fgBlacklistedColorModeTheme"
+        type="Int">
+        <default>0</default>
+    </entry>
+    <entry
+        name="fgBlacklistedColorModeThemeVariant"
         type="Int">
         <default>0</default>
     </entry>
