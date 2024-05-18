@@ -51,8 +51,6 @@ PlasmoidItem {
         if (panelBgColorMode === 0) {
             return plasmoid.configuration.panelBgColor
         } else {
-            Kirigami.Theme.colorSet = panelBgColorScope
-            Kirigami.Theme.inherit = false
             return themeColors[panelBgColorModeTheme]
         }
     }
@@ -68,13 +66,15 @@ PlasmoidItem {
     property int widgetOutlineColorModeTheme: plasmoid.configuration.widgetOutlineColorModeTheme
     property real widgetOutlineOpacity: plasmoid.configuration.widgetOutlineOpacity
     property string widgetOutlineColor: {
-        let c
         if (widgetOutlineColorMode === 0) {
-            c = hexToRgb(plasmoid.configuration.widgetOutlineColor)
+            return plasmoid.configuration.widgetOutlineColor
         } else {
-            c = hexToRgb(themeColors[widgetOutlineColorModeTheme])
+            return themeColors[widgetOutlineColorModeTheme]
         }
-        return Qt.rgba(c.r / 255, c.g / 255, c.b / 255, widgetOutlineOpacity).toString()
+    }
+    property int widgetOutlineColorModeThemeVariant: plasmoid.configuration.widgetOutlineColorModeThemeVariant
+    property var widgetOutlineColorScope: {
+        return themeScopes[widgetOutlineColorModeThemeVariant]
     }
     property int widgetOutlineWidth: plasmoid.configuration.widgetOutlineWidth
     property color widgetShadowColor: plasmoid.configuration.widgetShadowColor
@@ -87,15 +87,11 @@ PlasmoidItem {
     property int panelOutlineWidth: plasmoid.configuration.panelOutlineWidth
     property real panelOutlineOpacity: plasmoid.configuration.panelOutlineOpacity
     property string panelOutlineColor: {
-        let c
         if (panelOutlineColorMode === 0) {
-            c = hexToRgb(plasmoid.configuration.panelOutlineColor)
+            return plasmoid.configuration.panelOutlineColor
         } else {
-            Kirigami.Theme.colorSet = panelOutlineColorScope
-            Kirigami.Theme.inherit = false
-            c = hexToRgb(themeColors[panelOutlineColorModeTheme])
+            return themeColors[panelOutlineColorModeTheme]
         }
-        return Qt.rgba(c.r / 255, c.g / 255, c.b / 255, panelOutlineOpacity).toString()
     }
     property int panelOutlineColorModeThemeVariant: plasmoid.configuration.panelOutlineColorModeThemeVariant
     property var panelOutlineColorScope: {
@@ -122,56 +118,97 @@ PlasmoidItem {
     property bool destroyRequired: false
 
     property var themeColors: [
-        Kirigami.Theme.textColor,
-        Kirigami.Theme.disabledTextColor,
-        Kirigami.Theme.highlightedTextColor,
-        Kirigami.Theme.activeTextColor,
-        Kirigami.Theme.linkColor,
-        Kirigami.Theme.visitedLinkColor,
-        Kirigami.Theme.negativeTextColor,
-        Kirigami.Theme.neutralTextColor,
-        Kirigami.Theme.positiveTextColor,
-        Kirigami.Theme.backgroundColor,
-        Kirigami.Theme.highlightColor,
-        Kirigami.Theme.activeBackgroundColor,
-        Kirigami.Theme.linkBackgroundColor,
-        Kirigami.Theme.visitedLinkBackgroundColor,
-        Kirigami.Theme.negativeBackgroundColor,
-        Kirigami.Theme.neutralBackgroundColor,
-        Kirigami.Theme.positiveBackgroundColor,
-        Kirigami.Theme.alternateBackgroundColor,
-        Kirigami.Theme.focusColor,
-        Kirigami.Theme.hoverColor
+        "textColor",
+        "disabledTextColor",
+        "highlightedTextColor",
+        "activeTextColor",
+        "linkColor",
+        "visitedLinkColor",
+        "negativeTextColor",
+        "neutralTextColor",
+        "positiveTextColor",
+        "backgroundColor",
+        "highlightColor",
+        "activeBackgroundColor",
+        "linkBackgroundColor",
+        "visitedLinkBackgroundColor",
+        "negativeBackgroundColor",
+        "neutralBackgroundColor",
+        "positiveBackgroundColor",
+        "alternateBackgroundColor",
+        "focusColor",
+        "hoverColor"
     ]
 
     property var themeScopes: [
-        Kirigami.Theme.View,
-        Kirigami.Theme.Window,
-        Kirigami.Theme.Button,
-        Kirigami.Theme.Selection,
-        Kirigami.Theme.Tooltip,
-        Kirigami.Theme.Complementary,
-        Kirigami.Theme.Header
+        "View",
+        "Window",
+        "Button",
+        "Selection",
+        "Tooltip",
+        "Complementary",
+        "Header"
     ]
 
-    property color accentColor: {
-        Kirigami.Theme.colorSet = widgetBgColorScope
-        Kirigami.Theme.inherit = false
+
+
+    property string systemColor: {
         return themeColors[colorModeTheme]
     }
+
     property int colorModeThemeVariant: plasmoid.configuration.colorModeThemeVariant
     property var widgetBgColorScope: {
         return themeScopes[colorModeThemeVariant]
     }
-    property color fgAcentColor: {
-        Kirigami.Theme.colorSet = fgColorScope
-        Kirigami.Theme.inherit = false
+    property string fgSystemColor: {
         return themeColors[fgColorModeTheme]
     }
     property int fgColorModeThemeVariant: plasmoid.configuration.fgColorModeThemeVariant
     property var fgColorScope: {
         return themeScopes[fgColorModeThemeVariant]
     }
+
+    RowLayout {
+        Rectangle {
+            id: fgSystemColorHolder
+            Kirigami.Theme.colorSet: Kirigami.Theme[main.widgetBgColorScope]
+            Kirigami.Theme.inherit: false
+            width: 20
+            height: 10
+            color: {
+                return Kirigami.Theme[main.fgSystemColor]
+            }
+            visible: true
+            opacity: 0
+        }
+
+        Rectangle {
+            id: systemColorHolder
+            Kirigami.Theme.colorSet: Kirigami.Theme[main.widgetBgColorScope]
+            Kirigami.Theme.inherit: false
+            width: 10
+            height: 10
+            color: {
+                return Kirigami.Theme[main.systemColor]
+            }
+            visible: true
+            opacity: 0
+        }
+
+        Rectangle {
+            id: fgBlacklistColorHolder
+            Kirigami.Theme.colorSet: Kirigami.Theme[main.fgBlacklistedColorScope]
+            Kirigami.Theme.inherit: false
+            width: 10
+            height: 10
+            color: {
+                return Kirigami.Theme[main.blacklistedFgColor]
+            }
+            visible: true
+            opacity: 0
+        }
+    }
+
     property color defaultTextColor: Kirigami.Theme.textColor
     property real fgOpacity: plasmoid.configuration.fgOpacity
     property bool fgColorEnabled: plasmoid.configuration.fgColorEnabled
@@ -180,15 +217,11 @@ PlasmoidItem {
     property int fgBlacklistedColorMode: plasmoid.configuration.fgBlacklistedColorMode
     property int fgBlacklistedColorModeTheme: plasmoid.configuration.fgBlacklistedColorModeTheme
     property string blacklistedFgColor: {
-        let c
         if (fgBlacklistedColorMode === 0) {
-            c = hexToRgb(plasmoid.configuration.blacklistedFgColor)
+            return plasmoid.configuration.blacklistedFgColor
         } else {
-            Kirigami.Theme.colorSet = fgBlacklistedColorScope
-            Kirigami.Theme.inherit = false
-            c = hexToRgb(themeColors[fgBlacklistedColorModeTheme])
+            return themeColors[fgBlacklistedColorModeTheme]
         }
-        return Qt.rgba(c.r / 255, c.g / 255, c.b / 255, 1).toString()
     }
     property int fgBlacklistedColorModeThemeVariant: plasmoid.configuration.fgBlacklistedColorModeThemeVariant
     property var fgBlacklistedColorScope: {
@@ -470,8 +503,18 @@ PlasmoidItem {
             height: parent.height
             color: "transparent"
             radius: parent.radius
+            Kirigami.Theme.colorSet: Kirigami.Theme[widgetOutlineColorScope]
+            Kirigami.Theme.inherit: false
             border {
-                color: widgetOutlineColor
+                color: {
+                    let c
+                    if (widgetOutlineColor.startsWith("#")) {
+                        c = hexToRgb(widgetOutlineColor)
+                    } else {
+                        c = hexToRgb(Kirigami.Theme[widgetOutlineColor])
+                    }
+                    return Qt.rgba(c.r / 255, c.g / 255, c.b / 255, widgetOutlineOpacity).toString()
+                }
                 width: widgetOutlineWidth
             }
         }
@@ -496,7 +539,15 @@ PlasmoidItem {
     }
 
     property Component panelBgComponent: Kirigami.ShadowedRectangle {
-        color: panelBgColor
+        Kirigami.Theme.colorSet: Kirigami.Theme[panelBgColorScope]
+        Kirigami.Theme.inherit: false
+        color: {
+            if ( panelBgColor.startsWith("#")) {
+                return panelBgColor
+            } else {
+                return Kirigami.Theme[panelBgColor]
+            }
+        }
         opacity: panelBgOpacity
         radius: panelBgRadius
         anchors.centerIn: parent
@@ -516,8 +567,18 @@ PlasmoidItem {
             height: parent.height
             color: "transparent"
             radius: parent.radius
+            Kirigami.Theme.colorSet: Kirigami.Theme[panelOutlineColorScope]
+            Kirigami.Theme.inherit: false
             border {
-                color: panelOutlineColor
+                color: {
+                let c
+                if (panelOutlineColor.startsWith("#")) {
+                    c = hexToRgb(panelOutlineColor)
+                } else {
+                    c = hexToRgb(Kirigami.Theme[panelOutlineColor])
+                }
+                return Qt.rgba(c.r / 255, c.g / 255, c.b / 255, panelOutlineOpacity).toString()
+            }
                 width: panelOutlineWidth
             }
         }
@@ -578,11 +639,11 @@ PlasmoidItem {
         paddingTimer.start()
     }
 
-    onAccentColorChanged: {
+    onSystemColorChanged: {
         if (colorMode === 1) init()
     }
 
-    onFgAcentColorChanged: {
+    onFgSystemColorChanged: {
         if (fgColorMode === 1) init()
     }
     
@@ -618,7 +679,25 @@ PlasmoidItem {
     Connections {
         target: plasmoid.configuration
         onValueChanged: {
+            refreshSystemColor()
             configChangedTimer.restart()
+        }
+    }
+
+    function refreshSystemColor() {
+        systemColorHolder.color = "transparent"
+        systemColorHolder.color = Kirigami.Theme[main.systemColor]
+        fgSystemColorHolder.color = "transparent"
+        fgSystemColorHolder.color = Kirigami.Theme[main.fgSystemColor]
+        fgBlacklistColorHolder.color = "transparent"
+        fgBlacklistColorHolder.color = Kirigami.Theme[main.blacklistedFgColor]
+    }
+
+    Connections {
+        target: Kirigami.Theme
+        onColorsChanged: {
+            refreshSystemColor()
+            init()
         }
     }
 
@@ -777,7 +856,7 @@ PlasmoidItem {
                 newColor = fg ? Qt.rgba(fgSingleColor.r, fgSingleColor.g, fgSingleColor.b, 1) : Qt.rgba(singleColor.r, singleColor.g, singleColor.b, 1)
                 break
             case 1:
-                let themeColor = fg ? fgAcentColor : accentColor
+                let themeColor = fg ? fgSystemColorHolder.color : systemColorHolder.color
                 newColor = Qt.rgba(themeColor.r, themeColor.g, themeColor.b, 1);
                 break
             case 3:
@@ -1002,7 +1081,7 @@ PlasmoidItem {
                 idx++
             }
             if (fgBlacklistedColorEnabled && ignore) {
-                newColor = blacklistedFgColor
+                newColor = fgBlacklistColorHolder.color
             }
 
             if (name === "org.kde.windowbuttons" && addingColors) {
