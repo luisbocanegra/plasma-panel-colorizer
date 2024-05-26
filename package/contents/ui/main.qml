@@ -293,6 +293,7 @@ PlasmoidItem {
         "normalPreset",
         "maximizedPreset"
         "touchingWindowPreset",
+        "isEnabled"
     ]
     property string floatingPreset: plasmoid.configuration.floatingPreset
     property string touchingWindowPreset: plasmoid.configuration.touchingWindowPreset

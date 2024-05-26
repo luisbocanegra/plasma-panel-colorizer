@@ -25,7 +25,8 @@ KCM.SimpleKCM {
         "floatingPreset",
         "normalPreset",
         "maximizedPreset",
-        "touchingWindowPreset"
+        "touchingWindowPreset",
+        "isEnabled"
     ]
 
     property bool cfg_widgetBgEnabled
