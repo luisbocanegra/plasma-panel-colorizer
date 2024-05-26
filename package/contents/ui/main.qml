@@ -291,7 +291,7 @@ PlasmoidItem {
         "lastPreset",
         "floatingPreset",
         "normalPreset",
-        "maximizedPreset"
+        "maximizedPreset",
         "touchingWindowPreset",
         "isEnabled"
     ]
@@ -1365,7 +1365,7 @@ PlasmoidItem {
         readonly property int maxStep:4
         onTriggered: {
             console.log("enabling transparency mode attempt : " + (step+1) )
-            main.toggleTransparency(hideRealPanelBg)
+            main.toggleTransparency(hideRealPanelBg && isEnabled)
             if ( main.containmentItem == null && step<maxStep ) {
                 step = step + 1;
                 start();
