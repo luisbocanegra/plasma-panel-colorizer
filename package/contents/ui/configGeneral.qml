@@ -24,7 +24,8 @@ KCM.SimpleKCM {
         "lastPreset",
         "floatingPreset",
         "normalPreset",
-        "maximizedPreset"
+        "maximizedPreset",
+        "touchingWindowPreset"
     ]
 
     property bool cfg_widgetBgEnabled
@@ -113,6 +114,7 @@ KCM.SimpleKCM {
     property int cfg_fgColorModeThemeVariant
     property int cfg_panelBgColorModeThemeVariant
     property int cfg_panelOutlineColorModeThemeVariant
+    property int cfg_fgBlacklistedColorModeThemeVariant
 
     Connections {
         target: plasmoid.configuration
