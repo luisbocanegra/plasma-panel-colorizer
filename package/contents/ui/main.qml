@@ -477,7 +477,6 @@ PlasmoidItem {
         property int lineXOffset: -bgLineXOffset
         property int lineYOffset: -bgLineYOffset
         color: "transparent"
-        opacity: bgOpacity
         radius: bgRadius
         height: lineMode && linePosition <= 1 ? lineWidth : parent.height + heightOffset
         width: lineMode && linePosition >= 2 ? lineWidth : parent.width + widthOffset
@@ -538,7 +537,8 @@ PlasmoidItem {
         }
 
         function changeColor(newColor) {
-            anim.to = newColor
+            const c = hexToRgb(newColor)
+            anim.to = Qt.rgba(c.r / 255, c.g / 255, c.b / 255, bgOpacity).toString()
             anim.restart()
         }
     }
@@ -547,13 +547,15 @@ PlasmoidItem {
         Kirigami.Theme.colorSet: Kirigami.Theme[panelBgColorScope]
         Kirigami.Theme.inherit: false
         color: {
+            let c
             if ( panelBgColor.startsWith("#")) {
-                return panelBgColor
+                c = panelBgColor
             } else {
-                return Kirigami.Theme[panelBgColor]
+                c = Kirigami.Theme[panelBgColor]
             }
+            c = hexToRgb(c)
+            return Qt.rgba(c.r / 255, c.g / 255, c.b / 255, panelBgOpacity).toString()
         }
-        opacity: panelBgOpacity
         radius: panelBgRadius
         anchors.centerIn: parent
         width: panelBg.width
