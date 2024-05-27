@@ -1,5 +1,33 @@
 # Changelog
 
+## v0.5.2 Bugfix release (mostly)
+
+### Bug fixes
+
+- Fix transparent outline ugliness by drawing it inside background area
+- Restore now removes all customization https://github.com/luisbocanegra/plasma-panel-colorizer/issues/36
+- Fix panel background color set not saving https://github.com/luisbocanegra/plasma-panel-colorizer/issues/42
+- Fix broken system colors when switching color schemes https://github.com/luisbocanegra/plasma-panel-colorizer/issues/41
+- Fix blacklisted color
+- Fix default appearance restore
+- Ignore global enable from presets
+- Fix restoring hidden panel after global disable
+- Fix blacklisted color
+- Remove outline if background is disabled
+- Disable/hide controls based on category/global disabled status
+- Disable blacklist on global disable
+- Fix per widget margins layout & visibility
+
+### Improvements
+
+- Improve preset auto-loading - Allow loading a preset when a window is touching the panel https://github.com/luisbocanegra/plasma-panel-colorizer/issues/44
+- Split margin from background and move to separate Layout tab
+- **Don't apply any customization by default** https://github.com/luisbocanegra/plasma-panel-colorizer/issues/36
+
+### Other
+
+- Switch to RGBA for background opacity
+
 ## v0.5.1 Bugfix release
 
 ### Bug fixes
