@@ -510,6 +510,7 @@ PlasmoidItem {
             Kirigami.Theme.inherit: false
             border {
                 color: {
+                    if (!isEnabled || !widgetBgEnabled) return "transparent"
                     let c
                     if (widgetOutlineColor.startsWith("#")) {
                         c = hexToRgb(widgetOutlineColor)
@@ -577,6 +578,7 @@ PlasmoidItem {
             Kirigami.Theme.inherit: false
             border {
                 color: {
+                if (!isEnabled || !panelBgEnabled ) return "transparent"
                 let c
                 if (panelOutlineColor.startsWith("#")) {
                     c = hexToRgb(panelOutlineColor)
