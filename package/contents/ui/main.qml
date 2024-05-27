@@ -196,17 +196,13 @@ PlasmoidItem {
         }
 
         Rectangle {
-            id: fgBlacklistColorHolder
+            id: blacklistSystemColorHolder
             Kirigami.Theme.colorSet: Kirigami.Theme[main.fgBlacklistedColorScope]
             Kirigami.Theme.inherit: false
             width: 10
             height: 10
             color: {
-                if (main.blacklistedFgColor.startsWith("#")) {
-                    return main.blacklistedFgColor
-                } else {
-                    return Kirigami.Theme[main.blacklistedFgColor]
-                }
+                return Kirigami.Theme[main.blacklistedSystemColor]
             }
             visible: true
             opacity: 0
@@ -220,11 +216,14 @@ PlasmoidItem {
     property bool fgBlacklistedColorEnabled: plasmoid.configuration.fgBlacklistedColorEnabled
     property int fgBlacklistedColorMode: plasmoid.configuration.fgBlacklistedColorMode
     property int fgBlacklistedColorModeTheme: plasmoid.configuration.fgBlacklistedColorModeTheme
+    property string blacklistedSystemColor: {
+        return themeColors[fgBlacklistedColorModeTheme]
+    }
     property string blacklistedFgColor: {
         if (fgBlacklistedColorMode === 0) {
             return plasmoid.configuration.blacklistedFgColor
         } else {
-            return themeColors[fgBlacklistedColorModeTheme]
+            return blacklistSystemColorHolder.color
         }
     }
     property int fgBlacklistedColorModeThemeVariant: plasmoid.configuration.fgBlacklistedColorModeThemeVariant
@@ -696,9 +695,8 @@ PlasmoidItem {
         systemColorHolder.color = Kirigami.Theme[main.systemColor]
         fgSystemColorHolder.color = "transparent"
         fgSystemColorHolder.color = Kirigami.Theme[main.fgSystemColor]
-        const tmp = fgBlacklistColorHolder.color
-        fgBlacklistColorHolder.color = "transparent"
-        fgBlacklistColorHolder.color = tmp
+        blacklistSystemColorHolder.color = "transparent"
+        blacklistSystemColorHolder.color = Kirigami.Theme[main.blacklistedSystemColor]
     }
 
     Connections {
@@ -1089,7 +1087,7 @@ PlasmoidItem {
                 idx++
             }
             if (fgBlacklistedColorEnabled && ignore) {
-                newColor = fgBlacklistColorHolder.color
+                newColor = blacklistedFgColor
             }
 
             if (name === "org.kde.windowbuttons" && addingColors) {
