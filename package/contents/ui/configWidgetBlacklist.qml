@@ -9,6 +9,7 @@ import "components" as Components
 
 KCM.SimpleKCM {
     id:root
+    property bool cfg_isEnabled
     property bool cfg_fgBlacklistedColorEnabled: fgBlacklistedColorEnabled.checked
     property int cfg_fgBlacklistedColorMode: plasmoid.configuration.fgBlacklistedColorMode
     property alias cfg_fgBlacklistedColorModeTheme: fgBlacklistedColorModeTheme.currentIndex
@@ -76,6 +77,17 @@ KCM.SimpleKCM {
         RowLayout {
             Layout.leftMargin: Kirigami.Units.mediumSpacing
             Layout.rightMargin: Kirigami.Units.smallSpacing
+            RowLayout {
+                Layout.alignment: Qt.AlignRight
+                Label {
+                    text: i18n("Enabled:")
+                }
+                CheckBox {
+                    id: fgBlacklistedColorEnabled
+                    checked: cfg_fgBlacklistedColorEnabled 
+                    onCheckedChanged: cfg_fgBlacklistedColorEnabled = checked
+                }
+            }
             Item {
                 Layout.fillWidth: true
             }
@@ -93,15 +105,9 @@ KCM.SimpleKCM {
     }
 
     ColumnLayout {
-
+        visible: cfg_isEnabled
         Kirigami.FormLayout {
-        CheckBox {
-            Kirigami.FormData.label: i18n("Custom color:")
-            id: fgBlacklistedColorEnabled
-            checked: cfg_fgBlacklistedColorEnabled 
-            onCheckedChanged: cfg_fgBlacklistedColorEnabled = checked
-        }
-
+            enabled: cfg_fgBlacklistedColorEnabled
         RadioButton {
             Kirigami.FormData.label: i18n("Source:")
             text: i18n("Custom")
@@ -185,6 +191,7 @@ KCM.SimpleKCM {
         }
 
     Kirigami.FormLayout {
+        enabled: cfg_fgBlacklistedColorEnabled
         RowLayout {
             Layout.preferredWidth: widgetCards.width
             Layout.minimumWidth: 100
@@ -241,5 +248,8 @@ KCM.SimpleKCM {
             }
         }
     }
+    }
+    Components.CategoryDisabled {
+        visible: !cfg_isEnabled
     }
 }

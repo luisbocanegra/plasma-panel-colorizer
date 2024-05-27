@@ -8,7 +8,7 @@ import "components" as Components
 
 KCM.SimpleKCM {
     id:root
-
+    property bool cfg_isEnabled
     property bool cfg_fgColorEnabled: fgColorEnabled.checked
     property int cfg_fgMode: plasmoid.configuration.fgMode
     property int cfg_fgColorMode: plasmoid.configuration.fgColorMode
@@ -147,7 +147,6 @@ KCM.SimpleKCM {
                     id: fgColorEnabled
                     checked: cfg_fgColorEnabled
                     onCheckedChanged: cfg_fgColorEnabled = checked
-                    text: checked ? "Enabled" : "⚠️ Disabled"
                 }
             }
             Item {
@@ -168,6 +167,8 @@ KCM.SimpleKCM {
 
     ColumnLayout {
     Kirigami.FormLayout {
+        enabled: cfg_fgColorEnabled
+        visible: cfg_isEnabled
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
             Kirigami.FormData.label: i18n("Color mode")
@@ -721,5 +722,8 @@ KCM.SimpleKCM {
             }
         }
     }
+    }
+    Components.CategoryDisabled {
+        visible: !cfg_isEnabled
     }
 }

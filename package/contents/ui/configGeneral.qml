@@ -315,7 +315,6 @@ KCM.SimpleKCM {
                     id: isEnabled
                     checked: cfg_isEnabled
                     onCheckedChanged: cfg_isEnabled = checked
-                    text: checked ? "Enabled" : "⚠️ Disabled"
                 }
             }
             Item {
@@ -336,6 +335,7 @@ KCM.SimpleKCM {
 
     ColumnLayout {
     Kirigami.FormLayout {
+        enabled: cfg_isEnabled
         RowLayout {
             Kirigami.FormData.label: i18n("Hide widget:")
             Kirigami.FormData.labelAlignment: Qt.AlignTop
@@ -357,7 +357,8 @@ KCM.SimpleKCM {
         }
     }
 
-        Kirigami.FormLayout  {
+        Kirigami.FormLayout {
+            enabled: cfg_isEnabled
             Item {
                 Kirigami.FormData.isSection: true
                 Kirigami.FormData.label: i18n("Presets")

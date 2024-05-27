@@ -6,9 +6,11 @@ import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
 import org.kde.plasma.plasma5support as P5Support
+import "components" as Components
 
 KCM.SimpleKCM {
     id:root
+    property bool cfg_isEnabled
     property string presetsDir: StandardPaths.writableLocation(
                     StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/"
     property string cratePresetsDirCmd: "mkdir -p " + presetsDir
@@ -115,18 +117,17 @@ KCM.SimpleKCM {
     }
 
     ColumnLayout {
+        visible: cfg_isEnabled
         Label {
             text: i18n("Here you can switch between different panel presets based on the Panel and window states below.")
             Layout.maximumWidth: root.width - (Kirigami.Units.gridUnit * 2)
             wrapMode: Text.Wrap
-            Layout.alignment: Qt.AlignHCenter
         }
 
         Label {
             text: i18n("Priorities go from lowest to highest. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the <b>Maximized</b> preset will be applied.")
             Layout.maximumWidth: root.width - (Kirigami.Units.gridUnit * 2)
             wrapMode: Text.Wrap
-            Layout.alignment: Qt.AlignHCenter
         }
         Kirigami.FormLayout {
 
@@ -174,5 +175,9 @@ KCM.SimpleKCM {
                 currentIndex: getIndex(model, cfg_maximizedPreset)
             }
         }
+    }
+
+    Components.CategoryDisabled {
+        visible: !cfg_isEnabled
     }
 }

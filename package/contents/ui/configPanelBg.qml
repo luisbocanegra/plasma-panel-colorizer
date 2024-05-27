@@ -8,6 +8,7 @@ import "components" as Components
 
 KCM.SimpleKCM {
     id:root
+    property bool cfg_isEnabled
     property bool cfg_panelBgEnabled: panelBgEnabled.checked
     property int cfg_panelBgColorMode: plasmoid.configuration.panelBgColorMode
     property alias cfg_panelBgColorModeTheme: colorModeTheme.currentIndex
@@ -52,7 +53,7 @@ KCM.SimpleKCM {
     }
 
     Kirigami.FormLayout {
-
+        visible: cfg_isEnabled
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
             Kirigami.FormData.label: i18n("Original background")
@@ -468,5 +469,9 @@ KCM.SimpleKCM {
                 cfg_panelShadowY = value
             }
         }
+    }
+
+    Components.CategoryDisabled {
+        visible: !cfg_isEnabled
     }
 }

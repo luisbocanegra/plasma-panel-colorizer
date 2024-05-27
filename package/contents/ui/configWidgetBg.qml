@@ -185,7 +185,6 @@ KCM.SimpleKCM {
                     id: widgetBgEnabled
                     checked: cfg_widgetBgEnabled
                     onCheckedChanged: cfg_widgetBgEnabled = checked
-                    text: checked ? "Enabled" : "⚠️ Disabled"
                 }
             }
             Item {
@@ -206,6 +205,8 @@ KCM.SimpleKCM {
 
     ColumnLayout {
     Kirigami.FormLayout {
+        enabled: cfg_widgetBgEnabled
+        visible: cfg_isEnabled
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
             Kirigami.FormData.label: i18n("Color mode")
@@ -1019,4 +1020,9 @@ KCM.SimpleKCM {
         }
     }
     }
+
+    Components.CategoryDisabled {
+        visible: !cfg_isEnabled
+    }
 }
+
