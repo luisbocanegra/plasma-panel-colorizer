@@ -37,4 +37,10 @@ ConfigModel {
         icon: "preferences-desktop-filter"
         source: "configWidgetBlacklist.qml"
     }
+
+    ConfigCategory {
+        name: i18n("Layout")
+        icon: "distribute-horizontal-margin"
+        source: "configLayout.qml"
+    }
 }

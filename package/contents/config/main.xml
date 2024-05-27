@@ -469,5 +469,10 @@
         type="Bool">
         <default>true</default>
     </entry>
+    <entry
+        name="layoutEnabled"
+        type="Bool">
+        <default>true</default>
+    </entry>
   </group>
 </kcfg>

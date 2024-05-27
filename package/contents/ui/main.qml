@@ -39,9 +39,35 @@ PlasmoidItem {
     property int rainbowInterval: plasmoid.configuration.rainbowInterval
     property int rainbowTransition: plasmoid.configuration.rainbowTransition
     property string blacklist: plasmoid.configuration.blacklist
-    property int widgetBgHMargin: plasmoid.configuration.widgetBgHMargin
-    property int widgetBgVMargin: plasmoid.configuration.widgetBgVMargin
-    property string marginRules: plasmoid.configuration.marginRules
+    property bool layoutEnabled: plasmoid.configuration.layoutEnabled
+    property int widgetBgHMargin: {
+        if (layoutEnabled && isEnabled) {
+            return plasmoid.configuration.widgetBgHMargin
+        } else {
+            return 0
+        }
+    }
+    property int widgetBgVMargin: {
+        if (layoutEnabled && isEnabled) {
+            return plasmoid.configuration.widgetBgVMargin
+        } else {
+            return 4
+        }
+    }
+    property string marginRules: {
+        if (layoutEnabled && isEnabled) {
+            return plasmoid.configuration.marginRules
+        } else {
+            return ""
+        }
+    }
+    property int panelSpacing: {
+        if (layoutEnabled && isEnabled) {
+            return plasmoid.configuration.panelSpacing
+        } else {
+            return 4
+        }
+    }
     property bool hideWidget: plasmoid.configuration.hideWidget
 
     property bool panelBgEnabled: plasmoid.configuration.panelBgEnabled
@@ -299,8 +325,6 @@ PlasmoidItem {
     property string normalPreset: plasmoid.configuration.normalPreset
     property string maximizedPreset: plasmoid.configuration.maximizedPreset
     property string lastPreset
-
-    property int panelSpacing: plasmoid.configuration.panelSpacing
 
     property bool fgShadowEnabled: plasmoid.configuration.fgShadowEnabled
     property string fgShadowColor: plasmoid.configuration.fgShadowColor
