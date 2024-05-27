@@ -168,17 +168,18 @@ KCM.SimpleKCM {
                     cfg_widgetBgHMargin = value
                 }
             }
+        }
 
+
+        Kirigami.FormLayout {
+            enabled: cfg_layoutEnabled
+            visible: cfg_isEnabled
             Label {
                 text: i18n("Extra horizontal/vertical margins per widget:")
                 Layout.maximumWidth: widgetCards.width
                 wrapMode: Text.Wrap
+                Layout.minimumWidth: 100
             }
-        }
-
-        Kirigami.FormLayout {
-            // Layout.preferredWidth: 500
-            // Layout.alignment: Qt.AlignHCenter
             RowLayout {
                 Layout.preferredWidth: widgetCards.width
                 Layout.minimumWidth: 100
