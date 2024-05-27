@@ -692,6 +692,10 @@ PlasmoidItem {
         }
     }
 
+    onFgBlacklistedColorEnabledChanged: {
+        destroyRequired = true
+    }
+
     function refreshSystemColor() {
         systemColorHolder.color = "transparent"
         systemColorHolder.color = Kirigami.Theme[main.systemColor]
@@ -771,7 +775,10 @@ PlasmoidItem {
     function createRects() {
         if(!panelLayout) return
         if (!widgetBgEnabled && !isEnabled) return
-        const blacklisted = blacklist.split("|").map(function (line) { return line.trim() })
+        var blacklisted = []
+        if (fgBlacklistedColorEnabled && isEnabled) {
+            blacklisted = blacklist.split("|").map(function (line) { return line.trim() })
+        }
         const marginLines = marginRules.split("|").map(function (line) { return line.trim() })
         console.log("creating widget background rects");
         for (var i in panelLayout.children) {
@@ -1046,7 +1053,10 @@ PlasmoidItem {
             }
         }
         var idx=0
-        const blacklisted = blacklist.split("|").map(function (line) { return line.trim() })
+        var blacklisted = []
+        if (fgBlacklistedColorEnabled && isEnabled) {
+            blacklisted = blacklist.split("|").map(function (line) { return line.trim() })
+        }
         const maskList = forceRecolor.split("|").map(function (line) { return line.trim() })
         // console.error(forceRecolor);
         for(let i = 0; i < panelLayout.children.length; i++) {
