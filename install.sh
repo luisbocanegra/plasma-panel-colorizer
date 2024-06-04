@@ -1,9 +1,9 @@
 #!/bin/sh
+
 if [ -d "build" ]; then
     rm -rf build
 fi
 
-# install plasmoid only
-cmake -B build -S . -DCMAKE_INSTALL_PREFIX=~/.local
+cmake -B build -S . -DINSTALL_PLASMOID=ON -DBUILD_PLUGIN=ON -DCMAKE_INSTALL_PREFIX=/usr
 cmake --build build
-cmake --install build
+sudo cmake --install build
