@@ -10,11 +10,17 @@ import org.kde.plasma.plasma5support as P5Support
 import org.kde.plasma.workspace.components as WorkspaceComponents
 import org.kde.taskmanager 0.1 as TaskManager
 import Qt5Compat.GraphicalEffects
+import org.kde.plasma.panelcolorizer 1.0
 
 import "components" as Components
 
 PlasmoidItem {
     id: main
+
+
+    PanelColorizer {
+        id: panelColorizer
+    }
 
     preferredRepresentation: compactRepresentation
     property bool onDesktop: plasmoid.location === PlasmaCore.Types.Floating
@@ -613,6 +619,49 @@ PlasmoidItem {
             }
                 width: panelOutlineWidth
             }
+        }
+
+        function updateMask() {
+            panelElement.panelMask = panelColorizer.updatePanelMask(
+                this,
+                radius,
+                Qt.point(x, y),
+                isVertical
+            )
+        }
+
+        Component.onCompleted: {
+            updateMask()
+        }
+
+        onXChanged: {
+            console.error("onXChanged");
+            updateMask()
+        }
+
+        onYChanged: {
+            console.error("onYChanged");
+            updateMask()
+        }
+
+        onWidthChanged: {
+            console.error("onWidthChanged");
+            updateMask()
+        }
+
+        onHeightChanged: {
+            console.error("onHeightChanged");
+            updateMask()
+        }
+        
+        onChildrenRectChanged: {
+            console.error("onChildrenRectChanged");
+            updateMask()
+        }
+
+        onRadiusChanged: {
+            console.error("onRadiusChanged");
+            updateMask()
         }
     }
 
