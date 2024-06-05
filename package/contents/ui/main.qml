@@ -293,13 +293,23 @@ PlasmoidItem {
             })
         }) : null
     }
+
+    property var panelCustomMask: null
+    
+    Binding {
+        target: panelElement
+        property: "panelMask"
+        value: panelCustomMask
+        when: panelBGE !== null && panelColorizer !== null 
+    }
+
     property bool isFloating: !panelElement ? false : Boolean(panelElement.floatingness)
     property bool isTouchingWindow: !panelElement ? false : Boolean(panelElement.touchingWindow)
 
     property ContainmentItem containmentItem: null
     readonly property int depth : 14
 
-    property var panelBGE
+    property var panelBGE: null
 
     property bool bgLineModeEnabled: plasmoid.configuration.bgLineModeEnabled
     property int bgLinePosition: plasmoid.configuration.bgLinePosition
@@ -619,7 +629,7 @@ PlasmoidItem {
 
         function updateMask() {
             if ( panelColorizer === null ) return
-            panelElement.panelMask = panelColorizer.updatePanelMask(
+            panelCustomMask = panelColorizer.updatePanelMask(
                 this,
                 radius,
                 Qt.point(x, y),
@@ -1406,6 +1416,7 @@ PlasmoidItem {
     function destroyPanelBg() {
         if (panelBGE) {
             panelBGE.destroy()
+            panelBGE = null;
         }
     }
 
