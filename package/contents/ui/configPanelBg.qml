@@ -132,7 +132,7 @@ KCM.SimpleKCM {
         }
 
         Label {
-            text: i18n("This option makes the widgets always stay at the same distance from the sides of the floating panel. Changing panel settings with this option enabled may cause some jankiness, specially in edit mode and vertical panels. Disable and restart Plasma or logout to restore the original behavior.")
+            text: i18n("Makes the widgets always stay at the same distance from the sides of the panel. May cause some jankiness, specially in vertical and fit content panels. Restarting Plasma or logging out may fix those, if not, disable it and logout to restore the original behavior.")
             opacity: 0.7
             Layout.maximumWidth: 400
             wrapMode: Text.Wrap

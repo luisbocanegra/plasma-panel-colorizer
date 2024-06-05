@@ -284,6 +284,26 @@ PlasmoidItem {
 
     property bool enableCustomPadding: plasmoid.configuration.enableCustomPadding
     property int panelPadding: plasmoid.configuration.panelPadding
+    property int panelCustomWidth: 0//panelBg.width
+    property int panelCustomHeight: 0//panelBg.height
+    Binding {
+        target: panelLayout
+        property: "width"
+        value: panelCustomWidth
+        when: enableCustomPadding && !inEditMode
+    }
+    Binding {
+        target: panelLayout
+        property: "height"
+        value: panelCustomHeight
+        when: enableCustomPadding && !inEditMode
+    }
+    Binding {
+        target: panelLayout.anchors
+        property: "centerIn"
+        value: panelLayout.parent
+        when: isEnabled && enableCustomPadding && !inEditMode
+    }
     property bool isVertical: Plasmoid.formFactor === PlasmaCore.Types.Vertical
     property var panelPrefixes: ["north","south","west","east"]
     property var panelBg: {
@@ -1369,16 +1389,12 @@ PlasmoidItem {
 
     function updatePadding() {
         if (isEnabled && enableCustomPadding) {
-            panelLayout.anchors.centerIn = panelLayout.parent
-
-            if (!isVertical) {
-                panelLayout.width = panelBg.width - panelPadding
-                panelLayout.height = panelBg.height
-            }
-
             if (isVertical) {
-                panelLayout.width = panelBg.width
-                panelLayout.height = panelBg.height - panelPadding
+                panelCustomWidth = panelBg.width
+                panelCustomHeight = panelBg.height - panelPadding
+            } else {
+                panelCustomWidth = panelBg.width - panelPadding
+                panelCustomHeight = panelBg.height
             }
         }
     }

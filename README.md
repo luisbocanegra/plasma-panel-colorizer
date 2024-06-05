@@ -83,10 +83,6 @@ Inspired by the Latte Dock (now unmaintained) theming and boosted by the lazines
 * Border radius
 * Outline
 * Constant floating panel side padding
-
-> [!WARNING]
-> Changing panel settings (position, alignment, width etc.) with this option enabled may cause some jankiness (including visual overflow or widget position freezes). Restarting Plasma or logging out may fix those, if not, disable it and logout to restore the original behavior.
-
 * Shadow
 * Remove original panel background
 
