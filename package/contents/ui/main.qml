@@ -10,17 +10,13 @@ import org.kde.plasma.plasma5support as P5Support
 import org.kde.plasma.workspace.components as WorkspaceComponents
 import org.kde.taskmanager 0.1 as TaskManager
 import Qt5Compat.GraphicalEffects
-import org.kde.plasma.panelcolorizer 1.0
 
 import "components" as Components
 
 PlasmoidItem {
     id: main
 
-
-    PanelColorizer {
-        id: panelColorizer
-    }
+    property var panelColorizer: null
 
     preferredRepresentation: compactRepresentation
     property bool onDesktop: plasmoid.location === PlasmaCore.Types.Floating
@@ -622,6 +618,7 @@ PlasmoidItem {
         }
 
         function updateMask() {
+            if ( panelColorizer === null ) return
             panelElement.panelMask = panelColorizer.updatePanelMask(
                 this,
                 radius,
@@ -635,32 +632,26 @@ PlasmoidItem {
         }
 
         onXChanged: {
-            console.error("onXChanged");
             updateMask()
         }
 
         onYChanged: {
-            console.error("onYChanged");
             updateMask()
         }
 
         onWidthChanged: {
-            console.error("onWidthChanged");
             updateMask()
         }
 
         onHeightChanged: {
-            console.error("onHeightChanged");
             updateMask()
         }
         
         onChildrenRectChanged: {
-            console.error("onChildrenRectChanged");
             updateMask()
         }
 
         onRadiusChanged: {
-            console.error("onRadiusChanged");
             updateMask()
         }
     }
@@ -1207,6 +1198,11 @@ PlasmoidItem {
     Component.onCompleted: {
         customColors = readColors(plasmoid.configuration.customColors)
         fgCustomColors = readColors(plasmoid.configuration.fgCustomColors)
+        try {
+            panelColorizer = Qt.createQmlObject("import org.kde.plasma.panelcolorizer 1.0; PanelColorizer { id: panelColorizer }", main)
+        } catch (err) {
+            console.warn("QML Plugin org.kde.plasma.panelcolorizer not found");
+        }
         if (!onDesktop) {
             init()
         } else {
