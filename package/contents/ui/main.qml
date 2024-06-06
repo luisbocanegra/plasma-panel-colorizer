@@ -1224,6 +1224,10 @@ PlasmoidItem {
     //         console.error("MAX", maximizedWindowExists );
     //     }
     // }
+    onScreenChanged: {
+        // For some reason opacity is reset when output changes (disconnect, switch off)
+        panelOpacity()
+    }
 
     Component.onCompleted: {
         customColors = readColors(plasmoid.configuration.customColors)
