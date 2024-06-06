@@ -15,6 +15,8 @@ KCM.SimpleKCM {
     property string cfg_marginRules: ""
     property int cfg_panelSpacing: panelSpacing.value
     property string cfg_panelWidgets
+    property bool cfg_enableCustomPadding: enableCustomPadding.checked
+    property int cfg_panelPadding: panelPadding.value
 
     ListModel {
         id: widgetsModel
@@ -128,11 +130,6 @@ KCM.SimpleKCM {
             enabled: cfg_layoutEnabled
             visible: cfg_isEnabled
 
-            Kirigami.Separator {
-                Kirigami.FormData.isSection: true
-                Kirigami.FormData.label: i18n("Background margin")
-            }
-
             SpinBox {
                 Kirigami.FormData.label: i18n("Spacing:")
                 id: panelSpacing
@@ -166,6 +163,30 @@ KCM.SimpleKCM {
                 value: cfg_widgetBgHMargin
                 onValueModified: {
                     cfg_widgetBgHMargin = value
+                }
+            }
+
+            CheckBox {
+                Kirigami.FormData.label: i18n("Fixed side padding (px):")
+                id: enableCustomPadding
+                checked: cfg_enableCustomPadding
+                onCheckedChanged: cfg_enableCustomPadding = checked
+            }
+
+            RowLayout {
+                SpinBox {
+                    // Kirigami.FormData.label: i18n("Padding (px):")
+                    id: panelPadding
+                    value: cfg_panelPadding
+                    from: 0
+                    to: 99
+                    enabled: enableCustomPadding.checked
+                    onValueModified: {
+                        cfg_panelPadding = value
+                    }
+                }
+                KCM.ContextualHelpButton {
+                    toolTipText: i18n("Makes the widgets always stay at the same distance from the sides of the panel. May cause some jankiness, specially in vertical and fit content panels. Restarting Plasma or logging out may fix those, if not, disable it and logout to restore the original behavior.")
                 }
             }
         }

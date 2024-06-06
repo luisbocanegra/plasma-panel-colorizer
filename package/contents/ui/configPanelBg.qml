@@ -18,8 +18,6 @@ KCM.SimpleKCM {
     property real cfg_panelBgOpacity: parseFloat(panelBgOpacity.text)
     property int cfg_panelBgRadius: panelBgRadius.value
     property real cfg_panelRealBgOpacity: parseFloat(panelRealBgOpacity.text)
-    property bool cfg_enableCustomPadding: enableCustomPadding.checked
-    property int cfg_panelPadding: panelPadding.value
 
     property int cfg_panelOutlineColorMode: plasmoid.configuration.panelOutlineColorMode
     property alias cfg_panelOutlineColorModeTheme: panelOutlineColorModeTheme.currentIndex
@@ -111,33 +109,6 @@ KCM.SimpleKCM {
             Layout.maximumWidth: 400
             wrapMode: Text.Wrap
         }
-
-        CheckBox {
-            Kirigami.FormData.label: i18n("Fixed side padding:")
-            id: enableCustomPadding
-            checked: cfg_enableCustomPadding
-            onCheckedChanged: cfg_enableCustomPadding = checked
-        }
-
-        SpinBox {
-            Kirigami.FormData.label: i18n("Padding (px):")
-            id: panelPadding
-            value: cfg_panelPadding
-            from: 0
-            to: 99
-            enabled: enableCustomPadding.checked
-            onValueModified: {
-                cfg_panelPadding = value
-            }
-        }
-
-        Label {
-            text: i18n("Makes the widgets always stay at the same distance from the sides of the panel. May cause some jankiness, specially in vertical and fit content panels. Restarting Plasma or logging out may fix those, if not, disable it and logout to restore the original behavior.")
-            opacity: 0.7
-            Layout.maximumWidth: 400
-            wrapMode: Text.Wrap
-        }
-
 
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
