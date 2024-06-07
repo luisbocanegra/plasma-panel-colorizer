@@ -142,27 +142,38 @@ KCM.SimpleKCM {
                 }
             }
 
-            SpinBox {
-                Kirigami.FormData.label: i18n("Vertical:")
-                id: widgetBgVMargin
-                from: 0
-                to: 999
-                stepSize: 1
-                value: cfg_widgetBgVMargin
-                onValueModified: {
-                    cfg_widgetBgVMargin = value
+            RowLayout {
+                Kirigami.FormData.label: i18n("Vertical margin:")
+                SpinBox {
+                    id: widgetBgVMargin
+                    from: 0
+                    to: 999
+                    stepSize: 1
+                    value: cfg_widgetBgVMargin
+                    onValueModified: {
+                        cfg_widgetBgVMargin = value
+                    }
+                }
+                KCM.ContextualHelpButton {
+                    toolTipText: i18n("Available in horizontal panel")
                 }
             }
 
-            SpinBox {
-                Kirigami.FormData.label: i18n("Horizontal:")
-                id: widgetBgHMargin
-                from: 0
-                to: 999
-                stepSize: 1
-                value: cfg_widgetBgHMargin
-                onValueModified: {
-                    cfg_widgetBgHMargin = value
+
+            RowLayout {
+                Kirigami.FormData.label: i18n("Horizontal margin:")
+                SpinBox {
+                    id: widgetBgHMargin
+                    from: 0
+                    to: 999
+                    stepSize: 1
+                    value: cfg_widgetBgHMargin
+                    onValueModified: {
+                        cfg_widgetBgHMargin = value
+                    }
+                }
+                KCM.ContextualHelpButton {
+                    toolTipText: i18n("Available in vertical panel")
                 }
             }
 

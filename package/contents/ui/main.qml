@@ -43,6 +43,7 @@ PlasmoidItem {
     property string blacklist: plasmoid.configuration.blacklist
     property bool layoutEnabled: plasmoid.configuration.layoutEnabled
     property int widgetBgHMargin: {
+        if (!isVertical) return 0
         if (layoutEnabled && isEnabled) {
             return plasmoid.configuration.widgetBgHMargin
         } else {
@@ -50,6 +51,7 @@ PlasmoidItem {
         }
     }
     property int widgetBgVMargin: {
+        if (isVertical) return 0
         if (layoutEnabled && isEnabled) {
             return plasmoid.configuration.widgetBgVMargin
         } else {
@@ -290,19 +292,19 @@ PlasmoidItem {
         target: panelLayout
         property: "width"
         value: panelCustomWidth
-        when: enableCustomPadding && !inEditMode
+        when: isEnabled && enableCustomPadding && !inEditMode && isLoaded
     }
     Binding {
         target: panelLayout
         property: "height"
         value: panelCustomHeight
-        when: enableCustomPadding && !inEditMode
+        when: isEnabled && enableCustomPadding && !inEditMode && isLoaded
     }
     Binding {
         target: panelLayout.anchors
         property: "centerIn"
         value: panelLayout.parent
-        when: isEnabled && enableCustomPadding && !inEditMode
+        when: isEnabled && enableCustomPadding && !inEditMode && isLoaded
     }
     property bool isVertical: Plasmoid.formFactor === PlasmaCore.Types.Vertical
     property var panelPrefixes: ["north","south","west","east"]
