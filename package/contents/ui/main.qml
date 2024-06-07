@@ -1051,6 +1051,9 @@ PlasmoidItem {
             rect.heightChanged.connect(function() {
                 updateWidgetsMask()
             });
+            rect.radiusChanged.connect(function() {
+                updateWidgetsMask()
+            });
         } catch (e) {
             console.error("Error connecting blur to rect", "E:" , e);
         }
