@@ -474,5 +474,15 @@
         type="Bool">
         <default>true</default>
     </entry>
+    <entry
+        name="blurPanelBgEnabled"
+        type="Bool">
+        <default>false</default>
+    </entry>
+    <entry
+        name="blurWidgetBgEnabled"
+        type="Bool">
+        <default>false</default>
+    </entry>
   </group>
 </kcfg>

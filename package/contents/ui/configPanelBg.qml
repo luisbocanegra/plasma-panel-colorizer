@@ -10,6 +10,8 @@ KCM.SimpleKCM {
     id:root
     property bool cfg_isEnabled
     property bool cfg_panelBgEnabled: panelBgEnabled.checked
+    property bool cfg_blurPanelBgEnabled: blurPanelBgEnabled.checked
+    property bool cfg_blurWidgetBgEnabled
     property int cfg_panelBgColorMode: plasmoid.configuration.panelBgColorMode
     property alias cfg_panelBgColorModeTheme: colorModeTheme.currentIndex
     property alias cfg_panelBgColorModeThemeVariant: colorModeThemeVariant.currentIndex
@@ -120,6 +122,23 @@ KCM.SimpleKCM {
             id: panelBgEnabled
             checked: cfg_panelBgEnabled
             onCheckedChanged: cfg_panelBgEnabled = checked
+        }
+
+        RowLayout {
+            Kirigami.FormData.label: i18n("Blur behind:")
+            enabled: panelBgEnabled.checked
+            CheckBox {
+                id: blurPanelBgEnabled
+                checked: cfg_blurPanelBgEnabled
+                onCheckedChanged: {
+                    cfg_blurPanelBgEnabled = checked
+                    if (checked) cfg_blurWidgetBgEnabled = !checked
+                }
+            }
+            KCM.ContextualHelpButton {
+                toolTipText: i18n("Draws a custom blur mask, replacing the original one.")
+                + " " + i18n("Disables Widget blur if enabled")
+            }
         }
 
         RadioButton {

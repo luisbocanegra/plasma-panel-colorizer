@@ -323,14 +323,15 @@ PlasmoidItem {
         target: panelElement
         property: "panelMask"
         value: {
-            if (panelBGE === null && rectangles.count > 0) {
+            if (blurWidgetBgEnabled && widgetBgEnabled) {
                 return widgetsCustomMask
-            } else if (panelBGE !== null) {
+            } else if (blurPanelBgEnabled && panelBgEnabled) {
                 return panelCustomMask
             }
         }
         when: (panelBGE !== null || rectangles.count > 0)
             && panelColorizer !== null
+            && (blurWidgetBgEnabled && widgetBgEnabled || blurPanelBgEnabled && panelBgEnabled)
             && (panelCustomMask || widgetsCustomMask)
     }
 
@@ -375,6 +376,9 @@ PlasmoidItem {
     property int fgShadowY: plasmoid.configuration.fgShadowY
     property int fgShadowRadius: plasmoid.configuration.fgShadowRadius
     property int fixCustomBadges: plasmoid.configuration.fixCustomBadges
+
+    property bool blurPanelBgEnabled: plasmoid.configuration.blurPanelBgEnabled
+    property bool blurWidgetBgEnabled: plasmoid.configuration.blurWidgetBgEnabled
 
     function opacityToHex(opacity) {
         const op = Math.max(0, Math.min(1, opacity))

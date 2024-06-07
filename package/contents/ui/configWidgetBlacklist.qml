@@ -205,7 +205,7 @@ KCM.SimpleKCM {
                 Layout.fillWidth: true
             }
             KCM.ContextualHelpButton {
-                toolTipText: "Since version <strong>0.5.0</strong> partial widget names e.g. <i>spacer</i> are no longer allowed.<br><br>If widgets are not blacklisted properly you can use this option to restore the default which has the correct format"
+                toolTipText: i18n("Since version <strong>0.5.0</strong> partial widget names e.g. <i>spacer</i> are no longer allowed.<br><br>If widgets are not blacklisted properly you can use this option to restore the default which has the correct format")
             }
         }
 
