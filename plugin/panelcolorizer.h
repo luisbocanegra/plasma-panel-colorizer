@@ -15,6 +15,7 @@ class PanelColorizer : public QObject
 public:
 
     Q_INVOKABLE QVariant updatePanelMask(QRectF rect, double radius, QPointF offset, bool vertical);
+    Q_INVOKABLE QVariant updateWidgetsMask(QVariantList rects, double radius, QPointF offset, bool vertical, int spacing, double hPadding, double vPadding);
 };
 
 #endif

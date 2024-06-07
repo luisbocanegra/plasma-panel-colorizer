@@ -315,12 +315,21 @@ PlasmoidItem {
     }
 
     property var panelCustomMask: null
+    property var widgetsCustomMask: null
     
     Binding {
         target: panelElement
         property: "panelMask"
-        value: panelCustomMask
-        when: panelBGE !== null && panelColorizer !== null 
+        value: {
+            if (panelBGE === null && rectangles.count > 0) {
+                return widgetsCustomMask
+            } else if (panelBGE !== null) {
+                return panelCustomMask
+            }
+        }
+        when: (panelBGE !== null || rectangles.count > 0)
+            && panelColorizer !== null
+            && (panelCustomMask || widgetsCustomMask)
     }
 
     property bool isFloating: !panelElement ? false : Boolean(panelElement.floatingness)
@@ -925,16 +934,20 @@ PlasmoidItem {
                 widthOffset = (widgetBgHMargin + x) * 2
             }
 
+            let rect = widgetBgComponent.createObject(
+                child,
+                {
+                    "z": -1,
+                    "target": expandedTarget,
+                    "heightOffset": heightOffset,
+                    "widthOffset": widthOffset
+                }
+            )
+
+            connectRectsBlur(rect)
+
             rectangles.append({
-                "comp": widgetBgComponent.createObject(
-                    child,
-                    {
-                        "z": -1,
-                        "target": expandedTarget,
-                        "heightOffset": heightOffset,
-                        "widthOffset": widthOffset
-                    }
-                ),
+                "comp": rect,
                 "shadow": shadowComponent.createObject(
                     child,
                     {
@@ -1016,6 +1029,48 @@ PlasmoidItem {
                 console.error("Error colorizing rect", i, "E:" , e);
             }
         }
+    }
+
+    function connectRectsBlur(rect) {
+        try {
+            rect.xChanged.connect(function() {
+                updateWidgetsMask()
+            });
+            rect.yChanged.connect(function() {
+                updateWidgetsMask()
+            });
+            rect.widthChanged.connect(function() {
+                updateWidgetsMask()
+            });
+            rect.heightChanged.connect(function() {
+                updateWidgetsMask()
+            });
+        } catch (e) {
+            console.error("Error connecting blur to rect", "E:" , e);
+        }
+    }
+
+    function updateWidgetsMask() {
+        if ( panelColorizer === null || rectangles.count < 1) return
+        var rects = []
+        for(let i = 0; i < rectangles.count; i++) {
+            try {
+                var rect = rectangles.get(i)["comp"]
+                if (!rect.visible) continue
+                rects.push(Qt.rect(rect.x, rect.y, rect.width, rect.height))
+            } catch (e) {
+                console.error("Error getting mask for rect", i, "E:" , e);
+            }
+        }
+        widgetsCustomMask = panelColorizer.updateWidgetsMask(
+            rects,
+            bgRadius,
+            Qt.point(rects[0].x, rects[0].y),
+            isVertical,
+            panelLayout.columnSpacing,
+            ((panelBg.width - panelLayout.width) / 2) + widgetBgHMargin,
+            ((panelBg.height - panelLayout.height) / 2) + widgetBgVMargin
+        )
     }
 
     function findWidgets() {
