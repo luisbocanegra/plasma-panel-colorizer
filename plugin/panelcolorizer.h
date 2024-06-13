@@ -3,19 +3,17 @@
 
 #pragma once
 
-
 #include <QObject>
 #include <QRectF>
 #include <QVariant>
 
-class PanelColorizer : public QObject
-{
+class PanelColorizer : public QObject {
     Q_OBJECT
 
-public:
-
+  public:
     Q_INVOKABLE QVariant updatePanelMask(QRectF rect, double radius, QPointF offset, bool vertical);
-    Q_INVOKABLE QVariant updateWidgetsMask(QVariantList rects, double radius, QPointF offset, bool vertical, int spacing, double hPadding, double vPadding);
+    Q_INVOKABLE QVariant updateWidgetsMask(QVariantList rects, double radius, QPointF offset, bool vertical,
+                                           int spacing, double hPadding, double vPadding);
 };
 
 #endif

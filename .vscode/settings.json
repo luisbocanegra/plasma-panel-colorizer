@@ -1,0 +1,16 @@
+{
+    "files.associations": {
+        "qwidget": "cpp"
+    },
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "clangd.arguments": [
+        "-header-insertion=never"
+    ],
+    "files.trimTrailingWhitespace": true,
+    "[cpp]": {
+        "editor.formatOnSave": true
+    },
+    "[qml]": {
+        "editor.formatOnSave": false
+    }
+}
