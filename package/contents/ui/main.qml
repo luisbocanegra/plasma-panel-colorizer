@@ -318,7 +318,9 @@ PlasmoidItem {
 
     property var panelCustomMask: null
     property var widgetsCustomMask: null
-    
+    property int updateEffectCount: 0
+    property int updateEffectSteps: 50
+
     Binding {
         target: panelElement
         property: "panelMask"
@@ -691,7 +693,7 @@ PlasmoidItem {
         onHeightChanged: {
             updateMask()
         }
-        
+
         onChildrenRectChanged: {
             updateMask()
         }
@@ -763,7 +765,7 @@ PlasmoidItem {
     onFgSystemColorChanged: {
         if (fgColorMode === 1) init()
     }
-    
+
     onBlacklistChanged: {
         destroyRequired = true
     }
@@ -1278,16 +1280,23 @@ PlasmoidItem {
 
     // Timer {
     //     id: debugTimer
-    //     running: true
+    //     running: isEnabled
     //     repeat: true
     //     interval: 1000
     //     onTriggered: {
-    //         // console.log("fgMode:", fgMode, "fgInterval", fgRainbowInterval, (fgMode === 1));
-    //         // console.log(plasmoid.configuration.panelWidgets);
-    //         // findWidgets()
-    //         console.error("MAX", maximizedWindowExists );
+    //         // console.log("----------------");
+    //         // console.error("MAX", maximizedWindowExists );
+    //         // let t = panelLayout
+    //         // console.error("panelLayout", t.x, t.y );
+    //         // t = panelBg
+    //         // console.error("panelBg", t.x, t.y );
+    //         // t = panelBGE
+    //         // console.error("panelBGE", t.x, t.y );
+    //         // t = panelElement
+    //         // console.error("panelElement", t.x, t.y );
     //     }
     // }
+
     onScreenChanged: {
         // For some reason opacity is reset when output changes (disconnect, switch off)
         panelOpacity()
@@ -1455,6 +1464,22 @@ PlasmoidItem {
         }
     }
 
+    Timer {
+        id: updateEffectsTimer
+        interval: 10
+        running: true
+        repeat: true
+        onTriggered: {
+            if (updateEffectCount < updateEffectSteps) {
+                updateEffectCount++;
+                updateWidgetsMask()
+            } else {
+                running = false;
+                updateEffectCount = 0
+            }
+        }
+    }
+
     function updatePadding() {
         if (isEnabled && enableCustomPadding) {
             if (isVertical) {
@@ -1471,10 +1496,23 @@ PlasmoidItem {
         target: panelBg
         onWidthChanged: {
             updatePadding()
+            updateEffectsTimer.restart()
         }
 
         onHeightChanged: {
             updatePadding()
+            updateEffectsTimer.restart()
+        }
+    }
+
+    Connections {
+        target: panelElement
+        onWidthChanged: {
+            updateEffectsTimer.restart()
+        }
+
+        onHeightChanged: {
+            updateEffectsTimer.restart()
         }
     }
 
