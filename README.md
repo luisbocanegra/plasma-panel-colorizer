@@ -122,6 +122,39 @@ Install from KDE Store or use `Get new widgets..`
 yay -S plasma6-applets-panel-colorizer
 ```
 
+### Nix package
+
+For those using NixOS or the Nix package manager, a Nix package is available in nixpkgs-unstable.
+
+To install the widget use one of these methods:
+
+- NixOS
+
+  ```nix
+  environment.systemPackages = with pkgs; [
+    plasma-panel-colorizer
+  ];
+  ```
+
+- [Home-manager](https://github.com/nix-community/home-manager)
+
+  ```nix
+  home.packages = with pkgs; [
+    plasma-panel-colorizer
+  ];
+  ```
+
+- [Plasma-manager](https://github.com/nix-community/plasma-manager): If the widget gets added to a panel it will automatically be installed
+
+- Other distros using Nix package manager
+
+  ```
+  # without flakes:
+  nix-env -iA nixpkgs.plasma-panel-colorizer
+  # with flakes:
+  nix profile install nixpkgs#plasma-panel-colorizer
+  ```
+
 ## How to use
 
 1. Put the widget on any of your panels
