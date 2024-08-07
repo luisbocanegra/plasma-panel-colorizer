@@ -9,7 +9,6 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.plasma5support as P5Support
 import org.kde.plasma.workspace.components as WorkspaceComponents
 import org.kde.taskmanager 0.1 as TaskManager
-import org.kde.plasma.private.systemtray as SystemTray
 import Qt5Compat.GraphicalEffects
 
 import "components" as Components
@@ -21,15 +20,6 @@ PlasmoidItem {
 
     preferredRepresentation: compactRepresentation
     property bool onDesktop: plasmoid.location === PlasmaCore.Types.Floating
-    property bool inEditMode: Plasmoid.containment.corona?.editMode ? true : false
-    property bool hideWidget: plasmoid.configuration.hideWidget
-    property bool showToUpdate: false
-    Plasmoid.status: (inEditMode || !hideWidget || showToUpdate) ?
-                        PlasmaCore.Types.ActiveStatus :
-                        PlasmaCore.Types.HiddenStatus
-    property bool widgetConfiguring: Plasmoid.userConfiguring
-
-    property int trayItemWidth: 30
 
     property string iconName: !onDesktop ? "icon" : "error"
     property string icon: Qt.resolvedUrl("../icons/" + iconName + ".svg").toString().replace("file://", "")
@@ -82,6 +72,7 @@ PlasmoidItem {
             return 4
         }
     }
+    property bool hideWidget: plasmoid.configuration.hideWidget
 
     property bool panelBgEnabled: plasmoid.configuration.panelBgEnabled
     property int panelBgColorMode: plasmoid.configuration.panelBgColorMode
@@ -145,6 +136,12 @@ PlasmoidItem {
 
     property bool isLoaded: false
     // property bool isConfiguring: plasmoid.userConfiguring
+
+    property bool inEditMode: Plasmoid.containment.corona?.editMode ? true : false
+    Plasmoid.status: (inEditMode || !hideWidget || showToUpdate) ?
+                        PlasmaCore.Types.ActiveStatus :
+                        PlasmaCore.Types.HiddenStatus
+    property bool widgetConfiguring: Plasmoid.userConfiguring
 
     property int childCount: 0
     property bool wasEditing: false
@@ -263,6 +260,8 @@ PlasmoidItem {
     property var fgBlacklistedColorScope: {
         return themeScopes[fgBlacklistedColorModeThemeVariant]
     }
+
+    property bool showToUpdate: false
 
     property string runtimeDir: StandardPaths.writableLocation(
                             StandardPaths.RuntimeLocation).toString().substring(7)
@@ -383,14 +382,49 @@ PlasmoidItem {
     property bool blurPanelBgEnabled: plasmoid.configuration.blurPanelBgEnabled
     property bool blurWidgetBgEnabled: plasmoid.configuration.blurWidgetBgEnabled
 
-    RunCommand {
-        id: runCommand
-    }
-
     function opacityToHex(opacity) {
         const op = Math.max(0, Math.min(1, opacity))
         const intOpacity = Math.round(op * 255)
         return intOpacity.toString(16).padStart(2, '0')
+    }
+
+    P5Support.DataSource {
+        id: runCommand
+        engine: "executable"
+        connectedSources: []
+
+        onNewData: function (source, data) {
+            var exitCode = data["exit code"]
+            var exitStatus = data["exit status"]
+            var stdout = data["stdout"]
+            var stderr = data["stderr"]
+            exited(source, exitCode, exitStatus, stdout, stderr)
+            disconnectSource(source) // cmd finished
+        }
+
+        function exec(cmd) {
+            runCommand.connectSource(cmd)
+        }
+
+        signal exited(string cmd, int exitCode, int exitStatus, string stdout, string stderr)
+    }
+
+    Connections {
+        target: runCommand
+        function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
+            var presets = []
+            if (exitCode!==0) return
+            if(cmd === listPresetsCmd) {
+                if (stdout.length > 0) {
+                    presets = ("none\n"+stdout).trim().split("\n")
+                } else {
+                    presets = []
+                }
+            }
+            if (cmd.startsWith("cat")) {
+                presetContent = stdout.trim().split("\n")
+            }
+        }
     }
 
     function parseValues(value) {
@@ -413,7 +447,7 @@ PlasmoidItem {
     function applyPreset(presetName) {
         console.log("Reading preset:", presetName);
         lastPreset = presetName
-        runCommand.run("cat '" + presetsDir + presetName+"'")
+        runCommand.exec("cat '" + presetsDir + presetName+"'")
         loadPresetTimer.start()
     }
 
@@ -504,25 +538,6 @@ PlasmoidItem {
             }
         }
     ]
-
-    property Component debugRectComponent:
-    Rectangle {
-        anchors.fill: parent
-        color: "transparent"
-        border.color: "cyan"
-        border.width: 1
-    }
-
-    property Component paddingsComponent: Item {
-        // property Item target
-        Rectangle {
-            width: randomInteger(0, 16)
-            height: 8
-            color: "red"
-            anchors.right: parent.left
-
-        }
-    }
 
     property Component widgetBgComponent: Kirigami.ShadowedRectangle {
         property var target // holds element with expanded property
@@ -729,7 +744,7 @@ PlasmoidItem {
             setPanelBg()
             panelOpacity()
             destroyRequired = true
-            runCommand.run(saveSchemeCmd)
+            runCommand.exec(saveSchemeCmd)
         }
     }
 
@@ -789,10 +804,6 @@ PlasmoidItem {
     }
 
     onFgBlacklistedColorEnabledChanged: {
-        destroyRequired = true
-    }
-
-    onPanelSpacingChanged: {
         destroyRequired = true
     }
 
@@ -872,66 +883,6 @@ PlasmoidItem {
         id: rectangles
     }
 
-    ListModel {
-        id: widgetsModel
-    }
-
-    // SystemTray.StatusNotifierModel {
-    //     id: customTrayModel
-    // }
-
-    // SystemTray.
-
-    property bool widgetsModelReady: false
-
-    onWidgetsModelReadyChanged: {
-        if (widgetsModelReady) {
-            console.error("Widgets MODEL count changed", widgetsModel.count);
-            if (widgetsModel.count > 0) {
-                destroyRequired = true
-                createRects()
-            }
-        }
-    }
-
-    function randomInteger(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    function findGridView(item) {
-        if (item instanceof GridView) {
-            return item;
-        }
-        for (let i = 0; i < item.children.length; i++) {
-            let result = findGridView(item.children[i]);
-            if (result) {
-                return result;
-            }
-        }
-        return null;
-    }
-
-    function findTrayExpandArrow(item) {
-        if (item instanceof GridLayout) {
-            for (let i in item.children) {
-                const child = item.children[i]
-                if (!(child instanceof GridView)) {
-                    return child
-                }
-            }
-        }
-        return null
-    }
-
-    Component {
-        id: spt
-        Rectangle {
-            width: 30
-            height: 30
-            color: "lightgreen"
-        }
-    }
-
     function createRects() {
         if(!panelLayout) return
         if (!widgetBgEnabled && !isEnabled) return
@@ -953,84 +904,9 @@ PlasmoidItem {
             var expandedTarget
             if (name === "org.kde.plasma.systemtray") {
                 expandedTarget = child.applet.plasmoid.internalSystray.systemTrayState
-                let grid = findGridView(child)
-                grid.cellWidth = trayItemWidth
-                grid.Layout.leftMargin = -2-Math.floor((panelSpacing/2))
-                grid.Layout.rightMargin = -2-Math.floor((panelSpacing/2))
-                for (let i = 0; i < grid.count; i++) {
-                    const item = grid.itemAtIndex(i);
-                    if (!item) continue
-                    for (let j in item.children) {
-                        if (!(item.children[j].model)) continue
-                        // findPlasmoid(item.children[j]);
-                    }
-                    // debugRectComponent.createObject(item, {"z": 2});
-                    let rect = widgetBgComponent.createObject(
-                        item,
-                        {
-                            "z": -1,
-                            "target": item,
-                            "heightOffset": 0,
-                            "widthOffset": 0,
-                            "height": item.height,
-                            "width": item.width - panelSpacing,
-                            "anchors.centerIn": item
-                        }
-                    )
-
-                    connectRectsBlur(rect)
-
-                    rectangles.append({
-                        "comp": rect,
-                        "shadow": shadowComponent.createObject(
-                            item,
-                            {
-                                "target": item.children[0] // TODO Expanded target
-                            }
-                        )
-                    })
-                }
-                let expandArrow = findTrayExpandArrow(grid.parent)
-                grid.parent.columnSpacing = panelSpacing
-                // grid.Layout.rightMargin = -panelSpacing//-Math.floor((panelSpacing/2))
-                // expandArrow.Layout.leftMargin = -2
-                let rect = widgetBgComponent.createObject(
-                    expandArrow,
-                    {
-                        "z": -1,
-                        "target": expandArrow,
-                        "heightOffset": 0,
-                        "widthOffset": 0,
-                        "height": expandArrow.height,
-                        "width": expandArrow.width,
-                        "anchors.centerIn": expandArrow
-                    }
-                )
-
-                connectRectsBlur(rect)
-
-                rectangles.append({
-                    "comp": rect,
-                    "shadow": shadowComponent.createObject(
-                        expandArrow,
-                        {
-                            "target": expandArrow.children[0] // TODO Expanded target
-                        }
-                    )
-                })
-
-                // dumpProps(child.children)
-                // console.log(grid);
-                // debugRectComponent.createObject(grid.children[0])
-
-                // dumpProps(child.children)
-                // for (let j in child.children) {
-                //     debugRectComponent.createObject(child.children[j])
-                // }
             } else {
                 expandedTarget = child
             }
-            if (name === "org.kde.plasma.systemtray") continue
 
             if (blacklisted.some(function (target) {
                     return target.length > 1 && name.includes(target)
@@ -1087,6 +963,10 @@ PlasmoidItem {
                     }
                 )
             })
+            // if (child.applet) {
+            //     const hasShadow = child.applet.children.find(function (child) {return child instanceof DropShadow})
+            //     if (!hasShadow) shadowComponent.createObject(child, {"target":child.applet})
+            // }
         }
     }
 
@@ -1246,15 +1126,6 @@ PlasmoidItem {
         }
         plasmoid.configuration.panelWidgets = Array.from(panelWidgets).join("|")
         plasmoid.configuration.panelWidgetsWithTray = Array.from(panelWidgetsWithTray).join("|")
-        // if (tempWidgets.length !== widgetsModel.count) {
-        //     widgetsModelReady = false
-        //     console.log("Widget count changed:", tempWidgets.length, widgetsModel.count);
-        //     widgetsModel.clear()
-        //     for (let i in tempWidgets) {
-        //         widgetsModel.append({"widget": tempWidgets[i]})
-        //     }
-        //     widgetsModelReady = true
-        // }
     }
 
     function applyFgColor(element, forceMask, ignore, newColor, maskList, addingColors) {
@@ -1395,7 +1266,7 @@ PlasmoidItem {
                 schemeContent.opacityComponent = opacityToHex(isEnabled ? fgOpacity : 1)
                 schemeContent.fgWithAlpha = "#" + schemeContent.opacityComponent + newColor.toString().substring(1)
                 schemeContent.fgContrast = (Kirigami.ColorUtils.brightnessForColor(newColor) === Kirigami.ColorUtils.Dark) ? "#ffffff" : "#000000"
-                runCommand.run(saveSchemeCmd)
+                runCommand.exec(saveSchemeCmd)
             }
 
             try {
@@ -1458,9 +1329,9 @@ PlasmoidItem {
             if (destroyRequired) {
                 destroyRects()
             }
-            runCommand.run(saveSchemeCmd)
+            runCommand.exec(saveSchemeCmd)
             startTimer.start()
-            if (!isLoaded) runCommand.run(listPresetsCmd)
+            if (!isLoaded) runCommand.exec(listPresetsCmd)
             panelLayout.columnSpacing = panelSpacing
             panelLayout.rowSpacing = panelSpacing
         }
@@ -1593,15 +1464,6 @@ PlasmoidItem {
         }
     }
 
-    // Timer {
-    //     interval: 2500
-    //     running: true
-    //     repeat: true
-    //     onTriggered: {
-    //         findWidgets()
-    //     }
-    // }
-
     Timer {
         id: updateEffectsTimer
         interval: 10
@@ -1724,8 +1586,57 @@ PlasmoidItem {
             }
         }
     }
-    property bool maximizedWindowExists: windowModel.maximizedWindowExists
-    WindowModel {
-        id: windowModel
+
+    // Based on https://github.com/KDE/plasma-active-window-control/blob/master/package/contents/ui/main.qml
+    property var activeTaskLocal: null
+    property bool noWindowActive: true
+    property bool currentWindowMaximized: false
+    property bool maximizedWindowExists: false
+
+    TaskManager.VirtualDesktopInfo {
+        id: virtualDesktopInfo
+    }
+
+    TaskManager.ActivityInfo {
+        id: activityInfo
+        readonly property string nullUuid: "00000000-0000-0000-0000-000000000000"
+    }
+
+    TaskManager.TasksModel {
+        id: tasksModel
+        sortMode: TaskManager.TasksModel.SortVirtualDesktop
+        groupMode: TaskManager.TasksModel.GroupDisabled
+        virtualDesktop: virtualDesktopInfo.currentDesktop
+        activity: activityInfo.currentActivity
+        filterByVirtualDesktop: true
+        screenGeometry: main.screenGeometry
+        filterByScreen: true
+        filterByActivity: true
+        filterMinimized: true
+
+        onActiveTaskChanged: {
+            hasMaximized()
+        }
+        onDataChanged: {
+            hasMaximized()
+        }
+        onCountChanged: {
+            hasMaximized()
+        }
+    }
+
+    function hasMaximized() {
+        var abstractTasksModel = TaskManager.AbstractTasksModel || {}
+        var IsMaximized = abstractTasksModel.IsMaximized || 276
+        var IsActive = abstractTasksModel.IsActive || 271
+        var isMaximized = false
+
+        for (var i = 0; i < tasksModel.count; i++) {
+            const currentTask = tasksModel.index(i,0)
+            if (currentTask === undefined) continue
+            isMaximized = Boolean(tasksModel.data(currentTask, IsMaximized))
+            if (isMaximized) break
+        }
+        maximizedWindowExists = isMaximized
     }
 }
