@@ -12,6 +12,7 @@ import org.kde.taskmanager 0.1 as TaskManager
 import Qt5Compat.GraphicalEffects
 
 import "components" as Components
+import "code/utils.js" as Utils
 
 PlasmoidItem {
     id: main
@@ -46,32 +47,6 @@ PlasmoidItem {
         return null
     }
 
-    function findTrayGridView(item) {
-        if (!item?.children) return null
-        if (item instanceof GridView) {
-            return item;
-        }
-        for (let i = 0; i < item.children.length; i++) {
-            let result = findTrayGridView(item.children[i]);
-            if (result) {
-                return result;
-            }
-        }
-        return null;
-    }
-
-    function findTrayExpandArrow(item) {
-        if (item instanceof GridLayout) {
-            for (let i in item.children) {
-                const child = item.children[i]
-                if (!(child instanceof GridView)) {
-                    return child
-                }
-            }
-        }
-        return null
-    }
-
     property GridView trayGridView: {
         if (!panelLayout?.children) return null
         for (let i in panelLayout.children) {
@@ -81,7 +56,7 @@ PlasmoidItem {
             if (!child.applet?.plasmoid?.pluginName) continue
             const name = child.applet.plasmoid.pluginName
             if (name === "org.kde.plasma.systemtray") {
-                return findTrayGridView(child)
+                return Utils.findTrayGridView(child)
             }
         }
         return null;
@@ -89,7 +64,7 @@ PlasmoidItem {
 
     property Item trayExpandArrow: {
         if (trayGridView?.parent) {
-            return findTrayExpandArrow(trayGridView.parent)
+            return Utils.findTrayExpandArrow(trayGridView.parent)
         }
         return null
     }
@@ -119,8 +94,7 @@ PlasmoidItem {
         if (grid instanceof GridView) {
             for (let i = 0; i < grid.count; i++) {
                 const item = grid.itemAtIndex(i);
-                if (!item) continue
-                debugRectComponent.createObject(item, {"z":2, "border.color": "magenta"})
+                debugRectComponent.createObject(item, {"z":-1, "color": Utils.getRandomColor()})
             }
         }
         // find the expand tray arrow
@@ -128,7 +102,7 @@ PlasmoidItem {
             for (let i in grid.children) {
                 const item = grid.children[i]
                 if (!(item instanceof GridView)) {
-                    debugRectComponent.createObject(item, {"z":2, "border.color": "yellow"})
+                    debugRectComponent.createObject(item, {"z":-1, "color": Utils.getRandomColor()})
                 }
             }
         }
@@ -140,7 +114,7 @@ PlasmoidItem {
             // name may not be available while gragging into the panel and
             // other situations
             if (!child.applet?.plasmoid?.pluginName) continue
-            debugRectComponent.createObject(child);
+            debugRectComponent.createObject(child, {"z":-1, "color": Utils.getRandomColor()});
         }
     }
 }
