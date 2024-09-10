@@ -22,6 +22,7 @@ PlasmoidItem {
     property int trayGridViewCountOld: 0
 
     property Component debugRectComponent: Rectangle {
+        property bool luisbocanegraPanelColorizerBgManaged: true
         anchors.fill: parent
         color: "transparent"
         border.color: "cyan"
@@ -94,6 +95,7 @@ PlasmoidItem {
         if (grid instanceof GridView) {
             for (let i = 0; i < grid.count; i++) {
                 const item = grid.itemAtIndex(i);
+                if (Utils.isBgManaged(item)) continue
                 debugRectComponent.createObject(item, {"z":-1, "color": Utils.getRandomColor()})
             }
         }
@@ -102,6 +104,7 @@ PlasmoidItem {
             for (let i in grid.children) {
                 const item = grid.children[i]
                 if (!(item instanceof GridView)) {
+                    if (Utils.isBgManaged(item)) continue
                     debugRectComponent.createObject(item, {"z":-1, "color": Utils.getRandomColor()})
                 }
             }
@@ -114,6 +117,7 @@ PlasmoidItem {
             // name may not be available while gragging into the panel and
             // other situations
             if (!child.applet?.plasmoid?.pluginName) continue
+            if (Utils.isBgManaged(child)) continue
             debugRectComponent.createObject(child, {"z":-1, "color": Utils.getRandomColor()});
         }
     }

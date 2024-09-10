@@ -6,6 +6,19 @@ function getRandomColor() {
   return Qt.hsla(h, s, l, a)
 }
 
+function isBgManaged(item) {
+  let managed = false
+  if (item.children) {
+    for (let i in item.children) {
+      const child = item.children[i];
+      if (!child?.luisbocanegraPanelColorizerBgManaged) continue
+      managed = true
+    }
+  }
+  // console.error(item, "managed:", managed);
+  return managed
+}
+
 function findTrayGridView(item) {
   if (!item?.children) return null
   if (item instanceof GridView) {
