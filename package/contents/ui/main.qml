@@ -24,6 +24,9 @@ PlasmoidItem {
     property bool horizontal: Plasmoid.formFactor === PlasmaCore.Types.Horizontal
     property bool fixedSideMarginEnabled: true
     property int fixedSideMarginSize: 4
+    property bool isEnabled: true
+    property bool panelOriginalBgHidden: true
+    property real panelOriginalOpacity: 1
 
     property Component debugRectComponent: Rectangle {
         property bool luisbocanegraPanelColorizerBgManaged: true
@@ -31,6 +34,7 @@ PlasmoidItem {
         color: "transparent"
         border.color: "cyan"
         border.width: 1
+        opacity: 0.3
     }
 
     fullRepresentation: RowLayout {
@@ -123,6 +127,27 @@ PlasmoidItem {
         return null
     }
 
+    property ContainmentItem containmentItem: {
+        let candidate = main.parent;
+        while (candidate) {
+            if (candidate.toString().indexOf("ContainmentItem_QML") > -1 ) {
+                return candidate;
+            }
+            candidate = candidate.parent;
+        }
+        return null
+    }
+
+    onPanelElementChanged: {
+        if(!panelElement) return
+        Utils.panelOpacity(panelElement, isEnabled, panelOriginalOpacity)
+    }
+
+    onContainmentItemChanged: {
+        if(!containmentItem) return
+        Utils.toggleTransparency(containmentItem, panelOriginalBgHidden)
+    }
+
     onPanelLayoutCountChanged: {
         if (panelLayoutCount === 0) return
         showWidgets(panelLayout)
@@ -176,19 +201,8 @@ PlasmoidItem {
         }
     }
 
-    function dumpProps(obj) {
-        console.error("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        console.error(obj);
-        for (var k of Object.keys(obj)) {
-            const val = obj[k]
-            if (typeof val === 'function') continue
-            if (k === 'metaData') continue
-            print(k + "=" + val+"\n")
-        }
-    }
-
     function showPanelBg(panelBg) {
-        dumpProps(panelBg)
-        debugRectComponent.createObject(panelBg, {"z":-1,"opacity": 1, "color": Utils.getRandomColor()});
+        // Utils.dumpProps(panelBg)
+        debugRectComponent.createObject(panelBg, {"z":-1, "color": Utils.getRandomColor()});
     }
 }

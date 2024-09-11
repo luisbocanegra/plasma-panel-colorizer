@@ -8,7 +8,7 @@ function getRandomColor() {
 
 function isBgManaged(item) {
   let managed = false
-  if (item.children) {
+  if (item?.children) {
     for (let i in item.children) {
       const child = item.children[i];
       if (!child?.luisbocanegraPanelColorizerBgManaged) continue
@@ -44,4 +44,32 @@ function findTrayExpandArrow(item) {
     }
   }
   return null
+}
+
+
+function panelOpacity(panelElement, enabled, panelRealBgOpacity) {
+  for (let i in panelElement.children) {
+    const current = panelElement.children[i]
+
+    if (current.imagePath && current.imagePath.toString().includes("panel-background")) {
+      current.opacity = enabled ? panelRealBgOpacity : 1
+    }
+  }
+}
+
+function dumpProps(obj) {
+  console.error("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+  console.error(obj);
+  for (var k of Object.keys(obj)) {
+    const val = obj[k]
+    if (typeof val === 'function') continue
+    if (k === 'metaData') continue
+    console.log(k + "=" + val + "\n")
+  }
+}
+
+function toggleTransparency(containmentItem, enabled) {
+  containmentItem.Plasmoid.backgroundHints = enabled
+    ? PlasmaCore.Types.NoBackground
+    : PlasmaCore.Types.DefaultBackground
 }
