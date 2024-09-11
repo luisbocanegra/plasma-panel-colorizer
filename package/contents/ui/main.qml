@@ -20,6 +20,10 @@ PlasmoidItem {
     property int panelLayoutCount: panelLayout?.children?.length || 0
     property int trayGridViewCount: trayGridView?.count || 0
     property int trayGridViewCountOld: 0
+    property var panelPrefixes: ["north","south","west","east"]
+    property bool horizontal: Plasmoid.formFactor === PlasmaCore.Types.Horizontal
+    property bool fixedSideMarginEnabled: true
+    property int fixedSideMarginSize: 4
 
     property Component debugRectComponent: Rectangle {
         property bool luisbocanegraPanelColorizerBgManaged: true
@@ -40,12 +44,49 @@ PlasmoidItem {
         let candidate = main.parent;
         while (candidate) {
             if (candidate instanceof GridLayout) {
-                debugRectComponent.createObject(candidate.parent);
                 return candidate;
             }
             candidate = candidate.parent;
         }
         return null
+    }
+
+    property Item panelLayoutContainer: {
+        if (!panelLayout) return null
+        return panelLayout.parent
+    }
+
+    Binding {
+        target: panelLayoutContainer
+        property: "anchors.leftMargin"
+        value: fixedSideMarginSize
+        when: fixedSideMarginEnabled && horizontal
+    }
+
+    Binding {
+        target: panelLayoutContainer
+        property: "anchors.rightMargin"
+        value: fixedSideMarginSize
+        when: fixedSideMarginEnabled && horizontal
+    }
+
+    Binding {
+        target: panelLayoutContainer
+        property: "anchors.topMargin"
+        value: fixedSideMarginSize
+        when: fixedSideMarginEnabled && !horizontal
+    }
+
+    Binding {
+        target: panelLayoutContainer
+        property: "anchors.bottomMargin"
+        value: fixedSideMarginSize
+        when: fixedSideMarginEnabled && !horizontal
+    }
+
+    property Item panelBg: {
+        if (!panelLayoutContainer) return null
+        return panelLayoutContainer.parent
     }
 
     property GridView trayGridView: {
@@ -70,9 +111,22 @@ PlasmoidItem {
         return null
     }
 
+    // Search for the element containing the panel background
+    property var panelElement: {
+        let candidate = main.parent;
+        while (candidate) {
+            if (candidate.hasOwnProperty("floating")) {
+                return candidate;
+            }
+            candidate = candidate.parent;
+        }
+        return null
+    }
+
     onPanelLayoutCountChanged: {
         if (panelLayoutCount === 0) return
         showWidgets(panelLayout)
+        showPanelBg(panelBg)
     }
 
     onTrayGridViewCountChanged: {
@@ -120,5 +174,21 @@ PlasmoidItem {
             if (Utils.isBgManaged(child)) continue
             debugRectComponent.createObject(child, {"z":-1, "color": Utils.getRandomColor()});
         }
+    }
+
+    function dumpProps(obj) {
+        console.error("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        console.error(obj);
+        for (var k of Object.keys(obj)) {
+            const val = obj[k]
+            if (typeof val === 'function') continue
+            if (k === 'metaData') continue
+            print(k + "=" + val+"\n")
+        }
+    }
+
+    function showPanelBg(panelBg) {
+        dumpProps(panelBg)
+        debugRectComponent.createObject(panelBg, {"z":-1,"opacity": 1, "color": Utils.getRandomColor()});
     }
 }
