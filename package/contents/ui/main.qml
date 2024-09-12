@@ -27,6 +27,8 @@ PlasmoidItem {
     property bool isEnabled: true
     property bool panelOriginalBgHidden: true
     property real panelOriginalOpacity: 1
+    property var panelWidgets: []
+    property int panelWidgetsCount: 0
 
     property Component debugRectComponent: Rectangle {
         property bool luisbocanegraPanelColorizerBgManaged: true
@@ -151,6 +153,7 @@ PlasmoidItem {
     onPanelLayoutCountChanged: {
         if (panelLayoutCount === 0) return
         showWidgets(panelLayout)
+        updateCurrentWidgets()
         showPanelBg(panelBg)
     }
 
@@ -165,9 +168,19 @@ PlasmoidItem {
         interval: 5
         onTriggered: {
             if (trayGridViewCount === 0) return
+            if (!trayGridView) return
             showTrayAreas(trayGridView)
             showTrayAreas(trayGridView.parent)
+            updateCurrentWidgets()
         }
+    }
+
+    function updateCurrentWidgets() {
+        if (!trayGridView) return
+        panelWidgets = []
+        panelWidgets = Utils.findWidgets(panelLayout, panelWidgets)
+        panelWidgets = Utils.findWidgetsTray(trayGridView, panelWidgets)
+        panelWidgets = Utils.findWidgetsTray(trayGridView.parent, panelWidgets)
     }
 
     function showTrayAreas(grid) {
@@ -204,5 +217,23 @@ PlasmoidItem {
     function showPanelBg(panelBg) {
         // Utils.dumpProps(panelBg)
         debugRectComponent.createObject(panelBg, {"z":-1, "color": Utils.getRandomColor()});
+    }
+
+    onPanelWidgetsCountChanged: {
+        console.error( panelWidgetsCount ,JSON.stringify(panelWidgets, null, null))
+        plasmoid.configuration.panelWidgets = ""
+        plasmoid.configuration.panelWidgets = JSON.stringify(panelWidgets, null, null)
+    }
+
+    Timer {
+        running: true
+        repeat: true
+        interval: 1000
+        onTriggered: {
+            let tmp = panelWidgets.length
+            if (tmp !== panelWidgetsCount) {
+                panelWidgetsCount = tmp
+            }
+        }
     }
 }
