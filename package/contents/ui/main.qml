@@ -9,7 +9,7 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.plasma5support as P5Support
 import org.kde.plasma.workspace.components as WorkspaceComponents
 import org.kde.taskmanager 0.1 as TaskManager
-import Qt5Compat.GraphicalEffects
+import QtQuick.Effects
 
 import "components" as Components
 import "code/utils.js" as Utils
@@ -30,13 +30,136 @@ PlasmoidItem {
     property var panelWidgets: []
     property int panelWidgetsCount: 0
 
-    property Component debugRectComponent: Rectangle {
-        property bool luisbocanegraPanelColorizerBgManaged: true
-        anchors.fill: parent
+    property Component backgroundComponent: Kirigami.ShadowedRectangle {
+        id: rect
+        property Item target
+        property int itemType
+        radius: 5
         color: "transparent"
-        border.color: "cyan"
-        border.width: 1
-        opacity: 0.3
+        property bool luisbocanegraPanelColorizerBgManaged: true
+        height: itemType === Enums.ItemType.TrayItem ? target.height : parent.height
+        width: itemType === Enums.ItemType.TrayItem ? target.width : parent.width
+        anchors.centerIn: itemType === Enums.ItemType.TrayItem ? parent : undefined
+        anchors.fill: itemType === Enums.ItemType.PanelBgItem ? parent : undefined
+
+        property bool addMargin: true
+        property int lr: itemType === Enums.ItemType.PanelBgItem ? 6 : itemType === Enums.ItemType.TrayItem ? 2 : 4
+        property int rr: itemType === Enums.ItemType.PanelBgItem ? 6 : itemType === Enums.ItemType.TrayItem ? 2 : 4
+        property int hr: lr + rr
+
+        property int tr: itemType === Enums.ItemType.PanelBgItem ? 6 : itemType === Enums.ItemType.TrayItem ? 2 : 4
+        property int br: itemType === Enums.ItemType.PanelBgItem ? 6 : itemType === Enums.ItemType.TrayItem ? 2 : 4
+        property int vr: tr + br
+
+        Binding {
+            target: rect
+            property: "x"
+            value: -lr
+            when: addMargin && itemType !== Enums.ItemType.PanelBgItem && itemType !== Enums.ItemType.TrayItem
+        }
+
+        Binding {
+            target: rect
+            property: "width"
+            value: itemType === Enums.ItemType.TrayItem ? rect.target.width - hr : parent.width + hr
+            when: addMargin
+        }
+
+        Binding {
+            target: rect.target
+            property: "Layout.leftMargin"
+            value: lr
+            when: addMargin && itemType !== Enums.ItemType.PanelBgItem
+        }
+
+        Binding {
+            target: rect.target
+            property: "Layout.rightMargin"
+            value: rr
+            when: addMargin && itemType !== Enums.ItemType.PanelBgItem
+        }
+
+        Binding {
+            target: rect.target
+            property: "Layout.topMargin"
+            value: tr
+            when: addMargin && itemType !== Enums.ItemType.PanelBgItem
+        }
+
+        Binding {
+            target: rect.target
+            property: "Layout.bottomMargin"
+            value: br
+            when: addMargin && itemType !== Enums.ItemType.PanelBgItem
+        }
+
+        Binding {
+            target: rect.target
+            property: "anchors.leftMargin"
+            value: lr
+            when: addMargin && itemType === Enums.ItemType.PanelBgItem
+        }
+
+        Binding {
+            target: rect.target
+            property: "anchors.rightMargin"
+            value: rr
+            when: addMargin && itemType === Enums.ItemType.PanelBgItem
+        }
+
+        Binding {
+            target: rect.target
+            property: "anchors.topMargin"
+            value: tr
+            when: addMargin && itemType === Enums.ItemType.PanelBgItem
+        }
+
+        Binding {
+            target: rect.target
+            property: "anchors.bottomMargin"
+            value: br
+            when: addMargin && itemType === Enums.ItemType.PanelBgItem
+        }
+
+        Binding {
+            target: rect
+            property: "height"
+            value: rect.target.height - (vr * 2)
+            when: addMargin && itemType === Enums.ItemType.TrayItem
+        }
+
+        Rectangle {
+            id: borderRec
+            anchors.fill: parent
+            color: "transparent"
+
+            layer.enabled: true
+            layer.effect: MultiEffect {
+                maskEnabled: true
+                maskSpreadAtMax: 1
+                maskSpreadAtMin: 1
+                maskThresholdMin: 0.5
+                maskSource: ShaderEffectSource {
+                    sourceItem: Rectangle {
+                        width: rect.width
+                        height: rect.height
+                        radius: rect.radius
+                        Behavior on radius {
+                            NumberAnimation {
+                                duration: 100
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        shadow {
+            size: 5
+            color: Qt.rgba(0,0,0,0.8)
+            xOffset: 0
+            yOffset: 0
+        }
     }
 
     fullRepresentation: RowLayout {
@@ -188,7 +311,8 @@ PlasmoidItem {
             for (let i = 0; i < grid.count; i++) {
                 const item = grid.itemAtIndex(i);
                 if (Utils.isBgManaged(item)) continue
-                debugRectComponent.createObject(item, {"z":-1, "color": Utils.getRandomColor()})
+                Utils.dumpProps(item)
+                backgroundComponent.createObject(item, {"z":-1, "color": Utils.getRandomColor(), "target": item, "itemType": Enums.ItemType.TrayItem })
             }
         }
         // find the expand tray arrow
@@ -197,7 +321,7 @@ PlasmoidItem {
                 const item = grid.children[i]
                 if (!(item instanceof GridView)) {
                     if (Utils.isBgManaged(item)) continue
-                    debugRectComponent.createObject(item, {"z":-1, "color": Utils.getRandomColor()})
+                    backgroundComponent.createObject(item, {"z":-1, "color": Utils.getRandomColor(), "target": item, "itemType": Enums.ItemType.TrayItem })
                 }
             }
         }
@@ -210,13 +334,15 @@ PlasmoidItem {
             // other situations
             if (!child.applet?.plasmoid?.pluginName) continue
             if (Utils.isBgManaged(child)) continue
-            debugRectComponent.createObject(child, {"z":-1, "color": Utils.getRandomColor()});
+            console.error(child.applet?.plasmoid?.pluginName)
+            // Utils.dumpProps(child)
+            backgroundComponent.createObject(child, { "z":-1, "color": Utils.getRandomColor(), "target":child, "itemType": Enums.ItemType.WidgetItem });
         }
     }
 
     function showPanelBg(panelBg) {
         // Utils.dumpProps(panelBg)
-        debugRectComponent.createObject(panelBg, {"z":-1, "color": Utils.getRandomColor()});
+        backgroundComponent.createObject(panelBg, {"z":-1, "color": Utils.getRandomColor(), "target": panelBg, "itemType": Enums.ItemType.PanelBgItem });
     }
 
     onPanelWidgetsCountChanged: {
