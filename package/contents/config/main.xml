@@ -374,12 +374,7 @@
     <entry
         name="panelWidgets"
         type="String">
-        <default></default>
-    </entry>
-    <entry
-        name="panelWidgetsWithTray"
-        type="String">
-        <default></default>
+        <default>[]</default>
     </entry>
     <entry
         name="bgLineModeEnabled"
@@ -483,6 +478,26 @@
         name="blurWidgetBgEnabled"
         type="Bool">
         <default>false</default>
+    </entry>
+    <entry
+        name="colorCompTest"
+        type="String">
+        <default>{"lightnessValue":0.5,"saturationValue":0.5,"alpha":0.5,"systemColor":9,"systemColorSet":6,"sourceType":0,"custom":"#7182ff","list":["#ED8796","#A6DA95","#EED49F","#8AADF4","#F5BDE6","#8BD5CA","#f5a97f"],"followColor":0,"saturationEnabled":false,"lightnessEnabled":false, "animation": {"enabled": true, "interval": 3000, "smoothing": 300}}</default>
+    </entry>
+    <entry
+        name="globalWidgetSettings"
+        type="String">
+        <default>{"blurBehind":false,"backgroundColor":{"lightnessValue":0.05,"saturationValue":0.05,"alpha":1,"systemColor":9,"systemColorSet":6,"type":0,"custom":"#1a2151","list":["#ED8796","#A6DA95","#EED49F","#8AADF4","#F5BDE6","#8BD5CA","#f5a97f"],"followColor":0,"saturationEnabled":false,"lightnessEnabled":false,"animation":{"enabled":false,"interval":3000,"smoothing":800},"sourceType":0},"radius":{"topLeft":4,"topRight":4,"bottomRight":4,"bottomLeft":4},"margins":{"right":0,"left":0,"top":0,"bottom":0},"border":{"customSides":false,"custom":{"widths":{"left":0,"bottom":2,"right":3,"top":2},"margins":[],"radius":0},"width":2,"color":{"lightnessValue":0.05,"saturationValue":0.05,"alpha":0.05,"systemColor":9,"systemColorSet":6,"type":0,"custom":"#7182ff","list":["#ED8796","#A6DA95","#EED49F","#8AADF4","#F5BDE6","#8BD5CA","#f5a97f"],"followColor":0,"saturationEnabled":false,"lightnessEnabled":false,"animation":{"enabled":false,"interval":3000,"smoothing":800},"sourceType":0},"width":1},"shadow":{"color":{"lightnessValue":0.05,"saturationValue":0.05,"alpha":1,"systemColor":9,"systemColorSet":6,"type":0,"custom":"#282828","list":["#ED8796","#A6DA95","#EED49F","#8AADF4","#F5BDE6","#8BD5CA","#f5a97f"],"followColor":0,"saturationEnabled":false,"lightnessEnabled":false,"animation":{"enabled":false,"interval":3000,"smoothing":800},"sourceType":0},"size":5,"xOffset":0,"yOffset":0}}</default>
+    </entry>
+    <entry
+        name="panelWidgetSettings"
+        type="String">
+        <default>{"blurBehind":false,"backgroundColor":{"lightnessValue":0.05,"saturationValue":0.05,"alpha":1,"systemColor":9,"systemColorSet":6,"type":0,"custom":"#1a2151","list":["#ED8796","#A6DA95","#EED49F","#8AADF4","#F5BDE6","#8BD5CA","#f5a97f"],"followColor":0,"saturationEnabled":false,"lightnessEnabled":false,"animation":{"enabled":false,"interval":3000,"smoothing":800},"sourceType":0},"radius":{"topLeft":4,"topRight":4,"bottomRight":4,"bottomLeft":4},"margins":{"right":0,"left":0,"top":0,"bottom":0},"border":{"customSides":false,"custom":{"widths":{"left":0,"bottom":2,"right":3,"top":2},"margins":[],"radius":0},"width":2,"color":{"lightnessValue":0.05,"saturationValue":0.05,"alpha":0.05,"systemColor":9,"systemColorSet":6,"type":0,"custom":"#7182ff","list":["#ED8796","#A6DA95","#EED49F","#8AADF4","#F5BDE6","#8BD5CA","#f5a97f"],"followColor":0,"saturationEnabled":false,"lightnessEnabled":false,"animation":{"enabled":false,"interval":3000,"smoothing":800},"sourceType":0},"width":1},"shadow":{"color":{"lightnessValue":0.05,"saturationValue":0.05,"alpha":1,"systemColor":9,"systemColorSet":6,"type":0,"custom":"#282828","list":["#ED8796","#A6DA95","#EED49F","#8AADF4","#F5BDE6","#8BD5CA","#f5a97f"],"followColor":0,"saturationEnabled":false,"lightnessEnabled":false,"animation":{"enabled":false,"interval":3000,"smoothing":800},"sourceType":0},"size":5,"xOffset":0,"yOffset":0}}</default>
+    </entry>
+    <entry
+        name="trayWidgetSettings"
+        type="String">
+        <default>{"blurBehind":false,"backgroundColor":{"lightnessValue":0.05,"saturationValue":0.05,"alpha":1,"systemColor":9,"systemColorSet":6,"type":0,"custom":"#1a2151","list":["#ED8796","#A6DA95","#EED49F","#8AADF4","#F5BDE6","#8BD5CA","#f5a97f"],"followColor":0,"saturationEnabled":false,"lightnessEnabled":false,"animation":{"enabled":false,"interval":3000,"smoothing":800},"sourceType":0},"radius":{"topLeft":4,"topRight":4,"bottomRight":4,"bottomLeft":4},"margins":{"right":0,"left":0,"top":0,"bottom":0},"border":{"customSides":false,"custom":{"widths":{"left":0,"bottom":2,"right":3,"top":2},"margins":[],"radius":0},"width":2,"color":{"lightnessValue":0.05,"saturationValue":0.05,"alpha":0.05,"systemColor":9,"systemColorSet":6,"type":0,"custom":"#7182ff","list":["#ED8796","#A6DA95","#EED49F","#8AADF4","#F5BDE6","#8BD5CA","#f5a97f"],"followColor":0,"saturationEnabled":false,"lightnessEnabled":false,"animation":{"enabled":false,"interval":3000,"smoothing":800},"sourceType":0},"width":1},"shadow":{"color":{"lightnessValue":0.05,"saturationValue":0.05,"alpha":1,"systemColor":9,"systemColorSet":6,"type":0,"custom":"#282828","list":["#ED8796","#A6DA95","#EED49F","#8AADF4","#F5BDE6","#8BD5CA","#f5a97f"],"followColor":0,"saturationEnabled":false,"lightnessEnabled":false,"animation":{"enabled":false,"interval":3000,"smoothing":800},"sourceType":0},"size":5,"xOffset":0,"yOffset":0}}</default>
     </entry>
   </group>
 </kcfg>
