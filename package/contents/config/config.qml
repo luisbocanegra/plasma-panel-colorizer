@@ -2,6 +2,31 @@ import QtQuick 2.0
 import org.kde.plasma.configuration 2.0
 
 ConfigModel {
+
+    ConfigCategory {
+        name: i18n("NEW Widget Background")
+        icon: "preferences"
+        source: "configNewWidget.qml"
+    }
+
+    ConfigCategory {
+        name: i18n("NEW Tray Background")
+        icon: "preferences"
+        source: "configNewTray.qml"
+    }
+
+    ConfigCategory {
+        name: i18n("NEW Panel Background")
+        icon: "preferences"
+        source: "configNewPanel.qml"
+    }
+
+    ConfigCategory {
+        name: i18n("Test")
+        icon: "preferences"
+        source: "colorCompTest.qml"
+    }
+
     ConfigCategory {
         name: i18n("General")
         icon: "preferences"
