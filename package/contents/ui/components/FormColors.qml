@@ -19,9 +19,14 @@ Kirigami.FormLayout {
     property var config: handleString ? JSON.parse(configString) : undefined
     signal updateConfigString(configString: string, config: var)
     // to hide options that make no sense
-    property bool showFollowPanel: false
-    property bool showFollowWidget: false
-    property bool showFollowTray: false
+    property var followOptions: {
+        "panel": false,
+        "widget": false,
+        "tray": false
+    }
+    property bool showFollowPanel: followOptions.panel
+    property bool showFollowWidget: followOptions.widget
+    property bool showFollowTray: followOptions.tray
     property bool showFollowRadio: showFollowPanel || showFollowWidget || showFollowTray
     // wether or not show color list option
     property bool multiColor: true
