@@ -136,3 +136,69 @@ function findWidgetsTray(grid, panelWidgets) {
   }
   return panelWidgets
 }
+
+var themeColors = [
+  "textColor",
+  "disabledTextColor",
+  "highlightedTextColor",
+  "activeTextColor",
+  "linkColor",
+  "visitedLinkColor",
+  "negativeTextColor",
+  "neutralTextColor",
+  "positiveTextColor",
+  "backgroundColor",
+  "highlightColor",
+  "activeBackgroundColor",
+  "linkBackgroundColor",
+  "visitedLinkBackgroundColor",
+  "negativeBackgroundColor",
+  "neutralBackgroundColor",
+  "positiveBackgroundColor",
+  "alternateBackgroundColor",
+  "focusColor",
+  "hoverColor"
+]
+
+var themeScopes = [
+  "View",
+  "Window",
+  "Button",
+  "Selection",
+  "Tooltip",
+  "Complementary",
+  "Header"
+]
+
+
+function getItemCfg(itemType, widgetName) {
+  // TODO config per widget
+  if (itemType === Enums.ItemType.PanelBgItem) {
+    return panelSettings
+  } else if (itemType === Enums.ItemType.TrayItem || itemType === Enums.ItemType.TrayArrow) {
+    return trayWidgetSettings
+  } else {
+    return globalWidgetSettings
+  }
+}
+
+function scaleSaturation(color, saturation) {
+  return Qt.hsla(color.hslHue, saturation, color.hslLightness, color.a);
+}
+
+function scaleLightness(color, lightness) {
+  return Qt.hsla(color.hslHue, color.hslSaturation, lightness, color.a);
+}
+
+function hexToRgb(hex) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : null;
+}
+
+function rgbToQtColor(rgb) {
+  return Qt.rgba(rgb.r / 255, rgb.g / 255, rgb.b / 255, 1)
+}

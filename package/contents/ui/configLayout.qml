@@ -24,13 +24,11 @@ KCM.SimpleKCM {
 
     function initWidgets(){
         widgetsModel.clear()
-        const lines = cfg_panelWidgets.trim().split("|")
-        for (let i in lines) {
-            if (lines[i].length < 1) continue
-            const parts = lines[i].split(",")
-            const name = parts[0]
-            const title = parts[1]
-            const icon = parts[2]
+        const object = JSON.parse(cfg_panelWidgets)
+        for (const widget of object) {
+            const name = widget.name
+            const title = widget.title
+            const icon = widget.icon
             widgetsModel.append(
                 {
                     "name": name,
@@ -52,7 +50,7 @@ KCM.SimpleKCM {
             // if (widget.length < 1) continue
             let name = ""
             let vMargin = 0
-            let hMargin = 0 
+            let hMargin = 0
             for (let j in forceRecolorList) {
                 if (forceRecolorList[j].length < 1) continue
                 const parts = forceRecolorList[j].split(",")

@@ -39,9 +39,9 @@ PlasmoidItem {
         }
     }
 
-    property var panelWidgetSettings: {
+    property var panelSettings: {
         try {
-            return JSON.parse(plasmoid.configuration.panelWidgetSettings)
+            return JSON.parse(plasmoid.configuration.panelSettings)
         } catch (e) {
             console.error(e, e.stack)
             return {}
@@ -57,15 +57,37 @@ PlasmoidItem {
         }
     }
 
-    function getItemCfg(itemType, name) {
-        // TODO Create panel settigns
-        if (itemType === Enums.ItemType.PanelBgItem) {
-            return panelWidgetSettings
-        } else if (itemType === Enums.ItemType.TrayItem || itemType === Enums.ItemType.TrayArrow) {
-            return trayWidgetSettings
-        } else {
-            return globalWidgetSettings
+    function getColor(colorCfg) {
+        let newColor = "transparent"
+        switch (colorCfg.sourceType) {
+            case 0:
+                newColor = Utils.rgbToQtColor(Utils.hexToRgb(colorCfg.custom))
+            break
+            case 1:
+                newColor = Kirigami.Theme[colorCfg.systemColor]
+            break
+            case 2:
+                newColor = colorCfg.list[0]
+            break
+            case 3:
+                newColor = Utils.getRandomColor()
+            break
+            case 4:
+                newColor = colorCfg.custom
+            break
+            default:
+                newColor = "transparent"
         }
+        if (colorCfg.saturationEnabled) {
+            newColor = Utils.scaleSaturation(newColor, colorCfg.saturationValue)
+        }
+        if (colorCfg.lightnessEnabled) {
+            newColor = Utils.scaleLightness(newColor, colorCfg.lightnessValue)
+        }
+        if (colorCfg.alpha !== 1) {
+            newColor = Qt.hsla(newColor.hslHue, newColor.hslSaturation, newColor.hslLightness, colorCfg.alpha)
+        }
+        return newColor
     }
 
     property Component backgroundComponent: Kirigami.ShadowedRectangle {
@@ -74,7 +96,7 @@ PlasmoidItem {
         property int itemType
         property bool luisbocanegraPanelColorizerBgManaged: true
         property var cfg: {
-            return getItemCfg(itemType, null) //TODO widget name here
+            return Utils.getItemCfg(itemType, null) //TODO widget name here
         }
         corners {
             topLeftRadius: cfg.radius.topLeft
@@ -82,7 +104,12 @@ PlasmoidItem {
             bottomLeftRadius: cfg.radius.bottomLeft
             bottomRightRadius: cfg.radius.bottomRight
         }
-        color: cfg.backgroundColor.custom //Utils.getRandomColor() //TODO color logic
+        property var bgColorCfg: cfg.backgroundColor
+        Kirigami.Theme.colorSet: Kirigami.Theme[bgColorCfg.systemColorSet]
+        Kirigami.Theme.inherit: bgColorCfg.sourceType === 1
+        color: {
+            return getColor(bgColorCfg)
+        }
         height: itemType === Enums.ItemType.TrayItem ? target.height : parent.height
         width: itemType === Enums.ItemType.TrayItem ? target.width : parent.width
         anchors.centerIn: (itemType === Enums.ItemType.TrayItem || itemType === Enums.ItemType.TrayArrow) ? parent : undefined
@@ -204,12 +231,19 @@ PlasmoidItem {
             anchors.fill: parent
             color: "transparent"
 
+            property var borderColorCfg: cfg.border.color
+            Kirigami.Theme.colorSet: Kirigami.Theme[borderColorCfg.systemColorSet]
+            Kirigami.Theme.inherit: borderColorCfg.sourceType === 1
+            property color borderColor: {
+                return getColor(borderColorCfg)
+            }
+
             Rectangle {
                 id: customBorderTop
                 width: parent.width
                 visible: cfg.border.customSides && cfg.border.custom.widths.top
                 height: cfg.border.custom.widths.top
-                color: cfg.border.color.custom
+                color: borderRec.borderColor
                 anchors.top: parent.top
             }
             Rectangle {
@@ -217,7 +251,7 @@ PlasmoidItem {
                 width: parent.width
                 visible: cfg.border.customSides && cfg.border.custom.widths.bottom
                 height: cfg.border.custom.widths.bottom
-                color: cfg.border.color.custom
+                color: borderRec.borderColor
                 anchors.bottom: parent.bottom
             }
 
@@ -226,7 +260,7 @@ PlasmoidItem {
                 height: parent.height
                 visible: cfg.border.customSides && cfg.border.custom.widths.left
                 width: cfg.border.custom.widths.left
-                color: cfg.border.color.custom
+                color: borderRec.borderColor
                 anchors.left: parent.left
             }
             Rectangle {
@@ -234,7 +268,7 @@ PlasmoidItem {
                 height: parent.height
                 visible: cfg.border.customSides && cfg.border.custom.widths.right
                 width: cfg.border.custom.widths.right
-                color: cfg.border.color.custom
+                color: borderRec.borderColor
                 anchors.right: parent.right
             }
 
@@ -243,7 +277,7 @@ PlasmoidItem {
                 color: "transparent"
                 visible: !cfg.border.customSides
                 border {
-                    color: cfg.border.color.custom //TODO color logic
+                    color: borderRec.borderColor
                     width: cfg.border.width
                 }
                 corners {
@@ -276,8 +310,13 @@ PlasmoidItem {
         }
 
         shadow {
+            property var shadowColorCfg: cfg.shadow.color
+            Kirigami.Theme.colorSet: Kirigami.Theme[shadowColorCfg.systemColorSet]
+            Kirigami.Theme.inherit: shadowColorCfg.sourceType === 1
             size: cfg.shadow.size
-            color: Qt.rgba(0,0,0,0.3) //Utils.getRandomColor() //TODO color logic
+            color: {
+                return getColor(shadowColorCfg)
+            }
             xOffset: cfg.shadow.xOffset
             yOffset: cfg.shadow.yOffset
         }
@@ -421,7 +460,7 @@ PlasmoidItem {
 
     onTrayGridViewCountChanged: {
         if (trayGridViewCount === 0) return
-        console.error(trayGridViewCount);
+        // console.error(trayGridViewCount);
         trayInitTimer.restart()
     }
 
@@ -450,7 +489,7 @@ PlasmoidItem {
             for (let i = 0; i < grid.count; i++) {
                 const item = grid.itemAtIndex(i);
                 if (Utils.isBgManaged(item)) continue
-                Utils.dumpProps(item)
+                // Utils.dumpProps(item)
                 backgroundComponent.createObject(item, {"z":-1, "target": item, "itemType": Enums.ItemType.TrayItem })
             }
         }
@@ -474,7 +513,7 @@ PlasmoidItem {
             // other situations
             if (!child.applet?.plasmoid?.pluginName) continue
             if (Utils.isBgManaged(child)) continue
-            console.error(child.applet?.plasmoid?.pluginName)
+            // console.error(child.applet?.plasmoid?.pluginName)
             // Utils.dumpProps(child)
             backgroundComponent.createObject(child, { "z":-1, "target":child, "itemType": Enums.ItemType.WidgetItem });
         }
@@ -486,7 +525,7 @@ PlasmoidItem {
     }
 
     onPanelWidgetsCountChanged: {
-        console.error( panelWidgetsCount ,JSON.stringify(panelWidgets, null, null))
+        // console.error( panelWidgetsCount ,JSON.stringify(panelWidgets, null, null))
         plasmoid.configuration.panelWidgets = ""
         plasmoid.configuration.panelWidgets = JSON.stringify(panelWidgets, null, null)
     }

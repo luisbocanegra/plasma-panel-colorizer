@@ -3,6 +3,8 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 
+import "../code/utils.js" as Utils
+
 Kirigami.FormLayout {
     id: colorRoot
     // required to align with parent form
@@ -10,26 +12,139 @@ Kirigami.FormLayout {
     twinFormLayouts: parentLayout
     Layout.fillWidth: true
     property bool isSection: true
-    // wether read from the string or existing config
+    // wether read from the string or existing config object
     property bool handleString
     // internal config objects to be sent, both string and json
     property string configString: "{}"
     property var config: handleString ? JSON.parse(configString) : undefined
     signal updateConfigString(configString: string, config: var)
-    // to hide options that make no sense for panel
-    property bool isPanel: false
+    // to hide options that make no sense
+    property bool showFollowPanel: false
+    property bool showFollowWidget: false
+    property bool showFollowTray: false
+    property bool showFollowRadio: showFollowPanel || showFollowWidget || showFollowTray
     // wether or not show color list option
     property bool multiColor: true
+
+    ListModel {
+        id: themeColorSetModel
+        ListElement {
+            value: "View"
+            displayName: "View"
+        }
+        ListElement {
+            value: "Window"
+            displayName: "Window"
+        }
+        ListElement {
+            value: "Button"
+            displayName: "Button"
+        }
+        ListElement {
+            value: "Selection"
+            displayName: "Selection"
+        }
+        ListElement {
+            value: "Tooltip"
+            displayName: "Tooltip"
+        }
+        ListElement {
+            value: "Complementary"
+            displayName: "Complementary"
+        }
+        ListElement {
+            value: "Header"
+            displayName: "Header"
+        }
+    }
+
+    ListModel {
+        id: themeColorModel
+        ListElement {
+            value: "textColor"
+            displayName: "Text Color"
+        }
+        ListElement {
+            value: "disabledTextColor"
+            displayName: "Disabled Text Color"
+        }
+        ListElement {
+            value: "highlightedTextColor"
+            displayName: "Highlighted Text Color"
+        }
+        ListElement {
+            value: "activeTextColor"
+            displayName: "Active Text Color"
+        }
+        ListElement {
+            value: "linkColor"
+            displayName: "Link Color"
+        }
+        ListElement {
+            value: "visitedLinkColor"
+            displayName: "Visited LinkColor"
+        }
+        ListElement {
+            value: "negativeTextColor"
+            displayName: "Negative Text Color"
+        }
+        ListElement {
+            value: "neutralTextColor"
+            displayName: "Neutral Text Color"
+        }
+        ListElement {
+            value: "positiveTextColor"
+            displayName: "Positive Text Color"
+        }
+        ListElement {
+            value: "backgroundColor"
+            displayName: "Background Color"
+        }
+        ListElement {
+            value: "highlightColor"
+            displayName: "Highlight Color"
+        }
+        ListElement {
+            value: "activeBackgroundColor"
+            displayName: "Active Background Color"
+        }
+        ListElement {
+            value: "linkBackgroundColor"
+            displayName: "Link Background Color"
+        }
+        ListElement {
+            value: "visitedLinkBackgroundColor"
+            displayName: "Visited Link Background Color"
+        }
+        ListElement {
+            value: "negativeBackgroundColor"
+            displayName: "Negative Background Color"
+        }
+        ListElement {
+            value: "neutralBackgroundColor"
+            displayName: "Neutral Background Color"
+        }
+        ListElement {
+            value: "positiveBackgroundColor"
+            displayName: "Positive Background Color"
+        }
+        ListElement {
+            value: "alternateBackgroundColor"
+            displayName: "Alternate Background Color"
+        }
+        ListElement {
+            value: "focusColor"
+            displayName: "Focus Color"
+        }
+        ListElement {
+            value: "hoverColor"
+            displayName: "Hover Color"
+        }
+    }
 
     function updateConfig() {
         configString = JSON.stringify(config, null, null)
         updateConfigString(configString, config)
-    }
-
-    Component.onCompleted: {
-        // if (handleString) config = JSON.parse(configString)
-        console.log(configString)
-        console.log(JSON.stringify(config, null, null))
     }
 
     Kirigami.Separator {
@@ -124,30 +239,56 @@ Kirigami.FormLayout {
         property int index: 4
         checked: config.sourceType === index
         enabled: !animationCheckbox.checked
+        visible: showFollowRadio
     }
-
-    ComboBox {
-        id: followColorCombobox
-        Kirigami.FormData.label: i18n("Element:")
-        currentIndex: config.followColor
-        model: [
-            i18n("Panel background"),
-            i18n("Widget Background"),
-            i18n("Widget text"),
-        ]
-        visible: followColorRadio.checked
-        onCurrentIndexChanged: {
-            config.followColor = currentIndex
-            updateConfig()
-        }
-    }
-
 
     ButtonGroup {
         id: colorModeGroup
         onCheckedButtonChanged: {
             if (checkedButton) {
                 config.sourceType = checkedButton.index
+                updateConfig()
+            }
+        }
+    }
+    // >
+    RadioButton {
+        Kirigami.FormData.label: i18n("Element:")
+        id: followPanelBgRadio
+        text: i18n("Panel background")
+        ButtonGroup.group: followColorGroup
+        property int index: 0
+        checked: config.followColor === index
+        visible: followColorRadio.checked
+            && showFollowPanel
+    }
+
+    RadioButton {
+        id: followWidgetBgRadio
+        text: i18n("Widget background")
+        ButtonGroup.group: followColorGroup
+        property int index: 1
+        checked: config.followColor === index
+        visible: followColorRadio.checked
+            && showFollowWidget
+    }
+
+    RadioButton {
+        id: followTrayWidgetBgRadio
+        text: i18n("Tray widget background")
+        ButtonGroup.group: followColorGroup
+        property int index: 2
+        checked: config.followColor === index
+        visible: followColorRadio.checked
+            && showFollowTray
+    }
+
+
+    ButtonGroup {
+        id: followColorGroup
+        onCheckedButtonChanged: {
+            if (checkedButton) {
+                config.followColor = checkedButton.index
                 updateConfig()
             }
         }
@@ -160,62 +301,56 @@ Kirigami.FormLayout {
         color: config.custom
         visible: singleColorRadio.checked
         onAccepted: (color) => {
-            console.error(color)
             config.custom = color.toString()
             updateConfig()
         }
     }
 
     ComboBox {
-        id: colorModeThemeVariant
+        id: colorSetCombobx
         Kirigami.FormData.label: i18n("Color set:")
-        currentIndex: config.systemColorSet
-        model: [
-            i18n("View"),
-            i18n("Window"),
-            i18n("Button"),
-            i18n("Selection"),
-            i18n("Tooltip"),
-            i18n("Complementary"),
-            i18n("Header")
-        ]
+        model: themeColorSetModel
+        textRole: "displayName"
         visible: accentColorRadio.checked
         onCurrentIndexChanged: {
-            config.systemColorSet = currentIndex
+            config.systemColorSet = themeColorSetModel.get(currentIndex).value
             updateConfig()
+        }
+        Binding {
+            target: colorSetCombobx
+            property: "currentIndex"
+            value: {
+                for (var i = 0; i < themeColorSetModel.count; i++) {
+                    if (themeColorSetModel.get(i).value === config.systemColorSet) {
+                        return i;
+                    }
+                }
+                return 0; // Default to the first item if no match is found
+            }
         }
     }
 
     ComboBox {
-        id: colorModeTheme
+        id: colorThemeCombobx
         Kirigami.FormData.label: i18n("Color:")
-        currentIndex: config.systemColor
-        model: [
-            i18n("Text"),
-            i18n("Disabled Text"),
-            i18n("Highlighted Text"),
-            i18n("Active Text"),
-            i18n("Link"),
-            i18n("Visited Link"),
-            i18n("Negative Text"),
-            i18n("Neutral Text"),
-            i18n("Positive Text"),
-            i18n("Background"),
-            i18n("Highlight"),
-            i18n("Active Background"),
-            i18n("Link Background"),
-            i18n("Visited Link Background"),
-            i18n("Negative Background"),
-            i18n("Neutral Background"),
-            i18n("Positive Background"),
-            i18n("Alternate Background"),
-            i18n("Focus"),
-            i18n("Hover")
-        ]
+        model: themeColorModel
+        textRole: "displayName"
         visible: accentColorRadio.checked
         onCurrentIndexChanged: {
-            config.systemColor = currentIndex
+            config.systemColor = themeColorModel.get(currentIndex).value
             updateConfig()
+        }
+        Binding {
+            target: colorThemeCombobx
+            property: "currentIndex"
+            value: {
+                for (var i = 0; i < themeColorModel.count; i++) {
+                    if (themeColorModel.get(i).value === config.systemColor) {
+                        return i;
+                    }
+                }
+                return 0; // Default to the first item if no match is found
+            }
         }
     }
 

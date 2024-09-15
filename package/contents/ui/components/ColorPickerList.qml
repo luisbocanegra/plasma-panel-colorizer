@@ -19,9 +19,9 @@ ColumnLayout {
 
     Connections {
         target: colorsListModel
-        onCountChanged: {
+        onCountChanged: (count, clearing) => {
             if (clearing) return
-            console.log("model count changed:", colorsListModel.count);
+            console.log("model count changed:", count);
             updateColorsList()
         }
     }
@@ -50,7 +50,6 @@ ColumnLayout {
         let colors_list = []
         for (let i = 0; i < colorsListModel.count; i++) {
             let c = colorsListModel.get(i).color
-            console.log(c);
             colors_list.push(c)
         }
         colorsList = colors_list

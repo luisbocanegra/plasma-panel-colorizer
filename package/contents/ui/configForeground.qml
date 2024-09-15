@@ -19,7 +19,7 @@ KCM.SimpleKCM {
 
     property int cfg_fgRainbowInterval: fgRainbowInterval.value
     property bool widgetBgEnabled: plasmoid.configuration.widgetBgEnabled
-    
+
     property real cfg_fgOpacity: parseFloat(fgOpacity.text)
     property string cfg_forceRecolor: ""
 
@@ -28,7 +28,7 @@ KCM.SimpleKCM {
     property real cfg_fgSaturation: fgSaturation.text
     property real cfg_fgLightness: fgLightness.text
 
-    property string cfg_panelWidgetsWithTray
+    property string cfg_panelWidgets
 
     property bool clearing: false
 
@@ -88,13 +88,11 @@ KCM.SimpleKCM {
 
     function initWidgets(){
         widgetsModel.clear()
-        const lines = cfg_panelWidgetsWithTray.trim().split("|")
-        for (let i in lines) {
-            if (lines[i].length < 1) continue
-            const parts = lines[i].split(",")
-            const name = parts[0]
-            const title = parts[1]
-            const icon = parts[2]
+        const object = JSON.parse(cfg_panelWidgets)
+        for (const widget of object) {
+            const name = widget.name
+            const title = widget.title
+            const icon = widget.icon
             widgetsModel.append({"name": name, "title": title, "icon": icon, "enabled": false})
         }
     }
@@ -204,7 +202,7 @@ KCM.SimpleKCM {
             }
         }
 
-        
+
         SpinBox {
             Kirigami.FormData.label: i18n("Interval (ms):")
             id: fgRainbowInterval
@@ -222,7 +220,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.isSection: true
             Kirigami.FormData.label: i18n("Colors")
         }
-        
+
         // RowLayout {
             RadioButton {
                 id: fgSingleColorRadio

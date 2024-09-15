@@ -24,7 +24,7 @@ KCM.SimpleKCM {
                 text: "(parent form)"
             }
         }
-        Components.Colors {
+        Components.FormColors {
             id: colorsComp
             handleString: true
             onUpdateConfigString: (newString, config) => {
