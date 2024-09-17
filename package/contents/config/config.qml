@@ -22,12 +22,6 @@ ConfigModel {
     }
 
     ConfigCategory {
-        name: i18n("Test")
-        icon: "preferences"
-        source: "colorCompTest.qml"
-    }
-
-    ConfigCategory {
         name: i18n("General")
         icon: "preferences"
         source: "configGeneral.qml"

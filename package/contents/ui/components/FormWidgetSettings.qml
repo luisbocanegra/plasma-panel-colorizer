@@ -79,7 +79,6 @@ ColumnLayout {
                     onCheckedChanged: {
                         configLocal.blurBehind = checked
                         if (checked) {
-                            nativePanelBackgroundCheckbox.checked = true
                         }
                         updateConfig()
                     }

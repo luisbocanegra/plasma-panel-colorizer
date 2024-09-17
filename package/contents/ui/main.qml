@@ -42,6 +42,14 @@ PlasmoidItem {
     property var widgetSettings: cfg.widgets
     property var panelSettings: cfg.panel
     property var trayWidgetSettings: cfg.trayWidgets
+    property var forceRecolorList: cfg.forceForegroundColor
+    property int forceRecolorCount: Object.keys(forceRecolorList).length
+    signal recolorNeeded()
+
+    onForceRecolorCountChanged: {
+        console.error("onForceRecolorCountChanged ->", forceRecolorCount)
+        recolorNeeded()
+    }
 
     function getColor(colorCfg) {
         let newColor = "transparent"
@@ -76,11 +84,15 @@ PlasmoidItem {
         return newColor
     }
 
-    function applyFgColor(element, newColor, fgColorCfg, depth) {
+    function applyFgColor(element, newColor, fgColorCfg, depth, forceMask, forceEffect) {
         let count = 0;
         let maxDepth = depth
-        if (Utils.getWidgetName(element) === "org.kde.plasma.systemtray" && separateTray) return
-
+        let widgetName = Utils.getWidgetName(element)
+        if (widgetName === "org.kde.plasma.systemtray" && separateTray) return
+        if (widgetName && widgetName in forceRecolorList) {
+            forceMask = forceRecolorList[widgetName].method.mask
+            forceEffect = forceRecolorList[widgetName].method.multiEffect
+        }
         for (var i = 0; i < element.visibleChildren.length; i++) {
             var child = element.visibleChildren[i]
             if (child.Kirigami?.Theme) {
@@ -92,11 +104,17 @@ PlasmoidItem {
                 if (child.color) {
                     child.color = newColor
                 }
+                if (child.hasOwnProperty("isMask") && forceMask) {
+                    child.isMask = true
+                }
+                if (forceEffect && !Utils.isEffectManaged(child)) {
+                    colorEffectComoponent.createObject(child, {"target": child, "effectColor": newColor, "effectSource": child})
+                }
                 count++
-                repaintDebugComponent.createObject(child)
+                // repaintDebugComponent.createObject(child)
             }
             if (child.visibleChildren?.length ?? 0 > 0) {
-                const result = applyFgColor(child, newColor, fgColorCfg, depth + 1)
+                const result = applyFgColor(child, newColor, fgColorCfg, depth + 1, forceMask, forceEffect)
                 count += result.count
                 if (result.depth > maxDepth) {
                     maxDepth = result.depth
@@ -116,7 +134,7 @@ PlasmoidItem {
         anchors.left: parent.left
         Timer {
             id: deleteThisTimer
-            interval: 500
+            interval: 100
             onTriggered: {
                 speedDebugItem.destroy()
             }
@@ -126,11 +144,30 @@ PlasmoidItem {
         }
     }
 
+    property Component colorEffectComoponent: MultiEffect {
+        // a not very effective way to recolor things that can't be recolored
+        // the usual way
+        id: effectRect
+        property bool luisbocanegraPanelColorizerEffectManaged: true
+        property string effectColor
+        property Item target
+        property Item effectSource
+        height: effectSource.height
+        width: effectSource.width
+        colorizationColor: effectColor
+        source: effectSource
+        colorization: 1
+        autoPaddingEnabled: false
+    }
+
     property Component backgroundComponent: Kirigami.ShadowedRectangle {
         id: rect
         property Item target
         property int itemType
         property bool luisbocanegraPanelColorizerBgManaged: true
+        // mask and color effect do
+        property bool requiresRefresh: false
+        property string widgetName: Utils.getWidgetName(target)
         property var cfg: {
             return Utils.getItemCfg(itemType, null) //TODO widget name here
         }
@@ -169,9 +206,10 @@ PlasmoidItem {
         Timer {
             id: recolorTimer
             interval: 250
+            repeat: requiresRefresh
             onTriggered: {
                 if (!(rect.itemType === Enums.ItemType.PanelBgItem)) {
-                    const result = applyFgColor(target, fgColor, fgColorCfg, 0)
+                    const result = applyFgColor(target, fgColor, fgColorCfg, 0, false, false)
                     if (result) {
                         itemCount = result.count
                         maxDepth = result.depth
@@ -200,10 +238,17 @@ PlasmoidItem {
             // console.error("FG COLOR CHANGED", fgColor, target)
             recolorTimer.start()
         }
-
-        Component.onCompleted: {
+        function recolor() {
             recolorTimer.start()
         }
+        Component.onCompleted: {
+            main.recolorNeeded.connect(rect.recolor)
+            recolorTimer.start()
+            if (widgetName && widgetName in forceRecolorList) {
+                requiresRefresh = true
+            }
+        }
+
         height: itemType === Enums.ItemType.TrayItem ? target.height : parent.height
         width: itemType === Enums.ItemType.TrayItem ? target.width : parent.width
         anchors.centerIn: (itemType === Enums.ItemType.TrayItem || itemType === Enums.ItemType.TrayArrow) ? parent : undefined
@@ -557,6 +602,7 @@ PlasmoidItem {
 
     onPanelLayoutCountChanged: {
         if (panelLayoutCount === 0) return
+        trayInitTimer.restart()
         showWidgets(panelLayout)
         updateCurrentWidgets()
         showPanelBg(panelBg)
@@ -570,20 +616,20 @@ PlasmoidItem {
 
     Timer {
         id: trayInitTimer
-        interval: 5
+        interval: 100
         onTriggered: {
-            if (trayGridViewCount === 0) return
-            if (!trayGridView) return
-            showTrayAreas(trayGridView)
-            showTrayAreas(trayGridView.parent)
+            if (trayGridView && trayGridViewCount !== 0) {
+                showTrayAreas(trayGridView)
+                showTrayAreas(trayGridView.parent)
+            }
             updateCurrentWidgets()
         }
     }
 
     function updateCurrentWidgets() {
-        if (!trayGridView) return
         panelWidgets = []
         panelWidgets = Utils.findWidgets(panelLayout, panelWidgets)
+        if (!trayGridView) return
         panelWidgets = Utils.findWidgetsTray(trayGridView, panelWidgets)
         panelWidgets = Utils.findWidgetsTray(trayGridView.parent, panelWidgets)
     }
