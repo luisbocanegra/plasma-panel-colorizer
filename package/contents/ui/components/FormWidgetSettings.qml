@@ -49,56 +49,132 @@ ColumnLayout {
     }
 
     RowLayout {
-        RowLayout {
-            Layout.leftMargin: Kirigami.Units.mediumSpacing
-            Layout.rightMargin: Kirigami.Units.smallSpacing
-            Layout.bottomMargin: Kirigami.Units.smallSpacing
-            ColumnLayout {
+        Layout.leftMargin: Kirigami.Units.mediumSpacing
+        Layout.rightMargin: Kirigami.Units.smallSpacing
+        Layout.bottomMargin: Kirigami.Units.smallSpacing
+        ColumnLayout {
 
-                RowLayout {
-                    Layout.alignment: Qt.AlignRight
-                    Label {
-                        text: i18n("Enable:")
-                    }
-                    CheckBox {
-                        id: isEnabled
-                        checked: configLocal.enabled
-                        onCheckedChanged: {
-                            configLocal.enabled = checked
-                            updateConfig()
-                        }
+            RowLayout {
+                // Layout.alignment: Qt.AlignRight
+                Label {
+                    text: i18n("Enable:")
+                }
+                CheckBox {
+                    id: isEnabled
+                    checked: configLocal.enabled
+                    onCheckedChanged: {
+                        configLocal.enabled = checked
+                        updateConfig()
                     }
                 }
-                RowLayout {
-                    Label {
-                        text: i18n("Blur behind:")
-                    }
-                    CheckBox {
-                        Kirigami.FormData.label: i18n("Blur behind:")
-                        id: blurCheckbox
-                        checked: configLocal.blurBehind
-                        onCheckedChanged: {
-                            configLocal.blurBehind = checked
-                            updateConfig()
-                        }
-                    }
-                }
-            }
-            Item {
-                Layout.fillWidth: true
             }
             RowLayout {
-                Layout.alignment: Qt.AlignRight|Qt.AlignTop
                 Label {
-                    text: i18n("Last preset loaded:")
+                    text: i18n("Blur behind:")
+                }
+                CheckBox {
+                    Kirigami.FormData.label: i18n("Blur behind:")
+                    id: blurCheckbox
+                    checked: configLocal.blurBehind
+                    onCheckedChanged: {
+                        configLocal.blurBehind = checked
+                        if (checked) {
+                            nativePanelBackgroundCheckbox.checked = true
+                        }
+                        updateConfig()
+                    }
+                }
+                Button {
+                    icon.name: "dialog-information-symbolic"
+                    ToolTip.text: i18n("Draw a custom blur mask behind the custom background(s).\n\nEnables the native panel background.")
+                    highlighted: true
+                    hoverEnabled: true
+                    ToolTip.visible: hovered
+                    Kirigami.Theme.inherit: false
+                    flat: true
+                }
+            }
+            RowLayout {
+                property bool isPanel: keyName === "panel"
+                visible: isPanel
+                Label {
+                    text: i18n("Native panel background:")
+                }
+                CheckBox {
+                    id: nativePanelBackgroundCheckbox
+                    checked: config.nativePanelBackground.enabled
+                    onCheckedChanged: {
+                        config.nativePanelBackground.enabled = checked
+                        updateConfig()
+                    }
                 }
                 Label {
-                    text: "None"
-                    font.weight: Font.DemiBold
+                    text: i18n("Opacity:")
+                }
+                TextField {
+                    id: panelRealBgOpacity
+                    placeholderText: "0-1"
+                    text: parseFloat(config.nativePanelBackground.opacity).toFixed(validator.decimals)
+                    enabled: nativePanelBackgroundCheckbox.checked
+                    Layout.preferredWidth: Kirigami.Units.gridUnit * 4
+
+                    validator: DoubleValidator {
+                        bottom: 0.0
+                        top: 1.0
+                        decimals: 2
+                        notation: DoubleValidator.StandardNotation
+                    }
+
+                    onTextChanged: {
+                        const newVal = parseFloat(text).toFixed(validator.decimals)
+                        config.nativePanelBackground.opacity = isNaN(newVal) ? 0 : newVal
+                        updateConfig()
+                    }
+
+                    ValueMouseControl {
+                        height: parent.height - 8
+                        width: height
+                        anchors.right: parent.right
+                        anchors.rightMargin: 4
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        from: parent.validator.bottom
+                        to: parent.validator.top
+                        decimals: parent.validator.decimals
+                        stepSize: 0.05
+                        value: config.nativePanelBackground.opacity
+                        onValueChanged: {
+                            config.nativePanelBackground.opacity = parseFloat(value)
+                            updateConfig()
+                        }
+                    }
+                }
+                Button {
+                    icon.name: "dialog-information-symbolic"
+                    ToolTip.text: i18n("Disabling the native Panel background also removes the contrast and blur.\n\nSet this to 0 to keep just the blur mask.")
+                    highlighted: true
+                    hoverEnabled: true
+                    ToolTip.visible: hovered
+                    Kirigami.Theme.inherit: false
+                    flat: true
                 }
             }
         }
+        Item {
+            Layout.fillWidth: true
+        }
+        RowLayout {
+            Layout.alignment: Qt.AlignRight|Qt.AlignTop
+            Label {
+                text: i18n("Last preset loaded:")
+            }
+            Label {
+                text: "None"
+                font.weight: Font.DemiBold
+            }
+        }
     }
+
 
     Kirigami.NavigationTabBar {
         // Layout.preferredWidth: root.parent.width

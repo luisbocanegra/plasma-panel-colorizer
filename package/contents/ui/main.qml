@@ -25,8 +25,8 @@ PlasmoidItem {
     property bool fixedSideMarginEnabled: true
     property int fixedSideMarginSize: 4
     property bool isEnabled: true
-    property bool panelOriginalBgHidden: true
-    property real panelOriginalOpacity: 1
+    property bool nativePanelBackgroundEnabled: cfg.nativePanelBackground.enabled
+    property real nativePanelBackgroundOpacity: cfg.nativePanelBackground.opacity
     property var panelWidgets: []
     property int panelWidgetsCount: 0
     property real trayItemThikness: 20
@@ -537,12 +537,22 @@ PlasmoidItem {
 
     onPanelElementChanged: {
         if(!panelElement) return
-        Utils.panelOpacity(panelElement, isEnabled, panelOriginalOpacity)
+        Utils.panelOpacity(panelElement, isEnabled, nativePanelBackgroundOpacity)
+    }
+
+    onNativePanelBackgroundOpacityChanged: {
+        if(!panelElement) return
+        Utils.panelOpacity(panelElement, isEnabled, nativePanelBackgroundOpacity)
     }
 
     onContainmentItemChanged: {
         if(!containmentItem) return
-        Utils.toggleTransparency(containmentItem, panelOriginalBgHidden)
+        Utils.toggleTransparency(containmentItem, nativePanelBackgroundEnabled)
+    }
+
+    onNativePanelBackgroundEnabledChanged: {
+        if(!containmentItem) return
+        Utils.toggleTransparency(containmentItem, nativePanelBackgroundEnabled)
     }
 
     onPanelLayoutCountChanged: {

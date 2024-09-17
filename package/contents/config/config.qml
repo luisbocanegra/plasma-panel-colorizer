@@ -40,21 +40,9 @@ ConfigModel {
     }
 
     ConfigCategory {
-        name: i18n("Widget background")
-        icon: "preferences-desktop-theme-global"
-        source: "configWidgetBg.qml"
-    }
-
-    ConfigCategory {
         name: i18n("Text and icons")
         icon: "preferences-desktop-icons"
         source: "configForeground.qml"
-    }
-
-    ConfigCategory {
-        name: i18n("Panel background")
-        icon: "preferences-desktop-plasma-theme"
-        source: "configPanelBg.qml"
     }
 
     ConfigCategory {

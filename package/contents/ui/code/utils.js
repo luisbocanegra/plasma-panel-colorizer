@@ -68,8 +68,8 @@ function dumpProps(obj) {
   }
 }
 
-function toggleTransparency(containmentItem, enabled) {
-  containmentItem.Plasmoid.backgroundHints = enabled
+function toggleTransparency(containmentItem, nativePanelBackgroundEnabled) {
+  containmentItem.Plasmoid.backgroundHints = !nativePanelBackgroundEnabled
     ? PlasmaCore.Types.NoBackground
     : PlasmaCore.Types.DefaultBackground
 }
