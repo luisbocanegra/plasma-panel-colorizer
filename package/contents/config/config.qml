@@ -4,21 +4,21 @@ import org.kde.plasma.configuration 2.0
 ConfigModel {
 
     ConfigCategory {
-        name: i18n("NEW Widget Background")
+        name: i18n("Panel")
+        icon: "preferences"
+        source: "configNewPanel.qml"
+    }
+
+    ConfigCategory {
+        name: i18n("Widgets")
         icon: "preferences"
         source: "configNewWidget.qml"
     }
 
     ConfigCategory {
-        name: i18n("NEW Tray Background")
+        name: i18n("Tray Widgets")
         icon: "preferences"
         source: "configNewTray.qml"
-    }
-
-    ConfigCategory {
-        name: i18n("NEW Panel Background")
-        icon: "preferences"
-        source: "configNewPanel.qml"
     }
 
     ConfigCategory {

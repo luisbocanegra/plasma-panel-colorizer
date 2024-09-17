@@ -30,32 +30,18 @@ PlasmoidItem {
     property var panelWidgets: []
     property int panelWidgetsCount: 0
     property real trayItemThikness: 20
-    property var globalWidgetSettings: {
+    property bool separateTray: trayWidgetSettings.enabled
+    property var cfg: {
         try {
-            return JSON.parse(plasmoid.configuration.globalWidgetSettings)
+            return JSON.parse(plasmoid.configuration.allSettings)
         } catch (e) {
             console.error(e, e.stack)
             return {}
         }
     }
-
-    property var panelSettings: {
-        try {
-            return JSON.parse(plasmoid.configuration.panelSettings)
-        } catch (e) {
-            console.error(e, e.stack)
-            return {}
-        }
-    }
-
-    property var trayWidgetSettings: {
-        try {
-            return JSON.parse(plasmoid.configuration.trayWidgetSettings)
-        } catch (e) {
-            console.error(e, e.stack)
-            return {}
-        }
-    }
+    property var widgetSettings: cfg.widgets
+    property var panelSettings: cfg.panel
+    property var trayWidgetSettings: cfg.trayWidgets
 
     function getColor(colorCfg) {
         let newColor = "transparent"
@@ -90,6 +76,56 @@ PlasmoidItem {
         return newColor
     }
 
+    function applyFgColor(element, newColor, fgColorCfg, depth) {
+        let count = 0;
+        let maxDepth = depth
+        if (Utils.getWidgetName(element) === "org.kde.plasma.systemtray" && separateTray) return
+
+        for (var i = 0; i < element.visibleChildren.length; i++) {
+            var child = element.visibleChildren[i]
+            if (child.Kirigami?.Theme) {
+                child.Kirigami.Theme.textColor = newColor
+                child.Kirigami.Theme.colorSet = Kirigami.Theme[fgColorCfg.systemColorSet]
+                child.Kirigami.Theme.inherit = fgColorCfg.sourceType === 1
+            }
+            if ([Text,ToolButton,Label,Canvas,Kirigami.Icon].some(function (type) {return child instanceof type})) {
+                if (child.color) {
+                    child.color = newColor
+                }
+                count++
+                repaintDebugComponent.createObject(child)
+            }
+            if (child.visibleChildren?.length ?? 0 > 0) {
+                const result = applyFgColor(child, newColor, fgColorCfg, depth + 1)
+                count += result.count
+                if (result.depth > maxDepth) {
+                    maxDepth = result.depth
+                }
+            }
+        }
+        return {"count": count, "depth": maxDepth}
+    }
+
+    property Component repaintDebugComponent: Rectangle {
+        // quickly flash a small rectangle for items that have been updated
+        id: speedDebugItem
+        color: "cyan"
+        height: 4
+        width: 4
+        anchors.top: parent.top
+        anchors.left: parent.left
+        Timer {
+            id: deleteThisTimer
+            interval: 500
+            onTriggered: {
+                speedDebugItem.destroy()
+            }
+        }
+        Component.onCompleted: {
+            deleteThisTimer.start()
+        }
+    }
+
     property Component backgroundComponent: Kirigami.ShadowedRectangle {
         id: rect
         property Item target
@@ -98,17 +134,75 @@ PlasmoidItem {
         property var cfg: {
             return Utils.getItemCfg(itemType, null) //TODO widget name here
         }
+        property var bgColorCfg: cfg.backgroundColor
+        property var fgColorCfg: cfg.foregroundColor
+        property string fgColor: fgColorHolder.color
+        property int itemCount: 0
+        property int maxDepth: 0
+        visible: cfg.enabled
+        Rectangle {
+            id: fgColorHolder
+            height: 4
+            width: 4
+            visible: false
+            radius: height / 2
+            color: separateTray ? getColor(rect.fgColorCfg) : getColor(widgetSettings.foregroundColor)
+            Kirigami.Theme.colorSet: Kirigami.Theme[fgColorCfg.systemColorSet]
+            Kirigami.Theme.inherit: fgColorCfg.sourceType === 1
+        }
+        // Label {
+        //     id: debugLabel
+        //     text: maxDepth+","+itemCount
+        //     font.pixelSize: 8
+        // }
         corners {
             topLeftRadius: cfg.radius.topLeft
             topRightRadius: cfg.radius.topRight
             bottomLeftRadius: cfg.radius.bottomLeft
             bottomRightRadius: cfg.radius.bottomRight
         }
-        property var bgColorCfg: cfg.backgroundColor
         Kirigami.Theme.colorSet: Kirigami.Theme[bgColorCfg.systemColorSet]
         Kirigami.Theme.inherit: bgColorCfg.sourceType === 1
         color: {
             return getColor(bgColorCfg)
+        }
+        Timer {
+            id: recolorTimer
+            interval: 250
+            onTriggered: {
+                if (!(rect.itemType === Enums.ItemType.PanelBgItem)) {
+                    const result = applyFgColor(target, fgColor, fgColorCfg, 0)
+                    if (result) {
+                        itemCount = result.count
+                        maxDepth = result.depth
+                    }
+                }
+            }
+        }
+
+        property int targetChildren: target.children.length
+        onTargetChildrenChanged: {
+            // console.error("CHILDREN CHANGED", targetChildren, target)
+            recolorTimer.start()
+        }
+        property int targetVisibleChildren: target.visibleChildren.length
+        onTargetVisibleChildrenChanged: {
+            // console.error("CHILDREN CHANGED", targetVisibleChildren, target)
+            recolorTimer.start()
+        }
+        property int targetCount: target.count || 0
+        onTargetCountChanged: {
+            // console.error("COUNT CHANGED", targetCount, target)
+            recolorTimer.start()
+        }
+
+        onFgColorChanged: {
+            // console.error("FG COLOR CHANGED", fgColor, target)
+            recolorTimer.start()
+        }
+
+        Component.onCompleted: {
+            recolorTimer.start()
         }
         height: itemType === Enums.ItemType.TrayItem ? target.height : parent.height
         width: itemType === Enums.ItemType.TrayItem ? target.width : parent.width

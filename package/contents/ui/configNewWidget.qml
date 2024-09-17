@@ -11,7 +11,7 @@ KCM.SimpleKCM {
     id: root
 
     property int currentTab
-    property alias cfg_globalWidgetSettings: settingsComp.configString
+    property alias cfg_allSettings: settingsComp.configString
 
     property var folllowVisbility: {
         "background": {
@@ -35,8 +35,9 @@ KCM.SimpleKCM {
             id: settingsComp
             currentTab: root.currentTab
             handleString: true
+            keyName: "widgets"
             onUpdateConfigString: (newString, config) => {
-                cfg_globalWidgetSettings = newString
+                cfg_allSettings = newString
             }
             folllowVisbility: root.folllowVisbility
         }

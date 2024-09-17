@@ -1,7 +1,7 @@
 function getRandomColor() {
   const h = Math.random()
   const s = Math.max(Math.random(), 0.3)
-  const l = 0.4
+  const l = 0.8
   const a = 1.0
   return Qt.hsla(h, s, l, a)
 }
@@ -101,7 +101,7 @@ function findWidgetsTray(grid, panelWidgets) {
         const model = item.children[j].model
         // App tray icons
         if (model.itemType === "StatusNotifier") {
-          dumpProps(model)
+          // dumpProps(model)
           const name = model.Id
           const title = model.ToolTipTitle !== "" ? model.ToolTipTitle : model.Title
           const icon = model.IconName
@@ -135,6 +135,25 @@ function findWidgetsTray(grid, panelWidgets) {
     }
   }
   return panelWidgets
+}
+
+function getWidgetName(item) {
+  let name = null
+  if (item.applet?.plasmoid?.pluginName) {
+    name = item.applet.plasmoid.pluginName
+  } else if (item.model) {
+    const model = item.model
+    if (model.itemType === "StatusNotifier") {
+      name = model.Id
+    } else if (model.itemType === "Plasmoid") {
+      const applet = model.applet ?? null
+      name = applet?.plasmoid.pluginName ?? null
+    }
+  }
+  if (name) {
+    console.error("@@@@ getWidgetName ->", name)
+  }
+  return name
 }
 
 var themeColors = [
@@ -178,7 +197,7 @@ function getItemCfg(itemType, widgetName) {
   } else if (itemType === Enums.ItemType.TrayItem || itemType === Enums.ItemType.TrayArrow) {
     return trayWidgetSettings
   } else {
-    return globalWidgetSettings
+    return widgetSettings
   }
 }
 

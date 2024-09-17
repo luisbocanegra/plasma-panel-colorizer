@@ -12,6 +12,7 @@ Kirigami.FormLayout {
     twinFormLayouts: parentLayout
     Layout.fillWidth: true
     property bool isSection: true
+    property string sectionName
     // wether read from the string or existing config object
     property bool handleString
     // internal config objects to be sent, both string and json
@@ -154,7 +155,7 @@ Kirigami.FormLayout {
 
     Kirigami.Separator {
         Kirigami.FormData.isSection: isSection
-        Kirigami.FormData.label: i18n("Color")
+        Kirigami.FormData.label: sectionName || i18n("Color")
         Layout.fillWidth: true
     }
 

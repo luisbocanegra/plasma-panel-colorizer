@@ -21,10 +21,11 @@ Kirigami.FormLayout {
         configString = JSON.stringify(config, null, null)
         updateConfigString(configString, config)
     }
-    Kirigami.Separator {
-        Kirigami.FormData.isSection: isSection
-        Kirigami.FormData.label: i18n("Border")
-    }
+    // Kirigami.Separator {
+    //     Kirigami.FormData.isSection: isSection
+    //     Kirigami.FormData.label: i18n("Border")
+    // }
+
     RowLayout {
         Kirigami.FormData.label: i18n("Custom widths:")
         CheckBox {

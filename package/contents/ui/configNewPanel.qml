@@ -11,7 +11,7 @@ KCM.SimpleKCM {
     id: root
 
     property int currentTab
-    property alias cfg_panelSettings: settingsComp.configString
+    property alias cfg_allSettings: settingsComp.configString
     property var folllowVisbility: {
         "background" : {
             "panel": false,
@@ -34,8 +34,10 @@ KCM.SimpleKCM {
             id: settingsComp
             currentTab: root.currentTab
             handleString: true
+            keyName: "panel"
+            supportsForeground: false
             onUpdateConfigString: (newString, config) => {
-                cfg_panelSettings = newString
+                cfg_allSettings = newString
             }
             folllowVisbility: root.folllowVisbility
         }

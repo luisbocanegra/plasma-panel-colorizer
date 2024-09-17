@@ -24,10 +24,10 @@ Kirigami.FormLayout {
         updateConfigString(configString, config)
     }
 
-    Kirigami.Separator {
-        Kirigami.FormData.isSection: shadowRoot
-        Kirigami.FormData.label: i18n("Shadow")
-    }
+    // Kirigami.Separator {
+    //     Kirigami.FormData.isSection: isSection
+    //     Kirigami.FormData.label: i18n("Shadow")
+    // }
 
     SpinBox {
         Kirigami.FormData.label: i18n("Size:")

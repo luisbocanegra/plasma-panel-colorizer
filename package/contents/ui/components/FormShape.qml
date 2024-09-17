@@ -22,10 +22,10 @@ Kirigami.FormLayout {
         updateConfigString(configString, config)
     }
 
-    Kirigami.Separator {
-        Kirigami.FormData.isSection: isSection
-        Kirigami.FormData.label: i18n("Shape")
-    }
+    // Kirigami.Separator {
+    //     Kirigami.FormData.isSection: isSection
+    //     Kirigami.FormData.label: i18n("Shape")
+    // }
 
     GridLayout {
         columns: 2

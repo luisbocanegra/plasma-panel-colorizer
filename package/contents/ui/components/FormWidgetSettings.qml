@@ -12,10 +12,20 @@ ColumnLayout {
     property bool isSection: true
     // wether read from the string or existing config object
     property bool handleString
+    // key to extract config from
+    property string keyName
     // internal config objects to be sent, both string and json
     property string configString: "{}"
     property var config: handleString ? JSON.parse(configString) : undefined
+    property var configLocal: config[keyName]
     signal updateConfigString(configString: string, config: var)
+    // whether the current item supports foreground customization, e.g the panel does not
+    property bool supportsForeground: true
+
+    Component.onCompleted: {
+        console.error(configString)
+        console.error(JSON.stringify(configLocal, null, null))
+    }
 
     property var folllowVisbility: {
         "background": {
@@ -31,13 +41,74 @@ ColumnLayout {
     }
 
     function updateConfig() {
+        config[keyName] = configLocal
         configString = JSON.stringify(config, null, null)
+        // console.error(configString)
         updateConfigString(configString, config)
+        // console.error(JSON.stringify(configLocal, null, null))
+    }
+
+    RowLayout {
+        RowLayout {
+            Layout.leftMargin: Kirigami.Units.mediumSpacing
+            Layout.rightMargin: Kirigami.Units.smallSpacing
+            Layout.bottomMargin: Kirigami.Units.smallSpacing
+            ColumnLayout {
+
+                RowLayout {
+                    Layout.alignment: Qt.AlignRight
+                    Label {
+                        text: i18n("Enable:")
+                    }
+                    CheckBox {
+                        id: isEnabled
+                        checked: configLocal.enabled
+                        onCheckedChanged: {
+                            configLocal.enabled = checked
+                            updateConfig()
+                        }
+                    }
+                }
+                RowLayout {
+                    Label {
+                        text: i18n("Blur behind:")
+                    }
+                    CheckBox {
+                        Kirigami.FormData.label: i18n("Blur behind:")
+                        id: blurCheckbox
+                        checked: configLocal.blurBehind
+                        onCheckedChanged: {
+                            configLocal.blurBehind = checked
+                            updateConfig()
+                        }
+                    }
+                }
+            }
+            Item {
+                Layout.fillWidth: true
+            }
+            RowLayout {
+                Layout.alignment: Qt.AlignRight|Qt.AlignTop
+                Label {
+                    text: i18n("Last preset loaded:")
+                }
+                Label {
+                    text: "None"
+                    font.weight: Font.DemiBold
+                }
+            }
+        }
     }
 
     Kirigami.NavigationTabBar {
-        // Layout.preferredHeight: 60
+        // Layout.preferredWidth: root.parent.width
+        // Layout.minimumWidth: root.parent.width
         Layout.fillWidth: true
+        maximumContentWidth: {
+            const minDelegateWidth = Kirigami.Units.gridUnit * 6;
+            // Always have at least the width of 5 items, so that small amounts of actions look natural.
+            return minDelegateWidth * Math.max(visibleActions.length, 5);
+        }
         actions: [
             Kirigami.Action {
                 icon.name: "globe"
@@ -69,52 +140,54 @@ ColumnLayout {
         property alias formLayout: backgroundRoot
         twinFormLayouts: parentLayout
         Layout.fillWidth: true
-
-        CheckBox {
-            Kirigami.FormData.label: i18n("Blur behind:")
-            id: animationCheckbox
-            checked: config.blurBehind
-            onCheckedChanged: {
-                config.blurBehind = checked
-                updateConfig()
-            }
-        }
     }
 
     FormColors {
         visible: currentTab === 0
-        config: backgroundRoot.config.backgroundColor
+        config: backgroundRoot.configLocal.backgroundColor
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.config.backgroundColor = newConfig
+            backgroundRoot.configLocal.backgroundColor = newConfig
             backgroundRoot.updateConfig()
         }
         followOptions: folllowVisbility.background
+        sectionName: i18n("Background Color")
+    }
+
+    FormColors {
+        visible: currentTab === 0 && supportsForeground
+        config: backgroundRoot.configLocal.foregroundColor
+        isSection: true
+        onUpdateConfigString: (newString, newConfig) => {
+            backgroundRoot.configLocal.foregroundColor = newConfig
+            backgroundRoot.updateConfig()
+        }
+        followOptions: folllowVisbility.foreground
+        sectionName: i18n("Foreground Color")
     }
 
     FormShape {
         visible: currentTab === 1
-        config: backgroundRoot.config
+        config: backgroundRoot.configLocal
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.config = newConfig
+            backgroundRoot.configLocal = newConfig
             backgroundRoot.updateConfig()
         }
     }
 
     FormBorder {
         visible: currentTab === 2
-        config: backgroundRoot.config
+        config: backgroundRoot.configLocal
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.config = newConfig
+            backgroundRoot.configLocal = newConfig
             backgroundRoot.updateConfig()
         }
     }
 
     FormColors {
         visible: currentTab === 2
-        config: backgroundRoot.config.border.color
-        isSection: false
+        config: backgroundRoot.configLocal.border.color
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.config.border.color = newConfig
+            backgroundRoot.configLocal.border.color = newConfig
             backgroundRoot.updateConfig()
         }
         followOptions: folllowVisbility.foreground
@@ -122,19 +195,18 @@ ColumnLayout {
 
     FormShadow {
         visible: currentTab === 3
-        config: backgroundRoot.config
+        config: backgroundRoot.configLocal
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.config = newConfig
+            backgroundRoot.configLocal = newConfig
             backgroundRoot.updateConfig()
         }
     }
 
     FormColors {
         visible: currentTab === 3
-        config: backgroundRoot.config.shadow.color
-        isSection: false
+        config: backgroundRoot.configLocal.shadow.color
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.config.shadow.color = newConfig
+            backgroundRoot.configLocal.shadow.color = newConfig
             backgroundRoot.updateConfig()
         }
         followOptions: folllowVisbility.foreground
