@@ -50,7 +50,7 @@ PlasmoidItem {
         recolorNeeded()
     }
 
-    function getColor(colorCfg) {
+    function getColor(colorCfg, targetIndex) {
         let newColor = "transparent"
         switch (colorCfg.sourceType) {
             case 0:
@@ -60,7 +60,8 @@ PlasmoidItem {
                 newColor = Kirigami.Theme[colorCfg.systemColor]
             break
             case 2:
-                newColor = colorCfg.list[0]
+                const nextIndex = targetIndex % colorCfg.list.length
+                newColor = Utils.rgbToQtColor(Utils.hexToRgb(colorCfg.list[nextIndex]))
             break
             case 3:
                 newColor = Utils.getRandomColor()
@@ -165,6 +166,7 @@ PlasmoidItem {
     property Component backgroundComponent: Kirigami.ShadowedRectangle {
         id: rect
         property Item target
+        property int targetIndex
         property int itemType
         property bool luisbocanegraPanelColorizerBgManaged: true
         // mask and color effect do
@@ -185,13 +187,13 @@ PlasmoidItem {
             width: 4
             visible: false
             radius: height / 2
-            color: separateTray ? getColor(rect.fgColorCfg) : getColor(widgetSettings.foregroundColor)
+            color: separateTray ? getColor(rect.fgColorCfg, targetIndex) : getColor(widgetSettings.foregroundColor, targetIndex)
             Kirigami.Theme.colorSet: Kirigami.Theme[fgColorCfg.systemColorSet]
             Kirigami.Theme.inherit: fgColorCfg.sourceType === 1
         }
         // Label {
         //     id: debugLabel
-        //     text: maxDepth+","+itemCount
+        //     text: targetIndex //maxDepth+","+itemCount
         //     font.pixelSize: 8
         // }
         corners {
@@ -203,7 +205,7 @@ PlasmoidItem {
         Kirigami.Theme.colorSet: Kirigami.Theme[bgColorCfg.systemColorSet]
         Kirigami.Theme.inherit: bgColorCfg.sourceType === 1
         color: {
-            return getColor(bgColorCfg)
+            return getColor(bgColorCfg, targetIndex)
         }
         Timer {
             id: recolorTimer
@@ -390,7 +392,7 @@ PlasmoidItem {
             Kirigami.Theme.colorSet: Kirigami.Theme[borderColorCfg.systemColorSet]
             Kirigami.Theme.inherit: borderColorCfg.sourceType === 1
             property color borderColor: {
-                return getColor(borderColorCfg)
+                return getColor(borderColorCfg, targetIndex)
             }
 
             Rectangle {
@@ -470,7 +472,7 @@ PlasmoidItem {
             Kirigami.Theme.inherit: shadowColorCfg.sourceType === 1
             size: cfg.shadow.size
             color: {
-                return getColor(shadowColorCfg)
+                return getColor(shadowColorCfg, targetIndex)
             }
             xOffset: cfg.shadow.xOffset
             yOffset: cfg.shadow.yOffset
@@ -654,21 +656,27 @@ PlasmoidItem {
 
     function showTrayAreas(grid) {
         if (grid instanceof GridView) {
+            let index = 0
             for (let i = 0; i < grid.count; i++) {
                 const item = grid.itemAtIndex(i);
                 if (Utils.isBgManaged(item)) continue
                 // Utils.dumpProps(item)
-                backgroundComponent.createObject(item, {"z":-1, "target": item, "itemType": Enums.ItemType.TrayItem })
+                backgroundComponent.createObject(item,
+                    { "z":-1, "target": item, "itemType": Enums.ItemType.TrayItem, "targetIndex": index }
+                )
+                if (item.visible) {
+                    index++
+                }
             }
-        }
-        // find the expand tray arrow
-        if (grid instanceof GridLayout) {
-            for (let i in grid.children) {
-                const item = grid.children[i]
+
+            for (let i in grid.parent.children) {
+                const item = grid.parent.children[i]
                 if (!(item instanceof GridView)) {
                     if (Utils.isBgManaged(item)) continue
                     item.iconSize = horizontal ? trayGridView.cellWidth : trayGridView.cellHeight
-                    backgroundComponent.createObject(item, {"z":-1, "target": item, "itemType": Enums.ItemType.TrayArrow })
+                    backgroundComponent.createObject(item,
+                        { "z":-1, "target": item, "itemType": Enums.ItemType.TrayArrow, "targetIndex": index}
+                    )
                 }
             }
         }
@@ -683,13 +691,16 @@ PlasmoidItem {
             if (Utils.isBgManaged(child)) continue
             // console.error(child.applet?.plasmoid?.pluginName)
             // Utils.dumpProps(child)
-            backgroundComponent.createObject(child, { "z":-1, "target":child, "itemType": Enums.ItemType.WidgetItem });
+            backgroundComponent.createObject(child,
+                { "z":-1, "target":child, "itemType": Enums.ItemType.WidgetItem , "targetIndex": i }
+            );
         }
     }
 
     function showPanelBg(panelBg) {
         // Utils.dumpProps(panelBg)
-        backgroundComponent.createObject(panelBg, {"z":-1, "target": panelBg, "itemType": Enums.ItemType.PanelBgItem });
+        backgroundComponent.createObject(panelBg,
+            { "z":-1, "target": panelBg, "itemType": Enums.ItemType.PanelBgItem })
     }
 
     onPanelWidgetsCountChanged: {
