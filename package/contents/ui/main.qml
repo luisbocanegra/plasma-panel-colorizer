@@ -383,6 +383,35 @@ PlasmoidItem {
             when: addMargin && (itemType === Enums.ItemType.TrayArrow || itemType === Enums.ItemType.TrayItem)
         }
 
+        // fix tray weird margin
+        Binding {
+            target: rect.target
+            property: "Layout.leftMargin"
+            value: -2
+            when: addMargin && itemType === Enums.ItemType.TrayArrow && horizontal
+        }
+
+        Binding {
+            target: rect.target
+            property: "Layout.rightMargin"
+            value: 2
+            when: addMargin && itemType === Enums.ItemType.TrayArrow && horizontal
+        }
+
+        Binding {
+            target: rect.target
+            property: "Layout.topMargin"
+            value: -2
+            when: addMargin && itemType === Enums.ItemType.TrayArrow && !horizontal
+        }
+
+        Binding {
+            target: rect.target
+            property: "Layout.bottomMargin"
+            value: 2
+            when: addMargin && itemType === Enums.ItemType.TrayArrow && !horizontal
+        }
+
         Rectangle {
             id: borderRec
             anchors.fill: parent
@@ -674,6 +703,8 @@ PlasmoidItem {
                 if (!(item instanceof GridView)) {
                     if (Utils.isBgManaged(item)) continue
                     item.iconSize = horizontal ? trayGridView.cellWidth : trayGridView.cellHeight
+                    // item.Layout.leftMargin = -2
+                    // item.Layout.rightMargin = 2
                     backgroundComponent.createObject(item,
                         { "z":-1, "target": item, "itemType": Enums.ItemType.TrayArrow, "targetIndex": index}
                     )
