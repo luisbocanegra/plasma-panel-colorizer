@@ -267,14 +267,28 @@ PlasmoidItem {
             target: rect
             property: "x"
             value: -marginLeft
-            when: addMargin && itemType === Enums.ItemType.WidgetItem
+            when: addMargin && itemType === Enums.ItemType.WidgetItem && horizontal
+        }
+
+        Binding {
+            target: rect
+            property: "y"
+            value: -marginTop
+            when: addMargin && itemType === Enums.ItemType.WidgetItem && !horizontal
         }
 
         Binding {
             target: rect
             property: "width"
             value: parent.width + horizontalWidth
-            when: addMargin && itemType === Enums.ItemType.WidgetItem
+            when: addMargin && itemType === Enums.ItemType.WidgetItem && horizontal
+        }
+
+        Binding {
+            target: rect
+            property: "height"
+            value: parent.height + verticalWidth
+            when: addMargin && itemType === Enums.ItemType.WidgetItem && !horizontal
         }
 
         Binding {
