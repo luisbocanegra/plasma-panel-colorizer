@@ -22,8 +22,7 @@ PlasmoidItem {
     property int trayGridViewCountOld: 0
     property var panelPrefixes: ["north","south","west","east"]
     property bool horizontal: Plasmoid.formFactor === PlasmaCore.Types.Horizontal
-    property bool fixedSideMarginEnabled: true
-    property int fixedSideMarginSize: 4
+    property bool fixedSidePaddingEnabled: Object.values(panelSettings.padding).some(value => value !== 0)
     property bool isEnabled: true
     property bool nativePanelBackgroundEnabled: cfg.nativePanelBackground.enabled
     property real nativePanelBackgroundOpacity: cfg.nativePanelBackground.opacity
@@ -107,11 +106,14 @@ PlasmoidItem {
                 if (child.hasOwnProperty("isMask") && forceMask) {
                     child.isMask = true
                 }
-                const effectItem = Utils.getEffectItem(child)
-                if (forceEffect && !effectItem) {
-                    colorEffectComoponent.createObject(child, {"target": child, "colorizationColor": newColor})
-                } else {
-                    effectItem.colorizationColor = newColor
+
+                if (forceEffect) {
+                    const effectItem = Utils.getEffectItem(child)
+                    if (!effectItem) {
+                        colorEffectComoponent.createObject(child, {"target": child, "colorizationColor": newColor})
+                    } else {
+                        effectItem.colorizationColor = newColor
+                    }
                 }
                 count++
                 // repaintDebugComponent.createObject(child)
@@ -254,13 +256,13 @@ PlasmoidItem {
         anchors.centerIn: (itemType === Enums.ItemType.TrayItem || itemType === Enums.ItemType.TrayArrow) ? parent : undefined
         anchors.fill: (itemType === Enums.ItemType.PanelBgItem||itemType === Enums.ItemType.TrayItem || itemType === Enums.ItemType.TrayArrow) ? parent : undefined
 
-        property bool addMargin: cfg.margins.left || cfg.margins.right || cfg.margins.top || cfg.margins.bottom || itemType === Enums.ItemType.PanelBgItem
-        property int marginLeft: cfg.margins.left
-        property int marginRight: cfg.margins.right
+        property bool addMargin: Object.values(cfg.margin).some(value => value !== 0) || itemType === Enums.ItemType.PanelBgItem
+        property int marginLeft: cfg.margin.left
+        property int marginRight: cfg.margin.right
         property int horizontalWidth: marginLeft + marginRight
 
-        property int marginTop: cfg.margins.top
-        property int marginBottom: cfg.margins.bottom
+        property int marginTop: cfg.margin.top
+        property int marginBottom: cfg.margin.bottom
         property int verticalWidth: marginTop + marginBottom
 
         Binding {
@@ -319,7 +321,7 @@ PlasmoidItem {
             when: addMargin && itemType === Enums.ItemType.WidgetItem
         }
 
-        // Panel background, we actually change the panel margins so everything moves with it
+        // Panel background, we actually change the panel margin so everything moves with it
 
         Binding {
             target: rect.target
@@ -486,6 +488,8 @@ PlasmoidItem {
         let candidate = main.parent;
         while (candidate) {
             if (candidate instanceof GridLayout) {
+                candidate.rowSpacing = widgetSettings.spacing
+                candidate.columnSpacing = widgetSettings.spacing
                 return candidate;
             }
             candidate = candidate.parent;
@@ -501,29 +505,29 @@ PlasmoidItem {
     Binding {
         target: panelLayoutContainer
         property: "anchors.leftMargin"
-        value: fixedSideMarginSize
-        when: fixedSideMarginEnabled && horizontal
+        value: panelSettings.padding.left
+        when: fixedSidePaddingEnabled
     }
 
     Binding {
         target: panelLayoutContainer
         property: "anchors.rightMargin"
-        value: fixedSideMarginSize
-        when: fixedSideMarginEnabled && horizontal
+        value: panelSettings.padding.right
+        when: fixedSidePaddingEnabled
     }
 
     Binding {
         target: panelLayoutContainer
         property: "anchors.topMargin"
-        value: fixedSideMarginSize
-        when: fixedSideMarginEnabled && !horizontal
+        value: panelSettings.padding.top
+        when: fixedSidePaddingEnabled
     }
 
     Binding {
         target: panelLayoutContainer
         property: "anchors.bottomMargin"
-        value: fixedSideMarginSize
-        when: fixedSideMarginEnabled && !horizontal
+        value: panelSettings.padding.bottom
+        when: fixedSidePaddingEnabled
     }
 
     property Item panelBg: {

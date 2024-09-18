@@ -28,101 +28,55 @@ Kirigami.FormLayout {
     // }
 
     GridLayout {
-        columns: 2
-        rows: 2
-        Kirigami.FormData.label: i18n("Radius:")
-        SpinBox {
-            id: topLeftRadius
-            value: config.radius.topLeft
-            from: 0
-            to: 99
-            onValueModified: {
-                config.radius.topLeft = value
-                updateConfig()
-            }
-        }
-        SpinBox {
-            id: topRightRadius
-            value: config.radius.topRight
-            from: 0
-            to: 99
-            onValueModified: {
-                config.radius.topRight = value
-                updateConfig()
-            }
-        }
-        SpinBox {
-            id: bottomLeftRadius
-            value: config.radius.bottomLeft
-            from: 0
-            to: 99
-            onValueModified: {
-                config.radius.bottomLeft = value
-                updateConfig()
-            }
-        }
-        SpinBox {
-            id: bottomRightRadius
-            value: config.radius.bottomRight
-            from: 0
-            to: 99
-            onValueModified: {
-                config.radius.bottomRight = value
-                updateConfig()
-            }
-        }
-    }
-
-    GridLayout {
         columns: 3
         rows: 3
-        Kirigami.FormData.label: i18n("Margin:")
+        Kirigami.FormData.label: i18n("Padding:")
         SpinBox {
             id: topMargin
-            value: config.margin.top
+            value: config.padding.top
             from: 0
             to: 99
             Layout.row: 0
             Layout.column: 1
             onValueModified: {
-                config.margin.top = value
+                config.padding.top = value
                 updateConfig()
             }
         }
         SpinBox {
             id: bottomMargin
-            value: config.margin.bottom
+            value: config.padding.bottom
             from: 0
             to: 99
             Layout.row: 2
             Layout.column: 1
             onValueModified: {
-                config.margin.bottom = value
+                config.padding.bottom = value
                 updateConfig()
             }
         }
         SpinBox {
             id: leftMargin
-            value: config.margin.left
+            value: config.padding.left
             from: 0
             to: 99
             Layout.row: 1
             Layout.column: 0
             onValueModified: {
-                config.margin.left = value
+                config.padding.left = value
                 updateConfig()
             }
         }
 
         SpinBox {
             id: rightMargin
-            value: config.margin.right
+            value: config.padding.right
             from: 0
             to: 99
             Layout.row: 1
             Layout.column: 2
             onValueModified: {
-                config.margin.right = value
+                config.padding.right = value
                 updateConfig()
             }
         }

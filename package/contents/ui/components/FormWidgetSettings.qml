@@ -215,6 +215,21 @@ ColumnLayout {
         property alias formLayout: backgroundRoot
         twinFormLayouts: parentLayout
         Layout.fillWidth: true
+
+        SpinBox {
+            Kirigami.FormData.label: i18n("Spacing:")
+            id: spacingCheckbox
+            value: configLocal.spacing || 0
+            from: 0
+            to: 999
+            visible: keyName === "widgets" && currentTab === 1
+            enabled: visible
+            onValueModified: {
+                if (!enabled) return
+                configLocal.spacing = value
+                updateConfig()
+            }
+        }
     }
 
     FormColors {
@@ -242,6 +257,15 @@ ColumnLayout {
 
     FormShape {
         visible: currentTab === 1
+        config: backgroundRoot.configLocal
+        onUpdateConfigString: (newString, newConfig) => {
+            backgroundRoot.configLocal = newConfig
+            backgroundRoot.updateConfig()
+        }
+    }
+
+    FormPadding {
+        visible: currentTab === 1 && keyName === "panel"
         config: backgroundRoot.configLocal
         onUpdateConfigString: (newString, newConfig) => {
             backgroundRoot.configLocal = newConfig
