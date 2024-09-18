@@ -19,13 +19,13 @@ function isBgManaged(item) {
   return managed
 }
 
-function isEffectManaged(item) {
-  let managed = false
+function getEffectItem(item) {
+  let managed = null
   if (item?.children) {
     for (let i in item.children) {
       const child = item.children[i];
       if (!child?.luisbocanegraPanelColorizerEffectManaged) continue
-      managed = true
+      managed = child
     }
   }
   // console.error(item, "managed:", managed);

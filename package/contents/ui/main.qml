@@ -107,8 +107,11 @@ PlasmoidItem {
                 if (child.hasOwnProperty("isMask") && forceMask) {
                     child.isMask = true
                 }
-                if (forceEffect && !Utils.isEffectManaged(child)) {
-                    colorEffectComoponent.createObject(child, {"target": child, "effectColor": newColor, "effectSource": child})
+                const effectItem = Utils.getEffectItem(child)
+                if (forceEffect && !effectItem) {
+                    colorEffectComoponent.createObject(child, {"target": child, "colorizationColor": newColor})
+                } else {
+                    effectItem.colorizationColor = newColor
                 }
                 count++
                 // repaintDebugComponent.createObject(child)
@@ -149,13 +152,10 @@ PlasmoidItem {
         // the usual way
         id: effectRect
         property bool luisbocanegraPanelColorizerEffectManaged: true
-        property string effectColor
         property Item target
-        property Item effectSource
-        height: effectSource.height
-        width: effectSource.width
-        colorizationColor: effectColor
-        source: effectSource
+        height: target.height
+        width: target.width
+        source: target
         colorization: 1
         autoPaddingEnabled: false
     }
