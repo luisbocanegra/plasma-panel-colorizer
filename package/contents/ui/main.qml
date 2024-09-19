@@ -210,9 +210,9 @@ PlasmoidItem {
             id: fgColorHolder
             height: 4
             width: 4
-            visible: false
+            visible: true
             radius: height / 2
-            color: {
+            property var newColor: {
                 if (separateTray) {
                     return getColor(rect.fgColorCfg, targetIndex, rect.color, itemType)
                 } else if (isTray) {
@@ -221,8 +221,24 @@ PlasmoidItem {
                     return getColor(widgetSettings.foregroundColor, targetIndex, rect.color, itemType)
                 }
             }
-            Kirigami.Theme.colorSet: Kirigami.Theme[fgColorCfg.systemColorSet]
-            Kirigami.Theme.inherit: fgColorCfg.sourceType === 1
+            Binding {
+                target: fgColorHolder
+                property: "color"
+                value: fgColorHolder.newColor
+                when: cfg.enabled
+            }
+            Binding {
+                target: fgColorHolder
+                property: "Kirigami.Theme.colorSet"
+                value: Kirigami.Theme[fgColorCfg.systemColorSet]
+                when: cfg.enabled
+            }
+            Binding {
+                target: fgColorHolder
+                property: "Kirigami.Theme.inherit"
+                value: fgColorCfg.sourceType === 1
+                when: cfg.enabled
+            }
         }
         // Label {
         //     id: debugLabel
@@ -291,7 +307,7 @@ PlasmoidItem {
         anchors.centerIn: (isTray || isTrayArrow) ? parent : undefined
         anchors.fill: (isPanel ||isTray || isTrayArrow) ? parent : undefined
 
-        property bool addMargin: Object.values(cfg.margin).some(value => value !== 0) || isPanel
+        property bool addMargin: (Object.values(cfg.margin).some(value => value !== 0) || isPanel) && cfg.enabled
         property int marginLeft: cfg.margin.left
         property int marginRight: cfg.margin.right
         property int horizontalWidth: marginLeft + marginRight
