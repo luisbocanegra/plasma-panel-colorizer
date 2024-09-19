@@ -1,18 +1,18 @@
 function getRandomColor() {
   const h = Math.random()
-  const s = Math.max(Math.random(), 0.3)
-  const l = 0.8
+  const s = Math.random()
+  const l = Math.random()
   const a = 1.0
   return Qt.hsla(h, s, l, a)
 }
 
-function isBgManaged(item) {
-  let managed = false
+function getBgManaged(item) {
+  let managed = null
   if (item?.children) {
     for (let i in item.children) {
       const child = item.children[i];
       if (!child?.luisbocanegraPanelColorizerBgManaged) continue
-      managed = true
+      managed = child
     }
   }
   // console.error(item, "managed:", managed);
@@ -163,9 +163,9 @@ function getWidgetName(item) {
       name = applet?.plasmoid.pluginName ?? null
     }
   }
-  if (name) {
-    console.error("@@@@ getWidgetName ->", name)
-  }
+  // if (name) {
+  //   console.error("@@@@ getWidgetName ->", name)
+  // }
   return name
 }
 

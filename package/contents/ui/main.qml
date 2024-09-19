@@ -30,6 +30,9 @@ PlasmoidItem {
     property int panelWidgetsCount: 0
     property real trayItemThikness: 20
     property bool separateTray: trayWidgetSettings.enabled
+    // items inside the tray need to know the tray index to take
+    // the same foreground when we're not coloring them separately
+    property int trayIndex: 0
     property var cfg: {
         try {
             return JSON.parse(plasmoid.configuration.allSettings)
@@ -108,12 +111,17 @@ PlasmoidItem {
                     child.isMask = true
                 }
 
-                if (forceEffect) {
-                    const effectItem = Utils.getEffectItem(child)
+                if (
+                    forceEffect
+                    && [Canvas,Kirigami.Icon].some(function (type) {return child instanceof type})
+                ) {
+                    const effectItem = Utils.getEffectItem(child.parent)
                     if (!effectItem) {
-                        colorEffectComoponent.createObject(child, {"target": child, "colorizationColor": newColor})
+                        colorEffectComoponent.createObject(child.parent, {"target": child, "colorizationColor": newColor})
                     } else {
+                        effectItem.source = null
                         effectItem.colorizationColor = newColor
+                        effectItem.source = child
                     }
                 }
                 count++
@@ -158,6 +166,7 @@ PlasmoidItem {
         property Item target
         height: target.height
         width: target.width
+        anchors.centerIn: parent
         source: target
         colorization: 1
         autoPaddingEnabled: false
@@ -168,6 +177,10 @@ PlasmoidItem {
         property Item target
         property int targetIndex
         property int itemType
+        property bool isPanel: itemType === Enums.ItemType.PanelBgItem
+        property bool isWidget: itemType === Enums.ItemType.WidgetItem
+        property bool isTray: itemType === Enums.ItemType.TrayItem
+        property bool isTrayArrow: itemType === Enums.ItemType.TrayArrow
         property bool luisbocanegraPanelColorizerBgManaged: true
         // mask and color effect do
         property bool requiresRefresh: false
@@ -187,7 +200,11 @@ PlasmoidItem {
             width: 4
             visible: false
             radius: height / 2
-            color: separateTray ? getColor(rect.fgColorCfg, targetIndex) : getColor(widgetSettings.foregroundColor, targetIndex)
+            color: separateTray
+                    ? getColor(rect.fgColorCfg, targetIndex)
+                    : getColor(widgetSettings.foregroundColor, isTray
+                        ? trayIndex
+                        : targetIndex)
             Kirigami.Theme.colorSet: Kirigami.Theme[fgColorCfg.systemColorSet]
             Kirigami.Theme.inherit: fgColorCfg.sourceType === 1
         }
@@ -212,7 +229,7 @@ PlasmoidItem {
             interval: 250
             repeat: requiresRefresh
             onTriggered: {
-                if (!(rect.itemType === Enums.ItemType.PanelBgItem)) {
+                if (!isPanel) {
                     const result = applyFgColor(target, fgColor, fgColorCfg, 0, false, false)
                     if (result) {
                         itemCount = result.count
@@ -253,12 +270,12 @@ PlasmoidItem {
             }
         }
 
-        height: itemType === Enums.ItemType.TrayItem ? target.height : parent.height
-        width: itemType === Enums.ItemType.TrayItem ? target.width : parent.width
-        anchors.centerIn: (itemType === Enums.ItemType.TrayItem || itemType === Enums.ItemType.TrayArrow) ? parent : undefined
-        anchors.fill: (itemType === Enums.ItemType.PanelBgItem||itemType === Enums.ItemType.TrayItem || itemType === Enums.ItemType.TrayArrow) ? parent : undefined
+        height: isTray ? target.height : parent.height
+        width: isTray ? target.width : parent.width
+        anchors.centerIn: (isTray || isTrayArrow) ? parent : undefined
+        anchors.fill: (isPanel ||isTray || isTrayArrow) ? parent : undefined
 
-        property bool addMargin: Object.values(cfg.margin).some(value => value !== 0) || itemType === Enums.ItemType.PanelBgItem
+        property bool addMargin: Object.values(cfg.margin).some(value => value !== 0) || isPanel
         property int marginLeft: cfg.margin.left
         property int marginRight: cfg.margin.right
         property int horizontalWidth: marginLeft + marginRight
@@ -271,56 +288,56 @@ PlasmoidItem {
             target: rect
             property: "x"
             value: -marginLeft
-            when: addMargin && itemType === Enums.ItemType.WidgetItem && horizontal
+            when: addMargin && isWidget && horizontal
         }
 
         Binding {
             target: rect
             property: "y"
             value: -marginTop
-            when: addMargin && itemType === Enums.ItemType.WidgetItem && !horizontal
+            when: addMargin && isWidget && !horizontal
         }
 
         Binding {
             target: rect
             property: "width"
             value: parent.width + horizontalWidth
-            when: addMargin && itemType === Enums.ItemType.WidgetItem && horizontal
+            when: addMargin && isWidget && horizontal
         }
 
         Binding {
             target: rect
             property: "height"
             value: parent.height + verticalWidth
-            when: addMargin && itemType === Enums.ItemType.WidgetItem && !horizontal
+            when: addMargin && isWidget && !horizontal
         }
 
         Binding {
             target: rect.target
             property: "Layout.leftMargin"
             value: marginLeft
-            when: addMargin && itemType === Enums.ItemType.WidgetItem
+            when: addMargin && isWidget
         }
 
         Binding {
             target: rect.target
             property: "Layout.rightMargin"
             value: marginRight
-            when: addMargin && itemType === Enums.ItemType.WidgetItem
+            when: addMargin && isWidget
         }
 
         Binding {
             target: rect.target
             property: "Layout.topMargin"
             value: marginTop
-            when: addMargin && itemType === Enums.ItemType.WidgetItem
+            when: addMargin && isWidget
         }
 
         Binding {
             target: rect.target
             property: "Layout.bottomMargin"
             value: marginBottom
-            when: addMargin && itemType === Enums.ItemType.WidgetItem
+            when: addMargin && isWidget
         }
 
         // Panel background, we actually change the panel margin so everything moves with it
@@ -329,28 +346,28 @@ PlasmoidItem {
             target: rect.target
             property: "anchors.leftMargin"
             value: marginLeft
-            when: addMargin && itemType === Enums.ItemType.PanelBgItem
+            when: addMargin && isPanel
         }
 
         Binding {
             target: rect.target
             property: "anchors.rightMargin"
             value: marginRight
-            when: addMargin && itemType === Enums.ItemType.PanelBgItem
+            when: addMargin && isPanel
         }
 
         Binding {
             target: rect.target
             property: "anchors.topMargin"
             value: marginTop
-            when: addMargin && itemType === Enums.ItemType.PanelBgItem
+            when: addMargin && isPanel
         }
 
         Binding {
             target: rect.target
             property: "anchors.bottomMargin"
             value: marginBottom
-            when: addMargin && itemType === Enums.ItemType.PanelBgItem
+            when: addMargin && isPanel
         }
 
         // Tray item / arrow
@@ -359,28 +376,28 @@ PlasmoidItem {
             target: rect
             property: "anchors.leftMargin"
             value: marginLeft
-            when: addMargin && (itemType === Enums.ItemType.TrayArrow || itemType === Enums.ItemType.TrayItem)
+            when: addMargin && (isTrayArrow || isTray)
         }
 
         Binding {
             target: rect
             property: "anchors.rightMargin"
             value: marginRight
-            when: addMargin && (itemType === Enums.ItemType.TrayArrow || itemType === Enums.ItemType.TrayItem)
+            when: addMargin && (isTrayArrow || isTray)
         }
 
         Binding {
             target: rect
             property: "anchors.topMargin"
             value: marginTop
-            when: addMargin && (itemType === Enums.ItemType.TrayArrow || itemType === Enums.ItemType.TrayItem)
+            when: addMargin && (isTrayArrow || isTray)
         }
 
         Binding {
             target: rect
             property: "anchors.bottomMargin"
             value: marginBottom
-            when: addMargin && (itemType === Enums.ItemType.TrayArrow || itemType === Enums.ItemType.TrayItem)
+            when: addMargin && (isTrayArrow || isTray)
         }
 
         // fix tray weird margin
@@ -388,28 +405,28 @@ PlasmoidItem {
             target: rect.target
             property: "Layout.leftMargin"
             value: -2
-            when: addMargin && itemType === Enums.ItemType.TrayArrow && horizontal
+            when: addMargin && isTrayArrow && horizontal
         }
 
         Binding {
             target: rect.target
             property: "Layout.rightMargin"
             value: 2
-            when: addMargin && itemType === Enums.ItemType.TrayArrow && horizontal
+            when: addMargin && isTrayArrow && horizontal
         }
 
         Binding {
             target: rect.target
             property: "Layout.topMargin"
             value: -2
-            when: addMargin && itemType === Enums.ItemType.TrayArrow && !horizontal
+            when: addMargin && isTrayArrow && !horizontal
         }
 
         Binding {
             target: rect.target
             property: "Layout.bottomMargin"
             value: 2
-            when: addMargin && itemType === Enums.ItemType.TrayArrow && !horizontal
+            when: addMargin && isTrayArrow && !horizontal
         }
 
         Rectangle {
@@ -651,10 +668,13 @@ PlasmoidItem {
 
     onPanelLayoutCountChanged: {
         if (panelLayoutCount === 0) return
-        trayInitTimer.restart()
-        showWidgets(panelLayout)
-        updateCurrentWidgets()
-        showPanelBg(panelBg)
+        console.error("onPanelLayoutCountChanged")
+        Qt.callLater(function() {
+            trayInitTimer.restart()
+            showWidgets(panelLayout)
+            updateCurrentWidgets()
+            showPanelBg(panelBg)
+        })
     }
 
     onTrayGridViewCountChanged: {
@@ -688,11 +708,15 @@ PlasmoidItem {
             let index = 0
             for (let i = 0; i < grid.count; i++) {
                 const item = grid.itemAtIndex(i);
-                if (Utils.isBgManaged(item)) continue
-                // Utils.dumpProps(item)
-                backgroundComponent.createObject(item,
-                    { "z":-1, "target": item, "itemType": Enums.ItemType.TrayItem, "targetIndex": index }
-                )
+                if (!item.visible) continue
+                const bgItem = Utils.getBgManaged(item)
+                if (!bgItem) {
+                    backgroundComponent.createObject(item,
+                        { "z":-1, "target": item, "itemType": Enums.ItemType.TrayItem, "targetIndex": index }
+                    )
+                } else {
+                    bgItem.targetIndex = index
+                }
                 if (item.visible) {
                     index++
                 }
@@ -701,30 +725,40 @@ PlasmoidItem {
             for (let i in grid.parent.children) {
                 const item = grid.parent.children[i]
                 if (!(item instanceof GridView)) {
-                    if (Utils.isBgManaged(item)) continue
+                    if (!item.visible) continue
+                    const bgItem = Utils.getBgManaged(item)
+                    if (!bgItem) {
+                        backgroundComponent.createObject(item,
+                            { "z":-1, "target": item, "itemType": Enums.ItemType.TrayArrow, "targetIndex": index}
+                        )
+                    } else {
+                        bgItem.targetIndex = index
+                    }
                     item.iconSize = horizontal ? trayGridView.cellWidth : trayGridView.cellHeight
-                    // item.Layout.leftMargin = -2
-                    // item.Layout.rightMargin = 2
-                    backgroundComponent.createObject(item,
-                        { "z":-1, "target": item, "itemType": Enums.ItemType.TrayArrow, "targetIndex": index}
-                    )
                 }
             }
         }
     }
 
     function showWidgets(panelLayout) {
+        console.error("showWidgets()")
         for (var i in panelLayout.children) {
             const child = panelLayout.children[i];
             // name may not be available while gragging into the panel and
             // other situations
             if (!child.applet?.plasmoid?.pluginName) continue
-            if (Utils.isBgManaged(child)) continue
+            // if (Utils.getBgManaged(child)) continue
             // console.error(child.applet?.plasmoid?.pluginName)
             // Utils.dumpProps(child)
-            backgroundComponent.createObject(child,
-                { "z":-1, "target":child, "itemType": Enums.ItemType.WidgetItem , "targetIndex": i }
-            );
+            if (child.applet.plasmoid.pluginName === "org.kde.plasma.systemtray") trayIndex = i
+            const bgItem = Utils.getBgManaged(child)
+            if (!bgItem) {
+                backgroundComponent.createObject(child,
+                    { "z":-1, "target":child, "itemType": Enums.ItemType.WidgetItem , "targetIndex": i }
+                )
+            } else {
+                bgItem.targetIndex = i
+            }
         }
     }
 
