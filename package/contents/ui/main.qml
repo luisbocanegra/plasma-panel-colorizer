@@ -33,6 +33,9 @@ PlasmoidItem {
     // items inside the tray need to know the tray index to take
     // the same foreground when we're not coloring them separately
     property int trayIndex: 0
+    // keep track of these to allow others to follow their color
+    property Item panelBgItem
+    property Item trayWidgetBgItem
     property var cfg: {
         try {
             return JSON.parse(plasmoid.configuration.allSettings)
@@ -53,7 +56,7 @@ PlasmoidItem {
         recolorNeeded()
     }
 
-    function getColor(colorCfg, targetIndex) {
+    function getColor(colorCfg, targetIndex, parentColor, itemType) {
         let newColor = "transparent"
         switch (colorCfg.sourceType) {
             case 0:
@@ -70,7 +73,16 @@ PlasmoidItem {
                 newColor = Utils.getRandomColor()
             break
             case 4:
-                newColor = colorCfg.custom
+                if (colorCfg.followColor === 0) {
+                    newColor = panelBgItem.color
+                } else if (colorCfg.followColor === 1) {
+                    newColor = itemType === Enums.ItemType.TrayItem || itemType === Enums.ItemType.TrayArrow
+                        ? trayWidgetBgItem.color
+                        : parentColor
+                } else if (colorCfg.followColor === 2) {
+                    newColor = parentColor
+                }
+
             break
             default:
                 newColor = "transparent"
@@ -200,11 +212,15 @@ PlasmoidItem {
             width: 4
             visible: false
             radius: height / 2
-            color: separateTray
-                    ? getColor(rect.fgColorCfg, targetIndex)
-                    : getColor(widgetSettings.foregroundColor, isTray
-                        ? trayIndex
-                        : targetIndex)
+            color: {
+                if (separateTray) {
+                    return getColor(rect.fgColorCfg, targetIndex, rect.color, itemType)
+                } else if (isTray) {
+                    return getColor(widgetSettings.foregroundColor, trayIndex, rect.color, itemType)
+                } else {
+                    return getColor(widgetSettings.foregroundColor, targetIndex, rect.color, itemType)
+                }
+            }
             Kirigami.Theme.colorSet: Kirigami.Theme[fgColorCfg.systemColorSet]
             Kirigami.Theme.inherit: fgColorCfg.sourceType === 1
         }
@@ -222,7 +238,7 @@ PlasmoidItem {
         Kirigami.Theme.colorSet: Kirigami.Theme[bgColorCfg.systemColorSet]
         Kirigami.Theme.inherit: bgColorCfg.sourceType === 1
         color: {
-            return getColor(bgColorCfg, targetIndex)
+            return getColor(bgColorCfg, targetIndex, null, itemType)
         }
         Timer {
             id: recolorTimer
@@ -438,7 +454,7 @@ PlasmoidItem {
             Kirigami.Theme.colorSet: Kirigami.Theme[borderColorCfg.systemColorSet]
             Kirigami.Theme.inherit: borderColorCfg.sourceType === 1
             property color borderColor: {
-                return getColor(borderColorCfg, targetIndex)
+                return getColor(borderColorCfg, targetIndex, rect.color, itemType)
             }
 
             Rectangle {
@@ -518,7 +534,7 @@ PlasmoidItem {
             Kirigami.Theme.inherit: shadowColorCfg.sourceType === 1
             size: cfg.shadow.size
             color: {
-                return getColor(shadowColorCfg, targetIndex)
+                return getColor(shadowColorCfg, targetIndex, rect.color, itemType)
             }
             xOffset: cfg.shadow.xOffset
             yOffset: cfg.shadow.yOffset
@@ -750,12 +766,14 @@ PlasmoidItem {
             // if (Utils.getBgManaged(child)) continue
             // console.error(child.applet?.plasmoid?.pluginName)
             // Utils.dumpProps(child)
-            if (child.applet.plasmoid.pluginName === "org.kde.plasma.systemtray") trayIndex = i
+            const isTray = child.applet.plasmoid.pluginName === "org.kde.plasma.systemtray"
+            if (isTray) trayIndex = i
             const bgItem = Utils.getBgManaged(child)
             if (!bgItem) {
-                backgroundComponent.createObject(child,
+                const comp = backgroundComponent.createObject(child,
                     { "z":-1, "target":child, "itemType": Enums.ItemType.WidgetItem , "targetIndex": i }
                 )
+                if (isTray) trayWidgetBgItem = comp
             } else {
                 bgItem.targetIndex = i
             }
@@ -764,7 +782,7 @@ PlasmoidItem {
 
     function showPanelBg(panelBg) {
         // Utils.dumpProps(panelBg)
-        backgroundComponent.createObject(panelBg,
+        panelBgItem = backgroundComponent.createObject(panelBg,
             { "z":-1, "target": panelBg, "itemType": Enums.ItemType.PanelBgItem })
     }
 
