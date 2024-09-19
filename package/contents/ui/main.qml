@@ -206,11 +206,17 @@ PlasmoidItem {
         property int itemCount: 0
         property int maxDepth: 0
         visible: cfg.enabled
+        property bool bgEnabled: bgColorCfg.enabled
+        property bool fgEnabled: fgColorCfg.enabled
+        property bool radiusEnabled: cfg.radiusEnabled
+        property bool marginEnabled: cfg.marginEnabled
+        property bool borderEnabled: cfg.border.enabled
+        property bool shadowEnabled: cfg.shadow.enabled
         Rectangle {
             id: fgColorHolder
             height: 4
             width: 4
-            visible: true
+            visible: false
             radius: height / 2
             property var newColor: {
                 if (separateTray) {
@@ -224,7 +230,7 @@ PlasmoidItem {
             Binding {
                 target: fgColorHolder
                 property: "color"
-                value: fgColorHolder.newColor
+                value: fgEnabled ? fgColorHolder.newColor : Kirigami.Theme.textColor
                 when: cfg.enabled
             }
             Binding {
@@ -246,15 +252,19 @@ PlasmoidItem {
         //     font.pixelSize: 8
         // }
         corners {
-            topLeftRadius: cfg.radius.topLeft
-            topRightRadius: cfg.radius.topRight
-            bottomLeftRadius: cfg.radius.bottomLeft
-            bottomRightRadius: cfg.radius.bottomRight
+            topLeftRadius: radiusEnabled ? cfg.radius.topLeft : 0
+            topRightRadius: radiusEnabled ? cfg.radius.topRight : 0
+            bottomLeftRadius: radiusEnabled ? cfg.radius.bottomLeft : 0
+            bottomRightRadius: radiusEnabled ? cfg.radius.bottomRight : 0
         }
         Kirigami.Theme.colorSet: Kirigami.Theme[bgColorCfg.systemColorSet]
         Kirigami.Theme.inherit: bgColorCfg.sourceType === 1
         color: {
-            return getColor(bgColorCfg, targetIndex, null, itemType)
+            if (bgEnabled) {
+                return getColor(bgColorCfg, targetIndex, null, itemType)
+            } else {
+                return "transparent"
+            }
         }
         Timer {
             id: recolorTimer
@@ -307,7 +317,8 @@ PlasmoidItem {
         anchors.centerIn: (isTray || isTrayArrow) ? parent : undefined
         anchors.fill: (isPanel ||isTray || isTrayArrow) ? parent : undefined
 
-        property bool addMargin: (Object.values(cfg.margin).some(value => value !== 0) || isPanel) && cfg.enabled
+        property bool addMargin: cfg.enabled
+            && marginEnabled && (Object.values(cfg.margin).some(value => value !== 0) || isPanel)
         property int marginLeft: cfg.margin.left
         property int marginRight: cfg.margin.right
         property int horizontalWidth: marginLeft + marginRight
@@ -465,7 +476,7 @@ PlasmoidItem {
             id: borderRec
             anchors.fill: parent
             color: "transparent"
-
+            visible: borderEnabled
             property var borderColorCfg: cfg.border.color
             Kirigami.Theme.colorSet: Kirigami.Theme[borderColorCfg.systemColorSet]
             Kirigami.Theme.inherit: borderColorCfg.sourceType === 1
@@ -548,7 +559,7 @@ PlasmoidItem {
             property var shadowColorCfg: cfg.shadow.color
             Kirigami.Theme.colorSet: Kirigami.Theme[shadowColorCfg.systemColorSet]
             Kirigami.Theme.inherit: shadowColorCfg.sourceType === 1
-            size: cfg.shadow.size
+            size: shadowEnabled ? cfg.shadow.size : 0
             color: {
                 return getColor(shadowColorCfg, targetIndex, rect.color, itemType)
             }

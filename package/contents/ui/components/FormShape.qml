@@ -22,10 +22,20 @@ Kirigami.FormLayout {
         updateConfigString(configString, config)
     }
 
-    // Kirigami.Separator {
-    //     Kirigami.FormData.isSection: isSection
-    //     Kirigami.FormData.label: i18n("Shape")
-    // }
+    Kirigami.Separator {
+        Kirigami.FormData.isSection: true
+        Kirigami.FormData.label: i18n("Radius")
+    }
+
+    CheckBox {
+        Kirigami.FormData.label: i18n("Enabled:")
+        id: radiusEnabledCheckbox
+        checked: config.radiusEnabled
+        onCheckedChanged: {
+            config.radiusEnabled = checked
+            updateConfig()
+        }
+    }
 
     GridLayout {
         columns: 2
@@ -70,6 +80,21 @@ Kirigami.FormLayout {
                 config.radius.bottomRight = value
                 updateConfig()
             }
+        }
+    }
+
+    Kirigami.Separator {
+        Kirigami.FormData.isSection: true
+        Kirigami.FormData.label: i18n("Margin")
+    }
+
+    CheckBox {
+        Kirigami.FormData.label: i18n("Enabled:")
+        id: marginEnabledCheckbox
+        checked: config.marginEnabled
+        onCheckedChanged: {
+            config.marginEnabled = checked
+            updateConfig()
         }
     }
 

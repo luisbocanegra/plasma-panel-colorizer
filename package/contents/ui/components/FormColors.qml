@@ -31,6 +31,7 @@ Kirigami.FormLayout {
     property bool showFollowRadio: showFollowPanel || showFollowWidget || showFollowTray
     // wether or not show color list option
     property bool multiColor: true
+    property alias isEnabled: enabledCheckbox.checked
 
     ListModel {
         id: themeColorSetModel
@@ -160,6 +161,24 @@ Kirigami.FormLayout {
     }
 
     CheckBox {
+        Kirigami.FormData.label: i18n("Enable:")
+        id: enabledCheckbox
+        checked: config.enabled
+        onCheckedChanged: {
+            config.enabled = checked
+            updateConfig()
+        }
+        Binding {
+            target: enabledCheckbox
+            property: "Kirigami.Theme.textColor"
+            value: Kirigami.Theme.neutralTextColor
+            when: !enabledCheckbox.checked
+        }
+        Kirigami.Theme.inherit: false
+        text: checked ? "" : i18n("Disabled")
+    }
+
+    CheckBox {
         Kirigami.FormData.label: i18n("Animation:")
         id: animationCheckbox
         checked: config.animation.enabled
@@ -172,6 +191,7 @@ Kirigami.FormLayout {
                 listColorRadio.checked = true
             }
         }
+        enabled: isEnabled
     }
 
     SpinBox {
@@ -185,7 +205,7 @@ Kirigami.FormLayout {
             config.animation.interval = value
             updateConfig()
         }
-        enabled: animationCheckbox.checked
+        enabled: animationCheckbox.checked && isEnabled
     }
 
     SpinBox {
@@ -199,7 +219,7 @@ Kirigami.FormLayout {
             config.animation.smoothing = value
             updateConfig()
         }
-        enabled: animationCheckbox.checked
+        enabled: animationCheckbox.checked && isEnabled
     }
 
     RadioButton {
@@ -209,7 +229,7 @@ Kirigami.FormLayout {
         ButtonGroup.group: colorModeGroup
         property int index: 0
         checked: config.sourceType === index
-        enabled: !animationCheckbox.checked
+        enabled: !animationCheckbox.checked && isEnabled
     }
 
     RadioButton {
@@ -218,7 +238,7 @@ Kirigami.FormLayout {
         ButtonGroup.group: colorModeGroup
         property int index: 1
         checked: config.sourceType === index
-        enabled: !animationCheckbox.checked
+        enabled: !animationCheckbox.checked && isEnabled
     }
 
     RadioButton {
@@ -228,6 +248,7 @@ Kirigami.FormLayout {
         property int index: 2
         checked: config.sourceType === index
         visible: multiColor
+        enabled: isEnabled
     }
 
     RadioButton {
@@ -236,6 +257,7 @@ Kirigami.FormLayout {
         ButtonGroup.group: colorModeGroup
         property int index: 3
         checked: config.sourceType === index
+        enabled: isEnabled
     }
 
     RadioButton {
@@ -244,7 +266,7 @@ Kirigami.FormLayout {
         ButtonGroup.group: colorModeGroup
         property int index: 4
         checked: config.sourceType === index
-        enabled: !animationCheckbox.checked
+        enabled: !animationCheckbox.checked && isEnabled
         visible: showFollowRadio
     }
 
@@ -267,6 +289,7 @@ Kirigami.FormLayout {
         checked: config.followColor === index
         visible: followColorRadio.checked
             && showFollowPanel
+        enabled: isEnabled
     }
 
     RadioButton {
@@ -277,6 +300,7 @@ Kirigami.FormLayout {
         checked: config.followColor === index
         visible: followColorRadio.checked
             && showFollowWidget
+        enabled: isEnabled
     }
 
     RadioButton {
@@ -287,6 +311,7 @@ Kirigami.FormLayout {
         checked: config.followColor === index
         visible: followColorRadio.checked
             && showFollowTray
+        enabled: isEnabled
     }
 
 
@@ -310,6 +335,7 @@ Kirigami.FormLayout {
             config.custom = color.toString()
             updateConfig()
         }
+        enabled: isEnabled
     }
 
     ComboBox {
@@ -334,6 +360,7 @@ Kirigami.FormLayout {
                 return 0; // Default to the first item if no match is found
             }
         }
+        enabled: isEnabled
     }
 
     ComboBox {
@@ -358,6 +385,7 @@ Kirigami.FormLayout {
                 return 0; // Default to the first item if no match is found
             }
         }
+        enabled: isEnabled
     }
 
     ColorPickerList {
@@ -367,9 +395,11 @@ Kirigami.FormLayout {
             config.list = colorsList
             updateConfig()
         }
+        enabled: isEnabled
     }
 
     RowLayout {
+        enabled: isEnabled
         Kirigami.FormData.label: i18n("Alpha:")
         TextField {
             placeholderText: "0-1"
@@ -416,6 +446,7 @@ Kirigami.FormLayout {
     }
 
     RowLayout {
+        enabled: isEnabled
         Kirigami.FormData.label: i18n("Saturation:")
         CheckBox {
             id: saturationEnabled
@@ -465,6 +496,7 @@ Kirigami.FormLayout {
     }
 
     RowLayout {
+        enabled: isEnabled
         Kirigami.FormData.label: i18n("Lightness:")
         CheckBox {
             id: lightnessEnabled

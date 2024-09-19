@@ -22,12 +22,23 @@ Kirigami.FormLayout {
         updateConfigString(configString, config)
     }
 
-    // Kirigami.Separator {
-    //     Kirigami.FormData.isSection: isSection
-    //     Kirigami.FormData.label: i18n("Shape")
-    // }
+    Kirigami.Separator {
+        Kirigami.FormData.isSection: isSection
+        Kirigami.FormData.label: i18n("Padding")
+    }
+
+    CheckBox {
+        Kirigami.FormData.label: i18n("Enabled:")
+        id: enabledCheckbox
+        checked: config.paddingEnabled
+        onCheckedChanged: {
+            config.paddingEnabled = checked
+            updateConfig()
+        }
+    }
 
     GridLayout {
+        enabled: enabledCheckbox.checked
         columns: 3
         rows: 3
         Kirigami.FormData.label: i18n("Padding:")

@@ -6,6 +6,8 @@ import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
 import org.kde.plasma.plasma5support as P5Support
+import "../code/utils.js" as Utils
+import "../code/globals.js" as Globals
 
 ColumnLayout {
     id: backgroundRoot
@@ -22,9 +24,17 @@ ColumnLayout {
     // whether the current item supports foreground customization, e.g the panel does not
     property bool supportsForeground: true
 
+    property alias isEnabled: isEnabled.checked
+
     Component.onCompleted: {
-        console.error(configString)
-        console.error(JSON.stringify(configLocal, null, null))
+        Qt.callLater(function() {
+            console.error(configString)
+            config = Utils.mergeConfigs(Globals.defaultConfig, config)
+            configString = JSON.stringify(config, null, null)
+            console.error(configString)
+            // console.error(JSON.stringify(configLocal, null, null))
+            updateConfig()
+        })
     }
 
     property var folllowVisbility: {
@@ -82,10 +92,11 @@ ColumnLayout {
                         }
                         updateConfig()
                     }
+                    enabled: isEnabled.checked
                 }
                 Button {
                     icon.name: "dialog-information-symbolic"
-                    ToolTip.text: i18n("Draw a custom blur mask behind the custom background(s).\n\nEnables the native panel background.")
+                    ToolTip.text: i18n("Draw a custom blur mask behind the custom background(s).\n\nNative panel background must be enabled with opacity of 0 for this to work as intended.")
                     highlighted: true
                     hoverEnabled: true
                     ToolTip.visible: hovered
@@ -150,7 +161,7 @@ ColumnLayout {
                 }
                 Button {
                     icon.name: "dialog-information-symbolic"
-                    ToolTip.text: i18n("Disabling the native Panel background also removes the contrast and blur.\n\nSet this to 0 to keep just the blur mask.")
+                    ToolTip.text: i18n("Disabling the native Panel background also removes the contrast and blur.\n\nSet this to 0 to keep just the mask required by Blur behind.")
                     highlighted: true
                     hoverEnabled: true
                     ToolTip.visible: hovered
@@ -178,6 +189,7 @@ ColumnLayout {
     Kirigami.NavigationTabBar {
         // Layout.preferredWidth: root.parent.width
         // Layout.minimumWidth: root.parent.width
+        enabled: backgroundRoot.isEnabled
         Layout.fillWidth: true
         maximumContentWidth: {
             const minDelegateWidth = Kirigami.Units.gridUnit * 6;
@@ -211,6 +223,7 @@ ColumnLayout {
 
     property int currentTab: 0
     Kirigami.FormLayout {
+        enabled: backgroundRoot.isEnabled
         // required to align with parent form
         property alias formLayout: backgroundRoot
         twinFormLayouts: parentLayout
@@ -233,6 +246,7 @@ ColumnLayout {
     }
 
     FormColors {
+        enabled: backgroundRoot.isEnabled
         visible: currentTab === 0
         config: backgroundRoot.configLocal.backgroundColor
         onUpdateConfigString: (newString, newConfig) => {
@@ -244,6 +258,7 @@ ColumnLayout {
     }
 
     FormColors {
+        enabled: backgroundRoot.isEnabled
         visible: currentTab === 0 && supportsForeground
         config: backgroundRoot.configLocal.foregroundColor
         isSection: true
@@ -256,6 +271,7 @@ ColumnLayout {
     }
 
     FormShape {
+        enabled: backgroundRoot.isEnabled
         visible: currentTab === 1
         config: backgroundRoot.configLocal
         onUpdateConfigString: (newString, newConfig) => {
@@ -265,6 +281,7 @@ ColumnLayout {
     }
 
     FormPadding {
+        enabled: backgroundRoot.isEnabled
         visible: currentTab === 1 && keyName === "panel"
         config: backgroundRoot.configLocal
         onUpdateConfigString: (newString, newConfig) => {
@@ -274,6 +291,7 @@ ColumnLayout {
     }
 
     FormBorder {
+        enabled: backgroundRoot.isEnabled
         visible: currentTab === 2
         config: backgroundRoot.configLocal
         onUpdateConfigString: (newString, newConfig) => {
@@ -283,6 +301,7 @@ ColumnLayout {
     }
 
     FormColors {
+        enabled: backgroundRoot.isEnabled
         visible: currentTab === 2
         config: backgroundRoot.configLocal.border.color
         onUpdateConfigString: (newString, newConfig) => {
@@ -293,6 +312,7 @@ ColumnLayout {
     }
 
     FormShadow {
+        enabled: backgroundRoot.isEnabled
         visible: currentTab === 3
         config: backgroundRoot.configLocal
         onUpdateConfigString: (newString, newConfig) => {
@@ -302,6 +322,7 @@ ColumnLayout {
     }
 
     FormColors {
+        enabled: backgroundRoot.isEnabled
         visible: currentTab === 3
         config: backgroundRoot.configLocal.shadow.color
         onUpdateConfigString: (newString, newConfig) => {

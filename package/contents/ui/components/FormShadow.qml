@@ -29,6 +29,16 @@ Kirigami.FormLayout {
     //     Kirigami.FormData.label: i18n("Shadow")
     // }
 
+    CheckBox {
+        Kirigami.FormData.label: i18n("Enabled:")
+        id: enabledCheckbox
+        checked: config.shadow.enabled
+        onCheckedChanged: {
+            config.shadow.enabled = checked
+            updateConfig()
+        }
+    }
+
     SpinBox {
         Kirigami.FormData.label: i18n("Size:")
         id: shadowSize

@@ -16,12 +16,35 @@ Kirigami.AbstractCard {
             source: widget.icon
         }
         ColumnLayout {
-            Label {
-                text: widget.title
+            RowLayout {
+                Label {
+                    text: widget.title
+                }
+                Rectangle {
+                    visible: widget.inTray
+                    color: Kirigami.Theme.highlightColor
+                    Kirigami.Theme.colorSet: Kirigami.Theme["Selection"]
+                    radius: parent.height / 2
+                    width: label.width + 12
+                    height: label.height + 2
+                    Kirigami.Theme.inherit: false
+                    Label {
+                        anchors.centerIn: parent
+                        id: label
+                        text: "Tray"
+                        color: Kirigami.Theme.textColor
+                        Kirigami.Theme.colorSet: Kirigami.Theme["Selection"]
+                        Kirigami.Theme.inherit: false
+                    }
+                }
             }
-            Label {
+            TextEdit {
                 text: widget.name
                 opacity: 0.6
+                readOnly: true
+                color: Kirigami.Theme.textColor
+                selectedTextColor: Kirigami.Theme.highlightedTextColor
+                selectionColor: Kirigami.Theme.highlightColor
             }
         }
         Item {

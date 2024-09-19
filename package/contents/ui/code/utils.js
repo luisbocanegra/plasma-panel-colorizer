@@ -143,7 +143,7 @@ function findWidgetsTray(grid, panelWidgets) {
         const name = "org.kde.plasma.systemtray.expand"
         if (panelWidgets.find((item) => item.name === name)) continue
         const title = item.subText || "Show hidden icons"
-        panelWidgets.push({ "name": name, "title": title, "icon": "arrow-down" })
+        panelWidgets.push({ "name": name, "title": title, "icon": "arrow-down", "inTray": true })
       }
     }
   }
@@ -233,4 +233,23 @@ function hexToRgb(hex) {
 
 function rgbToQtColor(rgb) {
   return Qt.rgba(rgb.r / 255, rgb.g / 255, rgb.b / 255, 1)
+}
+
+function mergeConfigs(defaultConfig, existingConfig) {
+  console.error("mergeConfigs -> MERGE")
+  for (var key in defaultConfig) {
+    if (defaultConfig.hasOwnProperty(key)) {
+      if (typeof defaultConfig[key] === "object" && defaultConfig[key] !== null) {
+        if (!existingConfig.hasOwnProperty(key)) {
+          existingConfig[key] = {}
+        }
+        mergeConfigs(defaultConfig[key], existingConfig[key])
+      } else {
+        if (!existingConfig.hasOwnProperty(key)) {
+          existingConfig[key] = defaultConfig[key]
+        }
+      }
+    }
+  }
+  return existingConfig
 }

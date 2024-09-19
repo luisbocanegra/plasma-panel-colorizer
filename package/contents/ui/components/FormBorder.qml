@@ -26,6 +26,16 @@ Kirigami.FormLayout {
     //     Kirigami.FormData.label: i18n("Border")
     // }
 
+    CheckBox {
+        Kirigami.FormData.label: i18n("Enabled:")
+        id: enabledCheckbox
+        checked: config.border.enabled
+        onCheckedChanged: {
+            config.border.enabled = checked
+            updateConfig()
+        }
+    }
+
     RowLayout {
         Kirigami.FormData.label: i18n("Custom widths:")
         CheckBox {
