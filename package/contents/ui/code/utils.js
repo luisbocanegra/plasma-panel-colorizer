@@ -202,16 +202,31 @@ var themeScopes = [
   "Header"
 ]
 
+function getCustomCfg(config, widgetName) {
+  if (!widgetName) return null
+  console.error("getCustomCfg()", config, widgetName)
+  let custom = config.perWidgetConfiguration
+  if (custom) {
+    const cfg = custom.find((cfg) => cfg.widgets.includes(widgetName))
+    if (cfg) {
+      console.error("customm ->", JSON.stringify(cfg.configuration))
+      return cfg.configuration
+    }
+  }
+  return null
+}
 
-function getItemCfg(itemType, widgetName) {
-  // TODO config per widget
+function getItemCfg(itemType, widgetName, config) {
+  let custom = getCustomCfg(config, widgetName)
+  // TODO merge only the enabled ones with the global configuration
+  if (custom) return custom
   if (itemType === Enums.ItemType.PanelBgItem) {
     return panelSettings
-  } else if (itemType === Enums.ItemType.TrayItem || itemType === Enums.ItemType.TrayArrow) {
-    return trayWidgetSettings
-  } else {
-    return widgetSettings
   }
+  if (itemType === Enums.ItemType.TrayItem || itemType === Enums.ItemType.TrayArrow) {
+    return trayWidgetSettings
+  }
+  return widgetSettings
 }
 
 function scaleSaturation(color, saturation) {
@@ -236,7 +251,6 @@ function rgbToQtColor(rgb) {
 }
 
 function mergeConfigs(defaultConfig, existingConfig) {
-  console.error("mergeConfigs -> MERGE")
   for (var key in defaultConfig) {
     if (defaultConfig.hasOwnProperty(key)) {
       if (typeof defaultConfig[key] === "object" && defaultConfig[key] !== null) {

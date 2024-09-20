@@ -49,6 +49,7 @@ PlasmoidItem {
     property var trayWidgetSettings: cfg.trayWidgets
     property var forceRecolorList: cfg.forceForegroundColor
     property int forceRecolorCount: Object.keys(forceRecolorList).length
+    property var perWidgetConfiguration: cfg.perWidgetConfiguration
     signal recolorNeeded()
 
     onForceRecolorCountChanged: {
@@ -198,7 +199,7 @@ PlasmoidItem {
         property bool requiresRefresh: false
         property string widgetName: Utils.getWidgetName(target)
         property var cfg: {
-            return Utils.getItemCfg(itemType, null) //TODO widget name here
+            return Utils.getItemCfg(itemType, widgetName, main.cfg)
         }
         property var bgColorCfg: cfg.backgroundColor
         property var fgColorCfg: cfg.foregroundColor
@@ -534,7 +535,7 @@ PlasmoidItem {
                 }
             }
 
-            layer.enabled: true
+            layer.enabled: cfg.border.customSides
             layer.effect: MultiEffect {
                 maskEnabled: true
                 maskSpreadAtMax: 1
