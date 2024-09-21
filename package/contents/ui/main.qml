@@ -100,10 +100,11 @@ PlasmoidItem {
         return newColor
     }
 
-    function applyFgColor(element, newColor, fgColorCfg, depth, forceMask, forceEffect) {
+    function applyFgColor(element, newColor, fgColorCfg, depth, forceMask, forceEffect, itemType) {
         let count = 0;
         let maxDepth = depth
-        let widgetName = Utils.getWidgetName(element)
+        const isTrayArrow = itemType === Enums.ItemType.TrayArrow
+        let widgetName = isTrayArrow ? "org.kde.plasma.systemtray.expand" : Utils.getWidgetName(element)
         if (widgetName === "org.kde.plasma.systemtray" && separateTray) return
         if (widgetName && widgetName in forceRecolorList) {
             forceMask = forceRecolorList[widgetName].method.mask
@@ -141,7 +142,7 @@ PlasmoidItem {
                 // repaintDebugComponent.createObject(child)
             }
             if (child.visibleChildren?.length ?? 0 > 0) {
-                const result = applyFgColor(child, newColor, fgColorCfg, depth + 1, forceMask, forceEffect)
+                const result = applyFgColor(child, newColor, fgColorCfg, depth + 1, forceMask, forceEffect, itemType)
                 count += result.count
                 if (result.depth > maxDepth) {
                     maxDepth = result.depth
@@ -197,10 +198,10 @@ PlasmoidItem {
         property bool luisbocanegraPanelColorizerBgManaged: true
         // mask and color effect do
         property bool requiresRefresh: false
-        property string widgetName: Utils.getWidgetName(target)
-        property var cfg: {
-            return Utils.getItemCfg(itemType, widgetName, main.cfg)
-        }
+        property string widgetName: isTrayArrow ? "org.kde.plasma.systemtray.expand" : Utils.getWidgetName(target)
+        property var itemConfig: Utils.getItemCfg(itemType, widgetName, main.cfg)
+        property var cfg: itemConfig.settings
+        property bool cfgOverride: itemConfig.override
         property var bgColorCfg: cfg.backgroundColor
         property var fgColorCfg: cfg.foregroundColor
         property string fgColor: fgColorHolder.color
@@ -220,7 +221,7 @@ PlasmoidItem {
             visible: false
             radius: height / 2
             property var newColor: {
-                if (separateTray) {
+                if (separateTray || cfgOverride) {
                     return getColor(rect.fgColorCfg, targetIndex, rect.color, itemType)
                 } else if (isTray) {
                     return getColor(widgetSettings.foregroundColor, trayIndex, rect.color, itemType)
@@ -276,7 +277,7 @@ PlasmoidItem {
             repeat: requiresRefresh
             onTriggered: {
                 if (!isPanel) {
-                    const result = applyFgColor(target, fgColor, fgColorCfg, 0, false, false)
+                    const result = applyFgColor(target, fgColor, fgColorCfg, 0, false, false, itemType)
                     if (result) {
                         itemCount = result.count
                         maxDepth = result.depth

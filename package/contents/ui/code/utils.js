@@ -154,8 +154,10 @@ function getWidgetName(item) {
   let name = null
   if (item.applet?.plasmoid?.pluginName) {
     name = item.applet.plasmoid.pluginName
-  } else if (item.model) {
-    const model = item.model
+  } else {
+    const modelItem = item.children.find((child) => child.hasOwnProperty("model"))
+    if (!modelItem) return null
+    const model = modelItem.model
     if (model.itemType === "StatusNotifier") {
       name = model.Id
     } else if (model.itemType === "Plasmoid") {
@@ -163,9 +165,9 @@ function getWidgetName(item) {
       name = applet?.plasmoid.pluginName ?? null
     }
   }
-  // if (name) {
-  //   console.error("@@@@ getWidgetName ->", name)
-  // }
+  if (name) {
+    console.error("@@@@ getWidgetName ->", name)
+  }
   return name
 }
 
@@ -204,7 +206,7 @@ var themeScopes = [
 
 function getCustomCfg(config, widgetName) {
   if (!widgetName) return null
-  // console.error("getCustomCfg()", widgetName)
+  console.error("getCustomCfg()", widgetName)
   let custom = null
   if (widgetName in config.overrideAssociations) {
     const overrideName = config.overrideAssociations[widgetName]
@@ -212,23 +214,29 @@ function getCustomCfg(config, widgetName) {
     // console.error("getCustomCfg() -> name:", overrideName, config.configurationOverrides)
   }
   if (custom) {
-    // console.error("customm ->", JSON.stringify(custom))
+    console.error("customm ->", custom)
     return custom
   }
   return null
 }
 
 function getItemCfg(itemType, widgetName, config) {
+  let output = { override: false }
   let custom = getCustomCfg(config, widgetName)
   // TODO merge only the enabled ones with the global configuration
-  if (custom) return custom
-  if (itemType === Enums.ItemType.PanelBgItem) {
-    return panelSettings
+  if (custom) {
+    output.settings = custom
+    output.override = true
   }
-  if (itemType === Enums.ItemType.TrayItem || itemType === Enums.ItemType.TrayArrow) {
-    return trayWidgetSettings
+  else if (itemType === Enums.ItemType.PanelBgItem) {
+    output.settings = panelSettings
   }
-  return widgetSettings
+  else if (itemType === Enums.ItemType.TrayItem || itemType === Enums.ItemType.TrayArrow) {
+    output.settings = trayWidgetSettings
+  } else {
+    output.settings = widgetSettings
+  }
+  return output
 }
 
 function scaleSaturation(color, saturation) {
