@@ -258,6 +258,9 @@ PlasmoidItem {
             bottomLeftRadius: radiusEnabled ? cfg.radius.bottomLeft : 0
             bottomRightRadius: radiusEnabled ? cfg.radius.bottomRight : 0
         }
+        border {
+            width: -1
+        }
         Kirigami.Theme.colorSet: Kirigami.Theme[bgColorCfg.systemColorSet]
         Kirigami.Theme.inherit: bgColorCfg.sourceType === 1
         color: {
@@ -525,7 +528,7 @@ PlasmoidItem {
                 visible: !cfg.border.customSides
                 border {
                     color: borderRec.borderColor
-                    width: cfg.border.width
+                    width: cfg.border.width || -1
                 }
                 corners {
                     topLeftRadius: cfg.radius.topLeft
