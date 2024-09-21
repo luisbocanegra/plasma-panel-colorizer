@@ -203,18 +203,26 @@ KCM.SimpleKCM {
             Kirigami.FormLayout {
                 id: parentLayout
                 // Layout.preferredWidth: 600
-                TextField {
+                RowLayout {
                     Kirigami.FormData.label: "Name:"
-                    id: saveNameField
-                    Layout.fillWidth: true
-                    placeholderText: i18n("Config group name")
-                    text: configOverrides[overrideName]
-                    validator: RegularExpressionValidator {
-                        regularExpression: /^(?![\s\.])([a-zA-Z0-9. _\-]+)(?<![\.|])$/
+                    TextField {
+                        id: nameField
+                        Layout.fillWidth: true
+                        placeholderText: i18n("Config group name")
+                        text: overrideName
+                        validator: RegularExpressionValidator {
+                            regularExpression: /^(?![\s\.])([a-zA-Z0-9. _\-]+)(?<![\.|])$/
+                        }
                     }
-                    onTextEdited: {
-                        configOverrides[overrideName] = text
-                        root.updateConfig()
+                    Button {
+                        icon.name: "checkmark-symbolic"
+                        text: "Apply"
+                        onClicked: {
+                            configOverrides[nameField.text] = configOverrides[overrideName]
+                            delete configOverrides[overrideName]
+                            overrideName = nameField.text
+                            root.updateConfig()
+                        }
                     }
                 }
             }
