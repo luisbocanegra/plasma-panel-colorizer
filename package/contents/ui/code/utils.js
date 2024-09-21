@@ -204,14 +204,16 @@ var themeScopes = [
 
 function getCustomCfg(config, widgetName) {
   if (!widgetName) return null
-  console.error("getCustomCfg()", config, widgetName)
-  let custom = config.perWidgetConfiguration
+  // console.error("getCustomCfg()", widgetName)
+  let custom = null
+  if (widgetName in config.overrideAssociations) {
+    const overrideName = config.overrideAssociations[widgetName]
+    custom = config.configurationOverrides[overrideName]
+    // console.error("getCustomCfg() -> name:", overrideName, config.configurationOverrides)
+  }
   if (custom) {
-    const cfg = custom.find((cfg) => cfg.widgets.includes(widgetName))
-    if (cfg) {
-      console.error("customm ->", JSON.stringify(cfg.configuration))
-      return cfg.configuration
-    }
+    // console.error("customm ->", JSON.stringify(custom))
+    return custom
   }
   return null
 }

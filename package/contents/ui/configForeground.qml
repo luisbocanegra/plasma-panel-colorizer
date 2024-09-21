@@ -51,7 +51,11 @@ KCM.SimpleKCM {
             const name = widget.name
             const title = widget.title
             const icon = widget.icon
-            widgetsModel.append({ "name": name, "title": title, "icon": icon, "method": { "mask":false, "multiEffect": false }} )
+            const inTray = widget.inTray
+            widgetsModel.append({
+                "name": name, "title": title, "icon": icon, "inTray":inTray,
+                "method": { "mask":false, "multiEffect": false }
+            })
         }
     }
 
@@ -71,15 +75,6 @@ KCM.SimpleKCM {
         RowLayout {
             Layout.leftMargin: Kirigami.Units.mediumSpacing
             Layout.rightMargin: Kirigami.Units.smallSpacing
-            RowLayout {
-                Layout.alignment: Qt.AlignRight
-                Label {
-                    text: i18n("Enabled:")
-                }
-                CheckBox {
-                    id: fgColorEnabled
-                }
-            }
             Item {
                 Layout.fillWidth: true
             }

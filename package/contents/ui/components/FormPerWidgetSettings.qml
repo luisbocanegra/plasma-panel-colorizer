@@ -19,12 +19,26 @@ ColumnLayout {
     // internal config objects to be sent, both string and json
     property string configString: "{}"
     property var config: handleString ? JSON.parse(configString) : undefined
-    property var configLocal: config[keyName]
     signal updateConfigString(configString: string, config: var)
     // whether the current item supports foreground customization, e.g the panel does not
     property bool supportsForeground: true
 
     property alias isEnabled: isEnabled.checked
+
+    signal closeDialog()
+
+    property int configIndex
+
+    Component.onCompleted: {
+        // Qt.callLater(function() {
+        //     console.error(configString)
+        //     config = Utils.mergeConfigs(Globals.defaultConfig, config)
+        //     configString = JSON.stringify(config, null, null)
+        //     console.error(configString)
+        //     // console.error(JSON.stringify(config, null, null))
+        //     updateConfig()
+        // })
+    }
 
     property var folllowVisbility: {
         "background": {
@@ -40,18 +54,30 @@ ColumnLayout {
     }
 
     function updateConfig() {
-        config[keyName] = configLocal
+        // config[keyName] = config
         configString = JSON.stringify(config, null, null)
         // console.error(configString)
         updateConfigString(configString, config)
-        // console.error(JSON.stringify(configLocal, null, null))
+        // console.error(JSON.stringify(config, null, null))
     }
+
+    // Button {
+    //     text: "Update"
+    //     onClicked: closeDialog()
+    //     Layout.alignment: Qt.AlignHCenter
+    // }
 
     RowLayout {
         Layout.leftMargin: Kirigami.Units.mediumSpacing
         Layout.rightMargin: Kirigami.Units.smallSpacing
         Layout.bottomMargin: Kirigami.Units.smallSpacing
         ColumnLayout {
+
+            // Label {
+            //     text: JSON.stringify(config)
+            //     Layout.maximumWidth: 600
+            //     wrapMode: Text.Wrap
+            // }
 
             RowLayout {
                 // Layout.alignment: Qt.AlignRight
@@ -60,9 +86,9 @@ ColumnLayout {
                 }
                 CheckBox {
                     id: isEnabled
-                    checked: configLocal.enabled
+                    checked: config.enabled
                     onCheckedChanged: {
-                        configLocal.enabled = checked
+                        config.enabled = checked
                         updateConfig()
                     }
                 }
@@ -74,9 +100,9 @@ ColumnLayout {
                 CheckBox {
                     Kirigami.FormData.label: i18n("Blur behind:")
                     id: blurCheckbox
-                    checked: configLocal.blurBehind
+                    checked: config.blurBehind
                     onCheckedChanged: {
-                        configLocal.blurBehind = checked
+                        config.blurBehind = checked
                         if (checked) {
                         }
                         updateConfig()
@@ -92,84 +118,6 @@ ColumnLayout {
                     Kirigami.Theme.inherit: false
                     flat: true
                 }
-            }
-            RowLayout {
-                property bool isPanel: keyName === "panel"
-                visible: isPanel
-                Label {
-                    text: i18n("Native panel background:")
-                }
-                CheckBox {
-                    id: nativePanelBackgroundCheckbox
-                    checked: config.nativePanelBackground.enabled
-                    onCheckedChanged: {
-                        config.nativePanelBackground.enabled = checked
-                        updateConfig()
-                    }
-                }
-                Label {
-                    text: i18n("Opacity:")
-                }
-                TextField {
-                    id: panelRealBgOpacity
-                    placeholderText: "0-1"
-                    text: parseFloat(config.nativePanelBackground.opacity).toFixed(validator.decimals)
-                    enabled: nativePanelBackgroundCheckbox.checked
-                    Layout.preferredWidth: Kirigami.Units.gridUnit * 4
-
-                    validator: DoubleValidator {
-                        bottom: 0.0
-                        top: 1.0
-                        decimals: 2
-                        notation: DoubleValidator.StandardNotation
-                    }
-
-                    onTextChanged: {
-                        const newVal = parseFloat(text).toFixed(validator.decimals)
-                        config.nativePanelBackground.opacity = isNaN(newVal) ? 0 : newVal
-                        updateConfig()
-                    }
-
-                    ValueMouseControl {
-                        height: parent.height - 8
-                        width: height
-                        anchors.right: parent.right
-                        anchors.rightMargin: 4
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        from: parent.validator.bottom
-                        to: parent.validator.top
-                        decimals: parent.validator.decimals
-                        stepSize: 0.05
-                        value: config.nativePanelBackground.opacity
-                        onValueChanged: {
-                            config.nativePanelBackground.opacity = parseFloat(value)
-                            updateConfig()
-                        }
-                    }
-                }
-                Button {
-                    icon.name: "dialog-information-symbolic"
-                    ToolTip.text: i18n("Disabling the native Panel background also removes the contrast and blur.\n\nSet this to 0 to keep just the mask required by Blur behind.")
-                    highlighted: true
-                    hoverEnabled: true
-                    ToolTip.visible: hovered
-                    Kirigami.Theme.inherit: false
-                    flat: true
-                }
-            }
-        }
-        Item {
-            Layout.fillWidth: true
-        }
-        RowLayout {
-            Layout.alignment: Qt.AlignRight|Qt.AlignTop
-            Label {
-                text: i18n("Last preset loaded:")
-            }
-            Label {
-                text: "None"
-                font.weight: Font.DemiBold
             }
         }
     }
@@ -221,14 +169,14 @@ ColumnLayout {
         SpinBox {
             Kirigami.FormData.label: i18n("Spacing:")
             id: spacingCheckbox
-            value: configLocal.spacing || 0
+            value: config.spacing || 0
             from: 0
             to: 999
             visible: keyName === "widgets" && currentTab === 1
             enabled: visible
             onValueModified: {
                 if (!enabled) return
-                configLocal.spacing = value
+                config.spacing = value
                 updateConfig()
             }
         }
@@ -237,9 +185,9 @@ ColumnLayout {
     FormColors {
         enabled: backgroundRoot.isEnabled
         visible: currentTab === 0
-        config: backgroundRoot.configLocal.backgroundColor
+        config: backgroundRoot.config.backgroundColor
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.backgroundColor = newConfig
+            backgroundRoot.config.backgroundColor = newConfig
             backgroundRoot.updateConfig()
         }
         followOptions: folllowVisbility.background
@@ -249,10 +197,10 @@ ColumnLayout {
     FormColors {
         enabled: backgroundRoot.isEnabled
         visible: currentTab === 0 && supportsForeground
-        config: backgroundRoot.configLocal.foregroundColor
+        config: backgroundRoot.config.foregroundColor
         isSection: true
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.foregroundColor = newConfig
+            backgroundRoot.config.foregroundColor = newConfig
             backgroundRoot.updateConfig()
         }
         followOptions: folllowVisbility.foreground
@@ -262,9 +210,9 @@ ColumnLayout {
     FormShape {
         enabled: backgroundRoot.isEnabled
         visible: currentTab === 1
-        config: backgroundRoot.configLocal
+        config: backgroundRoot.config
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal = newConfig
+            backgroundRoot.config = newConfig
             backgroundRoot.updateConfig()
         }
     }
@@ -272,9 +220,9 @@ ColumnLayout {
     FormPadding {
         enabled: backgroundRoot.isEnabled
         visible: currentTab === 1 && keyName === "panel"
-        config: backgroundRoot.configLocal
+        config: backgroundRoot.config
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal = newConfig
+            backgroundRoot.config = newConfig
             backgroundRoot.updateConfig()
         }
     }
@@ -282,9 +230,9 @@ ColumnLayout {
     FormBorder {
         enabled: backgroundRoot.isEnabled
         visible: currentTab === 2
-        config: backgroundRoot.configLocal
+        config: backgroundRoot.config
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal = newConfig
+            backgroundRoot.config = newConfig
             backgroundRoot.updateConfig()
         }
     }
@@ -292,9 +240,9 @@ ColumnLayout {
     FormColors {
         enabled: backgroundRoot.isEnabled
         visible: currentTab === 2
-        config: backgroundRoot.configLocal.border.color
+        config: backgroundRoot.config.border.color
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.border.color = newConfig
+            backgroundRoot.config.border.color = newConfig
             backgroundRoot.updateConfig()
         }
         followOptions: folllowVisbility.foreground
@@ -303,9 +251,9 @@ ColumnLayout {
     FormShadow {
         enabled: backgroundRoot.isEnabled
         visible: currentTab === 3
-        config: backgroundRoot.configLocal
+        config: backgroundRoot.config
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal = newConfig
+            backgroundRoot.config = newConfig
             backgroundRoot.updateConfig()
         }
     }
@@ -313,11 +261,18 @@ ColumnLayout {
     FormColors {
         enabled: backgroundRoot.isEnabled
         visible: currentTab === 3
-        config: backgroundRoot.configLocal.shadow.color
+        config: backgroundRoot.config.shadow.color
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.shadow.color = newConfig
+            backgroundRoot.config.shadow.color = newConfig
             backgroundRoot.updateConfig()
         }
         followOptions: folllowVisbility.foreground
     }
+
+    // Button {
+    //     text: "Update"
+    //     onClicked: closeDialog()
+    //     Layout.alignment: Qt.AlignHCenter
+    // }
 }
+

@@ -49,7 +49,7 @@ PlasmoidItem {
     property var trayWidgetSettings: cfg.trayWidgets
     property var forceRecolorList: cfg.forceForegroundColor
     property int forceRecolorCount: Object.keys(forceRecolorList).length
-    property var perWidgetConfiguration: cfg.perWidgetConfiguration
+    property var configurationOverrides: cfg.configurationOverrides
     signal recolorNeeded()
 
     onForceRecolorCountChanged: {

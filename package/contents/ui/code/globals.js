@@ -7,7 +7,6 @@ const basePanelConfig = {
     "alpha": 1,
     "systemColor": "backgroundColor",
     "systemColorSet": "View",
-    "type": 0,
     "custom": "#013eff",
     "list": [
       "#ED8796",
@@ -36,7 +35,6 @@ const basePanelConfig = {
     "alpha": 1,
     "systemColor": "backgroundColor",
     "systemColorSet": "View",
-    "type": 0,
     "custom": "#fc0000",
     "list": [
       "#ED8796",
@@ -96,7 +94,6 @@ const basePanelConfig = {
       "alpha": 0.2,
       "systemColor": "highlightColor",
       "systemColorSet": "View",
-      "type": 0,
       "custom": "#ff6c06",
       "list": [
         "#ED8796",
@@ -127,7 +124,6 @@ const basePanelConfig = {
       "alpha": 0.05,
       "systemColor": "backgroundColor",
       "systemColorSet": "View",
-      "type": 0,
       "custom": "#282828",
       "list": [
         "#ED8796",
@@ -166,7 +162,6 @@ const baseWidgetConfig = {
     "lightnessValue": 0.25,
     "saturationValue": 0.6,
     "alpha": 1,
-    "type": 0,
     "custom": "#00004b",
     "list": [
       "#ED8796",
@@ -197,7 +192,6 @@ const baseWidgetConfig = {
     "alpha": 1,
     "systemColor": "highlightColor",
     "systemColorSet": "Header",
-    "type": 0,
     "custom": "#ff9a00",
     "list": [
       "#ED8796",
@@ -251,7 +245,6 @@ const baseWidgetConfig = {
       "saturationValue": 0.05,
       "alpha": 1,
       "systemColorSet": "View",
-      "type": 0,
       "custom": "#eeff71",
       "list": [
         "#ED8796",
@@ -282,7 +275,6 @@ const baseWidgetConfig = {
       "saturationValue": 0.05,
       "alpha": 1,
       "systemColorSet": "View",
-      "type": 0,
       "custom": "#282828",
       "list": [
         "#ED8796",
@@ -323,7 +315,6 @@ const baseTrayConfig = {
     "alpha": 1,
     "systemColor": "highlightColor",
     "systemColorSet": "Window",
-    "type": 0,
     "custom": "#0023f8",
     "list": [
       "#ED8796",
@@ -352,7 +343,6 @@ const baseTrayConfig = {
     "alpha": 1,
     "systemColor": "backgroundColor",
     "systemColorSet": "View",
-    "type": 0,
     "custom": "#000000",
     "list": [
       "#ED8796",
@@ -406,7 +396,6 @@ const baseTrayConfig = {
       "alpha": 0.45,
       "systemColor": "backgroundColor",
       "systemColorSet": "Window",
-      "type": 0,
       "custom": "#04ff0c",
       "list": [
         "#ED8796",
@@ -437,7 +426,6 @@ const baseTrayConfig = {
       "alpha": 1,
       "systemColor": "textColor",
       "systemColorSet": "View",
-      "type": 0,
       "custom": "#282828",
       "list": [
         "#ED8796",
@@ -485,20 +473,128 @@ const defaultConfig = {
     "opacity": 2,
     "floating": false
   },
-  "perWidgetConfiguration": [
-    {
-      "widgets": [
-        "luisbocanegra.panel.colorizer"
-      ],
-      "configuration": {
-        "blurBehind": false,
-        "backgroundColor": {
-          "enabled": true,
-          "lightnessValue": 0.25,
-          "saturationValue": 0.6,
+  "configurationOverrides": {
+    "Override 1": {
+      "blurBehind": false,
+      "backgroundColor": {
+        "enabled": true,
+        "lightnessValue": 0.25,
+        "saturationValue": 0.6,
+        "alpha": 1,
+        "custom": "#00004b",
+        "list": [
+          "#ED8796",
+          "#A6DA95",
+          "#EED49F",
+          "#8AADF4",
+          "#F5BDE6",
+          "#8BD5CA",
+          "#f5a97f"
+        ],
+        "followColor": 0,
+        "saturationEnabled": false,
+        "lightnessEnabled": true,
+        "animation": {
+          "enabled": false,
+          "interval": 3000,
+          "smoothing": 800
+        },
+        "sourceType": 0,
+        "systemColorSet": "View",
+        "systemColor": "backgroundColor",
+        "enabled": true
+      },
+      "foregroundColor": {
+        "enabled": true,
+        "lightnessValue": 0.85,
+        "saturationValue": 0.75,
+        "alpha": 1,
+        "systemColor": "highlightColor",
+        "systemColorSet": "Header",
+        "custom": "#ff9a00",
+        "list": [
+          "#ED8796",
+          "#A6DA95",
+          "#EED49F",
+          "#8AADF4",
+          "#F5BDE6",
+          "#8BD5CA",
+          "#f5a97f"
+        ],
+        "followColor": 0,
+        "saturationEnabled": false,
+        "lightnessEnabled": false,
+        "animation": {
+          "enabled": false,
+          "interval": 3000,
+          "smoothing": 800
+        },
+        "sourceType": 0,
+        "enabled": true
+      },
+      "radius": {
+        "topLeft": 10,
+        "topRight": 5,
+        "bottomRight": 5,
+        "bottomLeft": 5
+      },
+      "margin": {
+        "right": 4,
+        "left": 4,
+        "top": 4,
+        "bottom": 4
+      },
+      "spacing": 3,
+      "border": {
+        "enabled": false,
+        "customSides": false,
+        "custom": {
+          "widths": {
+            "left": 0,
+            "bottom": 3,
+            "right": 0,
+            "top": 0
+          },
+          "margin": [],
+          "radius": 0
+        },
+        "width": 0,
+        "color": {
+          "lightnessValue": 0.35,
+          "saturationValue": 0.05,
           "alpha": 1,
-          "type": 0,
-          "custom": "#00004b",
+          "systemColorSet": "View",
+          "custom": "#eeff71",
+          "list": [
+            "#ED8796",
+            "#A6DA95",
+            "#EED49F",
+            "#8AADF4",
+            "#F5BDE6",
+            "#8BD5CA",
+            "#f5a97f"
+          ],
+          "followColor": 1,
+          "saturationEnabled": false,
+          "lightnessEnabled": true,
+          "animation": {
+            "enabled": false,
+            "interval": 3000,
+            "smoothing": 800
+          },
+          "sourceType": 4,
+          "systemColor": "backgroundColor",
+          "enabled": true
+        }
+      },
+      "shadow": {
+        "enabled": false,
+        "color": {
+          "lightnessValue": 0.05,
+          "saturationValue": 0.05,
+          "alpha": 1,
+          "systemColorSet": "View",
+          "custom": "#282828",
           "list": [
             "#ED8796",
             "#A6DA95",
@@ -516,20 +612,139 @@ const defaultConfig = {
             "interval": 3000,
             "smoothing": 800
           },
-          "sourceType": 0,
-          "systemColorSet": "View",
+          "sourceType": 1,
           "systemColor": "backgroundColor",
           "enabled": true
         },
-        "foregroundColor": {
-          "enabled": true,
-          "lightnessValue": 0.85,
-          "saturationValue": 0.75,
+        "size": 5,
+        "xOffset": 0,
+        "yOffset": 0
+      },
+      "enabled": true,
+      "radiusEnabled": true,
+      "marginEnabled": true,
+    },
+    "Override 2": {
+      "blurBehind": false,
+      "backgroundColor": {
+        "enabled": false,
+        "lightnessValue": 0.25,
+        "saturationValue": 0.6,
+        "alpha": 1,
+        "custom": "#00004b",
+        "list": [
+          "#ED8796",
+          "#A6DA95",
+          "#EED49F",
+          "#8AADF4",
+          "#F5BDE6",
+          "#8BD5CA",
+          "#f5a97f"
+        ],
+        "followColor": 0,
+        "saturationEnabled": false,
+        "lightnessEnabled": true,
+        "animation": {
+          "enabled": false,
+          "interval": 3000,
+          "smoothing": 800
+        },
+        "sourceType": 0,
+        "systemColorSet": "View",
+        "systemColor": "backgroundColor",
+        "enabled": true
+      },
+      "foregroundColor": {
+        "enabled": true,
+        "lightnessValue": 0.85,
+        "saturationValue": 0.75,
+        "alpha": 1,
+        "systemColor": "highlightColor",
+        "systemColorSet": "Header",
+        "custom": "#ff9a00",
+        "list": [
+          "#ED8796",
+          "#A6DA95",
+          "#EED49F",
+          "#8AADF4",
+          "#F5BDE6",
+          "#8BD5CA",
+          "#f5a97f"
+        ],
+        "followColor": 0,
+        "saturationEnabled": false,
+        "lightnessEnabled": false,
+        "animation": {
+          "enabled": false,
+          "interval": 3000,
+          "smoothing": 800
+        },
+        "sourceType": 0,
+        "enabled": true
+      },
+      "radius": {
+        "topLeft": 10,
+        "topRight": 5,
+        "bottomRight": 5,
+        "bottomLeft": 5
+      },
+      "margin": {
+        "right": 4,
+        "left": 4,
+        "top": 4,
+        "bottom": 4
+      },
+      "spacing": 3,
+      "border": {
+        "enabled": false,
+        "customSides": false,
+        "custom": {
+          "widths": {
+            "left": 0,
+            "bottom": 3,
+            "right": 0,
+            "top": 0
+          },
+          "margin": [],
+          "radius": 0
+        },
+        "width": 0,
+        "color": {
+          "lightnessValue": 0.35,
+          "saturationValue": 0.05,
           "alpha": 1,
-          "systemColor": "highlightColor",
-          "systemColorSet": "Header",
-          "type": 0,
-          "custom": "#ff9a00",
+          "systemColorSet": "View",
+          "custom": "#eeff71",
+          "list": [
+            "#ED8796",
+            "#A6DA95",
+            "#EED49F",
+            "#8AADF4",
+            "#F5BDE6",
+            "#8BD5CA",
+            "#f5a97f"
+          ],
+          "followColor": 1,
+          "saturationEnabled": false,
+          "lightnessEnabled": true,
+          "animation": {
+            "enabled": false,
+            "interval": 3000,
+            "smoothing": 800
+          },
+          "sourceType": 4,
+          "systemColor": "backgroundColor",
+          "enabled": true
+        }
+      },
+      "shadow": {
+        "enabled": false,
+        "color": {
+          "lightnessValue": 0.05,
+          "saturationValue": 0.05,
+          "alpha": 1,
+          "systemColorSet": "View",
+          "custom": "#282828",
           "list": [
             "#ED8796",
             "#A6DA95",
@@ -541,109 +756,30 @@ const defaultConfig = {
           ],
           "followColor": 0,
           "saturationEnabled": false,
-          "lightnessEnabled": false,
+          "lightnessEnabled": true,
           "animation": {
             "enabled": false,
             "interval": 3000,
             "smoothing": 800
           },
-          "sourceType": 0,
+          "sourceType": 1,
+          "systemColor": "backgroundColor",
           "enabled": true
         },
-        "radius": {
-          "topLeft": 10,
-          "topRight": 5,
-          "bottomRight": 5,
-          "bottomLeft": 5
-        },
-        "margin": {
-          "right": 4,
-          "left": 4,
-          "top": 4,
-          "bottom": 4
-        },
-        "spacing": 3,
-        "border": {
-          "enabled": false,
-          "customSides": false,
-          "custom": {
-            "widths": {
-              "left": 0,
-              "bottom": 3,
-              "right": 0,
-              "top": 0
-            },
-            "margin": [],
-            "radius": 0
-          },
-          "width": 0,
-          "color": {
-            "lightnessValue": 0.35,
-            "saturationValue": 0.05,
-            "alpha": 1,
-            "systemColorSet": "View",
-            "type": 0,
-            "custom": "#eeff71",
-            "list": [
-              "#ED8796",
-              "#A6DA95",
-              "#EED49F",
-              "#8AADF4",
-              "#F5BDE6",
-              "#8BD5CA",
-              "#f5a97f"
-            ],
-            "followColor": 1,
-            "saturationEnabled": false,
-            "lightnessEnabled": true,
-            "animation": {
-              "enabled": false,
-              "interval": 3000,
-              "smoothing": 800
-            },
-            "sourceType": 4,
-            "systemColor": "backgroundColor",
-            "enabled": true
-          }
-        },
-        "shadow": {
-          "enabled": false,
-          "color": {
-            "lightnessValue": 0.05,
-            "saturationValue": 0.05,
-            "alpha": 1,
-            "systemColorSet": "View",
-            "type": 0,
-            "custom": "#282828",
-            "list": [
-              "#ED8796",
-              "#A6DA95",
-              "#EED49F",
-              "#8AADF4",
-              "#F5BDE6",
-              "#8BD5CA",
-              "#f5a97f"
-            ],
-            "followColor": 0,
-            "saturationEnabled": false,
-            "lightnessEnabled": true,
-            "animation": {
-              "enabled": false,
-              "interval": 3000,
-              "smoothing": 800
-            },
-            "sourceType": 1,
-            "systemColor": "backgroundColor",
-            "enabled": true
-          },
-          "size": 5,
-          "xOffset": 0,
-          "yOffset": 0
-        },
-        "enabled": true,
-        "radiusEnabled": true,
-        "marginEnabled": true,
-      }
+        "size": 5,
+        "xOffset": 0,
+        "yOffset": 0
+      },
+      "enabled": false,
+      "radiusEnabled": true,
+      "marginEnabled": true,
     }
-  ]
+  },
+  "overrideAssociations": {
+    "luisbocanegra.panel.colorizer": "Override 1",
+    "org.kde.plasma.kickoff": "Override 1",
+    "org.kde.plasma.colorpicker": "Override 2",
+    "org.kde.netspeedWidget": "Override 1",
+    "com.github.antroids.application-title-bar": "Override 2",
+  }
 }
