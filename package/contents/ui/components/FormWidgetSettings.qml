@@ -307,21 +307,48 @@ ColumnLayout {
     FormShadow {
         enabled: backgroundRoot.isEnabled
         visible: currentTab === 3
-        config: backgroundRoot.configLocal
+        config: backgroundRoot.configLocal.shadow.background
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal = newConfig
+            backgroundRoot.configLocal.shadow.background = newConfig
             backgroundRoot.updateConfig()
         }
+        sectionName: i18n("Background Shadow")
     }
 
     FormColors {
         enabled: backgroundRoot.isEnabled
         visible: currentTab === 3
-        config: backgroundRoot.configLocal.shadow.color
+        config: backgroundRoot.configLocal.shadow.background.color
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.shadow.color = newConfig
+            backgroundRoot.configLocal.shadow.background.color = newConfig
             backgroundRoot.updateConfig()
         }
+        isSection: false
         followOptions: folllowVisbility.foreground
+        sectionName: i18n("Background Shadow Color")
+    }
+
+    FormShadow {
+        enabled: backgroundRoot.isEnabled
+        visible: currentTab === 3 && keyName !== "panel"
+        config: backgroundRoot.configLocal.shadow.foreground
+        onUpdateConfigString: (newString, newConfig) => {
+            backgroundRoot.configLocal.shadow.foreground = newConfig
+            backgroundRoot.updateConfig()
+        }
+        sectionName: i18n("Foreground Shadow")
+    }
+
+    FormColors {
+        enabled: backgroundRoot.isEnabled
+        visible: currentTab === 3 && keyName !== "panel"
+        config: backgroundRoot.configLocal.shadow.foreground.color
+        onUpdateConfigString: (newString, newConfig) => {
+            backgroundRoot.configLocal.shadow.foreground.color = newConfig
+            backgroundRoot.updateConfig()
+        }
+        isSection: false
+        followOptions: folllowVisbility.foreground
+        sectionName: i18n("Foreground Shadow Color")
     }
 }

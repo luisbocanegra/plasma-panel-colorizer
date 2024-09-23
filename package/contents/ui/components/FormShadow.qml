@@ -12,6 +12,7 @@ Kirigami.FormLayout {
     twinFormLayouts: parentLayout
     Layout.fillWidth: true
     property bool isSection: true
+    property string sectionName
     // wether read from the string or existing config object
     property bool handleString
     // internal config objects to be sent, both string and json
@@ -24,17 +25,17 @@ Kirigami.FormLayout {
         updateConfigString(configString, config)
     }
 
-    // Kirigami.Separator {
-    //     Kirigami.FormData.isSection: isSection
-    //     Kirigami.FormData.label: i18n("Shadow")
-    // }
+    Kirigami.Separator {
+        Kirigami.FormData.isSection: isSection
+        Kirigami.FormData.label: i18n("Shadow")
+    }
 
     CheckBox {
         Kirigami.FormData.label: i18n("Enabled:")
         id: enabledCheckbox
-        checked: config.shadow.enabled
+        checked: config.enabled
         onCheckedChanged: {
-            config.shadow.enabled = checked
+            config.enabled = checked
             updateConfig()
         }
     }
@@ -42,11 +43,11 @@ Kirigami.FormLayout {
     SpinBox {
         Kirigami.FormData.label: i18n("Size:")
         id: shadowSize
-        value: config.shadow.size
+        value: config.size
         from: 0
         to: 99
         onValueModified: {
-            config.shadow.size = value
+            config.size = value
             updateConfig()
         }
     }
@@ -54,11 +55,11 @@ Kirigami.FormLayout {
     SpinBox {
         Kirigami.FormData.label: i18n("X offset:")
         id: shadowX
-        value: config.shadow.xOffset
+        value: config.xOffset
         from: -99
         to: 99
         onValueModified: {
-            config.shadow.xOffset = value
+            config.xOffset = value
             updateConfig()
         }
     }
@@ -66,11 +67,11 @@ Kirigami.FormLayout {
     SpinBox {
         Kirigami.FormData.label: i18n("Y offset:")
         id: shadowY
-        value: config.shadow.yOffset
+        value: config.yOffset
         from: -99
         to: 99
         onValueModified: {
-            config.shadow.yOffset = value
+            config.yOffset = value
             updateConfig()
         }
     }

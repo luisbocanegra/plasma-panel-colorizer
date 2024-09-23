@@ -102,6 +102,11 @@ const baseShadow = {
   "yOffset": 0
 }
 
+const baseShadowConfig = {
+  "background": baseShadow,
+  "foreground": baseShadow
+}
+
 const baseRadius = {
   "enabled": false,
   "corner": {
@@ -158,7 +163,7 @@ const basePanelConfig = {
   "margin": baseMargin,
   "padding": basePadding,
   "border": baseBorder,
-  "shadow": baseShadow,
+  "shadow": baseShadowConfig,
 }
 
 const baseWidgetConfig = {
@@ -170,7 +175,7 @@ const baseWidgetConfig = {
   "margin": baseMargin,
   "spacing": 3,
   "border": baseBorder,
-  "shadow": baseShadow,
+  "shadow": baseShadowConfig,
 }
 
 const baseTrayConfig = {
@@ -181,7 +186,7 @@ const baseTrayConfig = {
   "radius": baseRadius,
   "margin": baseMargin,
   "border": baseBorder,
-  "shadow": baseShadow,
+  "shadow": baseShadowConfig,
 }
 
 const baseOverrideConfig = {
@@ -192,7 +197,7 @@ const baseOverrideConfig = {
   "margin": baseMargin,
   "spacing": 3,
   "border": baseBorder,
-  "shadow": baseShadow,
+  "shadow": baseShadowConfig,
   "enabled": true,
   "disabledFallback": true
 }

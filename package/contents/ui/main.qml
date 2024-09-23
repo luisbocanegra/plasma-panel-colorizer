@@ -10,6 +10,7 @@ import org.kde.plasma.plasma5support as P5Support
 import org.kde.plasma.workspace.components as WorkspaceComponents
 import org.kde.taskmanager 0.1 as TaskManager
 import QtQuick.Effects
+import Qt5Compat.GraphicalEffects
 
 import "components" as Components
 import "code/utils.js" as Utils
@@ -220,7 +221,10 @@ PlasmoidItem {
         property bool radiusEnabled: cfg.radius.enabled
         property bool marginEnabled: cfg.margin.enabled
         property bool borderEnabled: cfg.border.enabled
-        property bool shadowEnabled: cfg.shadow.enabled
+        property bool bgShadowEnabled: cfg.shadow.background.enabled
+        property var bgShadow: cfg.shadow.background
+        property bool fgShadowEnabled: cfg.shadow.foreground.enabled
+        property var fgShadow: cfg.shadow.foreground
         Rectangle {
             id: fgColorHolder
             height: 6
@@ -571,15 +575,32 @@ PlasmoidItem {
         }
 
         shadow {
-            property var shadowColorCfg: cfg.shadow.color
+            property var shadowColorCfg: bgShadow.color
             Kirigami.Theme.colorSet: Kirigami.Theme[shadowColorCfg.systemColorSet]
-            Kirigami.Theme.inherit: shadowColorCfg.sourceType === 1
-            size: shadowEnabled ? cfg.shadow.size : 0
+            size: bgShadowEnabled ? bgShadow.size : 0
             color: {
                 return getColor(shadowColorCfg, targetIndex, rect.color, itemType)
             }
-            xOffset: cfg.shadow.xOffset
-            yOffset: cfg.shadow.yOffset
+            xOffset: bgShadow.xOffset
+            yOffset: bgShadow.yOffset
+        }
+
+        DropShadow {
+            height: target.height
+            width: target.width
+            anchors.centerIn: parent
+            property var shadowColorCfg: fgShadow.color
+            Kirigami.Theme.colorSet: Kirigami.Theme[shadowColorCfg.systemColorSet]
+            horizontalOffset: fgShadow.xOffset
+            verticalOffset: fgShadow.yOffset
+            radius: fgShadowEnabled ? fgShadow.size : 0
+            samples: radius * 2 + 1
+            spread: 0.35
+            color: {
+                return getColor(shadowColorCfg, targetIndex, rect.color, itemType)
+            }
+            source: target.applet
+            visible: fgShadowEnabled
         }
     }
 
