@@ -187,7 +187,7 @@ KCM.SimpleKCM {
                     icon.name: "list-add-symbolic"
                     text: "New override"
                     onClicked: {
-                        configOverrides[`Override ${Object.keys(configOverrides).length+1}`] = Globals.baseWidgetConfig
+                        configOverrides[`Override ${Object.keys(configOverrides).length+1}`] = Globals.baseOverrideConfig
                         root.updateConfig()
                     }
                 }
@@ -203,12 +203,16 @@ KCM.SimpleKCM {
             Kirigami.FormLayout {
                 id: parentLayout
                 // Layout.preferredWidth: 600
+                Kirigami.Separator {
+                    Kirigami.FormData.isSection: true
+                    Kirigami.FormData.label: i18n("Override settings")
+                }
                 RowLayout {
                     Kirigami.FormData.label: "Name:"
                     TextField {
                         id: nameField
                         Layout.fillWidth: true
-                        placeholderText: i18n("Config group name")
+                        placeholderText: i18n("Override name")
                         text: overrideName
                         validator: RegularExpressionValidator {
                             regularExpression: /^(?![\s\.])([a-zA-Z0-9. _\-]+)(?<![\.|])$/
@@ -223,6 +227,25 @@ KCM.SimpleKCM {
                             overrideName = nameField.text
                             root.updateConfig()
                         }
+                    }
+                }
+                RowLayout {
+                    Kirigami.FormData.label: i18n("Fallback:")
+                    CheckBox {
+                        checked: configOverrides[overrideName].disabledFallback
+                        onCheckedChanged: {
+                            configOverrides[overrideName].disabledFallback = checked
+                            root.updateConfig()
+                        }
+                    }
+                    Button {
+                        icon.name: "dialog-information-symbolic"
+                        ToolTip.text: i18n("Fallback to the global widget settings for disabled options, except for <b>Enable</b>.")
+                        highlighted: true
+                        hoverEnabled: true
+                        ToolTip.visible: hovered
+                        Kirigami.Theme.inherit: false
+                        flat: true
                     }
                 }
             }

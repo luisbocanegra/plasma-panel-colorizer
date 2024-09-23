@@ -221,21 +221,50 @@ function getCustomCfg(config, widgetName) {
   return null
 }
 
+function getGlobalSettings(itemType) {
+  let globalSettings = {}
+  if (itemType === Enums.ItemType.PanelBgItem) {
+    globalSettings = panelSettings
+  }
+  else if (itemType === Enums.ItemType.TrayItem || itemType === Enums.ItemType.TrayArrow) {
+    globalSettings = trayWidgetSettings
+  } else {
+    globalSettings = widgetSettings
+  }
+  return globalSettings
+}
+
+function effectiveSettings(customSettings, globalSettings) {
+  let effectiveSettings = JSON.parse(JSON.stringify(customSettings));
+  for (var key in customSettings) {
+    if (customSettings[key].hasOwnProperty("enabled")) {
+      if (!customSettings[key].enabled && globalSettings.hasOwnProperty(key)) {
+        effectiveSettings[key] = globalSettings[key]
+      }
+    }
+  }
+  if (!effectiveSettings.hasOwnProperty("blurBehind") || !effectiveSettings.blurBehind) {
+    effectiveSettings.blurBehind = globalSettings.blurBehind;
+  }
+  return effectiveSettings
+}
+
 function getItemCfg(itemType, widgetName, config) {
   let output = { override: false }
   let custom = getCustomCfg(config, widgetName)
-  // TODO merge only the enabled ones with the global configuration
   if (custom) {
     output.settings = custom
     output.override = true
-  }
-  else if (itemType === Enums.ItemType.PanelBgItem) {
-    output.settings = panelSettings
-  }
-  else if (itemType === Enums.ItemType.TrayItem || itemType === Enums.ItemType.TrayArrow) {
-    output.settings = trayWidgetSettings
+    const disabledFallback = custom.disabledFallback
+
+    if (disabledFallback) {
+      const global = getGlobalSettings(itemType)
+      output.settings = effectiveSettings(custom, global)
+    } else {
+      output.settings = custom
+    }
   } else {
-    output.settings = widgetSettings
+    output.settings = getGlobalSettings(itemType)
   }
   return output
 }

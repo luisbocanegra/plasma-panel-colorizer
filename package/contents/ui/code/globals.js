@@ -47,7 +47,7 @@ const baseBgColor = {
 }
 
 const baseFgColor = {
-  "enabled": true,
+  "enabled": false,
   "lightnessValue": 0.5,
   "saturationValue": 0.5,
   "alpha": 1,
@@ -182,6 +182,19 @@ const baseTrayConfig = {
   "margin": baseMargin,
   "border": baseBorder,
   "shadow": baseShadow,
+}
+
+const baseOverrideConfig = {
+  "blurBehind": false,
+  "backgroundColor": baseBgColor,
+  "foregroundColor": baseFgColor,
+  "radius": baseRadius,
+  "margin": baseMargin,
+  "spacing": 3,
+  "border": baseBorder,
+  "shadow": baseShadow,
+  "enabled": true,
+  "disabledFallback": true
 }
 
 const defaultConfig = {
