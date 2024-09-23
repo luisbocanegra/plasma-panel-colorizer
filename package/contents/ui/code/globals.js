@@ -238,19 +238,7 @@ const defaultConfig = {
     "floating": false
   },
   "configurationOverrides": {},
-  "overrideAssociations": {},
-  "presetAutoloading": {
-    "last": "Last preset",
-    "config": {
-      "normal": "Preset name",
-      "floating": "Preset name",
-      "touchingWindow": "Preset name",
-      "windowShown": "Preset name",
-      "windowActive": "Preset name",
-      "maximized": "Preset name",
-      "normal": "Preset name",
-    }
-  }
+  "overrideAssociations": {}
 }
 
 const ignoredConfigs = [
@@ -259,4 +247,5 @@ const ignoredConfigs = [
   "panelWidgets",
   "objectName",
   "lastPreset",
+  "presetAutoloading"
 ]

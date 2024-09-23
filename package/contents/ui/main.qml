@@ -38,9 +38,26 @@ PlasmoidItem {
     // keep track of these to allow others to follow their color
     property Item panelBgItem
     property Item trayWidgetBgItem
+    property string lastPreset
+    property string presetsDir: StandardPaths.writableLocation(
+                    StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/"
+    property var presetContent: ""
+    property var panelState: {
+        "maximized": tasksModel.maximizedExists,
+        "touchingWindow": !panelElement ? false : Boolean(panelElement.touchingWindow),
+        "floating": !panelElement ? false : Boolean(panelElement.floatingness)
+    }
     property var cfg: {
         try {
             return JSON.parse(plasmoid.configuration.allSettings)
+        } catch (e) {
+            console.error(e, e.stack)
+            return Globals.defaultConfig
+        }
+    }
+    property var presetAutoloading: {
+        try {
+            return JSON.parse(plasmoid.configuration.presetAutoloading)
         } catch (e) {
             console.error(e, e.stack)
             return {}
@@ -58,7 +75,7 @@ PlasmoidItem {
     signal refreshNeeded()
 
     onForceRecolorCountChanged: {
-        console.error("onForceRecolorCountChanged ->", forceRecolorCount)
+        // console.error("onForceRecolorCountChanged ->", forceRecolorCount)
         recolorCountChanged()
     }
 
@@ -762,6 +779,26 @@ PlasmoidItem {
         trayInitTimer.restart()
     }
 
+    function switchPreset() {
+        let nextPreset = Utils.getPresetName(panelState, presetAutoloading)
+        if (!nextPreset) return
+        applyPreset(nextPreset)
+    }
+
+    function applyPreset(presetName) {
+        console.log("Reading preset:", presetName);
+        lastPreset = presetName
+        runCommand.run("cat '" + presetsDir + presetName+"'")
+    }
+
+    onPanelStateChanged: {
+        switchPreset()
+    }
+
+    onPresetAutoloadingChanged: {
+        switchPreset()
+    }
+
     Timer {
         id: trayInitTimer
         interval: 100
@@ -859,6 +896,26 @@ PlasmoidItem {
             const config = Utils.mergeConfigs(Globals.defaultConfig, cfg)
             plasmoid.configuration.allSettings = Utils.stringify(config)
         })
+    }
+
+    TasksModel {
+        id: tasksModel
+        screenGeometry: Plasmoid.containment.screenGeometry
+    }
+
+    RunCommand {
+        id: runCommand
+    }
+
+    Connections {
+        target: runCommand
+        function onExited(cmd, exitCode, exitStatus, stdout, stderr, liveUpdate) {
+            if (exitCode!==0) return
+            presetContent = stdout.trim().split("\n")
+            Utils.loadPreset(presetContent, plasmoid.configuration, Globals.ignoredConfigs, Globals.defaultConfig, true)
+            plasmoid.configuration.lastPreset = lastPreset
+            plasmoid.configuration.writeConfig();
+        }
     }
 
     Timer {

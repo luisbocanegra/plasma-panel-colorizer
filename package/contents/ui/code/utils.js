@@ -207,7 +207,7 @@ var themeScopes = [
 
 function getCustomCfg(config, widgetName) {
   if (!widgetName) return null
-  console.error("getCustomCfg()", widgetName)
+  // console.error("getCustomCfg()", widgetName)
   let custom = null
   if (widgetName in config.overrideAssociations) {
     const overrideName = config.overrideAssociations[widgetName]
@@ -312,8 +312,7 @@ function stringify(config) {
   return JSON.stringify(config, null, null)
 }
 
-function loadPreset(presetContent, item, ignoredConfigs, defaults) {
-  console.log("Loading preset contents...");
+function loadPreset(presetContent, item, ignoredConfigs, defaults, store) {
   for (let i in presetContent) {
     const line = presetContent[i]
     if (line.includes("=")) {
@@ -325,7 +324,24 @@ function loadPreset(presetContent, item, ignoredConfigs, defaults) {
       if (key === "allSettings") {
         val = stringify(mergeConfigs(defaults, JSON.parse(val)))
       }
-      if (item[cfgKey]) item[cfgKey] = val
+      if (store) {
+        if (item[key]) item[key] = val
+      } else {
+        if (item[cfgKey]) item[cfgKey] = val
+      }
     }
   }
+}
+
+function getPresetName(panelState, presetAutoloading) {
+  // loop until we find a the currently active 'true' panel state with a configured preset
+  // normal is our fallback so does not need active state
+  const priority = ["maximized", "touchingWindow", "floating", "normal"]
+  for (let state of priority) {
+    if ((panelState[state] || state === "normal") && presetAutoloading[state]) {
+      console.error("getPresetName()", state, "->", presetAutoloading[state])
+      return presetAutoloading[state]
+    }
+  }
+  return null
 }

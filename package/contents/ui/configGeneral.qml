@@ -50,6 +50,7 @@ KCM.SimpleKCM {
             }
             if (cmd.startsWith("cat")) {
                 presetContent = stdout.trim().split("\n")
+                Utils.loadPreset(presetContent, root, Globals.ignoredConfigs, Globals.defaultConfig, false)
             }
         }
     }
@@ -92,15 +93,6 @@ KCM.SimpleKCM {
     function applyPreset(filename) {
         console.log("Reading preset:", filename);
         runCommand.run("cat '" + presetsDir + filename+"'")
-        loadPresetTimer.start()
-    }
-
-    Timer {
-        id: loadPresetTimer
-        interval: 500
-        onTriggered: {
-            Utils.loadPreset(presetContent, root, Globals.ignoredConfigs, Globals.defaultConfig)
-        }
     }
 
     function restoreSettings() {

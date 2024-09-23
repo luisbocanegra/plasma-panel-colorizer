@@ -16,34 +16,19 @@ KCM.SimpleKCM {
     property string cratePresetsDirCmd: "mkdir -p " + presetsDir
     property string listPresetsCmd: "find "+presetsDir+" -type f -print0 | while IFS= read -r -d '' file; do basename \"$file\"; done | sort"
 
-    property string cfg_normalPreset
-    property string cfg_floatingPreset
-    property string cfg_touchingWindowPreset
-    property string cfg_maximizedPreset
+    property string cfg_presetAutoloading
+    property var autoLoadConfig: JSON.parse(cfg_presetAutoloading)
+
+    function updateConfig() {
+        cfg_presetAutoloading = JSON.stringify(autoLoadConfig, null, null)
+    }
 
     ListModel {
         id: presetsModel
     }
 
-    P5Support.DataSource {
+    RunCommand {
         id: runCommand
-        engine: "executable"
-        connectedSources: []
-
-        onNewData: function (source, data) {
-            var exitCode = data["exit code"]
-            var exitStatus = data["exit status"]
-            var stdout = data["stdout"]
-            var stderr = data["stderr"]
-            exited(source, exitCode, exitStatus, stdout, stderr)
-            disconnectSource(source) // cmd finished
-        }
-
-        function exec(cmd) {
-            runCommand.connectSource(cmd)
-        }
-
-        signal exited(string cmd, int exitCode, int exitStatus, string stdout, string stderr)
     }
 
     Connections {
@@ -81,7 +66,7 @@ KCM.SimpleKCM {
                 return i;
             }
         }
-        return -1;
+        return 0;
     }
 
     function dumpProps(obj) {
@@ -92,8 +77,8 @@ KCM.SimpleKCM {
     }
 
     Component.onCompleted: {
-        runCommand.exec(cratePresetsDirCmd)
-        runCommand.exec(listPresetsCmd)
+        runCommand.run(cratePresetsDirCmd)
+        runCommand.run(listPresetsCmd)
     }
 
     header: RowLayout {
@@ -125,54 +110,54 @@ KCM.SimpleKCM {
         }
 
         Label {
-            text: i18n("Priorities go from lowest to highest. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the <b>Maximized</b> preset will be applied.")
+            text: i18n("Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the <b>Maximized</b> preset will be applied.")
             Layout.maximumWidth: root.width - (Kirigami.Units.gridUnit * 2)
             wrapMode: Text.Wrap
         }
         Kirigami.FormLayout {
 
             ComboBox {
-                id: normalPreset
-                model: presetsModel
-                textRole: "name"
-                Kirigami.FormData.label: i18n("Normal:")
-                onCurrentIndexChanged: {
-                    cfg_normalPreset = model.get(currentIndex)["value"]
-                }
-                currentIndex: getIndex(model, cfg_normalPreset)
-            }
-
-            ComboBox {
-                id: floatingPreset
-                model: presetsModel
-                textRole: "name"
-                Kirigami.FormData.label: i18n("Floating panel:")
-                onCurrentIndexChanged: {
-                    cfg_floatingPreset = model.get(currentIndex)["value"]
-                }
-                currentIndex: getIndex(model, cfg_floatingPreset)
-            }
-
-            ComboBox {
-                id: touchingWindowPreset
-                model: presetsModel
-                textRole: "name"
-                Kirigami.FormData.label: i18n("Window touching panel:")
-                onCurrentIndexChanged: {
-                    cfg_touchingWindowPreset = model.get(currentIndex)["value"]
-                }
-                currentIndex: getIndex(model, cfg_touchingWindowPreset)
-            }
-
-            ComboBox {
-                id: maximizedPreset
                 model: presetsModel
                 textRole: "name"
                 Kirigami.FormData.label: i18n("Maximized window is shown:")
                 onCurrentIndexChanged: {
-                    cfg_maximizedPreset = model.get(currentIndex)["value"]
+                    autoLoadConfig.maximized = model.get(currentIndex)["value"]
+                    updateConfig()
                 }
-                currentIndex: getIndex(model, cfg_maximizedPreset)
+                currentIndex: getIndex(model, autoLoadConfig.maximized)
+            }
+
+            ComboBox {
+                model: presetsModel
+                textRole: "name"
+                Kirigami.FormData.label: i18n("Window touching panel:")
+                onCurrentIndexChanged: {
+                    autoLoadConfig.touchingWindow = model.get(currentIndex)["value"]
+                    updateConfig()
+                }
+                currentIndex: getIndex(model, autoLoadConfig.touchingWindow)
+            }
+
+            ComboBox {
+                model: presetsModel
+                textRole: "name"
+                Kirigami.FormData.label: i18n("Floating panel:")
+                onCurrentIndexChanged: {
+                    autoLoadConfig.floating = model.get(currentIndex)["value"]
+                    updateConfig()
+                }
+                currentIndex: getIndex(model, autoLoadConfig.floating)
+            }
+
+            ComboBox {
+                model: presetsModel
+                textRole: "name"
+                Kirigami.FormData.label: i18n("Normal:")
+                onCurrentIndexChanged: {
+                    autoLoadConfig.normal = model.get(currentIndex)["value"]
+                    updateConfig()
+                }
+                currentIndex: getIndex(model, autoLoadConfig.normal)
             }
         }
     }
