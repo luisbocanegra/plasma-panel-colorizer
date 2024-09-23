@@ -311,3 +311,21 @@ function mergeConfigs(defaultConfig, existingConfig) {
 function stringify(config) {
   return JSON.stringify(config, null, null)
 }
+
+function loadPreset(presetContent, item, ignoredConfigs, defaults) {
+  console.log("Loading preset contents...");
+  for (let i in presetContent) {
+    const line = presetContent[i]
+    if (line.includes("=")) {
+      const parts = line.split("=")
+      const key = parts[0]
+      let val = parts[1]
+      const cfgKey = "cfg_" + key;
+      if (ignoredConfigs.some(function (k) { return key.includes(k) })) continue
+      if (key === "allSettings") {
+        val = stringify(mergeConfigs(defaults, JSON.parse(val)))
+      }
+      if (item[cfgKey]) item[cfgKey] = val
+    }
+  }
+}

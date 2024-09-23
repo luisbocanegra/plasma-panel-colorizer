@@ -4,6 +4,12 @@ import org.kde.plasma.configuration 2.0
 ConfigModel {
 
     ConfigCategory {
+        name: i18n("General")
+        icon: "preferences"
+        source: "configGeneral.qml"
+    }
+
+    ConfigCategory {
         name: i18n("Appearance")
         icon: "preferences"
         source: "configUnified.qml"
@@ -13,12 +19,6 @@ ConfigModel {
         name: i18n("Overrides")
         icon: "preferences"
         source: "configPerWidget.qml"
-    }
-
-    ConfigCategory {
-        name: i18n("General")
-        icon: "preferences"
-        source: "configGeneral.qml"
     }
 
     ConfigCategory {
