@@ -26,7 +26,7 @@ ColumnLayout {
 
     property alias isEnabled: isEnabled.checked
 
-    property var folllowVisbility: {
+    property var followVisbility: {
         "background": {
             "panel": false,
             "widget": false,
@@ -246,7 +246,7 @@ ColumnLayout {
             backgroundRoot.configLocal.backgroundColor = newConfig
             backgroundRoot.updateConfig()
         }
-        followOptions: folllowVisbility.background
+        followOptions: followVisbility.background
         sectionName: i18n("Background Color")
     }
 
@@ -259,7 +259,7 @@ ColumnLayout {
             backgroundRoot.configLocal.foregroundColor = newConfig
             backgroundRoot.updateConfig()
         }
-        followOptions: folllowVisbility.foreground
+        followOptions: followVisbility.foreground
         sectionName: i18n("Foreground Color")
     }
 
@@ -301,7 +301,7 @@ ColumnLayout {
             backgroundRoot.configLocal.border.color = newConfig
             backgroundRoot.updateConfig()
         }
-        followOptions: folllowVisbility.foreground
+        followOptions: followVisbility.foreground
     }
 
     FormShadow {
@@ -324,7 +324,7 @@ ColumnLayout {
             backgroundRoot.updateConfig()
         }
         isSection: false
-        followOptions: folllowVisbility.foreground
+        followOptions: followVisbility.foreground
         sectionName: i18n("Background Shadow Color")
     }
 
@@ -348,7 +348,7 @@ ColumnLayout {
             backgroundRoot.updateConfig()
         }
         isSection: false
-        followOptions: folllowVisbility.foreground
+        followOptions: followVisbility.foreground
         sectionName: i18n("Foreground Shadow Color")
     }
 }

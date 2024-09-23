@@ -4,6 +4,12 @@ import org.kde.plasma.configuration 2.0
 ConfigModel {
 
     ConfigCategory {
+        name: i18n("Appearance")
+        icon: "preferences"
+        source: "configUnified.qml"
+    }
+
+    ConfigCategory {
         name: i18n("Overrides")
         icon: "preferences"
         source: "configPerWidget.qml"
@@ -14,26 +20,6 @@ ConfigModel {
         icon: "preferences"
         source: "configGeneral.qml"
     }
-
-    ConfigCategory {
-        name: i18n("Panel")
-        icon: "preferences"
-        source: "configNewPanel.qml"
-    }
-
-    ConfigCategory {
-        name: i18n("Widgets")
-        icon: "preferences"
-        source: "configNewWidget.qml"
-    }
-
-    ConfigCategory {
-        name: i18n("Tray Widgets")
-        icon: "preferences"
-        source: "configNewTray.qml"
-    }
-
-    //
 
     ConfigCategory {
         name: i18n("Presets autoloading")
