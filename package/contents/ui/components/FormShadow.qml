@@ -27,7 +27,7 @@ Kirigami.FormLayout {
 
     Kirigami.Separator {
         Kirigami.FormData.isSection: isSection
-        Kirigami.FormData.label: i18n("Shadow")
+        Kirigami.FormData.label: sectionName || i18n("Shadow")
     }
 
     CheckBox {

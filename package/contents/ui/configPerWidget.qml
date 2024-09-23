@@ -23,6 +23,7 @@ KCM.SimpleKCM {
     property bool userInput: false
     property var configOverrides
     property var associationsModel
+    property int currentTab
 
     Component.onCompleted: {
         perWidgetConfig = config.configurationOverrides
@@ -258,15 +259,16 @@ KCM.SimpleKCM {
                         configOverrides[overrideName] = config
                         root.updateConfig()
                     })
+                    item.currentTab = root.currentTab
+                    item.tabChanged.connect((currentTab) => {
+                        root.currentTab = currentTab
+                    })
                 }
             }
 
             Component {
                 id: settingsComp
-                Components.FormWidgetSettings {
-                    currentTab: 0
-                    handleString: false
-                }
+                Components.FormWidgetSettings {}
             }
         }
 

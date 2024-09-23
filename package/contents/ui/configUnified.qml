@@ -11,7 +11,7 @@ KCM.SimpleKCM {
     id: root
 
     property int currentTab
-    property alias cfg_allSettings: settingsComp.configString
+    property string cfg_allSettings
 
     property var followVisbility: {
         "widgets": {
@@ -66,17 +66,34 @@ KCM.SimpleKCM {
                     ListElement { name: "Tray elements"; value: "trayWidgets" }
                     ListElement { name: "Panel"; value: "panel" }
                 }
+                onCurrentValueChanged: {
+                    componentLoader.sourceComponent = null
+                    componentLoader.sourceComponent = settingsComp
+                }
             }
         }
-        Components.FormWidgetSettings {
-            id: settingsComp
-            currentTab: root.currentTab
-            handleString: true
-            keyName: targetComponent.currentValue
-            onUpdateConfigString: (newString, config) => {
-                cfg_allSettings = newString
+        Loader {
+            id: componentLoader
+            sourceComponent: settingsComp
+            Layout.fillWidth: true
+            onLoaded: {
+                item.configString = cfg_allSettings
+                item.onUpdateConfigString.connect((newString, config) => {
+                    cfg_allSettings = newString
+                })
+                item.currentTab = root.currentTab
+                item.handleString = true
+                item.keyName = targetComponent.currentValue
+                item.followVisbility = root.followVisbility
+                item.tabChanged.connect((currentTab) => {
+                    root.currentTab = currentTab
+                })
             }
-            followVisbility: root.followVisbility
+        }
+
+        Component {
+            id: settingsComp
+            Components.FormWidgetSettings {}
         }
     }
 }

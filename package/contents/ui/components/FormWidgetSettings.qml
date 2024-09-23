@@ -13,7 +13,7 @@ ColumnLayout {
     id: backgroundRoot
     property bool isSection: true
     // wether read from the string or existing config object
-    property bool handleString
+    property bool handleString: false
     // key to extract config from
     property string keyName
     // internal config objects to be sent, both string and json
@@ -25,6 +25,14 @@ ColumnLayout {
     property bool supportsForeground: true
 
     property alias isEnabled: isEnabled.checked
+
+    property int currentTab
+
+    signal tabChanged(currentTab: int)
+
+    onCurrentTabChanged: {
+        tabChanged(currentTab)
+    }
 
     property var followVisbility: {
         "background": {
@@ -193,28 +201,30 @@ ColumnLayout {
             Kirigami.Action {
                 icon.name: "globe"
                 text: "Color"
-                checked: true
+                checked: currentTab === 0
                 onTriggered: currentTab = 0
             },
             Kirigami.Action {
                 icon.name: "globe"
                 text: "Shape"
+                checked: currentTab === 1
                 onTriggered: currentTab = 1
             },
             Kirigami.Action {
                 icon.name: "globe"
                 text: "Border"
+                checked: currentTab === 2
                 onTriggered: currentTab = 2
             },
             Kirigami.Action {
                 icon.name: "globe"
                 text: "Shadow"
+                checked: currentTab === 3
                 onTriggered: currentTab = 3
             }
         ]
     }
 
-    property int currentTab: 0
     Kirigami.FormLayout {
         enabled: backgroundRoot.isEnabled
         // required to align with parent form
