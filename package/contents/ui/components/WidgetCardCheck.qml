@@ -6,8 +6,8 @@ import org.kde.kirigami as Kirigami
 Kirigami.AbstractCard {
     id: root
     property var widget
-    signal updateWidget(mask: bool, effect: bool)
-    checked: maskCheckbox.checked || effectCheckbox.checked
+    signal updateWidget(mask: bool, effect: bool, reload: bool)
+    checked: maskCheckbox.checked || effectCheckbox.checked || reloadCheckbox.checked
 
     contentItem: RowLayout {
         Kirigami.Icon {
@@ -57,7 +57,7 @@ Kirigami.AbstractCard {
             checked: widget.method.mask ?? false
             icon.name: checked ? "checkmark-symbolic" : "dialog-close-symbolic"
             onCheckedChanged: {
-                updateWidget(maskCheckbox.checked, effectCheckbox.checked)
+                updateWidget(maskCheckbox.checked, effectCheckbox.checked, reloadCheckbox.checked)
             }
         }
         Button {
@@ -67,7 +67,17 @@ Kirigami.AbstractCard {
             checked: widget.method.multiEffect ?? false
             icon.name: checked ? "checkmark-symbolic" : "dialog-close-symbolic"
             onCheckedChanged: {
-                updateWidget(maskCheckbox.checked, effectCheckbox.checked)
+                updateWidget(maskCheckbox.checked, effectCheckbox.checked, reloadCheckbox.checked)
+            }
+        }
+        Button {
+            id: reloadCheckbox
+            text: i18n("Reload")
+            checkable: true
+            checked: widget.reload ?? false
+            icon.name: checked ? "checkmark-symbolic" : "dialog-close-symbolic"
+            onCheckedChanged: {
+                updateWidget(maskCheckbox.checked, effectCheckbox.checked, reloadCheckbox.checked)
             }
         }
     }

@@ -125,7 +125,7 @@ KCM.SimpleKCM {
         }
 
         Label {
-            text: i18n("Define configuration groups and apply them to one or multiple widgets.")
+            text: i18n("Create configuration overrides and apply them to one or multiple widgets.")
             opacity: 0.7
             Layout.maximumWidth: presetCards.width
             wrapMode: Text.Wrap
@@ -185,7 +185,7 @@ KCM.SimpleKCM {
                 }
                 Button {
                     icon.name: "list-add-symbolic"
-                    text: "New configuration group"
+                    text: "New override"
                     onClicked: {
                         configOverrides[`Override ${Object.keys(configOverrides).length+1}`] = Globals.baseWidgetConfig
                         root.updateConfig()

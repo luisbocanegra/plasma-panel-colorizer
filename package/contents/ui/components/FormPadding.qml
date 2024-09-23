@@ -30,9 +30,9 @@ Kirigami.FormLayout {
     CheckBox {
         Kirigami.FormData.label: i18n("Enabled:")
         id: enabledCheckbox
-        checked: config.paddingEnabled
+        checked: config.padding.enabled
         onCheckedChanged: {
-            config.paddingEnabled = checked
+            config.padding.enabled = checked
             updateConfig()
         }
     }
@@ -44,50 +44,50 @@ Kirigami.FormLayout {
         Kirigami.FormData.label: i18n("Padding:")
         SpinBox {
             id: topMargin
-            value: config.padding.top
+            value: config.padding.side.top
             from: 0
             to: 99
             Layout.row: 0
             Layout.column: 1
             onValueModified: {
-                config.padding.top = value
+                config.padding.side.top = value
                 updateConfig()
             }
         }
         SpinBox {
             id: bottomMargin
-            value: config.padding.bottom
+            value: config.padding.side.bottom
             from: 0
             to: 99
             Layout.row: 2
             Layout.column: 1
             onValueModified: {
-                config.padding.bottom = value
+                config.padding.side.bottom = value
                 updateConfig()
             }
         }
         SpinBox {
             id: leftMargin
-            value: config.padding.left
+            value: config.padding.side.left
             from: 0
             to: 99
             Layout.row: 1
             Layout.column: 0
             onValueModified: {
-                config.padding.left = value
+                config.padding.side.left = value
                 updateConfig()
             }
         }
 
         SpinBox {
             id: rightMargin
-            value: config.padding.right
+            value: config.padding.side.right
             from: 0
             to: 99
             Layout.row: 1
             Layout.column: 2
             onValueModified: {
-                config.padding.right = value
+                config.padding.side.right = value
                 updateConfig()
             }
         }

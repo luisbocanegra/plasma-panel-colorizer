@@ -13,6 +13,7 @@ import QtQuick.Effects
 
 import "components" as Components
 import "code/utils.js" as Utils
+import "code/globals.js" as Globals
 
 PlasmoidItem {
     id: main
@@ -22,12 +23,12 @@ PlasmoidItem {
     property int trayGridViewCountOld: 0
     property var panelPrefixes: ["north","south","west","east"]
     property bool horizontal: Plasmoid.formFactor === PlasmaCore.Types.Horizontal
-    property bool fixedSidePaddingEnabled: Object.values(panelSettings.padding).some(value => value !== 0)
+    property bool fixedSidePaddingEnabled: panelSettings.padding.enabled
     property bool isEnabled: true
     property bool nativePanelBackgroundEnabled: cfg.nativePanelBackground.enabled
     property real nativePanelBackgroundOpacity: cfg.nativePanelBackground.opacity
     property var panelWidgets: []
-    property int panelWidgetsCount: 0
+    property int panelWidgetsCount: panelWidgets?.length || 0
     property real trayItemThikness: 20
     property bool separateTray: trayWidgetSettings.enabled
     // items inside the tray need to know the tray index to take
@@ -47,14 +48,17 @@ PlasmoidItem {
     property var widgetSettings: cfg.widgets
     property var panelSettings: cfg.panel
     property var trayWidgetSettings: cfg.trayWidgets
-    property var forceRecolorList: cfg.forceForegroundColor
+    property var forceRecolorList: cfg.forceForegroundColor?.widgets ?? {}
+    property int forceRecolorInterval: cfg.forceForegroundColor?.reloadInterval ?? 0
     property int forceRecolorCount: Object.keys(forceRecolorList).length
+    property bool requiresRefresh: Object.values(forceRecolorList).some(w => w.reload)
     property var configurationOverrides: cfg.configurationOverrides
-    signal recolorNeeded()
+    signal recolorCountChanged()
+    signal refreshNeeded()
 
     onForceRecolorCountChanged: {
         console.error("onForceRecolorCountChanged ->", forceRecolorCount)
-        recolorNeeded()
+        recolorCountChanged()
     }
 
     function getColor(colorCfg, targetIndex, parentColor, itemType) {
@@ -112,11 +116,14 @@ PlasmoidItem {
         }
         for (var i = 0; i < element.visibleChildren.length; i++) {
             var child = element.visibleChildren[i]
-            if (child.Kirigami?.Theme) {
-                child.Kirigami.Theme.textColor = newColor
-                child.Kirigami.Theme.colorSet = Kirigami.Theme[fgColorCfg.systemColorSet]
-                child.Kirigami.Theme.inherit = fgColorCfg.sourceType === 1
+            if ([Text,ToolButton,Label,Canvas,Kirigami.Icon].some(function (type) {return child instanceof type})) {
+                if (child.Kirigami?.Theme) {
+                    child.Kirigami.Theme.textColor = newColor
+                    child.Kirigami.Theme.colorSet = Kirigami.Theme[fgColorCfg.systemColorSet]
             }
+            }
+            if ([Text,ToolButton,Label,Canvas,Kirigami.Icon].some(function (type) {return child instanceof type})) {
+                }
             if ([Text,ToolButton,Label,Canvas,Kirigami.Icon].some(function (type) {return child instanceof type})) {
                 if (child.color) {
                     child.color = newColor
@@ -195,10 +202,10 @@ PlasmoidItem {
         property bool isWidget: itemType === Enums.ItemType.WidgetItem
         property bool isTray: itemType === Enums.ItemType.TrayItem
         property bool isTrayArrow: itemType === Enums.ItemType.TrayArrow
+        property bool inTray: isTray || isTrayArrow
         property bool luisbocanegraPanelColorizerBgManaged: true
-        // mask and color effect do
-        property bool requiresRefresh: false
         property string widgetName: isTrayArrow ? "org.kde.plasma.systemtray.expand" : Utils.getWidgetName(target)
+        property bool requiresRefresh: forceRecolorList[widgetName]?.reload ?? false
         property var itemConfig: Utils.getItemCfg(itemType, widgetName, main.cfg)
         property var cfg: itemConfig.settings
         property bool cfgOverride: itemConfig.override
@@ -210,20 +217,20 @@ PlasmoidItem {
         visible: cfg.enabled
         property bool bgEnabled: bgColorCfg.enabled
         property bool fgEnabled: fgColorCfg.enabled
-        property bool radiusEnabled: cfg.radiusEnabled
-        property bool marginEnabled: cfg.marginEnabled
+        property bool radiusEnabled: cfg.radius.enabled
+        property bool marginEnabled: cfg.margin.enabled
         property bool borderEnabled: cfg.border.enabled
         property bool shadowEnabled: cfg.shadow.enabled
         Rectangle {
             id: fgColorHolder
-            height: 4
-            width: 4
+            height: 6
+            width: height
             visible: false
             radius: height / 2
             property var newColor: {
                 if (separateTray || cfgOverride) {
                     return getColor(rect.fgColorCfg, targetIndex, rect.color, itemType)
-                } else if (isTray) {
+                } else if (inTray) {
                     return getColor(widgetSettings.foregroundColor, trayIndex, rect.color, itemType)
                 } else {
                     return getColor(widgetSettings.foregroundColor, targetIndex, rect.color, itemType)
@@ -233,7 +240,7 @@ PlasmoidItem {
                 target: fgColorHolder
                 property: "color"
                 value: fgEnabled ? fgColorHolder.newColor : Kirigami.Theme.textColor
-                when: cfg.enabled
+                when: cfg.enabled || !separateTray
             }
             Binding {
                 target: fgColorHolder
@@ -250,17 +257,14 @@ PlasmoidItem {
         }
         // Label {
         //     id: debugLabel
-        //     text: targetIndex //maxDepth+","+itemCount
+        //     text: targetIndex+","+trayIndex //maxDepth+","+itemCount
         //     font.pixelSize: 8
         // }
         corners {
-            topLeftRadius: radiusEnabled ? cfg.radius.topLeft : 0
-            topRightRadius: radiusEnabled ? cfg.radius.topRight : 0
-            bottomLeftRadius: radiusEnabled ? cfg.radius.bottomLeft : 0
-            bottomRightRadius: radiusEnabled ? cfg.radius.bottomRight : 0
-        }
-        border {
-            width: -1
+            topLeftRadius: radiusEnabled ? cfg.radius.corner.topLeft : 0
+            topRightRadius: radiusEnabled ? cfg.radius.corner.topRight : 0
+            bottomLeftRadius: radiusEnabled ? cfg.radius.corner.bottomLeft : 0
+            bottomRightRadius: radiusEnabled ? cfg.radius.corner.bottomRight : 0
         }
         Kirigami.Theme.colorSet: Kirigami.Theme[bgColorCfg.systemColorSet]
         Kirigami.Theme.inherit: bgColorCfg.sourceType === 1
@@ -271,50 +275,56 @@ PlasmoidItem {
                 return "transparent"
             }
         }
-        Timer {
-            id: recolorTimer
-            interval: 250
-            repeat: requiresRefresh
-            onTriggered: {
-                if (!isPanel) {
-                    const result = applyFgColor(target, fgColor, fgColorCfg, 0, false, false, itemType)
-                    if (result) {
-                        itemCount = result.count
-                        maxDepth = result.depth
-                    }
-                }
-            }
-        }
 
         property int targetChildren: target.children.length
         onTargetChildrenChanged: {
             // console.error("CHILDREN CHANGED", targetChildren, target)
-            recolorTimer.start()
+            recolorTimer.restart()
         }
         property int targetVisibleChildren: target.visibleChildren.length
         onTargetVisibleChildrenChanged: {
             // console.error("CHILDREN CHANGED", targetVisibleChildren, target)
-            recolorTimer.start()
+            recolorTimer.restart()
         }
         property int targetCount: target.count || 0
         onTargetCountChanged: {
             // console.error("COUNT CHANGED", targetCount, target)
-            recolorTimer.start()
+            recolorTimer.restart()
         }
 
         onFgColorChanged: {
             // console.error("FG COLOR CHANGED", fgColor, target)
-            recolorTimer.start()
+            recolorTimer.restart()
         }
-        function recolor() {
-            recolorTimer.start()
-        }
-        Component.onCompleted: {
-            main.recolorNeeded.connect(rect.recolor)
-            recolorTimer.start()
-            if (widgetName && widgetName in forceRecolorList) {
-                requiresRefresh = true
+
+        Timer {
+            id: recolorTimer
+            interval: 10
+            onTriggered: {
+                if (isPanel) return
+                const result = applyFgColor(target, fgColor, fgColorCfg, 0, false, false, itemType)
+                if (result) {
+                    itemCount = result.count
+                    maxDepth = result.depth
+                }
             }
+        }
+
+        function recolor() {
+            recolorTimer.restart()
+        }
+
+        onRequiresRefreshChanged: {
+            if (requiresRefresh) {
+                main.refreshNeeded.connect(rect.recolor)
+            } else {
+                main.refreshNeeded.disconnect(rect.recolor)
+            }
+        }
+
+        Component.onCompleted: {
+            main.recolorCountChanged.connect(rect.recolor)
+            recolorTimer.start()
         }
 
         height: isTray ? target.height : parent.height
@@ -323,13 +333,13 @@ PlasmoidItem {
         anchors.fill: (isPanel ||isTray || isTrayArrow) ? parent : undefined
 
         property bool addMargin: cfg.enabled
-            && marginEnabled && (Object.values(cfg.margin).some(value => value !== 0) || isPanel)
-        property int marginLeft: cfg.margin.left
-        property int marginRight: cfg.margin.right
+            && marginEnabled && (Object.values(cfg.margin.side).some(value => value !== 0) || isPanel)
+        property int marginLeft: cfg.margin.side.left
+        property int marginRight: cfg.margin.side.right
         property int horizontalWidth: marginLeft + marginRight
 
-        property int marginTop: cfg.margin.top
-        property int marginBottom: cfg.margin.bottom
+        property int marginTop: cfg.margin.side.top
+        property int marginBottom: cfg.margin.side.bottom
         property int verticalWidth: marginTop + marginBottom
 
         Binding {
@@ -532,10 +542,10 @@ PlasmoidItem {
                     width: cfg.border.width || -1
                 }
                 corners {
-                    topLeftRadius: cfg.radius.topLeft
-                    topRightRadius: cfg.radius.topRight
-                    bottomLeftRadius: cfg.radius.bottomLeft
-                    bottomRightRadius: cfg.radius.bottomRight
+                    topLeftRadius: radiusEnabled ? cfg.radius.corner.topLeft : 0
+                    topRightRadius: radiusEnabled ? cfg.radius.corner.topRight : 0
+                    bottomLeftRadius: radiusEnabled ? cfg.radius.corner.bottomLeft : 0
+                    bottomRightRadius: radiusEnabled ? cfg.radius.corner.bottomRight : 0
                 }
             }
 
@@ -550,10 +560,10 @@ PlasmoidItem {
                         width: rect.width
                         height: rect.height
                         corners {
-                            topLeftRadius: cfg.radius.topLeft
-                            topRightRadius: cfg.radius.topRight
-                            bottomLeftRadius: cfg.radius.bottomLeft
-                            bottomRightRadius: cfg.radius.bottomRight
+                            topLeftRadius: radiusEnabled ? cfg.radius.corner.topLeft : 0
+                            topRightRadius: radiusEnabled ? cfg.radius.corner.topRight : 0
+                            bottomLeftRadius: radiusEnabled ? cfg.radius.corner.bottomLeft : 0
+                            bottomRightRadius: radiusEnabled ? cfg.radius.corner.bottomRight : 0
                         }
                     }
                 }
@@ -601,28 +611,28 @@ PlasmoidItem {
     Binding {
         target: panelLayoutContainer
         property: "anchors.leftMargin"
-        value: panelSettings.padding.left
+        value: panelSettings.padding.side.left
         when: fixedSidePaddingEnabled
     }
 
     Binding {
         target: panelLayoutContainer
         property: "anchors.rightMargin"
-        value: panelSettings.padding.right
+        value: panelSettings.padding.side.right
         when: fixedSidePaddingEnabled
     }
 
     Binding {
         target: panelLayoutContainer
         property: "anchors.topMargin"
-        value: panelSettings.padding.top
+        value: panelSettings.padding.side.top
         when: fixedSidePaddingEnabled
     }
 
     Binding {
         target: panelLayoutContainer
         property: "anchors.bottomMargin"
-        value: panelSettings.padding.bottom
+        value: panelSettings.padding.side.bottom
         when: fixedSidePaddingEnabled
     }
 
@@ -737,7 +747,6 @@ PlasmoidItem {
         onTriggered: {
             if (trayGridView && trayGridViewCount !== 0) {
                 showTrayAreas(trayGridView)
-                showTrayAreas(trayGridView.parent)
             }
             updateCurrentWidgets()
         }
@@ -824,15 +833,19 @@ PlasmoidItem {
         plasmoid.configuration.panelWidgets = JSON.stringify(panelWidgets, null, null)
     }
 
+    Component.onCompleted: {
+        Qt.callLater(function() {
+            const config = Utils.mergeConfigs(Globals.defaultConfig, cfg)
+            plasmoid.configuration.allSettings = Utils.stringify(config)
+        })
+    }
+
     Timer {
-        running: true
+        running: requiresRefresh
         repeat: true
-        interval: 1000
+        interval: forceRecolorInterval
         onTriggered: {
-            let tmp = panelWidgets.length
-            if (tmp !== panelWidgetsCount) {
-                panelWidgetsCount = tmp
-            }
+            refreshNeeded()
         }
     }
 }

@@ -30,9 +30,9 @@ Kirigami.FormLayout {
     CheckBox {
         Kirigami.FormData.label: i18n("Enabled:")
         id: radiusEnabledCheckbox
-        checked: config.radiusEnabled
+        checked: config.radius.enabled
         onCheckedChanged: {
-            config.radiusEnabled = checked
+            config.radius.enabled = checked
             updateConfig()
         }
     }
@@ -43,41 +43,41 @@ Kirigami.FormLayout {
         Kirigami.FormData.label: i18n("Radius:")
         SpinBox {
             id: topLeftRadius
-            value: config.radius.topLeft
+            value: config.radius.corner.topLeft
             from: 0
             to: 99
             onValueModified: {
-                config.radius.topLeft = value
+                config.radius.corner.topLeft = value
                 updateConfig()
             }
         }
         SpinBox {
             id: topRightRadius
-            value: config.radius.topRight
+            value: config.radius.corner.topRight
             from: 0
             to: 99
             onValueModified: {
-                config.radius.topRight = value
+                config.radius.corner.topRight = value
                 updateConfig()
             }
         }
         SpinBox {
             id: bottomLeftRadius
-            value: config.radius.bottomLeft
+            value: config.radius.corner.bottomLeft
             from: 0
             to: 99
             onValueModified: {
-                config.radius.bottomLeft = value
+                config.radius.corner.bottomLeft = value
                 updateConfig()
             }
         }
         SpinBox {
             id: bottomRightRadius
-            value: config.radius.bottomRight
+            value: config.radius.corner.bottomRight
             from: 0
             to: 99
             onValueModified: {
-                config.radius.bottomRight = value
+                config.radius.corner.bottomRight = value
                 updateConfig()
             }
         }
@@ -91,9 +91,9 @@ Kirigami.FormLayout {
     CheckBox {
         Kirigami.FormData.label: i18n("Enabled:")
         id: marginEnabledCheckbox
-        checked: config.marginEnabled
+        checked: config.margin.enabled
         onCheckedChanged: {
-            config.marginEnabled = checked
+            config.margin.enabled = checked
             updateConfig()
         }
     }
@@ -104,50 +104,50 @@ Kirigami.FormLayout {
         Kirigami.FormData.label: i18n("Margin:")
         SpinBox {
             id: topMargin
-            value: config.margin.top
+            value: config.margin.side.top
             from: 0
             to: 99
             Layout.row: 0
             Layout.column: 1
             onValueModified: {
-                config.margin.top = value
+                config.margin.side.top = value
                 updateConfig()
             }
         }
         SpinBox {
             id: bottomMargin
-            value: config.margin.bottom
+            value: config.margin.side.bottom
             from: 0
             to: 99
             Layout.row: 2
             Layout.column: 1
             onValueModified: {
-                config.margin.bottom = value
+                config.margin.side.bottom = value
                 updateConfig()
             }
         }
         SpinBox {
             id: leftMargin
-            value: config.margin.left
+            value: config.margin.side.left
             from: 0
             to: 99
             Layout.row: 1
             Layout.column: 0
             onValueModified: {
-                config.margin.left = value
+                config.margin.side.left = value
                 updateConfig()
             }
         }
 
         SpinBox {
             id: rightMargin
-            value: config.margin.right
+            value: config.margin.side.right
             from: 0
             to: 99
             Layout.row: 1
             Layout.column: 2
             onValueModified: {
-                config.margin.right = value
+                config.margin.side.right = value
                 updateConfig()
             }
         }

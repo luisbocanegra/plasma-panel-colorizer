@@ -10,7 +10,7 @@ Kirigami.AbstractCard {
     property var configOverrides: []
     property var overrideAssociations: {}
     property bool showList: false
-    property string currentGroup: overrideAssociations[widget.name]
+    property string currentGroup: overrideAssociations[widget.name] || ""
 
     contentItem: ColumnLayout {
     RowLayout {
@@ -104,7 +104,6 @@ Kirigami.AbstractCard {
                 highlight: Item {}
                 highlightMoveDuration: 0
                 highlightResizeDuration: 0
-                boundsBehavior: Flickable.StopAtBoundsfiltered
             }
         }
     }

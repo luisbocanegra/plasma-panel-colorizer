@@ -18,7 +18,7 @@ KCM.SimpleKCM {
     property bool loaded: false
 
     Component.onCompleted: {
-        forceFgConfig = config.forceForegroundColor
+        forceFgConfig = config.forceForegroundColor.widgets
         console.error(JSON.stringify(forceFgConfig, null, null))
         initWidgets()
         updateWidgetsModel()
@@ -29,14 +29,15 @@ KCM.SimpleKCM {
             const widget = widgetsModel.get(i)
             const name = widget.name
             const method = widget.method
+            const reload = widget.reload
             console.error(name, method.mask, method.multiEffect)
-            if (method.mask || method.multiEffect) {
-                forceFgConfig[name] = {"method": widget.method}
+            if (method.mask || method.multiEffect || reload) {
+                forceFgConfig[name] = {"method": method, "reload":reload}
             } else {
                 delete forceFgConfig[widget.name]
             }
         }
-        config.forceForegroundColor = forceFgConfig
+        config.forceForegroundColor.widgets = forceFgConfig
         cfg_allSettings = JSON.stringify(config, null, null)
     }
 
@@ -54,7 +55,7 @@ KCM.SimpleKCM {
             const inTray = widget.inTray
             widgetsModel.append({
                 "name": name, "title": title, "icon": icon, "inTray":inTray,
-                "method": { "mask":false, "multiEffect": false }
+                "method": { "mask": false, "multiEffect": false }, "reload": false
             })
         }
     }
@@ -65,7 +66,7 @@ KCM.SimpleKCM {
             const name = widget.name
             if (name in forceFgConfig) {
                 let cfg = forceFgConfig[name]
-                widgetsModel.set(i, {"method": cfg.method})
+                widgetsModel.set(i, {"method": cfg.method, "reload": cfg.reload})
             }
         }
         loaded = true
@@ -92,31 +93,28 @@ KCM.SimpleKCM {
     }
 
     ColumnLayout {
-    Kirigami.FormLayout {
-        // enabled: cfg_fgColorEnabled
-        // visible: cfg_isEnabled
+        Kirigami.FormLayout {
+            Kirigami.Separator {
+                Kirigami.FormData.isSection: true
+                Kirigami.FormData.label: i18n("Force Text/Icon color")
+            }
 
-        // CheckBox {
-        //     Kirigami.FormData.label: i18n("Fix custom badges:")
-        //     id: fixCustomBadgesCheckbox
-        //     checked: cfg_fixCustomBadges
-        //     onCheckedChanged: cfg_fixCustomBadges = checked
-        // }
-
-        // Label {
-        //     text: i18n("Fix unreadable custom badges (e.g. counters) drawn by some widgets.")
-        //     opacity: 0.7
-        //     Layout.maximumWidth: 400
-        //     wrapMode: Text.Wrap
-        // }
-
-        Kirigami.Separator {
-            Kirigami.FormData.isSection: true
-            Kirigami.FormData.label: i18n("Force Text/Icon color")
+            SpinBox {
+                Kirigami.FormData.label: i18n("Refresh interval:")
+                from: 16
+                to: 1000
+                stepSize: 50
+                value: config.forceForegroundColor.reloadInterval
+                onValueModified: {
+                    config.forceForegroundColor.reloadInterval = value
+                    root.updateConfig()
+                }
+            }
         }
+    Kirigami.FormLayout {
 
         Label {
-            text: i18n("<strong>Mask</strong>: Force Icon colorization.<br><strong>Effect</strong>: Force Icons/Text colorization using post-processing effect.<br>To restore the original color disable and restart Plasma or logout.")
+            text: i18n("<strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Reload</strong>: Re-apply colorization at a fixed interval, use for widgets whore color gets stuck.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout.")
             opacity: 0.7
             Layout.maximumWidth: widgetCards.width
             wrapMode: Text.Wrap
@@ -128,11 +126,12 @@ KCM.SimpleKCM {
                 model: widgetsModel
                 delegate: Components.WidgetCardCheck {
                     widget: model
-                    onUpdateWidget: (maskEnabled, effectEnabled) => {
+                    onUpdateWidget: (maskEnabled, effectEnabled, reload) => {
                         if (!loaded) return
                         widgetsModel.set(index,
                         {
-                            "method":{ "mask": maskEnabled, "multiEffect": effectEnabled}
+                            "method":{ "mask": maskEnabled, "multiEffect": effectEnabled},
+                            "reload": reload
                         })
                         root.updateConfig()
                     }

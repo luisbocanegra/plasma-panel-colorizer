@@ -155,19 +155,20 @@ function getWidgetName(item) {
   if (item.applet?.plasmoid?.pluginName) {
     name = item.applet.plasmoid.pluginName
   } else {
-    const modelItem = item.children.find((child) => child.hasOwnProperty("model"))
-    if (!modelItem) return null
-    const model = modelItem.model
-    if (model.itemType === "StatusNotifier") {
-      name = model.Id
-    } else if (model.itemType === "Plasmoid") {
-      const applet = model.applet ?? null
-      name = applet?.plasmoid.pluginName ?? null
+    for (let i in item.children) {
+      if (!(item.children[i].model)) continue
+      const model = item.children[i].model
+      if (model.itemType === "StatusNotifier") {
+        name = model.Id
+      } else if (model.itemType === "Plasmoid") {
+        const applet = model.applet ?? null
+        name = applet?.plasmoid.pluginName ?? null
+      }
     }
   }
-  if (name) {
-    console.error("@@@@ getWidgetName ->", name)
-  }
+  // if (name) {
+  //   console.error("@@@@ getWidgetName ->", name)
+  // }
   return name
 }
 
@@ -276,4 +277,8 @@ function mergeConfigs(defaultConfig, existingConfig) {
     }
   }
   return existingConfig
+}
+
+function stringify(config) {
+  return JSON.stringify(config, null, null)
 }
