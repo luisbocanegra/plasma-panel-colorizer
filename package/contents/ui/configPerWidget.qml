@@ -263,10 +263,9 @@ KCM.SimpleKCM {
 
             Component {
                 id: settingsComp
-                Components.FormPerWidgetSettings {
+                Components.FormWidgetSettings {
                     currentTab: 0
                     handleString: false
-                    keyName: "configuration"
                 }
             }
         }

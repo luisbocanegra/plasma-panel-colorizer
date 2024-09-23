@@ -19,7 +19,7 @@ ColumnLayout {
     // internal config objects to be sent, both string and json
     property string configString: "{}"
     property var config: handleString ? JSON.parse(configString) : undefined
-    property var configLocal: config[keyName]
+    property var configLocal: keyName ? config[keyName] : config
     signal updateConfigString(configString: string, config: var)
     // whether the current item supports foreground customization, e.g the panel does not
     property bool supportsForeground: true
@@ -40,7 +40,11 @@ ColumnLayout {
     }
 
     function updateConfig() {
-        config[keyName] = configLocal
+        if (keyName) {
+            config[keyName] = configLocal
+        } else {
+            config = configLocal
+        }
         configString = JSON.stringify(config, null, null)
         // console.error(configString)
         updateConfigString(configString, config)
