@@ -84,7 +84,7 @@ KCM.SimpleKCM {
                 item.currentTab = root.currentTab
                 item.handleString = true
                 item.keyName = targetComponent.currentValue
-                item.followVisbility = root.followVisbility
+                item.followVisbility = root.followVisbility[targetComponent.currentValue]
                 item.tabChanged.connect((currentTab) => {
                     root.currentTab = currentTab
                 })

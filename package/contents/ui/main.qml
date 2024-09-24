@@ -79,6 +79,14 @@ PlasmoidItem {
         recolorCountChanged()
     }
 
+    Rectangle {
+        id: colorHolder
+        height: 0
+        width: 0
+        visible: false
+        Kirigami.Theme.inherit: false
+    }
+
     function getColor(colorCfg, targetIndex, parentColor, itemType) {
         let newColor = "transparent"
         switch (colorCfg.sourceType) {
@@ -86,7 +94,8 @@ PlasmoidItem {
                 newColor = Utils.rgbToQtColor(Utils.hexToRgb(colorCfg.custom))
             break
             case 1:
-                newColor = Kirigami.Theme[colorCfg.systemColor]
+                colorHolder.Kirigami.Theme.colorSet = Kirigami.Theme[colorCfg.systemColorSet]
+                newColor = colorHolder.Kirigami.Theme[colorCfg.systemColor]
             break
             case 2:
                 const nextIndex = targetIndex % colorCfg.list.length
@@ -134,18 +143,16 @@ PlasmoidItem {
         }
         for (var i = 0; i < element.visibleChildren.length; i++) {
             var child = element.visibleChildren[i]
-            if ([Text,ToolButton,Label,Canvas,Kirigami.Icon].some(function (type) {return child instanceof type})) {
-                if (child.Kirigami?.Theme) {
-                    child.Kirigami.Theme.textColor = newColor
-                    child.Kirigami.Theme.colorSet = Kirigami.Theme[fgColorCfg.systemColorSet]
-            }
-            }
-            if ([Text,ToolButton,Label,Canvas,Kirigami.Icon].some(function (type) {return child instanceof type})) {
-                }
+
             if ([Text,ToolButton,Label,Canvas,Kirigami.Icon].some(function (type) {return child instanceof type})) {
                 if (child.color) {
                     child.color = newColor
                 }
+                if (child.Kirigami?.Theme) {
+                    child.Kirigami.Theme.textColor = newColor
+                    child.Kirigami.Theme.colorSet = Kirigami.Theme[fgColorCfg.systemColorSet]
+                }
+
                 if (child.hasOwnProperty("isMask") && forceMask) {
                     child.isMask = true
                 }
@@ -229,52 +236,46 @@ PlasmoidItem {
         property bool cfgOverride: itemConfig.override
         property var bgColorCfg: cfg.backgroundColor
         property var fgColorCfg: cfg.foregroundColor
-        property string fgColor: fgColorHolder.color
+        // property string fgColor: fgColorHolder.color
         property int itemCount: 0
         property int maxDepth: 0
-        visible: cfg.enabled
-        property bool bgEnabled: bgColorCfg.enabled
-        property bool fgEnabled: fgColorCfg.enabled
-        property bool radiusEnabled: cfg.radius.enabled
-        property bool marginEnabled: cfg.margin.enabled
-        property bool borderEnabled: cfg.border.enabled
-        property bool bgShadowEnabled: cfg.shadow.background.enabled
+        visible: cfgEnabled
+        property bool cfgEnabled: cfg.enabled
+        property bool bgEnabled: bgColorCfg.enabled && cfgEnabled
+        property bool fgEnabled: fgColorCfg.enabled && cfgEnabled
+        property bool radiusEnabled: cfg.radius.enabled && cfgEnabled
+        property bool marginEnabled: cfg.margin.enabled && cfgEnabled || isPanel
+        property bool borderEnabled: cfg.border.enabled && cfgEnabled
+        property bool bgShadowEnabled: cfg.shadow.background.enabled && cfgEnabled
         property var bgShadow: cfg.shadow.background
-        property bool fgShadowEnabled: cfg.shadow.foreground.enabled
+        property bool fgShadowEnabled: cfg.shadow.foreground.enabled && cfgEnabled
         property var fgShadow: cfg.shadow.foreground
+        property string fgColor: {
+            if (((!fgEnabled&&!inTray))) {
+                return Kirigami.Theme.textColor
+
+            } else if (separateTray || cfgOverride) {
+                return getColor(rect.fgColorCfg, targetIndex, rect.color, itemType)
+            } else if (inTray) {
+                return getColor(widgetSettings.foregroundColor, trayIndex, rect.color, itemType)
+            } else {
+                return getColor(widgetSettings.foregroundColor, targetIndex, rect.color, itemType)
+            }
+        }
         Rectangle {
             id: fgColorHolder
             height: 6
             width: height
-            visible: false
+            visible: true
             radius: height / 2
-            property var newColor: {
-                if (separateTray || cfgOverride) {
-                    return getColor(rect.fgColorCfg, targetIndex, rect.color, itemType)
-                } else if (inTray) {
-                    return getColor(widgetSettings.foregroundColor, trayIndex, rect.color, itemType)
-                } else {
-                    return getColor(widgetSettings.foregroundColor, targetIndex, rect.color, itemType)
-                }
-            }
-            Binding {
-                target: fgColorHolder
-                property: "color"
-                value: fgEnabled ? fgColorHolder.newColor : Kirigami.Theme.textColor
-                when: cfg.enabled || !separateTray
-            }
-            Binding {
-                target: fgColorHolder
-                property: "Kirigami.Theme.colorSet"
-                value: Kirigami.Theme[fgColorCfg.systemColorSet]
-                when: cfg.enabled
-            }
-            Binding {
-                target: fgColorHolder
-                property: "Kirigami.Theme.inherit"
-                value: fgColorCfg.sourceType === 1
-                when: cfg.enabled
-            }
+            color: fgColor
+
+            // Binding {
+            //     target: fgColorHolder
+            //     property: "color"
+            //     value:  ? fgColorHolder.newColor : Kirigami.Theme.textColor
+            //     when: fgEnabled || inTray
+            // }
         }
         // Label {
         //     id: debugLabel
@@ -287,8 +288,6 @@ PlasmoidItem {
             bottomLeftRadius: radiusEnabled ? cfg.radius.corner.bottomLeft : 0
             bottomRightRadius: radiusEnabled ? cfg.radius.corner.bottomRight : 0
         }
-        Kirigami.Theme.colorSet: Kirigami.Theme[bgColorCfg.systemColorSet]
-        Kirigami.Theme.inherit: bgColorCfg.sourceType === 1
         color: {
             if (bgEnabled) {
                 return getColor(bgColorCfg, targetIndex, null, itemType)
@@ -353,8 +352,6 @@ PlasmoidItem {
         anchors.centerIn: (isTray || isTrayArrow) ? parent : undefined
         anchors.fill: (isPanel ||isTray || isTrayArrow) ? parent : undefined
 
-        property bool addMargin: cfg.enabled
-            && marginEnabled && (Object.values(cfg.margin.side).some(value => value !== 0) || isPanel)
         property int marginLeft: cfg.margin.side.left
         property int marginRight: cfg.margin.side.right
         property int horizontalWidth: marginLeft + marginRight
@@ -367,56 +364,56 @@ PlasmoidItem {
             target: rect
             property: "x"
             value: -marginLeft
-            when: addMargin && isWidget && horizontal
+            when: marginEnabled && isWidget && horizontal
         }
 
         Binding {
             target: rect
             property: "y"
             value: -marginTop
-            when: addMargin && isWidget && !horizontal
+            when: marginEnabled && isWidget && !horizontal
         }
 
         Binding {
             target: rect
             property: "width"
             value: parent.width + horizontalWidth
-            when: addMargin && isWidget && horizontal
+            when: marginEnabled && isWidget && horizontal
         }
 
         Binding {
             target: rect
             property: "height"
             value: parent.height + verticalWidth
-            when: addMargin && isWidget && !horizontal
+            when: marginEnabled && isWidget && !horizontal
         }
 
         Binding {
             target: rect.target
             property: "Layout.leftMargin"
             value: marginLeft
-            when: addMargin && isWidget
+            when: marginEnabled && isWidget
         }
 
         Binding {
             target: rect.target
             property: "Layout.rightMargin"
             value: marginRight
-            when: addMargin && isWidget
+            when: marginEnabled && isWidget
         }
 
         Binding {
             target: rect.target
             property: "Layout.topMargin"
             value: marginTop
-            when: addMargin && isWidget
+            when: marginEnabled && isWidget
         }
 
         Binding {
             target: rect.target
             property: "Layout.bottomMargin"
             value: marginBottom
-            when: addMargin && isWidget
+            when: marginEnabled && isWidget
         }
 
         // Panel background, we actually change the panel margin so everything moves with it
@@ -425,28 +422,28 @@ PlasmoidItem {
             target: rect.target
             property: "anchors.leftMargin"
             value: marginLeft
-            when: addMargin && isPanel
+            when: marginEnabled && isPanel
         }
 
         Binding {
             target: rect.target
             property: "anchors.rightMargin"
             value: marginRight
-            when: addMargin && isPanel
+            when: marginEnabled && isPanel
         }
 
         Binding {
             target: rect.target
             property: "anchors.topMargin"
             value: marginTop
-            when: addMargin && isPanel
+            when: marginEnabled && isPanel
         }
 
         Binding {
             target: rect.target
             property: "anchors.bottomMargin"
             value: marginBottom
-            when: addMargin && isPanel
+            when: marginEnabled && isPanel
         }
 
         // Tray item / arrow
@@ -455,28 +452,28 @@ PlasmoidItem {
             target: rect
             property: "anchors.leftMargin"
             value: marginLeft
-            when: addMargin && (isTrayArrow || isTray)
+            when: marginEnabled && (isTrayArrow || isTray)
         }
 
         Binding {
             target: rect
             property: "anchors.rightMargin"
             value: marginRight
-            when: addMargin && (isTrayArrow || isTray)
+            when: marginEnabled && (isTrayArrow || isTray)
         }
 
         Binding {
             target: rect
             property: "anchors.topMargin"
             value: marginTop
-            when: addMargin && (isTrayArrow || isTray)
+            when: marginEnabled && (isTrayArrow || isTray)
         }
 
         Binding {
             target: rect
             property: "anchors.bottomMargin"
             value: marginBottom
-            when: addMargin && (isTrayArrow || isTray)
+            when: marginEnabled && (isTrayArrow || isTray)
         }
 
         // fix tray weird margin
@@ -484,28 +481,28 @@ PlasmoidItem {
             target: rect.target
             property: "Layout.leftMargin"
             value: -2
-            when: addMargin && isTrayArrow && horizontal
+            when: marginEnabled && isTrayArrow && horizontal
         }
 
         Binding {
             target: rect.target
             property: "Layout.rightMargin"
             value: 2
-            when: addMargin && isTrayArrow && horizontal
+            when: marginEnabled && isTrayArrow && horizontal
         }
 
         Binding {
             target: rect.target
             property: "Layout.topMargin"
             value: -2
-            when: addMargin && isTrayArrow && !horizontal
+            when: marginEnabled && isTrayArrow && !horizontal
         }
 
         Binding {
             target: rect.target
             property: "Layout.bottomMargin"
             value: 2
-            when: addMargin && isTrayArrow && !horizontal
+            when: marginEnabled && isTrayArrow && !horizontal
         }
 
         Rectangle {
@@ -515,7 +512,7 @@ PlasmoidItem {
             visible: borderEnabled
             property var borderColorCfg: cfg.border.color
             Kirigami.Theme.colorSet: Kirigami.Theme[borderColorCfg.systemColorSet]
-            Kirigami.Theme.inherit: borderColorCfg.sourceType === 1
+            Kirigami.Theme.inherit: !(borderColorCfg.sourceType === 1)
             property color borderColor: {
                 return getColor(borderColorCfg, targetIndex, rect.color, itemType)
             }
