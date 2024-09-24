@@ -10,7 +10,7 @@ import "code/globals.js" as Globals
 
 KCM.SimpleKCM {
     id:root
-    property bool cfg_isEnabled
+    property alias cfg_isEnabled: headerComponent.isEnabled
     property string cfg_panelWidgets
     property bool clearing: false
     property string cfg_allSettings
@@ -97,27 +97,16 @@ KCM.SimpleKCM {
         loaded = true
     }
 
-    header: RowLayout {
-        RowLayout {
+    header: ColumnLayout {
+        Components.Header {
+            id: headerComponent
             Layout.leftMargin: Kirigami.Units.mediumSpacing
-            Layout.rightMargin: Kirigami.Units.smallSpacing
-            Item {
-                Layout.fillWidth: true
-            }
-            RowLayout {
-                Layout.alignment: Qt.AlignRight
-                Label {
-                    text: i18n("Last preset loaded:")
-                }
-                Label {
-                    text: "None"
-                    font.weight: Font.DemiBold
-                }
-            }
+            Layout.rightMargin: Kirigami.Units.mediumSpacing
         }
     }
 
     ColumnLayout {
+        enabled: cfg_isEnabled
     Kirigami.FormLayout {
 
         Kirigami.Separator {
@@ -295,8 +284,5 @@ KCM.SimpleKCM {
             }
         }
     }
-    }
-    Components.CategoryDisabled {
-        visible: !cfg_isEnabled
     }
 }

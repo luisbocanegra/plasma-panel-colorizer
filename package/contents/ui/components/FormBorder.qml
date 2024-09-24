@@ -34,6 +34,29 @@ Kirigami.FormLayout {
             config.border.enabled = checked
             updateConfig()
         }
+        Binding {
+            target: enabledCheckbox
+            property: "Kirigami.Theme.textColor"
+            value: Kirigami.Theme.neutralTextColor
+            when: !enabledCheckbox.checked
+        }
+        Kirigami.Theme.inherit: false
+        text: checked ? "" : i18n("Disabled")
+    }
+
+    SpinBox {
+        Kirigami.FormData.label: i18n("Width:")
+        id: borderWidth
+        value: config.border.width
+        from: 0
+        to: 99
+        Layout.row: 1
+        Layout.column: 2
+        onValueModified: {
+            config.border.width = value
+            updateConfig()
+        }
+        enabled: !borderCustomSidesCheckbox.checked && enabledCheckbox.checked
     }
 
     RowLayout {
@@ -50,7 +73,7 @@ Kirigami.FormLayout {
         GridLayout {
             columns: 3
             rows: 3
-            enabled: borderCustomSidesCheckbox.checked
+            enabled: borderCustomSidesCheckbox.checked && enabledCheckbox.checked
             SpinBox {
                 id: topBorderWidth
                 value: config.border.custom.widths.top
@@ -101,21 +124,6 @@ Kirigami.FormLayout {
                 }
             }
         }
-    }
-
-    SpinBox {
-        Kirigami.FormData.label: i18n("Width:")
-        id: borderWidth
-        value: config.border.width
-        from: 0
-        to: 99
-        Layout.row: 1
-        Layout.column: 2
-        onValueModified: {
-            config.border.width = value
-            updateConfig()
-        }
-        enabled: !borderCustomSidesCheckbox.checked
     }
 }
 

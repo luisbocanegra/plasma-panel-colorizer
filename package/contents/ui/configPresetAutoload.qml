@@ -10,7 +10,7 @@ import "components" as Components
 
 KCM.SimpleKCM {
     id:root
-    property bool cfg_isEnabled
+    property alias cfg_isEnabled: headerComponent.isEnabled
     property string presetsDir: StandardPaths.writableLocation(
                     StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/"
     property string cratePresetsDirCmd: "mkdir -p " + presetsDir
@@ -81,28 +81,16 @@ KCM.SimpleKCM {
         runCommand.run(listPresetsCmd)
     }
 
-    header: RowLayout {
-        RowLayout {
+    header: ColumnLayout {
+        Components.Header {
+            id: headerComponent
             Layout.leftMargin: Kirigami.Units.mediumSpacing
-            Layout.rightMargin: Kirigami.Units.smallSpacing
-            Item {
-                Layout.fillWidth: true
-            }
-            RowLayout {
-                Layout.alignment: Qt.AlignRight
-                Label {
-                    text: i18n("Last preset loaded:")
-                }
-                Label {
-                    text: plasmoid.configuration.lastPreset || "None"
-                    font.weight: Font.DemiBold
-                }
-            }
+            Layout.rightMargin: Kirigami.Units.mediumSpacing
         }
     }
 
     ColumnLayout {
-        visible: cfg_isEnabled
+        enabled: cfg_isEnabled
         Label {
             text: i18n("Here you can switch between different panel presets based on the Panel and window states below.")
             Layout.maximumWidth: root.width - (Kirigami.Units.gridUnit * 2)
@@ -160,9 +148,5 @@ KCM.SimpleKCM {
                 currentIndex: getIndex(model, autoLoadConfig.normal)
             }
         }
-    }
-
-    Components.CategoryDisabled {
-        visible: !cfg_isEnabled
     }
 }

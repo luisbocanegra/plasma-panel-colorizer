@@ -12,6 +12,7 @@ KCM.SimpleKCM {
 
     property int currentTab
     property string cfg_allSettings
+    property alias cfg_isEnabled: headerComponent.isEnabled
 
     property var followVisbility: {
         "widgets": {
@@ -52,7 +53,16 @@ KCM.SimpleKCM {
         }
     }
 
+    header: ColumnLayout {
+        Components.Header {
+            id: headerComponent
+            Layout.leftMargin: Kirigami.Units.mediumSpacing
+            Layout.rightMargin: Kirigami.Units.mediumSpacing
+        }
+    }
+
     ColumnLayout {
+        enabled: cfg_isEnabled
         Kirigami.FormLayout {
             id: parentLayout
             Layout.fillWidth: true

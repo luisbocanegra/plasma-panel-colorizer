@@ -38,6 +38,14 @@ Kirigami.FormLayout {
             config.enabled = checked
             updateConfig()
         }
+        Binding {
+            target: enabledCheckbox
+            property: "Kirigami.Theme.textColor"
+            value: Kirigami.Theme.neutralTextColor
+            when: !enabledCheckbox.checked
+        }
+        Kirigami.Theme.inherit: false
+        text: checked ? "" : i18n("Disabled")
     }
 
     SpinBox {
@@ -50,6 +58,7 @@ Kirigami.FormLayout {
             config.size = value
             updateConfig()
         }
+        enabled: enabledCheckbox.checked
     }
 
     SpinBox {
@@ -62,6 +71,7 @@ Kirigami.FormLayout {
             config.xOffset = value
             updateConfig()
         }
+        enabled: enabledCheckbox.checked
     }
 
     SpinBox {
@@ -74,5 +84,6 @@ Kirigami.FormLayout {
             config.yOffset = value
             updateConfig()
         }
+        enabled: enabledCheckbox.checked
     }
 }

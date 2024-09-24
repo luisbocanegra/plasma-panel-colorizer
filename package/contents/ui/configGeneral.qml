@@ -7,12 +7,12 @@ import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
 import org.kde.plasma.plasma5support as P5Support
 
+import "components" as Components
 import "code/utils.js" as Utils
 import "code/globals.js" as Globals
 
 KCM.SimpleKCM {
     id:root
-    property bool cfg_isEnabled: isEnabled.checked
     property bool cfg_hideWidget: hideWidget.checked
     property string presetsDir: StandardPaths.writableLocation(
                     StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/"
@@ -25,6 +25,7 @@ KCM.SimpleKCM {
     property string cfg_allSettings
     property string cfg_lastPreset
     property string lastPreset
+    property alias cfg_isEnabled: headerComponent.isEnabled
 
     Connections {
         target: plasmoid.configuration
@@ -131,34 +132,11 @@ KCM.SimpleKCM {
         runCommand.run(listPresetsCmd)
     }
 
-    header: RowLayout {
-        RowLayout {
+    header: ColumnLayout {
+        Components.Header {
+            id: headerComponent
             Layout.leftMargin: Kirigami.Units.mediumSpacing
-            Layout.rightMargin: Kirigami.Units.smallSpacing
-            RowLayout {
-                Layout.alignment: Qt.AlignRight
-                Label {
-                    text: i18n("Enable:")
-                }
-                CheckBox {
-                    id: isEnabled
-                    checked: cfg_isEnabled
-                    onCheckedChanged: cfg_isEnabled = checked
-                }
-            }
-            Item {
-                Layout.fillWidth: true
-            }
-            RowLayout {
-                Layout.alignment: Qt.AlignRight
-                Label {
-                    text: i18n("Last preset loaded:")
-                }
-                Label {
-                    text: plasmoid.configuration.lastPreset || "None"
-                    font.weight: Font.DemiBold
-                }
-            }
+            Layout.rightMargin: Kirigami.Units.mediumSpacing
         }
     }
 

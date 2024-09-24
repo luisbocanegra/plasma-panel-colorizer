@@ -9,7 +9,7 @@ import "code/utils.js" as Utils
 
 KCM.SimpleKCM {
     id:root
-    property bool cfg_isEnabled
+    property alias cfg_isEnabled: headerComponent.isEnabled
     property string cfg_panelWidgets
     property bool clearing: false
     property string cfg_allSettings
@@ -72,23 +72,11 @@ KCM.SimpleKCM {
         loaded = true
     }
 
-    header: RowLayout {
-        RowLayout {
+    header: ColumnLayout {
+        Components.Header {
+            id: headerComponent
             Layout.leftMargin: Kirigami.Units.mediumSpacing
-            Layout.rightMargin: Kirigami.Units.smallSpacing
-            Item {
-                Layout.fillWidth: true
-            }
-            RowLayout {
-                Layout.alignment: Qt.AlignRight
-                Label {
-                    text: i18n("Last preset loaded:")
-                }
-                Label {
-                    text: "None"
-                    font.weight: Font.DemiBold
-                }
-            }
+            Layout.rightMargin: Kirigami.Units.mediumSpacing
         }
     }
 
@@ -114,7 +102,7 @@ KCM.SimpleKCM {
     Kirigami.FormLayout {
 
         Label {
-            text: i18n("<strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Reload</strong>: Re-apply colorization at a fixed interval, use for widgets whore color gets stuck.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout.")
+            text: i18n("<strong>[M]ask</strong>: Force Icon colorization (symbolic icons).<br><strong>[E]ffect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>[R]eload</strong>: Re-apply colorization at a fixed interval, use for widgets whore color gets stuck.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout.")
             opacity: 0.7
             Layout.maximumWidth: widgetCards.width
             wrapMode: Text.Wrap
@@ -139,8 +127,5 @@ KCM.SimpleKCM {
             }
         }
     }
-    }
-    Components.CategoryDisabled {
-        visible: !cfg_isEnabled
     }
 }

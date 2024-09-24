@@ -52,33 +52,36 @@ Kirigami.AbstractCard {
         }
         Button {
             id: maskCheckbox
-            text: i18n("Mask")
+            text: i18n("M")
             checkable: true
             checked: widget.method.mask ?? false
             icon.name: checked ? "checkmark-symbolic" : "dialog-close-symbolic"
             onCheckedChanged: {
                 updateWidget(maskCheckbox.checked, effectCheckbox.checked, reloadCheckbox.checked)
             }
+            Layout.preferredWidth: 50
         }
         Button {
             id: effectCheckbox
-            text: i18n("Effect")
+            text: i18n("E")
             checkable: true
             checked: widget.method.multiEffect ?? false
             icon.name: checked ? "checkmark-symbolic" : "dialog-close-symbolic"
             onCheckedChanged: {
                 updateWidget(maskCheckbox.checked, effectCheckbox.checked, reloadCheckbox.checked)
             }
+            Layout.preferredWidth: 50
         }
         Button {
             id: reloadCheckbox
-            text: i18n("Reload")
+            text: i18n("R")
             checkable: true
             checked: widget.reload ?? false
             icon.name: checked ? "checkmark-symbolic" : "dialog-close-symbolic"
             onCheckedChanged: {
                 updateWidget(maskCheckbox.checked, effectCheckbox.checked, reloadCheckbox.checked)
             }
+            Layout.preferredWidth: 50
         }
     }
 }

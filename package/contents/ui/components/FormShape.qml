@@ -35,12 +35,20 @@ Kirigami.FormLayout {
             config.radius.enabled = checked
             updateConfig()
         }
+        Binding {
+            target: radiusEnabledCheckbox
+            property: "Kirigami.Theme.textColor"
+            value: Kirigami.Theme.neutralTextColor
+            when: !radiusEnabledCheckbox.checked
+        }
+        Kirigami.Theme.inherit: false
+        text: checked ? "" : i18n("Disabled")
     }
 
     GridLayout {
         columns: 2
         rows: 2
-        Kirigami.FormData.label: i18n("Radius:")
+        enabled: radiusEnabledCheckbox.checked
         SpinBox {
             id: topLeftRadius
             value: config.radius.corner.topLeft
@@ -96,12 +104,20 @@ Kirigami.FormLayout {
             config.margin.enabled = checked
             updateConfig()
         }
+        Binding {
+            target: marginEnabledCheckbox
+            property: "Kirigami.Theme.textColor"
+            value: Kirigami.Theme.neutralTextColor
+            when: !marginEnabledCheckbox.checked
+        }
+        Kirigami.Theme.inherit: false
+        text: checked ? "" : i18n("Disabled")
     }
 
     GridLayout {
         columns: 3
         rows: 3
-        Kirigami.FormData.label: i18n("Margin:")
+        enabled: marginEnabledCheckbox.checked
         SpinBox {
             id: topMargin
             value: config.margin.side.top
