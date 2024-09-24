@@ -31,6 +31,7 @@ PlasmoidItem {
     property var panelWidgets: []
     property int panelWidgetsCount: panelWidgets?.length || 0
     property real trayItemThikness: 20
+    property bool widgetEnabled: widgetSettings.enabled && isEnabled
     property bool separateTray: trayWidgetSettings.enabled
     // items inside the tray need to know the tray index to take
     // the same foreground when we're not coloring them separately
@@ -131,20 +132,20 @@ PlasmoidItem {
         return newColor
     }
 
-    function applyFgColor(element, newColor, fgColorCfg, depth, forceMask, forceEffect, itemType) {
+    function applyFgColor(element, newColor, fgColorCfg, depth, forceMask, forceEffect, itemType, widgetName) {
         let count = 0;
         let maxDepth = depth
         const isTrayArrow = itemType === Enums.ItemType.TrayArrow
-        let widgetName = isTrayArrow ? "org.kde.plasma.systemtray.expand" : Utils.getWidgetName(element)
         if (widgetName === "org.kde.plasma.systemtray" && separateTray) return
-        if (widgetName && widgetName in forceRecolorList) {
+        if (widgetName in forceRecolorList) {
             forceMask = forceRecolorList[widgetName].method.mask
             forceEffect = forceRecolorList[widgetName].method.multiEffect
         }
+
         for (var i = 0; i < element.visibleChildren.length; i++) {
             var child = element.visibleChildren[i]
-
-            if ([Text,ToolButton,Label,Canvas,Kirigami.Icon].some(function (type) {return child instanceof type})) {
+            let targetTypes = [Text,ToolButton,Label,Canvas,Kirigami.Icon]
+            if (targetTypes.some(function (type) {return child instanceof type})) {
                 if (child.color) {
                     child.color = newColor
                 }
@@ -174,7 +175,7 @@ PlasmoidItem {
                 // repaintDebugComponent.createObject(child)
             }
             if (child.visibleChildren?.length ?? 0 > 0) {
-                const result = applyFgColor(child, newColor, fgColorCfg, depth + 1, forceMask, forceEffect, itemType)
+                const result = applyFgColor(child, newColor, fgColorCfg, depth + 1, forceMask, forceEffect, itemType, widgetName)
                 count += result.count
                 if (result.depth > maxDepth) {
                     maxDepth = result.depth
@@ -250,8 +251,10 @@ PlasmoidItem {
         property bool fgShadowEnabled: cfg.shadow.foreground.enabled && cfgEnabled
         property var fgShadow: cfg.shadow.foreground
         property string fgColor: {
-            if (!fgEnabled&&!separateTray || (!fgEnabled&&inTray&&separateTray)) {
+            if (!fgEnabled && !inTray) {
                 return Kirigami.Theme.textColor
+            } else if ((!fgEnabled && inTray && widgetEnabled)) {
+                return trayWidgetBgItem.fgColor
             } else if (separateTray || cfgOverride) {
                 return getColor(rect.fgColorCfg, targetIndex, rect.color, itemType)
             } else if (inTray) {
@@ -267,13 +270,6 @@ PlasmoidItem {
             visible: true
             radius: height / 2
             color: fgColor
-
-            // Binding {
-            //     target: fgColorHolder
-            //     property: "color"
-            //     value:  ? fgColorHolder.newColor : Kirigami.Theme.textColor
-            //     when: fgEnabled || inTray
-            // }
         }
         // Label {
         //     id: debugLabel
@@ -320,7 +316,7 @@ PlasmoidItem {
             interval: 10
             onTriggered: {
                 if (isPanel) return
-                const result = applyFgColor(target, fgColor, fgColorCfg, 0, false, false, itemType)
+                const result = applyFgColor(target, fgColor, fgColorCfg, 0, false, false, itemType, widgetName)
                 if (result) {
                     itemCount = result.count
                     maxDepth = result.depth
@@ -363,6 +359,7 @@ PlasmoidItem {
             property: "x"
             value: -marginLeft
             when: marginEnabled && isWidget && horizontal
+            delayed: true
         }
 
         Binding {
@@ -370,6 +367,7 @@ PlasmoidItem {
             property: "y"
             value: -marginTop
             when: marginEnabled && isWidget && !horizontal
+            delayed: true
         }
 
         Binding {
@@ -377,6 +375,7 @@ PlasmoidItem {
             property: "width"
             value: parent.width + horizontalWidth
             when: marginEnabled && isWidget && horizontal
+            delayed: true
         }
 
         Binding {
@@ -384,6 +383,7 @@ PlasmoidItem {
             property: "height"
             value: parent.height + verticalWidth
             when: marginEnabled && isWidget && !horizontal
+            delayed: true
         }
 
         Binding {
@@ -391,6 +391,7 @@ PlasmoidItem {
             property: "Layout.leftMargin"
             value: marginLeft
             when: marginEnabled && isWidget
+            delayed: true
         }
 
         Binding {
@@ -398,6 +399,7 @@ PlasmoidItem {
             property: "Layout.rightMargin"
             value: marginRight
             when: marginEnabled && isWidget
+            delayed: true
         }
 
         Binding {
@@ -405,6 +407,7 @@ PlasmoidItem {
             property: "Layout.topMargin"
             value: marginTop
             when: marginEnabled && isWidget
+            delayed: true
         }
 
         Binding {
@@ -412,6 +415,7 @@ PlasmoidItem {
             property: "Layout.bottomMargin"
             value: marginBottom
             when: marginEnabled && isWidget
+            delayed: true
         }
 
         // Panel background, we actually change the panel margin so everything moves with it
@@ -419,32 +423,32 @@ PlasmoidItem {
         Binding {
             target: rect.target
             property: "anchors.leftMargin"
-            value: marginLeft
-            when: marginEnabled && isPanel
+            value: marginEnabled ? marginLeft : 0
+            when: isPanel
             delayed: true
         }
 
         Binding {
             target: rect.target
             property: "anchors.rightMargin"
-            value: marginRight
-            when: marginEnabled && isPanel
+            value: marginEnabled ? marginRight : 0
+            when: isPanel
             delayed: true
         }
 
         Binding {
             target: rect.target
             property: "anchors.topMargin"
-            value: marginTop
-            when: marginEnabled && isPanel
+            value: marginEnabled ? marginTop : 0
+            when: isPanel
             delayed: true
         }
 
         Binding {
             target: rect.target
             property: "anchors.bottomMargin"
-            value: marginBottom
-            when: marginEnabled && isPanel
+            value: marginEnabled ? marginBottom : 0
+            when: isPanel
             delayed: true
         }
 
@@ -455,6 +459,7 @@ PlasmoidItem {
             property: "anchors.leftMargin"
             value: marginLeft
             when: marginEnabled && (isTrayArrow || isTray)
+            delayed: true
         }
 
         Binding {
@@ -462,6 +467,7 @@ PlasmoidItem {
             property: "anchors.rightMargin"
             value: marginRight
             when: marginEnabled && (isTrayArrow || isTray)
+            delayed: true
         }
 
         Binding {
@@ -469,6 +475,7 @@ PlasmoidItem {
             property: "anchors.topMargin"
             value: marginTop
             when: marginEnabled && (isTrayArrow || isTray)
+            delayed: true
         }
 
         Binding {
@@ -476,6 +483,7 @@ PlasmoidItem {
             property: "anchors.bottomMargin"
             value: marginBottom
             when: marginEnabled && (isTrayArrow || isTray)
+            delayed: true
         }
 
         // fix tray weird margin
@@ -484,6 +492,7 @@ PlasmoidItem {
             property: "Layout.leftMargin"
             value: -2
             when: marginEnabled && isTrayArrow && horizontal
+            delayed: true
         }
 
         Binding {
@@ -491,6 +500,7 @@ PlasmoidItem {
             property: "Layout.rightMargin"
             value: 2
             when: marginEnabled && isTrayArrow && horizontal
+            delayed: true
         }
 
         Binding {
@@ -498,6 +508,7 @@ PlasmoidItem {
             property: "Layout.topMargin"
             value: -2
             when: marginEnabled && isTrayArrow && !horizontal
+            delayed: true
         }
 
         Binding {
@@ -505,6 +516,7 @@ PlasmoidItem {
             property: "Layout.bottomMargin"
             value: 2
             when: marginEnabled && isTrayArrow && !horizontal
+            delayed: true
         }
 
         Rectangle {
@@ -650,6 +662,7 @@ PlasmoidItem {
         property: "anchors.leftMargin"
         value: panelSettings.padding.side.left
         when: fixedSidePaddingEnabled
+        delayed: true
     }
 
     Binding {
@@ -657,6 +670,7 @@ PlasmoidItem {
         property: "anchors.rightMargin"
         value: panelSettings.padding.side.right
         when: fixedSidePaddingEnabled
+        delayed: true
     }
 
     Binding {
@@ -664,6 +678,7 @@ PlasmoidItem {
         property: "anchors.topMargin"
         value: panelSettings.padding.side.top
         when: fixedSidePaddingEnabled
+        delayed: true
     }
 
     Binding {
@@ -671,6 +686,7 @@ PlasmoidItem {
         property: "anchors.bottomMargin"
         value: panelSettings.padding.side.bottom
         when: fixedSidePaddingEnabled
+        delayed: true
     }
 
     property Item panelBg: {
