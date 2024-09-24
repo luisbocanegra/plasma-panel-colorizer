@@ -24,10 +24,10 @@ PlasmoidItem {
     property int trayGridViewCountOld: 0
     property var panelPrefixes: ["north","south","west","east"]
     property bool horizontal: Plasmoid.formFactor === PlasmaCore.Types.Horizontal
-    property bool fixedSidePaddingEnabled: panelSettings.padding.enabled
-    property bool isEnabled: true
-    property bool nativePanelBackgroundEnabled: cfg.nativePanelBackground.enabled
-    property real nativePanelBackgroundOpacity: cfg.nativePanelBackground.opacity
+    property bool fixedSidePaddingEnabled: isEnabled && panelSettings.padding.enabled
+    property bool isEnabled: plasmoid.configuration.isEnabled
+    property bool nativePanelBackgroundEnabled: isEnabled ? cfg.nativePanelBackground.enabled : enabled
+    property real nativePanelBackgroundOpacity: isEnabled ? cfg.nativePanelBackground.opacity : 1.0
     property var panelWidgets: []
     property int panelWidgetsCount: panelWidgets?.length || 0
     property real trayItemThikness: 20
@@ -236,24 +236,22 @@ PlasmoidItem {
         property bool cfgOverride: itemConfig.override
         property var bgColorCfg: cfg.backgroundColor
         property var fgColorCfg: cfg.foregroundColor
-        // property string fgColor: fgColorHolder.color
         property int itemCount: 0
         property int maxDepth: 0
         visible: cfgEnabled
-        property bool cfgEnabled: cfg.enabled
-        property bool bgEnabled: bgColorCfg.enabled && cfgEnabled
+        property bool cfgEnabled: cfg.enabled && isEnabled
+        property bool bgEnabled: cfgEnabled ? bgColorCfg.enabled : false
         property bool fgEnabled: fgColorCfg.enabled && cfgEnabled
         property bool radiusEnabled: cfg.radius.enabled && cfgEnabled
-        property bool marginEnabled: cfg.margin.enabled && cfgEnabled || isPanel
+        property bool marginEnabled: cfg.margin.enabled && cfgEnabled
         property bool borderEnabled: cfg.border.enabled && cfgEnabled
         property bool bgShadowEnabled: cfg.shadow.background.enabled && cfgEnabled
         property var bgShadow: cfg.shadow.background
         property bool fgShadowEnabled: cfg.shadow.foreground.enabled && cfgEnabled
         property var fgShadow: cfg.shadow.foreground
         property string fgColor: {
-            if (((!fgEnabled&&!inTray))) {
+            if (!fgEnabled&&!separateTray || (!fgEnabled&&inTray&&separateTray)) {
                 return Kirigami.Theme.textColor
-
             } else if (separateTray || cfgOverride) {
                 return getColor(rect.fgColorCfg, targetIndex, rect.color, itemType)
             } else if (inTray) {
@@ -423,6 +421,7 @@ PlasmoidItem {
             property: "anchors.leftMargin"
             value: marginLeft
             when: marginEnabled && isPanel
+            delayed: true
         }
 
         Binding {
@@ -430,6 +429,7 @@ PlasmoidItem {
             property: "anchors.rightMargin"
             value: marginRight
             when: marginEnabled && isPanel
+            delayed: true
         }
 
         Binding {
@@ -437,6 +437,7 @@ PlasmoidItem {
             property: "anchors.topMargin"
             value: marginTop
             when: marginEnabled && isPanel
+            delayed: true
         }
 
         Binding {
@@ -444,6 +445,7 @@ PlasmoidItem {
             property: "anchors.bottomMargin"
             value: marginBottom
             when: marginEnabled && isPanel
+            delayed: true
         }
 
         // Tray item / arrow
@@ -789,10 +791,12 @@ PlasmoidItem {
     }
 
     onPanelStateChanged: {
+        if (!isEnabled) return
         switchPreset()
     }
 
     onPresetAutoloadingChanged: {
+        if (!isEnabled) return
         switchPreset()
     }
 
