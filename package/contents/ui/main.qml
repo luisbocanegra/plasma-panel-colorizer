@@ -9,849 +9,632 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.plasma5support as P5Support
 import org.kde.plasma.workspace.components as WorkspaceComponents
 import org.kde.taskmanager 0.1 as TaskManager
+import QtQuick.Effects
 import Qt5Compat.GraphicalEffects
 
 import "components" as Components
+import "code/utils.js" as Utils
+import "code/globals.js" as Globals
 
 PlasmoidItem {
     id: main
-
-    property var panelColorizer: null
-
-    preferredRepresentation: compactRepresentation
-    property bool onDesktop: plasmoid.location === PlasmaCore.Types.Floating
-
-    property string iconName: !onDesktop ? "icon" : "error"
-    property string icon: Qt.resolvedUrl("../icons/" + iconName + ".svg").toString().replace("file://", "")
-
-    property bool isEnabled: plasmoid.configuration.isEnabled
-    property int mode: plasmoid.configuration.mode
-    property int colorMode: plasmoid.configuration.colorMode
-    property int colorModeTheme: plasmoid.configuration.colorModeTheme
-    property color singleColor: plasmoid.configuration.singleColor
-    property var customColors: []
-    property int bgColorStart:0
-    property bool widgetBgEnabled: plasmoid.configuration.widgetBgEnabled
-    property real bgOpacity: plasmoid.configuration.opacity
-    property int bgRadius: plasmoid.configuration.radius
-    property bool bgContrastFixEnabled: plasmoid.configuration.bgContrastFixEnabled
-    property bool bgSaturationEnabled: plasmoid.configuration.bgSaturationEnabled
-    property real bgSaturation: plasmoid.configuration.bgSaturation
-    property real bgLightness: plasmoid.configuration.bgLightness
-    property int rainbowInterval: plasmoid.configuration.rainbowInterval
-    property int rainbowTransition: plasmoid.configuration.rainbowTransition
-    property string blacklist: plasmoid.configuration.blacklist
-    property bool layoutEnabled: plasmoid.configuration.layoutEnabled
-    property int widgetBgHMargin: {
-        if (!isVertical) return 0
-        if (layoutEnabled && isEnabled) {
-            return plasmoid.configuration.widgetBgHMargin
-        } else {
-            return 0
-        }
-    }
-    property int widgetBgVMargin: {
-        if (isVertical) return 0
-        if (layoutEnabled && isEnabled) {
-            return plasmoid.configuration.widgetBgVMargin
-        } else {
-            return 4
-        }
-    }
-    property string marginRules: {
-        if (layoutEnabled && isEnabled) {
-            return plasmoid.configuration.marginRules
-        } else {
-            return ""
-        }
-    }
-    property int panelSpacing: {
-        if (layoutEnabled && isEnabled) {
-            return plasmoid.configuration.panelSpacing
-        } else {
-            return 4
-        }
-    }
-    property bool hideWidget: plasmoid.configuration.hideWidget
-
-    property bool panelBgEnabled: plasmoid.configuration.panelBgEnabled
-    property int panelBgColorMode: plasmoid.configuration.panelBgColorMode
-    property int panelBgColorModeTheme: plasmoid.configuration.panelBgColorModeTheme
-    property string panelBgColor: {
-        if (panelBgColorMode === 0) {
-            return plasmoid.configuration.panelBgColor
-        } else {
-            return themeColors[panelBgColorModeTheme]
-        }
-    }
-    property int panelBgColorModeThemeVariant: plasmoid.configuration.panelBgColorModeThemeVariant
-    property var panelBgColorScope: {
-        return themeScopes[panelBgColorModeThemeVariant]
-    }
-    property real panelBgOpacity: plasmoid.configuration.panelBgOpacity
-    property real panelBgRadius: isFloating ? plasmoid.configuration.panelBgRadius : 0
-    property bool hideRealPanelBg: plasmoid.configuration.hideRealPanelBg
-    property real panelRealBgOpacity: plasmoid.configuration.panelRealBgOpacity
-    property int widgetOutlineColorMode: plasmoid.configuration.widgetOutlineColorMode
-    property int widgetOutlineColorModeTheme: plasmoid.configuration.widgetOutlineColorModeTheme
-    property real widgetOutlineOpacity: plasmoid.configuration.widgetOutlineOpacity
-    property string widgetOutlineColor: {
-        if (widgetOutlineColorMode === 0) {
-            return plasmoid.configuration.widgetOutlineColor
-        } else {
-            return themeColors[widgetOutlineColorModeTheme]
-        }
-    }
-    property int widgetOutlineColorModeThemeVariant: plasmoid.configuration.widgetOutlineColorModeThemeVariant
-    property var widgetOutlineColorScope: {
-        return themeScopes[widgetOutlineColorModeThemeVariant]
-    }
-    property int widgetOutlineWidth: plasmoid.configuration.widgetOutlineWidth
-    property color widgetShadowColor: plasmoid.configuration.widgetShadowColor
-    property int widgetShadowSize: plasmoid.configuration.widgetShadowSize
-    property int widgetShadowX: plasmoid.configuration.widgetShadowX
-    property int widgetShadowY: plasmoid.configuration.widgetShadowY
-
-    property int panelOutlineColorMode: plasmoid.configuration.panelOutlineColorMode
-    property int panelOutlineColorModeTheme: plasmoid.configuration.panelOutlineColorModeTheme
-    property int panelOutlineWidth: plasmoid.configuration.panelOutlineWidth
-    property real panelOutlineOpacity: plasmoid.configuration.panelOutlineOpacity
-    property string panelOutlineColor: {
-        if (panelOutlineColorMode === 0) {
-            return plasmoid.configuration.panelOutlineColor
-        } else {
-            return themeColors[panelOutlineColorModeTheme]
-        }
-    }
-    property int panelOutlineColorModeThemeVariant: plasmoid.configuration.panelOutlineColorModeThemeVariant
-    property var panelOutlineColorScope: {
-        return themeScopes[panelOutlineColorModeThemeVariant]
-    }
-    property color panelShadowColor: plasmoid.configuration.panelShadowColor
-    property int panelShadowSize: plasmoid.configuration.panelShadowSize
-    property int panelShadowX: plasmoid.configuration.panelShadowX
-    property int panelShadowY: plasmoid.configuration.panelShadowY
-
-    property string forceRecolor: plasmoid.configuration.forceRecolor
-
-    property bool isLoaded: false
-    // property bool isConfiguring: plasmoid.userConfiguring
-
-    property bool inEditMode: Plasmoid.containment.corona?.editMode ? true : false
-    Plasmoid.status: (inEditMode || !hideWidget || showToUpdate) ?
-                        PlasmaCore.Types.ActiveStatus :
-                        PlasmaCore.Types.HiddenStatus
-    property bool widgetConfiguring: Plasmoid.userConfiguring
-
-    property int childCount: 0
-    property bool wasEditing: false
-    property bool destroyRequired: false
-
-    property var themeColors: [
-        "textColor",
-        "disabledTextColor",
-        "highlightedTextColor",
-        "activeTextColor",
-        "linkColor",
-        "visitedLinkColor",
-        "negativeTextColor",
-        "neutralTextColor",
-        "positiveTextColor",
-        "backgroundColor",
-        "highlightColor",
-        "activeBackgroundColor",
-        "linkBackgroundColor",
-        "visitedLinkBackgroundColor",
-        "negativeBackgroundColor",
-        "neutralBackgroundColor",
-        "positiveBackgroundColor",
-        "alternateBackgroundColor",
-        "focusColor",
-        "hoverColor"
-    ]
-
-    property var themeScopes: [
-        "View",
-        "Window",
-        "Button",
-        "Selection",
-        "Tooltip",
-        "Complementary",
-        "Header"
-    ]
-
-
-
-    property string systemColor: {
-        return themeColors[colorModeTheme]
-    }
-
-    property int colorModeThemeVariant: plasmoid.configuration.colorModeThemeVariant
-    property var widgetBgColorScope: {
-        return themeScopes[colorModeThemeVariant]
-    }
-    property string fgSystemColor: {
-        return themeColors[fgColorModeTheme]
-    }
-    property int fgColorModeThemeVariant: plasmoid.configuration.fgColorModeThemeVariant
-    property var fgColorScope: {
-        return themeScopes[fgColorModeThemeVariant]
-    }
-
-    RowLayout {
-        Rectangle {
-            id: fgSystemColorHolder
-            Kirigami.Theme.colorSet: Kirigami.Theme[main.widgetBgColorScope]
-            Kirigami.Theme.inherit: false
-            width: 20
-            height: 10
-            color: {
-                return Kirigami.Theme[main.fgSystemColor]
-            }
-            visible: true
-            opacity: 0
-        }
-
-        Rectangle {
-            id: systemColorHolder
-            Kirigami.Theme.colorSet: Kirigami.Theme[main.widgetBgColorScope]
-            Kirigami.Theme.inherit: false
-            width: 10
-            height: 10
-            color: {
-                return Kirigami.Theme[main.systemColor]
-            }
-            visible: true
-            opacity: 0
-        }
-
-        Rectangle {
-            id: blacklistSystemColorHolder
-            Kirigami.Theme.colorSet: Kirigami.Theme[main.fgBlacklistedColorScope]
-            Kirigami.Theme.inherit: false
-            width: 10
-            height: 10
-            color: {
-                return Kirigami.Theme[main.blacklistedSystemColor]
-            }
-            visible: true
-            opacity: 0
-        }
-    }
-
-    property color defaultTextColor: Kirigami.Theme.textColor
-    property real fgOpacity: plasmoid.configuration.fgOpacity
-    property bool fgColorEnabled: plasmoid.configuration.fgColorEnabled
-
-    property bool fgBlacklistedColorEnabled: plasmoid.configuration.fgBlacklistedColorEnabled
-    property int fgBlacklistedColorMode: plasmoid.configuration.fgBlacklistedColorMode
-    property int fgBlacklistedColorModeTheme: plasmoid.configuration.fgBlacklistedColorModeTheme
-    property string blacklistedSystemColor: {
-        return themeColors[fgBlacklistedColorModeTheme]
-    }
-    property string blacklistedFgColor: {
-        if (fgBlacklistedColorMode === 0) {
-            return plasmoid.configuration.blacklistedFgColor
-        } else {
-            return blacklistSystemColorHolder.color
-        }
-    }
-    property int fgBlacklistedColorModeThemeVariant: plasmoid.configuration.fgBlacklistedColorModeThemeVariant
-    property var fgBlacklistedColorScope: {
-        return themeScopes[fgBlacklistedColorModeThemeVariant]
-    }
-
-    property bool showToUpdate: false
-
-    property string runtimeDir: StandardPaths.writableLocation(
-                            StandardPaths.RuntimeLocation).toString().substring(7)
-    property string schemeFile: runtimeDir + "/PanelColorizer-"+plasmoid.id+".colors"
-
-    property string saveSchemeCmd: "echo '" + schemeContent.text + "' > " + schemeFile
-
-    property int fgMode: plasmoid.configuration.fgMode
-    property int fgColorMode: plasmoid.configuration.fgColorMode
-    property int fgColorModeTheme: plasmoid.configuration.fgColorModeTheme
-    property color fgSingleColor: plasmoid.configuration.fgSingleColor
-    property var fgCustomColors: []
-    property int fgColorStart: 0
-    property bool addingColors: true
-    property var currentFgColors: []
-    property int fgRainbowInterval: plasmoid.configuration.fgRainbowInterval
-
-    property bool fgContrastFixEnabled: plasmoid.configuration.fgContrastFixEnabled
-    property bool fgSaturationEnabled: plasmoid.configuration.fgSaturationEnabled
-    property real fgSaturation: plasmoid.configuration.fgSaturation
-    property real fgLightness: plasmoid.configuration.fgLightness
-
-    property bool enableCustomPadding: plasmoid.configuration.enableCustomPadding
-    property int panelPadding: plasmoid.configuration.panelPadding
-    property int panelCustomWidth: 0//panelBg.width
-    property int panelCustomHeight: 0//panelBg.height
-    Binding {
-        target: panelLayout
-        property: "width"
-        value: panelCustomWidth
-        when: isEnabled && enableCustomPadding && !inEditMode && isLoaded
-    }
-    Binding {
-        target: panelLayout
-        property: "height"
-        value: panelCustomHeight
-        when: isEnabled && enableCustomPadding && !inEditMode && isLoaded
-    }
-    Binding {
-        target: panelLayout.anchors
-        property: "centerIn"
-        value: panelLayout.parent
-        when: isEnabled && enableCustomPadding && !inEditMode && isLoaded
-    }
-    property bool isVertical: Plasmoid.formFactor === PlasmaCore.Types.Vertical
+    preferredRepresentation: fullRepresentation
+    property int panelLayoutCount: panelLayout?.children?.length || 0
+    property int trayGridViewCount: trayGridView?.count || 0
+    property int trayGridViewCountOld: 0
     property var panelPrefixes: ["north","south","west","east"]
-    property var panelBg: {
-        return panelElement?.children ? panelElement.children.find(function (child) {
-            return panelPrefixes.some(function (target) {
-                return child.prefix.toString().includes(target)
-            })
-        }) : null
-    }
-
-    property var panelCustomMask: null
-    property var widgetsCustomMask: null
-    property int updateEffectCount: 0
-    property int updateEffectSteps: 50
-
-    Binding {
-        target: panelElement
-        property: "panelMask"
-        value: {
-            if (blurWidgetBgEnabled && widgetBgEnabled) {
-                return widgetsCustomMask
-            } else if (blurPanelBgEnabled && panelBgEnabled) {
-                return panelCustomMask
-            }
-        }
-        when: (panelBGE !== null || rectangles.count > 0)
-            && panelColorizer !== null
-            && (blurWidgetBgEnabled && widgetBgEnabled || blurPanelBgEnabled && panelBgEnabled)
-            && (panelCustomMask || widgetsCustomMask)
-    }
-
-    property bool isFloating: !panelElement ? false : Boolean(panelElement.floatingness)
-    property bool isTouchingWindow: !panelElement ? false : Boolean(panelElement.touchingWindow)
-
-    property ContainmentItem containmentItem: null
-    readonly property int depth : 14
-
-    property var panelBGE: null
-
-    property bool bgLineModeEnabled: plasmoid.configuration.bgLineModeEnabled
-    property int bgLinePosition: plasmoid.configuration.bgLinePosition
-    property int bgLineWidth: plasmoid.configuration.bgLineWidth
-    property int bgLineXOffset: plasmoid.configuration.bgLineXOffset
-    property int bgLineYOffset: plasmoid.configuration.bgLineYOffset
-
+    property bool horizontal: Plasmoid.formFactor === PlasmaCore.Types.Horizontal
+    property bool fixedSidePaddingEnabled: isEnabled && panelSettings.padding.enabled
+    property bool isEnabled: plasmoid.configuration.isEnabled
+    property bool nativePanelBackgroundEnabled: isEnabled ? cfg.nativePanelBackground.enabled : enabled
+    property real nativePanelBackgroundOpacity: isEnabled ? cfg.nativePanelBackground.opacity : 1.0
+    property var panelWidgets: []
+    property int panelWidgetsCount: panelWidgets?.length || 0
+    property real trayItemThikness: 20
+    property bool widgetEnabled: widgetSettings.enabled && isEnabled
+    property bool separateTray: trayWidgetSettings.enabled
+    // items inside the tray need to know the tray index to take
+    // the same foreground when we're not coloring them separately
+    property int trayIndex: 0
+    // keep track of these to allow others to follow their color
+    property Item panelBgItem
+    property Item trayWidgetBgItem
+    property string lastPreset
     property string presetsDir: StandardPaths.writableLocation(
                     StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/"
-    property string listPresetsCmd: "find "+presetsDir+" -type f -print0 | while IFS= read -r -d '' file; do basename \"$file\"; done | sort"
     property var presetContent: ""
-    property var ignoredConfigs: [
-        "panelWidgetsWithTray",
-        "panelWidgets",
-        "objectName",
-        "lastPreset",
-        "floatingPreset",
-        "normalPreset",
-        "maximizedPreset",
-        "touchingWindowPreset",
-        "isEnabled"
-    ]
-    property string floatingPreset: plasmoid.configuration.floatingPreset
-    property string touchingWindowPreset: plasmoid.configuration.touchingWindowPreset
-    property string normalPreset: plasmoid.configuration.normalPreset
-    property string maximizedPreset: plasmoid.configuration.maximizedPreset
-    property string lastPreset
-
-    property bool fgShadowEnabled: plasmoid.configuration.fgShadowEnabled
-    property string fgShadowColor: plasmoid.configuration.fgShadowColor
-    property int fgShadowX: plasmoid.configuration.fgShadowX
-    property int fgShadowY: plasmoid.configuration.fgShadowY
-    property int fgShadowRadius: plasmoid.configuration.fgShadowRadius
-    property int fixCustomBadges: plasmoid.configuration.fixCustomBadges
-
-    property bool blurPanelBgEnabled: plasmoid.configuration.blurPanelBgEnabled
-    property bool blurWidgetBgEnabled: plasmoid.configuration.blurWidgetBgEnabled
-
-    function opacityToHex(opacity) {
-        const op = Math.max(0, Math.min(1, opacity))
-        const intOpacity = Math.round(op * 255)
-        return intOpacity.toString(16).padStart(2, '0')
+    property var panelState: {
+        "maximized": tasksModel.maximizedExists,
+        "touchingWindow": !panelElement ? false : Boolean(panelElement.touchingWindow),
+        "floating": !panelElement ? false : Boolean(panelElement.floatingness)
     }
-
-    P5Support.DataSource {
-        id: runCommand
-        engine: "executable"
-        connectedSources: []
-
-        onNewData: function (source, data) {
-            var exitCode = data["exit code"]
-            var exitStatus = data["exit status"]
-            var stdout = data["stdout"]
-            var stderr = data["stderr"]
-            exited(source, exitCode, exitStatus, stdout, stderr)
-            disconnectSource(source) // cmd finished
-        }
-
-        function exec(cmd) {
-            runCommand.connectSource(cmd)
-        }
-
-        signal exited(string cmd, int exitCode, int exitStatus, string stdout, string stderr)
-    }
-
-    Connections {
-        target: runCommand
-        function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
-            var presets = []
-            if (exitCode!==0) return
-            if(cmd === listPresetsCmd) {
-                if (stdout.length > 0) {
-                    presets = ("none\n"+stdout).trim().split("\n")
-                } else {
-                    presets = []
-                }
-            }
-            if (cmd.startsWith("cat")) {
-                presetContent = stdout.trim().split("\n")
-            }
+    property var cfg: {
+        try {
+            return JSON.parse(plasmoid.configuration.allSettings)
+        } catch (e) {
+            console.error(e, e.stack)
+            return Globals.defaultConfig
         }
     }
-
-    function parseValues(value) {
-        if (typeof value === 'boolean') {
-            return value;
-        }
-
-        if (value === 'true' || value === 'false') {
-            return value === 'true';
-        }
-
-        const numericValue = parseFloat(value);
-        if (!isNaN(numericValue)) {
-            return numericValue;
-        }
-
-        return value;
-    }
-
-    function applyPreset(presetName) {
-        console.log("Reading preset:", presetName);
-        lastPreset = presetName
-        runCommand.exec("cat '" + presetsDir + presetName+"'")
-        loadPresetTimer.start()
-    }
-
-    Timer {
-        id: loadPresetTimer
-        interval: 500
-        onTriggered: {
-            loadPreset()
+    property var presetAutoloading: {
+        try {
+            return JSON.parse(plasmoid.configuration.presetAutoloading)
+        } catch (e) {
+            console.error(e, e.stack)
+            return {}
         }
     }
+    property var widgetSettings: cfg.widgets
+    property var panelSettings: cfg.panel
+    property var trayWidgetSettings: cfg.trayWidgets
+    property var forceRecolorList: cfg.forceForegroundColor?.widgets ?? {}
+    property int forceRecolorInterval: cfg.forceForegroundColor?.reloadInterval ?? 0
+    property int forceRecolorCount: Object.keys(forceRecolorList).length
+    property bool requiresRefresh: Object.values(forceRecolorList).some(w => w.reload)
+    property var configurationOverrides: cfg.configurationOverrides
+    signal recolorCountChanged()
+    signal refreshNeeded()
 
-    function loadPreset() {
-        console.log("Loading preset contents...");
-        for (let i in presetContent) {
-            const line = presetContent[i]
-            if (line.includes("=")) {
-                const parts = line.split("=")
-                const key = parts[0]
-                const val = parts[1]
-                if (ignoredConfigs.some(function (k) { return key.includes(k)})) continue
-                plasmoid.configuration[key] = parseValues(val)
-            }
-        }
-        plasmoid.configuration.lastPreset = lastPreset
-        plasmoid.configuration.writeConfig();
+    onForceRecolorCountChanged: {
+        // console.error("onForceRecolorCountChanged ->", forceRecolorCount)
+        recolorCountChanged()
     }
 
-    function switchPreset() {
-        if (maximizedWindowExists && maximizedPreset !== "") {
-            applyPreset(maximizedPreset)
-            return
-        }
-        if (isTouchingWindow && touchingWindowPreset !== "") {
-            applyPreset(touchingWindowPreset)
-            return
-        }
-        if (isFloating && floatingPreset !== "") {
-            applyPreset(floatingPreset)
-            return
-        }
-        applyPreset(normalPreset)
-    }
-
-    onIsFloatingChanged: {
-        switchPreset()
-    }
-
-    onIsTouchingWindowChanged: {
-        switchPreset()
-    }
-
-    onMaximizedWindowExistsChanged: {
-        switchPreset()
-    }
-
-    function hexToRgb(hex) {
-        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-        return result ? {
-            r: parseInt(result[1], 16),
-            g: parseInt(result[2], 16),
-            b: parseInt(result[3], 16)
-        } : null;
-    }
-
-    function readColors(colorsString) {
-        let colors = []
-        for (let hex of colorsString.split(" ")) {
-            const rgb = hexToRgb(hex)
-            if (rgb) {
-                colors.push(Qt.rgba(rgb.r / 255, rgb.g / 255, rgb.b / 255, 1))
-            }
-        }
-        return colors
-    }
-
-    Components.Scheme {
-        id: schemeContent
-    }
-
-    Plasmoid.contextualActions: [
-        PlasmaCore.Action {
-            text: i18n("Hide widget (visible in panel Edit Mode)")
-            checkable: true
-            icon.name: "visibility-symbolic"
-            checked: Plasmoid.configuration.hideWidget
-            onTriggered: checked => {
-                plasmoid.configuration.hideWidget = checked;
-            }
-        }
-    ]
-
-    property Component widgetBgComponent: Kirigami.ShadowedRectangle {
-        property var target // holds element with expanded property
-        property int heightOffset: 0
-        property int widthOffset: 0
-        property int linePosition: bgLinePosition
-        property int lineWidth: bgLineWidth
-        property bool lineMode: bgLineModeEnabled
-        property int lineXOffset: -bgLineXOffset
-        property int lineYOffset: -bgLineYOffset
-        color: "transparent"
-        radius: bgRadius
-        height: lineMode && linePosition <= 1 ? lineWidth : parent.height + heightOffset
-        width: lineMode && linePosition >= 2 ? lineWidth : parent.width + widthOffset
-
-        anchors.centerIn: lineMode ? undefined : parent
-
-        // top
-        anchors.bottom: lineMode && linePosition === 0 ? parent.top : undefined
-        anchors.bottomMargin: lineMode && linePosition === 0 ? lineYOffset : 0
-        // bottom
-        anchors.top: lineMode && linePosition === 1 ? parent.bottom : undefined
-        anchors.topMargin: lineMode && linePosition === 1 ? lineYOffset : 0
-        // left
-        anchors.left: lineMode && linePosition === 2 ? parent.left : undefined
-        anchors.leftMargin: lineMode && linePosition === 2 ? lineXOffset : 0
-        // right
-        anchors.right: lineMode && linePosition === 3 ? parent.right : undefined
-        anchors.rightMargin: lineMode && linePosition === 3 ? lineXOffset : 0
-
-        // centering
-        anchors.horizontalCenter: lineMode && linePosition <= 1 ? parent.horizontalCenter : undefined
-        anchors.verticalCenter: lineMode && linePosition >= 2 ? parent.verticalCenter : undefined
-
-        // outline as separate rectangle so it draws inside the background
-        Rectangle {
-            anchors.centerIn: parent
-            width: parent.width
-            height: parent.height
-            color: "transparent"
-            radius: parent.radius
-            Kirigami.Theme.colorSet: Kirigami.Theme[widgetOutlineColorScope]
-            Kirigami.Theme.inherit: false
-            border {
-                color: {
-                    if (!isEnabled || !widgetBgEnabled) return "transparent"
-                    let c
-                    if (widgetOutlineColor.startsWith("#")) {
-                        c = hexToRgb(widgetOutlineColor)
-                    } else {
-                        c = hexToRgb(Kirigami.Theme[widgetOutlineColor])
-                    }
-                    return Qt.rgba(c.r / 255, c.g / 255, c.b / 255, widgetOutlineOpacity).toString()
-                }
-                width: widgetOutlineWidth
-            }
-        }
-
-        shadow {
-            size: widgetBgEnabled ? widgetShadowSize : 0
-            color: widgetShadowColor
-            xOffset: widgetShadowX
-            yOffset: widgetShadowY
-        }
-
-        ColorAnimation on color {
-            id:anim
-            to: color
-            duration: rainbowTransition
-        }
-
-        function changeColor(newColor) {
-            const c = hexToRgb(newColor)
-            anim.to = Qt.rgba(c.r / 255, c.g / 255, c.b / 255, bgOpacity).toString()
-            anim.restart()
-        }
-    }
-
-    property Component panelBgComponent: Kirigami.ShadowedRectangle {
-        Kirigami.Theme.colorSet: Kirigami.Theme[panelBgColorScope]
+    Rectangle {
+        id: colorHolder
+        height: 0
+        width: 0
+        visible: false
         Kirigami.Theme.inherit: false
-        color: {
-            let c
-            if ( panelBgColor.startsWith("#")) {
-                c = panelBgColor
-            } else {
-                c = Kirigami.Theme[panelBgColor]
-            }
-            c = hexToRgb(c)
-            return Qt.rgba(c.r / 255, c.g / 255, c.b / 255, panelBgOpacity).toString()
-        }
-        radius: panelBgRadius
-        anchors.centerIn: parent
-        width: panelBg.width
-        height: panelBg.height
-        shadow {
-            size: panelShadowSize
-            color: panelShadowColor
-            xOffset: panelShadowX
-            yOffset: panelShadowY
-        }
+    }
 
-        // outline as separate rectangle so it draws inside the background
-        Rectangle {
-            anchors.centerIn: parent
-            width: parent.width
-            height: parent.height
-            color: "transparent"
-            radius: parent.radius
-            Kirigami.Theme.colorSet: Kirigami.Theme[panelOutlineColorScope]
-            Kirigami.Theme.inherit: false
-            border {
-                color: {
-                if (!isEnabled || !panelBgEnabled ) return "transparent"
-                let c
-                if (panelOutlineColor.startsWith("#")) {
-                    c = hexToRgb(panelOutlineColor)
-                } else {
-                    c = hexToRgb(Kirigami.Theme[panelOutlineColor])
+    function getColor(colorCfg, targetIndex, parentColor, itemType) {
+        let newColor = "transparent"
+        switch (colorCfg.sourceType) {
+            case 0:
+                newColor = Utils.rgbToQtColor(Utils.hexToRgb(colorCfg.custom))
+            break
+            case 1:
+                colorHolder.Kirigami.Theme.colorSet = Kirigami.Theme[colorCfg.systemColorSet]
+                newColor = colorHolder.Kirigami.Theme[colorCfg.systemColor]
+            break
+            case 2:
+                const nextIndex = targetIndex % colorCfg.list.length
+                newColor = Utils.rgbToQtColor(Utils.hexToRgb(colorCfg.list[nextIndex]))
+            break
+            case 3:
+                newColor = Utils.getRandomColor()
+            break
+            case 4:
+                if (colorCfg.followColor === 0) {
+                    newColor = panelBgItem.color
+                } else if (colorCfg.followColor === 1) {
+                    newColor = itemType === Enums.ItemType.TrayItem || itemType === Enums.ItemType.TrayArrow
+                        ? trayWidgetBgItem.color
+                        : parentColor
+                } else if (colorCfg.followColor === 2) {
+                    newColor = parentColor
                 }
-                return Qt.rgba(c.r / 255, c.g / 255, c.b / 255, panelOutlineOpacity).toString()
+
+            break
+            default:
+                newColor = "transparent"
+        }
+        if (colorCfg.saturationEnabled) {
+            newColor = Utils.scaleSaturation(newColor, colorCfg.saturationValue)
+        }
+        if (colorCfg.lightnessEnabled) {
+            newColor = Utils.scaleLightness(newColor, colorCfg.lightnessValue)
+        }
+        if (colorCfg.alpha !== 1) {
+            newColor = Qt.hsla(newColor.hslHue, newColor.hslSaturation, newColor.hslLightness, colorCfg.alpha)
+        }
+        return newColor
+    }
+
+    function applyFgColor(element, newColor, fgColorCfg, depth, forceMask, forceEffect, itemType, widgetName) {
+        let count = 0;
+        let maxDepth = depth
+        const isTrayArrow = itemType === Enums.ItemType.TrayArrow
+        if (widgetName === "org.kde.plasma.systemtray" && separateTray) return
+        if (widgetName in forceRecolorList) {
+            forceMask = forceRecolorList[widgetName].method.mask
+            forceEffect = forceRecolorList[widgetName].method.multiEffect
+        }
+
+        for (var i = 0; i < element.visibleChildren.length; i++) {
+            var child = element.visibleChildren[i]
+            let targetTypes = [Text,ToolButton,Label,Canvas,Kirigami.Icon]
+            if (targetTypes.some(function (type) {return child instanceof type})) {
+                if (child.color) {
+                    child.color = newColor
+                }
+                if (child.Kirigami?.Theme) {
+                    child.Kirigami.Theme.textColor = newColor
+                    child.Kirigami.Theme.colorSet = Kirigami.Theme[fgColorCfg.systemColorSet]
+                }
+
+                if (child.hasOwnProperty("isMask") && forceMask) {
+                    child.isMask = true
+                }
+
+                if (
+                    forceEffect
+                    && [Canvas,Kirigami.Icon].some(function (type) {return child instanceof type})
+                ) {
+                    const effectItem = Utils.getEffectItem(child.parent)
+                    if (!effectItem) {
+                        colorEffectComoponent.createObject(child.parent, {"target": child, "colorizationColor": newColor})
+                    } else {
+                        effectItem.source = null
+                        effectItem.colorizationColor = newColor
+                        effectItem.source = child
+                    }
+                }
+                count++
+                // repaintDebugComponent.createObject(child)
             }
-                width: panelOutlineWidth
+            if (child.visibleChildren?.length ?? 0 > 0) {
+                const result = applyFgColor(child, newColor, fgColorCfg, depth + 1, forceMask, forceEffect, itemType, widgetName)
+                count += result.count
+                if (result.depth > maxDepth) {
+                    maxDepth = result.depth
+                }
+            }
+        }
+        return {"count": count, "depth": maxDepth}
+    }
+
+    property Component repaintDebugComponent: Rectangle {
+        // quickly flash a small rectangle for items that have been updated
+        id: speedDebugItem
+        color: "cyan"
+        height: 4
+        width: 4
+        anchors.top: parent.top
+        anchors.left: parent.left
+        Timer {
+            id: deleteThisTimer
+            interval: 100
+            onTriggered: {
+                speedDebugItem.destroy()
+            }
+        }
+        Component.onCompleted: {
+            deleteThisTimer.start()
+        }
+    }
+
+    property Component colorEffectComoponent: MultiEffect {
+        // a not very effective way to recolor things that can't be recolored
+        // the usual way
+        id: effectRect
+        property bool luisbocanegraPanelColorizerEffectManaged: true
+        property Item target
+        height: target.height
+        width: target.width
+        anchors.centerIn: parent
+        source: target
+        colorization: 1
+        autoPaddingEnabled: false
+    }
+
+    property Component backgroundComponent: Kirigami.ShadowedRectangle {
+        id: rect
+        property Item target
+        property int targetIndex
+        property int itemType
+        property bool isPanel: itemType === Enums.ItemType.PanelBgItem
+        property bool isWidget: itemType === Enums.ItemType.WidgetItem
+        property bool isTray: itemType === Enums.ItemType.TrayItem
+        property bool isTrayArrow: itemType === Enums.ItemType.TrayArrow
+        property bool inTray: isTray || isTrayArrow
+        property bool luisbocanegraPanelColorizerBgManaged: true
+        property string widgetName: isTrayArrow ? "org.kde.plasma.systemtray.expand" : Utils.getWidgetName(target)
+        property bool requiresRefresh: forceRecolorList[widgetName]?.reload ?? false
+        property var itemConfig: Utils.getItemCfg(itemType, widgetName, main.cfg)
+        property var cfg: itemConfig.settings
+        property bool cfgOverride: itemConfig.override
+        property var bgColorCfg: cfg.backgroundColor
+        property var fgColorCfg: cfg.foregroundColor
+        property int itemCount: 0
+        property int maxDepth: 0
+        visible: cfgEnabled
+        property bool cfgEnabled: cfg.enabled && isEnabled
+        property bool bgEnabled: cfgEnabled ? bgColorCfg.enabled : false
+        property bool fgEnabled: fgColorCfg.enabled && cfgEnabled
+        property bool radiusEnabled: cfg.radius.enabled && cfgEnabled
+        property bool marginEnabled: cfg.margin.enabled && cfgEnabled
+        property bool borderEnabled: cfg.border.enabled && cfgEnabled
+        property bool bgShadowEnabled: cfg.shadow.background.enabled && cfgEnabled
+        property var bgShadow: cfg.shadow.background
+        property bool fgShadowEnabled: cfg.shadow.foreground.enabled && cfgEnabled
+        property var fgShadow: cfg.shadow.foreground
+        property string fgColor: {
+            if (!fgEnabled && !inTray) {
+                return Kirigami.Theme.textColor
+            } else if ((!fgEnabled && inTray && widgetEnabled)) {
+                return trayWidgetBgItem.fgColor
+            } else if (separateTray || cfgOverride) {
+                return getColor(rect.fgColorCfg, targetIndex, rect.color, itemType)
+            } else if (inTray) {
+                return getColor(widgetSettings.foregroundColor, trayIndex, rect.color, itemType)
+            } else {
+                return getColor(widgetSettings.foregroundColor, targetIndex, rect.color, itemType)
+            }
+        }
+        Rectangle {
+            id: fgColorHolder
+            height: 6
+            width: height
+            visible: true
+            radius: height / 2
+            color: fgColor
+        }
+        // Label {
+        //     id: debugLabel
+        //     text: targetIndex+","+trayIndex //maxDepth+","+itemCount
+        //     font.pixelSize: 8
+        // }
+        corners {
+            topLeftRadius: radiusEnabled ? cfg.radius.corner.topLeft : 0
+            topRightRadius: radiusEnabled ? cfg.radius.corner.topRight : 0
+            bottomLeftRadius: radiusEnabled ? cfg.radius.corner.bottomLeft : 0
+            bottomRightRadius: radiusEnabled ? cfg.radius.corner.bottomRight : 0
+        }
+        color: {
+            if (bgEnabled) {
+                return getColor(bgColorCfg, targetIndex, null, itemType)
+            } else {
+                return "transparent"
             }
         }
 
-        function updateMask() {
-            if ( panelColorizer === null ) return
-            panelCustomMask = panelColorizer.updatePanelMask(
-                this,
-                radius,
-                Qt.point(x, y),
-                isVertical
-            )
+        property int targetChildren: target.children.length
+        onTargetChildrenChanged: {
+            // console.error("CHILDREN CHANGED", targetChildren, target)
+            recolorTimer.restart()
+        }
+        property int targetVisibleChildren: target.visibleChildren.length
+        onTargetVisibleChildrenChanged: {
+            // console.error("CHILDREN CHANGED", targetVisibleChildren, target)
+            recolorTimer.restart()
+        }
+        property int targetCount: target.count || 0
+        onTargetCountChanged: {
+            // console.error("COUNT CHANGED", targetCount, target)
+            recolorTimer.restart()
+        }
+
+        onFgColorChanged: {
+            // console.error("FG COLOR CHANGED", fgColor, target)
+            recolorTimer.restart()
+        }
+
+        Timer {
+            id: recolorTimer
+            interval: 10
+            onTriggered: {
+                if (isPanel) return
+                const result = applyFgColor(target, fgColor, fgColorCfg, 0, false, false, itemType, widgetName)
+                if (result) {
+                    itemCount = result.count
+                    maxDepth = result.depth
+                }
+            }
+        }
+
+        function recolor() {
+            recolorTimer.restart()
+        }
+
+        onRequiresRefreshChanged: {
+            if (requiresRefresh) {
+                main.refreshNeeded.connect(rect.recolor)
+            } else {
+                main.refreshNeeded.disconnect(rect.recolor)
+            }
         }
 
         Component.onCompleted: {
-            updateMask()
+            main.recolorCountChanged.connect(rect.recolor)
+            recolorTimer.start()
         }
 
-        onXChanged: {
-            updateMask()
+        height: isTray ? target.height : parent.height
+        width: isTray ? target.width : parent.width
+        anchors.centerIn: (isTray || isTrayArrow) ? parent : undefined
+        anchors.fill: (isPanel ||isTray || isTrayArrow) ? parent : undefined
+
+        property int marginLeft: cfg.margin.side.left
+        property int marginRight: cfg.margin.side.right
+        property int horizontalWidth: marginLeft + marginRight
+
+        property int marginTop: cfg.margin.side.top
+        property int marginBottom: cfg.margin.side.bottom
+        property int verticalWidth: marginTop + marginBottom
+
+        Binding {
+            target: rect
+            property: "x"
+            value: -marginLeft
+            when: marginEnabled && isWidget && horizontal
+            delayed: true
         }
 
-        onYChanged: {
-            updateMask()
+        Binding {
+            target: rect
+            property: "y"
+            value: -marginTop
+            when: marginEnabled && isWidget && !horizontal
+            delayed: true
         }
 
-        onWidthChanged: {
-            updateMask()
+        Binding {
+            target: rect
+            property: "width"
+            value: parent.width + horizontalWidth
+            when: marginEnabled && isWidget && horizontal
+            delayed: true
         }
 
-        onHeightChanged: {
-            updateMask()
+        Binding {
+            target: rect
+            property: "height"
+            value: parent.height + verticalWidth
+            when: marginEnabled && isWidget && !horizontal
+            delayed: true
         }
 
-        onChildrenRectChanged: {
-            updateMask()
+        Binding {
+            target: rect.target
+            property: "Layout.leftMargin"
+            value: marginLeft
+            when: marginEnabled && isWidget
+            delayed: true
         }
 
-        onRadiusChanged: {
-            updateMask()
+        Binding {
+            target: rect.target
+            property: "Layout.rightMargin"
+            value: marginRight
+            when: marginEnabled && isWidget
+            delayed: true
+        }
+
+        Binding {
+            target: rect.target
+            property: "Layout.topMargin"
+            value: marginTop
+            when: marginEnabled && isWidget
+            delayed: true
+        }
+
+        Binding {
+            target: rect.target
+            property: "Layout.bottomMargin"
+            value: marginBottom
+            when: marginEnabled && isWidget
+            delayed: true
+        }
+
+        // Panel background, we actually change the panel margin so everything moves with it
+
+        Binding {
+            target: rect.target
+            property: "anchors.leftMargin"
+            value: marginEnabled ? marginLeft : 0
+            when: isPanel
+            delayed: true
+        }
+
+        Binding {
+            target: rect.target
+            property: "anchors.rightMargin"
+            value: marginEnabled ? marginRight : 0
+            when: isPanel
+            delayed: true
+        }
+
+        Binding {
+            target: rect.target
+            property: "anchors.topMargin"
+            value: marginEnabled ? marginTop : 0
+            when: isPanel
+            delayed: true
+        }
+
+        Binding {
+            target: rect.target
+            property: "anchors.bottomMargin"
+            value: marginEnabled ? marginBottom : 0
+            when: isPanel
+            delayed: true
+        }
+
+        // Tray item / arrow
+
+        Binding {
+            target: rect
+            property: "anchors.leftMargin"
+            value: marginLeft
+            when: marginEnabled && (isTrayArrow || isTray)
+            delayed: true
+        }
+
+        Binding {
+            target: rect
+            property: "anchors.rightMargin"
+            value: marginRight
+            when: marginEnabled && (isTrayArrow || isTray)
+            delayed: true
+        }
+
+        Binding {
+            target: rect
+            property: "anchors.topMargin"
+            value: marginTop
+            when: marginEnabled && (isTrayArrow || isTray)
+            delayed: true
+        }
+
+        Binding {
+            target: rect
+            property: "anchors.bottomMargin"
+            value: marginBottom
+            when: marginEnabled && (isTrayArrow || isTray)
+            delayed: true
+        }
+
+        // fix tray weird margin
+        Binding {
+            target: rect.target
+            property: "Layout.leftMargin"
+            value: -2
+            when: marginEnabled && isTrayArrow && horizontal
+            delayed: true
+        }
+
+        Binding {
+            target: rect.target
+            property: "Layout.rightMargin"
+            value: 2
+            when: marginEnabled && isTrayArrow && horizontal
+            delayed: true
+        }
+
+        Binding {
+            target: rect.target
+            property: "Layout.topMargin"
+            value: -2
+            when: marginEnabled && isTrayArrow && !horizontal
+            delayed: true
+        }
+
+        Binding {
+            target: rect.target
+            property: "Layout.bottomMargin"
+            value: 2
+            when: marginEnabled && isTrayArrow && !horizontal
+            delayed: true
+        }
+
+        Rectangle {
+            id: borderRec
+            anchors.fill: parent
+            color: "transparent"
+            visible: borderEnabled
+            property var borderColorCfg: cfg.border.color
+            Kirigami.Theme.colorSet: Kirigami.Theme[borderColorCfg.systemColorSet]
+            Kirigami.Theme.inherit: !(borderColorCfg.sourceType === 1)
+            property color borderColor: {
+                return getColor(borderColorCfg, targetIndex, rect.color, itemType)
+            }
+
+            Rectangle {
+                id: customBorderTop
+                width: parent.width
+                visible: cfg.border.customSides && cfg.border.custom.widths.top
+                height: cfg.border.custom.widths.top
+                color: borderRec.borderColor
+                anchors.top: parent.top
+            }
+            Rectangle {
+                id: customBorderBottom
+                width: parent.width
+                visible: cfg.border.customSides && cfg.border.custom.widths.bottom
+                height: cfg.border.custom.widths.bottom
+                color: borderRec.borderColor
+                anchors.bottom: parent.bottom
+            }
+
+            Rectangle {
+                id: customBorderLeft
+                height: parent.height
+                visible: cfg.border.customSides && cfg.border.custom.widths.left
+                width: cfg.border.custom.widths.left
+                color: borderRec.borderColor
+                anchors.left: parent.left
+            }
+            Rectangle {
+                id: customBorderRight
+                height: parent.height
+                visible: cfg.border.customSides && cfg.border.custom.widths.right
+                width: cfg.border.custom.widths.right
+                color: borderRec.borderColor
+                anchors.right: parent.right
+            }
+
+            Kirigami.ShadowedRectangle {
+                anchors.fill: parent
+                color: "transparent"
+                visible: !cfg.border.customSides
+                border {
+                    color: borderRec.borderColor
+                    width: cfg.border.width || -1
+                }
+                corners {
+                    topLeftRadius: radiusEnabled ? cfg.radius.corner.topLeft : 0
+                    topRightRadius: radiusEnabled ? cfg.radius.corner.topRight : 0
+                    bottomLeftRadius: radiusEnabled ? cfg.radius.corner.bottomLeft : 0
+                    bottomRightRadius: radiusEnabled ? cfg.radius.corner.bottomRight : 0
+                }
+            }
+
+            layer.enabled: cfg.border.customSides
+            layer.effect: MultiEffect {
+                maskEnabled: true
+                maskSpreadAtMax: 1
+                maskSpreadAtMin: 1
+                maskThresholdMin: 0.5
+                maskSource: ShaderEffectSource {
+                    sourceItem: Kirigami.ShadowedRectangle {
+                        width: rect.width
+                        height: rect.height
+                        corners {
+                            topLeftRadius: radiusEnabled ? cfg.radius.corner.topLeft : 0
+                            topRightRadius: radiusEnabled ? cfg.radius.corner.topRight : 0
+                            bottomLeftRadius: radiusEnabled ? cfg.radius.corner.bottomLeft : 0
+                            bottomRightRadius: radiusEnabled ? cfg.radius.corner.bottomRight : 0
+                        }
+                    }
+                }
+            }
+        }
+
+        shadow {
+            property var shadowColorCfg: bgShadow.color
+            Kirigami.Theme.colorSet: Kirigami.Theme[shadowColorCfg.systemColorSet]
+            size: bgShadowEnabled ? bgShadow.size : 0
+            color: {
+                return getColor(shadowColorCfg, targetIndex, rect.color, itemType)
+            }
+            xOffset: bgShadow.xOffset
+            yOffset: bgShadow.yOffset
+        }
+
+        DropShadow {
+            height: target.height
+            width: target.width
+            anchors.centerIn: parent
+            property var shadowColorCfg: fgShadow.color
+            Kirigami.Theme.colorSet: Kirigami.Theme[shadowColorCfg.systemColorSet]
+            horizontalOffset: fgShadow.xOffset
+            verticalOffset: fgShadow.yOffset
+            radius: fgShadowEnabled ? fgShadow.size : 0
+            samples: radius * 2 + 1
+            spread: 0.35
+            color: {
+                return getColor(shadowColorCfg, targetIndex, rect.color, itemType)
+            }
+            source: target.applet
+            visible: fgShadowEnabled
         }
     }
 
-    property Component shadowComponent: DropShadow {
-        property var target
-        anchors.fill: target
-        horizontalOffset: fgShadowX
-        verticalOffset: fgShadowY
-        radius: fgShadowRadius
-        samples: radius * 2
-        color: fgShadowColor
-        source: target
-        visible: fgShadowEnabled
-    }
-
-    toolTipSubText: onDesktop ? "<font color='"+Kirigami.Theme.neutralTextColor+"'>Panel not found, this widget must be child of a panel</font>" : Plasmoid.metaData.description
-    toolTipTextFormat: Text.RichText
-
-    compactRepresentation: CompactRepresentation {
-        icon: main.icon
-        onDesktop: main.onDesktop
-    }
-
-    fullRepresentation: ColumnLayout {}
-
-    onModeChanged: {
-        console.error("MODE CHANGED:",mode);
-        plasmoid.configuration.mode = mode
-        init()
-    }
-
-    function init() {
-        if (isEnabled) {
-            initTimer.restart()
-            paddingTimer.restart()
-            updateFgColor()
-        } else {
-            rainbowTimer.stop()
-            paddingTimer.start()
-            updateFgColor()
-            destroyRects()
-            setPanelBg()
-            panelOpacity()
-            destroyRequired = true
-            runCommand.exec(saveSchemeCmd)
-        }
-    }
-
-    onIsEnabledChanged: {
-        console.error("ENABLED CHANGEDD:",isEnabled);
-        plasmoid.configuration.isEnabled = isEnabled
-    }
-
-    onInEditModeChanged: {
-        wasEditing = !inEditMode
-        paddingTimer.start()
-    }
-
-    onSystemColorChanged: {
-        if (colorMode === 1) init()
-    }
-
-    onFgSystemColorChanged: {
-        if (fgColorMode === 1) init()
-    }
-
-    onBlacklistChanged: {
-        destroyRequired = true
-    }
-
-    onMarginRulesChanged: {
-        destroyRequired = true
-    }
-
-    onWidgetBgHMarginChanged: {
-        destroyRequired = true
-    }
-
-    onWidgetBgVMarginChanged: {
-        destroyRequired = true
-    }
-
-    onBgLinePositionChanged: {
-        destroyRequired = true
-    }
-
-    onBgLineModeEnabledChanged: {
-        destroyRequired = true
-    }
-
-    onWidgetConfiguringChanged: {
-        // user should always see the latest widgets when configuring the widget
-        if (widgetConfiguring) findWidgets()
-    }
-
-    Connections {
-        target: plasmoid.configuration
-        onValueChanged: {
-            refreshSystemColor()
-            configChangedTimer.restart()
-        }
-    }
-
-    onFgBlacklistedColorEnabledChanged: {
-        destroyRequired = true
-    }
-
-    function refreshSystemColor() {
-        systemColorHolder.color = "transparent"
-        systemColorHolder.color = Kirigami.Theme[main.systemColor]
-        fgSystemColorHolder.color = "transparent"
-        fgSystemColorHolder.color = Kirigami.Theme[main.fgSystemColor]
-        blacklistSystemColorHolder.color = "transparent"
-        blacklistSystemColorHolder.color = Kirigami.Theme[main.blacklistedSystemColor]
-    }
-
-    Connections {
-        target: Kirigami.Theme
-        onColorsChanged: {
-            refreshSystemColor()
-            init()
-        }
-    }
-
-    Timer {
-        id: configChangedTimer
-        interval: 100
-        onTriggered: {
-            console.error("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-            console.log("CONFIG CHANGED");
-            isEnabled = plasmoid.configuration.isEnabled
-            mode = plasmoid.configuration.mode
-            customColors = readColors(plasmoid.configuration.customColors)
-            fgCustomColors = readColors(plasmoid.configuration.fgCustomColors)
-            if (!widgetBgEnabled) destroyRequired = true
-            addingColors = true
-            init()
-        }
-    }
-
-    function getRandomColor() {
-        const h = Math.random()
-        const s = Math.random()
-        const l = Math.random()
-        const a = 1.0
-        return Qt.hsla(h,s,l,a)
-    }
-
-    function dumpProps(obj) {
-        console.error("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        for (var k of Object.keys(obj)) {
-            print(k + "=" + obj[k]+"\n")
+    fullRepresentation: RowLayout {
+        Label {
+            text: panelLayoutCount+","+trayGridViewCount
         }
     }
 
@@ -860,11 +643,95 @@ PlasmoidItem {
         let candidate = main.parent;
         while (candidate) {
             if (candidate instanceof GridLayout) {
+                candidate.rowSpacing = widgetSettings.spacing
+                candidate.columnSpacing = widgetSettings.spacing
                 return candidate;
             }
             candidate = candidate.parent;
         }
         return null
+    }
+
+    property Item panelLayoutContainer: {
+        if (!panelLayout) return null
+        return panelLayout.parent
+    }
+
+    Binding {
+        target: panelLayoutContainer
+        property: "anchors.leftMargin"
+        value: panelSettings.padding.side.left
+        when: fixedSidePaddingEnabled
+        delayed: true
+    }
+
+    Binding {
+        target: panelLayoutContainer
+        property: "anchors.rightMargin"
+        value: panelSettings.padding.side.right
+        when: fixedSidePaddingEnabled
+        delayed: true
+    }
+
+    Binding {
+        target: panelLayoutContainer
+        property: "anchors.topMargin"
+        value: panelSettings.padding.side.top
+        when: fixedSidePaddingEnabled
+        delayed: true
+    }
+
+    Binding {
+        target: panelLayoutContainer
+        property: "anchors.bottomMargin"
+        value: panelSettings.padding.side.bottom
+        when: fixedSidePaddingEnabled
+        delayed: true
+    }
+
+    property Item panelBg: {
+        if (!panelLayoutContainer) return null
+        return panelLayoutContainer.parent
+    }
+
+    property GridView trayGridView: {
+        if (!panelLayout?.children) return null
+        for (let i in panelLayout.children) {
+            const child = panelLayout.children[i];
+            // name may not be available while gragging into the panel and
+            // other situations
+            if (!child.applet?.plasmoid?.pluginName) continue
+            const name = child.applet.plasmoid.pluginName
+            if (name === "org.kde.plasma.systemtray") {
+                return Utils.findTrayGridView(child)
+            }
+        }
+        return null;
+    }
+
+    property Item trayExpandArrow: {
+        if (trayGridView?.parent) {
+            return Utils.findTrayExpandArrow(trayGridView.parent)
+        }
+        return null
+    }
+
+    Connections {
+        target: trayGridView
+        onWidthChanged: {
+            if (horizontal) {
+                trayExpandArrow.iconSize = trayGridView.cellWidth
+            } else {
+                trayExpandArrow.iconSize = trayGridView.cellHeight
+            }
+        }
+        onHeightChanged: {
+            if (horizontal) {
+                trayExpandArrow.iconSize = trayGridView.cellWidth
+            } else {
+                trayExpandArrow.iconSize = trayGridView.cellHeight
+            }
+        }
     }
 
     // Search for the element containing the panel background
@@ -879,764 +746,201 @@ PlasmoidItem {
         return null
     }
 
-    ListModel {
-        id: rectangles
+    property ContainmentItem containmentItem: {
+        let candidate = main.parent;
+        while (candidate) {
+            if (candidate.toString().indexOf("ContainmentItem_QML") > -1 ) {
+                return candidate;
+            }
+            candidate = candidate.parent;
+        }
+        return null
     }
 
-    function createRects() {
-        if(!panelLayout) return
-        if (!widgetBgEnabled && !isEnabled) return
-        var blacklisted = []
-        if (fgBlacklistedColorEnabled && isEnabled) {
-            blacklisted = blacklist.split("|").map(function (line) { return line.trim() })
-        }
-        const marginLines = marginRules.split("|").map(function (line) { return line.trim() })
-        console.log("creating widget background rects");
-        for (var i in panelLayout.children) {
-            const child = panelLayout.children[i];
+    onPanelElementChanged: {
+        if(!panelElement) return
+        Utils.panelOpacity(panelElement, isEnabled, nativePanelBackgroundOpacity)
+    }
 
-            // name may not be available while gragging into the panel and
-            // other situations
-            if (!child.applet?.plasmoid?.pluginName) continue
+    onNativePanelBackgroundOpacityChanged: {
+        if(!panelElement) return
+        Utils.panelOpacity(panelElement, isEnabled, nativePanelBackgroundOpacity)
+    }
 
-            // TODO: Code for handling expanded widget action is here but not used yet
-            const name = child.applet.plasmoid.pluginName
-            var expandedTarget
-            if (name === "org.kde.plasma.systemtray") {
-                expandedTarget = child.applet.plasmoid.internalSystray.systemTrayState
-            } else {
-                expandedTarget = child
+    onContainmentItemChanged: {
+        if(!containmentItem) return
+        Utils.toggleTransparency(containmentItem, nativePanelBackgroundEnabled)
+    }
+
+    onNativePanelBackgroundEnabledChanged: {
+        if(!containmentItem) return
+        Utils.toggleTransparency(containmentItem, nativePanelBackgroundEnabled)
+    }
+
+    onPanelLayoutCountChanged: {
+        if (panelLayoutCount === 0) return
+        console.error("onPanelLayoutCountChanged")
+        Qt.callLater(function() {
+            trayInitTimer.restart()
+            showWidgets(panelLayout)
+            updateCurrentWidgets()
+            showPanelBg(panelBg)
+        })
+    }
+
+    onTrayGridViewCountChanged: {
+        if (trayGridViewCount === 0) return
+        // console.error(trayGridViewCount);
+        trayInitTimer.restart()
+    }
+
+    function switchPreset() {
+        let nextPreset = Utils.getPresetName(panelState, presetAutoloading)
+        if (!nextPreset) return
+        applyPreset(nextPreset)
+    }
+
+    function applyPreset(presetName) {
+        console.log("Reading preset:", presetName);
+        lastPreset = presetName
+        runCommand.run("cat '" + presetsDir + presetName+"'")
+    }
+
+    onPanelStateChanged: {
+        if (!isEnabled) return
+        switchPreset()
+    }
+
+    onPresetAutoloadingChanged: {
+        if (!isEnabled) return
+        switchPreset()
+    }
+
+    Timer {
+        id: trayInitTimer
+        interval: 100
+        onTriggered: {
+            if (trayGridView && trayGridViewCount !== 0) {
+                showTrayAreas(trayGridView)
             }
-
-            if (blacklisted.some(function (target) {
-                    return target.length > 1 && name.includes(target)
-                })
-            ) continue
-
-            var x = 0
-            var y = 0
-            for (var line of marginLines) {
-                // name height width
-                const parts = line.split(",")
-                const match = parts[0]
-
-                if (match.length > 0 && name.includes(match)){
-                    y = parseInt(parts[1])
-                    x = parseInt(parts[2])
-                    break
-                }
-            }
-
-            child.Layout.leftMargin = widgetBgHMargin + x
-            child.Layout.rightMargin = widgetBgHMargin + x
-            child.Layout.topMargin = widgetBgVMargin + y
-            child.Layout.bottomMargin = widgetBgVMargin + y
-
-            let heightOffset = 0
-            let widthOffset = 0
-
-            if (isVertical) {
-                let heightOffset = (widgetBgVMargin + y) * 2
-                let widthOffset = -widgetBgHMargin / 2
-            } else {
-                widthOffset = (widgetBgHMargin + x) * 2
-            }
-
-            let rect = widgetBgComponent.createObject(
-                child,
-                {
-                    "z": -1,
-                    "target": expandedTarget,
-                    "heightOffset": heightOffset,
-                    "widthOffset": widthOffset
-                }
-            )
-
-            connectRectsBlur(rect)
-
-            rectangles.append({
-                "comp": rect,
-                "shadow": shadowComponent.createObject(
-                    child,
-                    {
-                        "target":child.applet
-                    }
-                )
-            })
-            // if (child.applet) {
-            //     const hasShadow = child.applet.children.find(function (child) {return child instanceof DropShadow})
-            //     if (!hasShadow) shadowComponent.createObject(child, {"target":child.applet})
-            // }
+            updateCurrentWidgets()
         }
     }
 
-    function getNextElement(index, array) {
-        var c = array[index]
-        const nextIndex = index < array.length - 1 ? index + 1 : 0
-        if (c === undefined) {
-            console.log(index, c, nextIndex);
-        }
-        return [c, nextIndex]
+    function updateCurrentWidgets() {
+        panelWidgets = []
+        panelWidgets = Utils.findWidgets(panelLayout, panelWidgets)
+        if (!trayGridView) return
+        panelWidgets = Utils.findWidgetsTray(trayGridView, panelWidgets)
+        panelWidgets = Utils.findWidgetsTray(trayGridView.parent, panelWidgets)
     }
 
-    function getColor(mode, fg = false) {
-        var newColor="transparent"
-        switch(mode) {
-            case 0:
-                newColor = fg ? Qt.rgba(fgSingleColor.r, fgSingleColor.g, fgSingleColor.b, 1) : Qt.rgba(singleColor.r, singleColor.g, singleColor.b, 1)
-                break
-            case 1:
-                let themeColor = fg ? fgSystemColorHolder.color : systemColorHolder.color
-                newColor = Qt.rgba(themeColor.r, themeColor.g, themeColor.b, 1);
-                break
-            case 3:
-                newColor = getRandomColor()
-        }
-        if (fg && fgContrastFixEnabled) {
-            const newSat = fgSaturationEnabled ? fgSaturation : newColor.hslSaturation
-            newColor = scaleColor(newColor, newSat, fgLightness)
-        }
-        if (!fg && bgContrastFixEnabled) {
-            const newSat = bgSaturationEnabled ? bgSaturation : newColor.hslSaturation
-            newColor = scaleColor(newColor, newSat, bgLightness)
-        }
-        return newColor
-    }
-
-    function scaleColor(color, saturation, lightness) {
-        return Qt.hsla(color.hslHue, saturation, lightness, 1);
-    }
-
-    function getNextColors(arr, start, length){
-        var result = [];
-        for (var j = 0; j < length; j++) {
-            result.push(arr[(start + j) % arr.length]);
-        }
-        return [result, start]
-    }
-
-    function colorize() {
-        var bgColors = []
-        if (colorMode === 2) {
-            if (mode === 1) {
-                [bgColors, bgColorStart] = getNextColors(customColors, bgColorStart, rectangles.count)
-                bgColorStart = (bgColorStart + 1) % customColors.length;
-            } else {
-                [bgColors, bgColorStart] = getNextColors(customColors, 0, rectangles.count)
-            }
-        }
-        for(let i = 0; i < rectangles.count; i++) {
-            try {
-                var comp = rectangles.get(i)["comp"]
-                var newColor = "transparent"
-                if (isEnabled && widgetBgEnabled) {
-                    newColor = colorMode === 2 ? bgColors[i] : getColor(colorMode)
-                }
-                comp.changeColor(newColor)
-            } catch (e) {
-                console.error("Error colorizing rect", i, "E:" , e);
-            }
-        }
-    }
-
-    function connectRectsBlur(rect) {
-        try {
-            rect.xChanged.connect(function() {
-                updateWidgetsMask()
-            });
-            rect.yChanged.connect(function() {
-                updateWidgetsMask()
-            });
-            rect.widthChanged.connect(function() {
-                updateWidgetsMask()
-            });
-            rect.heightChanged.connect(function() {
-                updateWidgetsMask()
-            });
-            rect.radiusChanged.connect(function() {
-                updateWidgetsMask()
-            });
-        } catch (e) {
-            console.error("Error connecting blur to rect", "E:" , e);
-        }
-    }
-
-    function updateWidgetsMask() {
-        if ( panelColorizer === null || rectangles.count < 1) return
-        var rects = []
-        for(let i = 0; i < rectangles.count; i++) {
-            try {
-                var rect = rectangles.get(i)["comp"]
-                if (!rect.visible) continue
-                rects.push(Qt.rect(rect.x, rect.y, rect.width, rect.height))
-            } catch (e) {
-                console.error("Error getting mask for rect", i, "E:" , e);
-            }
-        }
-        widgetsCustomMask = panelColorizer.updateWidgetsMask(
-            rects,
-            bgRadius,
-            Qt.point(rects[0].x, rects[0].y),
-            isVertical,
-            panelLayout.columnSpacing,
-            ((panelBg.width - panelLayout.width) / 2) + widgetBgHMargin,
-            ((panelBg.height - panelLayout.height) / 2) + widgetBgVMargin
-        )
-    }
-
-    function findWidgets() {
-        console.log("Updating panel widgets list");
-        plasmoid.configuration.panelWidgets = ""
-        plasmoid.configuration.panelWidgetsWithTray = ""
-        var panelWidgets = new Set()
-        var panelWidgetsWithTray =new Set()
-        function findPlasmoid(child) {
-            if (child instanceof PlasmaExtras.Representation) return
-            // App tray icons
-            if (child.itemModel) {
-                const model = child.itemModel
-                if (model.itemType==="StatusNotifier") {
-                    const name = model.Id
-                    const title = model.ToolTipTitle !== "" ? model.ToolTipTitle : model.Title
-                    const icon = model.IconName
-                    const widget = name + "," + title + "," + icon
-                    panelWidgetsWithTray.add(widget)
-                }
-            }
-            if (child.plasmoid?.pluginName && child.plasmoid.pluginName !== "org.kde.plasma.private.systemtray") {
-                const name = child.plasmoid.pluginName
-                const title = child.plasmoid.title
-                const icon = child.plasmoid.icon
-                const inTray = child.plasmoid.containmentDisplayHints & PlasmaCore.Types.ContainmentDrawsPlasmoidHeading
-                const widget = name + "," + title + "," + icon
-                if (!inTray) {
-                    panelWidgets.add(widget)
-                }
-                if (name !== "org.kde.plasma.systemtray") {
-                    panelWidgetsWithTray.add(widget)
-                }
-            }
-            for (var i = 0; i < child.children.length; i++) {
-                findPlasmoid(child.children[i]);
-            }
-        }
-        for (var i in panelLayout.children) {
-            const child = panelLayout.children[i];
-            findPlasmoid(child)
-        }
-        plasmoid.configuration.panelWidgets = Array.from(panelWidgets).join("|")
-        plasmoid.configuration.panelWidgetsWithTray = Array.from(panelWidgetsWithTray).join("|")
-    }
-
-    function applyFgColor(element, forceMask, ignore, newColor, maskList, addingColors) {
-        // don't go into expanded widgets
-        if (element instanceof PlasmaExtras.Representation) return
-
-        if (fixCustomBadges) {
-            if ([Text,Label,Canvas,Kirigami.Icon].some(function (type) {return element instanceof type}) && element.parent instanceof Rectangle) {
-                element.color = (Kirigami.ColorUtils.brightnessForColor(element.parent.color) === Kirigami.ColorUtils.Dark) ? "#ffffff" : "#000000"
-                element.opacity = isEnabled ? fgOpacity : 1
-                return
-            }
-        }
-
-        if (element.plasmoid?.pluginName) {
-            const name = element.plasmoid.pluginName
-            forceMask = maskList.some(function (target) {
-                return target.length > 0 && name.includes(target)
-            })
-        }
-        // App tray icons
-        if (element.itemModel) {
-            const model = element.itemModel
-            if (model.itemType==="StatusNotifier") {
-                const name = model.Id
-                forceMask = maskList.some(function (target) {
-                    return target.length > 0 && name.includes(target)
-                })
-            }
-        }
-
-        if (element.hasOwnProperty("color")) {
-            element.Kirigami.Theme.textColor = newColor
-        }
-
-        if (element.hasOwnProperty("scheme") && addingColors) {
-            element.scheme = null
-            element.scheme = schemeFile
-        }
-
-        if ([Text,ToolButton,Label,Canvas,Kirigami.Icon].some(function (type) {return element instanceof type})) {
-            if (element.color) {
-                element.color = newColor
-            }
-            if (element.hasOwnProperty("isMask") && forceMask) {
-                element.isMask = true
-            }
-            element.Kirigami.Theme.textColor = newColor
-            // fixes notification applet artifact when appearing
-            if (element.scale !== 1) return
-            element.opacity = isEnabled ? fgOpacity : 1
-        }
-        // fix unreadable badges
-        if (element instanceof WorkspaceComponents.BadgeOverlay) {
-            element.color = newColor
-            // label contrast
-            element.children[0].color = (Kirigami.ColorUtils.brightnessForColor(element.color) === Kirigami.ColorUtils.Dark) ? "#ffffff" : "#000000"
-            element.opacity = isEnabled ? fgOpacity : 1
-            return
-        }
-
-        for (var i = 0; i < element.children.length; i++) {
-            applyFgColor(element.children[i], forceMask, ignore, newColor, maskList, addingColors);
-        }
-    }
-
-    function updateFgColor() {
-        if (addingColors) {
-            currentFgColors = []
-            if (fgColorMode === 2) {
-                if (fgMode === 1){
-                    [currentFgColors, fgColorStart] = getNextColors(fgCustomColors, fgColorStart, rectangles.count)
-                    fgColorStart = (fgColorStart + 1) % fgCustomColors.length;
+    function showTrayAreas(grid) {
+        if (grid instanceof GridView) {
+            let index = 0
+            for (let i = 0; i < grid.count; i++) {
+                const item = grid.itemAtIndex(i);
+                if (!item.visible) continue
+                const bgItem = Utils.getBgManaged(item)
+                if (!bgItem) {
+                    backgroundComponent.createObject(item,
+                        { "z":-1, "target": item, "itemType": Enums.ItemType.TrayItem, "targetIndex": index }
+                    )
                 } else {
-                    [currentFgColors, fgColorStart] = getNextColors(fgCustomColors, 0, rectangles.count)
+                    bgItem.targetIndex = index
                 }
-                if (fgContrastFixEnabled) {
-                    for (let i = 0; i < currentFgColors.length; i++) {
-                        var newColor = Qt.rgba(currentFgColors[i].r, currentFgColors[i].g, currentFgColors[i].b, 1)
-                        const newSat = fgSaturationEnabled ? fgSaturation : newColor.hslSaturation
-                        newColor = scaleColor(newColor, newSat, fgLightness)
-                        currentFgColors[i] = newColor
-                    }
+                if (item.visible) {
+                    index++
                 }
             }
-        }
-        var idx=0
-        var blacklisted = []
-        if (fgBlacklistedColorEnabled && isEnabled) {
-            blacklisted = blacklist.split("|").map(function (line) { return line.trim() })
-        }
-        const maskList = forceRecolor.split("|").map(function (line) { return line.trim() })
-        // console.error(forceRecolor);
-        for(let i = 0; i < panelLayout.children.length; i++) {
-            const child = panelLayout.children[i];
 
-            // name may not be available while gragging into the panel and
-            // other situations
-            if (!child.applet?.plasmoid?.pluginName) continue
-
-            // only get root element of widgets
-            const target = child.children.find(function (child) {return child instanceof PlasmoidItem})
-            if (!target) return
-
-            const name = child.applet.plasmoid.pluginName
-            const ignore = blacklisted.some(function (target) {return target.length > 0 && name.includes(target)})
-            const rect = child.children.find(function (child) {return child instanceof Kirigami.ShadowedRectangle})
-
-            let newColor = defaultTextColor
-            if (isEnabled && fgColorEnabled && !ignore) {
-                if (addingColors) {
-                    var bgColor = ""
-                    if (fgColorMode === 4) {
-                        if (rect) {
-                            bgColor = Qt.hsla(rect.color.hslHue, rect.color.hslSaturation, rect.color.hslLightness, 1);
-                        } else {
-                            bgColor = Qt.hsla(defaultTextColor.hslHue, defaultTextColor.hslSaturation, defaultTextColor.hslLightness, 1);
-                        }
-                        if (fgContrastFixEnabled) {
-                            const newSat = fgSaturationEnabled ? fgSaturation : bgColor.hslSaturation
-                            bgColor = scaleColor(bgColor, newSat, fgLightness)
-                        }
+            for (let i in grid.parent.children) {
+                const item = grid.parent.children[i]
+                if (!(item instanceof GridView)) {
+                    if (!item.visible) continue
+                    const bgItem = Utils.getBgManaged(item)
+                    if (!bgItem) {
+                        backgroundComponent.createObject(item,
+                            { "z":-1, "target": item, "itemType": Enums.ItemType.TrayArrow, "targetIndex": index}
+                        )
                     } else {
-                        bgColor = fgColorMode === 2 ? currentFgColors[idx] : getColor(fgColorMode, true)
+                        bgItem.targetIndex = index
                     }
-                    newColor = bgColor
-                    currentFgColors.push(newColor)
-                } else {
-                    newColor = currentFgColors[idx]
+                    item.iconSize = horizontal ? trayGridView.cellWidth : trayGridView.cellHeight
                 }
-                idx++
-            }
-            if (fgBlacklistedColorEnabled && ignore) {
-                newColor = blacklistedFgColor
-            }
-
-            if (name === "org.kde.windowbuttons" && addingColors) {
-                schemeContent.opacityComponent = opacityToHex(isEnabled ? fgOpacity : 1)
-                schemeContent.fgWithAlpha = "#" + schemeContent.opacityComponent + newColor.toString().substring(1)
-                schemeContent.fgContrast = (Kirigami.ColorUtils.brightnessForColor(newColor) === Kirigami.ColorUtils.Dark) ? "#ffffff" : "#000000"
-                runCommand.exec(saveSchemeCmd)
-            }
-
-            try {
-                applyFgColor(target, false, ignore, newColor, maskList, addingColors)
-            } catch (e) {
-                console.error("Error updating fg color in child", i, "E:" , e);
             }
         }
-        addingColors = false
     }
 
-    // Timer {
-    //     id: debugTimer
-    //     running: isEnabled
-    //     repeat: true
-    //     interval: 1000
-    //     onTriggered: {
-    //         // console.log("----------------");
-    //         // console.error("MAX", maximizedWindowExists );
-    //         // let t = panelLayout
-    //         // console.error("panelLayout", t.x, t.y );
-    //         // t = panelBg
-    //         // console.error("panelBg", t.x, t.y );
-    //         // t = panelBGE
-    //         // console.error("panelBGE", t.x, t.y );
-    //         // t = panelElement
-    //         // console.error("panelElement", t.x, t.y );
-    //     }
-    // }
+    function showWidgets(panelLayout) {
+        console.error("showWidgets()")
+        for (var i in panelLayout.children) {
+            const child = panelLayout.children[i];
+            // name may not be available while gragging into the panel and
+            // other situations
+            if (!child.applet?.plasmoid?.pluginName) continue
+            // if (Utils.getBgManaged(child)) continue
+            // console.error(child.applet?.plasmoid?.pluginName)
+            // Utils.dumpProps(child)
+            const isTray = child.applet.plasmoid.pluginName === "org.kde.plasma.systemtray"
+            if (isTray) trayIndex = i
+            const bgItem = Utils.getBgManaged(child)
+            if (!bgItem) {
+                const comp = backgroundComponent.createObject(child,
+                    { "z":-1, "target":child, "itemType": Enums.ItemType.WidgetItem , "targetIndex": i }
+                )
+                if (isTray) trayWidgetBgItem = comp
+            } else {
+                bgItem.targetIndex = i
+            }
+        }
+    }
 
-    onScreenChanged: {
-        // For some reason opacity is reset when output changes (disconnect, switch off)
-        panelOpacity()
+    function showPanelBg(panelBg) {
+        // Utils.dumpProps(panelBg)
+        panelBgItem = backgroundComponent.createObject(panelBg,
+            { "z":-1, "target": panelBg, "itemType": Enums.ItemType.PanelBgItem })
+    }
+
+    onPanelWidgetsCountChanged: {
+        // console.error( panelWidgetsCount ,JSON.stringify(panelWidgets, null, null))
+        plasmoid.configuration.panelWidgets = ""
+        plasmoid.configuration.panelWidgets = JSON.stringify(panelWidgets, null, null)
     }
 
     Component.onCompleted: {
-        customColors = readColors(plasmoid.configuration.customColors)
-        fgCustomColors = readColors(plasmoid.configuration.fgCustomColors)
-        try {
-            panelColorizer = Qt.createQmlObject("import org.kde.plasma.panelcolorizer 1.0; PanelColorizer { id: panelColorizer }", main)
-        } catch (err) {
-            console.warn("QML Plugin org.kde.plasma.panelcolorizer not found");
-        }
-        if (!onDesktop) {
-            init()
-        } else {
-            console.error("Panel not detected, aborted");
-        }
+        Qt.callLater(function() {
+            const config = Utils.mergeConfigs(Globals.defaultConfig, cfg)
+            plasmoid.configuration.allSettings = Utils.stringify(config)
+        })
     }
 
-    Timer {
-        id: initTimer
-        running: false
-        repeat: false
-        interval: 100
-        onTriggered: {
-            console.log("initTimer");
-            setPanelBg()
-            panelOpacity()
-            if (destroyRequired) {
-                destroyRects()
-            }
-            runCommand.exec(saveSchemeCmd)
-            startTimer.start()
-            if (!isLoaded) runCommand.exec(listPresetsCmd)
-            panelLayout.columnSpacing = panelSpacing
-            panelLayout.rowSpacing = panelSpacing
-        }
-    }
-
-    Timer {
-        id: startTimer
-        running: false
-        repeat: false
-        interval: 400
-        onTriggered: {
-            console.log("startTimer");
-            if (destroyRequired) {
-                createRects()
-            }
-            isLoaded = true
-            destroyRequired = false
-            rainbowTimer.interval = 100
-            rainbowTimer.start()
-            rainbowfgTimer.interval = 100
-            rainbowfgTimer.start()
-        }
-    }
-
-    Timer {
-        id: fgUpdateTimer
-        running: isEnabled && fgColorEnabled
-        repeat: true
-        interval: 250
-        onTriggered: {
-            updateFgColor()
-        }
-    }
-
-    Timer {
-        id: rainbowTimer
-        running: false
-        repeat: (mode === 1)
-        interval: rainbowInterval
-        onTriggered: {
-            colorize()
-            interval = rainbowInterval
-            if (fgColorMode === 4 && fgMode !== 1) {
-                addingColors = true
-                rainbowfgTimer.interval = rainbowTransition
-                rainbowfgTimer.restart()
-            }
-        }
-    }
-
-    Timer {
-        id: rainbowfgTimer
-        running: false
-        repeat: (fgMode === 1)
-        interval: fgRainbowInterval
-        onTriggered: {
-            addingColors = true
-            interval = fgRainbowInterval
-        }
-    }
-
-    function destroyRects() {
-        console.log("Destroying rects:",rectangles.count,"widget id:",Plasmoid.id, "screen:", screen, "position", plasmoid.location);
-        for (var i = rectangles.count - 1; i >= 0; i--) {
-            var comp = rectangles.get(i)["comp"]
-            var shadow = rectangles.get(i)["shadow"]
-            try {
-                comp.destroy()
-                shadow.destroy()
-            } catch (e) {
-                console.error("Error destroying rect", i, "E:" , e);
-            }
-            rectangles.remove(i)
-        }
-    }
-
-    Timer {
-        id: panelModifiedTimer
-        running: false
-        interval: 5000
-        repeat: false
-        onTriggered: {
-            showToUpdate = false
-            init()
-        }
-    }
-
-    Timer {
-        id: initRects
-        running: isEnabled && !onDesktop
-        repeat: true
-        interval: 100
-        onTriggered: {
-            if (!panelLayout) return
-            // check for widget add/removal
-            const newChildCount = panelLayout.children.length
-            if(newChildCount !== childCount || wasEditing) {
-                if(wasEditing) console.log("END EDITING");
-                console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-                console.log("Number of childs changed from " + childCount + " to " + newChildCount);
-                childCount = newChildCount
-                destroyRequired = true
-                wasEditing = false
-                if(isLoaded) {
-                    showToUpdate = true
-                    panelModifiedTimer.start()
-                }
-                findWidgets()
-            }
-        }
-    }
-
-    function printProps(element) {
-        dumpProps(element)
-        for (let p of Object.keys(element)) {
-            dumpProps(element[p])
-        }
-        for (var i = 0; i < element.children.length; i++) {
-            printProps(element.children[i]);
-        }
-    }
-
-    Timer {
-        id: paddingTimer
-        interval: 1000;
-        running: true;
-        repeat: false;
-        onTriggered: {
-            updatePadding()
-        }
-    }
-
-    Timer {
-        id: updateEffectsTimer
-        interval: 10
-        running: true
-        repeat: true
-        onTriggered: {
-            if (updateEffectCount < updateEffectSteps) {
-                updateEffectCount++;
-                updateWidgetsMask()
-            } else {
-                running = false;
-                updateEffectCount = 0
-            }
-        }
-    }
-
-    function updatePadding() {
-        if (isEnabled && enableCustomPadding) {
-            if (isVertical) {
-                panelCustomWidth = panelBg.width
-                panelCustomHeight = panelBg.height - panelPadding
-            } else {
-                panelCustomWidth = panelBg.width - panelPadding
-                panelCustomHeight = panelBg.height
-            }
-        }
-    }
-
-    Connections {
-        target: panelBg
-        onWidthChanged: {
-            updatePadding()
-            updateEffectsTimer.restart()
-        }
-
-        onHeightChanged: {
-            updatePadding()
-            updateEffectsTimer.restart()
-        }
-    }
-
-    Connections {
-        target: panelElement
-        onWidthChanged: {
-            updateEffectsTimer.restart()
-        }
-
-        onHeightChanged: {
-            updateEffectsTimer.restart()
-        }
-    }
-
-    Connections {
-        target: plasmoid
-        onLocationChanged: {
-            paddingTimer.start()
-        }
-    }
-
-    function setPanelBg() {
-        destroyPanelBg()
-        if (isEnabled && panelBgEnabled) {
-            panelBGE = panelBgComponent.createObject(
-                panelLayout.parent,
-                {
-                    "z": -1
-                }
-            )
-        }
-    }
-
-    function destroyPanelBg() {
-        if (panelBGE) {
-            panelBGE.destroy()
-            panelBGE = null;
-        }
-    }
-
-    function panelOpacity() {
-        for (let i in panelElement.children) {
-            const current = panelElement.children[i]
-
-            if (current.imagePath && current.imagePath.toString().includes("panel-background")) {
-                current.opacity = isEnabled ? panelRealBgOpacity : 1
-            }
-        }
-        lookForContainerTimer.start()
-    }
-
-    // Taken from https://github.com/sanjay-kr-commit/panelTransparencyToggleForPlasma6
-
-    function toggleTransparency(enabled) {
-        if ( main.containmentItem == null ) lookForContainer( main.parent , depth ) ;
-        if ( main.containmentItem != null ) {
-            main.containmentItem.Plasmoid.backgroundHints = enabled ? PlasmaCore.Types.NoBackground : PlasmaCore.Types.DefaultBackground
-        }
-    }
-
-    function lookForContainer( object , tries ) {
-        if ( tries == 0 || object == null ) return ;
-        if ( object.toString().indexOf("ContainmentItem_QML") > -1 ) {
-            main.containmentItem = object ;
-            console.log( "ContainmentItemFound At " + ( depth - tries ) + " recursive call" ) ;
-        } else {
-            lookForContainer( object.parent , tries-1 ) ;
-        }
-    }
-
-    Timer {
-        id: lookForContainerTimer
-        interval: 1200
-        property int step: 0
-        readonly property int maxStep:4
-        onTriggered: {
-            console.log("enabling transparency mode attempt : " + (step+1) )
-            main.toggleTransparency(hideRealPanelBg && isEnabled)
-            if ( main.containmentItem == null && step<maxStep ) {
-                step = step + 1;
-                start();
-            }
-        }
-    }
-
-    // Based on https://github.com/KDE/plasma-active-window-control/blob/master/package/contents/ui/main.qml
-    property var activeTaskLocal: null
-    property bool noWindowActive: true
-    property bool currentWindowMaximized: false
-    property bool maximizedWindowExists: false
-
-    TaskManager.VirtualDesktopInfo {
-        id: virtualDesktopInfo
-    }
-
-    TaskManager.ActivityInfo {
-        id: activityInfo
-        readonly property string nullUuid: "00000000-0000-0000-0000-000000000000"
-    }
-
-    TaskManager.TasksModel {
+    TasksModel {
         id: tasksModel
-        sortMode: TaskManager.TasksModel.SortVirtualDesktop
-        groupMode: TaskManager.TasksModel.GroupDisabled
-        virtualDesktop: virtualDesktopInfo.currentDesktop
-        activity: activityInfo.currentActivity
-        filterByVirtualDesktop: true
-        screenGeometry: main.screenGeometry
-        filterByScreen: true
-        filterByActivity: true
-        filterMinimized: true
+        screenGeometry: Plasmoid.containment.screenGeometry
+    }
 
-        onActiveTaskChanged: {
-            hasMaximized()
-        }
-        onDataChanged: {
-            hasMaximized()
-        }
-        onCountChanged: {
-            hasMaximized()
+    RunCommand {
+        id: runCommand
+    }
+
+    Connections {
+        target: runCommand
+        function onExited(cmd, exitCode, exitStatus, stdout, stderr, liveUpdate) {
+            if (exitCode!==0) return
+            presetContent = stdout.trim().split("\n")
+            Utils.loadPreset(presetContent, plasmoid.configuration, Globals.ignoredConfigs, Globals.defaultConfig, true)
+            plasmoid.configuration.lastPreset = lastPreset
+            plasmoid.configuration.writeConfig();
         }
     }
 
-    function hasMaximized() {
-        var abstractTasksModel = TaskManager.AbstractTasksModel || {}
-        var IsMaximized = abstractTasksModel.IsMaximized || 276
-        var IsActive = abstractTasksModel.IsActive || 271
-        var isMaximized = false
-
-        for (var i = 0; i < tasksModel.count; i++) {
-            const currentTask = tasksModel.index(i,0)
-            if (currentTask === undefined) continue
-            isMaximized = Boolean(tasksModel.data(currentTask, IsMaximized))
-            if (isMaximized) break
+    Timer {
+        running: requiresRefresh
+        repeat: true
+        interval: forceRecolorInterval
+        onTriggered: {
+            refreshNeeded()
         }
-        maximizedWindowExists = isMaximized
     }
 }
