@@ -31,5 +31,10 @@
         type="String">
         <default>{}</default>
     </entry>
+    <entry
+        name="presetAutoloading"
+        type="String">
+        <default>{}</default>
+    </entry>
   </group>
 </kcfg>
