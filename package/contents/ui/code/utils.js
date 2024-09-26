@@ -345,3 +345,12 @@ function getPresetName(panelState, presetAutoloading) {
   }
   return null
 }
+
+
+function getGlobalPosition(rect, panelElement) {
+  return rect.mapToItem(
+    panelElement, 0, 0,
+    rect.width,
+    rect.height
+  )
+}
