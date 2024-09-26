@@ -72,6 +72,10 @@ PlasmoidItem {
     property int forceRecolorCount: Object.keys(forceRecolorList).length
     property bool requiresRefresh: Object.values(forceRecolorList).some(w => w.reload)
     property var configurationOverrides: cfg.configurationOverrides
+    property var panelColorizer: null
+    property var blurMask: panelColorizer?.mask ?? null
+    property var floatigness: panelElement?.floatingness ?? 0
+    property bool debug: false
     signal recolorCountChanged()
     signal refreshNeeded()
 
@@ -223,6 +227,8 @@ PlasmoidItem {
         id: rect
         property Item target
         property int targetIndex
+        // we need an exra id so we can track the items in tray
+        property int maskIndex: inTray ? (panelLayoutCount -1 + targetIndex) : targetIndex
         property int itemType
         property bool isPanel: itemType === Enums.ItemType.PanelBgItem
         property bool isWidget: itemType === Enums.ItemType.WidgetItem
@@ -250,6 +256,12 @@ PlasmoidItem {
         property var bgShadow: cfg.shadow.background
         property bool fgShadowEnabled: cfg.shadow.foreground.enabled && cfgEnabled
         property var fgShadow: cfg.shadow.foreground
+        property bool blurBehind: {
+            return isPanel || (isWidget && !panelBgItem?.blurBehind)
+                || (inTray && !panelBgItem?.blurBehind && !trayWidgetBgItem?.blurBehind)
+                ? cfg.blurBehind
+                : false
+        }
         property string fgColor: {
             if (!fgEnabled && !inTray) {
                 return Kirigami.Theme.textColor
@@ -267,7 +279,7 @@ PlasmoidItem {
             id: fgColorHolder
             height: 6
             width: height
-            visible: true
+            visible: debug
             radius: height / 2
             color: fgColor
         }
@@ -630,6 +642,143 @@ PlasmoidItem {
             source: target.applet
             visible: fgShadowEnabled
         }
+
+        property real blurMaskX: {
+            const marginLeft = rect.marginEnabled ? rect.marginLeft : 0
+            if (panelElement.floating && horizontal) {
+                if (floatigness > 0) {
+                    return marginLeft
+                } else {
+                    return (panelElement.width - rect.width) / 2
+                }
+            } else {
+                return marginLeft
+            }
+        }
+
+        property real blurMaskY: {
+            const marginTop = rect.marginEnabled ? rect.marginTop : 0
+            if (panelElement.floating && !horizontal) {
+                if (floatigness > 0) {
+                    return marginTop
+                } else {
+                    return (panelElement.height - rect.height) / 2
+                }
+            } else {
+                return marginTop
+            }
+        }
+
+        Timer {
+            interval: 1000
+            running: true
+            repeat: true
+            onTriggered: {
+                position = Utils.getGlobalPosition(rect, panelElement)
+            }
+        }
+
+        property var position: Utils.getGlobalPosition(rect, panelElement)
+        property var positionX: position.x
+        property var positionY: position.y
+        property var fl: floatigness
+
+        ColumnLayout {
+            spacing: 0
+            anchors.bottom: isPanel ? parent.bottom : undefined
+            visible: debug
+            Label {
+                text: maskIndex
+                font.pixelSize: 8
+                Rectangle {
+                    anchors.fill: parent
+                    color: "black"
+                    z:-1
+                }
+            }
+            Label {
+                text: parseInt(position.x)+","+parseInt(position.y)
+                font.pixelSize: 8
+                Rectangle {
+                    anchors.fill: parent
+                    color: "black"
+                    z:-1
+                }
+            }
+        }
+
+        Label {
+            text: parseInt(rect.width)+"x"+parseInt(rect.height)
+            font.pixelSize: 8
+            anchors.bottom: parent.bottom
+            anchors.horizontalCenter: parent.horizontalCenter
+            visible: debug
+            Rectangle {
+                anchors.fill: parent
+                color: "black"
+                z:-1
+            }
+        }
+
+        onXChanged: {
+            updateMask()
+        }
+
+        onYChanged: {
+            updateMask()
+        }
+
+        onWidthChanged: {
+            updateMask()
+        }
+
+        onHeightChanged: {
+            updateMask()
+        }
+
+        onBlurMaskXChanged: {
+            updateMask()
+        }
+
+        onBlurMaskYChanged: {
+            updateMask()
+        }
+
+        onFlChanged: {
+            position = Utils.getGlobalPosition(rect, panelElement)
+        }
+
+        onPositionXChanged: {
+            updateMask()
+        }
+
+        onPositionYChanged: {
+            updateMask()
+        }
+
+        // TODO find where does 16 and 8 come from instead of blindly hardcoding them
+        property real moveX: {
+            let m = horizontal ? 0 : (panelState.floating ? 16 : 0)
+            return floatigness > 0 ? 8 : m
+        }
+
+        property real moveY: {
+            let m = horizontal ? (panelState.floating ? 16 : 0) : 0
+            return floatigness > 0 ? 8 : m
+        }
+
+        // TODO: per corner radius
+        function updateMask() {
+            Qt.callLater(function() {
+                if (panelColorizer === null || !blurBehind) return
+                panelColorizer.updatePanelMask(
+                    maskIndex,
+                    rect,
+                    radiusEnabled ? cfg.radius.corner.topLeft : 0,
+                    Qt.point(rect.position.x-moveX, rect.position.y-moveY)
+                )
+            })
+        }
     }
 
     fullRepresentation: RowLayout {
@@ -687,6 +836,17 @@ PlasmoidItem {
         value: panelSettings.padding.side.bottom
         when: fixedSidePaddingEnabled
         delayed: true
+    }
+
+    // TODO: should I just remove option for blur from per-widget settings?
+    // IMO doesn't make much sense to have only some widgets blurred...
+    Binding {
+        target: panelElement
+        property: "panelMask"
+        value: blurMask
+        when: (panelColorizer !== null && blurMask && panelColorizer?.hasRegions
+                && (panelBgItem?.blurBehind || widgetSettings?.blurBehind || trayWidgetSettings?.blurBehind)
+            )
     }
 
     property Item panelBg: {
@@ -913,6 +1073,12 @@ PlasmoidItem {
             const config = Utils.mergeConfigs(Globals.defaultConfig, cfg)
             plasmoid.configuration.allSettings = Utils.stringify(config)
         })
+        try {
+            panelColorizer = Qt.createQmlObject("import org.kde.plasma.panelcolorizer 1.0; PanelColorizer { id: panelColorizer }", main)
+            console.error("QML Plugin org.kde.plasma.panelcolorizer loaded");
+        } catch (err) {
+            console.error("QML Plugin org.kde.plasma.panelcolorizer not found");
+        }
     }
 
     TasksModel {

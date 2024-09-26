@@ -6,42 +6,48 @@
 
 #include "panelcolorizer.h"
 #include <QDebug>
+#include <QObject>
 #include <QPainterPath>
 #include <QRegion>
 
-QVariant PanelColorizer::updatePanelMask(QRectF rect, double radius, QPointF offset, bool vertical) {
+PanelColorizer::PanelColorizer(QObject *parent) : QObject(parent) {}
+
+void PanelColorizer::updatePanelMask(int index, QRectF rect, double radius, QPointF offset) {
+    // qDebug() << "updatePanelMask x:" << offset.x() << " y:" << offset.y() << " W:" << rect.width()
+    //          << " H:" << rect.height();
     QPainterPath path;
     path.addRoundedRect(rect, radius, radius);
 
     QRegion region = QRegion(path.toFillPolygon().toPolygon());
-    double translateX = vertical ? 0 : abs(offset.x());
-    double translateY = vertical ? abs(offset.y()) : 0;
+    double translateX = abs(offset.x());
+    double translateY = abs(offset.y());
     region.translate(translateX, translateY);
 
-    return QVariant::fromValue(region);
-}
-
-QVariant PanelColorizer::updateWidgetsMask(QVariantList rects, double radius, QPointF offset, bool vertical,
-                                           int spacing, double hPadding, double vPadding) {
-    QPainterPath path;
-    path.setFillRule(Qt::WindingFill);
-    double currentLength = 0;
-    for (const QVariant &var : rects) {
-        QRectF rect = var.toRectF();
-        if (vertical) {
-            rect.moveTop(currentLength);
-            currentLength += rect.height() + spacing;
-        } else {
-            rect.moveLeft(currentLength);
-            currentLength += rect.width() + spacing;
-        }
-        path.addRoundedRect(rect, radius, radius);
+    if (index >= m_regions.size()) {
+        m_regions.resize(index + 1);
     }
 
-    QRegion region = QRegion(path.simplified().toFillPolygon().toPolygon());
-    double translateX = vertical ? hPadding : abs(offset.x()) + hPadding;
-    double translateY = vertical ? abs(offset.y()) + vPadding : vPadding;
-    region.translate(translateX, translateY);
-
-    return QVariant::fromValue(region);
+    m_regions[index] = region;
+    combineRegions();
 }
+
+QVariant PanelColorizer::mask() const { return QVariant::fromValue(m_mask); }
+
+void PanelColorizer::combineRegions() {
+    QRegion combined;
+    for (const QRegion &region : m_regions) {
+        combined = combined.united(region);
+    }
+
+    bool hadRegions = hasRegions();
+    if (m_mask != combined) {
+        m_mask = combined;
+        emit maskChanged();
+    }
+
+    if (hadRegions != hasRegions()) {
+        emit hasRegionsChanged();
+    }
+}
+
+bool PanelColorizer::hasRegions() const { return !m_mask.isEmpty(); }
