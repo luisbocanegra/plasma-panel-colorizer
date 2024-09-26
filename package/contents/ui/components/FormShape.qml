@@ -38,7 +38,7 @@ Kirigami.FormLayout {
         Binding {
             target: radiusEnabledCheckbox
             property: "Kirigami.Theme.textColor"
-            value: Kirigami.Theme.neutralTextColor
+            value: shapeRoot.Kirigami.Theme.neutralTextColor
             when: !radiusEnabledCheckbox.checked
         }
         Kirigami.Theme.inherit: false
@@ -107,7 +107,7 @@ Kirigami.FormLayout {
         Binding {
             target: marginEnabledCheckbox
             property: "Kirigami.Theme.textColor"
-            value: Kirigami.Theme.neutralTextColor
+            value: shapeRoot.Kirigami.Theme.neutralTextColor
             when: !marginEnabledCheckbox.checked
         }
         Kirigami.Theme.inherit: false

@@ -27,7 +27,7 @@ Kirigami.AbstractCard {
                 Rectangle {
                     visible: widget.inTray
                     color: Kirigami.Theme.highlightColor
-                    Kirigami.Theme.colorSet: Kirigami.Theme["Selection"]
+                    Kirigami.Theme.colorSet: root.Kirigami.Theme["Selection"]
                     radius: parent.height / 2
                     width: label.width + 12
                     height: label.height + 2
@@ -37,7 +37,7 @@ Kirigami.AbstractCard {
                         id: label
                         text: "Tray"
                         color: Kirigami.Theme.textColor
-                        Kirigami.Theme.colorSet: Kirigami.Theme["Selection"]
+                        Kirigami.Theme.colorSet: root.Kirigami.Theme["Selection"]
                         Kirigami.Theme.inherit: false
                     }
                 }

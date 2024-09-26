@@ -6,6 +6,7 @@ import org.kde.plasma.plasmoid
 import org.kde.kirigami as Kirigami
 
 RowLayout {
+    id: root
     property alias isEnabled: isEnabledCheckbox.checked
     RowLayout {
         Layout.alignment: Qt.AlignRight
@@ -17,7 +18,7 @@ RowLayout {
             Binding {
                 target: isEnabledCheckbox
                 property: "Kirigami.Theme.textColor"
-                value: Kirigami.Theme.neutralTextColor
+                value: root.Kirigami.Theme.neutralTextColor
                 when: !isEnabledCheckbox.checked
             }
             Kirigami.Theme.inherit: false
