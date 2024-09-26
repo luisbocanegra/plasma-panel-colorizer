@@ -171,7 +171,7 @@ Kirigami.FormLayout {
         Binding {
             target: enabledCheckbox
             property: "Kirigami.Theme.textColor"
-            value: Kirigami.Theme.neutralTextColor
+            value: colorRoot.Kirigami.Theme.neutralTextColor
             when: !enabledCheckbox.checked
         }
         Kirigami.Theme.inherit: false

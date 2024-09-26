@@ -12,7 +12,7 @@ Item {
 
     Rectangle {
         anchors.fill: parent
-        Kirigami.Theme.colorSet: Kirigami.Theme.Button
+        Kirigami.Theme.colorSet: root.Kirigami.Theme.Button
         Kirigami.Theme.inherit: false
         color: Kirigami.Theme.backgroundColor
         opacity: 1
