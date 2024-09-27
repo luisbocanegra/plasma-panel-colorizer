@@ -789,7 +789,10 @@ PlasmoidItem {
                 panelColorizer.updatePanelMask(
                     maskIndex,
                     rect,
-                    radiusEnabled ? cfg.radius.corner.topLeft : 0,
+                    rect.corners.topLeftRadius,
+                    rect.corners.topRightRadius,
+                    rect.corners.bottomLeftRadius,
+                    rect.corners.bottomRightRadius,
                     Qt.point(rect.position.x-moveX, rect.position.y-moveY)
                 )
             })
