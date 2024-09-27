@@ -1,3 +1,4 @@
+import QtCore
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -12,13 +13,17 @@ KCM.SimpleKCM {
     property alias cfg_isEnabled: headerComponent.isEnabled
     property string cfg_panelWidgets
     property bool clearing: false
-    property string cfg_allSettings
-    property var config: JSON.parse(cfg_allSettings)
+    property string cfg_forceForegroundColor
+    property var config: JSON.parse(cfg_forceForegroundColor)
     property var forceFgConfig
     property bool loaded: false
+    property string configDir: StandardPaths.writableLocation(
+                    StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/"
+    property string importCmd: "cat '" + configDir + "forceForegroundColor.json'"
+    property string crateConfigDirCmd: "mkdir -p " + configDir
 
     Component.onCompleted: {
-        forceFgConfig = config.forceForegroundColor.widgets
+        forceFgConfig = config.widgets
         console.error(JSON.stringify(forceFgConfig, null, null))
         initWidgets()
         updateWidgetsModel()
@@ -37,12 +42,41 @@ KCM.SimpleKCM {
                 delete forceFgConfig[widget.name]
             }
         }
-        config.forceForegroundColor.widgets = forceFgConfig
-        cfg_allSettings = JSON.stringify(config, null, null)
+        config.widgets = forceFgConfig
+        cfg_forceForegroundColor = JSON.stringify(config, null, null)
     }
 
     ListModel {
         id: widgetsModel
+    }
+
+    RunCommand {
+        id: runCommand
+    }
+    Connections {
+        target: runCommand
+        function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
+            if (exitCode!==0) return
+            if (cmd.startsWith("cat")) {
+                const content = stdout.trim().split("\n")
+                try {
+                    console.error(content)
+                    const newConfig = JSON.parse(content)
+                    importConfig(newConfig)
+                } catch (e) {
+                    console.error(e)
+                }
+            }
+        }
+    }
+
+    function importConfig(newConfig) {
+        loaded = false
+        forceFgConfig = newConfig.widgets
+        config.reloadInterval = newConfig.reloadInterval
+        updateWidgetsModel()
+        loaded = true
+        updateConfig()
     }
 
     function initWidgets(){
@@ -67,6 +101,8 @@ KCM.SimpleKCM {
             if (name in forceFgConfig) {
                 let cfg = forceFgConfig[name]
                 widgetsModel.set(i, {"method": cfg.method, "reload": cfg.reload})
+            } else {
+                widgetsModel.set(i, {"method": { "mask": false, "multiEffect": false }, "reload": false})
             }
         }
         loaded = true
@@ -81,6 +117,14 @@ KCM.SimpleKCM {
     }
 
     ColumnLayout {
+        Components.SettingImportExport {
+            onExportConfirmed: {
+                runCommand.run(crateConfigDirCmd)
+                runCommand.run("echo '"+cfg_forceForegroundColor+"' > '" + configDir + "forceForegroundColor.json'")
+            }
+            onImportConfirmed: runCommand.run(importCmd)
+        }
+
         Kirigami.FormLayout {
             Kirigami.Separator {
                 Kirigami.FormData.isSection: true
@@ -92,9 +136,9 @@ KCM.SimpleKCM {
                 from: 16
                 to: 1000
                 stepSize: 50
-                value: config.forceForegroundColor.reloadInterval
+                value: config.reloadInterval
                 onValueModified: {
-                    config.forceForegroundColor.reloadInterval = value
+                    config.reloadInterval = value
                     root.updateConfig()
                 }
             }

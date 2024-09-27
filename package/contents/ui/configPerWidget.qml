@@ -1,3 +1,4 @@
+import QtCore
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -13,9 +14,8 @@ KCM.SimpleKCM {
     property alias cfg_isEnabled: headerComponent.isEnabled
     property string cfg_panelWidgets
     property bool clearing: false
-    property string cfg_allSettings
-    property var config: JSON.parse(cfg_allSettings)
-    property var perWidgetConfig
+    property string cfg_configurationOverrides
+    property var config: JSON.parse(cfg_configurationOverrides)
     property bool loaded: false
     property string overrideName
     property var editingConfig
@@ -24,11 +24,14 @@ KCM.SimpleKCM {
     property var configOverrides
     property var associationsModel
     property int currentTab
+    property string configDir: StandardPaths.writableLocation(
+                    StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/"
+    property string importCmd: "cat '" + configDir + "overrides.json'"
+    property string crateConfigDirCmd: "mkdir -p " + configDir
 
     Component.onCompleted: {
-        perWidgetConfig = config.configurationOverrides
-        configOverrides = JSON.parse(JSON.stringify(config.configurationOverrides))
-        associationsModel = JSON.parse(JSON.stringify(config.overrideAssociations))
+        configOverrides = JSON.parse(JSON.stringify(config.overrides))
+        associationsModel = JSON.parse(JSON.stringify(config.associations))
         initWidgets()
         updateWidgetsModel()
     }
@@ -49,25 +52,50 @@ KCM.SimpleKCM {
             const method = widget.method
             console.error(name, method.mask, method.multiEffect)
             if (method.mask || method.multiEffect) {
-                perWidgetConfig[name] = {"method": widget.method}
+                configOverrides[name] = {"method": widget.method}
             } else {
-                delete perWidgetConfig[widget.name]
+                delete configOverrides[widget.name]
             }
         }
         const tmp = JSON.parse(JSON.stringify(configOverrides, null, null))
         // configOverrides = []
         configOverrides = tmp
-        config.configurationOverrides = configOverrides
-        cfg_allSettings = JSON.stringify(config, null, null)
-    }
-
-    function updateConfigA() {
-        config.overrideAssociations = associationsModel
-        cfg_allSettings = JSON.stringify(config, null, null)
+        config.overrides = configOverrides
+        config.associations = associationsModel
+        cfg_configurationOverrides = JSON.stringify(config, null, null)
     }
 
     ListModel {
         id: widgetsModel
+    }
+
+    RunCommand {
+        id: runCommand
+    }
+    Connections {
+        target: runCommand
+        function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
+            if (exitCode!==0) return
+            if (cmd.startsWith("cat")) {
+                const content = stdout.trim().split("\n")
+                try {
+                    const newConfig = JSON.parse(content)
+                    importConfig(newConfig)
+                } catch (e) {
+                    console.error(e)
+                }
+            }
+        }
+    }
+
+    function importConfig(newConfig) {
+        loaded = false
+        configOverrides = newConfig.overrides
+        configOverrides = newConfig.overrides
+        associationsModel = newConfig.associations
+        updateWidgetsModel()
+        updateConfig()
+        loaded = true
     }
 
     function initWidgets(){
@@ -89,8 +117,8 @@ KCM.SimpleKCM {
         for (let i = 0; i < widgetsModel.count; i++) {
             const widget = widgetsModel.get(i)
             const name = widget.name
-            if (name in perWidgetConfig) {
-                let cfg = perWidgetConfig[name]
+            if (name in configOverrides) {
+                let cfg = configOverrides[name]
                 widgetsModel.set(i, {"method": cfg.method})
             }
         }
@@ -107,6 +135,14 @@ KCM.SimpleKCM {
 
     ColumnLayout {
         enabled: cfg_isEnabled
+        Components.SettingImportExport {
+            onExportConfirmed: {
+                runCommand.run(crateConfigDirCmd)
+                    runCommand.run("echo '"+cfg_configurationOverrides+"' > '" + configDir + "overrides.json'")
+            }
+            onImportConfirmed: runCommand.run(importCmd)
+        }
+
     Kirigami.FormLayout {
 
         Kirigami.Separator {
@@ -222,7 +258,7 @@ KCM.SimpleKCM {
                 RowLayout {
                     Kirigami.FormData.label: i18n("Fallback:")
                     CheckBox {
-                        checked: configOverrides[overrideName].disabledFallback
+                        checked: configOverrides[overrideName]?.disabledFallback || false
                         onCheckedChanged: {
                             configOverrides[overrideName].disabledFallback = checked
                             root.updateConfig()
@@ -278,7 +314,7 @@ KCM.SimpleKCM {
                     onUpdateWidget: (name, text) => {
                         if (!loaded) return
                         associationsModel[name] = text
-                        root.updateConfigA()
+                        root.updateConfig()
                     }
                 }
             }

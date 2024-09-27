@@ -41,7 +41,7 @@ PlasmoidItem {
     property Item trayWidgetBgItem
     property string lastPreset
     property string presetsDir: StandardPaths.writableLocation(
-                    StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/"
+                    StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/presets/"
     property var presetContent: ""
     property var panelState: {
         "maximized": tasksModel.maximizedExists,
@@ -64,14 +64,29 @@ PlasmoidItem {
             return {}
         }
     }
+    property var configurationOverrides: {
+        try {
+            return JSON.parse(plasmoid.configuration.configurationOverrides)
+        } catch (e) {
+            console.error(e, e.stack)
+            return {}
+        }
+    }
+    property var forceForegroundColor: {
+        try {
+            return JSON.parse(plasmoid.configuration.forceForegroundColor)
+        } catch (e) {
+            console.error(e, e.stack)
+            return {}
+        }
+    }
     property var widgetSettings: cfg.widgets
     property var panelSettings: cfg.panel
     property var trayWidgetSettings: cfg.trayWidgets
-    property var forceRecolorList: cfg.forceForegroundColor?.widgets ?? {}
-    property int forceRecolorInterval: cfg.forceForegroundColor?.reloadInterval ?? 0
+    property var forceRecolorList: forceForegroundColor?.widgets ?? {}
+    property int forceRecolorInterval: forceForegroundColor?.reloadInterval ?? 0
     property int forceRecolorCount: Object.keys(forceRecolorList).length
     property bool requiresRefresh: Object.values(forceRecolorList).some(w => w.reload)
-    property var configurationOverrides: cfg.configurationOverrides
     property var panelColorizer: null
     property var blurMask: panelColorizer?.mask ?? null
     property var floatigness: panelElement?.floatingness ?? 0
@@ -238,7 +253,7 @@ PlasmoidItem {
         property bool luisbocanegraPanelColorizerBgManaged: true
         property string widgetName: isTrayArrow ? "org.kde.plasma.systemtray.expand" : Utils.getWidgetName(target)
         property bool requiresRefresh: forceRecolorList[widgetName]?.reload ?? false
-        property var itemConfig: Utils.getItemCfg(itemType, widgetName, main.cfg)
+        property var itemConfig: Utils.getItemCfg(itemType, widgetName, main.cfg, configurationOverrides)
         property var cfg: itemConfig.settings
         property bool cfgOverride: itemConfig.override
         property var bgColorCfg: cfg.backgroundColor

@@ -15,7 +15,7 @@ KCM.SimpleKCM {
     id:root
     property bool cfg_hideWidget: hideWidget.checked
     property string presetsDir: StandardPaths.writableLocation(
-                    StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/"
+                    StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/presets/"
     property string cratePresetsDirCmd: "mkdir -p " + presetsDir
     property string listPresetsCmd: "find "+presetsDir+" -type f -print0 | while IFS= read -r -d '' file; do basename \"$file\"; done | sort"
     property var presets: []
