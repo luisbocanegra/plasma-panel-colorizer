@@ -7,15 +7,23 @@
 #include "panelcolorizer.h"
 #include <QDebug>
 #include <QObject>
+#include <QPainter>
 #include <QPainterPath>
+#include <QPixmap>
 #include <QRegion>
+#include <qbitmap.h>
 
 PanelColorizer::PanelColorizer(QObject *parent) : QObject(parent) {}
 
 void PanelColorizer::updatePanelMask(int index, QRectF rect, double topLeftRadius, double topRightRadius,
-                                     double bottomLeftRadius, double bottomRightRadius, QPointF offset) {
+                                     double bottomLeftRadius, double bottomRightRadius, QPointF offset,
+                                     int radiusCompensation) {
     // qDebug() << "updatePanelMask x:" << offset.x() << " y:" << offset.y() << " W:" << rect.width()
     //          << " H:" << rect.height();
+    topLeftRadius += (topLeftRadius != 0) ? radiusCompensation : 0;
+    topRightRadius += (topRightRadius != 0) ? radiusCompensation : 0;
+    bottomLeftRadius += (bottomLeftRadius != 0) ? radiusCompensation : 0;
+    bottomRightRadius += (bottomRightRadius != 0) ? radiusCompensation : 0;
     QPainterPath path;
     path.moveTo(rect.topLeft() + QPointF(topLeftRadius, 0));
     path.lineTo(rect.topRight() - QPointF(topRightRadius, 0));
@@ -27,7 +35,17 @@ void PanelColorizer::updatePanelMask(int index, QRectF rect, double topLeftRadiu
     path.lineTo(rect.topLeft() + QPointF(0, topLeftRadius));
     path.quadTo(rect.topLeft(), rect.topLeft() + QPointF(topLeftRadius, 0));
 
-    QRegion region = QRegion(path.toFillPolygon().toPolygon());
+    QPixmap pixmap(rect.size().toSize());
+    pixmap.fill(Qt::transparent);
+    // Draw the QPainterPath onto the QPixmap for antialiasing
+    QPainter painter(&pixmap);
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setBrush(Qt::black);
+    // no border
+    painter.setPen(Qt::NoPen);
+    painter.drawPath(path);
+
+    QRegion region = QRegion(pixmap.createMaskFromColor(Qt::transparent));
     double translateX = abs(offset.x());
     double translateY = abs(offset.y());
     region.translate(translateX, translateY);

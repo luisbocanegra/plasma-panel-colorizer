@@ -15,7 +15,8 @@ class PanelColorizer : public QObject {
 
   public:
     Q_INVOKABLE void updatePanelMask(int index, QRectF rect, double topLeftRadius, double topRightRadius,
-                                     double bottomLeftRadius, double bottomRightRadius, QPointF offset);
+                                     double bottomLeftRadius, double bottomRightRadius, QPointF offset,
+                                     int radiusCompensation);
 
     explicit PanelColorizer(QObject *parent = nullptr);
 

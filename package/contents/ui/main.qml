@@ -782,7 +782,6 @@ PlasmoidItem {
             return floatigness > 0 ? 8 : m
         }
 
-        // TODO: per corner radius
         function updateMask() {
             Qt.callLater(function() {
                 if (panelColorizer === null || !blurBehind) return
@@ -793,7 +792,8 @@ PlasmoidItem {
                     rect.corners.topRightRadius,
                     rect.corners.bottomLeftRadius,
                     rect.corners.bottomRightRadius,
-                    Qt.point(rect.position.x-moveX, rect.position.y-moveY)
+                    Qt.point(rect.position.x-moveX, rect.position.y-moveY),
+                    5
                 )
             })
         }
