@@ -234,9 +234,12 @@ function getGlobalSettings(itemType) {
   return globalSettings
 }
 
-function effectiveSettings(customSettings, globalSettings) {
+function getEffectiveSettings(customSettings, globalSettings) {
   let effectiveSettings = JSON.parse(JSON.stringify(customSettings));
   for (var key in customSettings) {
+    if (typeof customSettings[key] === "object" && customSettings[key] !== null && globalSettings.hasOwnProperty(key)) {
+      effectiveSettings[key] = getEffectiveSettings(customSettings[key], globalSettings[key])
+    }
     if (customSettings[key].hasOwnProperty("enabled")) {
       if (!customSettings[key].enabled && globalSettings.hasOwnProperty(key)) {
         effectiveSettings[key] = globalSettings[key]
@@ -259,7 +262,7 @@ function getItemCfg(itemType, widgetName, config, configurationOverrides) {
 
     if (disabledFallback) {
       const global = getGlobalSettings(itemType)
-      output.settings = effectiveSettings(custom, global)
+      output.settings = getEffectiveSettings(custom, global)
     } else {
       output.settings = custom
     }
