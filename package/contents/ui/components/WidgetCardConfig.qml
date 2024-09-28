@@ -35,7 +35,7 @@ Kirigami.AbstractCard {
                     Label {
                         anchors.centerIn: parent
                         id: label
-                        text: "Tray"
+                        text: i18n("System Tray")
                         color: Kirigami.Theme.textColor
                         Kirigami.Theme.colorSet: root.Kirigami.Theme["Selection"]
                         Kirigami.Theme.inherit: false

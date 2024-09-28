@@ -92,18 +92,15 @@ KCM.SimpleKCM {
     ColumnLayout {
         enabled: cfg_isEnabled
         Label {
-            text: i18n("Here you can switch between different panel presets based on the Panel and window states below.")
+            text: i18n("Switch between different panel presets based on the Panel and window states")
             Layout.maximumWidth: root.width - (Kirigami.Units.gridUnit * 2)
             wrapMode: Text.Wrap
         }
 
-        Label {
-            text: i18n("Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the <b>Maximized</b> preset will be applied.")
-            Layout.maximumWidth: root.width - (Kirigami.Units.gridUnit * 2)
-            wrapMode: Text.Wrap
-        }
         Kirigami.FormLayout {
-
+            Kirigami.ContextualHelpButton {
+                toolTipText: i18n("Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the <b>Maximized</b> preset will be applied.")
+            }
             ComboBox {
                 model: presetsModel
                 textRole: "name"

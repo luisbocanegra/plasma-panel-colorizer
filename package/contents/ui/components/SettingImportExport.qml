@@ -24,14 +24,8 @@ RowLayout {
             importEportDialog.open()
         }
     }
-    Button {
-        icon.name: "dialog-information-symbolic"
-        ToolTip.text: i18n("Export these settings to the default configuration folder and import them in other instances of Panel Colorizer")
-        highlighted: true
-        hoverEnabled: true
-        ToolTip.visible: hovered
-        Kirigami.Theme.inherit: false
-        flat: true
+    Kirigami.ContextualHelpButton {
+        toolTipText: i18n("Export these settings to the default configuration folder and import them in other instances of Panel Colorizer")
     }
 
     Kirigami.PromptDialog {
@@ -39,7 +33,7 @@ RowLayout {
         title: exporting ? i18n("Export current settings?") : i18n("Import saved settings?")
         subtitle: exporting
             ? i18n("This will overwrite any previous export!")
-            : i18n("This will replace your current settings")
+            : i18n("This will replace your current settings!")
 
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {

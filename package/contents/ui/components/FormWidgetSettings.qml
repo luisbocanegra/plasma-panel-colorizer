@@ -95,14 +95,8 @@ ColumnLayout {
                     }
                     enabled: isEnabled.checked
                 }
-                Button {
-                    icon.name: "dialog-information-symbolic"
-                    ToolTip.text: i18n("Draw a custom blur mask behind the custom background(s).\n\nNative panel background must be enabled with opacity of 0 for this to work as intended.")
-                    highlighted: true
-                    hoverEnabled: true
-                    ToolTip.visible: hovered
-                    Kirigami.Theme.inherit: false
-                    flat: true
+                Kirigami.ContextualHelpButton {
+                    toolTipText: i18n("Draw a custom blur mask behind the custom background(s).\n\nNative panel background must be enabled with opacity of 0 for this to work as intended.")
                 }
             }
             RowLayout {
@@ -160,14 +154,8 @@ ColumnLayout {
                         }
                     }
                 }
-                Button {
-                    icon.name: "dialog-information-symbolic"
-                    ToolTip.text: i18n("Disabling the native Panel background also removes the contrast and blur.\n\nSet this to 0 to keep just the mask required by Blur behind.")
-                    highlighted: true
-                    hoverEnabled: true
-                    ToolTip.visible: hovered
-                    Kirigami.Theme.inherit: false
-                    flat: true
+                Kirigami.ContextualHelpButton {
+                    toolTipText: i18n("Disabling the native Panel background also removes the contrast and blur.\n\nSet this to 0 to keep just the mask required by Blur behind.")
                 }
             }
         }

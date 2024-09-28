@@ -264,14 +264,8 @@ KCM.SimpleKCM {
                             root.updateConfig()
                         }
                     }
-                    Button {
-                        icon.name: "dialog-information-symbolic"
-                        ToolTip.text: i18n("Fallback to the global widget settings for disabled options, except for <b>Enable</b>.")
-                        highlighted: true
-                        hoverEnabled: true
-                        ToolTip.visible: hovered
-                        Kirigami.Theme.inherit: false
-                        flat: true
+                    Kirigami.ContextualHelpButton {
+                        toolTipText: i18n("Fallback to the global widget settings for disabled options, except for <b>Enable</b>.")
                     }
                 }
             }
