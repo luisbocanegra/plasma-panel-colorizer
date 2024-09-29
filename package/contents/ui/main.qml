@@ -83,6 +83,7 @@ PlasmoidItem {
     property var widgetSettings: cfg.widgets
     property var panelSettings: cfg.panel
     property var trayWidgetSettings: cfg.trayWidgets
+    property var unifiedBackgroundSettings: cfg.unifiedBackground
     property var forceRecolorList: forceForegroundColor?.widgets ?? {}
     property int forceRecolorInterval: forceForegroundColor?.reloadInterval ?? 0
     property int forceRecolorCount: Object.keys(forceRecolorList).length
@@ -253,6 +254,8 @@ PlasmoidItem {
         property bool luisbocanegraPanelColorizerBgManaged: true
         property string widgetName: isTrayArrow ? "org.kde.plasma.systemtray.expand" : Utils.getWidgetName(target)
         property bool requiresRefresh: forceRecolorList[widgetName]?.reload ?? false
+        // 0: default | 1: start | 2: middle | 3: end
+        property int unifyBgType: unifiedBackgroundSettings[widgetName] ?? 0
         property var itemConfig: Utils.getItemCfg(itemType, widgetName, main.cfg, configurationOverrides)
         property var cfg: itemConfig.settings
         property bool cfgOverride: itemConfig.override
@@ -265,6 +268,27 @@ PlasmoidItem {
         property bool bgEnabled: cfgEnabled ? bgColorCfg.enabled : false
         property bool fgEnabled: fgColorCfg.enabled && cfgEnabled
         property bool radiusEnabled: cfg.radius.enabled && cfgEnabled
+        property int topLeftRadius: !radiusEnabled || unifyBgType === 2 || unifyBgType === 3
+            ? 0
+            : cfg.radius.corner.topLeft ?? 0
+        property int topRightRadius: !radiusEnabled ||
+            (horizontal && (unifyBgType === 1 || unifyBgType === 2)) ||
+            (!horizontal && (unifyBgType === 2 || unifyBgType === 3))
+            ? 0
+            : cfg.radius.corner.topRight ?? 0
+
+        property int bottomLeftRadius: !radiusEnabled ||
+            (horizontal && (unifyBgType === 2 || unifyBgType === 3)) ||
+            (!horizontal && (unifyBgType === 1 || unifyBgType === 2))
+            ? 0
+            : cfg.radius.corner.bottomLeft ?? 0
+
+        property int bottomRightRadius: !radiusEnabled ||
+            unifyBgType === 1 || unifyBgType === 2 ||
+            (!horizontal && (unifyBgType === 1 || unifyBgType === 2))
+            ? 0
+            : cfg.radius.corner.bottomRight ?? 0
+
         property bool marginEnabled: cfg.margin.enabled && cfgEnabled
         property bool borderEnabled: cfg.border.enabled && cfgEnabled
         property bool bgShadowEnabled: cfg.shadow.background.enabled && cfgEnabled
@@ -294,9 +318,10 @@ PlasmoidItem {
             id: fgColorHolder
             height: 6
             width: height
-            visible: debug
+            visible: false
             radius: height / 2
             color: fgColor
+            anchors.right: parent.right
         }
         // Label {
         //     id: debugLabel
@@ -304,10 +329,10 @@ PlasmoidItem {
         //     font.pixelSize: 8
         // }
         corners {
-            topLeftRadius: radiusEnabled ? cfg.radius.corner.topLeft : 0
-            topRightRadius: radiusEnabled ? cfg.radius.corner.topRight : 0
-            bottomLeftRadius: radiusEnabled ? cfg.radius.corner.bottomLeft : 0
-            bottomRightRadius: radiusEnabled ? cfg.radius.corner.bottomRight : 0
+            topLeftRadius: topLeftRadius
+            topRightRadius: topRightRadius
+            bottomLeftRadius: bottomLeftRadius
+            bottomRightRadius: bottomRightRadius
         }
         color: {
             if (bgEnabled) {
@@ -416,8 +441,9 @@ PlasmoidItem {
         Binding {
             target: rect.target
             property: "Layout.leftMargin"
-            value: marginLeft
-            when: marginEnabled && isWidget
+            // our own horizontal spacing starting from the second widget for the unified widget feature
+            value: (targetIndex !== 0 && unifyBgType<=1 && horizontal ? widgetSettings.spacing : 0) + (marginEnabled ? marginLeft : 0)
+            when: isWidget
             delayed: true
         }
 
@@ -432,8 +458,9 @@ PlasmoidItem {
         Binding {
             target: rect.target
             property: "Layout.topMargin"
-            value: marginTop
-            when: marginEnabled && isWidget
+            // our own vertical spacing starting from the second widget for the unified widget feature
+            value: (targetIndex !== 0 && unifyBgType<=1 && !horizontal ? widgetSettings.spacing : 0) + (marginEnabled ? marginTop : 0)
+            when: isWidget
             delayed: true
         }
 
@@ -550,7 +577,7 @@ PlasmoidItem {
             id: borderRec
             anchors.fill: parent
             color: "transparent"
-            visible: borderEnabled
+            visible: borderEnabled && Math.min(rect.height, rect.width) > 1
             property var borderColorCfg: cfg.border.color
             Kirigami.Theme.colorSet: Kirigami.Theme[borderColorCfg.systemColorSet]
             Kirigami.Theme.inherit: !(borderColorCfg.sourceType === 1)
@@ -593,18 +620,57 @@ PlasmoidItem {
             }
 
             Kirigami.ShadowedRectangle {
+                id: normalBorder
                 anchors.fill: parent
                 color: "transparent"
-                visible: !cfg.border.customSides
+                // the mask source needs to be hidden by default
+                visible: false
                 border {
                     color: borderRec.borderColor
                     width: cfg.border.width || -1
                 }
                 corners {
-                    topLeftRadius: radiusEnabled ? cfg.radius.corner.topLeft : 0
-                    topRightRadius: radiusEnabled ? cfg.radius.corner.topRight : 0
-                    bottomLeftRadius: radiusEnabled ? cfg.radius.corner.bottomLeft : 0
-                    bottomRightRadius: radiusEnabled ? cfg.radius.corner.bottomRight : 0
+                    topLeftRadius: topLeftRadius
+                    topRightRadius: topRightRadius
+                    bottomLeftRadius: bottomLeftRadius
+                    bottomRightRadius: bottomRightRadius
+                }
+            }
+
+            // Mask to hide one or two borders for unified backgrounds
+            MultiEffect {
+                source: normalBorder
+                anchors.fill: normalBorder
+                maskEnabled: true
+                maskSource: rightBorderMask
+                maskInverted: true
+            }
+            Item {
+                id: rightBorderMask
+                layer.enabled: true
+                visible: false
+                width: borderRec.width
+                height: borderRec.height
+                Rectangle {
+                    id: rect1
+                    width: horizontal ? cfg.border.width : borderRec.width - (cfg.border.width * 2)
+                    height: horizontal ? borderRec.height - (cfg.border.width * 2) : cfg.border.width
+                    color: (unifyBgType === 1 || unifyBgType === 2) ? "black" : "transparent"
+                    anchors.right: horizontal ? parent.right : undefined
+                    anchors.bottom: !horizontal ? parent.bottom : undefined
+                    anchors.verticalCenter: horizontal ? parent.verticalCenter : undefined
+                    anchors.horizontalCenter: !horizontal ? parent.horizontalCenter : undefined
+
+                }
+                Rectangle {
+                    id: rect2
+                    width: horizontal ? cfg.border.width : borderRec.width - (cfg.border.width * 2)
+                    height: horizontal ? borderRec.height - (cfg.border.width * 2) : cfg.border.width
+                    color: (unifyBgType === 2 || unifyBgType === 3) ? "black" : "transparent"
+                    anchors.left: horizontal ? parent.left : undefined
+                    anchors.top: !horizontal ? parent.top : undefined
+                    anchors.verticalCenter: horizontal ? parent.verticalCenter : undefined
+                    anchors.horizontalCenter: !horizontal ? parent.horizontalCenter : undefined
                 }
             }
 
@@ -619,10 +685,10 @@ PlasmoidItem {
                         width: rect.width
                         height: rect.height
                         corners {
-                            topLeftRadius: radiusEnabled ? cfg.radius.corner.topLeft : 0
-                            topRightRadius: radiusEnabled ? cfg.radius.corner.topRight : 0
-                            bottomLeftRadius: radiusEnabled ? cfg.radius.corner.bottomLeft : 0
-                            bottomRightRadius: radiusEnabled ? cfg.radius.corner.bottomRight : 0
+                            topLeftRadius: topLeftRadius
+                            topRightRadius: topRightRadius
+                            bottomLeftRadius: bottomLeftRadius
+                            bottomRightRadius: bottomRightRadius
                         }
                     }
                 }
@@ -632,7 +698,7 @@ PlasmoidItem {
         shadow {
             property var shadowColorCfg: bgShadow.color
             Kirigami.Theme.colorSet: Kirigami.Theme[shadowColorCfg.systemColorSet]
-            size: bgShadowEnabled ? bgShadow.size : 0
+            size: (bgShadowEnabled && Math.min(rect.height, rect.width) > 1) ? bgShadow.size : 0
             color: {
                 return getColor(shadowColorCfg, targetIndex, rect.color, itemType)
             }
@@ -640,10 +706,36 @@ PlasmoidItem {
             yOffset: bgShadow.yOffset
         }
 
+        // paddingRect to hide the shadow in one or two sides Qt.rect(left,top,right,bottom)
+        layer.enabled: bgShadowEnabled && unifyBgType !== 0
+        // how much padding are we hiding
+        property int ps: Math.max(bgShadow.size, bgShadow.xOffset, bgShadow.yOffset)
+        layer.effect: MultiEffect {
+            autoPaddingEnabled: true
+            paddingRect: {
+                if (unifyBgType === 1) {
+                    return horizontal ? Qt.rect(ps,ps,0,ps) : Qt.rect(ps,ps,ps,0)
+                }
+                if (unifyBgType === 2) {
+                    return horizontal ? Qt.rect(0,ps,0,ps) : Qt.rect(ps,0,ps,0)
+                }
+                if (unifyBgType === 3) {
+                    return horizontal ? Qt.rect(0,ps,ps,ps) : Qt.rect(ps,0,ps,ps)
+                }
+            }
+        }
+
         DropShadow {
-            height: target.height
-            width: target.width
-            anchors.centerIn: parent
+            anchors.fill: parent
+            // we need to compensate because we now space widgets with margins
+            // instead of the layout spacing for the unified background feature
+            // can't anchor to center because we can also add different margin
+            // on each side, the shadow position is off otherwise
+            anchors.leftMargin: horizontal ? rect.marginLeft : undefined
+            anchors.rightMargin: horizontal ? rect.marginRight : undefined
+            anchors.topMargin: horizontal ? undefined : rect.marginTop
+            anchors.bottomMargin: horizontal ? undefined : rect.marginBottom
+
             property var shadowColorCfg: fgShadow.color
             Kirigami.Theme.colorSet: Kirigami.Theme[shadowColorCfg.systemColorSet]
             horizontalOffset: fgShadow.xOffset
@@ -664,7 +756,7 @@ PlasmoidItem {
                 if (floatigness > 0) {
                     return marginLeft
                 } else {
-                    return (panelElement.width - rect.width) / 2
+                    return (panelElement.width - borderRec.width) / 2
                 }
             } else {
                 return marginLeft
@@ -677,7 +769,7 @@ PlasmoidItem {
                 if (floatigness > 0) {
                     return marginTop
                 } else {
-                    return (panelElement.height - rect.height) / 2
+                    return (panelElement.height - borderRec.height) / 2
                 }
             } else {
                 return marginTop
@@ -689,11 +781,11 @@ PlasmoidItem {
             running: true
             repeat: true
             onTriggered: {
-                position = Utils.getGlobalPosition(rect, panelElement)
+                position = Utils.getGlobalPosition(borderRec, panelElement)
             }
         }
 
-        property var position: Utils.getGlobalPosition(rect, panelElement)
+        property var position: Utils.getGlobalPosition(borderRec, panelElement)
         property var positionX: position.x
         property var positionY: position.y
         property var fl: floatigness
@@ -709,6 +801,7 @@ PlasmoidItem {
                     anchors.fill: parent
                     color: "black"
                     z:-1
+                    opacity: 0.5
                 }
             }
             Label {
@@ -718,12 +811,13 @@ PlasmoidItem {
                     anchors.fill: parent
                     color: "black"
                     z:-1
+                    opacity: 0.5
                 }
             }
         }
 
         Label {
-            text: parseInt(rect.width)+"x"+parseInt(rect.height)
+            text: parseInt(borderRec.width)+"x"+parseInt(borderRec.height)
             font.pixelSize: 8
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
@@ -760,7 +854,7 @@ PlasmoidItem {
         }
 
         onFlChanged: {
-            position = Utils.getGlobalPosition(rect, panelElement)
+            position = Utils.getGlobalPosition(borderRec, panelElement)
         }
 
         onPositionXChanged: {
@@ -787,12 +881,12 @@ PlasmoidItem {
                 if (panelColorizer === null || !blurBehind) return
                 panelColorizer.updatePanelMask(
                     maskIndex,
-                    rect,
+                    borderRec,
                     rect.corners.topLeftRadius,
                     rect.corners.topRightRadius,
                     rect.corners.bottomLeftRadius,
                     rect.corners.bottomRightRadius,
-                    Qt.point(rect.position.x-moveX, rect.position.y-moveY),
+                    Qt.point(rect.positionX-moveX, rect.positionY-moveY),
                     5
                 )
             })
@@ -810,8 +904,10 @@ PlasmoidItem {
         let candidate = main.parent;
         while (candidate) {
             if (candidate instanceof GridLayout) {
-                candidate.rowSpacing = widgetSettings.spacing
-                candidate.columnSpacing = widgetSettings.spacing
+                // we will do spacing manually on all widgets
+                // this is needed to allow us to 'unify' background areas
+                candidate.rowSpacing = 0
+                candidate.columnSpacing = 0
                 return candidate;
             }
             candidate = candidate.parent;
@@ -856,7 +952,7 @@ PlasmoidItem {
         delayed: true
     }
 
-    // TODO: should I just remove option for blur from per-widget settings?
+    // TODO: should we remove option for blur from per-widget settings?
     // IMO doesn't make much sense to have only some widgets blurred...
     Binding {
         target: panelElement

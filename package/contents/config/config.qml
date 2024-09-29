@@ -10,21 +10,27 @@ ConfigModel {
     }
 
     ConfigCategory {
+        name: i18n("Presets autoloading")
+        icon: "system-run"
+        source: "configPresetAutoload.qml"
+    }
+
+    ConfigCategory {
         name: i18n("Appearance")
         icon: "preferences"
         source: "configUnified.qml"
     }
 
     ConfigCategory {
-        name: i18n("Overrides")
+        name: i18n("Unified backgrounds")
         icon: "preferences"
-        source: "configPerWidget.qml"
+        source: "configUnifiedBackground.qml"
     }
 
     ConfigCategory {
-        name: i18n("Presets autoloading")
-        icon: "system-run"
-        source: "configPresetAutoload.qml"
+        name: i18n("Overrides")
+        icon: "preferences"
+        source: "configPerWidget.qml"
     }
 
     ConfigCategory {

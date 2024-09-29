@@ -154,6 +154,10 @@ const basePadding = {
   },
 }
 
+const baseUnfiedBackground = {
+  "org.kde.plasma.digitalclock": 0
+}
+
 const basePanelConfig = {
   "enabled": false,
   "blurBehind": false,
@@ -164,6 +168,7 @@ const basePanelConfig = {
   "padding": basePadding,
   "border": baseBorder,
   "shadow": baseShadowConfig,
+  "unfiedBackground": baseUnfiedBackground
 }
 
 const baseWidgetConfig = {
@@ -176,6 +181,7 @@ const baseWidgetConfig = {
   "spacing": 3,
   "border": baseBorder,
   "shadow": baseShadowConfig,
+  "unfiedBackground": baseUnfiedBackground
 }
 
 const baseTrayConfig = {
@@ -187,6 +193,7 @@ const baseTrayConfig = {
   "margin": baseMargin,
   "border": baseBorder,
   "shadow": baseShadowConfig,
+  "unfiedBackground": baseUnfiedBackground
 }
 
 const baseOverrideConfig = {
@@ -238,7 +245,12 @@ const defaultConfig = {
     "floating": false
   },
   "configurationOverrides": {},
-  "overrideAssociations": {}
+  "overrideAssociations": {},
+  "unifiedBackground": {
+    "org.kde.netspeedWidget": 1,
+    "org.kde.plasma.systemtray": 2,
+    "org.kde.plasma.digitalclock": 3
+  }
 }
 
 const ignoredConfigs = [
@@ -247,5 +259,5 @@ const ignoredConfigs = [
   "panelWidgets",
   "objectName",
   "lastPreset",
-  "presetAutoloading"
+  "presetAutoloading",
 ]
