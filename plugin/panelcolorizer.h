@@ -16,7 +16,7 @@ class PanelColorizer : public QObject {
   public:
     Q_INVOKABLE void updatePanelMask(int index, QRectF rect, double topLeftRadius, double topRightRadius,
                                      double bottomLeftRadius, double bottomRightRadius, QPointF offset,
-                                     int radiusCompensation);
+                                     int radiusCompensation, bool visible);
 
     explicit PanelColorizer(QObject *parent = nullptr);
 
@@ -30,7 +30,8 @@ class PanelColorizer : public QObject {
   private:
     QString m_time;
     qreal m_value;
-    QVector<QRegion> m_regions;
+    // QVector<QRegion> m_regions;
+    QMap<int, QPair<QRegion, bool>> m_regions;
     QRegion m_mask;
     void combineRegions();
 };

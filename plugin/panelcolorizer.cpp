@@ -17,7 +17,7 @@ PanelColorizer::PanelColorizer(QObject *parent) : QObject(parent) {}
 
 void PanelColorizer::updatePanelMask(int index, QRectF rect, double topLeftRadius, double topRightRadius,
                                      double bottomLeftRadius, double bottomRightRadius, QPointF offset,
-                                     int radiusCompensation) {
+                                     int radiusCompensation, bool visible) {
     // qDebug() << "updatePanelMask x:" << offset.x() << " y:" << offset.y() << " W:" << rect.width()
     //          << " H:" << rect.height();
     topLeftRadius += (topLeftRadius != 0) ? radiusCompensation : 0;
@@ -50,11 +50,7 @@ void PanelColorizer::updatePanelMask(int index, QRectF rect, double topLeftRadiu
     double translateY = abs(offset.y());
     region.translate(translateX, translateY);
 
-    if (index >= m_regions.size()) {
-        m_regions.resize(index + 1);
-    }
-
-    m_regions[index] = region;
+    m_regions[index] = qMakePair(region, visible);
     combineRegions();
 }
 
@@ -62,8 +58,10 @@ QVariant PanelColorizer::mask() const { return QVariant::fromValue(m_mask); }
 
 void PanelColorizer::combineRegions() {
     QRegion combined;
-    for (const QRegion &region : m_regions) {
-        combined = combined.united(region);
+    for (const auto &pair : m_regions) {
+        if (pair.second) {
+            combined = combined.united(pair.first);
+        }
     }
 
     bool hadRegions = hasRegions();

@@ -830,18 +830,22 @@ PlasmoidItem {
         }
 
         onXChanged: {
+            position = Utils.getGlobalPosition(borderRec, panelElement)
             updateMask()
         }
 
         onYChanged: {
+            position = Utils.getGlobalPosition(borderRec, panelElement)
             updateMask()
         }
 
         onWidthChanged: {
+            position = Utils.getGlobalPosition(borderRec, panelElement)
             updateMask()
         }
 
         onHeightChanged: {
+            position = Utils.getGlobalPosition(borderRec, panelElement)
             updateMask()
         }
 
@@ -867,17 +871,21 @@ PlasmoidItem {
 
         // TODO find where does 16 and 8 come from instead of blindly hardcoding them
         property real moveX: {
-            let m = horizontal ? 0 : (panelState.floating ? 16 : 0)
+            let m = horizontal ? 0 : (panelElement?.floating && plasmoid.location === PlasmaCore.Types.LeftEdge ? 16 : 0)
             return floatigness > 0 ? 8 : m
         }
 
         property real moveY: {
-            let m = horizontal ? (panelState.floating ? 16 : 0) : 0
+            let m = horizontal ? (panelElement?.floating && plasmoid.location === PlasmaCore.Types.TopEdge ? 16 : 0) : 0
             return floatigness > 0 ? 8 : m
         }
 
+        onVisibleChanged: {
+            updateMask()
+        }
+
         function updateMask() {
-            Qt.callLater(function() {
+            // Qt.callLater(function() {
                 if (panelColorizer === null || !blurBehind) return
                 panelColorizer.updatePanelMask(
                     maskIndex,
@@ -887,9 +895,10 @@ PlasmoidItem {
                     rect.corners.bottomLeftRadius,
                     rect.corners.bottomRightRadius,
                     Qt.point(rect.positionX-moveX, rect.positionY-moveY),
-                    5
+                    5,
+                    visible
                 )
-            })
+            // })
         }
     }
 

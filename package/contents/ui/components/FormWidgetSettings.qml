@@ -80,6 +80,7 @@ ColumnLayout {
                 }
             }
             RowLayout {
+                visible: keyName !== ""
                 Label {
                     text: i18n("Blur behind:")
                 }
