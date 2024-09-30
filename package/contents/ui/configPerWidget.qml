@@ -246,7 +246,7 @@ KCM.SimpleKCM {
                     }
                     Button {
                         icon.name: "checkmark-symbolic"
-                        text: "Apply"
+                        text: "Rename"
                         onClicked: {
                             configOverrides[nameField.text] = configOverrides[overrideName]
                             delete configOverrides[overrideName]
@@ -265,7 +265,7 @@ KCM.SimpleKCM {
                         }
                     }
                     Kirigami.ContextualHelpButton {
-                        toolTipText: i18n("Fallback to the global widget settings for disabled options, except for <b>Enable</b>.")
+                        toolTipText: i18n("Fallback to the global widget settings for disabled options, except for <b>Enable</b> and <b>Blur</>.")
                     }
                 }
             }

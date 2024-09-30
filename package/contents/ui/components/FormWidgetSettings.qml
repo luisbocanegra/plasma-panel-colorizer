@@ -80,12 +80,10 @@ ColumnLayout {
                 }
             }
             RowLayout {
-                visible: keyName !== ""
                 Label {
-                    text: i18n("Blur behind:")
+                    text: i18n("Blur behind (Beta):")
                 }
                 CheckBox {
-                    Kirigami.FormData.label: i18n("Blur behind:")
                     id: blurCheckbox
                     checked: configLocal.blurBehind
                     onCheckedChanged: {
@@ -97,7 +95,7 @@ ColumnLayout {
                     enabled: isEnabled.checked
                 }
                 Kirigami.ContextualHelpButton {
-                    toolTipText: i18n("Draw a custom blur mask behind the custom background(s).\n\nNative panel background must be enabled with opacity of 0 for this to work as intended.")
+                    toolTipText: i18n("Draw a custom blur mask behind the custom background(s).\n\nRequires the C++ plugin to work, check the repository README on GitHub for details.\n\nNative panel background must be enabled with opacity of 0 for this to work as intended.")
                 }
             }
             RowLayout {

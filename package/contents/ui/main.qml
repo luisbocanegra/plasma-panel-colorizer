@@ -48,6 +48,16 @@ PlasmoidItem {
         "touchingWindow": !panelElement ? false : Boolean(panelElement.touchingWindow),
         "floating": !panelElement ? false : Boolean(panelElement.floatingness)
     }
+    property var widgetsDoingBlur: ({})
+    property var trayItemsDoingBlur: ({})
+
+    property var anyWidgetDoingBlur: {
+        return Object.values(widgetsDoingBlur).some(state => state)
+    }
+    property var anyTrayItemDoingBlur: {
+        return Object.values(trayItemsDoingBlur).some(state => state)
+    }
+
     property var cfg: {
         try {
             return JSON.parse(plasmoid.configuration.allSettings)
@@ -243,8 +253,13 @@ PlasmoidItem {
         id: rect
         property Item target
         property int targetIndex
-        // we need an exra id so we can track the items in tray
-        property int maskIndex: inTray ? (panelLayoutCount -1 + targetIndex) : targetIndex
+        // use an exra id so we can track the panel and items in tray separately
+        property int maskIndex: {
+            if (isPanel) return 0
+            else {
+                return (inTray ? (panelLayoutCount -1 + targetIndex) : targetIndex) +1
+            }
+        }
         property int itemType
         property bool isPanel: itemType === Enums.ItemType.PanelBgItem
         property bool isWidget: itemType === Enums.ItemType.WidgetItem
@@ -296,8 +311,9 @@ PlasmoidItem {
         property bool fgShadowEnabled: cfg.shadow.foreground.enabled && cfgEnabled
         property var fgShadow: cfg.shadow.foreground
         property bool blurBehind: {
-            return isPanel || (isWidget && !panelBgItem?.blurBehind)
-                || (inTray && !panelBgItem?.blurBehind && !trayWidgetBgItem?.blurBehind)
+            return (isPanel && !anyWidgetDoingBlur && !anyTrayItemDoingBlur)
+                || (isWidget)
+                || (inTray && !trayWidgetBgItem?.blurBehind)
                 ? cfg.blurBehind
                 : false
         }
@@ -805,7 +821,7 @@ PlasmoidItem {
                 }
             }
             Label {
-                text: parseInt(position.x)+","+parseInt(position.y)
+                text: blurBehind+","+anyWidgetDoingBlur //parseInt(position.x)+","+parseInt(position.y)
                 font.pixelSize: 8
                 Rectangle {
                     anchors.fill: parent
@@ -884,21 +900,30 @@ PlasmoidItem {
             updateMask()
         }
 
+        onBlurBehindChanged: {
+            if (isWidget) {
+                widgetsDoingBlur[maskIndex] = blurBehind
+                anyWidgetDoingBlur = Object.values(widgetsDoingBlur).some(state => state)
+            } else if (inTray) {
+                trayItemsDoingBlur[maskIndex] = blurBehind
+                anyTrayItemDoingBlur = Object.values(trayItemsDoingBlur).some(state => state)
+            }
+            updateMask()
+        }
+
         function updateMask() {
-            // Qt.callLater(function() {
-                if (panelColorizer === null || !blurBehind) return
-                panelColorizer.updatePanelMask(
-                    maskIndex,
-                    borderRec,
-                    rect.corners.topLeftRadius,
-                    rect.corners.topRightRadius,
-                    rect.corners.bottomLeftRadius,
-                    rect.corners.bottomRightRadius,
-                    Qt.point(rect.positionX-moveX, rect.positionY-moveY),
-                    5,
-                    visible
-                )
-            // })
+            if (panelColorizer === null) return
+            panelColorizer.updatePanelMask(
+                maskIndex,
+                borderRec,
+                rect.corners.topLeftRadius,
+                rect.corners.topRightRadius,
+                rect.corners.bottomLeftRadius,
+                rect.corners.bottomRightRadius,
+                Qt.point(rect.positionX-moveX, rect.positionY-moveY),
+                5,
+                visible && blurBehind
+            )
         }
     }
 
@@ -968,7 +993,7 @@ PlasmoidItem {
         property: "panelMask"
         value: blurMask
         when: (panelColorizer !== null && blurMask && panelColorizer?.hasRegions
-                && (panelBgItem?.blurBehind || widgetSettings?.blurBehind || trayWidgetSettings?.blurBehind)
+                && (panelSettings.blurBehind || anyWidgetDoingBlur || anyTrayItemDoingBlur)
             )
     }
 

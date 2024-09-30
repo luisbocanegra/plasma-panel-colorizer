@@ -246,9 +246,6 @@ function getEffectiveSettings(customSettings, globalSettings) {
       }
     }
   }
-  if (!effectiveSettings.hasOwnProperty("blurBehind") || !effectiveSettings.blurBehind) {
-    effectiveSettings.blurBehind = globalSettings.blurBehind;
-  }
   return effectiveSettings
 }
 
