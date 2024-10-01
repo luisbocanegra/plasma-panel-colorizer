@@ -4,9 +4,9 @@ import org.kde.plasma.configuration 2.0
 ConfigModel {
 
     ConfigCategory {
-        name: i18n("General")
+        name: i18n("Presets")
         icon: "preferences"
-        source: "configGeneral.qml"
+        source: "configPresets.qml"
     }
 
     ConfigCategory {
@@ -18,7 +18,7 @@ ConfigModel {
     ConfigCategory {
         name: i18n("Appearance")
         icon: "preferences"
-        source: "configUnified.qml"
+        source: "configGlobal.qml"
     }
 
     ConfigCategory {
@@ -37,5 +37,11 @@ ConfigModel {
         name: i18n("Text and icons")
         icon: "preferences-desktop-icons"
         source: "configForeground.qml"
+    }
+
+    ConfigCategory {
+        name: i18n("General")
+        icon: "preferences"
+        source: "configGeneral.qml"
     }
 }

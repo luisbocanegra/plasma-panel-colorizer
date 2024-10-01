@@ -313,23 +313,20 @@ function stringify(config) {
 }
 
 function loadPreset(presetContent, item, ignoredConfigs, defaults, store) {
-  for (let i in presetContent) {
-    const line = presetContent[i]
-    if (line.includes("=")) {
-      const parts = line.split("=")
-      const key = parts[0]
-      let val = parts[1]
-      const cfgKey = "cfg_" + key;
-      if (ignoredConfigs.some(function (k) { return key.includes(k) })) continue
-      if (key === "allSettings") {
-        val = stringify(mergeConfigs(defaults, JSON.parse(val)))
-      }
-      if (store) {
-        if (item[key]) item[key] = val
-      } else {
-        if (item[cfgKey]) item[cfgKey] = val
-      }
+  for (let key in presetContent) {
+    let val = presetContent[key]
+    const cfgKey = "cfg_" + key;
+    if (ignoredConfigs.some(function (k) { return key.includes(k) })) continue
+    if (key === "globalSettings") {
+      val = mergeConfigs(defaults, val)
     }
+    const valStr = stringify(val)
+    if (store) {
+      if (item[key]) item[key] = valStr
+    } else {
+      if (item[cfgKey]) item[cfgKey] = valStr
+    }
+    // }
   }
 }
 

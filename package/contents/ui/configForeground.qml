@@ -117,6 +117,7 @@ KCM.SimpleKCM {
     }
 
     ColumnLayout {
+        enabled: cfg_isEnabled
         Components.SettingImportExport {
             onExportConfirmed: {
                 runCommand.run(crateConfigDirCmd)

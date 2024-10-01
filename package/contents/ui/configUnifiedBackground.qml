@@ -13,8 +13,8 @@ KCM.SimpleKCM {
     property alias cfg_isEnabled: headerComponent.isEnabled
     property string cfg_panelWidgets
     property bool clearing: false
-    property string cfg_allSettings
-    property var config: JSON.parse(cfg_allSettings)
+    property string cfg_globalSettings
+    property var config: JSON.parse(cfg_globalSettings)
     property var unifiedBackgroundSettings
     property bool loaded: false
     property string configDir: StandardPaths.writableLocation(
@@ -42,7 +42,7 @@ KCM.SimpleKCM {
             }
         }
         config.unifiedBackground = unifiedBackgroundSettings
-        cfg_allSettings = JSON.stringify(config, null, null)
+        cfg_globalSettings = JSON.stringify(config, null, null)
     }
 
     ListModel {
@@ -92,17 +92,11 @@ KCM.SimpleKCM {
     }
 
     ColumnLayout {
-
-        Kirigami.FormLayout {
-            Kirigami.Separator {
-                Kirigami.FormData.isSection: true
-                Kirigami.FormData.label: i18n("Unify widget backgrounds")
-            }
-        }
+        enabled: cfg_isEnabled
     Kirigami.FormLayout {
 
         Label {
-            text: i18n("<strong>[D]isable</strong><br><strong>[S]tart</strong> unified background<br><strong>[E]nd</strong> unified background")
+            text: i18n("<strong>[D]isable</strong><br><strong>[S]tart</strong><br><strong>[E]nd</strong>")
             opacity: 0.7
             Layout.maximumWidth: widgetCards.width
             wrapMode: Text.Wrap
