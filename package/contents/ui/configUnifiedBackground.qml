@@ -92,17 +92,11 @@ KCM.SimpleKCM {
     }
 
     ColumnLayout {
-
-        Kirigami.FormLayout {
-            Kirigami.Separator {
-                Kirigami.FormData.isSection: true
-                Kirigami.FormData.label: i18n("Unify widget backgrounds")
-            }
-        }
+        enabled: cfg_isEnabled
     Kirigami.FormLayout {
 
         Label {
-            text: i18n("<strong>[D]isable</strong><br><strong>[S]tart</strong> unified background<br><strong>[E]nd</strong> unified background")
+            text: i18n("<strong>[D]isable</strong><br><strong>[S]tart</strong><br><strong>[E]nd</strong>")
             opacity: 0.7
             Layout.maximumWidth: widgetCards.width
             wrapMode: Text.Wrap

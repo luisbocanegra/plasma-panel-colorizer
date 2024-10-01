@@ -1131,7 +1131,7 @@ PlasmoidItem {
     function applyPreset(presetName) {
         console.log("Reading preset:", presetName);
         lastPreset = presetName
-        runCommand.run("cat '" + presetsDir + presetName+"'")
+        runCommand.run("cat '" + presetsDir + presetName+"/settings.json'")
     }
 
     onPanelStateChanged: {
@@ -1262,7 +1262,7 @@ PlasmoidItem {
         target: runCommand
         function onExited(cmd, exitCode, exitStatus, stdout, stderr, liveUpdate) {
             if (exitCode!==0) return
-            presetContent = stdout.trim().split("\n")
+            presetContent = JSON.parse(stdout.trim())
             Utils.loadPreset(presetContent, plasmoid.configuration, Globals.ignoredConfigs, Globals.defaultConfig, true)
             plasmoid.configuration.lastPreset = lastPreset
             plasmoid.configuration.writeConfig();
