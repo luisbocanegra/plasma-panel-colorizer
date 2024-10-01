@@ -27,7 +27,7 @@
         <default></default>
     </entry>
     <entry
-        name="allSettings"
+        name="globalSettings"
         type="String">
         <default>{}</default>
     </entry>

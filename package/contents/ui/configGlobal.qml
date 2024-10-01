@@ -11,7 +11,7 @@ KCM.SimpleKCM {
     id: root
 
     property int currentTab
-    property string cfg_allSettings
+    property string cfg_globalSettings
     property alias cfg_isEnabled: headerComponent.isEnabled
 
     property var followVisbility: {
@@ -87,9 +87,9 @@ KCM.SimpleKCM {
             sourceComponent: settingsComp
             Layout.fillWidth: true
             onLoaded: {
-                item.configString = cfg_allSettings
+                item.configString = cfg_globalSettings
                 item.onUpdateConfigString.connect((newString, config) => {
-                    cfg_allSettings = newString
+                    cfg_globalSettings = newString
                 })
                 item.currentTab = root.currentTab
                 item.handleString = true

@@ -317,7 +317,7 @@ function loadPreset(presetContent, item, ignoredConfigs, defaults, store) {
     let val = presetContent[key]
     const cfgKey = "cfg_" + key;
     if (ignoredConfigs.some(function (k) { return key.includes(k) })) continue
-    if (key === "allSettings") {
+    if (key === "globalSettings") {
       val = mergeConfigs(defaults, val)
     }
     const valStr = stringify(val)

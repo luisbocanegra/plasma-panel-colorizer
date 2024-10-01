@@ -22,7 +22,7 @@ KCM.SimpleKCM {
     property var presetContent: ""
 
     property string editingPreset
-    property string cfg_allSettings
+    property string cfg_globalSettings
     property string cfg_lastPreset
     property string lastPreset
     property alias cfg_isEnabled: headerComponent.isEnabled
@@ -103,7 +103,7 @@ KCM.SimpleKCM {
 
     function restoreSettings() {
         console.log("Restoring default configuration");
-        cfg_allSettings = JSON.stringify(Globals.defaultConfig, null, null)
+        cfg_globalSettings = JSON.stringify(Globals.defaultConfig, null, null)
     }
 
     function savePreset(presetName) {
@@ -119,7 +119,7 @@ KCM.SimpleKCM {
                 let name = key.slice(0, -7)
                 let val = config[name]
                 let parsed = JSON.parse(val)
-                if (name === "allSettings") {
+                if (name === "globalSettings") {
                     val = Utils.mergeConfigs(Globals.defaultConfig, parsed)
                 } else {
                     parsed

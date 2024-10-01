@@ -13,8 +13,8 @@ KCM.SimpleKCM {
     property alias cfg_isEnabled: headerComponent.isEnabled
     property string cfg_panelWidgets
     property bool clearing: false
-    property string cfg_allSettings
-    property var config: JSON.parse(cfg_allSettings)
+    property string cfg_globalSettings
+    property var config: JSON.parse(cfg_globalSettings)
     property var unifiedBackgroundSettings
     property bool loaded: false
     property string configDir: StandardPaths.writableLocation(
@@ -42,7 +42,7 @@ KCM.SimpleKCM {
             }
         }
         config.unifiedBackground = unifiedBackgroundSettings
-        cfg_allSettings = JSON.stringify(config, null, null)
+        cfg_globalSettings = JSON.stringify(config, null, null)
     }
 
     ListModel {

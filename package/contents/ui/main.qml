@@ -62,7 +62,7 @@ PlasmoidItem {
 
     property var cfg: {
         try {
-            return JSON.parse(plasmoid.configuration.allSettings)
+            return JSON.parse(plasmoid.configuration.globalSettings)
         } catch (e) {
             console.error(e, e.stack)
             return Globals.defaultConfig
@@ -1239,7 +1239,7 @@ PlasmoidItem {
     Component.onCompleted: {
         Qt.callLater(function() {
             const config = Utils.mergeConfigs(Globals.defaultConfig, cfg)
-            plasmoid.configuration.allSettings = Utils.stringify(config)
+            plasmoid.configuration.globalSettings = Utils.stringify(config)
         })
         try {
             panelColorizer = Qt.createQmlObject("import org.kde.plasma.panelcolorizer 1.0; PanelColorizer { id: panelColorizer }", main)
