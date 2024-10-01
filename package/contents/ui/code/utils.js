@@ -354,3 +354,32 @@ function getGlobalPosition(rect, panelElement) {
     rect.height
   )
 }
+
+function getUnifyBgType(itemTypes, index) {
+  let type = itemTypes[index];
+  if (type === 1) {
+    return 1;
+  } else if (type === 2) {
+    return 3;
+  } else {
+    // Check in between
+    let hasType1Before = false;
+    let hasType2After = false;
+    for (let i = 0; i < index; i++) {
+      if (itemTypes[i] === 1) {
+        hasType1Before = true;
+        break;
+      }
+    }
+    for (let i = index + 1; i < itemTypes.length; i++) {
+      if (itemTypes[i] === 2) {
+        hasType2After = true;
+        break;
+      }
+    }
+    if (hasType1Before && hasType2After) {
+      return 2;
+    }
+    return 0; // Default color
+  }
+}

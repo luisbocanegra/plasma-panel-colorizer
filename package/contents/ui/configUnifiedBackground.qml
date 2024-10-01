@@ -35,7 +35,11 @@ KCM.SimpleKCM {
             const widgetName = widget.name
             const unifyBgType = widget.unifyBgType
             console.error(widgetName, unifyBgType)
-            unifiedBackgroundSettings[widgetName] = unifyBgType
+            if (unifyBgType !== 0) {
+                unifiedBackgroundSettings[widgetName] = unifyBgType
+            } else {
+                delete unifiedBackgroundSettings[widgetName]
+            }
         }
         config.unifiedBackground = unifiedBackgroundSettings
         cfg_allSettings = JSON.stringify(config, null, null)
@@ -98,7 +102,7 @@ KCM.SimpleKCM {
     Kirigami.FormLayout {
 
         Label {
-            text: i18n("<strong>[D]isabled</strong><br><strong>[S]tart</strong> unified background<br><strong>[M]iddle</strong>: unified background<br><strong>[E]nd</strong> unified background")
+            text: i18n("<strong>[D]isable</strong><br><strong>[S]tart</strong> unified background<br><strong>[E]nd</strong> unified background")
             opacity: 0.7
             Layout.maximumWidth: widgetCards.width
             wrapMode: Text.Wrap

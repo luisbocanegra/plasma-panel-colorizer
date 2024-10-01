@@ -246,11 +246,7 @@ const defaultConfig = {
   },
   "configurationOverrides": {},
   "overrideAssociations": {},
-  "unifiedBackground": {
-    "org.kde.netspeedWidget": 1,
-    "org.kde.plasma.systemtray": 2,
-    "org.kde.plasma.digitalclock": 3
-  }
+  "unifiedBackground": {}
 }
 
 const ignoredConfigs = [

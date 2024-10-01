@@ -22,7 +22,7 @@ ConfigModel {
     }
 
     ConfigCategory {
-        name: i18n("Unified backgrounds")
+        name: i18n("Unified background")
         icon: "preferences"
         source: "configUnifiedBackground.qml"
     }

@@ -58,6 +58,7 @@ Kirigami.AbstractCard {
             Layout.preferredWidth: 50
             property int index: 0
             ButtonGroup.group: unifyButtonGroup
+            enabled: widget?.unifyBgType !== 0
         }
         Button {
             text: i18n("S")
@@ -69,20 +70,11 @@ Kirigami.AbstractCard {
             ButtonGroup.group: unifyButtonGroup
         }
         Button {
-            text: i18n("M")
-            checkable: true
-            checked: widget?.unifyBgType === index
-            icon.name: checked ? "checkmark-symbolic" : "dialog-close-symbolic"
-            Layout.preferredWidth: 50
-            property int index: 2
-            ButtonGroup.group: unifyButtonGroup
-        }
-        Button {
             text: i18n("E")
             checkable: true
             checked: widget?.unifyBgType === index
             icon.name: checked ? "checkmark-symbolic" : "dialog-close-symbolic"
-            property int index: 3
+            property int index: 2
             Layout.preferredWidth: 50
             ButtonGroup.group: unifyButtonGroup
         }
@@ -95,12 +87,5 @@ Kirigami.AbstractCard {
                 }
             }
         }
-        // ComboBox {
-        //     model: ["Disabled", "Start", "Middle", "End"]
-        //     currentIndex: widget?.unifyBgType ?? 0
-        //     onCurrentIndexChanged: {
-        //         updateWidget(currentIndex)
-        //     }
-        // }
     }
 }

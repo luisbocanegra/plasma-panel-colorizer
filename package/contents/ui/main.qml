@@ -58,6 +58,8 @@ PlasmoidItem {
         return Object.values(trayItemsDoingBlur).some(state => state)
     }
 
+    property var unifiedBackgroundTracker: []
+
     property var cfg: {
         try {
             return JSON.parse(plasmoid.configuration.allSettings)
@@ -104,6 +106,7 @@ PlasmoidItem {
     property bool debug: false
     signal recolorCountChanged()
     signal refreshNeeded()
+    signal updateUnified()
 
     onForceRecolorCountChanged: {
         // console.error("onForceRecolorCountChanged ->", forceRecolorCount)
@@ -269,8 +272,24 @@ PlasmoidItem {
         property bool luisbocanegraPanelColorizerBgManaged: true
         property string widgetName: isTrayArrow ? "org.kde.plasma.systemtray.expand" : Utils.getWidgetName(target)
         property bool requiresRefresh: forceRecolorList[widgetName]?.reload ?? false
+        // 0: default | 1: start | 2: end
+        property int unifySection: unifiedBackgroundSettings[widgetName] ?? 0
+
         // 0: default | 1: start | 2: middle | 3: end
-        property int unifyBgType: unifiedBackgroundSettings[widgetName] ?? 0
+        property int unifyBgType: 0
+        onUnifySectionChanged: {
+            Qt.callLater(function () {
+                main.updateUnified()
+            })
+        }
+
+        function updateUnifyType() {
+            if (inTray) return
+            unifiedBackgroundTracker[targetIndex] = unifySection
+            let u = Utils.getUnifyBgType(unifiedBackgroundTracker, targetIndex)
+            unifyBgType = u
+        }
+
         property var itemConfig: Utils.getItemCfg(itemType, widgetName, main.cfg, configurationOverrides)
         property var cfg: itemConfig.settings
         property bool cfgOverride: itemConfig.override
@@ -406,6 +425,7 @@ PlasmoidItem {
 
         Component.onCompleted: {
             main.recolorCountChanged.connect(rect.recolor)
+            main.updateUnified.connect(updateUnifyType)
             recolorTimer.start()
         }
 
@@ -821,7 +841,7 @@ PlasmoidItem {
                 }
             }
             Label {
-                text: blurBehind+","+anyWidgetDoingBlur //parseInt(position.x)+","+parseInt(position.y)
+                text: unifySection+","+unifyBgType//blurBehind+","+anyWidgetDoingBlur //parseInt(position.x)+","+parseInt(position.y)
                 font.pixelSize: 8
                 Rectangle {
                     anchors.fill: parent
