@@ -1123,15 +1123,15 @@ PlasmoidItem {
     }
 
     function switchPreset() {
-        let nextPreset = Utils.getPresetName(panelState, presetAutoloading)
-        if (!nextPreset) return
-        applyPreset(nextPreset)
+        let nextPresetDir = Utils.getPresetName(panelState, presetAutoloading)
+        if (!nextPresetDir) return
+        applyPreset(nextPresetDir)
     }
 
-    function applyPreset(presetName) {
-        console.log("Reading preset:", presetName);
-        lastPreset = presetName
-        runCommand.run("cat '" + presetsDir + presetName+"/settings.json'")
+    function applyPreset(presetDir) {
+        console.log("Reading preset:", presetDir);
+        lastPreset = presetDir
+        runCommand.run("cat '" + presetDir + "/settings.json'")
     }
 
     onPanelStateChanged: {

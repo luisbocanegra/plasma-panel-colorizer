@@ -7,6 +7,7 @@ import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
 import org.kde.plasma.plasma5support as P5Support
 import "components" as Components
+import "code/utils.js" as Utils
 
 KCM.SimpleKCM {
     id:root
@@ -14,7 +15,11 @@ KCM.SimpleKCM {
     property string presetsDir: StandardPaths.writableLocation(
                     StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/presets"
     property string cratePresetsDirCmd: "mkdir -p " + presetsDir
-    property string listPresetsCmd: "find "+presetsDir+" -mindepth 1 -prune -type d -print0 | while IFS= read -r -d '' preset; do basename \"$preset\"; done | sort"
+    property string presetsBuiltinDir: Utils.getWidgetRootDir()+"ui/presets/"
+
+    property string listUserPresetsCmd: "find "+presetsDir+" -mindepth 1 -prune -type d -print0 | while IFS= read -r -d '' preset; do echo u:\"$preset\"; done | sort"
+    property string listBuiltinPresetsCmd: "find "+presetsBuiltinDir+" -mindepth 1 -prune -type d -print0 | while IFS= read -r -d '' preset; do echo b:\"$preset\"; done | sort"
+    property string listPresetsCmd: listBuiltinPresetsCmd+";"+listUserPresetsCmd
 
     property string cfg_presetAutoloading
     property var autoLoadConfig: JSON.parse(cfg_presetAutoloading)
@@ -37,22 +42,31 @@ KCM.SimpleKCM {
             // console.log(cmd);
             if (exitCode!==0) return
             // console.log(stdout);
-            var presets = []
             if(cmd === listPresetsCmd) {
-                if (stdout.length < 1) return
+                if (stdout.length === 0) return
                 presetsModel.append(
                     {
                         "name": i18n("Do nothing"),
-                        "value": ""
+                        "value": "",
                     }
                 )
-                presets = stdout.trim().split("\n")
-                for (let i = 0; i < presets.length; i++) {
-                    presets[i]
+
+                const out = stdout.trim().split("\n")
+                for (const line of out) {
+                    let builtin = false
+                    const parts = line.split(":")
+                    const path = parts[parts.length -1]
+                    let name = path.split("/")
+                    name = name[name.length-1]
+                    const dir = parts[1]
+                    if (line.startsWith("b:")) {
+                        builtin = true
+                    }
+                    console.error(dir)
                     presetsModel.append(
                         {
-                            "name": presets[i],
-                            "value": presets[i],
+                            "name": name,
+                            "value": dir,
                         }
                     )
                 }

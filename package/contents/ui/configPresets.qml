@@ -15,10 +15,14 @@ KCM.SimpleKCM {
     id:root
     property string presetsDir: StandardPaths.writableLocation(
                     StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/presets/"
-    property string cratePresetsDirCmd: "mkdir -p " + presetsDir
-    property string listPresetsCmd: "find "+presetsDir+" -mindepth 1 -prune -type d -print0 | while IFS= read -r -d '' preset; do basename \"$preset\"; done | sort"
+    property string cratePresetsDirCmd: "mkdir -p '" + presetsDir + "'"
+    property string presetsBuiltinDir: Utils.getWidgetRootDir()+"ui/presets/"
+
+    property string listUserPresetsCmd: "find "+presetsDir+" -mindepth 1 -prune -type d -print0 | while IFS= read -r -d '' preset; do echo u:\"$preset\"; done | sort"
+    property string listBuiltinPresetsCmd: "find "+presetsBuiltinDir+" -mindepth 1 -prune -type d -print0 | while IFS= read -r -d '' preset; do echo b:\"$preset\"; done | sort"
+    property string listPresetsCmd: listBuiltinPresetsCmd+";"+listUserPresetsCmd
     property string spectaclePreviewCmd: "spectacle -bn -r -o "
-    property var presets: []
+    property var presets: ({})
     property var presetContent: ""
 
     property string editingPreset
@@ -30,7 +34,8 @@ KCM.SimpleKCM {
     Connections {
         target: plasmoid.configuration
         onValueChanged: {
-            cfg_lastPreset = lastPreset
+            plasmoid.configuration.lastPreset = lastPreset
+            plasmoid.configuration.writeConfig();
         }
     }
 
@@ -45,11 +50,23 @@ KCM.SimpleKCM {
         function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
             if (exitCode!==0) return
             if(cmd === listPresetsCmd) {
-                if (stdout.length > 0) {
-                    presets = stdout.trim().split("\n")
-                } else {
-                    presets = []
+                presets = ({})
+                if (stdout.length === 0) return
+                const out = stdout.trim().split("\n")
+                var tmp = {}
+                for (const line of out) {
+                    let builtin = false
+                    const parts = line.split(":")
+                    const path = parts[parts.length -1]
+                    let name = path.split("/")
+                    name = name[name.length-1]
+                    if (line.startsWith("b:")) {
+                        builtin = true
+                    }
+                    console.error(parts[1])
+                    tmp[name] = {"dir": parts[1], "builtin": builtin}
                 }
+                presets = tmp
             }
             if (cmd.startsWith("cat")) {
                 presetContent = JSON.parse(stdout.trim())
@@ -58,9 +75,11 @@ KCM.SimpleKCM {
             if (cmd.startsWith("spectacle")) {
                 refreshImage(editingPreset)
             }
+            if (cmd.startsWith("echo")) {
+                root.runCommand.run(listPresetsCmd)
+            }
         }
     }
-
 
     Kirigami.PromptDialog {
         id: deletePresetDialog
@@ -87,7 +106,6 @@ KCM.SimpleKCM {
     Kirigami.PromptDialog {
         id: newPresetDialog
         title: "Create preset '"+editingPreset+"'?"
-        subtitle: i18n("Any existing preset with the same name will be overwritten!")
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {
             savePreset(editingPreset)
@@ -96,9 +114,9 @@ KCM.SimpleKCM {
         }
     }
 
-    function applyPreset(presetName) {
-        console.log("Reading preset:", presetName, presetsDir + presetName);
-        runCommand.run("cat '" + presetsDir + presetName+"/settings.json'")
+    function applyPreset(presetDir) {
+        console.log("Reading preset:", presetDir);
+        runCommand.run("cat '" + presetDir + "/settings.json'")
     }
 
     function restoreSettings() {
@@ -106,8 +124,8 @@ KCM.SimpleKCM {
         cfg_globalSettings = JSON.stringify(Globals.defaultConfig, null, null)
     }
 
-    function savePreset(presetName) {
-        console.log("Saving preset ", presetName);
+    function savePreset(presetDir) {
+        console.log("Saving preset ", presetDir);
         var config = plasmoid.configuration
         var output = {}
         for (var key of Object.keys(config)) {
@@ -127,17 +145,21 @@ KCM.SimpleKCM {
                 output[name] = parsed
             }
         }
-        runCommand.run(cratePresetsDirCmd+presetName)
-        runCommand.run("echo '" + JSON.stringify(output) + "' > '" + presetsDir + presetName + "/settings.json'")
-        runCommand.run(spectaclePreviewCmd+"'" + presetsDir + presetName + "/preview.png'")
+        runCommand.run("mkdir -p '"+presetDir+"'")
+        runCommand.run("echo '" + JSON.stringify(output) + "' > '" + presetDir + "/settings.json'")
+        runCommand.run(spectaclePreviewCmd+"'" + presetDir + "/preview.png'")
     }
 
-    function deletePreset(presetName) {
-        if (!presetsDir.includes("panel-colorizer/presets/")) {
-            console.error("Unsafe deletion, aborting.")
+    function deletePreset(path) {
+        if (!path.includes("panel-colorizer/presets/")
+        || path.includes("/ ") || path.includes(" /") || path.endsWith(" ")
+        || path.includes("..")
+        ) {
+            console.error(`Detected unsafe deletion of '${path}' aborting.`)
+            return
         }
-        console.error("rm -r '" + presetsDir + presetName + "'" )
-        runCommand.run("rm -r '" + presetsDir + presetName + "'" )
+        console.error("rm -r '" + path + "'" )
+        runCommand.run("rm -r '" + path + "'" )
     }
 
     Component.onCompleted: {
@@ -183,9 +205,9 @@ KCM.SimpleKCM {
                 Button {
                     icon.name: "document-save-symbolic"
                     text: i18n("Save")
-                    enabled: saveNameField.acceptableInput
+                    enabled: saveNameField.acceptableInput && !(Object.keys(presets).includes(saveNameField.text))
                     onClicked: {
-                        editingPreset = saveNameField.text
+                        editingPreset = presetsDir+saveNameField.text
                         newPresetDialog.open()
                     }
                 }
@@ -206,7 +228,7 @@ KCM.SimpleKCM {
                     }
                 }
                 Repeater {
-                    model: presets
+                    model: Object.keys(presets)
                     delegate: Kirigami.AbstractCard {
                         contentItem: ColumnLayout {
                             RowLayout {
@@ -214,12 +236,29 @@ KCM.SimpleKCM {
                                     text: (parseInt(index)+1).toString()+"."
                                     font.bold: true
                                 }
-                                ColumnLayout {
+                                Label {
+                                    text: modelData
+                                    elide: Text.ElideRight
+                                }
+
+                                Rectangle {
+                                    visible: presets[modelData].builtin
+                                    color: Kirigami.Theme.highlightColor
+                                    Kirigami.Theme.colorSet: root.Kirigami.Theme["Selection"]
+                                    radius: parent.height / 2
+                                    width: label.width + 12
+                                    height: label.height + 2
+                                    Kirigami.Theme.inherit: false
                                     Label {
-                                        text: modelData
-                                        elide: Text.ElideRight
+                                        anchors.centerIn: parent
+                                        id: label
+                                        text: i18n("Built-in")
+                                        color: Kirigami.Theme.textColor
+                                        Kirigami.Theme.colorSet: root.Kirigami.Theme["Selection"]
+                                        Kirigami.Theme.inherit: false
                                     }
                                 }
+
                                 Item {
                                     Layout.fillWidth: true
                                 }
@@ -229,7 +268,7 @@ KCM.SimpleKCM {
                                     text: i18n("Load")
                                     Layout.preferredHeight: saveBtn.height
                                     onClicked: {
-                                        lastPreset = modelData
+                                        lastPreset = presets[modelData].dir
                                         applyPreset(lastPreset)
                                     }
                                 }
@@ -238,51 +277,48 @@ KCM.SimpleKCM {
                                     icon.name: "document-save-symbolic"
                                     text: i18n("Update")
                                     onClicked: {
-                                        editingPreset = modelData
+                                        editingPreset = presets[modelData].dir
                                         updatePresetDialog.open()
                                     }
+                                    visible: !presets[modelData].builtin
                                 }
                                 Button {
                                     text: i18n("Delete")
                                     icon.name: "edit-delete-remove-symbolic"
                                     onClicked: {
-                                        editingPreset = modelData
+                                        editingPreset = presets[modelData].dir
                                         onClicked: deletePresetDialog.open()
                                     }
+                                    visible: !presets[modelData].builtin
                                 }
                             }
-                            RowLayout {
-                                Rectangle {
-                                    color: "transparent"
-                                    // width: scrollView.width
-                                    // height: scrollView.height
-                                    border {
-                                        width: 1
-                                        color: Qt.rgba(0.5,0.5,0.5, 0.3)
+
+                            ScrollView {
+                                Layout.preferredWidth: 500
+                                Layout.maximumHeight: 100
+                                id: scrollView
+                                visible: false
+                                Image {
+                                    id: image
+                                    onStatusChanged: if (image.status == Image.Ready) {
+                                        scrollView.visible = true
+                                        scrollView.height = sourceSize.height
+                                    } else {
+                                        scrollView.visible = false
                                     }
-                                    Layout.preferredWidth: 500
-                                    Layout.preferredHeight: 100
-                                    ScrollView {
-                                        id: scrollView
-                                        width: parent.width-2
-                                        height: parent.height-2
-                                        anchors.centerIn: parent
-                                        Image {
-                                            source: presetsDir+modelData+"/preview.png"
-                                            fillMode: Image.PreserveAspectCrop
-                                            horizontalAlignment: Image.AlignLeft
-                                            cache: false
-                                            asynchronous: true
-                                            function refresh(presetName) {
-                                                // only refresh preview of the changed preset
-                                                if (presetName !== modelData) return
-                                                source = ""
-                                                source = presetsDir+modelData+"/preview.png"
-                                            }
-                                            Component.onCompleted: {
-                                                root.refreshImage.connect(refresh)
-                                            }
-                                        }
+                                    source: presets[modelData].dir+"/preview.png"
+                                    fillMode: Image.PreserveAspectCrop
+                                    horizontalAlignment: Image.AlignLeft
+                                    cache: false
+                                    asynchronous: true
+                                    function refresh(presetName) {
+                                        // only refresh preview of the changed preset
+                                        if (presetName !== presets[modelData].dir) return
+                                        source = ""
+                                        source = presets[modelData].dir+"/preview.png"
+                                    }
+                                    Component.onCompleted: {
+                                        root.refreshImage.connect(refresh)
                                     }
                                 }
                             }
@@ -293,3 +329,4 @@ KCM.SimpleKCM {
         }
     }
 }
+
