@@ -8,6 +8,12 @@ import org.kde.kirigami as Kirigami
 RowLayout {
     id: root
     property alias isEnabled: isEnabledCheckbox.checked
+    property string lastPresetDir: plasmoid.configuration.lastPreset
+    property string lastPresetName: {
+        let name = lastPresetDir.split("/")
+        return name[name.length-1] || "None"
+    }
+
     RowLayout {
         Layout.alignment: Qt.AlignRight
         Label {
@@ -35,7 +41,7 @@ RowLayout {
             text: i18n("Last preset loaded:")
         }
         Label {
-            text: plasmoid.configuration.lastPreset || "None"
+            text: lastPresetName
             font.weight: Font.DemiBold
         }
     }

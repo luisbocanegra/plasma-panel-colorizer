@@ -380,3 +380,11 @@ function getUnifyBgType(itemTypes, index) {
     return 0; // Default color
   }
 }
+
+// https://github.com/rbn42/panon/blob/stable/plasmoid/contents/ui/utils.js
+function getWidgetRootDir() {
+  var path = plasmoid.metaData.fileName
+  path = path.split('/')
+  path[path.length - 1] = 'contents/'
+  return path.join('/')
+}
