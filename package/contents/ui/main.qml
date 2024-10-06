@@ -24,6 +24,7 @@ PlasmoidItem {
     property int trayGridViewCountOld: 0
     property var panelPrefixes: ["north","south","west","east"]
     property bool horizontal: Plasmoid.formFactor === PlasmaCore.Types.Horizontal
+    property bool editMode: Plasmoid.containment.corona?.editMode ? true : false
     property bool fixedSidePaddingEnabled: isEnabled && panelSettings.padding.enabled
     property bool isEnabled: plasmoid.configuration.isEnabled
     property bool nativePanelBackgroundEnabled: isEnabled ? cfg.nativePanelBackground.enabled : enabled
@@ -958,10 +959,6 @@ PlasmoidItem {
         let candidate = main.parent;
         while (candidate) {
             if (candidate instanceof GridLayout) {
-                // we will do spacing manually on all widgets
-                // this is needed to allow us to 'unify' background areas
-                candidate.rowSpacing = 0
-                candidate.columnSpacing = 0
                 return candidate;
             }
             candidate = candidate.parent;
@@ -1015,6 +1012,24 @@ PlasmoidItem {
         when: (panelColorizer !== null && blurMask && panelColorizer?.hasRegions
                 && (panelSettings.blurBehind || anyWidgetDoingBlur || anyTrayItemDoingBlur)
             )
+    }
+
+    // We do spacing manually on all widgets, so we "disable" the default
+    // ones, this is needed to allow us to 'unify' background areas
+    // Using Binding because panel doesn't like having its spacings set to 0
+    // while adding/dragging widgets in edit mode, we restore them in edit mode
+    Binding {
+        target: panelLayout
+        property: "columnSpacing"
+        value: 0
+        when: !editMode
+    }
+
+    Binding {
+        target: panelLayout
+        property: "rowSpacing"
+        value: 0
+        when: !editMode
     }
 
     property Item panelBg: {
