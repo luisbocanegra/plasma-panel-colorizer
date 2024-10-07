@@ -104,14 +104,25 @@ PlasmoidItem {
     property var panelColorizer: null
     property var blurMask: panelColorizer?.mask ?? null
     property var floatigness: panelElement?.floatingness ?? 0
+    property var panelWidth: panelElement?.width ?? 0
+    property var panelHeight: panelElement?.height ?? 0
     property bool debug: false
     signal recolorCountChanged()
     signal refreshNeeded()
     signal updateUnified()
+    signal updateMasks()
 
     onForceRecolorCountChanged: {
         // console.error("onForceRecolorCountChanged ->", forceRecolorCount)
         recolorCountChanged()
+    }
+
+    onPanelWidthChanged: {
+        updateMasks()
+    }
+
+    onPanelHeightChanged: {
+        updateMasks()
     }
 
     Rectangle {
@@ -427,6 +438,7 @@ PlasmoidItem {
         Component.onCompleted: {
             main.recolorCountChanged.connect(rect.recolor)
             main.updateUnified.connect(updateUnifyType)
+            main.updateMasks.connect(updateMask)
             recolorTimer.start()
         }
 
@@ -813,16 +825,7 @@ PlasmoidItem {
             }
         }
 
-        Timer {
-            interval: 1000
-            running: true
-            repeat: true
-            onTriggered: {
-                position = Utils.getGlobalPosition(borderRec, panelElement)
-            }
-        }
-
-        property var position: Utils.getGlobalPosition(borderRec, panelElement)
+        property var position: Qt.point(0,0)
         property var positionX: position.x
         property var positionY: position.y
         property var fl: floatigness
@@ -867,42 +870,37 @@ PlasmoidItem {
         }
 
         onXChanged: {
-            position = Utils.getGlobalPosition(borderRec, panelElement)
+            // console.error("onXChanged()")
             updateMask()
         }
 
         onYChanged: {
-            position = Utils.getGlobalPosition(borderRec, panelElement)
+            // console.error("onYChanged()")
             updateMask()
         }
 
         onWidthChanged: {
-            position = Utils.getGlobalPosition(borderRec, panelElement)
-            updateMask()
+            // console.error("onWidthChanged()")
+            main.updateMasks()
         }
 
         onHeightChanged: {
-            position = Utils.getGlobalPosition(borderRec, panelElement)
-            updateMask()
+            // console.error("onHeightChanged()")
+            main.updateMasks()
         }
 
         onBlurMaskXChanged: {
+            // console.error("onBlurMaskXChanged()")
             updateMask()
         }
 
         onBlurMaskYChanged: {
+            // console.error("onBlurMaskYChanged()")
             updateMask()
         }
 
         onFlChanged: {
-            position = Utils.getGlobalPosition(borderRec, panelElement)
-        }
-
-        onPositionXChanged: {
-            updateMask()
-        }
-
-        onPositionYChanged: {
+            // console.error("onFlChanged()")
             updateMask()
         }
 
@@ -933,7 +931,9 @@ PlasmoidItem {
         }
 
         function updateMask() {
-            if (panelColorizer === null) return
+            if (panelColorizer === null || !borderRec) return
+            // console.error("updateMask()", widgetName)
+            position = Utils.getGlobalPosition(borderRec, panelElement)
             panelColorizer.updatePanelMask(
                 maskIndex,
                 borderRec,
