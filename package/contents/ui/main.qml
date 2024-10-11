@@ -125,6 +125,10 @@ PlasmoidItem {
         updateMasks()
     }
 
+    onFloatignessChanged: {
+        updateMasks()
+    }
+
     Rectangle {
         id: colorHolder
         height: 0
@@ -828,7 +832,6 @@ PlasmoidItem {
         property var position: Qt.point(0,0)
         property var positionX: position.x
         property var positionY: position.y
-        property var fl: floatigness
 
         ColumnLayout {
             spacing: 0
@@ -896,11 +899,6 @@ PlasmoidItem {
 
         onBlurMaskYChanged: {
             // console.error("onBlurMaskYChanged()")
-            updateMask()
-        }
-
-        onFlChanged: {
-            // console.error("onFlChanged()")
             updateMask()
         }
 
