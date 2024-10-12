@@ -205,17 +205,19 @@ var themeScopes = [
   "Header"
 ]
 
-function getCustomCfg(config, widgetName, configurationOverrides) {
+function getCustomCfg(widgetName, configurationOverrides) {
   if (!widgetName) return null
-  // console.error("getCustomCfg()", widgetName)
-  let custom = null
+  var custom = {}
   if (widgetName in configurationOverrides.associations) {
-    const overrideName = configurationOverrides.associations[widgetName]
-    custom = configurationOverrides.overrides[overrideName]
-    // console.error("getCustomCfg() -> name:", overrideName, config.configurationOverrides)
+    const overrideNames = configurationOverrides.associations[widgetName]
+
+    for (let overrideName of overrideNames) {
+      if (!(overrideName in configurationOverrides.overrides)) continue
+      const current = configurationOverrides.overrides[overrideName]
+      custom = getEffectiveSettings(current, custom)
+    }
   }
-  if (custom) {
-    console.error("customm ->", custom)
+  if (Object.keys(custom).length !== 0) {
     return custom
   }
   return null
@@ -251,7 +253,7 @@ function getEffectiveSettings(customSettings, globalSettings) {
 
 function getItemCfg(itemType, widgetName, config, configurationOverrides) {
   let output = { override: false }
-  let custom = getCustomCfg(config, widgetName, configurationOverrides)
+  let custom = getCustomCfg(widgetName, configurationOverrides)
   if (custom) {
     output.settings = custom
     output.override = true

@@ -46,21 +46,11 @@ KCM.SimpleKCM {
     }
 
     function updateConfig() {
-        for (let i = 0; i < widgetsModel.count; i++) {
-            const widget = widgetsModel.get(i)
-            const name = widget.name
-            const method = widget.method
-            console.error(name, method.mask, method.multiEffect)
-            if (method.mask || method.multiEffect) {
-                configOverrides[name] = {"method": widget.method}
-            } else {
-                delete configOverrides[widget.name]
-            }
-        }
         const tmp = JSON.parse(JSON.stringify(configOverrides, null, null))
         // configOverrides = []
         configOverrides = tmp
         config.overrides = configOverrides
+        associationsModel = JSON.parse(JSON.stringify(associationsModel, null, null))
         config.associations = associationsModel
         cfg_configurationOverrides = JSON.stringify(config, null, null)
     }
@@ -162,46 +152,13 @@ KCM.SimpleKCM {
             Layout.minimumWidth: 500
             Repeater {
                 model: Object.keys(root.configOverrides)
-                delegate: Kirigami.AbstractCard {
-                    visible: modelData !== "-"
-                    checked: editBtn.checked
-                    contentItem: RowLayout {
-                        Label {
-                            text: (index+1).toString()+"."
-                            font.bold: true
-                        }
-                        ColumnLayout {
-                            Label {
-                                text: modelData
-                                elide: Text.ElideRight
-                            }
-                        }
-                        Item {
-                            Layout.fillWidth: true
-                        }
-                        Button {
-                            id: editBtn
-                            icon.name: "document-edit-symbolic"
-                            text: i18n("Edit")
-                            checkable: true
-                            checked: overrideName === modelData && userInput
-                            onClicked: {
-                                userInput = true
-                            }
-                            onCheckedChanged: {
-                                if (checked || overrideName === modelData)
-                                overrideName = modelData
-                                showingConfig = checked
-                            }
-                        }
-                        Button {
-                            text: i18n("Delete")
-                            icon.name: "edit-delete-remove-symbolic"
-                            onClicked: {
-                                delete configOverrides[modelData]
-                                root.updateConfig()
-                            }
-                        }
+                delegate: Components.WidgetCardOverride {
+                    onDeleteOverride: (name) => {
+                        delete configOverrides[name]
+                        root.updateConfig()
+                    }
+                    onEditingName: (name) => {
+                        overrideName = name
                     }
                 }
             }
@@ -213,7 +170,11 @@ KCM.SimpleKCM {
                     icon.name: "list-add-symbolic"
                     text: "New override"
                     onClicked: {
-                        configOverrides[`Override ${Object.keys(configOverrides).length+1}`] = Globals.baseOverrideConfig
+                        let nextOverride = Object.keys(configOverrides).length + 1
+                        while (`Override ${nextOverride}` in configOverrides) {
+                            nextOverride++;
+                        }
+                        configOverrides[`Override ${nextOverride}`] = Globals.baseOverrideConfig
                         root.updateConfig()
                     }
                 }
@@ -305,9 +266,22 @@ KCM.SimpleKCM {
                     widget: model
                     configOverrides: Object.keys(root.configOverrides)
                     overrideAssociations: associationsModel
-                    onUpdateWidget: (name, text) => {
+                    onAddOverride: (name, preset, index) => {
                         if (!loaded) return
-                        associationsModel[name] = text
+                        if (!(name in associationsModel)) associationsModel[name] = []
+                        if (index === null) {
+                            associationsModel[name].push(preset)
+                        } else {
+                            associationsModel[name][index] = preset
+                        }
+                        root.updateConfig()
+                    }
+                    onRemoveOverride: (name, index) => {
+                        associationsModel[name].splice(index, 1)
+                        root.updateConfig()
+                    }
+                    onClearOverrides: (name) => {
+                        associationsModel[name] = []
                         root.updateConfig()
                     }
                 }
