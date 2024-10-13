@@ -401,40 +401,14 @@ Kirigami.FormLayout {
     RowLayout {
         enabled: isEnabled
         Kirigami.FormData.label: i18n("Alpha:")
-        TextField {
-            placeholderText: "0-1"
-            text: parseFloat(config.alpha).toFixed(validator.decimals)
-            Layout.preferredWidth: Kirigami.Units.gridUnit * 5
-
-            validator: DoubleValidator {
-                bottom: 0.0
-                top: 1.0
-                decimals: 2
-                notation: DoubleValidator.StandardNotation
-            }
-
-            onTextChanged: {
-                const newVal = parseFloat(text)
-                config.alpha = isNaN(newVal) ? 0 : newVal
+        SpinBoxDecimal {
+            Layout.preferredWidth: colorRoot.Kirigami.Units.gridUnit * 5
+            from: 0
+            to: 1
+            value: config.alpha ?? 0
+            onValueChanged: {
+                config.alpha = value
                 updateConfig()
-            }
-
-            ValueMouseControl {
-                height: parent.height - 8
-                width: height
-                anchors.right: parent.right
-                anchors.rightMargin: 4
-                anchors.verticalCenter: parent.verticalCenter
-
-                from: parent.validator.bottom
-                to: parent.validator.top
-                decimals: parent.validator.decimals
-                stepSize: 0.05
-                value: config.alpha
-                onValueChanged: {
-                    config.alpha = parseFloat(value)
-                    updateConfig()
-                }
             }
         }
     }
@@ -456,41 +430,14 @@ Kirigami.FormLayout {
                 updateConfig()
             }
         }
-        TextField {
-            placeholderText: "0-1"
-            text: parseFloat(config.saturationValue).toFixed(validator.decimals)
-            enabled: saturationEnabled.checked
-            Layout.preferredWidth: Kirigami.Units.gridUnit * 5
-
-            validator: DoubleValidator {
-                bottom: 0.0
-                top: 1.0
-                decimals: 2
-                notation: DoubleValidator.StandardNotation
-            }
-
-            onTextChanged: {
-                const newVal = parseFloat(text)
-                config.saturationValue = isNaN(newVal) ? 0 : newVal
+        SpinBoxDecimal {
+            Layout.preferredWidth: colorRoot.Kirigami.Units.gridUnit * 5
+            from: 0
+            to: 1
+            value: config.saturationValue ?? 0
+            onValueChanged: {
+                config.saturationValue = value
                 updateConfig()
-            }
-
-            ValueMouseControl {
-                height: parent.height - 8
-                width: height
-                anchors.right: parent.right
-                anchors.rightMargin: 4
-                anchors.verticalCenter: parent.verticalCenter
-
-                from: parent.validator.bottom
-                to: parent.validator.top
-                decimals: parent.validator.decimals
-                stepSize: 0.05
-                value: config.saturationValue
-                onValueChanged: {
-                    config.saturationValue = parseFloat(value)
-                    updateConfig()
-                }
             }
         }
     }
@@ -506,41 +453,14 @@ Kirigami.FormLayout {
                 updateConfig()
             }
         }
-        TextField {
-            placeholderText: "0-1"
-            text: parseFloat(config.lightnessValue).toFixed(validator.decimals)
-            enabled: lightnessEnabled.checked
-            Layout.preferredWidth: Kirigami.Units.gridUnit * 5
-
-            validator: DoubleValidator {
-                bottom: 0.0
-                top: 1.0
-                decimals: 2
-                notation: DoubleValidator.StandardNotation
-            }
-
-            onTextChanged: {
-                const newVal = parseFloat(text)
-                config.lightnessValue = isNaN(newVal) ? 0 : newVal
+        SpinBoxDecimal {
+            Layout.preferredWidth: colorRoot.Kirigami.Units.gridUnit * 5
+            from: 0
+            to: 1
+            value: config.lightnessValue ?? 0
+            onValueChanged: {
+                config.lightnessValue = value
                 updateConfig()
-            }
-
-            ValueMouseControl {
-                height: parent.height - 8
-                width: height
-                anchors.right: parent.right
-                anchors.rightMargin: 4
-                anchors.verticalCenter: parent.verticalCenter
-
-                from: parent.validator.bottom
-                to: parent.validator.top
-                decimals: parent.validator.decimals
-                stepSize: 0.05
-                value: config.lightnessValue
-                onValueChanged: {
-                    config.lightnessValue = parseFloat(value)
-                    updateConfig()
-                }
             }
         }
     }

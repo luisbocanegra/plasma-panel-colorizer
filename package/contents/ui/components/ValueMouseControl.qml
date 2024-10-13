@@ -62,7 +62,7 @@ Item {
     MouseArea {
         anchors.fill: parent
         propagateComposedEvents: true
-        onWheel: {
+        onWheel: (wheel) => {
             root.parent.forceActiveFocus()
             if(wheel.angleDelta.y > 0 && value < to) {
                 value += stepSize

@@ -115,42 +115,14 @@ ColumnLayout {
                 Label {
                     text: i18n("Opacity:")
                 }
-                TextField {
-                    id: panelRealBgOpacity
-                    placeholderText: "0-1"
-                    text: parseFloat(config.nativePanelBackground.opacity).toFixed(validator.decimals)
-                    enabled: nativePanelBackgroundCheckbox.checked
-                    Layout.preferredWidth: Kirigami.Units.gridUnit * 4
-
-                    validator: DoubleValidator {
-                        bottom: 0.0
-                        top: 1.0
-                        decimals: 2
-                        notation: DoubleValidator.StandardNotation
-                    }
-
-                    onTextChanged: {
-                        const newVal = parseFloat(text).toFixed(validator.decimals)
-                        config.nativePanelBackground.opacity = isNaN(newVal) ? 0 : newVal
+                SpinBoxDecimal {
+                    Layout.preferredWidth: colorRoot.Kirigami.Units.gridUnit * 5
+                    from: 0
+                    to: 1
+                    value: config.nativePanelBackground.opacity ?? 0
+                    onValueChanged: {
+                        config.nativePanelBackground.opacity = value
                         updateConfig()
-                    }
-
-                    ValueMouseControl {
-                        height: parent.height - 8
-                        width: height
-                        anchors.right: parent.right
-                        anchors.rightMargin: 4
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        from: parent.validator.bottom
-                        to: parent.validator.top
-                        decimals: parent.validator.decimals
-                        stepSize: 0.05
-                        value: config.nativePanelBackground.opacity
-                        onValueChanged: {
-                            config.nativePanelBackground.opacity = parseFloat(value)
-                            updateConfig()
-                        }
                     }
                 }
                 Kirigami.ContextualHelpButton {
