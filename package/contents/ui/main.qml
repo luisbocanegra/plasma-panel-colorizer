@@ -306,8 +306,7 @@ PlasmoidItem {
         function updateUnifyType() {
             if (inTray) return
             unifiedBackgroundTracker[targetIndex] = unifySection
-            let u = Utils.getUnifyBgType(unifiedBackgroundTracker, targetIndex)
-            unifyBgType = u
+            unifyBgType = Utils.getUnifyBgType(unifiedBackgroundTracker, targetIndex)
         }
 
         property var itemConfig: Utils.getItemCfg(itemType, widgetName, main.cfg, configurationOverrides)
@@ -918,6 +917,7 @@ PlasmoidItem {
         }
 
         onVisibleChanged: {
+            main.updateUnified()
             updateMask()
         }
 

@@ -378,6 +378,9 @@ function getUnifyBgType(itemTypes, index) {
       }
     }
     for (let i = index + 1; i < itemTypes.length; i++) {
+      if (itemTypes[i] === 1) {
+        break
+      }
       if (itemTypes[i] === 2) {
         hasType2After = true;
         break;
