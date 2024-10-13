@@ -3,6 +3,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
+import org.kde.plasma.components as PlasmaComponents
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.plasmoid
 import org.kde.plasma.extras 2.0 as PlasmaExtras
@@ -18,13 +19,16 @@ import "code/globals.js" as Globals
 
 PlasmoidItem {
     id: main
-    preferredRepresentation: fullRepresentation
     property int panelLayoutCount: panelLayout?.children?.length || 0
     property int trayGridViewCount: trayGridView?.count || 0
     property int trayGridViewCountOld: 0
     property var panelPrefixes: ["north","south","west","east"]
     property bool horizontal: Plasmoid.formFactor === PlasmaCore.Types.Horizontal
-    property bool editMode: Plasmoid.containment.corona?.editMode ? true : false
+    property bool editMode: Plasmoid.containment.corona?.editMode ?? false
+    property bool onDesktop: plasmoid.location === PlasmaCore.Types.Floating
+    property string iconName: !onDesktop ? "icon" : "error"
+    property string icon: Qt.resolvedUrl("../icons/" + iconName + ".svg").toString().replace("file://", "")
+    property bool hideWidget: plasmoid.configuration.hideWidget
     property bool fixedSidePaddingEnabled: isEnabled && panelSettings.padding.enabled
     property bool isEnabled: plasmoid.configuration.isEnabled
     property bool nativePanelBackgroundEnabled: isEnabled ? cfg.nativePanelBackground.enabled : enabled
@@ -946,12 +950,6 @@ PlasmoidItem {
         }
     }
 
-    fullRepresentation: RowLayout {
-        Label {
-            text: panelLayoutCount+","+trayGridViewCount
-        }
-    }
-
     // Search the actual gridLayout of the panel
     property GridLayout panelLayout: {
         let candidate = main.parent;
@@ -1290,4 +1288,52 @@ PlasmoidItem {
             refreshNeeded()
         }
     }
+
+    compactRepresentation: CompactRepresentation {
+        icon: main.icon
+    }
+
+    fullRepresentation: Item {
+        Layout.minimumWidth: main.Kirigami.Units.gridUnit * 10
+        Layout.minimumHeight: main.Kirigami.Units.gridUnit * 10
+        Layout.maximumWidth: main.Kirigami.Units.gridUnit * 10
+        Layout.maximumHeight: main.Kirigami.Units.gridUnit * 10
+
+        ColumnLayout {
+            id: column
+            anchors.fill: parent
+            Kirigami.Icon {
+                Layout.fillWidth: true
+                Layout.preferredHeight: 64
+                source: main.icon
+                isMask: true
+                color: Kirigami.Theme.negativeTextColor
+            }
+            PlasmaComponents.Label {
+                text: "<font color='"+Kirigami.Theme.neutralTextColor+"'>Panel not found, this widget must be child of a panel</font>"
+                Layout.fillWidth: true
+                wrapMode: Text.Wrap
+            }
+        }
+    }
+
+    toolTipSubText: onDesktop ? "<font color='"+Kirigami.Theme.neutralTextColor+"'>Panel not found, this widget must be child of a panel</font>" : Plasmoid.metaData.description
+    toolTipTextFormat: Text.RichText
+
+    Plasmoid.status: (editMode || !hideWidget) ?
+        PlasmaCore.Types.ActiveStatus :
+        PlasmaCore.Types.HiddenStatus
+
+    Plasmoid.contextualActions: [
+        PlasmaCore.Action {
+            text: i18n("Hide widget (visible in panel Edit Mode)")
+            checkable: true
+            icon.name: "visibility-symbolic"
+            checked: Plasmoid.configuration.hideWidget
+            onTriggered: checked => {
+                plasmoid.configuration.hideWidget = checked;
+                plasmoid.configuration.writeConfig();
+            }
+        }
+    ]
 }

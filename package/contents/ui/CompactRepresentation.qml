@@ -10,14 +10,15 @@ MouseArea {
     anchors.fill: parent
     property bool isPanelVertical: plasmoid.formFactor === PlasmaCore.Types.Vertical
     property real itemSize: Math.min(compact.height, compact.width)
-
     property string icon
-    property bool onDesktop
     property bool isEnabled: main.isEnabled
+
     hoverEnabled: true
     onClicked: {
+        console.error("Clicked")
         main.isEnabled = !main.isEnabled
-        main.isEnabled = !main.isEnabled
+        plasmoid.configuration.isEnabled = main.isEnabled
+        plasmoid.configuration.writeConfig();
     }
 
 
@@ -32,13 +33,6 @@ MouseArea {
             height: Kirigami.Units.iconSizes.roundedIconSize(Math.min(parent.width, parent.height))
             width: height
             source: icon
-            NumberAnimation on rotation {
-                from: 0
-                to: 360
-                running: main.showToUpdate
-                loops: Animation.Infinite
-                duration: 5000
-            }
         }
     }
 
