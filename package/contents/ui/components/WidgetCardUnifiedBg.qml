@@ -7,7 +7,6 @@ Kirigami.AbstractCard {
     id: root
     property var widget
     signal updateWidget(unifyBgType: int)
-    checked: widget.unifyBgType !== 0
 
     contentItem: RowLayout {
         Kirigami.Icon {
@@ -51,31 +50,28 @@ Kirigami.AbstractCard {
             Layout.fillWidth: true
         }
         Button {
-            text: i18n("D")
+            text: i18n("Disable")
             checkable: true
             checked: widget?.unifyBgType === index
             icon.name: checked ? "checkmark-symbolic" : "dialog-close-symbolic"
-            Layout.preferredWidth: 50
             property int index: 0
             ButtonGroup.group: unifyButtonGroup
             enabled: widget?.unifyBgType !== 0
         }
         Button {
-            text: i18n("S")
+            text: i18n("Start")
             checkable: true
             checked: widget?.unifyBgType === index
             icon.name: checked ? "checkmark-symbolic" : "dialog-close-symbolic"
-            Layout.preferredWidth: 50
             property int index: 1
             ButtonGroup.group: unifyButtonGroup
         }
         Button {
-            text: i18n("E")
+            text: i18n("End")
             checkable: true
             checked: widget?.unifyBgType === index
             icon.name: checked ? "checkmark-symbolic" : "dialog-close-symbolic"
             property int index: 2
-            Layout.preferredWidth: 50
             ButtonGroup.group: unifyButtonGroup
         }
         ButtonGroup {

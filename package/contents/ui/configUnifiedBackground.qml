@@ -96,7 +96,7 @@ KCM.SimpleKCM {
     Kirigami.FormLayout {
 
         Label {
-            text: i18n("<strong>[D]isable</strong><br><strong>[S]tart</strong><br><strong>[E]nd</strong>")
+            text: i18n("Select start and end of unified background areas, widgets between start and can be left Disabled.")
             opacity: 0.7
             Layout.maximumWidth: widgetCards.width
             wrapMode: Text.Wrap
