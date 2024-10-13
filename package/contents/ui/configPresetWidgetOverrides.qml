@@ -184,6 +184,7 @@ KCM.SimpleKCM {
                 }
             }
             Loader {
+                asynchronous: true
                 id: componentLoader
                 sourceComponent: showingConfig ? settingsComp : null
                 onLoaded: {

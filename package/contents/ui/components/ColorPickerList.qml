@@ -9,31 +9,49 @@ import org.kde.kirigami as Kirigami
 // text field with colors | update list above
 
 ColumnLayout {
+    id: root
     property var colorsList: []
     signal colorsChanged(newColors: var)
-    property bool clearing: false
+    property bool ready: false
+    signal removeColor(index: int)
+
+    onRemoveColor: (index) => {
+        colorsListModel.remove(index)
+        updateColorsList()
+    }
 
     ListModel {
         id: colorsListModel
     }
 
+    ListModel {
+        id: colorsListModelTmp
+        ListElement {
+            color: "#ff0000"
+        }
+    }
+
     Connections {
         target: colorsListModel
-        onCountChanged: (count, clearing) => {
-            if (clearing) return
+        function onCountChanged(count, ready) {
+            if (!ready) return
             console.log("model count changed:", count);
             updateColorsList()
         }
     }
 
+    onColorsListChanged: {
+        initColorsListModel()
+    }
+
     function initColorsListModel() {
-        clearing = true
+        ready = false
         colorsListModel.clear()
         const colors = colorsList
         for (let i in colors) {
             colorsListModel.append({"color": colors[i]})
         }
-        clearing = false
+        ready = true
     }
 
     function getRandomColor() {
@@ -66,7 +84,7 @@ ColumnLayout {
             Layout.alignment: Qt.AlignTop
             Repeater {
                 id: customColorsRepeater
-                model: colorsListModel
+                model: ready ? colorsListModel : []
                 delegate : RowLayout {
 
                     TextMetrics {
@@ -137,7 +155,7 @@ ColumnLayout {
                     Button {
                         icon.name: "edit-delete-remove"
                         onClicked: {
-                            colorsListModel.remove(index)
+                            root.removeColor(index)
                         }
                     }
 
@@ -145,6 +163,7 @@ ColumnLayout {
                         icon.name: "list-add-symbolic"
                         onClicked: {
                             colorsListModel.insert(index+1, {"color": getRandomColor().toString() })
+                            updateColorsList()
                         }
                     }
                 }
@@ -159,6 +178,7 @@ ColumnLayout {
                     icon.name: "list-add-symbolic"
                     onClicked: {
                         colorsListModel.insert(0, {"color": getRandomColor().toString() })
+                        updateColorsList()
                     }
                 }
             }
@@ -167,10 +187,6 @@ ColumnLayout {
                 TextArea {
                     id: customColors
                     text: colorsList?.join(" ") || []
-                    onTextChanged: {
-                        colorsList = text.split(" ")
-                        colorsChanged(colorsList)
-                    }
                     Layout.preferredWidth: 300
                     Layout.fillWidth: true
                     wrapMode: TextEdit.WordWrap
@@ -180,7 +196,10 @@ ColumnLayout {
                 Button {
                     id: btn
                     icon.name: "view-refresh-symbolic"
-                    onClicked: initColorsListModel()
+                    onClicked: {
+                        colorsList = customColors.text.split(" ")
+                        colorsChanged(colorsList)
+                    }
                 }
             }
         }

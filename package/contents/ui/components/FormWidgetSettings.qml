@@ -116,7 +116,7 @@ ColumnLayout {
                     text: i18n("Opacity:")
                 }
                 SpinBoxDecimal {
-                    Layout.preferredWidth: colorRoot.Kirigami.Units.gridUnit * 5
+                    Layout.preferredWidth: backgroundRoot.Kirigami.Units.gridUnit * 5
                     from: 0
                     to: 1
                     value: config.nativePanelBackground.opacity ?? 0

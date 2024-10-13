@@ -83,6 +83,7 @@ KCM.SimpleKCM {
             }
         }
         Loader {
+            asynchronous: true
             id: componentLoader
             sourceComponent: settingsComp
             Layout.fillWidth: true

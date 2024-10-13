@@ -388,15 +388,27 @@ Kirigami.FormLayout {
         enabled: isEnabled
     }
 
-    ColorPickerList {
-        visible: multiColor
-        colorsList: config.list
-        onColorsChanged: (colorsList) => {
-            config.list = colorsList
-            updateConfig()
-        }
+    ColumnLayout {
+        visible: multiColor && listColorRadio.checked
         enabled: isEnabled
+        Loader {
+            asynchronous: true
+            sourceComponent: listColorRadio.checked ? pickerList : null
+            onLoaded: {
+                item.colorsList = config.list
+                item.onColorsChanged.connect((colorsList) => {
+                    config.list = colorsList
+                    updateConfig()
+                })
+            }
+        }
+
+        Component {
+            id: pickerList
+            ColorPickerList {}
+        }
     }
+
 
     RowLayout {
         enabled: isEnabled
