@@ -141,7 +141,7 @@ KCM.SimpleKCM {
         }
 
         Label {
-            text: i18n("Create configuration overrides and apply them to one or multiple widgets.")
+            text: i18n("Create configuration overrides and apply them to one or multiple widgets. These overrides are independent and will be applied on top of the Global/Preset settings.")
             opacity: 0.7
             Layout.maximumWidth: presetCards.width
             wrapMode: Text.Wrap
@@ -171,10 +171,10 @@ KCM.SimpleKCM {
                     text: "New override"
                     onClicked: {
                         let nextOverride = Object.keys(configOverrides).length + 1
-                        while (`Override ${nextOverride}` in configOverrides) {
+                        while (`User Override ${nextOverride}` in configOverrides) {
                             nextOverride++;
                         }
-                        configOverrides[`Override ${nextOverride}`] = Globals.baseOverrideConfig
+                        configOverrides[`User Override ${nextOverride}`] = Globals.baseOverrideConfig
                         root.updateConfig()
                     }
                 }
@@ -226,7 +226,7 @@ KCM.SimpleKCM {
                         }
                     }
                     Kirigami.ContextualHelpButton {
-                        toolTipText: i18n("Fallback to the global widget settings for disabled options, except for <b>Enable</b> and <b>Blur</>.")
+                        toolTipText: i18n("Fallback to the Global/Preset widget settings for disabled options, except for <b>Enable</b> and <b>Blur</>.")
                     }
                 }
             }
@@ -255,6 +255,13 @@ KCM.SimpleKCM {
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
             Kirigami.FormData.label: i18n("Widgets")
+        }
+
+        Label {
+            text: i18n("Overrides are applied from top to bottom, if two or more overrides share the same option, the one last occurence replaces the value of the previous one.")
+            opacity: 0.7
+            Layout.maximumWidth: presetCards.width
+            wrapMode: Text.Wrap
         }
 
         ColumnLayout {

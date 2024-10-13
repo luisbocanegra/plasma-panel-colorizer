@@ -244,8 +244,10 @@ const defaultConfig = {
     "opacity": 2,
     "floating": false
   },
-  "configurationOverrides": {},
-  "overrideAssociations": {},
+  "configurationOverrides": {
+    "overrides": {},
+    "associations": {}
+  },
   "unifiedBackground": {}
 }
 

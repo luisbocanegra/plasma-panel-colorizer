@@ -254,6 +254,14 @@ function getEffectiveSettings(customSettings, globalSettings) {
 function getItemCfg(itemType, widgetName, config, configurationOverrides) {
   let output = { override: false }
   let custom = getCustomCfg(widgetName, configurationOverrides)
+  let presetOverrides = getCustomCfg(widgetName, config.configurationOverrides)
+  if (presetOverrides) {
+    if (custom && custom.disabledFallback) {
+      custom = getEffectiveSettings(custom, presetOverrides)
+    } else {
+      custom = presetOverrides
+    }
+  }
   if (custom) {
     output.settings = custom
     output.override = true
@@ -292,22 +300,21 @@ function rgbToQtColor(rgb) {
   return Qt.rgba(rgb.r / 255, rgb.g / 255, rgb.b / 255, 1)
 }
 
-function mergeConfigs(defaultConfig, existingConfig) {
-  for (var key in defaultConfig) {
-    if (defaultConfig.hasOwnProperty(key)) {
-      if (typeof defaultConfig[key] === "object" && defaultConfig[key] !== null) {
-        if (!existingConfig.hasOwnProperty(key)) {
-          existingConfig[key] = {}
-        }
-        mergeConfigs(defaultConfig[key], existingConfig[key])
-      } else {
-        if (!existingConfig.hasOwnProperty(key)) {
-          existingConfig[key] = defaultConfig[key]
-        }
+
+function mergeConfigs(sourceConfig, newConfig) {
+  for (var key in sourceConfig) {
+    if (typeof sourceConfig[key] === "object" && sourceConfig[key] !== null) {
+      if (!newConfig.hasOwnProperty(key)) {
+        newConfig[key] = {}
+      }
+      mergeConfigs(sourceConfig[key], newConfig[key])
+    } else {
+      if (!newConfig.hasOwnProperty(key)) {
+        newConfig[key] = sourceConfig[key]
       }
     }
   }
-  return existingConfig
+  return newConfig
 }
 
 function stringify(config) {
