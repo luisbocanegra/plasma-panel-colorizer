@@ -121,7 +121,7 @@ Kirigami.FormLayout {
         SpinBox {
             id: topMargin
             value: config.margin.side.top
-            from: 0
+            from: -99
             to: 99
             Layout.row: 0
             Layout.column: 1
@@ -133,7 +133,7 @@ Kirigami.FormLayout {
         SpinBox {
             id: bottomMargin
             value: config.margin.side.bottom
-            from: 0
+            from: -99
             to: 99
             Layout.row: 2
             Layout.column: 1
@@ -145,7 +145,7 @@ Kirigami.FormLayout {
         SpinBox {
             id: leftMargin
             value: config.margin.side.left
-            from: 0
+            from: -99
             to: 99
             Layout.row: 1
             Layout.column: 0
@@ -158,7 +158,7 @@ Kirigami.FormLayout {
         SpinBox {
             id: rightMargin
             value: config.margin.side.right
-            from: 0
+            from: -99
             to: 99
             Layout.row: 1
             Layout.column: 2
