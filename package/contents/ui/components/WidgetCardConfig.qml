@@ -6,11 +6,14 @@ import org.kde.kirigami as Kirigami
 Kirigami.AbstractCard {
     id: root
     property var widget
-    signal updateWidget(name: string, text: string)
+    signal addOverride(widget: string, override: string, index: var)
+    signal removeOverride(widget: string, index: int)
+    signal clearOverrides(widget: string)
     property var configOverrides: []
     property var overrideAssociations: {}
     property bool showList: false
-    property string currentGroup: overrideAssociations[widget.name] || ""
+    property var currentOverrides: overrideAssociations[widget.name] || []
+    property var editingIndex: 0
 
     contentItem: ColumnLayout {
     RowLayout {
@@ -55,22 +58,51 @@ Kirigami.AbstractCard {
             Layout.fillWidth: true
         }
 
-        Button {
-            icon.name: "document-edit-symbolic"
-            text: currentGroup
-            checkable: true
-            checked: showList
-            onClicked: {
-                showList = !showList
+        ColumnLayout {
+            Repeater {
+                model: currentOverrides
+                RowLayout {
+                    Layout.alignment: Qt.AlignRight
+                    Button {
+                        icon.name: "document-edit-symbolic"
+                        text: modelData
+                        checkable: true
+                        checked: showList
+                        onClicked: {
+                            showList = !showList
+                            editingIndex = index
+                        }
+                    }
+                    Button {
+                        icon.name: "edit-clear-symbolic"
+                        onClicked: {
+                            removeOverride(widget.name, index)
+                        }
+                    }
+                }
             }
-        }
-        Button {
-            icon.name: "edit-clear-symbolic"
-            onClicked: {
-                updateWidget(widget.name, "")
-                currentGroup = ""
+            RowLayout {
+                Layout.alignment: Qt.AlignRight
+                Button {
+                    icon.name: "edit-clear-all-symbolic"
+                    onClicked: {
+                        clearOverrides(widget.name)
+                    }
+                    text: "Clear"
+                    visible: currentOverrides.length !== 0
+                }
+                Button {
+
+                    icon.name: "list-add-symbolic"
+                    checkable: true
+                    text: i18n("Add")
+                    checked: showList && currentOverrides.length === 0
+                    onClicked: {
+                        showList = !showList
+                        editingIndex = null
+                    }
+                }
             }
-            visible: currentGroup !== ""
         }
     }
         ScrollView {
@@ -79,7 +111,7 @@ Kirigami.AbstractCard {
             Layout.preferredHeight: Math.min(implicitHeight+20, 300)
             ListView {
                 id: listView
-                model: configOverrides
+                model: configOverrides.filter(override => !currentOverrides.includes(override))
                 Layout.fillHeight: true
                 reuseItems: true
                 clip: true
@@ -92,8 +124,7 @@ Kirigami.AbstractCard {
                     text: modelData
                     onClicked: {
                         showList = false
-                        currentGroup = text
-                        updateWidget(widget.name, text)
+                        addOverride(widget.name, text, root.editingIndex)
                     }
                     Rectangle {
                         color: index & 1 ? "transparent" : Kirigami.Theme.alternateBackgroundColor

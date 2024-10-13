@@ -28,9 +28,15 @@ ConfigModel {
     }
 
     ConfigCategory {
-        name: i18n("Overrides")
+        name: i18n("Preset Overrides")
         icon: "preferences"
-        source: "configPerWidget.qml"
+        source: "configPresetWidgetOverrides.qml"
+    }
+
+    ConfigCategory {
+        name: i18n("User Overrides")
+        icon: "preferences"
+        source: "configUserWidgetOverrides.qml"
     }
 
     ConfigCategory {

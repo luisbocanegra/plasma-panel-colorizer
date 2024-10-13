@@ -205,17 +205,19 @@ var themeScopes = [
   "Header"
 ]
 
-function getCustomCfg(config, widgetName, configurationOverrides) {
+function getCustomCfg(widgetName, configurationOverrides) {
   if (!widgetName) return null
-  // console.error("getCustomCfg()", widgetName)
-  let custom = null
+  var custom = {}
   if (widgetName in configurationOverrides.associations) {
-    const overrideName = configurationOverrides.associations[widgetName]
-    custom = configurationOverrides.overrides[overrideName]
-    // console.error("getCustomCfg() -> name:", overrideName, config.configurationOverrides)
+    const overrideNames = configurationOverrides.associations[widgetName]
+
+    for (let overrideName of overrideNames) {
+      if (!(overrideName in configurationOverrides.overrides)) continue
+      const current = configurationOverrides.overrides[overrideName]
+      custom = getEffectiveSettings(current, custom)
+    }
   }
-  if (custom) {
-    console.error("customm ->", custom)
+  if (Object.keys(custom).length !== 0) {
     return custom
   }
   return null
@@ -251,7 +253,15 @@ function getEffectiveSettings(customSettings, globalSettings) {
 
 function getItemCfg(itemType, widgetName, config, configurationOverrides) {
   let output = { override: false }
-  let custom = getCustomCfg(config, widgetName, configurationOverrides)
+  let custom = getCustomCfg(widgetName, configurationOverrides)
+  let presetOverrides = getCustomCfg(widgetName, config.configurationOverrides)
+  if (presetOverrides) {
+    if (custom && custom.disabledFallback) {
+      custom = getEffectiveSettings(custom, presetOverrides)
+    } else {
+      custom = presetOverrides
+    }
+  }
   if (custom) {
     output.settings = custom
     output.override = true
@@ -290,22 +300,21 @@ function rgbToQtColor(rgb) {
   return Qt.rgba(rgb.r / 255, rgb.g / 255, rgb.b / 255, 1)
 }
 
-function mergeConfigs(defaultConfig, existingConfig) {
-  for (var key in defaultConfig) {
-    if (defaultConfig.hasOwnProperty(key)) {
-      if (typeof defaultConfig[key] === "object" && defaultConfig[key] !== null) {
-        if (!existingConfig.hasOwnProperty(key)) {
-          existingConfig[key] = {}
-        }
-        mergeConfigs(defaultConfig[key], existingConfig[key])
-      } else {
-        if (!existingConfig.hasOwnProperty(key)) {
-          existingConfig[key] = defaultConfig[key]
-        }
+
+function mergeConfigs(sourceConfig, newConfig) {
+  for (var key in sourceConfig) {
+    if (typeof sourceConfig[key] === "object" && sourceConfig[key] !== null) {
+      if (!newConfig.hasOwnProperty(key)) {
+        newConfig[key] = {}
+      }
+      mergeConfigs(sourceConfig[key], newConfig[key])
+    } else {
+      if (!newConfig.hasOwnProperty(key)) {
+        newConfig[key] = sourceConfig[key]
       }
     }
   }
-  return existingConfig
+  return newConfig
 }
 
 function stringify(config) {
