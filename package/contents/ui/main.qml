@@ -306,7 +306,13 @@ PlasmoidItem {
         function updateUnifyType() {
             if (inTray) return
             unifiedBackgroundTracker[targetIndex] = unifySection
-            unifyBgType = Utils.getUnifyBgType(unifiedBackgroundTracker, targetIndex)
+            // FIXME: dragging a widget on the panel will trigger the following, but why??
+            // Error: Invalid write to global property "unifyBgType"
+            try {
+                unifyBgType = Utils.getUnifyBgType(unifiedBackgroundTracker, targetIndex)
+            } catch(e) {
+                // hmmm
+            }
         }
 
         property var itemConfig: Utils.getItemCfg(itemType, widgetName, main.cfg, configurationOverrides)
@@ -454,19 +460,28 @@ PlasmoidItem {
         anchors.centerIn: (isTray || isTrayArrow) ? parent : undefined
         anchors.fill: (isPanel ||isTray || isTrayArrow) ? parent : undefined
 
-        property int marginLeft: cfg.margin.side.left
-        property int marginRight: cfg.margin.side.right
+        property int extraLSpacing: ((unifyBgType === 2 || unifyBgType === 3) && horizontal ? widgetSettings.spacing : 0) / 2
+        property int extraRSpacing: ((unifyBgType === 1 || unifyBgType === 2) && horizontal ? widgetSettings.spacing : 0) / 2
+        property int extraTSpacing: ((unifyBgType === 2 || unifyBgType === 3) && !horizontal ? widgetSettings.spacing : 0) / 2
+        property int extraBSpacing: ((unifyBgType === 1 || unifyBgType === 2) && !horizontal ? widgetSettings.spacing : 0) / 2
+
+        property int marginLeft: (marginEnabled ? cfg.margin.side.left : 0)
+            + extraLSpacing
+        property int marginRight: (marginEnabled ? cfg.margin.side.right : 0)
+            + extraRSpacing
         property int horizontalWidth: marginLeft + marginRight
 
-        property int marginTop: cfg.margin.side.top
-        property int marginBottom: cfg.margin.side.bottom
+        property int marginTop: (marginEnabled ? cfg.margin.side.top : 0)
+            + extraTSpacing
+        property int marginBottom: (marginEnabled ? cfg.margin.side.bottom : 0)
+            + extraBSpacing
         property int verticalWidth: marginTop + marginBottom
 
         Binding {
             target: rect
             property: "x"
             value: -marginLeft
-            when: marginEnabled && isWidget && horizontal
+            when: isWidget && horizontal
             delayed: true
         }
 
@@ -474,7 +489,7 @@ PlasmoidItem {
             target: rect
             property: "y"
             value: -marginTop
-            when: marginEnabled && isWidget && !horizontal
+            when: isWidget && !horizontal
             delayed: true
         }
 
@@ -482,7 +497,7 @@ PlasmoidItem {
             target: rect
             property: "width"
             value: parent.width + horizontalWidth
-            when: marginEnabled && isWidget && horizontal
+            when: isWidget
             delayed: true
         }
 
@@ -490,15 +505,14 @@ PlasmoidItem {
             target: rect
             property: "height"
             value: parent.height + verticalWidth
-            when: marginEnabled && isWidget && !horizontal
+            when: isWidget && !horizontal
             delayed: true
         }
 
         Binding {
             target: rect.target
             property: "Layout.leftMargin"
-            // our own horizontal spacing starting from the second widget for the unified widget feature
-            value: (targetIndex !== 0 && unifyBgType<=1 && horizontal ? widgetSettings.spacing : 0) + (marginEnabled ? marginLeft : 0)
+            value: marginLeft - extraLSpacing
             when: isWidget
             delayed: true
         }
@@ -506,16 +520,15 @@ PlasmoidItem {
         Binding {
             target: rect.target
             property: "Layout.rightMargin"
-            value: marginRight
-            when: marginEnabled && isWidget
+            value: marginRight - extraRSpacing
+            when: isWidget
             delayed: true
         }
 
         Binding {
             target: rect.target
             property: "Layout.topMargin"
-            // our own vertical spacing starting from the second widget for the unified widget feature
-            value: (targetIndex !== 0 && unifyBgType<=1 && !horizontal ? widgetSettings.spacing : 0) + (marginEnabled ? marginTop : 0)
+            value: marginTop - extraTSpacing
             when: isWidget
             delayed: true
         }
@@ -523,8 +536,8 @@ PlasmoidItem {
         Binding {
             target: rect.target
             property: "Layout.bottomMargin"
-            value: marginBottom
-            when: marginEnabled && isWidget
+            value: marginBottom - extraBSpacing
+            when: isWidget
             delayed: true
         }
 
@@ -1017,14 +1030,14 @@ PlasmoidItem {
     Binding {
         target: panelLayout
         property: "columnSpacing"
-        value: 0
+        value: widgetSettings.spacing
         when: !editMode
     }
 
     Binding {
         target: panelLayout
         property: "rowSpacing"
-        value: 0
+        value: widgetSettings.spacing
         when: !editMode
     }
 
