@@ -13,7 +13,7 @@
     <entry
         name="hideWidget"
         type="Bool">
-        <default>true</default>
+        <default>false</default>
     </entry>
     <entry
         name="panelWidgets"
