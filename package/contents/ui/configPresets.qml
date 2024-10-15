@@ -45,6 +45,12 @@ KCM.SimpleKCM {
 
     signal refreshImage(editingPreset: string)
 
+    signal reloadPresetList()
+
+    onReloadPresetList: {
+        runCommand.run(listPresetsCmd)
+    }
+
     Connections {
         target: runCommand
         function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
@@ -72,11 +78,8 @@ KCM.SimpleKCM {
                 presetContent = JSON.parse(stdout.trim())
                 Utils.loadPreset(presetContent, root, Globals.ignoredConfigs, Globals.defaultConfig, false)
             }
-            if (cmd.startsWith("spectacle")) {
-                refreshImage(editingPreset)
-            }
             if (cmd.startsWith("echo")) {
-                root.runCommand.run(listPresetsCmd)
+                reloadPresetList()
             }
         }
     }
@@ -99,7 +102,6 @@ KCM.SimpleKCM {
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {
             savePreset(editingPreset)
-            runCommand.run(listPresetsCmd)
         }
     }
 
@@ -146,8 +148,9 @@ KCM.SimpleKCM {
             }
         }
         runCommand.run("mkdir -p '"+presetDir+"'")
-        runCommand.run("echo '" + JSON.stringify(output) + "' > '" + presetDir + "/settings.json'")
-        runCommand.run(spectaclePreviewCmd+"'" + presetDir + "/preview.png'")
+        runCommand.run("echo '" + JSON.stringify(output) + "' > '" + presetDir + "/settings.json' && " +
+            spectaclePreviewCmd+"'" + presetDir + "/preview.png'"
+        )
     }
 
     function deletePreset(path) {
