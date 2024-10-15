@@ -254,6 +254,7 @@ const defaultConfig = {
 const ignoredConfigs = [
   "isEnabled",
   "hideWidget",
+  "enableDebug",
   "panelWidgets",
   "objectName",
   "lastPreset",

@@ -110,7 +110,7 @@ PlasmoidItem {
     property var floatigness: panelElement?.floatingness ?? 0
     property var panelWidth: panelElement?.width ?? 0
     property var panelHeight: panelElement?.height ?? 0
-    property bool debug: false
+    property bool debug: plasmoid.configuration.enableDebug
     signal recolorCountChanged()
     signal refreshNeeded()
     signal updateUnified()
@@ -1023,10 +1023,8 @@ PlasmoidItem {
             )
     }
 
-    // We do spacing manually on all widgets, so we "disable" the default
-    // ones, this is needed to allow us to 'unify' background areas
-    // Using Binding because panel doesn't like having its spacings set to 0
-    // while adding/dragging widgets in edit mode, we restore them in edit mode
+    // The panel doesn't like having its spacings set to 0
+    // while adding/dragging widgets in edit mode, so temporary restore them
     Binding {
         target: panelLayout
         property: "columnSpacing"

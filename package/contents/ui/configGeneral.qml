@@ -15,6 +15,7 @@ KCM.SimpleKCM {
     id:root
     property bool cfg_hideWidget: hideWidget.checked
     property alias cfg_isEnabled: headerComponent.isEnabled
+    property alias cfg_enableDebug: enableDebug.checked
 
     header: ColumnLayout {
         Components.Header {
@@ -26,24 +27,19 @@ KCM.SimpleKCM {
 
     ColumnLayout {
         Kirigami.FormLayout {
-            RowLayout {
+            CheckBox {
                 Kirigami.FormData.label: i18n("Hide widget:")
-                Kirigami.FormData.labelAlignment: Qt.AlignTop
-                RowLayout {
-                CheckBox {
-                    Layout.alignment: Qt.AlignTop
-                    id: hideWidget
-                    checked: cfg_hideWidget
-                    onCheckedChanged: cfg_hideWidget = checked
-                }
-                Label {
-                    Layout.alignment: Qt.AlignTop
-                    text: i18n("Widget will show when configuring or panel Edit Mode")
-                    opacity: 0.7
-                    wrapMode: Text.Wrap
-                    Layout.maximumWidth: 300
-                }
-                }
+                id: hideWidget
+                checked: cfg_hideWidget
+                onCheckedChanged: cfg_hideWidget = checked
+                text: i18n("visible in Panel Edit Mode")
+            }
+            CheckBox {
+                Kirigami.FormData.label: i18n("Debug mode:")
+                id: enableDebug
+                checked: cfg_enableDebug
+                onCheckedChanged: cfg_enableDebug = checked
+                text: i18n("Show debugging information")
             }
         }
     }

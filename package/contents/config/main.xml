@@ -16,6 +16,11 @@
         <default>false</default>
     </entry>
     <entry
+        name="enableDebug"
+        type="Bool">
+        <default>false</default>
+    </entry>
+    <entry
         name="panelWidgets"
         type="String">
         <default>[]</default>
