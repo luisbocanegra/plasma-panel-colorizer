@@ -11,13 +11,10 @@ MouseArea {
     property bool isPanelVertical: plasmoid.formFactor === PlasmaCore.Types.Vertical
     property real itemSize: Math.min(compact.height, compact.width)
     property string icon
-    property bool isEnabled: main.isEnabled
 
     hoverEnabled: true
     onClicked: {
-        console.error("Clicked")
-        main.isEnabled = !main.isEnabled
-        plasmoid.configuration.isEnabled = main.isEnabled
+        plasmoid.configuration.isEnabled = !plasmoid.configuration.isEnabled
         plasmoid.configuration.writeConfig();
     }
 

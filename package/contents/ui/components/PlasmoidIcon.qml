@@ -17,6 +17,6 @@ Item {
         active: compact.containsMouse
         isMask: true
         color: compact.onDesktop ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.textColor
-        opacity: compact.isEnabled ? 1 : 0.5
+        opacity: plasmoid.configuration.isEnabled ? 1 : 0.5
     }
 }
