@@ -5,49 +5,49 @@ ConfigModel {
 
     ConfigCategory {
         name: i18n("Presets")
-        icon: "preferences"
+        icon: "starred-symbolic"
         source: "configPresets.qml"
     }
 
     ConfigCategory {
         name: i18n("Presets autoloading")
-        icon: "system-run"
+        icon: "system-run-symbolic"
         source: "configPresetAutoload.qml"
     }
 
     ConfigCategory {
         name: i18n("Appearance")
-        icon: "preferences"
+        icon: "desktop-symbolic"
         source: "configGlobal.qml"
     }
 
     ConfigCategory {
         name: i18n("Unified background")
-        icon: "preferences"
+        icon: "lines-connector-symbolic"
         source: "configUnifiedBackground.qml"
     }
 
     ConfigCategory {
         name: i18n("Preset Overrides")
-        icon: "preferences"
+        icon: "semi-starred-symbolic"
         source: "configPresetWidgetOverrides.qml"
     }
 
     ConfigCategory {
         name: i18n("User Overrides")
-        icon: "preferences"
+        icon: "user-properties-symbolic"
         source: "configUserWidgetOverrides.qml"
     }
 
     ConfigCategory {
         name: i18n("Text and icons")
-        icon: "preferences-desktop-icons"
+        icon: "color-mode-invert-text-symbolic"
         source: "configForeground.qml"
     }
 
     ConfigCategory {
         name: i18n("General")
-        icon: "preferences"
+        icon: "configure-symbolic"
         source: "configGeneral.qml"
     }
 }
