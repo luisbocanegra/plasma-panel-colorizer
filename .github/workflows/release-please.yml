@@ -1,0 +1,40 @@
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+name: release-please
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+
+      - name: Extract project name
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          PROJECT_NAME=$(grep -Po '(?<=project\().*(?=\))' CMakeLists.txt)
+          echo "PROJECT_NAME=$PROJECT_NAME" >> $GITHUB_ENV
+
+      - name: Generate plasmoid package
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          cd ./package
+          zip -r ../${{ env.PROJECT_NAME }}-${{steps.release.outputs.tag_name}}.plasmoid .
+
+      - name: Upload plasmoid package to release
+        if: ${{ steps.release.outputs.release_created }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload ${{ steps.release.outputs.tag_name }} ./${{ env.PROJECT_NAME }}-${{steps.release.outputs.tag_name}}.plasmoid

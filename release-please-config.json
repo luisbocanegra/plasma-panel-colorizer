@@ -1,0 +1,16 @@
+{
+    "packages": {
+        ".": {
+            "changelog-path": "CHANGELOG.md",
+            "release-type": "simple",
+            "extra-files": [
+                {
+                    "type": "json",
+                    "path": "package/metadata.json",
+                    "jsonpath": "$.KPlugin.Version"
+                }
+            ]
+        }
+    },
+    "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
+}
