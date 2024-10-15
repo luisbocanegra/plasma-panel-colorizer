@@ -513,7 +513,7 @@ PlasmoidItem {
             target: rect.target
             property: "Layout.leftMargin"
             value: marginLeft - extraLSpacing
-            when: isWidget
+            when: isWidget && (marginEnabled || extraLSpacing !== 0)
             delayed: true
         }
 
@@ -521,7 +521,7 @@ PlasmoidItem {
             target: rect.target
             property: "Layout.rightMargin"
             value: marginRight - extraRSpacing
-            when: isWidget
+            when: isWidget && (marginEnabled || extraRSpacing !== 0)
             delayed: true
         }
 
@@ -529,7 +529,7 @@ PlasmoidItem {
             target: rect.target
             property: "Layout.topMargin"
             value: marginTop - extraTSpacing
-            when: isWidget
+            when: isWidget && (marginEnabled || extraTSpacing !== 0)
             delayed: true
         }
 
@@ -537,7 +537,7 @@ PlasmoidItem {
             target: rect.target
             property: "Layout.bottomMargin"
             value: marginBottom - extraBSpacing
-            when: isWidget
+            when: isWidget && (marginEnabled || extraBSpacing !== 0)
             delayed: true
         }
 
