@@ -12,10 +12,10 @@
         "Description": "Latte-Dock and WM status bar customization features for the default Plasma panel",
         "Id": "luisbocanegra.panel.colorizer",
         "EnabledByDefault": false,
-        "Icon":"desktop",
+        "Icon": "desktop",
         "License": "GPL-3.0",
         "Name": "Panel colorizer",
-        "Version": "0.5.2",
+        "Version": "1.0.0",
         "Website": "https://github.com/luisbocanegra/plasma-panel-colorizer"
     },
     "X-Plasma-API-Minimum-Version": "6.0"
