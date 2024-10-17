@@ -72,9 +72,9 @@ KCM.SimpleKCM {
                 textRole: "name"
                 valueRole: "value"
                 model: ListModel {
+                    ListElement { name: "Panel"; value: "panel" }
                     ListElement { name: "Widgets"; value: "widgets" }
                     ListElement { name: "Tray elements"; value: "trayWidgets" }
-                    ListElement { name: "Panel"; value: "panel" }
                 }
                 onCurrentValueChanged: {
                     componentLoader.sourceComponent = null

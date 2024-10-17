@@ -17,7 +17,7 @@ RowLayout {
     RowLayout {
         Layout.alignment: Qt.AlignRight
         Label {
-            text: i18n("Enable:")
+            text: i18n("Enable Panel Colorizer:")
         }
         CheckBox {
             id: isEnabledCheckbox

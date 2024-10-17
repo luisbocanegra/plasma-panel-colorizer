@@ -34,6 +34,8 @@ ColumnLayout {
         tabChanged(currentTab)
     }
 
+    property bool showBlurMessage: false
+
     property var followVisbility: {
         "background": {
             "panel": false,
@@ -80,25 +82,6 @@ ColumnLayout {
                 }
             }
             RowLayout {
-                Label {
-                    text: i18n("Blur behind (Beta):")
-                }
-                CheckBox {
-                    id: blurCheckbox
-                    checked: configLocal.blurBehind
-                    onCheckedChanged: {
-                        configLocal.blurBehind = checked
-                        if (checked) {
-                        }
-                        updateConfig()
-                    }
-                    enabled: isEnabled.checked
-                }
-                Kirigami.ContextualHelpButton {
-                    toolTipText: i18n("Draw a custom blur mask behind the custom background(s).\n\nRequires the C++ plugin to work, check the repository README on GitHub for details.\n\nNative panel background must be enabled with opacity of 0 for this to work as intended.")
-                }
-            }
-            RowLayout {
                 property bool isPanel: keyName === "panel"
                 visible: isPanel
                 Label {
@@ -124,23 +107,50 @@ ColumnLayout {
                         config.nativePanelBackground.opacity = value
                         updateConfig()
                     }
+                    enabled: nativePanelBackgroundCheckbox.checked
                 }
                 Kirigami.ContextualHelpButton {
-                    toolTipText: i18n("Disabling the native Panel background also removes the contrast and blur.\n\nSet this to 0 to keep just the mask required by Blur behind.")
+                    toolTipText: i18n("Disabling the native Panel background also removes the contrast and blur.\n\nSet Opacity to 0 to keep just the mask required by Blur custom background.")
                 }
             }
-        }
-        Item {
-            Layout.fillWidth: true
-        }
-        RowLayout {
-            Layout.alignment: Qt.AlignRight|Qt.AlignTop
-            Label {
-                text: i18n("Last preset loaded:")
+            RowLayout {
+                Label {
+                    text: i18n("Blur custom background (Beta):")
+                }
+                CheckBox {
+                    id: blurCheckbox
+                    checked: configLocal.blurBehind
+                    onCheckedChanged: {
+                        configLocal.blurBehind = checked
+                        if (checked) {
+                        }
+                        updateConfig()
+                    }
+                    enabled: isEnabled.checked && nativePanelBackgroundCheckbox.checked
+                }
+                Button {
+                    checkable: true
+                    checked: showBlurMessage
+                    onClicked: {
+                        showBlurMessage = !showBlurMessage
+                    }
+                    text: i18n("Not working? Read this (click to show)")
+                }
             }
-            Label {
-                text: "None"
-                font.weight: Font.DemiBold
+            Kirigami.InlineMessage {
+                id: warningResources
+                Layout.fillWidth: true
+                text: i18n("Draw a custom blur mask behind the custom background(s).\nRequires the C++ plugin to work, check the repository README on GitHub for details.\nNative panel background must be enabled with opacity of 0 for this to work as intended.")
+                visible: showBlurMessage
+                actions: [
+                    Kirigami.Action {
+                        icon.name: "view-readermode-symbolic"
+                        text: "Plugin install instructions"
+                        onTriggered: {
+                            Qt.openUrlExternally("https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually")
+                        }
+                    }
+                ]
             }
         }
     }
