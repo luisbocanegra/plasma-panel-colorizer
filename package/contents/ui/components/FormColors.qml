@@ -192,6 +192,7 @@ Kirigami.FormLayout {
             }
         }
         enabled: isEnabled
+        visible: false
     }
 
     SpinBox {
@@ -206,6 +207,7 @@ Kirigami.FormLayout {
             updateConfig()
         }
         enabled: animationCheckbox.checked && isEnabled
+        visible: false
     }
 
     SpinBox {
@@ -220,6 +222,7 @@ Kirigami.FormLayout {
             updateConfig()
         }
         enabled: animationCheckbox.checked && isEnabled
+        visible: false
     }
 
     RadioButton {
