@@ -31,7 +31,7 @@ PlasmoidItem {
     property bool hideWidget: plasmoid.configuration.hideWidget
     property bool fixedSidePaddingEnabled: isEnabled && panelSettings.padding.enabled
     property bool isEnabled: plasmoid.configuration.isEnabled
-    property bool nativePanelBackgroundEnabled: isEnabled ? cfg.nativePanelBackground.enabled : enabled
+    property bool nativePanelBackgroundEnabled: (isEnabled ? cfg.nativePanelBackground.enabled : enabled) || doPanelClickFix
     property real nativePanelBackgroundOpacity: isEnabled ? cfg.nativePanelBackground.opacity : 1.0
     property var panelWidgets: []
     property int panelWidgetsCount: panelWidgets?.length || 0
@@ -64,6 +64,7 @@ PlasmoidItem {
     }
 
     property var unifiedBackgroundTracker: []
+    property bool doPanelClickFix: false
     property bool doPanelLengthFix: false
 
     property var cfg: {
@@ -122,11 +123,23 @@ PlasmoidItem {
         recolorCountChanged()
     }
 
+    // HACK: temporary enable panel mask on geometry change
+    // to fix broken clickable area
+    // https://github.com/luisbocanegra/plasma-panel-colorizer/issues/100
+    // maybe also related to https://bugs.kde.org/show_bug.cgi?id=489086
+
+    function runPanelClickFix() {
+        doPanelClickFix = true
+        doPanelClickFix = false
+    }
+
     onPanelWidthChanged: {
+        runPanelClickFix()
         updateMasks()
     }
 
     onPanelHeightChanged: {
+        runPanelClickFix()
         updateMasks()
     }
 
