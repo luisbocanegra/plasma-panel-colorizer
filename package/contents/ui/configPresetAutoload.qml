@@ -15,10 +15,10 @@ KCM.SimpleKCM {
     property string presetsDir: StandardPaths.writableLocation(
                     StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/presets"
     property string cratePresetsDirCmd: "mkdir -p " + presetsDir
-    property string presetsBuiltinDir: Utils.getWidgetRootDir()+"ui/presets/"
-
-    property string listUserPresetsCmd: "find "+presetsDir+" -mindepth 1 -prune -type d -print0 | while IFS= read -r -d '' preset; do echo u:\"$preset\"; done | sort"
-    property string listBuiltinPresetsCmd: "find "+presetsBuiltinDir+" -mindepth 1 -prune -type d -print0 | while IFS= read -r -d '' preset; do echo b:\"$preset\"; done | sort"
+    property string presetsBuiltinDir: Qt.resolvedUrl("./presets").toString().substring(7) + "/"
+    property string toolsDir: Qt.resolvedUrl("./tools").toString().substring(7) + "/"
+    property string listUserPresetsCmd: "'" + toolsDir + "list_presets.sh' '" + presetsDir + "'"
+    property string listBuiltinPresetsCmd: "'" + toolsDir + "list_presets.sh' '" + presetsBuiltinDir + "'"
     property string listPresetsCmd: listBuiltinPresetsCmd+";"+listUserPresetsCmd
 
     property string cfg_presetAutoloading
