@@ -64,6 +64,7 @@ PlasmoidItem {
     }
 
     property var unifiedBackgroundTracker: []
+    property bool doPanelLengthFix: false
 
     property var cfg: {
         try {
@@ -1120,6 +1121,39 @@ PlasmoidItem {
     onContainmentItemChanged: {
         if(!containmentItem) return
         Utils.toggleTransparency(containmentItem, nativePanelBackgroundEnabled)
+    }
+
+    // HACK: change panelLayout spacing on startup to trigger a length reload
+    // BUG: https://bugs.kde.org/show_bug.cgi?id=489086
+    // https://github.com/luisbocanegra/plasma-panel-colorizer/issues/100
+
+    onPanelLayoutChanged: {
+        if (!panelLayout) return
+        panelFixTimer.start()
+    }
+
+    Timer {
+        id: panelFixTimer
+        repeat: false
+        interval: 1000
+        onTriggered: {
+            doPanelLengthFix = true
+            doPanelLengthFix = false
+        }
+    }
+
+    Binding {
+        target: panelLayout
+        property: "columnSpacing"
+        value: 0
+        when: doPanelLengthFix
+    }
+
+    Binding {
+        target: panelLayout
+        property: "rowSpacing"
+        value: 0
+        when: doPanelLengthFix
     }
 
     onNativePanelBackgroundEnabledChanged: {
