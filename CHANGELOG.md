@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v1.0.0...v1.0.1) (2024-10-22)
+
+
+### Bug Fixes
+
+* list presets from separate bash script to avoid default shell limitation ([244ec16](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/244ec1623011c2bf366c88310a784be0b6a46c7b))
+* temporary enable panel mask on geometry change to fix broken clickable area ([5b20412](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/5b20412ca2dca07456e763aac622d154524602d9))
+* update panel length on startup to fix shrank fit content panel ([91f3fa3](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/91f3fa3249d084a252edb7f02b64dc068c3508b1))
+
 ## [1.0.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v0.5.2...v1.0.0) (2024-10-17)
 
 
