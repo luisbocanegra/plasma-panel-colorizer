@@ -19,7 +19,7 @@ KCM.SimpleKCM {
     property string presetsBuiltinDir: Qt.resolvedUrl("./presets").toString().substring(7) + "/"
     property string toolsDir: Qt.resolvedUrl("./tools").toString().substring(7) + "/"
     property string listUserPresetsCmd: "'" + toolsDir + "list_presets.sh' '" + presetsDir + "'"
-    property string listBuiltinPresetsCmd: "'" + toolsDir + "list_presets.sh' '" + presetsBuiltinDir + "'"
+    property string listBuiltinPresetsCmd: "'" + toolsDir + "list_presets.sh' '" + presetsBuiltinDir + "' b"
     property string listPresetsCmd: listBuiltinPresetsCmd+";"+listUserPresetsCmd
     property string spectaclePreviewCmd: "spectacle -bn -r -o "
     property var presets: ({})
@@ -54,6 +54,7 @@ KCM.SimpleKCM {
     Connections {
         target: runCommand
         function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
+            console.error(cmd, exitCode, exitStatus, stdout, stderr)
             if (exitCode!==0) return
             if(cmd === listPresetsCmd) {
                 presets = ({})
