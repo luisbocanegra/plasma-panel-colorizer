@@ -31,7 +31,7 @@ PlasmoidItem {
     property bool hideWidget: plasmoid.configuration.hideWidget
     property bool fixedSidePaddingEnabled: isEnabled && panelSettings.padding.enabled
     property bool isEnabled: plasmoid.configuration.isEnabled
-    property bool nativePanelBackgroundEnabled: (isEnabled ? cfg.nativePanelBackground.enabled : enabled) || doPanelClickFix
+    property bool nativePanelBackgroundEnabled: (isEnabled ? cfg.nativePanelBackground.enabled : true) || doPanelClickFix
     property real nativePanelBackgroundOpacity: isEnabled ? cfg.nativePanelBackground.opacity : 1.0
     property var panelWidgets: []
     property int panelWidgetsCount: panelWidgets?.length || 0
