@@ -710,7 +710,7 @@ PlasmoidItem {
                 visible: false
                 border {
                     color: borderRec.borderColor
-                    width: cfg.border.width || -1
+                    width: !cfg.border.customSides ? cfg.border.width || -1 : 0
                 }
                 corners {
                     topLeftRadius: topLeftRadius
