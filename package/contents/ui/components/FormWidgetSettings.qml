@@ -21,8 +21,6 @@ ColumnLayout {
     property var config: handleString ? JSON.parse(configString) : undefined
     property var configLocal: keyName ? config[keyName] : config
     signal updateConfigString(configString: string, config: var)
-    // whether the current item supports foreground customization, e.g the panel does not
-    property bool supportsForeground: true
 
     property alias isEnabled: isEnabled.checked
 
@@ -231,7 +229,8 @@ ColumnLayout {
 
     FormColors {
         enabled: backgroundRoot.isEnabled
-        visible: currentTab === 0 && supportsForeground
+        // the panel does not support foreground customization
+        visible: currentTab === 0 && keyName !== "panel"
         config: backgroundRoot.configLocal.foregroundColor
         isSection: true
         onUpdateConfigString: (newString, newConfig) => {
