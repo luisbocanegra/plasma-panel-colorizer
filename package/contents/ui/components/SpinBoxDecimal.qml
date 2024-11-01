@@ -11,7 +11,12 @@ TextField {
     property real value: 0
 
     placeholderText: "0-1"
-    text: value.toFixed(validator.decimals).toString() ?? "0.00"
+    text: "0.00"
+
+    onTextChanged: {
+        if (!acceptableInput) return
+        value = parseFloat(text).toFixed(2)
+    }
 
     validator: DoubleValidator {
         bottom: root.from
@@ -22,6 +27,7 @@ TextField {
 
     onValueChanged: {
         root.value = isNaN(value) ? 0 : value
+        text = root.value.toFixed(validator.decimals).toString() ?? "0.00"
     }
 
     ValueMouseControl {
