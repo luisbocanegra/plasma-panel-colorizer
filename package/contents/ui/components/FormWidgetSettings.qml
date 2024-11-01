@@ -130,7 +130,7 @@ ColumnLayout {
                         }
                         updateConfig()
                     }
-                    enabled: isEnabled.checked && nativePanelBackgroundCheckbox.checked
+                    enabled: isEnabled.checked
                 }
                 Button {
                     checkable: true
