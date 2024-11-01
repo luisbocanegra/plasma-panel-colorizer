@@ -22,10 +22,9 @@ ColumnLayout {
     property var config: handleString ? JSON.parse(configString) : undefined
     property var configLocal: keyName ? config[keyName] : config
     signal updateConfigString(configString: string, config: var)
-
     property alias isEnabled: isEnabled.checked
-
     property int currentTab
+    property var panelColorizer: null
 
     signal tabChanged(currentTab: int)
 
@@ -58,6 +57,15 @@ ColumnLayout {
         // console.error(configString)
         updateConfigString(configString, config)
         // console.error(JSON.stringify(configLocal, null, null))
+    }
+
+    Component.onCompleted: {
+        try {
+            panelColorizer = Qt.createQmlObject("import org.kde.plasma.panelcolorizer 1.0; PanelColorizer { id: panelColorizer }", backgroundRoot)
+            console.error("QML Plugin org.kde.plasma.panelcolorizer loaded");
+        } catch (err) {
+            console.error("QML Plugin org.kde.plasma.panelcolorizer not found");
+        }
     }
 
     RowLayout {
@@ -132,20 +140,16 @@ ColumnLayout {
                     }
                     enabled: isEnabled.checked
                 }
-                Button {
-                    checkable: true
-                    checked: showBlurMessage
-                    onClicked: {
-                        showBlurMessage = !showBlurMessage
-                    }
-                    text: i18n("Not working? Read this (click to show)")
+                Kirigami.ContextualHelpButton {
+                    toolTipText: i18n("Draw a custom blur mask behind the custom background(s).<br><strong>Native panel background must be enabled with opacity of 0 for this to work as intended.</strong>")
                 }
             }
             Kirigami.InlineMessage {
                 id: warningResources
                 Layout.fillWidth: true
-                text: i18n("Draw a custom blur mask behind the custom background(s).<br>Requires the C++ plugin to work, check the repository README on GitHub for details.<br><strong>Native panel background must be enabled with opacity of 0 for this to work as intended.</strong>")
-                visible: showBlurMessage
+                text: i18n("C++ plugin not installed, <b>Blur custom background</b> will not work.<br>Check the repository README on GitHub for details.")
+                visible: panelColorizer === null
+                type: Kirigami.MessageType.Warning
                 actions: [
                     Kirigami.Action {
                         icon.name: "view-readermode-symbolic"
