@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-set(PROJECT_NAME "plasmoid-panel-colorizer")
-project(${PROJECT_NAME})
+project("plasmoid-panel-colorizer")
 option(BUILD_PLUGIN "Build the plugin" OFF)
 option(INSTALL_PLASMOID "Install plasmoid" OFF)
 option(PACKAGE_PLASMOID "Package plasmoid" OFF)
