@@ -95,6 +95,7 @@ KCM.SimpleKCM {
                 item.currentTab = root.currentTab
                 item.handleString = true
                 item.keyName = targetComponent.currentValue
+                item.keyFriendlyName = targetComponent.currentText
                 item.followVisbility = root.followVisbility[targetComponent.currentValue]
                 item.tabChanged.connect((currentTab) => {
                     root.currentTab = currentTab

@@ -269,6 +269,7 @@ KCM.SimpleKCM {
 
                                 Button {
                                     id: loadBtn
+                                    icon.name: "dialog-ok-apply-symbolic"
                                     text: i18n("Load")
                                     Layout.preferredHeight: saveBtn.height
                                     onClicked: {

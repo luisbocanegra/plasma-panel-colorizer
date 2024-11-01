@@ -16,6 +16,7 @@ ColumnLayout {
     property bool handleString: false
     // key to extract config from
     property string keyName
+    property string keyFriendlyName
     // internal config objects to be sent, both string and json
     property string configString: "{}"
     property var config: handleString ? JSON.parse(configString) : undefined
@@ -68,7 +69,7 @@ ColumnLayout {
             RowLayout {
                 // Layout.alignment: Qt.AlignRight
                 Label {
-                    text: i18n("Enable:")
+                    text: i18n("Enable") + " " + keyFriendlyName + " " + i18n("customization") + ":"
                 }
                 CheckBox {
                     id: isEnabled
@@ -80,8 +81,7 @@ ColumnLayout {
                 }
             }
             RowLayout {
-                property bool isPanel: keyName === "panel"
-                visible: isPanel
+                visible: keyName === "panel"
                 Label {
                     text: i18n("Native panel background:")
                 }
@@ -93,8 +93,14 @@ ColumnLayout {
                         updateConfig()
                     }
                 }
+                Kirigami.ContextualHelpButton {
+                    toolTipText: i18n("Disable to make panel fully transparent, removes contrast and blur effects.")
+                }
+            }
+            RowLayout {
+                visible: keyName === "panel"
                 Label {
-                    text: i18n("Opacity:")
+                    text: i18n("Panel Opacity:")
                 }
                 SpinBoxDecimal {
                     Layout.preferredWidth: backgroundRoot.Kirigami.Units.gridUnit * 5
@@ -108,7 +114,7 @@ ColumnLayout {
                     enabled: nativePanelBackgroundCheckbox.checked
                 }
                 Kirigami.ContextualHelpButton {
-                    toolTipText: i18n("Disabling the native Panel background also removes the contrast and blur.\n\nSet Opacity to 0 to keep just the mask required by Blur custom background.")
+                    toolTipText: i18n("Set Opacity to 0 to keep just the mask required by Blur custom background.")
                 }
             }
             RowLayout {
@@ -138,7 +144,7 @@ ColumnLayout {
             Kirigami.InlineMessage {
                 id: warningResources
                 Layout.fillWidth: true
-                text: i18n("Draw a custom blur mask behind the custom background(s).\nRequires the C++ plugin to work, check the repository README on GitHub for details.\nNative panel background must be enabled with opacity of 0 for this to work as intended.")
+                text: i18n("Draw a custom blur mask behind the custom background(s).<br>Requires the C++ plugin to work, check the repository README on GitHub for details.<br><strong>Native panel background must be enabled with opacity of 0 for this to work as intended.</strong>")
                 visible: showBlurMessage
                 actions: [
                     Kirigami.Action {
@@ -166,25 +172,25 @@ ColumnLayout {
         }
         actions: [
             Kirigami.Action {
-                icon.name: "globe"
+                icon.name: "color-picker"
                 text: "Color"
                 checked: currentTab === 0
                 onTriggered: currentTab = 0
             },
             Kirigami.Action {
-                icon.name: "globe"
+                icon.name: "rectangle-shape-symbolic"
                 text: "Shape"
                 checked: currentTab === 1
                 onTriggered: currentTab = 1
             },
             Kirigami.Action {
-                icon.name: "globe"
+                icon.name: "bordertool-symbolic"
                 text: "Border"
                 checked: currentTab === 2
                 onTriggered: currentTab = 2
             },
             Kirigami.Action {
-                icon.name: "globe"
+                icon.name: "kstars_horizon-symbolic"
                 text: "Shadow"
                 checked: currentTab === 3
                 onTriggered: currentTab = 3

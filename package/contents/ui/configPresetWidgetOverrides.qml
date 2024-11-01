@@ -194,6 +194,8 @@ KCM.SimpleKCM {
                         root.updateConfig()
                     })
                     item.currentTab = root.currentTab
+                    item.keyName = "widgets"
+                    item.keyFriendlyName = "Widgets"
                     item.tabChanged.connect((currentTab) => {
                         root.currentTab = currentTab
                     })

@@ -147,7 +147,7 @@ KCM.SimpleKCM {
     Kirigami.FormLayout {
 
         Label {
-            text: i18n("<strong>[M]ask</strong>: Force Icon colorization (symbolic icons).<br><strong>[E]ffect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>[R]efresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content themselves<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout.")
+            text: i18n("<strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content themselves<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout.")
             opacity: 0.7
             Layout.maximumWidth: widgetCards.width
             wrapMode: Text.Wrap
