@@ -215,7 +215,7 @@ const defaultConfig = {
   "trayWidgets": baseTrayConfig,
   "nativePanelBackground": {
     "enabled": true,
-    "opacity": "1.00"
+    "opacity": 1.0
   },
   "forceForegroundColor": {
     "widgets": {
