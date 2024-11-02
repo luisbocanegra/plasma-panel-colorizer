@@ -118,12 +118,23 @@ KCM.SimpleKCM {
             ComboBox {
                 model: presetsModel
                 textRole: "name"
-                Kirigami.FormData.label: i18n("Maximized window is shown:")
+                Kirigami.FormData.label: i18n("Maximized window:")
                 onCurrentIndexChanged: {
                     autoLoadConfig.maximized = model.get(currentIndex)["value"]
                     updateConfig()
                 }
                 currentIndex: getIndex(model, autoLoadConfig.maximized)
+            }
+
+            CheckBox {
+                // Kirigami.FormData.label: i18n("Active window only:")
+                text: i18n("Active window only")
+                checked: autoLoadConfig.maximizedFilterByActive
+                onCheckedChanged: {
+                    autoLoadConfig.maximizedFilterByActive = checked
+                    updateConfig()
+                }
+                enabled: autoLoadConfig.maximized ?? "" !== ""
             }
 
             ComboBox {

@@ -19,7 +19,7 @@
  */
 
 import QtQuick
-import org.kde.taskmanager 0.1 as TaskManager
+import org.kde.taskmanager as TaskManager
 
 Item {
 
@@ -34,11 +34,15 @@ Item {
     property var isWindow: abstractTasksModel.IsWindow
     property var isFullScreen: abstractTasksModel.IsFullScreen
     property var isMinimized: abstractTasksModel.IsMinimized
+    property bool filterByActive: false
+    property var activeTask: null
 
     Connections {
         target: plasmoid.configuration
         function onValueChanged() {
-            updateWindowsinfo()
+            if (!updateTimer.running) {
+                updateTimer.start()
+            }
         }
     }
 
@@ -63,13 +67,17 @@ Item {
         filterByActivity: true
         filterMinimized: true
 
-        onActiveTaskChanged: {
-            updateWindowsinfo()
-        }
         onDataChanged: {
-            updateWindowsinfo()
+            if (!updateTimer.running) {
+                updateTimer.start()
+            }
         }
-        onCountChanged: {
+    }
+
+    Timer {
+        id: updateTimer
+        interval: 5
+        onTriggered: {
             updateWindowsinfo()
         }
     }
@@ -80,13 +88,14 @@ Item {
         let maximizedCount = 0
         for (var i = 0; i < tasksModel.count; i++) {
             const currentTask = tasksModel.index(i, 0)
-            if (currentTask === undefined) continue
-            if (tasksModel.data(currentTask, isWindow)) {
-                if (tasksModel.data(currentTask, isMaximized) || tasksModel.data(currentTask, isFullScreen)) maximizedCount+=1
-            }
+            if (currentTask === undefined || !tasksModel.data(currentTask, isWindow)) continue
+            const active = tasksModel.data(currentTask, isActive)
+            if (filterByActive && !active) continue
+            if (active) activeTask = currentTask
+            if (tasksModel.data(currentTask, isMaximized)) maximizedCount += 1
         }
         root.visibleExists = visibleCount > 0
-        root.maximizedExists = maximizedCount > 0
+        root.maximizedExists = filterByActive ? tasksModel.data(activeTask, isMaximized) : maximizedCount > 0
         root.activeExists = activeCount > 0
     }
 }
