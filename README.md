@@ -101,32 +101,40 @@ Overrides let you give a completely different configuration to one or more widge
 
 ### Manually
 
-  1. Install these dependencies or the equivalents for your distribution
+1. Install these dependencies or the equivalents for your distribution
+
+   * Arch
 
       ```txt
-      git cmake extra-cmake-modules libplasma plasma5support spectacle
+      git gcc cmake extra-cmake-modules libplasma spectacle
       ```
 
-      Spectacle will be used to create preset previews
+   * Fedora
 
-  2. Run
+      ```txt
+      git gcc-c++ cmake extra-cmake-modules libplasma-devel spectacle
+      ```
+
+    Spectacle is optional, will be used to create preset previews
+
+2. Clone and install
 
       ```sh
-        git clone https://github.com/luisbocanegra/plasma-panel-colorizer
-        cd plasma-panel-colorizer
-        ```
+      git clone https://github.com/luisbocanegra/plasma-panel-colorizer
+      cd plasma-panel-colorizer
+      ```
 
-      * Install widget + plugin
+   * Install widget + plugin
 
-        ```sh
-        ./install.sh
-        ```
+    ```sh
+    ./install.sh
+    ```
 
-      * Install only the plugin if you already have the widget
+   * Install only the plugin if you already have the widget
 
-        ```sh
-        ./install-plugin.sh
-        ```
+   ```sh
+   ./install-plugin.sh
+   ```
 
 ### Arch Linux
 
