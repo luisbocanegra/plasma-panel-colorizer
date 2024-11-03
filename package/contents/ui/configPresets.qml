@@ -81,6 +81,10 @@ KCM.SimpleKCM {
             }
             if (cmd.startsWith("echo")) {
                 reloadPresetList()
+                createPreviewDialog.open()
+            }
+            if (cmd.startsWith("spectacle")) {
+                reloadPresetList()
             }
         }
     }
@@ -103,6 +107,16 @@ KCM.SimpleKCM {
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {
             savePreset(editingPreset)
+        }
+    }
+
+    Kirigami.PromptDialog {
+        id: createPreviewDialog
+        title: "Create preview?"
+        subtitle: i18n("Current preview will be overwritten!")
+        standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
+        onAccepted: {
+            runCommand.run(spectaclePreviewCmd+"'" + editingPreset + "/preview.png'")
         }
     }
 
@@ -149,9 +163,7 @@ KCM.SimpleKCM {
             }
         }
         runCommand.run("mkdir -p '"+presetDir+"'")
-        runCommand.run("echo '" + JSON.stringify(output) + "' > '" + presetDir + "/settings.json' && " +
-            spectaclePreviewCmd+"'" + presetDir + "/preview.png'"
-        )
+        runCommand.run("echo '" + JSON.stringify(output) + "' > '" + presetDir + "/settings.json'")
     }
 
     function deletePreset(path) {
@@ -235,7 +247,11 @@ KCM.SimpleKCM {
                     model: Object.keys(presets)
                     delegate: Kirigami.AbstractCard {
                         contentItem: ColumnLayout {
+                            width: row.implicitWidth
+                            height: row.implicitHeight + scrollView.implicitHeight
+                            property string currentPreset: presets[modelData].dir
                             RowLayout {
+                                id: row
                                 Label {
                                     text: (parseInt(index)+1).toString()+"."
                                     font.bold: true
@@ -292,17 +308,28 @@ KCM.SimpleKCM {
                                     icon.name: "edit-delete-remove-symbolic"
                                     onClicked: {
                                         editingPreset = presets[modelData].dir
-                                        onClicked: deletePresetDialog.open()
+                                        deletePresetDialog.open()
                                     }
                                     visible: !presets[modelData].builtin
                                 }
                             }
-
+                            Button {
+                                text: i18n("Create preview")
+                                icon.name: "insert-image-symbolic"
+                                visible: !scrollView.visible
+                                Layout.alignment: Qt.AlignHCenter
+                                onClicked: {
+                                    runCommand.run(spectaclePreviewCmd+"'" + presets[modelData].dir + "/preview.png'")
+                                }
+                            }
                             ScrollView {
                                 Layout.preferredWidth: 500
                                 Layout.maximumHeight: 100
                                 id: scrollView
                                 visible: false
+                                contentWidth: image.implicitWidth
+                                contentHeight: image.implicitHeight
+
                                 Image {
                                     id: image
                                     onStatusChanged: if (image.status == Image.Ready) {
@@ -324,6 +351,64 @@ KCM.SimpleKCM {
                                     }
                                     Component.onCompleted: {
                                         root.refreshImage.connect(refresh)
+                                    }
+                                }
+                                Button {
+                                    id: btn
+                                    visible: true
+                                    text: i18n("Update preview")
+                                    anchors.fill: parent
+                                    icon.name: "edit-image-symbolic"
+                                    onClicked: {
+                                        runCommand.run(spectaclePreviewCmd+"'" + presets[modelData].dir+"/preview.png" + "'")
+                                    }
+                                    property bool showTooltip: false
+                                    property bool hasPosition: tooltipX !== 0 && tooltipY !== 0
+                                    property int tooltipX: 0
+                                    property int tooltipY: 0
+                                    ToolTip {
+                                        text: i18n("Update preview")
+                                        parent: btn
+                                        visible: parent.showTooltip && parent.hasPosition
+                                        x: parent.tooltipX - width / 2
+                                        y: parent.tooltipY - height - 2
+                                        delay: 1
+                                    }
+                                    background: Rectangle {
+                                        anchors.fill: parent
+                                        property color bgColor: parent.Kirigami.Theme.highlightColor
+                                        color: Qt.rgba(bgColor.r, bgColor.g, bgColor.b, hoverHandler.hovered ? 0.6 : 0)
+
+                                        HoverHandler {
+                                            id: hoverHandler
+                                            enabled: !presets[modelData].builtin
+                                            cursorShape: hovered ? Qt.PointingHandCursor : Qt.ArrowCursor
+                                            onHoveredChanged: {
+                                                if (hovered) {
+                                                    btn.tooltipX = 0
+                                                    btn.tooltipY = 0
+                                                }
+                                                btn.showTooltip = hovered
+                                                if (!hovered) hoverTimer.stop()
+                                            }
+                                            onPointChanged: {
+                                                hoverTimer.restart()
+                                            }
+                                        }
+                                        TapHandler {
+                                            enabled: !presets[modelData].builtin
+                                            onTapped: runCommand.run(
+                                                spectaclePreviewCmd+"'" + presets[modelData].dir+"/preview.png" + "'"
+                                            )
+                                        }
+                                        Timer {
+                                            id: hoverTimer
+                                            interval: 500
+                                            onTriggered: {
+                                                btn.tooltipX = hoverHandler.point.position.x
+                                                btn.tooltipY = hoverHandler.point.position.y
+                                            }
+                                        }
                                     }
                                 }
                             }
