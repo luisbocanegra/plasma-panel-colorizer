@@ -1298,6 +1298,13 @@ PlasmoidItem {
         }
     }
 
+    PlasmaCore.Action {
+        id: configureAction
+        text: plasmoid.internalAction("configure").text
+        icon.name: 'configure'
+        onTriggered: plasmoid.internalAction("configure").trigger()
+    }
+
     function showWidgets(panelLayout) {
         console.error("showWidgets()")
         for (var i in panelLayout.children) {
@@ -1307,7 +1314,9 @@ PlasmoidItem {
             if (!child.applet?.plasmoid?.pluginName) continue
             // if (Utils.getBgManaged(child)) continue
             // console.error(child.applet?.plasmoid?.pluginName)
-            // Utils.dumpProps(child)
+            if (child.applet.plasmoid.pluginName !== "luisbocanegra.panel.colorizer") {
+                child.applet.plasmoid.contextualActions.push(configureAction)
+            }
             const isTray = child.applet.plasmoid.pluginName === "org.kde.plasma.systemtray"
             if (isTray) trayIndex = i
             const bgItem = Utils.getBgManaged(child)
