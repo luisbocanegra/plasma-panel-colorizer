@@ -83,13 +83,6 @@ KCM.SimpleKCM {
         return 0;
     }
 
-    function dumpProps(obj) {
-        console.error("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        for (var k of Object.keys(obj)) {
-            print(k + "=" + obj[k]+"\n")
-        }
-    }
-
     Component.onCompleted: {
         runCommand.run(cratePresetsDirCmd)
         runCommand.run(listPresetsCmd)
@@ -105,6 +98,12 @@ KCM.SimpleKCM {
 
     ColumnLayout {
         enabled: cfg_isEnabled
+        Kirigami.InlineMessage {
+            Layout.fillWidth: true
+            text: i18n("Disable preset auto-loading when making changes to presets, unsaved preset settings will be lost when presets change!")
+            visible: true
+            type: Kirigami.MessageType.Information
+        }
         Label {
             text: i18n("Switch between different panel presets based on the Panel and window states")
             Layout.maximumWidth: root.width - (Kirigami.Units.gridUnit * 2)
@@ -112,6 +111,15 @@ KCM.SimpleKCM {
         }
 
         Kirigami.FormLayout {
+            CheckBox {
+                id: enabledCheckbox
+                Kirigami.FormData.label: i18n("Enabled:")
+                checked: autoLoadConfig.enabled
+                onCheckedChanged: {
+                    autoLoadConfig.enabled = checked
+                    updateConfig()
+                }
+            }
             Kirigami.ContextualHelpButton {
                 toolTipText: i18n("Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the <b>Maximized</b> preset will be applied.")
             }
@@ -124,6 +132,7 @@ KCM.SimpleKCM {
                     updateConfig()
                 }
                 currentIndex: getIndex(model, autoLoadConfig.maximized)
+                enabled: enabledCheckbox.checked
             }
 
             CheckBox {
@@ -134,7 +143,7 @@ KCM.SimpleKCM {
                     autoLoadConfig.maximizedFilterByActive = checked
                     updateConfig()
                 }
-                enabled: autoLoadConfig.maximized ?? "" !== ""
+                enabled: (autoLoadConfig.maximized ?? "" !== "") && enabledCheckbox.checked
             }
 
             ComboBox {
@@ -146,6 +155,7 @@ KCM.SimpleKCM {
                     updateConfig()
                 }
                 currentIndex: getIndex(model, autoLoadConfig.touchingWindow)
+                enabled: enabledCheckbox.checked
             }
 
             ComboBox {
@@ -157,6 +167,7 @@ KCM.SimpleKCM {
                     updateConfig()
                 }
                 currentIndex: getIndex(model, autoLoadConfig.floating)
+                enabled: enabledCheckbox.checked
             }
 
             ComboBox {
@@ -168,6 +179,7 @@ KCM.SimpleKCM {
                     updateConfig()
                 }
                 currentIndex: getIndex(model, autoLoadConfig.normal)
+                enabled: enabledCheckbox.checked
             }
         }
     }

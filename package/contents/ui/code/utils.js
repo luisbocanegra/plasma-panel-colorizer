@@ -340,6 +340,7 @@ function loadPreset(presetContent, item, ignoredConfigs, defaults, store) {
 }
 
 function getPresetName(panelState, presetAutoloading) {
+  if (presetAutoloading.hasOwnProperty("enabled") && !presetAutoloading.enabled) return null
   // loop until we find a the currently active 'true' panel state with a configured preset
   // normal is our fallback so does not need active state
   const priority = ["maximized", "touchingWindow", "floating", "normal"]
