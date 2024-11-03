@@ -1,5 +1,31 @@
 # Changelog
 
+## [1.1.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v1.0.1...v1.1.0) (2024-11-03)
+
+
+### Features
+
+* add current version and project urls to header ([ab7fa2c](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/ab7fa2c7934ee7cfaaf29146fc57314513b05d90))
+* add filter by active windows for maximized preset auto-loading ([c6dfe49](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/c6dfe4918ade255162bbbfd706eca38f678aa09c))
+* allow configuring stock panel settings ([6de0278](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/6de0278901d177c5611e5143664d91503c1e8b35))
+* allow disabling preset auto-loading ([20a77d0](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/20a77d042578ce37566c669d752e82e3e1fde069))
+* open widget configuration from right click menu on any widget ([e4c88d3](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/e4c88d3ac22ade661ecbe46dfa4ad0d6358a63aa))
+* prompt to take preview screenshot after saving preset ([2bfe9c2](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/2bfe9c2109836069c55257da7f84e56b8e9af704))
+* reword some settings and update icons ([d5b4057](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/d5b4057e55732775fa8666d8be5551966d14d706))
+* show when the C++ plugin is not installed from widget settings ([9a1f7ea](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/9a1f7ea6f9adc9a7e1a511855eb38aebd0b19d64))
+* update wording and  use more information messages ([7104389](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/710438998ba992b5b1c119c8dac45097a749eac8))
+
+
+### Bug Fixes
+
+* allow editing float spinbox manually ([3882199](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/3882199ee6d3c727293c1bf3f9034c27c4346b52))
+* allow overriding custom background blur ([04c1bc8](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/04c1bc8c437c260c09265cd40c345f4b11eaf13f))
+* disable regular border if custom border is enabled ([21ed741](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/21ed74167eee114f1cc5d47ece8dd6bc8fefb72c))
+* native background toggle ([9054b7a](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/9054b7a0730c776925104cf757955649923e1126))
+* Non-built-in presets incorrectly marked as built-in ([11f8e91](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/11f8e916d047a68b7afebf426d00b43f00eb2011))
+* remove unused panel foreground color ([ec2c56d](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/ec2c56d042d6c8d8c75af7fea5e2ecdf8a502ccc))
+* use correct type for default panel opacity ([1aa9029](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/1aa90295dd45e785d9b732de56a7aa978dd6ed2f))
+
 ## [1.0.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v1.0.0...v1.0.1) (2024-10-22)
 
 
