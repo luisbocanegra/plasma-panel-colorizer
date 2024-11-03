@@ -209,6 +209,37 @@ const baseOverrideConfig = {
   "disabledFallback": true
 }
 
+const baseStockPanelSettings = {
+  "position": {
+    "enabled": false,
+    "value": "top"
+  },
+  "alignment": {
+    "enabled": false,
+    "value": "center"
+  },
+  "lengthMode": {
+    "enabled": false,
+    "value": "fill"
+  },
+  "visibility": {
+    "enabled": false,
+    "value": "none"
+  },
+  "opacity": {
+    "enabled": false,
+    "value": "adaptive"
+  },
+  "floating": {
+    "enabled": false,
+    "value": false
+  },
+  "thickness": {
+    "enabled": false,
+    "value": 48
+  }
+}
+
 const defaultConfig = {
   "panel": basePanelConfig,
   "widgets": baseWidgetConfig,
@@ -236,14 +267,7 @@ const defaultConfig = {
     },
     "reloadInterval": 250
   },
-  "stockPanelSettings": {
-    "position": 3,
-    "alignment": 2,
-    "width": 2,
-    "visibility": 3,
-    "opacity": 2,
-    "floating": false
-  },
+  "stockPanelSettings": baseStockPanelSettings,
   "configurationOverrides": {
     "overrides": {},
     "associations": {}

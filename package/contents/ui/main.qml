@@ -23,6 +23,25 @@ PlasmoidItem {
     property int trayGridViewCount: trayGridView?.count || 0
     property int trayGridViewCountOld: 0
     property var panelPrefixes: ["north","south","west","east"]
+    property var panelPosition: {
+        var location
+        var screen = main.screen
+        switch (plasmoid.location) {
+            case PlasmaCore.Types.TopEdge:
+            location = "top"
+            break
+            case PlasmaCore.Types.BottomEdge:
+            location = "bottom"
+            break
+            case PlasmaCore.Types.LeftEdge:
+            location = "left"
+            break
+            case PlasmaCore.Types.RightEdge:
+            location = "right"
+            break
+        }
+        return { "screen": screen, "location": location }
+    }
     property bool horizontal: Plasmoid.formFactor === PlasmaCore.Types.Horizontal
     property bool editMode: Plasmoid.containment.corona?.editMode ?? false
     property bool onDesktop: plasmoid.location === PlasmaCore.Types.Floating
@@ -101,6 +120,7 @@ PlasmoidItem {
     }
     property var widgetSettings: cfg.widgets
     property var panelSettings: cfg.panel
+    property var stockPanelSettings: cfg.stockPanelSettings
     property var trayWidgetSettings: cfg.trayWidgets
     property var unifiedBackgroundSettings: cfg.unifiedBackground
     property var forceRecolorList: forceForegroundColor?.widgets ?? {}
@@ -117,6 +137,15 @@ PlasmoidItem {
     signal refreshNeeded()
     signal updateUnified()
     signal updateMasks()
+
+    onStockPanelSettingsChanged: {
+        Qt.callLater(function() {
+            console.error(JSON.stringify(stockPanelSettings))
+            let script = Utils.setPanelModeScript(panelPosition, stockPanelSettings)
+            console.error("script", script)
+            Utils.evaluateScript(script)
+        })
+    }
 
     onForceRecolorCountChanged: {
         // console.error("onForceRecolorCountChanged ->", forceRecolorCount)
@@ -1332,7 +1361,11 @@ PlasmoidItem {
         target: runCommand
         function onExited(cmd, exitCode, exitStatus, stdout, stderr, liveUpdate) {
             if (exitCode!==0) return
-            presetContent = JSON.parse(stdout.trim())
+            try {
+                presetContent = JSON.parse(stdout.trim())
+            } catch (e) {
+                return
+            }
             Utils.loadPreset(presetContent, plasmoid.configuration, Globals.ignoredConfigs, Globals.defaultConfig, true)
             plasmoid.configuration.lastPreset = lastPreset
             plasmoid.configuration.writeConfig();

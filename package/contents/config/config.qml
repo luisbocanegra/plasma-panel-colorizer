@@ -22,6 +22,12 @@ ConfigModel {
     }
 
     ConfigCategory {
+        name: i18n("Stock Panel Settings")
+        icon: "configure-symbolic"
+        source: "configStockPanelSettings.qml"
+    }
+
+    ConfigCategory {
         name: i18n("Unified background")
         icon: "lines-connector-symbolic"
         source: "configUnifiedBackground.qml"
