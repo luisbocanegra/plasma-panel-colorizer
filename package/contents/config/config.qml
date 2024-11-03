@@ -10,7 +10,7 @@ ConfigModel {
     }
 
     ConfigCategory {
-        name: i18n("Presets autoloading")
+        name: i18n("Presets auto-loading")
         icon: "system-run-symbolic"
         source: "configPresetAutoload.qml"
     }
@@ -18,7 +18,7 @@ ConfigModel {
     ConfigCategory {
         name: i18n("Appearance")
         icon: "desktop-symbolic"
-        source: "configGlobal.qml"
+        source: "configAppearance.qml"
     }
 
     ConfigCategory {
@@ -28,7 +28,7 @@ ConfigModel {
     }
 
     ConfigCategory {
-        name: i18n("Unified background")
+        name: i18n("Unified widget backgrounds")
         icon: "lines-connector-symbolic"
         source: "configUnifiedBackground.qml"
     }
@@ -40,9 +40,9 @@ ConfigModel {
     }
 
     ConfigCategory {
-        name: i18n("User Overrides")
-        icon: "user-properties-symbolic"
-        source: "configUserWidgetOverrides.qml"
+        name: i18n("Global Overrides")
+        icon: "globe-symbolic"
+        source: "configGlobalWidgetOverrides.qml"
     }
 
     ConfigCategory {

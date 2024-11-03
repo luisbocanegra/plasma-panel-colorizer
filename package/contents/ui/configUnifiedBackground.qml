@@ -94,12 +94,11 @@ KCM.SimpleKCM {
     ColumnLayout {
         enabled: cfg_isEnabled
     Kirigami.FormLayout {
-
-        Label {
+        Kirigami.InlineMessage {
+            Layout.fillWidth: true
             text: i18n("Select start and end of unified background areas, widgets between <b>Start</b> and <b>End</b> must be left Disabled.")
-            opacity: 0.7
-            Layout.maximumWidth: widgetCards.width
-            wrapMode: Text.Wrap
+            visible: true
+            type: Kirigami.MessageType.Information
         }
 
         ColumnLayout {

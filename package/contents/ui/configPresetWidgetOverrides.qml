@@ -98,19 +98,18 @@ KCM.SimpleKCM {
 
     ColumnLayout {
         enabled: cfg_isEnabled
+        Kirigami.InlineMessage {
+            Layout.fillWidth: true
+            text: i18n("Create configuration overrides and apply them to one or multiple widgets. These overrides are linked and saved to the current preset.")
+            visible: true
+            type: Kirigami.MessageType.Information
+        }
 
     Kirigami.FormLayout {
 
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
             Kirigami.FormData.label: i18n("Configuration overrides")
-        }
-
-        Label {
-            text: i18n("Create configuration overrides and apply them to one or multiple widgets. These overrides are linked to in the current preset.")
-            opacity: 0.7
-            Layout.maximumWidth: presetCards.width
-            wrapMode: Text.Wrap
         }
 
         ColumnLayout {
@@ -214,7 +213,7 @@ KCM.SimpleKCM {
         }
 
         Label {
-            text: i18n("Overrides are applied from top to bottom, if two or more overrides share the same option, the last occurence replaces the value of the previous one.")
+            text: i18n("Overrides are applied from top to bottom, if two or more configuration overrides share the same option, the last occurence replaces the value of the previous one.")
             opacity: 0.7
             Layout.maximumWidth: presetCards.width
             wrapMode: Text.Wrap

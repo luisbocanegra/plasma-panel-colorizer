@@ -63,6 +63,12 @@ KCM.SimpleKCM {
 
     ColumnLayout {
         enabled: cfg_isEnabled
+        Kirigami.InlineMessage {
+            Layout.fillWidth: true
+            text: i18n("Not getting the expeted result? Make sure you're editing the correct element.")
+            visible: true
+            type: Kirigami.MessageType.Information
+        }
         Kirigami.FormLayout {
             id: parentLayout
             Layout.fillWidth: true

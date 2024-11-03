@@ -118,6 +118,12 @@ KCM.SimpleKCM {
 
     ColumnLayout {
         enabled: cfg_isEnabled
+        Kirigami.InlineMessage {
+            Layout.fillWidth: true
+            text: i18n("Force text and icon colors for specified widgets.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content themselves<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout.")
+            visible: true
+            type: Kirigami.MessageType.Information
+        }
         Components.SettingImportExport {
             onExportConfirmed: {
                 runCommand.run(crateConfigDirCmd)
@@ -145,13 +151,6 @@ KCM.SimpleKCM {
             }
         }
     Kirigami.FormLayout {
-
-        Label {
-            text: i18n("<strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content themselves<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout.")
-            opacity: 0.7
-            Layout.maximumWidth: widgetCards.width
-            wrapMode: Text.Wrap
-        }
 
         ColumnLayout {
             id: widgetCards
