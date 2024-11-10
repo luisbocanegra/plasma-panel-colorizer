@@ -365,6 +365,7 @@ KCM.SimpleKCM {
                                     text: i18n("Update preview")
                                     anchors.fill: parent
                                     icon.name: "edit-image-symbolic"
+                                    enabled: !presets[modelData].builtin
                                     onClicked: {
                                         runCommand.run(spectaclePreviewCmd+"'" + presets[modelData].dir+"/preview.png" + "'")
                                     }
@@ -387,7 +388,7 @@ KCM.SimpleKCM {
 
                                         HoverHandler {
                                             id: hoverHandler
-                                            enabled: !presets[modelData].builtin
+                                            enabled: btn.enabled
                                             cursorShape: hovered ? Qt.PointingHandCursor : Qt.ArrowCursor
                                             onHoveredChanged: {
                                                 if (hovered) {
