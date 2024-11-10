@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v1.1.0...v1.2.0) (2024-11-10)
+
+
+### Features
+
+* reword some settings messages ([57b61ba](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/57b61bacbd378cfe230f5a55197a1dc432aa341f))
+
+
+### Bug Fixes
+
+* override changes not saving ([7accd75](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/7accd754370a2733c863172fe7d751f04c4f067f))
+
 ## [1.1.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v1.0.1...v1.1.0) (2024-11-03)
 
 
