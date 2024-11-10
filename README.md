@@ -88,6 +88,8 @@ Overrides let you give a completely different configuration to one or more widge
 > [!IMPORTANT]
 > This widget makes temporary changes to internal parts to the panel that aren't meant to be changed externally.
 >
+> Make sure you're using the latest version of the widget and Plasma to avoid compatibility issues.
+>
 > If you found a bug while using Panel Colorizer please report it [here](https://github.com/luisbocanegra/plasma-panel-colorizer/issues?q=sort%3Aupdated-desc+is%3Aissue+is%3Aopen) first, only report it to KDE after we conclude is a upstream issue or you removed the widget and can still reproduce the problem.
 
 ### KDE Store
@@ -185,7 +187,7 @@ To install the widget use one of these methods:
 
 ## Adding or improving the built-in presets
 
-Instructions to add new presets or change the existing ones are [here](https://github.com/luisbocanegra/plasma-panel-colorizer/blob/main/package/contents/ui/presets/README.md)
+Instructions to add new presets or improve the existing ones are [here](https://github.com/luisbocanegra/plasma-panel-colorizer/blob/main/package/contents/ui/presets/README.md)
 
 ## FAQ
 
@@ -201,7 +203,7 @@ The location where they are stored has changed, the new locations are:
 * User overrides: `/home/$USER/.config/panel-colorizer/overrides.json`
 * Text and icon options: `/home/$USER/.config/panel-colorizer/forceForegroundColor.json`
 
-The format of the presets has changed, presets from previous version will need to be recreated manually
+**The format of the presets has changed, presets from previous version will need to be recreated manually**
 
 ### How to restore the default appearance?
 
@@ -235,10 +237,10 @@ Please read the [Contributing guidelines in this repository](https://github.com/
 
 * If you like the project please consider donating/sponsoring this and [my other open source work](https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers)
 
-  [![GitHub Sponsors](https://img.shields.io/badge/GitHub_Sponsors-supporter?logo=githubsponsors&color=%2329313C)](https://github.com/sponsors/luisbocanegra) [![Ko-fi](https://img.shields.io/badge/Ko--fi-supporter?logo=ko-fi&logoColor=%23ffffff&color=%23467BEB)](https://www.buymeacoffee.com/luisbocanegra) [![Liberapay](https://img.shields.io/badge/Liberapay-supporter?logo=liberapay&logoColor=%23282828&color=%23F6C814)](https://liberapay.com/luisbocanegra/) [![PayPal](https://img.shields.io/badge/PayPal-supporter?logo=paypal&logoColor=%23ffffff&color=%23003087)](https://www.paypal.com/donate/?hosted_button_id=Y5TMH3Z4YZRDA)
+  [![GitHub Sponsors](https://img.shields.io/badge/GitHub_Sponsors-supporter?logo=githubsponsors&color=%2329313C)](https://github.com/sponsors/luisbocanegra) [![Ko-fi](https://img.shields.io/badge/Ko--fi-supporter?logo=ko-fi&logoColor=%23ffffff&color=%23467BEB)](https://ko-fi.com/luisbocanegra) [!["Buy Me A Coffee"](https://img.shields.io/badge/Buy%20me%20a%20coffe-supporter?logo=buymeacoffee&logoColor=%23282828&color=%23FF803F)](https://www.buymeacoffee.com/luisbocanegra) [![Liberapay](https://img.shields.io/badge/Liberapay-supporter?logo=liberapay&logoColor=%23282828&color=%23F6C814)](https://liberapay.com/luisbocanegra/) [![PayPal](https://img.shields.io/badge/PayPal-supporter?logo=paypal&logoColor=%23ffffff&color=%23003087)](https://www.paypal.com/donate/?hosted_button_id=Y5TMH3Z4YZRDA)
 
-* Give it a star on GitHub
-* Rate/review in the [KDE Store](https://store.kde.org/p/2130967)
+* [Give it a star on GitHub](https://github.com/luisbocanegra/plasma-panel-colorizer)
+* Rate / leave review in the [KDE Store](https://store.kde.org/p/2130967)
 
 ## Acknowledgements
 

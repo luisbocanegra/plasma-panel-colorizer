@@ -8,12 +8,12 @@ When contributing to this repository, please first discuss the change you wish t
 - Problems show where this project is lacking
 - With a question you show where contributors can improve the project
 - Before opening a new issue, make sure there is not an existing one about your same problem/request.
-- Please use, when possible, use the issue templates.
+- Please use the provided issue templates.
 
 ## Pull Requests
 
-You should be clear which problem you're trying to solve with your
-contribution.
+- If you want to add a new feature create a new issue if there is no one for it.
+- You should be clear which problem you're trying to solve with your contribution.
 
 ### When making a pull request
 
