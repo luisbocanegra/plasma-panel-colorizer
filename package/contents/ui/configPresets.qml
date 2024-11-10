@@ -194,7 +194,7 @@ KCM.SimpleKCM {
     ColumnLayout {
         Kirigami.InlineMessage {
             Layout.fillWidth: true
-            text: i18n("Changes to the current preset aren't synced to disk automatically. You should come back to this tab and update it manually before switching to a different preset, otherwise unsaved preset settings will be lost when presets change!")
+            text: i18n("Changes to the current preset are not synced to disk automatically. You should come back to this tab and update it manually before switching to a different preset, otherwise unsaved preset settings will be lost when presets change!")
             visible: true
             type: Kirigami.MessageType.Information
         }

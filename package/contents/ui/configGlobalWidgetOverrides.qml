@@ -127,7 +127,7 @@ KCM.SimpleKCM {
         enabled: cfg_isEnabled
         Kirigami.InlineMessage {
             Layout.fillWidth: true
-            text: i18n("Create configuration overrides and apply them to one or multiple widgets. These overrides are independent and will be applied on top of the Preset settings.")
+            text: i18n("Create configuration overrides and apply them to one or multiple widgets. These overrides are independent and will be applied on top of the current settings and across presets.")
             visible: true
             type: Kirigami.MessageType.Information
         }

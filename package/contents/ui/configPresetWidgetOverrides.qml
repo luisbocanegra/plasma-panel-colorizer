@@ -100,7 +100,7 @@ KCM.SimpleKCM {
         enabled: cfg_isEnabled
         Kirigami.InlineMessage {
             Layout.fillWidth: true
-            text: i18n("Create configuration overrides and apply them to one or multiple widgets. These overrides are linked and saved to the current preset.")
+            text: i18n("Create configuration overrides and apply them to one or multiple widgets. These overrides should be saved to a preset in <strong>Presets</strong> tab or they will be lost when presets change!")
             visible: true
             type: Kirigami.MessageType.Information
         }
