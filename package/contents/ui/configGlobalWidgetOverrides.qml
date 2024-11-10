@@ -170,10 +170,10 @@ KCM.SimpleKCM {
                     text: "New override"
                     onClicked: {
                         let nextOverride = Object.keys(configOverrides).length + 1
-                        while (`User Override ${nextOverride}` in configOverrides) {
+                        while (`Global Override ${nextOverride}` in configOverrides) {
                             nextOverride++;
                         }
-                        configOverrides[`User Override ${nextOverride}`] = Globals.baseOverrideConfig
+                        configOverrides[`Global Override ${nextOverride}`] = Globals.baseOverrideConfig
                         root.updateConfig()
                     }
                 }
@@ -240,7 +240,6 @@ KCM.SimpleKCM {
                         root.updateConfig()
                     })
                     item.currentTab = root.currentTab
-                    item.keyName = "widgets"
                     item.keyFriendlyName = "Widgets"
                     item.tabChanged.connect((currentTab) => {
                         root.currentTab = currentTab
