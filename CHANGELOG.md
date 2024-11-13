@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v1.2.0...v1.2.1) (2024-11-13)
+
+
+### Bug Fixes
+
+* disable click to edit built-in preset preview ([94a709c](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/94a709cec9660dc6428bb65a645210d90362c2ca))
+
 ## [1.2.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v1.1.0...v1.2.0) (2024-11-10)
 
 
