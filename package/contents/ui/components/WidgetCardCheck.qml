@@ -38,13 +38,23 @@ Kirigami.AbstractCard {
                     }
                 }
             }
-            TextEdit {
-                text: widget.name
-                opacity: 0.6
-                readOnly: true
-                color: Kirigami.Theme.textColor
-                selectedTextColor: Kirigami.Theme.highlightedTextColor
-                selectionColor: Kirigami.Theme.highlightColor
+            RowLayout {
+                TextEdit {
+                    text: widget.name
+                    opacity: 0.6
+                    readOnly: true
+                    color: Kirigami.Theme.textColor
+                    selectedTextColor: Kirigami.Theme.highlightedTextColor
+                    selectionColor: Kirigami.Theme.highlightColor
+                }
+                TextEdit {
+                    text: widget.id
+                    opacity: 0.6
+                    readOnly: true
+                    color: Kirigami.Theme.textColor
+                    selectedTextColor: Kirigami.Theme.highlightedTextColor
+                    selectionColor: Kirigami.Theme.highlightColor
+                }
             }
         }
         Item {

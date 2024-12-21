@@ -23,25 +23,40 @@ KCM.SimpleKCM {
     property string crateConfigDirCmd: "mkdir -p " + configDir
 
     Component.onCompleted: {
-        forceFgConfig = config.widgets
+        // ignore 1.2.0- old config format
+        forceFgConfig = Utils.clearOldWidgetConfig(config.widgets)
         console.error(JSON.stringify(forceFgConfig, null, null))
         initWidgets()
         updateWidgetsModel()
     }
 
     function updateConfig() {
+        console.log("updateConfig()")
         for (let i = 0; i < widgetsModel.count; i++) {
             const widget = widgetsModel.get(i)
+
+            const id = widget.id
             const name = widget.name
             const method = widget.method
             const reload = widget.reload
-            console.error(name, method.mask, method.multiEffect)
+            // console.error(widget)
+
+            const cfgIndex = Utils.getWidgetConfigIdx(id, name, forceFgConfig)
             if (method.mask || method.multiEffect || reload) {
-                forceFgConfig[name] = {"method": method, "reload":reload}
+                if (cfgIndex !== -1) {
+                    forceFgConfig[cfgIndex].method = method
+                    forceFgConfig[cfgIndex].reload = reload
+                } else {
+                    forceFgConfig.push({
+                        "name": name, "id": id,
+                        "method": method, "reload": reload,
+                    })
+                }
             } else {
-                delete forceFgConfig[widget.name]
+                forceFgConfig.splice(i)
             }
         }
+        console.log(JSON.stringify(forceFgConfig))
         config.widgets = forceFgConfig
         cfg_forceForegroundColor = JSON.stringify(config, null, null)
     }
@@ -58,7 +73,7 @@ KCM.SimpleKCM {
         function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
             if (exitCode!==0) return
             if (cmd.startsWith("cat")) {
-                const content = stdout.trim().split("\n")
+                const content = stdout.trim()
                 try {
                     console.error(content)
                     const newConfig = JSON.parse(content)
@@ -72,7 +87,8 @@ KCM.SimpleKCM {
 
     function importConfig(newConfig) {
         loaded = false
-        forceFgConfig = newConfig.widgets
+        // ignore 1.2.0- old config format
+        forceFgConfig = Utils.clearOldWidgetConfig(newConfig.widgets)
         config.reloadInterval = newConfig.reloadInterval
         updateWidgetsModel()
         loaded = true
@@ -80,26 +96,32 @@ KCM.SimpleKCM {
     }
 
     function initWidgets(){
+        console.log("initWidgets()")
         widgetsModel.clear()
         const object = JSON.parse(cfg_panelWidgets)
         for (const widget of object) {
+            const id = widget.id
             const name = widget.name
             const title = widget.title
             const icon = widget.icon
             const inTray = widget.inTray
             widgetsModel.append({
-                "name": name, "title": title, "icon": icon, "inTray":inTray,
+                "id": id, "name": name, "title": title, "icon": icon, "inTray":inTray,
                 "method": { "mask": false, "multiEffect": false }, "reload": false
             })
         }
     }
 
     function updateWidgetsModel(){
+        console.log("updateWidgetsModel()")
         for (let i = 0; i < widgetsModel.count; i++) {
             const widget = widgetsModel.get(i)
+            const id = widget.id
             const name = widget.name
-            if (name in forceFgConfig) {
-                let cfg = forceFgConfig[name]
+
+            let index = Utils.getWidgetConfigIdx(id, name, forceFgConfig)
+            if (index !== -1) {
+                const cfg = forceFgConfig[index]
                 widgetsModel.set(i, {"method": cfg.method, "reload": cfg.reload})
             } else {
                 widgetsModel.set(i, {"method": { "mask": false, "multiEffect": false }, "reload": false})
