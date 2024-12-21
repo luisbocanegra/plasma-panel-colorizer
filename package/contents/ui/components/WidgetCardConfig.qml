@@ -6,13 +6,13 @@ import org.kde.kirigami as Kirigami
 Kirigami.AbstractCard {
     id: root
     property var widget
-    signal addOverride(widget: string, override: string, index: var)
-    signal removeOverride(widget: string, index: int)
-    signal clearOverrides(widget: string)
+    signal addOverride(override: string, index: var)
+    signal removeOverride(index: int)
+    signal clearOverrides()
     property var configOverrides: []
-    property var overrideAssociations: {}
+    property var overrideAssociations: []
     property bool showList: false
-    property var currentOverrides: overrideAssociations[widget.name] || []
+    property var currentOverrides
     property var editingIndex: 0
 
     contentItem: ColumnLayout {
@@ -45,13 +45,23 @@ Kirigami.AbstractCard {
                     }
                 }
             }
-            TextEdit {
-                text: widget.name
-                opacity: 0.6
-                readOnly: true
-                color: Kirigami.Theme.textColor
-                selectedTextColor: Kirigami.Theme.highlightedTextColor
-                selectionColor: Kirigami.Theme.highlightColor
+            RowLayout {
+                TextEdit {
+                    text: widget.name
+                    opacity: 0.6
+                    readOnly: true
+                    color: Kirigami.Theme.textColor
+                    selectedTextColor: Kirigami.Theme.highlightedTextColor
+                    selectionColor: Kirigami.Theme.highlightColor
+                }
+                TextEdit {
+                    text: widget.id
+                    opacity: 0.6
+                    readOnly: true
+                    color: Kirigami.Theme.textColor
+                    selectedTextColor: Kirigami.Theme.highlightedTextColor
+                    selectionColor: Kirigami.Theme.highlightColor
+                }
             }
         }
         Item {
@@ -76,7 +86,7 @@ Kirigami.AbstractCard {
                     Button {
                         icon.name: "edit-clear-symbolic"
                         onClicked: {
-                            removeOverride(widget.name, index)
+                            removeOverride(index)
                         }
                     }
                 }
@@ -86,7 +96,7 @@ Kirigami.AbstractCard {
                 Button {
                     icon.name: "edit-clear-all-symbolic"
                     onClicked: {
-                        clearOverrides(widget.name)
+                        clearOverrides()
                     }
                     text: "Clear"
                     visible: currentOverrides.length !== 0
@@ -124,7 +134,7 @@ Kirigami.AbstractCard {
                     text: modelData
                     onClicked: {
                         showList = false
-                        addOverride(widget.name, text, root.editingIndex)
+                        addOverride(text, root.editingIndex)
                     }
                     Rectangle {
                         color: index & 1 ? "transparent" : Kirigami.Theme.alternateBackgroundColor

@@ -122,11 +122,11 @@ PlasmoidItem {
     property var panelSettings: cfg.panel
     property var stockPanelSettings: cfg.stockPanelSettings
     property var trayWidgetSettings: cfg.trayWidgets
-    property var unifiedBackgroundSettings: cfg.unifiedBackground
-    property var forceRecolorList: forceForegroundColor?.widgets ?? {}
+    property var unifiedBackgroundSettings: Utils.clearOldWidgetConfig(cfg.unifiedBackground)
+    property var forceRecolorList: Utils.clearOldWidgetConfig(forceForegroundColor?.widgets ?? [])
     property int forceRecolorInterval: forceForegroundColor?.reloadInterval ?? 0
-    property int forceRecolorCount: Object.keys(forceRecolorList).length
-    property bool requiresRefresh: Object.values(forceRecolorList).some(w => w.reload)
+    property int forceRecolorCount: forceRecolorList.length
+    property bool requiresRefresh: forceRecolorList.some(w => w.reload)
     property var panelColorizer: null
     property var blurMask: panelColorizer?.mask ?? null
     property var floatigness: panelElement?.floatingness ?? 0
@@ -218,15 +218,11 @@ PlasmoidItem {
         return newColor
     }
 
-    function applyFgColor(element, newColor, fgColorCfg, depth, forceMask, forceEffect, itemType, widgetName) {
+    function applyFgColor(element, newColor, fgColorCfg, depth, wRecolorCfg) {
         let count = 0;
         let maxDepth = depth
-        const isTrayArrow = itemType === Enums.ItemType.TrayArrow
-        if (widgetName === "org.kde.plasma.systemtray" && separateTray) return
-        if (widgetName in forceRecolorList) {
-            forceMask = forceRecolorList[widgetName].method.mask
-            forceEffect = forceRecolorList[widgetName].method.multiEffect
-        }
+        const forceMask = wRecolorCfg?.method?.mask ?? false
+        const forceEffect = wRecolorCfg?.method?.multiEffect ?? false
 
         for (var i = 0; i < element.visibleChildren.length; i++) {
             var child = element.visibleChildren[i]
@@ -261,7 +257,7 @@ PlasmoidItem {
                 // repaintDebugComponent.createObject(child)
             }
             if (child.visibleChildren?.length ?? 0 > 0) {
-                const result = applyFgColor(child, newColor, fgColorCfg, depth + 1, forceMask, forceEffect, itemType, widgetName)
+                const result = applyFgColor(child, newColor, fgColorCfg, depth + 1, wRecolorCfg)
                 count += result.count
                 if (result.depth > maxDepth) {
                     maxDepth = result.depth
@@ -323,10 +319,15 @@ PlasmoidItem {
         property bool isTrayArrow: itemType === Enums.ItemType.TrayArrow
         property bool inTray: isTray || isTrayArrow
         property bool luisbocanegraPanelColorizerBgManaged: true
-        property string widgetName: isTrayArrow ? "org.kde.plasma.systemtray.expand" : Utils.getWidgetName(target)
-        property bool requiresRefresh: forceRecolorList[widgetName]?.reload ?? false
+        property var widgetProperties: isTrayArrow ? { "id":-1, "name": "org.kde.plasma.systemtray.expand" } :
+            Utils.getWidgetNameAndId(target)
+        property string widgetName: widgetProperties.name
+        property int widgetId: widgetProperties.id
+        property var wRecolorCfg: Utils.getForceFgWidgetConfig(widgetId, widgetName, forceRecolorList)
+        property bool requiresRefresh: wRecolorCfg?.reload ?? false
         // 0: default | 1: start | 2: end
-        property int unifySection: unifiedBackgroundSettings[widgetName] ?? 0
+        property var wUnifyCfg: Utils.getForceFgWidgetConfig(widgetId, widgetName, unifiedBackgroundSettings)
+        property int unifySection: wUnifyCfg?.unifyBgType ?? 0
 
         // 0: default | 1: start | 2: middle | 3: end
         property int unifyBgType: 0
@@ -348,7 +349,7 @@ PlasmoidItem {
             }
         }
 
-        property var itemConfig: Utils.getItemCfg(itemType, widgetName, main.cfg, configurationOverrides)
+        property var itemConfig: Utils.getItemCfg(itemType, widgetName, widgetId, main.cfg, configurationOverrides)
         property var cfg: itemConfig.settings
         property bool cfgOverride: itemConfig.override
         property var bgColorCfg: cfg.backgroundColor
@@ -473,7 +474,8 @@ PlasmoidItem {
             interval: 10
             onTriggered: {
                 if (isPanel) return
-                const result = applyFgColor(target, fgColor, fgColorCfg, 0, false, false, itemType, widgetName)
+                if (widgetName === "org.kde.plasma.systemtray" && separateTray) return
+                const result = applyFgColor(target, fgColor, fgColorCfg, 0, wRecolorCfg)
                 if (result) {
                     itemCount = result.count
                     maxDepth = result.depth

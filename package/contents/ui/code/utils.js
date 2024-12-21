@@ -95,12 +95,13 @@ function findWidgets(panelLayout, panelWidgets) {
     // other situations
     if (!child.applet?.plasmoid?.pluginName) continue
     // Utils.dumpProps(child.applet.plasmoid)
+    const id = child.applet.plasmoid.id
     const name = child.applet.plasmoid.pluginName
     const title = child.applet.plasmoid.title
     const icon = child.applet.plasmoid.icon
-    if (panelWidgets.find((item) => item.name === name)) continue
+    if (panelWidgets.find((item) => item.id === id)) continue
     // console.error(name, title, icon)
-    panelWidgets.push({ "name": name, "title": title, "icon": icon, "inTray": false })
+    panelWidgets.push({ "id": id, "name": name, "title": title, "icon": icon, "inTray": false })
   }
   return panelWidgets
 }
@@ -114,25 +115,28 @@ function findWidgetsTray(grid, panelWidgets) {
         const model = item.children[j].model
         // App tray icons
         if (model.itemType === "StatusNotifier") {
-          // dumpProps(model)
+          // in contrast with applet?.plasmoid.id, Id is not actually given by plasma,
+          // but since there should be only a single instance of StatusNotifier per app,
+          // model.Id _should_ be enough for any sane implementation of tray icon
           const name = model.Id
           const title = model.ToolTipTitle !== "" ? model.ToolTipTitle : model.Title
           const icon = model.IconName
           if (panelWidgets.find((item) => item.name === name)) continue
           // console.error(name, title, icon)
-          panelWidgets.push({ "name": name, "title": title, "icon": icon, "inTray": true })
+          panelWidgets.push({ "id": -1, "name": name, "title": title, "icon": icon, "inTray": true })
         }
+        // normal plasmoids in tray
         if (model.itemType === "Plasmoid") {
           const applet = model.applet ?? null
+          const id = applet?.plasmoid.id ?? -1
           const name = applet?.plasmoid.pluginName ?? ""
           const title = applet?.plasmoid.title ?? ""
           const icon = applet?.plasmoid.icon ?? ""
-          if (panelWidgets.find((item) => item.name === name)) continue
+          if (panelWidgets.find((item) => item.id === id)) continue
           // console.error(name, title, icon)
-          panelWidgets.push({ "name": name, "title": title, "icon": icon, "inTray": true })
+          panelWidgets.push({ "id": id, "name": name, "title": title, "icon": icon, "inTray": true })
         }
       }
-      // panelWidgets.add(item)
     }
   }
   // find the expand tray arrow
@@ -143,17 +147,19 @@ function findWidgetsTray(grid, panelWidgets) {
         const name = "org.kde.plasma.systemtray.expand"
         if (panelWidgets.find((item) => item.name === name)) continue
         const title = item.subText || "Show hidden icons"
-        panelWidgets.push({ "name": name, "title": title, "icon": "arrow-down", "inTray": true })
+        panelWidgets.push({ "id": -1, "name": name, "title": title, "icon": "arrow-down", "inTray": true })
       }
     }
   }
   return panelWidgets
 }
 
-function getWidgetName(item) {
+function getWidgetNameAndId(item) {
   let name = null
+  let id = -1
   if (item.applet?.plasmoid?.pluginName) {
     name = item.applet.plasmoid.pluginName
+    id = item.applet.plasmoid.id
   } else {
     for (let i in item.children) {
       if (!(item.children[i].model)) continue
@@ -163,13 +169,14 @@ function getWidgetName(item) {
       } else if (model.itemType === "Plasmoid") {
         const applet = model.applet ?? null
         name = applet?.plasmoid.pluginName ?? null
+        name = applet?.plasmoid.id ?? -1
       }
     }
   }
   // if (name) {
   //   console.error("@@@@ getWidgetName ->", name)
   // }
-  return name
+  return { name, id }
 }
 
 var themeColors = [
@@ -205,11 +212,19 @@ var themeScopes = [
   "Header"
 ]
 
-function getCustomCfg(widgetName, configurationOverrides) {
-  if (!widgetName) return null
+function getWidgetAsocIdx(id, name, config) {
+  console.log("getWidgetAsocIdx()")
+  return config.findIndex((item) => item.id == id && item.name == name)
+}
+
+function getCustomCfg(widgetName, widgetId, configurationOverrides) {
+  if (!widgetId) return null
   var custom = {}
-  if (widgetName in configurationOverrides.associations) {
-    const overrideNames = configurationOverrides.associations[widgetName]
+  configurationOverrides.associations = clearOldWidgetConfig(configurationOverrides.associations)
+  let asocIndex = getWidgetAsocIdx(widgetId, widgetName, configurationOverrides.associations)
+  if (asocIndex !== -1) {
+
+    const overrideNames = configurationOverrides.associations[asocIndex].presets
 
     for (let overrideName of overrideNames) {
       if (!(overrideName in configurationOverrides.overrides)) continue
@@ -251,10 +266,10 @@ function getEffectiveSettings(customSettings, globalSettings) {
   return effectiveSettings
 }
 
-function getItemCfg(itemType, widgetName, config, configurationOverrides) {
+function getItemCfg(itemType, widgetName, widgetId, config, configurationOverrides) {
   let output = { override: false }
-  let custom = getCustomCfg(widgetName, configurationOverrides)
-  let presetOverrides = getCustomCfg(widgetName, config.configurationOverrides)
+  let custom = getCustomCfg(widgetName, widgetId, configurationOverrides)
+  let presetOverrides = getCustomCfg(widgetName, widgetId, config.configurationOverrides)
   if (presetOverrides) {
     if (custom && custom.disabledFallback) {
       custom = getEffectiveSettings(custom, presetOverrides)
@@ -459,4 +474,20 @@ for (var id of panelIds) {
 
 function evaluateScript(script) {
   runCommand.run("gdbus call --session --dest org.kde.plasmashell --object-path /PlasmaShell --method org.kde.PlasmaShell.evaluateScript '" + script + "'")
+}
+
+function getForceFgWidgetConfig(id, name, config) {
+  return config.find((item) => item.id == id && item.name == name)
+}
+
+function clearOldWidgetConfig(config) {
+  if (Array.isArray(config)) {
+    return config
+  }
+  else return []
+}
+
+function getWidgetConfigIdx(id, name, config) {
+  // console.log("getWidgetConfigIdx()")
+  return config.findIndex((item) => item.id == id && item.name == name)
 }
