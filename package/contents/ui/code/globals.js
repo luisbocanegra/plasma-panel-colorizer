@@ -154,9 +154,7 @@ const basePadding = {
   },
 }
 
-const baseUnfiedBackground = {
-  "org.kde.plasma.digitalclock": 0
-}
+const baseUnfiedBackground = []
 
 const basePanelConfig = {
   "enabled": false,
@@ -248,31 +246,12 @@ const defaultConfig = {
     "enabled": true,
     "opacity": 1.0
   },
-  "forceForegroundColor": {
-    "widgets": {
-      "com.github.antroids.application-title-bar": {
-        "method": {
-          "mask": false,
-          "multiEffect": false
-        },
-        "reload": true
-      },
-      "org.kde.plasma.appmenu": {
-        "method": {
-          "mask": false,
-          "multiEffect": false
-        },
-        "reload": true
-      }
-    },
-    "reloadInterval": 250
-  },
   "stockPanelSettings": baseStockPanelSettings,
   "configurationOverrides": {
     "overrides": {},
-    "associations": {}
+    "associations": []
   },
-  "unifiedBackground": {}
+  "unifiedBackground": []
 }
 
 const ignoredConfigs = [

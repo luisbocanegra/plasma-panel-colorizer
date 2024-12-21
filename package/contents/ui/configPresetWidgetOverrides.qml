@@ -33,8 +33,9 @@ KCM.SimpleKCM {
     Component.onCompleted: {
         configOverrides = JSON.parse(JSON.stringify(config.overrides))
         associationsModel = JSON.parse(JSON.stringify(config.associations))
+        console.log(JSON.stringify(associationsModel))
         initWidgets()
-        updateWidgetsModel()
+        // updateWidgetsModel()
     }
 
     Timer {
@@ -42,17 +43,19 @@ KCM.SimpleKCM {
         interval: 100
         onTriggered: {
             initWidgets()
-            updateWidgetsModel()
+            // updateWidgetsModel()
         }
     }
 
     function updateConfig() {
+        console.log("updateConfig()")
         const tmp = JSON.parse(JSON.stringify(configOverrides, null, null))
         // configOverrides = []
         configOverrides = tmp
         config.overrides = configOverrides
         associationsModel = JSON.parse(JSON.stringify(associationsModel, null, null))
         config.associations = associationsModel
+        console.log(JSON.stringify(associationsModel))
         globalSettings.configOverrides = config
         cfg_globalSettings = JSON.stringify(globalSettings, null, null)
     }
@@ -62,21 +65,25 @@ KCM.SimpleKCM {
     }
 
     function initWidgets(){
+        console.log("initWidgets()")
+        // loaded = false
         widgetsModel.clear()
         const object = JSON.parse(cfg_panelWidgets)
         for (const widget of object) {
+            const id = widget.id
             const name = widget.name
             const title = widget.title
             const icon = widget.icon
             const inTray = widget.inTray
             widgetsModel.append({
-                "name": name, "title": title, "icon": icon, "inTray":inTray,
-                "method": { "mask":false, "multiEffect": false }
+                "id": id, "name": name, "title": title, "icon": icon, "inTray":inTray
             })
         }
+        loaded = true
     }
 
     function updateWidgetsModel(){
+        console.log("updateWidgetsModel()")
         for (let i = 0; i < widgetsModel.count; i++) {
             const widget = widgetsModel.get(i)
             const name = widget.name
@@ -86,6 +93,15 @@ KCM.SimpleKCM {
             }
         }
         loaded = true
+    }
+
+    // cfg_globalSettings.configurationOverrides.associations is now an array instead of key-value,
+    // this allows us to find the target when have more than one instance
+    // of the same widget in a panel
+    // NOTE: this is not a workaround for issue #125,
+    function getWidgetAsocIdx(id, name, config) {
+        console.log("getWidgetAsocIdx()")
+        return config.findIndex((item) => item.id == id && item.name == name)
     }
 
     header: ColumnLayout {
@@ -227,22 +243,34 @@ KCM.SimpleKCM {
                     widget: model
                     configOverrides: Object.keys(root.configOverrides)
                     overrideAssociations: associationsModel
-                    onAddOverride: (name, preset, index) => {
+                    currentOverrides: associationsModel[getWidgetAsocIdx(id, name, associationsModel)]?.presets || []
+                    onAddOverride: (preset, index) => {
                         if (!loaded) return
-                        if (!(name in associationsModel)) associationsModel[name] = []
+                        let asocIndex = getWidgetAsocIdx(id, name, associationsModel)
+                        console.error("asocIndex", asocIndex)
+                        if (asocIndex === -1) {
+                            associationsModel.push({
+                                "id": id,
+                                "name": name,
+                                "presets": []
+                            })
+                            asocIndex = associationsModel.length - 1
+                        }
                         if (index === null) {
-                            associationsModel[name].push(preset)
+                            associationsModel[asocIndex].presets.push(preset)
                         } else {
-                            associationsModel[name][index] = preset
+                            associationsModel[asocIndex].presets[index] = preset
                         }
                         root.updateConfig()
                     }
-                    onRemoveOverride: (name, index) => {
-                        associationsModel[name].splice(index, 1)
+                    onRemoveOverride: (index) => {
+                        const asocIndex = getWidgetAsocIdx(id, name, associationsModel)
+                        associationsModel[asocIndex].presets.splice(index, 1)
                         root.updateConfig()
                     }
-                    onClearOverrides: (name) => {
-                        associationsModel[name] = []
+                    onClearOverrides: () => {
+                        const asocIndex = getWidgetAsocIdx(id, name, associationsModel)
+                        associationsModel[asocIndex].presets = []
                         root.updateConfig()
                     }
                 }

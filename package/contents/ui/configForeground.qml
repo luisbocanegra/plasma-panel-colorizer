@@ -30,18 +30,32 @@ KCM.SimpleKCM {
     }
 
     function updateConfig() {
+        console.log("updateConfig()")
         for (let i = 0; i < widgetsModel.count; i++) {
             const widget = widgetsModel.get(i)
+
+            const id = widget.id
             const name = widget.name
             const method = widget.method
             const reload = widget.reload
-            console.error(name, method.mask, method.multiEffect)
+            // console.error(widget)
+
+            const cfgIndex = getForceFgWidgetConfigIdx(id, name, forceFgConfig)
             if (method.mask || method.multiEffect || reload) {
-                forceFgConfig[name] = {"method": method, "reload":reload}
+                if (cfgIndex !== -1) {
+                    forceFgConfig[cfgIndex].method = method
+                    forceFgConfig[cfgIndex].reload = reload
+                } else {
+                    forceFgConfig.push({
+                        "name": name, "id": id,
+                        "method": method, "reload": reload,
+                    })
+                }
             } else {
-                delete forceFgConfig[widget.name]
+                forceFgConfig.splice(i)
             }
         }
+        console.log(JSON.stringify(forceFgConfig))
         config.widgets = forceFgConfig
         cfg_forceForegroundColor = JSON.stringify(config, null, null)
     }
@@ -58,7 +72,7 @@ KCM.SimpleKCM {
         function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
             if (exitCode!==0) return
             if (cmd.startsWith("cat")) {
-                const content = stdout.trim().split("\n")
+                const content = stdout.trim()
                 try {
                     console.error(content)
                     const newConfig = JSON.parse(content)
@@ -80,26 +94,41 @@ KCM.SimpleKCM {
     }
 
     function initWidgets(){
+        console.log("initWidgets()")
         widgetsModel.clear()
         const object = JSON.parse(cfg_panelWidgets)
         for (const widget of object) {
+            const id = widget.id
             const name = widget.name
             const title = widget.title
             const icon = widget.icon
             const inTray = widget.inTray
             widgetsModel.append({
-                "name": name, "title": title, "icon": icon, "inTray":inTray,
+                "id": id, "name": name, "title": title, "icon": icon, "inTray":inTray,
                 "method": { "mask": false, "multiEffect": false }, "reload": false
             })
         }
     }
 
+    // cfg_forceForegroundColor.widgets is now an array instead of key-value,
+    // this allows us to find the target when have more than one instance
+    // of the same widget in a panel
+    // NOTE: this is not a workaround for issue #125,
+    function getForceFgWidgetConfigIdx(id, name, config) {
+        // console.log("getForceFgWidgetConfigIdx()")
+        return config.findIndex((item) => item.id == id && item.name == name)
+    }
+
     function updateWidgetsModel(){
+        console.log("updateWidgetsModel()")
         for (let i = 0; i < widgetsModel.count; i++) {
             const widget = widgetsModel.get(i)
+            const id = widget.id
             const name = widget.name
-            if (name in forceFgConfig) {
-                let cfg = forceFgConfig[name]
+
+            let index = getForceFgWidgetConfigIdx(id, name, forceFgConfig)
+            if (index !== -1) {
+                const cfg = forceFgConfig[index]
                 widgetsModel.set(i, {"method": cfg.method, "reload": cfg.reload})
             } else {
                 widgetsModel.set(i, {"method": { "mask": false, "multiEffect": false }, "reload": false})

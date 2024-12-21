@@ -44,12 +44,12 @@
     <entry
         name="configurationOverrides"
         type="String">
-        <default>{"overrides": {}, "associations":{}}</default>
+        <default>{"overrides": {}, "associations":[]}</default>
     </entry>
     <entry
         name="forceForegroundColor"
         type="String">
-        <default>{"widgets":{}, "reloadInterval": 250}</default>
+        <default>{"widgets":[], "reloadInterval": 250}</default>
     </entry>
   </group>
 </kcfg>
