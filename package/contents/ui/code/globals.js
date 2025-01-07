@@ -154,8 +154,6 @@ const basePadding = {
   },
 }
 
-const baseUnfiedBackground = []
-
 const basePanelConfig = {
   "enabled": false,
   "blurBehind": false,
@@ -166,7 +164,6 @@ const basePanelConfig = {
   "padding": basePadding,
   "border": baseBorder,
   "shadow": baseShadowConfig,
-  "unfiedBackground": baseUnfiedBackground
 }
 
 const baseWidgetConfig = {
@@ -179,7 +176,6 @@ const baseWidgetConfig = {
   "spacing": 3,
   "border": baseBorder,
   "shadow": baseShadowConfig,
-  "unfiedBackground": baseUnfiedBackground
 }
 
 const baseTrayConfig = {
@@ -191,7 +187,6 @@ const baseTrayConfig = {
   "margin": baseMargin,
   "border": baseBorder,
   "shadow": baseShadowConfig,
-  "unfiedBackground": baseUnfiedBackground
 }
 
 const baseOverrideConfig = {
@@ -262,4 +257,5 @@ const ignoredConfigs = [
   "objectName",
   "lastPreset",
   "presetAutoloading",
+  "configurationOverrides"
 ]
