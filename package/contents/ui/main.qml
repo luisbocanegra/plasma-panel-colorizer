@@ -142,7 +142,6 @@ PlasmoidItem {
         Qt.callLater(function() {
             console.error(JSON.stringify(stockPanelSettings))
             let script = Utils.setPanelModeScript(panelPosition, stockPanelSettings)
-            console.error("script", script)
             Utils.evaluateScript(script)
         })
     }
@@ -176,23 +175,14 @@ PlasmoidItem {
         updateMasks()
     }
 
-    Rectangle {
-        id: colorHolder
-        height: 0
-        width: 0
-        visible: false
-        Kirigami.Theme.inherit: false
-    }
-
-    function getColor(colorCfg, targetIndex, parentColor, itemType) {
+    function getColor(colorCfg, targetIndex, parentColor, itemType, kirigamiColorItem) {
         let newColor = "transparent"
         switch (colorCfg.sourceType) {
             case 0:
                 newColor = Utils.rgbToQtColor(Utils.hexToRgb(colorCfg.custom))
             break
             case 1:
-                colorHolder.Kirigami.Theme.colorSet = Kirigami.Theme[colorCfg.systemColorSet]
-                newColor = colorHolder.Kirigami.Theme[colorCfg.systemColor]
+                newColor = kirigamiColorItem.Kirigami.Theme[colorCfg.systemColor]
             break
             case 2:
                 const nextIndex = targetIndex % colorCfg.list.length
@@ -410,11 +400,11 @@ PlasmoidItem {
             } else if ((!fgEnabled && inTray && widgetEnabled)) {
                 return trayWidgetBgItem.fgColor
             } else if (separateTray || cfgOverride) {
-                return getColor(rect.fgColorCfg, targetIndex, rect.color, itemType)
+                return getColor(rect.fgColorCfg, targetIndex, rect.color, itemType, fgColorHolder)
             } else if (inTray) {
-                return getColor(widgetSettings.foregroundColor, trayIndex, rect.color, itemType)
+                return getColor(widgetSettings.foregroundColor, trayIndex, rect.color, itemType, fgColorHolder)
             } else {
-                return getColor(widgetSettings.foregroundColor, targetIndex, rect.color, itemType)
+                return getColor(widgetSettings.foregroundColor, targetIndex, rect.color, itemType, fgColorHolder)
             }
         }
         Rectangle {
@@ -425,6 +415,17 @@ PlasmoidItem {
             radius: height / 2
             color: fgColor
             anchors.right: parent.right
+            Kirigami.Theme.colorSet: Kirigami.Theme[fgColorCfg.systemColorSet]
+        }
+        Rectangle {
+            id: bgColorHolder
+            height: 6
+            width: height
+            visible: false
+            radius: height / 2
+            color: fgColor
+            anchors.right: parent.right
+            Kirigami.Theme.colorSet: Kirigami.Theme[bgColorCfg.systemColorSet]
         }
         // Label {
         //     id: debugLabel
@@ -437,9 +438,10 @@ PlasmoidItem {
             bottomLeftRadius: bottomLeftRadius
             bottomRightRadius: bottomRightRadius
         }
+        Kirigami.Theme.colorSet: Kirigami.Theme[bgColorCfg.systemColorSet]
         color: {
             if (bgEnabled) {
-                return getColor(bgColorCfg, targetIndex, null, itemType)
+                return getColor(bgColorCfg, targetIndex, null, itemType, rect)
             } else {
                 return "transparent"
             }
@@ -692,9 +694,8 @@ PlasmoidItem {
             visible: borderEnabled && Math.min(rect.height, rect.width) > 1
             property var borderColorCfg: cfg.border.color
             Kirigami.Theme.colorSet: Kirigami.Theme[borderColorCfg.systemColorSet]
-            Kirigami.Theme.inherit: !(borderColorCfg.sourceType === 1)
             property color borderColor: {
-                return getColor(borderColorCfg, targetIndex, rect.color, itemType)
+                return getColor(borderColorCfg, targetIndex, rect.color, itemType, borderRec)
             }
 
             Rectangle {
@@ -812,7 +813,7 @@ PlasmoidItem {
             Kirigami.Theme.colorSet: Kirigami.Theme[shadowColorCfg.systemColorSet]
             size: (bgShadowEnabled && Math.min(rect.height, rect.width) > 1) ? bgShadow.size : 0
             color: {
-                return getColor(shadowColorCfg, targetIndex, rect.color, itemType)
+                return getColor(shadowColorCfg, targetIndex, rect.color, itemType, rect.shadow)
             }
             xOffset: bgShadow.xOffset
             yOffset: bgShadow.yOffset
@@ -847,7 +848,7 @@ PlasmoidItem {
             anchors.rightMargin: horizontal ? rect.marginRight : undefined
             anchors.topMargin: horizontal ? undefined : rect.marginTop
             anchors.bottomMargin: horizontal ? undefined : rect.marginBottom
-
+            id: dropShadow
             property var shadowColorCfg: fgShadow.color
             Kirigami.Theme.colorSet: Kirigami.Theme[shadowColorCfg.systemColorSet]
             horizontalOffset: fgShadow.xOffset
@@ -856,7 +857,7 @@ PlasmoidItem {
             samples: radius * 2 + 1
             spread: 0.35
             color: {
-                return getColor(shadowColorCfg, targetIndex, rect.color, itemType)
+                return getColor(shadowColorCfg, targetIndex, rect.color, itemType, dropShadow)
             }
             source: target.applet
             visible: fgShadowEnabled

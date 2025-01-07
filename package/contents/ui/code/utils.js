@@ -458,6 +458,5 @@ for (var id of panelIds) {
 }
 
 function evaluateScript(script) {
-  console.error(script)
   runCommand.run("gdbus call --session --dest org.kde.plasmashell --object-path /PlasmaShell --method org.kde.PlasmaShell.evaluateScript '" + script + "'")
 }
