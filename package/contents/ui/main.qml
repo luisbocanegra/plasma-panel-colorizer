@@ -439,10 +439,10 @@ PlasmoidItem {
             bottomLeftRadius: bottomLeftRadius
             bottomRightRadius: bottomRightRadius
         }
-        Kirigami.Theme.colorSet: Kirigami.Theme[bgColorCfg.systemColorSet]
+
         color: {
             if (bgEnabled) {
-                return getColor(bgColorCfg, targetIndex, null, itemType, rect)
+                return getColor(bgColorCfg, targetIndex, null, itemType, bgColorHolder)
             } else {
                 return "transparent"
             }
