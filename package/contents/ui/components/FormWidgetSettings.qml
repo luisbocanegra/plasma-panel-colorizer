@@ -209,18 +209,30 @@ ColumnLayout {
         twinFormLayouts: parentLayout
         Layout.fillWidth: true
 
-        SpinBox {
+        RowLayout {
             Kirigami.FormData.label: i18n("Spacing:")
-            id: spacingCheckbox
-            value: configLocal.spacing || 0
-            from: 0
-            to: 999
-            visible: keyName === "widgets" && currentTab === 1
-            enabled: visible
-            onValueModified: {
-                if (!enabled) return
-                configLocal.spacing = value
-                updateConfig()
+            SpinBox {
+                id: spacingCheckbox
+                value: configLocal.spacing || 0
+                from: 0
+                to: 999
+                visible: keyName === "widgets" && currentTab === 1
+                enabled: visible
+                onValueModified: {
+                    if (!enabled) return
+                    configLocal.spacing = value
+                    updateConfig()
+                }
+            }
+
+            Button {
+                visible: spacingCheckbox.value % 2 !== 0 && spacingCheckbox.visible
+                icon.name: "dialog-warning-symbolic"
+                ToolTip.text: i18n("<strong>Odd</strong> values are automatically converted to <strong>evens</strong> if <strong>Unified Background</strong> feature is used.")
+                highlighted: true
+                hoverEnabled: true
+                ToolTip.visible: hovered
+
             }
         }
     }

@@ -491,3 +491,7 @@ function getWidgetConfigIdx(id, name, config) {
   // console.log("getWidgetConfigIdx()")
   return config.findIndex((item) => item.id == id && item.name == name)
 }
+
+function makeEven(n) {
+  return n - n % 2
+}

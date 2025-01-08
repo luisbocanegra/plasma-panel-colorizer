@@ -108,7 +108,7 @@ KCM.SimpleKCM {
     Kirigami.FormLayout {
         Kirigami.InlineMessage {
             Layout.fillWidth: true
-            text: i18n("Select start and end of unified background areas, widgets between <b>Start</b> and <b>End</b> must be left Disabled.")
+            text: i18n("Select start and end of unified background areas, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Note: <strong>odd</strong> widget spacing values are automatically converted to <strong>evens</strong> when this feature is used.")
             visible: true
             type: Kirigami.MessageType.Information
         }

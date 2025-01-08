@@ -119,6 +119,13 @@ PlasmoidItem {
         }
     }
     property var widgetSettings: cfg.widgets
+    property var widgetsSpacing: {
+        if (true) {
+            return Utils.makeEven(widgetSettings?.spacing ?? 4)
+        } else {
+            return widgetSettings?.spacing ?? 4
+        }
+    }
     property var panelSettings: cfg.panel
     property var stockPanelSettings: cfg.stockPanelSettings
     property var trayWidgetSettings: cfg.trayWidgets
@@ -507,10 +514,10 @@ PlasmoidItem {
         anchors.centerIn: (isTray || isTrayArrow) ? parent : undefined
         anchors.fill: (isPanel ||isTray || isTrayArrow) ? parent : undefined
 
-        property int extraLSpacing: ((unifyBgType === 2 || unifyBgType === 3) && horizontal ? widgetSettings.spacing : 0) / 2
-        property int extraRSpacing: ((unifyBgType === 1 || unifyBgType === 2) && horizontal ? widgetSettings.spacing : 0) / 2
-        property int extraTSpacing: ((unifyBgType === 2 || unifyBgType === 3) && !horizontal ? widgetSettings.spacing : 0) / 2
-        property int extraBSpacing: ((unifyBgType === 1 || unifyBgType === 2) && !horizontal ? widgetSettings.spacing : 0) / 2
+        property int extraLSpacing: ((unifyBgType === 2 || unifyBgType === 3) && horizontal ? widgetsSpacing : 0) / 2
+        property int extraRSpacing: ((unifyBgType === 1 || unifyBgType === 2) && horizontal ? widgetsSpacing : 0) / 2
+        property int extraTSpacing: ((unifyBgType === 2 || unifyBgType === 3) && !horizontal ? widgetsSpacing : 0) / 2
+        property int extraBSpacing: ((unifyBgType === 1 || unifyBgType === 2) && !horizontal ? widgetsSpacing : 0) / 2
 
         property int marginLeft: (marginEnabled ? cfg.margin.side.left : 0)
             + extraLSpacing
@@ -1074,14 +1081,14 @@ PlasmoidItem {
     Binding {
         target: panelLayout
         property: "columnSpacing"
-        value: widgetSettings.spacing
+        value: widgetsSpacing
         when: !editMode
     }
 
     Binding {
         target: panelLayout
         property: "rowSpacing"
-        value: widgetSettings.spacing
+        value: widgetsSpacing
         when: !editMode
     }
 
