@@ -69,6 +69,7 @@ PlasmoidItem {
     property var presetContent: ""
     property var panelState: {
         "maximized": tasksModel.maximizedExists,
+        "visibleWindows": tasksModel.visibleExists,
         "touchingWindow": !panelElement ? false : Boolean(panelElement.touchingWindow),
         "floating": !panelElement ? false : Boolean(panelElement.floatingness)
     }

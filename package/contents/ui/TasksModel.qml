@@ -90,6 +90,7 @@ Item {
             const currentTask = tasksModel.index(i, 0)
             if (currentTask === undefined || !tasksModel.data(currentTask, isWindow)) continue
             const active = tasksModel.data(currentTask, isActive)
+            if (!tasksModel.data(currentTask, isMinimized)) visibleCount += 1
             if (filterByActive && !active) continue
             if (active) activeTask = currentTask
             if (tasksModel.data(currentTask, isMaximized)) maximizedCount += 1
