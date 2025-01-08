@@ -481,6 +481,7 @@ PlasmoidItem {
             interval: 10
             onTriggered: {
                 if (isPanel) return
+                if (!fgEnabled) return
                 if (widgetName === "org.kde.plasma.systemtray" && separateTray) return
                 const result = applyFgColor(target, fgColor, fgColorCfg, 0, wRecolorCfg)
                 if (result) {
