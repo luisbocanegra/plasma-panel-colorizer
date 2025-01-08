@@ -161,6 +161,18 @@ KCM.SimpleKCM {
             ComboBox {
                 model: presetsModel
                 textRole: "name"
+                Kirigami.FormData.label: i18n("At least one window is shown:")
+                onCurrentIndexChanged: {
+                    autoLoadConfig.visibleWindows = model.get(currentIndex)["value"]
+                    updateConfig()
+                }
+                currentIndex: getIndex(model, autoLoadConfig.visibleWindows)
+                enabled: enabledCheckbox.checked
+            }
+
+            ComboBox {
+                model: presetsModel
+                textRole: "name"
                 Kirigami.FormData.label: i18n("Floating panel:")
                 onCurrentIndexChanged: {
                     autoLoadConfig.floating = model.get(currentIndex)["value"]
