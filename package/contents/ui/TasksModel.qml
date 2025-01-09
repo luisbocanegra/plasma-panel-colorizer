@@ -27,6 +27,7 @@ Item {
     property var screenGeometry
     property bool activeExists: false
     property bool maximizedExists: false
+    property bool fullscreenExists: false
     property bool visibleExists: false
     property var abstractTasksModel: TaskManager.AbstractTasksModel
     property var isMaximized: abstractTasksModel.IsMaximized
@@ -86,6 +87,7 @@ Item {
         let activeCount = 0
         let visibleCount = 0
         let maximizedCount = 0
+        let fullscreenCount = 0
         for (var i = 0; i < tasksModel.count; i++) {
             const currentTask = tasksModel.index(i, 0)
             if (currentTask === undefined || !tasksModel.data(currentTask, isWindow)) continue
@@ -94,9 +96,11 @@ Item {
             if (filterByActive && !active) continue
             if (active) activeTask = currentTask
             if (tasksModel.data(currentTask, isMaximized)) maximizedCount += 1
+            if (tasksModel.data(currentTask, isFullScreen)) fullscreenCount += 1
         }
         root.visibleExists = visibleCount > 0
         root.maximizedExists = filterByActive ? tasksModel.data(activeTask, isMaximized) : maximizedCount > 0
+        root.fullscreenExists = filterByActive ? tasksModel.data(activeTask, isFullScreen) : fullscreenCount > 0
         root.activeExists = activeCount > 0
     }
 }

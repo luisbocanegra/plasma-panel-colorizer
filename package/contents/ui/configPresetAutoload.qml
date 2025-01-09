@@ -126,6 +126,18 @@ KCM.SimpleKCM {
             ComboBox {
                 model: presetsModel
                 textRole: "name"
+                Kirigami.FormData.label: i18n("Fullscreen window:")
+                onCurrentIndexChanged: {
+                    autoLoadConfig.fullscreenWindow = model.get(currentIndex)["value"]
+                    updateConfig()
+                }
+                currentIndex: getIndex(model, autoLoadConfig.fullscreenWindow)
+                enabled: enabledCheckbox.checked
+            }
+
+            ComboBox {
+                model: presetsModel
+                textRole: "name"
                 Kirigami.FormData.label: i18n("Maximized window:")
                 onCurrentIndexChanged: {
                     autoLoadConfig.maximized = model.get(currentIndex)["value"]

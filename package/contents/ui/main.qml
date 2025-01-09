@@ -68,6 +68,7 @@ PlasmoidItem {
                     StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/presets/"
     property var presetContent: ""
     property var panelState: {
+        "fullscreenWindow": tasksModel.fullscreenExists,
         "maximized": tasksModel.maximizedExists,
         "visibleWindows": tasksModel.visibleExists,
         "touchingWindow": !panelElement ? false : Boolean(panelElement.touchingWindow),
@@ -407,12 +408,16 @@ PlasmoidItem {
             if (!fgEnabled && !inTray) {
                 return Kirigami.Theme.textColor
             } else if ((!fgEnabled && inTray && widgetEnabled)) {
+                // inherit tray widget fg color to tray icons
                 return trayWidgetBgItem.fgColor
             } else if (separateTray || cfgOverride) {
+                // passs override config
                 return getColor(rect.fgColorCfg, targetIndex, rect.color, itemType, fgColorHolder)
             } else if (inTray) {
+                // pass tray icon index
                 return getColor(widgetSettings.foregroundColor, trayIndex, rect.color, itemType, fgColorHolder)
             } else {
+                // pass regular widget index
                 return getColor(widgetSettings.foregroundColor, targetIndex, rect.color, itemType, fgColorHolder)
             }
         }
