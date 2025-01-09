@@ -32,6 +32,7 @@ KCM.SimpleKCM {
     Component.onCompleted: {
         configOverrides = JSON.parse(JSON.stringify(config.overrides))
         associationsModel = JSON.parse(JSON.stringify(config.associations))
+        associationsModel = Utils.clearOldWidgetConfig(associationsModel)
         console.log(JSON.stringify(associationsModel))
         initWidgets()
     }
