@@ -11,6 +11,15 @@ Fully-featured widget to bring Latte-Dock and WM status bar customization featur
 
 </div>
 
+> [!IMPORTANT]
+> This widget makes temporary changes to internal parts to the panel that aren't meant to be changed externally.
+>
+> If you found a bug while using Panel Colorizer please report it [here](https://github.com/luisbocanegra/plasma-panel-colorizer/issues?q=sort%3Aupdated-desc+is%3Aissue+is%3Aopen) first, only report it to KDE after we conclude is a upstream issue or you removed the widget and can still reproduce the problem.
+>
+> Make sure you're using the latest version of the widget and Plasma to avoid compatibility issues.
+>
+> Project is under active development. **Watch out for BREAKING CHANGES in the [Release notes](https://github.com/luisbocanegra/plasma-panel-colorizer/releases)**.
+
 ## Demo
 
 [![Demo](https://img.shields.io/badge/watch%20on%20youtube-demo?logo=youtube&logoColor=white&labelColor=%23c30000&color=%23222222
@@ -84,13 +93,6 @@ Overrides let you give a completely different configuration to one or more widge
 </details>
 
 ## Installing
-
-> [!IMPORTANT]
-> This widget makes temporary changes to internal parts to the panel that aren't meant to be changed externally.
->
-> Make sure you're using the latest version of the widget and Plasma to avoid compatibility issues.
->
-> If you found a bug while using Panel Colorizer please report it [here](https://github.com/luisbocanegra/plasma-panel-colorizer/issues?q=sort%3Aupdated-desc+is%3Aissue+is%3Aopen) first, only report it to KDE after we conclude is a upstream issue or you removed the widget and can still reproduce the problem.
 
 ### KDE Store
 
@@ -195,6 +197,32 @@ Instructions to add new presets or improve the existing ones are [here](https://
 
 Changes to the panel are not permanent and can be removed by disabling or removing the widget
 
+### How to restore the default appearance?
+
+* Click on the widget to disable/enable
+* Or **Widget Settings** > **Top left** > **Enabled** checkbox
+* Or removing the widget from the panel and restarting Plasma/logging out.
+
+**If you are troubleshooting an issue please do the third option and read the notice about reporting bugs at the start of [Install](https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#installing) section**
+
+### How do presets work?
+
+Presets are a way to store the current configuration, it allows to quickly switch between styles and also to use them on other panels.
+
+**How to manage presets**
+
+1. To start creating a new preset you can either load an existing preset you want to edit or start clean by restoring the default appearance first.
+2. Go to the other tabs and configure them however you like.
+3. Go back to presets tab and either update the existing preset or create a new one.
+
+When you apply a preset it overrides the currently applied configuration with the one of the preset, you can always save the current configuration as a different preset if you want to preserve it.
+
+After loading a preset and editing any of the settings the new changes are not automatically written to the last loaded preset, instead you should go back to the presets tab and update it.
+
+**Preset auto-loading**
+
+The same applies to the preset auto-loading feature, if you are making changes to your presets it is recommended to temporary disable this feature so your unsaved edits don't get overwritten when a preset auto-loads.
+
 ### Updated to v1.0.0, where are my presets?
 
 The location where they are stored has changed, the new locations are:
@@ -205,17 +233,9 @@ The location where they are stored has changed, the new locations are:
 
 **The format of the presets has changed, presets from previous version will need to be recreated manually**
 
-### How to restore the default appearance?
-
-* Click on the widget to disable/enable
-* Or **Widget Settings** > **Top left** > **Enabled** checkbox
-* Or removing the widget from the panel and restarting Plasma/logging out.
-
-**If you are troubleshooting an issue please do the third option and read the notice about reporting bugs at the start of [Install](https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#installing) section**
-
 ### How does it work?
 
-This widget works by inject/managing the background and colors of other widgets and the panel where it is placed.
+This widget works by inject/managing the background and colors and other properties of other widgets and the panel where it is placed.
 
 **Technical**
 
