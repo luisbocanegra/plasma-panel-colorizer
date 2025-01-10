@@ -16,6 +16,7 @@ import Qt5Compat.GraphicalEffects
 import "components" as Components
 import "code/utils.js" as Utils
 import "code/globals.js" as Globals
+import "code/enum.js" as Enum
 
 PlasmoidItem {
     id: main
@@ -64,8 +65,6 @@ PlasmoidItem {
     property Item panelBgItem
     property Item trayWidgetBgItem
     property string lastPreset
-    property string presetsDir: StandardPaths.writableLocation(
-                    StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/presets/"
     property var presetContent: ""
     property var panelState: {
         "fullscreenWindow": tasksModel.fullscreenExists,
@@ -146,6 +145,8 @@ PlasmoidItem {
     signal refreshNeeded()
     signal updateUnified()
     signal updateMasks()
+
+    property var switchPresets: JSON.parse(plasmoid.configuration.switchPresets)
 
     onStockPanelSettingsChanged: {
         Qt.callLater(function() {
@@ -1244,6 +1245,7 @@ PlasmoidItem {
     }
 
     function applyPreset(presetDir) {
+        if (!presetDir) return
         console.log("Reading preset:", presetDir);
         lastPreset = presetDir
         runCommand.run("cat '" + presetDir + "/settings.json'")
@@ -1409,33 +1411,41 @@ PlasmoidItem {
 
     compactRepresentation: CompactRepresentation {
         icon: main.icon
-    }
-
-    fullRepresentation: Item {
-        Layout.minimumWidth: main.Kirigami.Units.gridUnit * 10
-        Layout.minimumHeight: main.Kirigami.Units.gridUnit * 10
-        Layout.maximumWidth: main.Kirigami.Units.gridUnit * 10
-        Layout.maximumHeight: main.Kirigami.Units.gridUnit * 10
-
-        ColumnLayout {
-            id: column
-            anchors.fill: parent
-            Kirigami.Icon {
-                Layout.fillWidth: true
-                Layout.preferredHeight: 64
-                source: main.icon
-                isMask: true
-                color: Kirigami.Theme.negativeTextColor
-            }
-            PlasmaComponents.Label {
-                text: "<font color='"+Kirigami.Theme.neutralTextColor+"'>Panel not found, this widget must be child of a panel</font>"
-                Layout.fillWidth: true
-                wrapMode: Text.Wrap
+        onWidgetClicked: {
+            switch (Plasmoid.configuration.widgetClickMode) {
+                case (Enum.WidgetClickModes.TogglePanelColorizer):
+                    console.log("Toggle Pane Colorizer")
+                    plasmoid.configuration.isEnabled = !plasmoid.configuration.isEnabled
+                    plasmoid.configuration.writeConfig();
+                    break;
+                case (Enum.WidgetClickModes.SwitchPresets):
+                    console.log("Switch presets")
+                    plasmoid.configuration.switchPresetsIndex = (plasmoid.configuration.switchPresetsIndex + 1) % switchPresets.length
+                    console.log(plasmoid.configuration.switchPresetsIndex)
+                    plasmoid.configuration.writeConfig();
+                    applyPreset(switchPresets[plasmoid.configuration.switchPresetsIndex])
+                    break;
+                case (Enum.WidgetClickModes.ShowPopup):
+                    console.log("Popup")
+                    main.expanded = !main.expanded;
+                    break;
             }
         }
     }
 
-    toolTipSubText: onDesktop ? "<font color='"+Kirigami.Theme.neutralTextColor+"'>Panel not found, this widget must be child of a panel</font>" : Plasmoid.metaData.description
+    toolTipSubText: {
+        if (onDesktop) {
+            return "<font color='"+Kirigami.Theme.neutralTextColor+"'>Panel not found, this widget must be child of a panel</font>"
+        }
+        if (!plasmoid.configuration.isEnabled) {
+            return ""
+        }
+        const name = plasmoid.configuration.lastPreset.split("/")
+        if (name.length) {
+            return i18n("Last preset loaded:") + " " + name[name.length-1]
+        }
+        return ""
+    }
     toolTipTextFormat: Text.RichText
 
     Plasmoid.status: (editMode || !hideWidget) ?
@@ -1454,4 +1464,128 @@ PlasmoidItem {
             }
         }
     ]
+
+    Component {
+        id: popupView
+        ColumnLayout {
+            Layout.minimumWidth: main.Kirigami.Units.gridUnit * 10
+            Layout.minimumHeight: main.Kirigami.Units.gridUnit * 10
+            Layout.maximumWidth: main.Kirigami.Units.gridUnit * 20
+            Layout.maximumHeight: main.Kirigami.Units.gridUnit * 20
+
+            property string presetsDir: StandardPaths.writableLocation(
+                    StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/presets"
+            property string cratePresetsDirCmd: "mkdir -p " + presetsDir
+            property string presetsBuiltinDir: Qt.resolvedUrl("./presets").toString().substring(7) + "/"
+            property string toolsDir: Qt.resolvedUrl("./tools").toString().substring(7) + "/"
+            property string listUserPresetsCmd: "'" + toolsDir + "list_presets.sh' '" + presetsDir + "'"
+            property string listBuiltinPresetsCmd: "'" + toolsDir + "list_presets.sh' '" + presetsBuiltinDir + "' b"
+            property string listPresetsCmd: listBuiltinPresetsCmd+";"+listUserPresetsCmd
+
+            ListModel {
+                id: presetsModel
+            }
+
+            RunCommand {
+                id: runCommand
+            }
+
+            Component.onCompleted: {
+                runCommand.run(listPresetsCmd)
+            }
+
+            Connections {
+                target: runCommand
+                function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
+                    console.error(cmd, exitCode, exitStatus, stdout, stderr)
+                    if (exitCode!==0) return
+                    // console.log(stdout);
+                    if(cmd === listPresetsCmd) {
+                        if (stdout.length === 0) return
+
+                        const out = stdout.trim().split("\n")
+                        for (const line of out) {
+                            let builtin = false
+                            const parts = line.split(":")
+                            const path = parts[parts.length -1]
+                            let name = path.split("/")
+                            name = name[name.length-1]
+                            const dir = parts[1]
+                            if (line.startsWith("b:")) {
+                                builtin = true
+                            }
+                            presetsModel.append(
+                                {
+                                    "name": name,
+                                    "value": dir,
+                                }
+                            )
+                        }
+                    }
+                }
+            }
+
+            PlasmaComponents.Label {
+                text: i18n("Select a preset")
+                Layout.fillWidth: true
+                font.weight: Font.DemiBold
+                Layout.leftMargin: Kirigami.Units.smallSpacing
+            }
+
+            ListView {
+                clip: true
+                // Layout.preferredWidth: Kirigami.Units.gridUnit * 10
+                // Layout.preferredHeight: Kirigami.Units.gridUnit * 12
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                id: listView
+                model: presetsModel
+                delegate: PlasmaComponents.ItemDelegate {
+                    width: ListView.view.width
+                    contentItem: RowLayout {
+                        spacing: Kirigami.Units.smallSpacing
+                        PlasmaComponents.Label {
+                            Layout.fillWidth: true
+                            text: model.name
+                            textFormat: Text.PlainText
+                            elide: Text.ElideRight
+                        }
+                    }
+
+                    onClicked: {
+                        applyPreset(value)
+                    }
+                }
+            }
+        }
+    }
+
+    Component {
+        id: desktopView
+        Item {
+            Layout.minimumWidth: main.Kirigami.Units.gridUnit * 10
+            Layout.minimumHeight: main.Kirigami.Units.gridUnit * 10
+            Layout.maximumWidth: main.Kirigami.Units.gridUnit * 10
+            Layout.maximumHeight: main.Kirigami.Units.gridUnit * 10
+
+            ColumnLayout {
+                id: column
+                anchors.fill: parent
+                Kirigami.Icon {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 64
+                    source: main.icon
+                    isMask: true
+                    color: Kirigami.Theme.negativeTextColor
+                }
+                PlasmaComponents.Label {
+                    text: "<font color='"+Kirigami.Theme.neutralTextColor+"'>"+i18n("Panel not found, this widget must be placed on a panel to work")+"</font>"
+                    Layout.fillWidth: true
+                    wrapMode: Text.Wrap
+                }
+            }
+        }
+    }
+
+    fullRepresentation: onDesktop ? desktopView : popupView
 }

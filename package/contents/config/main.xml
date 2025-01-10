@@ -51,5 +51,23 @@
         type="String">
         <default>{"widgets":[], "reloadInterval": 250}</default>
     </entry>
+    <entry name="widgetClickMode" type="Enum">
+        <choices>
+            <choice name="TogglePanelColorizer"/>
+            <choice name="SwitchPresets"/>
+            <choice name="ShowPopup"/>
+        </choices>
+        <default>0</default>
+    </entry>
+    <entry
+        name="switchPresets"
+        type="String">
+        <default>[]</default>
+    </entry>
+    <entry
+        name="switchPresetsIndex"
+        type="Int">
+        <default>0</default>
+    </entry>
   </group>
 </kcfg>

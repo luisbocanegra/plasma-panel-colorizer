@@ -257,5 +257,8 @@ const ignoredConfigs = [
   "objectName",
   "lastPreset",
   "presetAutoloading",
-  "configurationOverrides"
+  "configurationOverrides",
+  "widgetClickMode",
+  "switchPresets",
+  "switchPresetsIndex"
 ]

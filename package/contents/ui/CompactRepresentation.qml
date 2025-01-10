@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.core as PlasmaCore
-import org.kde.plasma.plasmoid
 import "components" as Components
 
 MouseArea {
@@ -12,10 +11,11 @@ MouseArea {
     property real itemSize: Math.min(compact.height, compact.width)
     property string icon
 
+    signal widgetClicked()
+
     hoverEnabled: true
     onClicked: {
-        plasmoid.configuration.isEnabled = !plasmoid.configuration.isEnabled
-        plasmoid.configuration.writeConfig();
+        widgetClicked()
     }
 
 
