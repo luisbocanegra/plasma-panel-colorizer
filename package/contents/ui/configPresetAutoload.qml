@@ -8,6 +8,7 @@ import org.kde.plasma.plasmoid
 import org.kde.plasma.plasma5support as P5Support
 import "components" as Components
 import "code/utils.js" as Utils
+import "code/enum.js" as Enum
 
 KCM.SimpleKCM {
     id:root
@@ -24,8 +25,17 @@ KCM.SimpleKCM {
     property string cfg_presetAutoloading
     property var autoLoadConfig: JSON.parse(cfg_presetAutoloading)
 
+    property alias cfg_widgetClickMode: widgetClickModeCombo.currentIndex
+    readonly property list<string> widgetClickModes: ["Toggle Panel Colorizer", "Switch presets", "Show popup"]
+
+    property string cfg_switchPresets
+    property var switchPresets: JSON.parse(cfg_switchPresets)
+
+    property var presetsList: []
+
     function updateConfig() {
         cfg_presetAutoloading = JSON.stringify(autoLoadConfig, null, null)
+        cfg_switchPresets = JSON.stringify(switchPresets, null, null)
     }
 
     ListModel {
@@ -44,34 +54,33 @@ KCM.SimpleKCM {
             // console.log(stdout);
             if(cmd === listPresetsCmd) {
                 if (stdout.length === 0) return
-                presetsModel.append(
-                    {
-                        "name": i18n("Do nothing"),
-                        "value": "",
-                    }
-                )
 
                 const out = stdout.trim().split("\n")
                 for (const line of out) {
-                    let builtin = false
                     const parts = line.split(":")
                     const path = parts[parts.length -1]
                     let name = path.split("/")
                     name = name[name.length-1]
                     const dir = parts[1]
-                    if (line.startsWith("b:")) {
-                        builtin = true
-                    }
                     console.error(dir)
+                    const preset = {
+                        "name": name,
+                        "value": dir,
+                    }
                     presetsModel.append(
-                        {
-                            "name": name,
-                            "value": dir,
-                        }
+                        preset
                     )
+                    presetsList.push(preset)
                 }
             }
+            if (presetsList.length && switchPresets.length) {
+                switchPresets = pruneMissingPresets(switchPresets)
+            }
         }
+    }
+
+    function pruneMissingPresets(switchPresets) {
+        return switchPresets.filter(saved => presetsList.some(p => p.value === saved))
     }
 
     function getIndex(model, savedValue) {
@@ -111,6 +120,13 @@ KCM.SimpleKCM {
         }
 
         Kirigami.FormLayout {
+
+            Kirigami.Separator {
+                Kirigami.FormData.isSection: true
+                Kirigami.FormData.label: i18n("Environment")
+                Layout.fillWidth: true
+            }
+
             CheckBox {
                 id: enabledCheckbox
                 Kirigami.FormData.label: i18n("Enabled:")
@@ -204,6 +220,59 @@ KCM.SimpleKCM {
                 }
                 currentIndex: getIndex(model, autoLoadConfig.normal)
                 enabled: enabledCheckbox.checked
+            }
+
+            Kirigami.Separator {
+                Kirigami.FormData.isSection: true
+                Kirigami.FormData.label: i18n("Widget Click")
+                Layout.fillWidth: true
+            }
+
+            ComboBox {
+                id: widgetClickModeCombo
+                Kirigami.FormData.label: "Action:"
+                model: widgetClickModes
+            }
+
+            ColumnLayout {
+                Layout.fillWidth: true
+                ScrollView {
+                    enabled: cfg_widgetClickMode === Enum.WidgetClickModes.SwitchPresets
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: Math.min(implicitHeight+20, 200)
+                    ListView {
+                        id: listView
+                        model: presetsModel
+                        Layout.preferredWidth: Math.min(width+50, 100)
+                        reuseItems: true
+                        clip: true
+                        focus: true
+                        activeFocusOnTab: true
+                        keyNavigationEnabled: true
+                        delegate: RowLayout {
+                            width: ListView.view.width
+                            CheckBox {
+                                id: presetCheckbox
+                                text: model.name
+                                checked: switchPresets.includes(model.value)
+                                Layout.rightMargin: Kirigami.Units.smallSpacing * 4
+                                onCheckedChanged: {
+                                    if (checked) {
+                                        if (!switchPresets.includes(model.value)) {
+                                            switchPresets.push(model.value)
+                                        }
+                                    } else {
+                                        switchPresets = switchPresets.filter(p => p !== model.value)
+                                    }
+                                    updateConfig()
+                                }
+                            }
+                        }
+                        highlight: Item {}
+                        highlightMoveDuration: 0
+                        highlightResizeDuration: 0
+                    }
+                }
             }
         }
     }
