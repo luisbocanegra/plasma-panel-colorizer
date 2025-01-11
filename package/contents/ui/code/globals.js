@@ -262,5 +262,6 @@ const ignoredConfigs = [
   "switchPresets",
   "switchPresetsIndex",
   "enableDBusService",
-  "dBusPollingRate"
+  "dBusPollingRate",
+  "pythonExecutable"
 ]
