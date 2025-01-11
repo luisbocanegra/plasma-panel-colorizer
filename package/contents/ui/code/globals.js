@@ -260,5 +260,7 @@ const ignoredConfigs = [
   "configurationOverrides",
   "widgetClickMode",
   "switchPresets",
-  "switchPresetsIndex"
+  "switchPresetsIndex",
+  "enableDBusService",
+  "dBusPollingRate"
 ]
