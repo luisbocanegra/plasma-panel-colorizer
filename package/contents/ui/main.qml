@@ -150,7 +150,7 @@ PlasmoidItem {
 
     onStockPanelSettingsChanged: {
         Qt.callLater(function() {
-            console.error(JSON.stringify(stockPanelSettings))
+            // console.error(JSON.stringify(stockPanelSettings))
             let script = Utils.setPanelModeScript(panelPosition, stockPanelSettings)
             Utils.evaluateScript(script)
         })
@@ -1340,7 +1340,7 @@ PlasmoidItem {
             if (!child.applet?.plasmoid?.pluginName) continue
             // if (Utils.getBgManaged(child)) continue
             // console.error(child.applet?.plasmoid?.pluginName)
-            if (child.applet.plasmoid.pluginName !== "luisbocanegra.panel.colorizer") {
+            if (child.applet.plasmoid.pluginName !== Plasmoid.metaData.pluginId) {
                 child.applet.plasmoid.contextualActions.push(configureAction)
             }
             const isTray = child.applet.plasmoid.pluginName === "org.kde.plasma.systemtray"
@@ -1440,20 +1440,20 @@ PlasmoidItem {
         }
     }
 
+    // toolTipMainText: onDesktop ? "" :
     toolTipSubText: {
+        let text = ""
         if (onDesktop) {
-            return "<font color='"+Kirigami.Theme.neutralTextColor+"'>Panel not found, this widget must be child of a panel</font>"
+            text = "<font color='"+Kirigami.Theme.neutralTextColor+"'>Panel not found, this widget must be child of a panel</font>"
+        } else if (plasmoid.configuration.isEnabled) {
+            const name = plasmoid.configuration.lastPreset.split("/")
+            if (name.length) {
+                text = i18n("Last preset loaded:") + " " + name[name.length-1]
+            }
         }
-        if (!plasmoid.configuration.isEnabled) {
-            return ""
-        }
-        const name = plasmoid.configuration.lastPreset.split("/")
-        if (name.length) {
-            return i18n("Last preset loaded:") + " " + name[name.length-1]
-        }
-        return ""
+        return text
     }
-    toolTipTextFormat: Text.RichText
+    toolTipTextFormat: Text.PlainText
 
     Plasmoid.status: (editMode || !hideWidget) ?
         PlasmaCore.Types.ActiveStatus :
@@ -1595,4 +1595,12 @@ PlasmoidItem {
     }
 
     fullRepresentation: onDesktop ? desktopView : popupView
+
+    DBusServiceModel {
+        enabled: plasmoid.configuration.enableDBusService
+        poolingRate: plasmoid.configuration.dBusPollingRate
+        onPresetChanged: {
+            applyPreset(preset)
+        }
+    }
 }
