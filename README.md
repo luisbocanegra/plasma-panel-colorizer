@@ -42,9 +42,13 @@ Fully-featured widget to bring Latte-Dock and WM status bar customization featur
 * [Built-in presets](https://github.com/luisbocanegra/plasma-panel-colorizer/tree/main/package/contents/ui/presets)
 * Create your own presets
 * Preset auto-loading
-  * Floating panel
-  * Maximized window shown
-  * Window touching panel
+  * Fullscreen window
+  * Maximized window
+  * Window touching the panel
+  * At least one window is shown on screen
+  * Panel is floating
+  * Normal (fall-back when none of the above are meet)
+* [Switch presets from the command-line using D-Bus](#switching-presets-using-the-commandline-with-d-bus)
 
 ### Panel/Widget/System Tray elements
 
@@ -96,8 +100,14 @@ Overrides let you give a completely different configuration to one or more widge
 
 ### KDE Store
 
-1. **Right click on the Panel** > **Add or manage widgets** > **Add new...** > **Download new...**
-2. **Search** for "**Panel Colorizer**", install and add it to a Panel.
+1. Install these runtime dependencies or the equivalents for your distribution
+
+    ```txt
+    python python-dbus python-gobject
+    ```
+
+2. **Right click on the Panel** > **Add or manage widgets** > **Add new...** > **Download new...**
+3. **Search** for "**Panel Colorizer**", install and add it to a Panel.
 
 * ~~[Plasma 5](https://store.kde.org/p/2131149) version v0.2.0~~ **[No longer maintained](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/10)**
 
@@ -110,13 +120,13 @@ Overrides let you give a completely different configuration to one or more widge
    * Arch
 
       ```txt
-      git gcc cmake extra-cmake-modules libplasma spectacle
+      git gcc cmake extra-cmake-modules libplasma spectacle python python-dbus python-gobject
       ```
 
    * Fedora
 
       ```txt
-      git gcc-c++ cmake extra-cmake-modules libplasma-devel spectacle
+      git gcc-c++ cmake extra-cmake-modules libplasma-devel spectacle python3 python3-dbus python3-gobject
       ```
 
     Spectacle is optional, will be used to create preset previews
@@ -187,6 +197,18 @@ To install the widget use one of these methods:
 2. Go to the widget settings to change the current panel appearance (right click > Configure...)
 3. Widget can set to only show in panel **Edit Mode** (right click > Hide widget or from the widget settings)
 
+### Switching presets using the commandline with D-Bus
+
+1. Go to the widget settings
+2. In General tab enable the D-Bus service
+3. To apply a preset can use qdbus6 and pass the absolute path of a preset:
+
+   ```sh
+   qdbus6 luisbocanegra.panel.colorizer.c337.w2346 /preset preset /path/to/preset/dir/
+   ```
+
+Each widget instance has its own D-bus name, you can get it from the same widget settings General tab.
+
 ## Adding or improving the built-in presets
 
 Instructions to add new presets or improve the existing ones are [here](https://github.com/luisbocanegra/plasma-panel-colorizer/blob/main/package/contents/ui/presets/README.md)
@@ -243,7 +265,7 @@ Backgrounds are drawn by creating rectangle areas bellow widgets/panel, text and
 
 **Performance**
 
-I tried to optimize it so CPU usage only increases around 0.5-1% on my computer, but usage could vary depending on your System or how many widgets are in your panels.
+I tried to optimize it so CPU usage only increases around 0.5-1% on my computer, usage may vary depending on your System or how many widgets are in your panels.
 
 ### Can this widget change the appearance of other parts of Plasma (e.g Desktop view, widget popups/tooltips, overview)
 
