@@ -228,7 +228,7 @@ PlasmoidItem {
         return newColor
     }
 
-    function applyFgColor(element, newColor, fgColorCfg, depth, wRecolorCfg) {
+    function applyFgColor(element, newColor, fgColorCfg, depth, wRecolorCfg, fgColorModified) {
         let count = 0;
         let maxDepth = depth
         const forceMask = wRecolorCfg?.method?.mask ?? false
@@ -238,7 +238,11 @@ PlasmoidItem {
             var child = element.visibleChildren[i]
             let targetTypes = [Text,ToolButton,Label,Canvas,Kirigami.Icon]
             if (targetTypes.some(function (type) {return child instanceof type})) {
-                if (child.color) {
+                // before trying to apply the foreground color, we need to know if we
+                // have changed it in the first place, otherwise we have no easy way to
+                // restore the original binding for widgets that do dynamic color
+                // requires restarting plasma but is better than nothing
+                if ((fgColorCfg.enabled || fgColorModified) && child.color) {
                     child.color = newColor
                 }
                 if (child.Kirigami?.Theme) {
@@ -267,7 +271,7 @@ PlasmoidItem {
                 // repaintDebugComponent.createObject(child)
             }
             if (child.visibleChildren?.length ?? 0 > 0) {
-                const result = applyFgColor(child, newColor, fgColorCfg, depth + 1, wRecolorCfg)
+                const result = applyFgColor(child, newColor, fgColorCfg, depth + 1, wRecolorCfg, fgColorModified)
                 count += result.count
                 if (result.depth > maxDepth) {
                     maxDepth = result.depth
@@ -368,9 +372,9 @@ PlasmoidItem {
         property int maxDepth: 0
         visible: cfgEnabled
         property bool cfgEnabled: cfg.enabled && isEnabled
-        property bool bgEnabled: cfgEnabled ? bgColorCfg.enabled : false
-        property bool fgEnabled: fgColorCfg.enabled && cfgEnabled
-        property bool radiusEnabled: cfg.radius.enabled && cfgEnabled
+        property bool bgEnabled: cfgEnabled && bgColorCfg.enabled
+        property bool fgEnabled: cfgEnabled && fgColorCfg.enabled
+        property bool radiusEnabled: cfgEnabled && cfg.radius.enabled
         property int topLeftRadius: !radiusEnabled || unifyBgType === 2 || unifyBgType === 3
             ? 0
             : cfg.radius.corner.topLeft ?? 0
@@ -407,7 +411,7 @@ PlasmoidItem {
         }
         property string fgColor: {
             if (!fgEnabled && !inTray) {
-                return Kirigami.Theme.textColor
+                return main.Kirigami.Theme.textColor
             } else if ((!fgEnabled && inTray && widgetEnabled)) {
                 // inherit tray widget fg color to tray icons
                 return trayWidgetBgItem.fgColor
@@ -428,7 +432,6 @@ PlasmoidItem {
             width: height
             visible: false
             radius: height / 2
-            color: fgColor
             anchors.right: parent.right
             Kirigami.Theme.colorSet: Kirigami.Theme[fgColorCfg.systemColorSet]
         }
@@ -438,7 +441,6 @@ PlasmoidItem {
             width: height
             visible: false
             radius: height / 2
-            color: fgColor
             anchors.right: parent.right
             Kirigami.Theme.colorSet: Kirigami.Theme[bgColorCfg.systemColorSet]
         }
@@ -483,14 +485,19 @@ PlasmoidItem {
             recolorTimer.restart()
         }
 
+        property bool fgColorModified: false
+
+        onFgEnabledChanged: {
+            if (fgEnabled) fgColorModified = true
+        }
+
         Timer {
             id: recolorTimer
             interval: 10
             onTriggered: {
                 if (isPanel) return
-                if (!fgEnabled) return
                 if (widgetName === "org.kde.plasma.systemtray" && separateTray) return
-                const result = applyFgColor(target, fgColor, fgColorCfg, 0, wRecolorCfg)
+                const result = applyFgColor(target, fgColor, fgColorCfg, 0, wRecolorCfg, fgColorModified)
                 if (result) {
                     itemCount = result.count
                     maxDepth = result.depth
