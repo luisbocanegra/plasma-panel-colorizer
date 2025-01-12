@@ -155,7 +155,7 @@ function findWidgetsTray(grid, panelWidgets) {
 }
 
 function getWidgetNameAndId(item) {
-  let name = null
+  let name = ""
   let id = -1
   if (item.applet?.plasmoid?.pluginName) {
     name = item.applet.plasmoid.pluginName
@@ -168,8 +168,8 @@ function getWidgetNameAndId(item) {
         name = model.Id
       } else if (model.itemType === "Plasmoid") {
         const applet = model.applet ?? null
-        name = applet?.plasmoid.pluginName ?? null
-        name = applet?.plasmoid.id ?? -1
+        name = applet?.plasmoid.pluginName ?? ""
+        id = applet?.plasmoid.id ?? -1
       }
     }
   }
