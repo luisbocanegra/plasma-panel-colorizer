@@ -1,0 +1,1761 @@
+#!/usr/bin/env python3
+__version__ = '31'
+
+#--- User Configurable Defaults
+# You can use `kpac --dir=package --i18ndir=package/translate`
+# or edit the variables below to always run `kpac` with defaults.
+sourceDirDefault = 'package'
+translateDirDefault = 'package/translate'
+compendiumDirDefault = '.compendium'
+qtMinVer="6.0"
+kfMinVer="6.0" # KDE Frameworks
+plasmaMinVer="6.0"
+filenameTag=f"plasma{plasmaMinVer.replace('.', '_')}"
+
+
+
+
+#---
+import argparse
+import configparser
+from collections import namedtuple
+import datetime
+import functools
+import glob
+import json
+import logging
+import os
+from pprint import pprint
+import re
+import subprocess
+import shutil
+import sys
+
+#---
+logger = logging.getLogger('kpac')
+logger.setLevel(logging.DEBUG)
+logger.addHandler(logging.StreamHandler())
+
+#---
+class TC:
+	Reset = '\033[0m'
+	Bold = '\033[1m'
+	FG_Black='\033[30m'
+	FG_Red='\033[31m'
+	FG_Green='\033[32m'
+	FG_Orange='\033[33m'
+	FG_Blue='\033[34m'
+	FG_Purple='\033[35m'
+	FG_Cyan='\033[36m'
+	FG_LightGray='\033[37m'
+	FG_DarkGray='\033[90m'
+	FG_LightRed='\033[91m'
+	FG_LightGreen='\033[92m'
+	FG_Yellow='\033[93m'
+	FG_LightBlue='\033[94m'
+	FG_Pink='\033[95m'
+	FG_LightCyan='\033[96m'
+	FG_White='\033[97m'
+
+	@staticmethod
+	def stripColors(str):
+		return re.sub('\033' + '\[((\d{1,2});)?(\d{1,2})m', '', str)
+
+def echoTC(terminalColor, *args):
+	line = terminalColor + ' '.join(args) + TC.Reset
+	if not sys.stdout.isatty():
+		line = TC.stripColors(line)
+	print(line)
+def echoGray(*args):
+	echoTC(TC.FG_DarkGray, *args)
+def echoRed(*args):
+	echoTC(TC.FG_LightRed, *args)
+def echoGreen(*args):
+	echoTC(TC.FG_LightGreen, *args)
+def echoWarning(*args):
+	echoTC(TC.FG_Orange, *args)
+def echoError(*args):
+	echoTC(TC.FG_LightRed + TC.Bold, *args)
+
+
+# KDE rc files differences:
+#     Keys are cAsE sensitive
+#     No spaces around the =
+#     [Sections can have spaces and : colons]
+#     Parses [Sub][Sections] as "Sub][Sections", but cannot have comments on the [Section] line
+class KdeConfig(configparser.ConfigParser):
+	def __init__(self, filename):
+		super().__init__()
+
+		# Keep case sensitive keys
+		# http://stackoverflow.com/questions/19359556/configparser-reads-capital-keys-and-make-them-lower-case
+		self.optionxform = str
+
+		# Parse SubSections as "Sub][Sections"
+		self.SECTCRE = re.compile(r"\[(?P<header>.+?)]\w*$")
+
+		self.filename = filename
+		self.read(self.filename)
+
+
+#--- GetText
+POT_DEFAULT_HEADER="""# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\\n"
+"Report-Msgid-Bugs-To: \\n"
+"POT-Creation-Date: 2000-12-31 23:59-0000\\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\\n"
+"Language-Team: LANGUAGE <LL@li.org>\\n"
+"Language: \\n"
+"MIME-Version: 1.0\\n"
+"Content-Type: text/plain; charset=UTF-8\\n"
+"Content-Transfer-Encoding: 8bit\\n"
+
+"""
+PoMessage = namedtuple('PoMessage', ['ctxt', 'id', 'str'])
+class PoFile:
+	def __init__(self, filepath):
+		self.filepath = filepath
+		self.text = None
+		self.messages = []
+		with open(self.filepath, 'r') as fin:
+			self.text = fin.read()
+		self.parse()
+	@property
+	def msgPattern(self):
+		# Edit/Test: https://regex101.com/r/kEJCVL
+		patt = r'(msgctxt[ \t]+(".*")[ \t]*\n)?'
+		patt += r'((".*"[ \t]*\n)*)'
+		patt += r'(msgid[ \t]+(".*")[ \t]*\n)'
+		patt += r'((".*"[ \t]*\n)*)'
+		patt += r'(msgstr[ \t]+(".*")[ \t]*\n)'
+		patt += r'((".*"[ \t]*\n)*)'
+		return patt
+	def _joinMsgStr(self, line1, line234):
+		if line1 is None:
+			return None
+		elif line234 is None:
+			return line1.strip().strip('\"')
+		else:
+			lines = [line1] + line234.split('\n')
+			msgstr = ""
+			for line in lines:
+				msgstr += line.strip().strip('\"')
+			return msgstr
+	def parse(self):
+		for m in re.finditer(self.msgPattern, self.text):
+			msgCtx = self._joinMsgStr(m.group(2), m.group(3))
+			msgId = self._joinMsgStr(m.group(6), m.group(7))
+			msgStr = self._joinMsgStr(m.group(10), m.group(11))
+			msg = PoMessage(msgCtx, msgId, msgStr)
+			self.messages.append(msg)
+	def getMsgStr(self, msgid, msgctxt=None):
+		for msg in self.messages:
+			if msg.ctxt == msgctxt and msg.id == msgid:
+				return msg.str
+		return None
+
+
+
+#---
+def isCommandInstalled(name):
+	return shutil.which(name) is not None
+
+class LineReplace:
+	def __init__(self, filepath):
+		self.filepath = filepath
+		self.lines = None
+		self.output = ''
+	def __enter__(self):
+		with open(self.filepath, 'r') as fin:
+			self.lines = fin.readlines()
+		return self
+	def __exit__(self, exc_type, exc_val, exc_tb):
+		if exc_type is not None:
+			print(f"Did not write {self.filepath} due to error")
+			return # Skip writing to file if there's an error.
+		with open(self.filepath, 'w') as fout:
+			fout.write(self.output)
+	def write(self, text):
+		self.output += text
+
+def jsonDumpTabbed(filepath, data):
+	with open(filepath, 'w') as fout:
+		json.dump(data, fout,
+			ensure_ascii=False,
+			indent='    ',
+			sort_keys=True,
+		)
+		fout.write('\n') # Trailing newline at EOF
+
+#---
+# grep matchStr filepath
+def grep_line(matchStr, filepath):
+	with open(filepath, 'r') as fin:
+		for line in fin.read().splitlines():
+			if matchStr in line:
+				return line
+	return None
+def grep_line_iter(matchStr, filepath):
+	with open(filepath, 'r') as fin:
+		for line in fin.read().splitlines():
+			if matchStr in line:
+				yield line
+def grep_re_count(matchStr, filepath):
+	with open(filepath, 'r') as fin:
+		return len(re.findall(matchStr, fin.read()))
+
+# sed -i 's/aaa/bbb/' filepath
+def sed_str(a, b, filepath):
+	with LineReplace(filepath) as rep:
+		for line in rep.lines:
+			line = line.replace(a, b)
+			rep.write(line)
+def sed_re(a, b, filepath):
+	with LineReplace(filepath) as rep:
+		for line in rep.lines:
+			line = re.sub(a, b, line)
+			rep.write(line)
+
+# diff aFilepath bFilePath
+def diff(aFilepath, bFilepath):
+	p = subprocess.run([
+		'diff',
+		aFilepath,
+		bFilepath,
+	], capture_output=True)
+	return p.stdout.decode('utf-8')
+def is_diff(aFilepath, bFilepath):
+	return diff(aFilepath, bFilepath).strip() != ""
+
+# git_diff --color filepath
+def git_diff_color(filepath):
+	p = subprocess.run(['git', 'diff', '--color', filepath], capture_output=True)
+	return p.stdout.decode('utf-8')
+def git_diff_color_noindex(aFilepath, bFilepath):
+	p = subprocess.run(['git', 'diff', '--color', '--no-index', aFilepath, bFilepath], capture_output=True)
+	return p.stdout.decode('utf-8')
+
+#---
+@functools.cache
+def kpackagetool():
+	if isCommandInstalled('kpackagetool6'):
+		return 'kpackagetool6'
+	elif isCommandInstalled('kpackagetool5'):
+		return 'kpackagetool5'
+	else:
+		print("[error] Could not find 'kpackagetool6'")
+		sys.exit(1)
+
+@functools.cache
+def kstart():
+	if isCommandInstalled('kstart'):
+		return 'kstart'
+	elif isCommandInstalled('kstart5'):
+		return 'kstart5'
+	else:
+		print("[error] Could not find 'kstart'")
+		sys.exit(1)
+
+#---
+# https://stackoverflow.com/questions/3191664/list-of-all-locales-and-their-short-codes/28357857#28357857
+langArr = [
+	["af_ZA", "af", "Afrikaans (South Africa)"],
+	["ak_GH", "ak", "Akan (Ghana)"],
+	["am_ET", "am", "Amharic (Ethiopia)"],
+	["ar_EG", "ar", "Arabic (Egypt)"],
+	["as_IN", "as", "Assamese (India)"],
+	["az_AZ", "az", "Azerbaijani (Azerbaijan)"],
+	["be_BY", "be", "Belarusian (Belarus)"],
+	["bem_ZM", "bem", "Bemba (Zambia)"],
+	["bg_BG", "bg", "Bulgarian (Bulgaria)"],
+	["bo_IN", "bo", "Tibetan (India)"],
+	["bs_BA", "bs", "Bosnian (Bosnia and Herzegovina)"],
+	["ca_ES", "ca", "Catalan (Spain)"],
+	["chr_US", "ch", "Cherokee (United States)"],
+	["cs_CZ", "cs", "Czech (Czech Republic)"],
+	["cy_GB", "cy", "Welsh (United Kingdom)"],
+	["da_DK", "da", "Danish (Denmark)"],
+	["de_DE", "de", "German (Germany)"],
+	["el_GR", "el", "Greek (Greece)"],
+	["es_MX", "es", "Spanish (Mexico)"],
+	["et_EE", "et", "Estonian (Estonia)"],
+	["eu_ES", "eu", "Basque (Spain)"],
+	["fa_IR", "fa", "Persian (Iran)"],
+	["ff_SN", "ff", "Fulah (Senegal)"],
+	["fi_FI", "fi", "Finnish (Finland)"],
+	["fo_FO", "fo", "Faroese (Faroe Islands)"],
+	["fr_CA", "fr", "French (Canada)"],
+	["ga_IE", "ga", "Irish (Ireland)"],
+	["gl_ES", "gl", "Galician (Spain)"],
+	["gu_IN", "gu", "Gujarati (India)"],
+	["gv_GB", "gv", "Manx (United Kingdom)"],
+	["ha_NG", "ha", "Hausa (Nigeria)"],
+	["he_IL", "he", "Hebrew (Israel)"],
+	["hi_IN", "hi", "Hindi (India)"],
+	["hr_HR", "hr", "Croatian (Croatia)"],
+	["hu_HU", "hu", "Hungarian (Hungary)"],
+	["hy_AM", "hy", "Armenian (Armenia)"],
+	["id_ID", "id", "Indonesian (Indonesia)"],
+	["ig_NG", "ig", "Igbo (Nigeria)"],
+	["is_IS", "is", "Icelandic (Iceland)"],
+	["it_IT", "it", "Italian (Italy)"],
+	["ja_JP", "ja", "Japanese (Japan)"],
+	["ka_GE", "ka", "Georgian (Georgia)"],
+	["kk_KZ", "kk", "Kazakh (Kazakhstan)"],
+	["kl_GL", "kl", "Kalaallisut (Greenland)"],
+	["km_KH", "km", "Khmer (Cambodia)"],
+	["kn_IN", "kn", "Kannada (India)"],
+	["ko_KR", "ko", "Korean (South Korea)"],
+	["ko_KR", "ko", "Korean (South Korea)"],
+	["lg_UG", "lg", "Ganda (Uganda)"],
+	["lt_LT", "lt", "Lithuanian (Lithuania)"],
+	["lv_LV", "lv", "Latvian (Latvia)"],
+	["mg_MG", "mg", "Malagasy (Madagascar)"],
+	["mk_MK", "mk", "Macedonian (Macedonia)"],
+	["ml_IN", "ml", "Malayalam (India)"],
+	["mr_IN", "mr", "Marathi (India)"],
+	["ms_MY", "ms", "Malay (Malaysia)"],
+	["mt_MT", "mt", "Maltese (Malta)"],
+	["my_MM", "my", "Burmese (Myanmar [Burma])"],
+	["nb_NO", "nb", "Norwegian Bokmål (Norway)"],
+	["ne_NP", "ne", "Nepali (Nepal)"],
+	["nl_NL", "nl", "Dutch (Netherlands)"],
+	["nn_NO", "nn", "Norwegian Nynorsk (Norway)"],
+	["om_ET", "om", "Oromo (Ethiopia)"],
+	["or_IN", "or", "Oriya (India)"],
+	["pa_PK", "pa", "Punjabi (Pakistan)"],
+	["pl_PL", "pl", "Polish (Poland)"],
+	["ps_AF", "ps", "Pashto (Afghanistan)"],
+	["pt_BR", "pt", "Portuguese (Brazil)"],
+	["ro_RO", "ro", "Romanian (Romania)"],
+	["ru_RU", "ru", "Russian (Russia)"],
+	["rw_RW", "rw", "Kinyarwanda (Rwanda)"],
+	["si_LK", "si", "Sinhala (Sri Lanka)"],
+	["sk_SK", "sk", "Slovak (Slovakia)"],
+	["sl_SI", "sl", "Slovenian (Slovenia)"],
+	["so_SO", "so", "Somali (Somalia)"],
+	["sq_AL", "sq", "Albanian (Albania)"],
+	["sr_RS", "sr", "Serbian (Serbia)"],
+	["sv_SE", "sv", "Swedish (Sweden)"],
+	["sw_KE", "sw", "Swahili (Kenya)"],
+	["ta_IN", "ta", "Tamil (India)"],
+	["te_IN", "te", "Telugu (India)"],
+	["th_TH", "th", "Thai (Thailand)"],
+	["ti_ER", "ti", "Tigrinya (Eritrea)"],
+	["to_TO", "to", "Tonga (Tonga)"],
+	["tr_TR", "tr", "Turkish (Turkey)"],
+	["uk_UA", "uk", "Ukrainian (Ukraine)"],
+	["ur_IN", "ur", "Urdu (India)"],
+	["uz_UZ", "uz", "Uzbek (Uzbekistan)"],
+	["vi_VN", "vi", "Vietnamese (Vietnam)"],
+	["yo_NG", "yo", "Yoruba (Nigeria)"],
+	["yo_NG", "yo", "Yoruba (Nigeria)"],
+	["yue_HK", "yu", "Cantonese (Hong Kong)"],
+	["zh_CN", "zh", "Chinese (China)"],
+	["zu_ZA", "zu", "Zulu (South Africa)"],
+]
+
+def applyLocaleToEnv(env, langCode):
+	def lookupLang(langStr):
+		for lang in langArr:
+			if lang[1] == langStr:
+				return lang
+		raise Exception("localetest doesn't recognize the language " + langStr + '.')
+
+	if ":" in langCode:
+		l1, l2, _ = langCode.split(":")
+	else:
+		lang = lookupLang(langCode)
+		l1, l2, l3 = lang
+
+	language = l1 + ':' + l2
+	langUtf8 = l1 + '.UTF-8'
+
+	if env is None:
+		env = os.environ.copy()
+	env['LANGUAGE'] = language
+	env['LANG'] = langUtf8
+	env['LC_TIME'] = langUtf8
+
+	logger.info("LANGUAGE=%s", language)
+	logger.info("LANG=%s", langUtf8)
+	logger.info("LC_TIME=%s", langUtf8)
+	return env
+
+
+class KPackage:
+	def __init__(self, 
+		sourceDir="package",
+		translateDir="package/translate",
+		compendiumDir=".compendium",
+		buildTag=""
+	):
+		self.sourceDir = sourceDir
+		self.translateDir = translateDir
+		self.compendiumDir = compendiumDir
+		if len(buildTag) >= 1:
+			self.buildTag = '-' + buildTag
+		else:
+			self.buildTag = ''
+		self.buildFilenameFormat = "{packageName}-v{packageVersion}{buildTag}"
+		self.buildExt = "zip"
+		self.parseMetadata()
+
+	def parseMetadata(self):
+		#--- Parse metadata as global variables
+		self.jsonMetaFilepath = os.path.join(self.sourceDir, 'metadata.json')
+		self.desktopMetaFilepath = os.path.join(self.sourceDir, 'metadata.desktop')
+		if os.path.exists(self.jsonMetaFilepath):
+			# .json
+			with open(self.jsonMetaFilepath, 'r') as fin:
+				metadata = json.load(fin)
+				self.packageServiceType = metadata.get('KPackageStructure')
+				if self.packageServiceType is None:
+					# desktoptojson will port X-KDE-ServiceTypes to KPlugin.ServiceTypes[0] by default
+					echoWarning("[warning] metadata.json needs KPackageStructure set in Plasma6")
+					self.packageServiceType = (metadata.get('KPlugin', {}).get('ServiceTypes', []) + [None])[0]
+				if self.packageServiceType is None:
+					echoError("[error] metadata.json is missing KPackageStructure, and can't fallback to ServiceTypes either.")
+					sys.exit(1)
+				self.packageNamespace = metadata.get('KPlugin', {})['Id']
+				self.packageName = self.packageNamespace.split('.')[-1]
+				self.packageVersion = metadata.get('KPlugin', {}).get('Version', '')
+				self.packageAuthor = (metadata.get('KPlugin', {}).get('Authors', []) + [{'Name': ''}])[0].get('Name', '')
+				self.packageAuthorEmail = (metadata.get('KPlugin', {}).get('Authors', []) + [{'Name': ''}])[0].get('Email', '')
+				self.packageWebsite = metadata.get('KPlugin', {}).get('Website', '')
+				self.packageComment = metadata.get('KPlugin', {}).get('Description', '')
+		elif os.path.exists(self.desktopMetaFilepath):
+			# .desktop
+			metadata = KdeConfig(self.desktopMetaFilepath)
+			self.packageServiceType = metadata.get('Desktop Entry', 'X-KDE-ServiceTypes')
+			self.packageNamespace = metadata.get('Desktop Entry', 'X-KDE-PluginInfo-Name')
+			self.packageName = self.packageNamespace.split('.')[-1]
+			self.packageVersion = metadata.get('Desktop Entry', 'X-KDE-PluginInfo-Version', fallback='')
+			self.packageAuthor = metadata.get('Desktop Entry', 'X-KDE-PluginInfo-Author', fallback='')
+			self.packageAuthorEmail = metadata.get('Desktop Entry', 'X-KDE-PluginInfo-Email', fallback='')
+			self.packageWebsite = metadata.get('Desktop Entry', 'X-KDE-PluginInfo-Website', fallback='')
+			self.packageComment = metadata.get('Desktop Entry', 'Comment', fallback='')
+		else:
+			echoError("Could not find metadata.json or metadata.desktop in '{}'".format(self.sourceDir))
+			sys.exit(1)
+
+		if self.packageServiceType == "Plasma/Applet":
+			self.buildExt = "plasmoid" # Renamed zip
+
+	def printMetadata(self):
+		logger.info("Namespace: %s", self.packageNamespace)
+		logger.info("Name: %s", self.packageName)
+		logger.info("Version: %s", self.packageVersion)
+		logger.info("Author: %s", self.packageAuthor)
+		logger.info("AuthorEmail: %s", self.packageAuthorEmail)
+		logger.info("Website: %s", self.packageWebsite)
+		logger.info("Comment: %s", self.packageComment)
+		logger.info("KPackageStructure: %s", self.packageServiceType)
+		logger.info("")
+
+	def install(self, restart=True):
+		# kpackagetool6 -t Plasma/Applet -s package
+		p = subprocess.Popen([
+			kpackagetool(),
+			'--type', self.packageServiceType,
+			'--show', self.packageNamespace,
+		], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		p.wait()
+
+		# Not installed: "Error: Can't find plugin metadata: org.kde.plasma.name" is returncode=3
+		isAlreadyInstalled = p.returncode == 0
+		# logger.debug("isInstalledReturnCode: %s", p.returncode)
+
+		if isAlreadyInstalled:
+			# kpackagetool5 -t Plasma/Applet -u package
+			proc = subprocess.run([kpackagetool(),
+				'--type', self.packageServiceType,
+				'--upgrade', self.sourceDir,
+			], capture_output=True)
+			outText = proc.stdout.decode('utf-8').strip()
+			errText = proc.stderr.decode('utf-8').strip()
+			if proc.returncode == 0:
+				if outText:
+					print(outText)
+			else:
+				failOutText = 'Error: Plugin {} is not installed.'.format(self.packageNamespace)
+				failErrPattern = r'KPackageStructure of KPluginMetaData\(pluginId:"{}", fileName: "(.+){}"\) does not match requested format "{}"'.format(
+					re.escape(self.packageNamespace),
+					re.escape(os.path.join(self.packageNamespace, 'metadata.json')),
+					re.escape(self.packageServiceType)
+				)
+				m = re.search(failErrPattern, errText)
+				if outText == failOutText and m:
+					print(m.group(0))
+					echoWarning("[Note] When trying to upgrade a Plasma 5 package with metadata.desktop in Plasma 6, we need to remove the old install first.")
+					# Note: kpackagetool6 --remove will also fail.
+					if isCommandInstalled('kpackagetool5'):
+						echoWarning("[Note] Detected kpackagetool5, running: kpackagetool5 --type {} --remove {}".format(self.packageServiceType, self.sourceDir))
+						proc = subprocess.call(['kpackagetool5',
+							'--type', self.packageServiceType,
+							'--remove', self.sourceDir,
+						])
+					else:
+						echoError("[error] kpackagetool5 not found.")
+						installedPath = os.path.join(m.group(1), self.packageNamespace)
+						echoError("[error] Please manually delete the '{}' folder.".format(installedPath))
+						sys.exit(1)
+
+					exitCode = subprocess.call([kpackagetool(),
+						'--type', self.packageServiceType,
+						'--install', self.sourceDir,
+					])
+					if exitCode != 0:
+						echoError("[error] Error when calling: {} --type {} --install {}".format(kpackagetool(), self.packageServiceType, self.sourceDir))
+						sys.exit(1)
+
+			if restart:
+				subprocess.call([kstart(),
+					'--',
+					'plasmashell', '--replace',
+				])
+		else:
+			# kpackagetool5 -t Plasma/Applet -i package
+			subprocess.call([kpackagetool(),
+				'--type', self.packageServiceType,
+				'--install', self.sourceDir,
+			])
+
+	def uninstall(self):
+		# kpackagetool5 -t Plasma/Applet -r package
+		subprocess.call([kpackagetool(),
+			'--type', self.packageServiceType,
+			'--remove', self.sourceDir,
+		])
+
+	#---
+	def plasmoidviewer(self, *args, env=None):
+		if env is None:
+			env = os.environ.copy()
+
+	def test(self,
+		*args,
+		langCode=None,
+		env=None,
+		dpi=1,
+		**kwargs
+	):
+		if env is None:
+			env = os.environ.copy()
+
+		if langCode is not None:
+			env = applyLocaleToEnv(env, langCode)
+			self.i18nBuild()
+
+		if dpi != 1:
+			env['QT_DEVICE_PIXEL_RATIO'] = str(dpi)
+
+		# https://invent.kde.org/plasma/libplasma/-/commit/386c5539c6833867112aba299380df3ac48cd47c
+		noContextProps = False
+		if noContextProps:
+			env['PLASMA_NO_CONTEXTPROPERTIES'] = '1'
+
+		procArgs = list(args)
+		for key, value in kwargs.items():
+			if len(key) == 1:
+				procArgs.append('-' + key)
+			else:
+				procArgs.append('--' + key)
+			procArgs.append(value)
+
+		subprocess.call([
+			'plasmoidviewer',
+			'-a', self.sourceDir,
+			*procArgs
+		], env=env)
+
+	def testDesktop(self, **kwargs):
+		self.test(
+			l='floating',
+			f='planar',
+			**kwargs
+		)
+
+	def testHorizontal(self, **kwargs):
+		self.test(
+			l='topedge',
+			f='horizontal',
+			**kwargs
+		)
+
+	def testVertical(self, **kwargs):
+		self.test(
+			l='leftedge',
+			f='vertical',
+			**kwargs
+		)
+
+	@property
+	def translationDomain(self):
+		if self.packageServiceType == 'Plasma/Applet':
+			return "plasma_applet_{}".format(self.packageNamespace)
+		else:
+			echoError("[kpac-i18n] TODO: Map translationDomain for '{}' ServiceType".format(self.packageServiceType))
+			sys.exit(1)
+
+	@property
+	def bugAddress(self):
+		return self.packageWebsite
+
+	@property
+	def newBugAddress(self):
+		m = re.search(r'^((https?:\/\/)?github\.com\/([^\/]+)\/([^\/]+))\/?', self.packageWebsite)
+		if m:
+			return m.group(0) + '/issues/new'
+		else:
+			return self.packageWebsite
+
+	@property
+	def translateRoot(self):
+		# package/tranlate/ => package/tranlate/../
+		# tranlate/ => tranlate/../package/
+		return os.path.relpath(self.sourceDir, self.translateDir) # Usually '..' or '../package'
+
+	#---
+	def checkI18nCommand(self, cmd):
+		if not isCommandInstalled(cmd):
+			echoError("[kpac-i18n] Error: {} command not found. Need to install gettext.".format(cmd))
+			echoError("[kpac-i18n] Run 'sudo apt install gettext' (Kubuntu/KDE Neon)")
+			echoError("[kpac-i18n] Run 'sudo zypper install gettext-tools' (openSUSE)")
+			sys.exit(1)
+
+	def getLangCompendiumPath(self, langCode):
+		return os.path.join(self.compendiumDir, 'compendium-{}.po'.format(langCode))
+
+	def i18nCompendium(self):
+		byDomainsDir = os.path.join(self.compendiumDir, 'bydomains')
+		localeDir='/usr/share/locale/kf5'
+		autoDeleteByDomainsDir = True
+		updateCompendium = False
+		for dirPath in sorted(glob.glob(os.path.join(localeDir, '*'))):
+			if not os.path.isdir(dirPath):
+				continue
+			langCode = os.path.basename(dirPath)
+			if '@' in langCode: # Eg: 'be@latin'
+				continue
+			moLangDir = os.path.join(localeDir, langCode, 'LC_MESSAGES')
+			poLangDir = os.path.join(byDomainsDir, langCode)
+			os.makedirs(poLangDir, exist_ok=True)
+
+			langCompendiumPath = self.getLangCompendiumPath(langCode)
+			if os.path.exists(langCompendiumPath) and not updateCompendium:
+				continue
+
+			echoGray("[kpac-i18n] " + TC.Bold + "[Extracting Messages]" + TC.Reset + TC.FG_DarkGray + ' ' + moLangDir)
+			for moFilepath in sorted(glob.glob(os.path.join(moLangDir, '*.mo'))):
+				domain, ext = os.path.splitext(os.path.basename(moFilepath))
+				poFilepath = os.path.join(poLangDir, domain+'.po')
+				print("'{}' => '{}'".format(moFilepath, os.path.abspath(poFilepath)))
+				returncode = subprocess.call([
+					'msgunfmt',
+					'-i', moFilepath,
+					'-o', poFilepath,
+				])
+				if returncode != 0:
+					echoError("[kpac-i18n] error while calling msgunfmt. aborting.")
+					sys.exit(1)
+
+			echoGray("[kpac-i18n] " + TC.Bold + "[Generating Compendium]" + TC.Reset + TC.FG_DarkGray + ' ' + os.path.basename(langCompendiumPath))
+			poLangFileList = list(sorted(glob.glob(os.path.join(poLangDir, '*.po'))))
+			if langCode == 'el':
+				# msgcat: Input po files have different Plural-Forms. Invalid output file was created.
+				# Please, fix the plurals.
+				for poLangFile in poLangFileList:
+					sed_str(
+						"Plural-Forms: nplurals=2; plural=(n != 1);",
+						"Plural-Forms: nplurals=2; plural=n != 1;",
+						poLangFile
+					)
+			elif langCode == 'fa':
+				# msgcat: Input po files have different Plural-Forms. Invalid output file was created.
+				# Please, fix the plurals.
+				for poLangFile in poLangFileList:
+					sed_str(
+						"Plural-Forms: nplurals=2; plural=(n > 1);",
+						"Plural-Forms: nplurals=1; plural=0;",
+						poLangFile
+					)
+			elif langCode == 'is':
+				# msgcat: memory exhausted
+				continue
+			elif langCode == 'kk':
+				# msgcat: memory exhausted
+				continue
+			elif langCode == 'km':
+				# msgcat: memory exhausted
+				continue
+			elif langCode == 'mai':
+				# msgcat: memory exhausted
+				continue
+			elif langCode == 'pa':
+				# msgcat: memory exhausted
+				continue
+
+
+			returncode = subprocess.call([
+				'msgcat',
+				'--use-first',
+				'--sort-output',
+				'-o', langCompendiumPath,
+			] + poLangFileList)
+			if returncode != 0:
+				echoError("[kpac-i18n] error while calling msgcat. aborting.")
+				sys.exit(1)
+			if autoDeleteByDomainsDir and poLangDir:
+				echoWarning('Deleting', os.path.abspath(poLangDir))
+				shutil.rmtree(os.path.abspath(poLangDir))
+
+
+		echoGreen("[kpac-i18n] Done compiling messages")
+
+
+
+	def i18nMerge(self, useCompendium=False):
+		# https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems
+		# https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems/Outside_KDE_repositories
+		# https://invent.kde.org/sysadmin/l10n-scripty/-/blob/master/extract-messages.sh
+
+		# self.bugAddress = 'https://github.com/User/plasmoid-widgetname'
+		# self.newBugAddress = 'https://github.com/User/plasmoid-widgetname/issues/new'
+		# self.translateDir = 'package/translate/'
+		# self.translateRoot = '..'
+
+		self.removeOldI18nScripts()
+
+		self.checkI18nCommand('xgettext')
+
+		echoGray("[kpac-i18n] " + TC.Bold + "[Extracting messages]")
+		potArgs = [
+			'--from-code=UTF-8',
+			'--width=200', # Don't wrap on short sentences
+			'--add-location=file', # Filename only, no line numbers
+		]
+
+		oldTemplateFilename = 'template.pot'
+		newTemplateFilename = 'template.pot.new'
+		oldTemplatePath = os.path.join(self.translateDir, oldTemplateFilename)
+		newTemplatePath = os.path.join(self.translateDir, newTemplateFilename)
+
+		if os.path.exists(self.jsonMetaFilepath):
+			echoGray("[kpac-i18n] Extracting metadata.json")
+			with open(self.jsonMetaFilepath, 'r') as fin:
+				metadata = json.load(fin)
+			# This template header is overwritten later so the only changes needed is
+			# 'charset=CHARSET' => 'charset=UTF-8' so that xgettext doesn't complain.
+			# POT_DEFAULT_HEADER already has the charset=UTF-8 replaced.
+			newTemplateText = POT_DEFAULT_HEADER
+			kp = metadata.get('KPlugin', {})
+			trKeywords = [
+				'Name',
+				'Description',
+			]
+			relativeMetadataPath = os.path.relpath(self.jsonMetaFilepath, self.translateDir)
+			for keyword in trKeywords:
+				keywordMessage = kp.get(keyword, '')
+				keywordMessage = keywordMessage.replace('\"', r'\"')
+				if keyword != "":
+					# keywordText = f"#: {relativeMetadataPath}\nmsgctxt \"{keyword}\"\nmsgid \"{keywordMessage}\"\nmsgstr \"\"\n\n"
+					keywordText = f"#: {relativeMetadataPath}\nmsgid \"{keywordMessage}\"\nmsgstr \"\"\n\n"
+					newTemplateText += keywordText
+			with open(newTemplatePath, 'w') as fout:
+				fout.write(newTemplateText)
+		else:
+			# TODO: Port parsing Desktop File
+			# Note: xgettext v0.20.1 (Kubuntu 20.04) and below will attempt to translate Icon,
+			# so we need to specify Name, GenericName, Comment, and Keywords.
+			# https://github.com/Zren/plasma-applet-lib/issues/1
+			# https://savannah.gnu.org/support/?108887
+			# find "${packageRoot}" -name '*.desktop' | sort > "${DIR}/infiles.list"
+			# xgettext \
+			# 	${potArgs} \
+			# 	--files-from="${DIR}/infiles.list" \
+			# 	--language=Desktop \
+			# 	-k -kName -kGenericName -kComment -kKeywords \
+			# 	-D "${packageRoot}" \
+			# 	-D "${DIR}" \
+			# 	-o "template.pot.new" \
+			# 	|| \
+			# 	{ echoRed "[translate/merge] error while calling xgettext. aborting."; exit 1; }
+			pass
+
+
+		# See Ki18n's extract-messages.sh for a full example:
+		# https://invent.kde.org/sysadmin/l10n-scripty/-/blob/master/extract-messages.sh#L25
+		# The -kN_ and -kaliasLocale keywords are mentioned in the Outside_KDE_repositories wiki.
+		# We don't need -kN_ since we don't use intltool-extract but might as well keep it.
+		# I have no idea what -kaliasLocale is used for. Googling aliasLocale found only listed kde1 code.
+		# We don't need to parse -ki18nd since that'll extract messages from other domains.
+		infilesPath = os.path.join(self.translateDir, 'infiles.list')
+		with open(infilesPath, 'w') as fout:
+			findProc = subprocess.Popen([
+				'find',
+				self.translateRoot,
+				'-name', '*.cpp',
+				'-o', '-name', '*.h',
+				'-o', '-name', '*.c',
+				'-o', '-name', '*.qml',
+				'-o', '-name', '*.js',
+			], stdout=subprocess.PIPE, cwd=self.translateDir)
+			sortProc = subprocess.call([
+				'sort'
+			], stdin=findProc.stdout, stdout=fout)
+			findProc.wait()
+
+		potArgs += [
+			# '--files-from', infilesPath,
+			'--files-from', 'infiles.list',
+			'-C', '-kde',
+			'-ci18n',
+			'-ki18n:1',
+			'-ki18nc:1c,2',
+			'-ki18np:1,2',
+			'-ki18ncp:1c,2,3',
+			'-kki18n:1',
+			'-kki18nc:1c,2',
+			'-kki18np:1,2',
+			'-kki18ncp:1c,2,3',
+			'-kxi18n:1',
+			'-kxi18nc:1c,2',
+			'-kxi18np:1,2',
+			'-kxi18ncp:1c,2,3',
+			'-kkxi18n:1',
+			'-kkxi18nc:1c,2',
+			'-kkxi18np:1,2',
+			'-kkxi18ncp:1c,2,3',
+			'-kI18N_NOOP:1',
+			'-kI18NC_NOOP:1c,2',
+			'-kI18N_NOOP2:1c,2',
+			'-kI18N_NOOP2_NOSTRIP:1c,2',
+			'-ktr2i18n:1',
+			'-ktr2xi18n:1',
+			'-kN_:1',
+			'-kaliasLocale',
+			'--package-name', self.packageName,
+			'--msgid-bugs-address', self.bugAddress,
+		]
+		returncode = subprocess.call(['xgettext'] + potArgs + [
+			'-D', self.translateRoot,
+			'-D', '.', # cwd should be translateDir
+			'--join-existing',
+			'-o', newTemplateFilename,
+		], cwd=self.translateDir)
+		if returncode != 0:
+			echoError("[kpac-i18n] error while calling xgettext. aborting.")
+			sys.exit(1)
+
+		if not os.path.exists(newTemplatePath):
+			# Error generating template.pot.new
+			echoError('[kpac-i18n] template.pot.new does not exist')
+			sys.exit(1)
+
+		# Replace gettext placeholders
+		with LineReplace(newTemplatePath) as rep:
+			for line in rep.lines:
+				line = line.replace(
+					"Content-Type: text/plain; charset=CHARSET",
+					"Content-Type: text/plain; charset=UTF-8",
+				)
+				line = line.replace(
+					"# SOME DESCRIPTIVE TITLE.",
+					"# Translation of {} in LANGUAGE".format(self.packageName),
+				)
+				line = line.replace(
+					"# Copyright (C) YEAR THE PACKAGE\'S COPYRIGHT HOLDER",
+					"# Copyright (C) {}".format(datetime.date.today().year),
+				)
+				rep.write(line)
+
+		if os.path.exists(oldTemplatePath):
+			# Temporary replace with oldPotDate
+			# Note: We need to rstrip the trailing \n" since it's annoying to escape just the newline.
+			newPotDate = grep_line('POT-Creation-Date:', newTemplatePath).rstrip('\\n\"')
+			oldPotDate = grep_line('POT-Creation-Date:', oldTemplatePath).rstrip('\\n\"')
+			sed_str(newPotDate, oldPotDate, newTemplatePath)
+
+			changes = diff(oldTemplatePath, newTemplatePath)
+			if changes.strip() != "":
+				sed_str(oldPotDate, newPotDate, newTemplatePath) # Revert back to newPotDate
+				os.rename(newTemplatePath, oldTemplatePath)
+
+				addedKeys = []
+				removedKeys = []
+				for line in changes.splitlines():
+					if "> msgid" in line:
+						addedKeys.append(line.rstrip('\n')[8:])
+					elif "< msgid" in line:
+						removedKeys.append(line.rstrip('\n')[8:])
+				duplicateKeys = set(addedKeys) & set(removedKeys)
+				for key in duplicateKeys:
+					addedKeys.remove(key)
+					removedKeys.remove(key)
+
+				echoGray("[kpac-i18n] {} changed".format(oldTemplatePath))
+				echoGreen("[kpac-i18n] Added Keys:")
+				if len(addedKeys) >= 1:
+					for key in sorted(addedKeys):
+						echoGreen(key)
+					print("")
+				echoRed("[kpac-i18n] Removed Keys:")
+				if len(removedKeys) >= 1:
+					for key in sorted(removedKeys):
+						echoRed(key)
+					print("")
+				echoGray("[kpac-i18n] Moved Keys:")
+				if len(duplicateKeys) >= 1:
+					for key in sorted(duplicateKeys):
+						echoGray(key)
+					print("")
+
+			else:
+				# No changes
+				echoGray("[kpac-i18n] No changes to {}".format(oldTemplatePath))
+				os.remove(newTemplatePath)
+		else:
+			# template.pot didn't already exist
+			echoGray("[kpac-i18n] Created {}".format(oldTemplatePath))
+			os.rename(newTemplatePath, oldTemplatePath)
+
+		#--- Status Table Header
+		potMessageCount = grep_re_count('msgstr ""\n(\n|$)', oldTemplatePath)
+		status = ""
+		statusFormat = "| {:<8} | {:>7} | {:>5} |\n" # .format("fr", "27/27", "100%")
+		status += "|  Locale  |  Lines  | % Done|\n"
+		status += "|----------|---------|-------|\n"
+		status += statusFormat.format("Template", potMessageCount, "")
+
+		os.remove(infilesPath)
+		echoGray("[kpac-i18n] Done extracting messages")
+
+		#--- Merge
+		echoGray("[kpac-i18n] " + TC.Bold + "[Merging messages]")
+		for catFilepath in sorted(glob.glob(os.path.join(self.translateDir, '*.po'))):
+			catLocale = os.path.splitext(os.path.basename(catFilepath))[0]
+			echoGray("[kpac-i18n] Updating {} ({})".format(catFilepath, catLocale))
+
+			newCatFilepath = catFilepath + ".new"
+			shutil.copyfile(catFilepath, newCatFilepath)
+
+			# Make sure the catalog uses UTF-8
+			sed_str(
+				"Content-Type: text/plain; charset=CHARSET",
+				"Content-Type: text/plain; charset=UTF-8",
+				newCatFilepath
+			)
+
+			mergeCmd = ['msgmerge']
+
+			catUsesGenerator = grep_line("X-Generator:", catFilepath)
+			if catUsesGenerator is None:
+				mergeCmd += ["--width=400"]
+
+			langCompendiumPath = self.getLangCompendiumPath(catLocale)
+			if useCompendium and os.path.exists(langCompendiumPath):
+				echoGray("[kpac-i18n] Using compendium at '{}'".format(langCompendiumPath))
+				mergeCmd += [
+					"--compendium=" + langCompendiumPath,
+				]
+
+			mergeCmd += [
+				'--add-location=file',
+				'--no-fuzzy-matching',
+				'-o', newCatFilepath,
+				newCatFilepath,
+				oldTemplatePath,
+			]
+			returncode = subprocess.call(mergeCmd)
+			if returncode != 0:
+				echoError("[kpac-i18n] Error while merging changes into {}".format(newCatFilepath))
+				sys.exit(1)
+
+			# Replace gettext placeholders
+			with LineReplace(newCatFilepath) as rep:
+				for line in rep.lines:
+					line = line.replace(
+						"# SOME DESCRIPTIVE TITLE.",
+						"# Translation of {} in {}".format(self.packageName, catLocale),
+					)
+					line = line.replace(
+						"# Translation of {} in LANGUAGE".format(self.packageName),
+						"# Translation of {} in {}".format(self.packageName, catLocale),
+					)
+					line = line.replace(
+						"# Copyright (C) YEAR THE PACKAGE\'S COPYRIGHT HOLDER",
+						"# Copyright (C) {}".format(datetime.date.today().year),
+					)
+					rep.write(line)
+
+			# with open(newCatFilepath, 'r') as fin:
+			# 	poEmptyMessageCount = len(re.findall('msgstr ""\n(\n|$)', fin.read()))
+			poEmptyMessageCount = grep_re_count('msgstr ""\n(\n|$)', newCatFilepath)
+			poMessagesDoneCount = potMessageCount - poEmptyMessageCount
+			poCompletion = poMessagesDoneCount * 100 // potMessageCount
+			status += statusFormat.format(
+				catLocale,
+				"{}/{}".format(poMessagesDoneCount, potMessageCount),
+				"{}%".format(poCompletion),
+			)
+
+			# os.rename(catFilepath, catFilepath + '.old') # Backup
+			os.rename(newCatFilepath, catFilepath)
+
+		echoGray("[kpac-i18n] Done merging messages")
+
+		#---
+		if os.path.exists(self.jsonMetaFilepath):
+			echoGray("[kpac-i18n] Updating metadata.json")
+			with open(self.jsonMetaFilepath, 'r') as fin:
+				metadata = json.load(fin)
+			trKeywordsMap = {
+				'Name': '',
+				'Description': '',
+			}
+			kp = metadata.get('KPlugin', {})
+			for keyword in trKeywordsMap.keys():
+				trKeywordsMap[keyword] = kp.get(keyword, '')
+			metadataChanged = False
+			for catFilepath in sorted(glob.glob(os.path.join(self.translateDir, '*.po'))):
+				catFilename = os.path.basename(catFilepath)
+				catLocale = os.path.splitext(catFilename)[0]
+				catFile = PoFile(catFilepath)
+				for keyword, msgid in trKeywordsMap.items():
+					catMsgStr = catFile.getMsgStr(msgid)
+					catKeyword = f"{keyword}[{catLocale}]"
+					if kp.get(catKeyword) != catMsgStr and catMsgStr != "":
+						kp[catKeyword] = catMsgStr
+						print(catKeyword, catMsgStr)
+						metadataChanged = True
+			if metadataChanged:
+				jsonDumpTabbed(self.jsonMetaFilepath, metadata)
+				echoWarning("[kpac-i18n] metadata.json was Changed!")
+
+		if os.path.exists(self.desktopMetaFilepath):
+			# echoGray("[kpac-i18n] Updating metadata.desktop")
+			pass
+
+			# # Generate LINGUAS for msgfmt
+			# if [ -f "$DIR/LINGUAS" ]; then
+			# 	rm "$DIR/LINGUAS"
+			# fi
+			# touch "$DIR/LINGUAS"
+			# for cat in $catalogs; do
+			# 	catLocale=`basename ${cat%.*}`
+			# 	echo "${catLocale}" >> "$DIR/LINGUAS"
+			# done
+
+			# cp -f "$DIR/../metadata.desktop" "$DIR/template.desktop"
+			# sed -i '/^Name\[/ d; /^GenericName\[/ d; /^Comment\[/ d; /^Keywords\[/ d' "$DIR/template.desktop"
+
+			# msgfmt \
+			# 	--desktop \
+			# 	--template="$DIR/template.desktop" \
+			# 	-d "$DIR/" \
+			# 	-o "$DIR/new.desktop"
+
+			# # Delete empty msgid messages that used the po header
+			# if [ ! -z "$(grep '^Name=$' "$DIR/new.desktop")" ]; then
+			# 	echo "[translate/merge] Name in metadata.desktop is empty!"
+			# 	sed -i '/^Name\[/ d' "$DIR/new.desktop"
+			# fi
+			# if [ ! -z "$(grep '^GenericName=$' "$DIR/new.desktop")" ]; then
+			# 	echo "[translate/merge] GenericName in metadata.desktop is empty!"
+			# 	sed -i '/^GenericName\[/ d' "$DIR/new.desktop"
+			# fi
+			# if [ ! -z "$(grep '^Comment=$' "$DIR/new.desktop")" ]; then
+			# 	echo "[translate/merge] Comment in metadata.desktop is empty!"
+			# 	sed -i '/^Comment\[/ d' "$DIR/new.desktop"
+			# fi
+			# if [ ! -z "$(grep '^Keywords=$' "$DIR/new.desktop")" ]; then
+			# 	echo "[translate/merge] Keywords in metadata.desktop is empty!"
+			# 	sed -i '/^Keywords\[/ d' "$DIR/new.desktop"
+			# fi
+
+			# # Place translations at the bottom of the desktop file.
+			# translatedLines=`cat "$DIR/new.desktop" | grep "]="`
+			# if [ ! -z "${translatedLines}" ]; then
+			# 	sed -i '/^Name\[/ d; /^GenericName\[/ d; /^Comment\[/ d; /^Keywords\[/ d' "$DIR/new.desktop"
+			# 	if [ "$(tail -c 2 "$DIR/new.desktop" | wc -l)" != "2" ]; then
+			# 		# Does not end with 2 empty lines, so add an empty line.
+			# 		echo "" >> "$DIR/new.desktop"
+			# 	fi
+			# 	echo "${translatedLines}" >> "$DIR/new.desktop"
+			# fi
+
+			# # Cleanup
+			# mv "$DIR/new.desktop" "$DIR/../metadata.desktop"
+			# rm "$DIR/template.desktop"
+			# rm "$DIR/LINGUAS"
+
+		#---
+		# Populate ReadMe.md
+		trReadmeFilepath = os.path.join(self.translateDir, 'ReadMe.md')
+		echoGray("[kpac-i18n] Updating {}".format(trReadmeFilepath))
+
+		trReadmeStr=f"""# Translate
+
+## Status
+
+{status}
+
+## New Translations
+
+* Fill out [`template.pot`](template.pot) with your translations then open a [new issue]({self.newBugAddress}), name the file `spanish.txt`, attach the txt file to the issue (drag and drop).
+
+Or if you know how to make a pull request
+
+* Copy the `template.pot` file and name it your locale's code (Eg: `en`/`de`/`fr`) with the extension `.po`. Then fill out all the `msgstr ""`.
+* Your region's locale code can be found at: https://stackoverflow.com/questions/3191664/list-of-all-locales-and-their-short-codes/28357857#28357857
+
+## Scripts
+
+Zren's `kpac` script can easily run the `gettext` commands for you, parsing the `metadata.json` and filling out any placeholders for you. `kpac` can be [downloaded here](https://github.com/Zren/plasma-applet-lib/blob/master/kpac) and should be placed at `~/Code/plasmoid-widgetname/kpac` to edit translations at `~/Code/plasmoid-widgetname/package/translate/`.
+
+
+* `python3 ./kpac i18n` will parse the `i18n()` calls in the `*.qml` files and write it to the `template.pot` file. Then it will merge any changes into the `*.po` language files. Then it converts the `*.po` files to it's binary `*.mo` version and move it to `contents/locale/...` which will bundle the translations in the `*.plasmoid` without needing the user to manually install them.
+* `python3 ./kpac localetest` will convert the `.po` to the `*.mo` files then run `plasmoidviewer` (part of `plasma-sdk`).
+
+## How it works
+
+Since KDE Frameworks v5.37, translations can be bundled with the zipped `*.plasmoid` file downloaded from the store.
+
+* `xgettext` extracts the messages from the source code into a `template.pot`.
+* Translators copy the `template.pot` to `fr.po` to translate the French language.
+* When the source code is updated, we use `msgmerge` to update the `fr.po` based on the updated `template.pot`.
+* When testing or releasing the widget, we convert the `.po` files to their binary `.mo` form with `msgfmt`.
+
+The binary `.mo` translation files are placed in `package/contents/locale/` so you may want to add `*.mo` to your `.gitignore`.
+
+```
+package/contents/locale/fr/LC_MESSAGES/plasma_applet_{self.packageNamespace}.mo
+```
+
+## Links
+
+* https://develop.kde.org/docs/plasma/widget/translations-i18n/
+* https://l10n.kde.org/stats/gui/trunk-kf5/team/fr/plasma-desktop/
+* https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems
+* https://api.kde.org/frameworks/ki18n/html/prg_guide.html
+
+> Version 8 of [Zren's i18n scripts](https://github.com/Zren/plasma-applet-lib).
+"""
+		with open(trReadmeFilepath, 'w') as fout:
+			fout.write(trReadmeStr)
+
+		echoGreen("[kpac-i18n] Done merge script")
+
+
+	def i18nBuild(self):
+		# This script will convert the *.po files to *.mo files, rebuilding the package/contents/locale folder.
+		# Feature discussion: https://phabricator.kde.org/D5209
+		# Eg: contents/locale/fr_CA/LC_MESSAGES/plasma_applet_org.kde.plasma.eventcalendar.mo
+
+		self.checkI18nCommand('msgfmt')
+
+		echoGray("[kpac-i18n] " + TC.Bold + "[Compiling messages]")
+
+		for catFilepath in sorted(glob.glob(os.path.join(self.translateDir, '*.po'))):
+			catFilename = os.path.basename(catFilepath)
+			catLocale = os.path.splitext(catFilename)[0]
+			moFilename = f"{catLocale}.mo"
+			installDir = os.path.join(self.sourceDir, 'contents', 'locale', catLocale, 'LC_MESSAGES')
+			installFilepath = os.path.join(installDir, self.translationDomain + '.mo')
+			relativeInstallPath = os.path.relpath(installFilepath, self.translateDir)
+			echoGray(f"[kpac-i18n] Converting '{catFilename}' => '{relativeInstallPath}")
+
+			os.makedirs(installDir, exist_ok=True)
+
+			returncode = subprocess.call([
+				'msgfmt',
+				'-o', relativeInstallPath,
+				catFilename,
+			], cwd=self.translateDir)
+			if returncode != 0:
+				echoError("[kpac-i18n] error while calling msgfmt. aborting.")
+				sys.exit(1)
+
+		echoGreen("[kpac-i18n] Done compiling messages")
+
+	def removeOldI18nScripts(self):
+		#--- Delete obsolete Zren i18n scripts
+		trBuildPath = os.path.join(self.translateDir, 'build')
+		if os.path.exists(trBuildPath):
+			echoWarning("[kpac-plasma6] Deleting obsolete '{}'. Use: ./kpac i18n".format(trBuildPath))
+			os.remove(trBuildPath)
+		trMergePath = os.path.join(self.translateDir, 'merge')
+		if os.path.exists(trMergePath):
+			echoWarning("[kpac-plasma6] Deleting obsolete '{}'. Use: ./kpac i18n".format(trMergePath))
+			os.remove(trMergePath)
+		trLocaleTestPath = os.path.join(self.translateDir, 'plasmoidlocaletest')
+		if os.path.exists(trLocaleTestPath):
+			echoWarning("[kpac-plasma6] Deleting obsolete '{}'. Use: ./kpac localetest".format(trLocaleTestPath))
+			os.remove(trLocaleTestPath)
+
+	#---
+	# https://develop.kde.org/docs/plasma/widget/porting_kf6/
+	def portToPlasma6(self):
+		self.portMetadataFileToPlasma6()
+		self.removeOldI18nScripts()
+
+		#--- Replace keywords in QML files
+		echoGray('[kpac-plasma6] ' + TC.Bold + 'Replacing keywords in .qml files')
+		for qmlFilepath in sorted(glob.glob(os.path.join(self.sourceDir, '**/*.qml'), recursive=True)):
+			self.portQmlFileToPlasma6(qmlFilepath)
+
+	def portFileToPlasma6(self, filepath):
+		# echoGray('[kpac-plasma6] ' + filepath)
+		if not os.path.exists(filepath):
+			echoWarning(f"[kpac-plasma6] '{filepath}' does not exist!")
+			return
+		if os.path.abspath(filepath) == os.path.abspath(self.jsonMetaFilepath) or \
+		   os.path.abspath(filepath) == os.path.abspath(self.desktopMetaFilepath):
+			self.portMetadataFileToPlasma6()
+		elif os.path.splitext(filepath)[1] == '.qml':
+			self.portQmlFileToPlasma6(filepath)
+		else:
+			echoWarning(f"[kpac-plasma6] Unable to port filetype '{filepath}'")
+
+	def portMetadataFileToPlasma6(self):
+		if os.path.exists(self.desktopMetaFilepath):
+			echoWarning("[kpac-plasma6] Converting metadata.desktop to .json")
+			if not os.path.exists(self.jsonMetaFilepath):
+				if not isCommandInstalled('desktoptojson'):
+					echoError('[kpac-plasma6] desktoptojson is not installed')
+				returncode = subprocess.call([
+					'desktoptojson',
+					'-i', self.desktopMetaFilepath,
+				])
+				if returncode != 0:
+					echoError("[kpac-plasma6] error while calling desktoptojson")
+					sys.exit(1)
+				# Re-parse KPackage metadata
+				self.parseMetadata()
+
+			echoWarning("[kpac-plasma6] Deleting metadata.desktop")
+			os.remove(self.desktopMetaFilepath)
+
+		echoWarning("[kpac-plasma6] Porting metadata.json")
+		with open(self.jsonMetaFilepath, 'r') as fin:
+			metadata = json.load(fin)
+
+		if 'X-Plasma-API-Minimum-Version' not in metadata:
+			metadata['X-Plasma-API-Minimum-Version'] = '6.0'
+			print('Set X-Plasma-API-Minimum-Version = 6.0')
+
+		if metadata['X-Plasma-API-Minimum-Version'] == '6.0':
+			# https://invent.kde.org/plasma/plasma-desktop/-/commit/9d34b1853378dd2167e996ffe6706b35b7343439
+			if metadata.get('KPackageStructure') is None:
+				if len(metadata.get('KPlugin', {}).get('ServiceTypes', [])) >= 1:
+					serviceType = metadata['KPlugin']['ServiceTypes'][0]
+					metadata['KPackageStructure'] = serviceType
+					print("The KPackageStructure metadata key was populated with KPlugin.ServiceTypes[0]={}".format(serviceType))
+				del metadata['KPlugin']['ServiceTypes']
+				print("The KPlugin.ServiceTypes metadata key was deleted.")
+
+			# https://invent.kde.org/plasma/plasma-desktop/-/commit/d016cae56387ee481a68c11d12e76e3bb0fd3999
+			# https://invent.kde.org/plasma/libplasma/-/merge_requests/906
+			if 'X-Plasma-API' in metadata:
+				del metadata['X-Plasma-API']
+				print("The X-Plasma-API metadata key was deleted.")
+
+			# https://invent.kde.org/plasma/plasma-desktop/-/commit/866e815eb2829a99bd0382bb399efbb30ce53100
+			if 'X-Plasma-MainScript' in metadata:
+				print("X-Plasma-MainScript={} has been deprecated.".format(metadata['X-Plasma-MainScript']))
+				oldMainScript = os.path.join(self.sourceDir, "contents", metadata['X-Plasma-MainScript'])
+				newMainScript = os.path.join(self.sourceDir, "contents", "ui", "main.qml")
+				if os.path.exists(oldMainScript):
+					if oldMainScript == newMainScript:
+						echoGray("MainScript is already ui/main.qml so will just delete.")
+					elif os.path.exists(newMainScript):
+						echoError("Unable to rename {} to ui/main.qml since the later already exists!".format(oldMainScript))
+						sys.exit(1)
+					else:
+						print("X-Plasma-MainScript={} will be renamed to the default ui/main.qml".format(metadata['X-Plasma-MainScript']))
+						os.rename(oldMainScript, newMainScript)
+				else:
+					echoError("Unable to rename {} to ui/main.qml since it doesn't exist!".format(oldMainScript))
+					sys.exit(1)
+
+				del metadata['X-Plasma-MainScript']
+				print("The X-Plasma-MainScript metadata key was deleted.")
+
+		# pprint(metadata)
+		jsonDumpTabbed(self.jsonMetaFilepath, metadata)
+
+	def portQmlFileToPlasma6(self, qmlFilepath):
+		echoGray('[kpac-plasma6] ' + qmlFilepath)
+
+		#--- Imports and KeywordReplace
+		importPattern = r'^import ([\w+\.]+)( (\d+\.\d+))?( as (\w+))?'
+		namespaceVersion = {}
+		namespaceQt6Map = {
+			'org.kde.kcoreaddons': 'org.kde.coreaddons',
+			'QtGraphicalEffects': 'Qt5Compat.GraphicalEffects',
+		}
+		def replaceImport(m):
+			namespace = m.group(1)
+			version = m.group(3)
+			name = m.group(5)
+			namespaceVersion[namespace] = version
+			newNamespace = namespaceQt6Map.get(namespace, namespace)
+			if name is None:
+				return f"import {newNamespace}"
+			else:
+				return f"import {newNamespace} as {name}"
+		def isMajorVersion(namespace, major):
+			if namespace in namespaceVersion:
+				versionStr = namespaceVersion[namespace]
+				if versionStr is None: # Already Ported to Qt6
+					return False
+				else:
+					return versionStr.startswith('{}.'.format(major))
+			else:
+				return False
+		def replacePlasmaComponents(line, nsVerKeyword, replacement):
+			m = re.search(r'PlasmaComponents(\d+)\.', nsVerKeyword)
+			majorVersion = m.group(1)
+			line = line.replace(nsVerKeyword, replacement)
+			if isMajorVersion('org.kde.plasma.components', majorVersion):
+				nsKeyword = re.sub(r'PlasmaComponents(\d+)\.', 'PlasmaComponents.', nsVerKeyword)
+				line = line.replace(nsKeyword, replacement)
+			return line
+		def replaceNotComment(line, matchStr, replacement, commentSyntax='//'):
+			tokens = line.split(commentSyntax, 1)
+			if len(tokens) >= 2:
+				tokens[0] = tokens[0].replace(matchStr, replacement)
+				return tokens[0] + commentSyntax + tokens[1]
+			else:
+				return tokens[0].replace(matchStr, replacement)
+
+		isMain = os.path.join(self.sourceDir, 'contents/ui/main.qml') == qmlFilepath
+		isMainItem = False
+		with LineReplace(qmlFilepath) as rep:
+			for line in rep.lines:
+				# Parse imports to namespaceVersion dict.
+				# Also replace namespaces that changed listed in namespaceQt6Map.
+				line = re.sub(importPattern, replaceImport, line)
+
+				#--- main.qml
+				if isMain:
+					# Assume the root item of the file doesn't have an indent.
+					if re.match(r'^Item\s*\{', line):
+						line = re.sub(r'^Item\s*\{', 'PlasmoidItem {', line)
+						isMainItem = True
+				if isMainItem:
+					# [Plasma5] Global 'plasmoid' property (which is also attached to the widget root item as 'Plasmoid')
+					# https://invent.kde.org/plasma/plasma-framework/-/tree/kf5/src/scriptengines/qml/plasmoid/appletinterface.h
+					# https://invent.kde.org/plasma/plasma-framework/-/tree/kf5/src/plasmaquick/appletquickitem.h
+					# https://invent.kde.org/plasma/plasma-framework/-/tree/kf5/src/plasma/applet.h
+					# [Plasma6] 'PlasmoidItem' root item
+					# https://invent.kde.org/plasma/plasma-framework/-/tree/master/src/plasmaquick/plasmoid/plasmoiditem.h
+					# https://invent.kde.org/plasma/plasma-framework/-/tree/master/src/plasmaquick/appletquickitem.h
+					# [Plasma6] Attached 'Plasmoid' similar to 'Layout' which dynamically grabs the value from the Applet class
+					# https://invent.kde.org/plasma/plasma-framework/-/blame/master/src/plasmaquick/private/plasmoidattached_p.cpp#L33
+					# https://invent.kde.org/plasma/plasma-framework/-/tree/master/src/plasma/applet.h
+					plasmoidPropsPorted = [
+						# AppletQuickItem
+						'switchWidth', 'switchHeight',
+						'compactRepresentation', 'fullRepresentation',
+						'preloadFullRepresentation', 'preferredRepresentation',
+						'expanded', 'activationTogglesExpanded',
+						'hideOnWindowDeactivate',
+						# PlasmoidItem
+						'toolTipMainText', 'toolTipSubText', 'toolTipTextFormat', 'toolTipItem',
+						'hideOnWindowDeactivate',
+					]
+					for prop in plasmoidPropsPorted:
+						line = line.replace(f"Plasmoid.{prop}:", f"{prop}:")
+
+				#--- PlasmaComponents2
+				line = replacePlasmaComponents(line, 'PlasmaComponents2.Highlight', 'PlasmaExtras.Highlight')
+				line = replacePlasmaComponents(line, 'PlasmaComponents2.MenuItem', 'PlasmaExtras.Menu')
+				line = replacePlasmaComponents(line, 'PlasmaComponents2.ContextMenu', 'PlasmaExtras.Menu')
+				line = replacePlasmaComponents(line, 'PlasmaComponents2.Menu', 'PlasmaExtras.Menu')
+
+				#--- PlasmaCore.Units/Theme
+				line = line.replace('units.', 'PlasmaCore.Units.')
+				line = line.replace('theme.', 'PlasmaCore.Theme.')
+
+				line = line.replace('PlasmaCore.Units.devicePixelRatio', 'Screen.devicePixelRatio')
+
+				# https://develop.kde.org/docs/plasma/widget/porting_kf6/#things-moved-to-kirigami
+				for prop in ['gridUnit', 'smallSpacing', 'mediumSpacing', 'largeSpacing',
+					'veryShortDuration', 'shortDuration', 'longDuration', 'veryLongDuration', 'humanMoment'
+				]:
+					line = line.replace(f"PlasmaCore.Units.{prop}", f"Kirigami.Units.{prop}")
+				line = line.replace('PlasmaCore.IconItem', 'Kirigami.Icon')
+
+				line = line.replace('PlasmaCore.Units.iconSizeHints.panel', '48') # Kicker uses a hardcoded px value: https://invent.kde.org/plasma/plasma-desktop/-/merge_requests/1390/diffs
+				line = line.replace('PlasmaCore.Units.iconSizeHints.desktop', '32') # Hardcoded value from https://api.kde.org/frameworks/kiconthemes/html/kiconloader_8h_source.html#l00145
+				line = line.replace('PlasmaCore.Units.iconSizes.desktop', '32') # Hardcoded value
+				line = line.replace('PlasmaCore.Units.iconSizes.tiny', 'Kirigami.Units.iconSizes.small / 2') # Was removed
+				for prop in ['small', 'smallMedium', 'medium', 'large', 'huge', 'enormous', 'sizeForLabels']:
+					line = line.replace(f"PlasmaCore.Units.iconSizes.{prop}", f"Kirigami.Units.iconSizes.{prop}")
+				line = line.replace('PlasmaCore.Units.roundToIconSize(', 'Kirigami.Units.iconSizes.roundedIconSize(')
+
+				# line = line.replace('PlasmaCore.Theme.themeName', 'TODO.themeName')
+				# line = line.replace('PlasmaCore.Theme.useGlobalSettings', 'TODO.useGlobalSettings')
+				# line = line.replace('PlasmaCore.Theme.wallpaperPath', 'TODO.wallpaperPath')
+				# line = line.replace('PlasmaCore.Theme.styleSheet', 'TODO.styleSheet')
+				line = line.replace('PlasmaCore.Theme.defaultFont', 'Kirigami.Theme.defaultFont')
+				line = line.replace('PlasmaCore.Theme.smallestFont', 'Kirigami.Theme.smallFont')
+				line = line.replace('PlasmaCore.Theme.palette', 'Kirigami.Theme.palette')
+
+				# https://invent.kde.org/plasma/plasma-framework/-/blame/kf5/src/declarativeimports/core/colorscope.h
+				line = line.replace('PlasmaCore.ColorScope.colorGroup', 'Kirigami.Theme.colorSet')
+				line = line.replace('PlasmaCore.ColorScope.inherit', 'Kirigami.Theme.inherit')
+				for prop in ['textColor', 'highlightColor', 'highlightedTextColor', 'backgroundColor',
+					'positiveTextColor', 'neutralTextColor', 'negativeTextColor', 'disabledTextColor'
+				]:
+					line = line.replace(f"PlasmaCore.ColorScope.{prop}", f"Kirigami.Theme.{prop}")
+
+				# https://invent.kde.org/plasma/libplasma/-/blob/kf5/src/plasma/theme.h
+				# https://invent.kde.org/frameworks/kirigami/-/blob/master/src/platform/platformtheme.h#L202
+				line = line.replace('PlasmaCore.Theme.NormalColorGroup', 'Kirigami.Theme.Window')
+				line = line.replace('PlasmaCore.Theme.ButtonColorGroup', 'Kirigami.Theme.Button')
+				line = line.replace('PlasmaCore.Theme.ViewColorGroup', 'Kirigami.Theme.View')
+				line = line.replace('PlasmaCore.Theme.ComplementaryColorGroup', 'Kirigami.Theme.Complementary')
+				line = line.replace('PlasmaCore.Theme.HeaderColorGroup', 'Kirigami.Theme.Header')
+				line = line.replace('PlasmaCore.Theme.ToolTipColorGroup', 'Kirigami.Theme.Tooltip')
+
+				# https://invent.kde.org/plasma/libplasma/-/blob/kf5/src/declarativeimports/core/quicktheme.h
+				# https://invent.kde.org/frameworks/kirigami/-/blob/master/src/platform/basictheme_p.h
+				themeColorsPorted = [
+					'backgroundColor', 'buttonBackgroundColor', 'buttonFocusColor', 'buttonHoverColor',
+					'buttonTextColor', 'complementaryBackgroundColor', 'complementaryFocusColor', 'complementaryHoverColor',
+					'complementaryTextColor', 'disabledTextColor', 'headerBackgroundColor', 'headerFocusColor',
+					'headerHoverColor', 'headerTextColor', 'highlightColor', 'highlightedTextColor', 'linkColor',
+					'negativeTextColor', 'neutralTextColor', 'positiveTextColor', 'textColor', 'viewBackgroundColor',
+					'viewFocusColor', 'viewHoverColor', 'viewTextColor', 'visitedLinkColor'
+				]
+				for prop in themeColorsPorted:
+					line = line.replace(f"PlasmaCore.Theme.{prop}", f"Kirigami.Theme.{prop}")
+
+				# These colors were removed in the port from PlasmaCore => Kirigami
+				themeColorsRemoved = [
+					'buttonHighlightedTextColor', 'buttonNegativeTextColor', 'buttonNeutralTextColor', 'buttonPositiveTextColor',
+					'complementaryHighlightedTextColor', 'complementaryNegativeTextColor', 'complementaryNeutralTextColor',
+					'complementaryPositiveTextColor', 'headerHighlightedTextColor', 'headerNegativeTextColor', 'headerNeutralTextColor',
+					'headerPositiveTextColor', 'viewHighlightedTextColor', 'viewNegativeTextColor', 'viewNeutralTextColor', 'viewPositiveTextColor',
+				]
+				for prop in themeColorsPorted:
+					line = line.replace(f"PlasmaCore.Theme.{prop}", f"TODO.Theme.{prop}")
+
+				# For reference, these were the colors added to Kirigami that were not in PlasmaCore
+				themeColorsAdded = [
+					'activeBackgroundColor', 'activeTextColor', 'alternateBackgroundColor', 'buttonAlternateBackgroundColor',
+					'complementaryAlternateBackgroundColor', 'defaultFont', 'focusColor', 'headerAlternateBackgroundColor', 'hoverColor',
+					'linkBackgroundColor', 'negativeBackgroundColor', 'neutralBackgroundColor', 'positiveBackgroundColor',
+					'selectionAlternateBackgroundColor', 'selectionBackgroundColor', 'selectionFocusColor', 'selectionHoverColor',
+					'selectionTextColor', 'smallFont', 'tooltipAlternateBackgroundColor', 'tooltipBackgroundColor', 'tooltipFocusColor',
+					'tooltipHoverColor', 'tooltipTextColor', 'viewAlternateBackgroundColor', 'visitedLinkBackgroundColor',
+				]
+
+				#---
+				line = line.replace('KCMShell.authorize(', 'KConfig.KAuthorized.authorizeControlModule(') # TODO ('kcm_users.desktop') => ('kcm_users')
+				line = line.replace('KCMShell.open(', 'KCM.KCMLauncher.open(')
+
+				line = line.replace('PlasmaCore.Svg', 'KSvg.Svg')
+				line = line.replace('PlasmaCore.SvgItem', 'KSvg.SvgItem')
+				line = line.replace('PlasmaCore.FrameSvgItem', 'KSvg.FrameSvgItem')
+
+				line = line.replace('PlasmaCore.DataSource', 'Plasma5Support.DataSource')
+				line = line.replace('PlasmaCore.DataModel', 'Plasma5Support.DataModel')
+
+				line = line.replace('PlasmaCore.SortFilterModel', 'KItemModels.KSortFilterProxyModel')
+
+				line = line.replace('KQuickAddons.IconDialog', 'KIconThemes.IconDialog')
+
+				line = line.replace('import org.kde.plasma.calendar', 'import org.kde.plasma.workspace.calendar')
+
+				#--- Qt
+				line = replaceNotComment(line, 'RegExpValidator', 'RegularExpressionValidator') # Also { regExp: // } => { regularExpression: // }
+
+				#--- Zren's Patterns
+				line = line.replace('plasmoid.action("configure").trigger()', 'Plasmoid.internalAction("configure").trigger()')
+
+				# TODO PlasmaCore.Theme.mSize(font).height	Kirigami.Units.gridUnit
+				# line = replacePlasmaComponents(line, 'PlasmaExtras.Heading', 'Kirigami.Heading') # Not required?
+				# line = replacePlasmaComponents(line, 'iconName:', 'icon.name:') # Might replace custom code
+
+				rep.write(line)
+
+		#--- Add Missing Imports
+		def checkImport(nsKeyword, namespace):
+			usageLine = grep_line(nsKeyword + '.', qmlFilepath)
+			importLine = grep_line('import ' + namespace, qmlFilepath)
+			if usageLine is not None and importLine is None:
+				with open(qmlFilepath, 'r') as fin:
+					qmlText = fin.read()
+				with open(qmlFilepath, 'w') as fout:
+					fout.write(f"import {namespace} as {nsKeyword}\n")
+					fout.write(qmlText)
+		checkImport('Plasma5Support', 'org.kde.plasma.plasma5support')
+		checkImport('PlasmaExtras', 'org.kde.plasma.extras')
+		checkImport('KSvg', 'org.kde.ksvg')
+		checkImport('KCM', 'org.kde.kcmutils')
+		checkImport('KIconThemes', 'org.kde.iconthemes')
+		checkImport('KItemModels', 'org.kde.kitemmodels')
+		checkImport('Kirigami', 'org.kde.kirigami')
+		checkImport('KConfig', 'org.kde.config')
+		# checkImport('Calendar', 'org.kde.plasma.workspace.calendar')
+
+		#--- Remove Unused Imports TODO
+		# import org.kde.kquickcontrolsaddons 2.0 // KCMShell
+		# import org.kde.plasma.core 2.0
+
+		#--- Show changes
+		diffStr = git_diff_color(qmlFilepath)
+		if diffStr.strip() != "":
+			print(diffStr)
+
+	#---
+	def containsGitChanges(self, path='.'):
+		if not isCommandInstalled('git'):
+			echoGray('Git not installed. Skipping git diff check.')
+			return False
+		proc = subprocess.run([
+			'git',
+			'diff',
+			'--stat',
+			path,
+		], capture_output=True)
+		diffStr = proc.stdout.decode('utf-8')
+		return diffStr != ""
+
+	def buildZip(self, dryrun=False):
+		buildFilename = self.buildFilenameFormat.format(
+			packageName=self.packageName,
+			packageVersion=self.packageVersion,
+			buildTag=self.buildTag,
+		)
+		buildFilenameExt = buildFilename + '.' + self.buildExt
+		logger.info("buildTag: %s", self.buildTag)
+		logger.info("buildFilenameFormat: %s", self.buildFilenameFormat)
+		logger.info("buildExt: .%s", self.buildExt)
+		logger.info("buildFilenameExt: %s", buildFilenameExt)
+		logger.info("")
+
+		# Cleanup
+		oldPackageList = glob.glob('*.' + self.buildExt)
+		for oldPackage in oldPackageList:
+			print("DELETED: {}".format(oldPackage))
+			if not dryrun:
+				os.remove(oldPackage)
+
+		# Zip
+		zipLogger = logging.getLogger('build')
+		zipLogger.setLevel(logging.DEBUG)
+		zipLogger.addHandler(logging.StreamHandler())
+		shutil.make_archive(buildFilename, 'zip', self.sourceDir,
+			dry_run=dryrun,
+			logger=zipLogger,
+		)
+		if not dryrun and self.buildExt != 'zip':
+			echoGray('[kpac-build] renaming .zip to .{}'.format(self.buildExt))
+			os.rename(buildFilename + '.zip', buildFilenameExt)
+
+		# Checksums
+		if isCommandInstalled('md5sum'):
+			p = subprocess.run(['md5sum', buildFilenameExt], capture_output=True)
+			tokens = p.stdout.decode('utf-8').split(' ')
+			echoGray('[kpac-build] md5: {}'.format(tokens[0]))
+
+		if isCommandInstalled('sha256sum'):
+			p = subprocess.run(['sha256sum', buildFilenameExt], capture_output=True)
+			tokens = p.stdout.decode('utf-8').split(' ')
+			echoGray('[kpac-build] sha256: {}'.format(tokens[0]))
+
+
+#---
+def kpac_install(kpackage, args):
+	kpackage.printMetadata()
+	kpackage.install(restart=args.restart)
+
+def kpac_uninstall(kpackage, args):
+	kpackage.printMetadata()
+	kpackage.uninstall()
+
+def kpac_i18n(kpackage, args):
+	if args.compendium:
+		kpackage.i18nCompendium()
+	if args.merge:
+		kpackage.i18nMerge(useCompendium=args.compendium)
+	kpackage.i18nBuild()
+
+def kpac_test(kpackage, args):
+	if args.vertical:
+		kpackage.testVertical(dpi=args.dpi)
+	elif args.panel:
+		kpackage.testHorizontal(dpi=args.dpi)
+	elif args.desktop:
+		kpackage.testDesktop(dpi=args.dpi)
+	else:
+		kpackage.test(dpi=args.dpi)
+
+def kpac_localetest(kpackage, args):
+	kpackage.test(langCode=args.langcode)
+
+
+def kpac_build(kpackage, args):
+	kpackage.i18nMerge()
+	kpackage.i18nBuild()
+	if kpackage.containsGitChanges(path=kpackage.translateDir):
+		echoError("[kpac-build] Changes detected. Cancelling build.")
+		proc = subprocess.run(['git', 'diff', '--stat', '.'])
+		sys.exit(1)
+	kpackage.buildZip(
+		dryrun=args.dryrun
+	)
+
+def kpac_plasma6(kpackage, args):
+	if len(args.filepathList) >= 1:
+		for filepath in args.filepathList:
+			kpackage.portFileToPlasma6(filepath)
+	else:
+		kpackage.portToPlasma6()
+
+def updateFile(kpackage, libPath, fileRelativePath):
+	projectPath = os.path.dirname(os.path.realpath(__file__))
+	fileProjectPath = os.path.join(projectPath, fileRelativePath)
+	fileLibPath = os.path.join(libPath, fileRelativePath)
+	if not os.path.exists(fileProjectPath):
+		echoGray(f"[kpac-updatelib] '{fileProjectPath}' does not exist")
+		return
+	if not os.path.exists(fileLibPath):
+		echoWarning(f"[kpac-updatelib] '{fileLibPath}' does not exist!")
+
+	diffStr = git_diff_color_noindex(fileProjectPath, fileLibPath)
+	if diffStr.strip() != "":
+		echoWarning(f"[kpac-updatelib] Update '{fileRelativePath}'?")
+		print(diffStr)
+		print('')
+		if input('Copy? [y]/n > ') != 'n':
+			shutil.copyfile(fileLibPath, fileProjectPath)
+
+
+def kpac_updatelib(kpackage, args):
+	if not os.path.exists(args.libpath):
+		echoError(f"[kpac-updatelib] '{args.libpath}' does not exist!")
+		sys.exit(1)
+
+	kpackage.removeOldI18nScripts()
+
+	syncedFilePaths = [
+		'package/contents/ui/libconfig/BackgroundToggle.qml',
+		'package/contents/ui/libconfig/CheckBox.qml',
+		'package/contents/ui/libconfig/ColorField.qml',
+		'package/contents/ui/libconfig/ComboBox.qml',
+		'package/contents/ui/libconfig/FontFamily.qml',
+		'package/contents/ui/libconfig/FormKCM.qml',
+		'package/contents/ui/libconfig/Heading.qml',
+		'package/contents/ui/libconfig/IconField.qml',
+		'package/contents/ui/libconfig/Label.qml',
+		'package/contents/ui/libconfig/NotificationField.qml',
+		'package/contents/ui/libconfig/RadioButtonGroup.qml',
+		'package/contents/ui/libconfig/Slider.qml',
+		'package/contents/ui/libconfig/SoundField.qml',
+		'package/contents/ui/libconfig/SpinBox.qml',
+		'package/contents/ui/libconfig/TextAlign.qml',
+		'package/contents/ui/libconfig/TextArea.qml',
+		'package/contents/ui/libconfig/TextAreaStringList.qml',
+		'package/contents/ui/libconfig/TextField.qml',
+		'package/contents/ui/libconfig/TextFormat.qml',
+		'package/contents/ui/libconfig/VertAlign.qml',
+		'package/contents/ui/libweather/ConfigUnitComboBox.qml',
+		'package/contents/ui/libweather/ConfigUnits.qml',
+		'package/contents/ui/libweather/ConfigWeatherStationPicker.qml',
+		'package/contents/ui/libweather/DisplayUnits.qml',
+		'package/contents/ui/libweather/WeatherData.qml',
+		'package/contents/ui/libweather/WeatherStationCredits.qml',
+		'package/contents/ui/libweather/WeatherStationPicker.qml',
+		'package/contents/ui/libweather/WeatherStationPickerDialog.qml',
+		'build',
+		'install',
+		'uninstall',
+	]
+	for filePath in syncedFilePaths:
+		updateFile(kpackage, args.libpath, filePath)
+
+
+def main():
+	parser = argparse.ArgumentParser(
+		prog='kpac',
+		description='v{} - Misc tools for a plasma widget like kpackages.'.format(__version__),
+	)
+	parser.add_argument('--dir', dest='sourceDir', default=sourceDirDefault, metavar=sourceDirDefault,
+		help=f'Path to the folder containing metadata.json')
+	parser.add_argument('--i18ndir', dest='translateDir', default=translateDirDefault, metavar=translateDirDefault,
+		help=f'Path to the folder containing template.pot')
+	parser.add_argument('--compendiumdir', dest='compendiumDir', default=compendiumDirDefault, metavar=compendiumDirDefault,
+		help=f'Path to the folder containing i18n compendiums.')
+
+	subparsers = parser.add_subparsers()
+
+	parser_install = subparsers.add_parser('install', help='kpac install')
+	parser_install.set_defaults(func=kpac_install)
+	parser_install.add_argument('--no-restart', dest='restart', action='store_false', default=True, help='Do not restart plasmashell after upgrading')
+
+	parser_uninstall = subparsers.add_parser('uninstall', help='kpac uninstall')
+	parser_uninstall.set_defaults(func=kpac_uninstall)
+
+	parser_mergei18n = subparsers.add_parser('i18n', aliases=['tr', 'translate'], help='kpac i18n (Run xgettext translation tools)')
+	parser_mergei18n.set_defaults(func=kpac_i18n)
+	parser_mergei18n.add_argument('--no-merge', dest='merge', action='store_false', default=True, help='Do not merge messages before generating .mo files')
+	parser_mergei18n.add_argument('--compendium', action='store_true', default=False, help='Generate a compendium of KDE Frameworks translations currently installed.')
+
+	parser_test = subparsers.add_parser('test', help='kpac test')
+	parser_test.set_defaults(func=kpac_test)
+	parser_test.add_argument('--dpi', action='store', type=int, default=1)
+	parser_test.add_argument('-d', '--desktop', action='store_true', default=False)
+	parser_test.add_argument('-p', '--panel', action='store_true', default=False)
+	parser_test.add_argument('-v', '--vertical', action='store_true', default=False)
+
+	parser_localetest = subparsers.add_parser('localetest', help='kpac localetest [langcode] (Eg: fr=French)')
+	parser_localetest.set_defaults(func=kpac_localetest)
+	parser_localetest.add_argument('langcode', help='Can use just "ar" for the default Arabic locale, or specify a specific locale with "ar_EG:ar".')
+
+	parser_build = subparsers.add_parser('build', help='kpac build')
+	parser_build.set_defaults(func=kpac_build)
+	parser_build.add_argument('--dryrun', action='store_true', default=False)
+	parser_build.add_argument('--tag', dest='buildTag', default=filenameTag)
+
+	parser_plasma6 = subparsers.add_parser('plasma6', help='kpac plasma6 (Port to Plasma 6)')
+	parser_plasma6.set_defaults(func=kpac_plasma6)
+	parser_plasma6.add_argument('filepathList', metavar='filepath', nargs='*', help='path/to/file.qml, leave blank to port all files including metadata.')
+
+	parser_updatelib = subparsers.add_parser('updatelib', help='kpac updatelib path/to/plasma-applet-lib/')
+	parser_updatelib.set_defaults(func=kpac_updatelib)
+	parser_updatelib.add_argument('libpath', help='path/to/plasma-applet-lib/')
+
+	args = parser.parse_args()
+
+	kpackage = KPackage(
+		sourceDir=args.sourceDir,
+		translateDir=args.translateDir,
+		compendiumDir=args.compendiumDir,
+		buildTag=args.buildTag if hasattr(args, 'buildTag') else filenameTag,
+	)
+
+	if 'func' in args:
+		try:
+			args.func(kpackage, args)
+		except KeyboardInterrupt:
+			pass
+	else:
+		parser.print_help()
+
+
+if __name__ == '__main__':
+	main()
