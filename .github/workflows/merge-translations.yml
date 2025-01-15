@@ -56,4 +56,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-      gh pr edit ${{ env.BRANCH_NAME }} -b '${{ env.PR_BODY }}' -t '${{ env.PR_TITLE }}'  && gh pr reopen ${{ env.BRANCH_NAME }} || gh pr create --fill -B main -H ${{ env.BRANCH_NAME }} --title "Merge translations" --body "This PR was created by GitHub Actions"
+        gh pr edit ${{ env.BRANCH_NAME }} -b '${{ env.PR_BODY }}' -t '${{ env.PR_TITLE }}'  && gh pr reopen ${{ env.BRANCH_NAME }} || gh pr create --fill -B main -H ${{ env.BRANCH_NAME }} --title "Merge translations" --body "This PR was created by GitHub Actions"
