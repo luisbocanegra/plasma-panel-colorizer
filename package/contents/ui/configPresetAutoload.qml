@@ -54,6 +54,12 @@ KCM.SimpleKCM {
             // console.log(stdout);
             if(cmd === listPresetsCmd) {
                 if (stdout.length === 0) return
+                presetsModel.append(
+                    {
+                        "name": i18n("Do nothing"),
+                        "value": "",
+                    }
+                )
 
                 const out = stdout.trim().split("\n")
                 for (const line of out) {
