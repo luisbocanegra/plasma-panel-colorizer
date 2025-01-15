@@ -214,7 +214,7 @@ PlasmoidItem {
 
             break
             default:
-                newColor = "transparent"
+                newColor = Qt.hsla(0, 0, 0, 0)
         }
         if (colorCfg.saturationEnabled) {
             newColor = Utils.scaleSaturation(newColor, colorCfg.saturationValue)
@@ -222,9 +222,7 @@ PlasmoidItem {
         if (colorCfg.lightnessEnabled) {
             newColor = Utils.scaleLightness(newColor, colorCfg.lightnessValue)
         }
-        if (colorCfg.alpha !== 1) {
-            newColor = Qt.hsla(newColor.hslHue, newColor.hslSaturation, newColor.hslLightness, colorCfg.alpha)
-        }
+        newColor = Qt.hsla(newColor.hslHue, newColor.hslSaturation, newColor.hslLightness, colorCfg.alpha)
         return newColor
     }
 
