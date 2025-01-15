@@ -6,12 +6,22 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  checks: read
+  statuses: read
+  
+  # private repos
+  # actions: read
+  # repository-projects: read
 
 name: action-merge-translations
 
 jobs:
   action-merge-translations:
     runs-on: ubuntu-latest
+    env:
+      BRANCH: action-merge-translations
+      TITLE: Merge translations
+      BODY: This PR was created by GitHub Actions
 
     steps:
     - uses: actions/checkout@v2
@@ -25,7 +35,8 @@ jobs:
 
     - name: Branch
       run: |
-        git checkout -b action-merge-translations
+        git branch -D "${{ env.BRANCH }}" || true
+        git checkout -b "${{ env.BRANCH }}"
 
     - name: Merge translations
       run: python ./kpac i18n
@@ -48,12 +59,18 @@ jobs:
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
         git add .
-        git commit -m "Merge translations"
-        git push origin action-merge-translations -f
+        git commit -m "${{ env.TITLE }}"
+        git push origin "${{ env.BRANCH }}" -f
 
     - name: Create Pull Request
       if: steps.check_changes.outputs.is_changed == 'true'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh pr edit ${{ env.BRANCH_NAME }} -b '${{ env.PR_BODY }}' -t '${{ env.PR_TITLE }}'  && gh pr reopen ${{ env.BRANCH_NAME }} || gh pr create --fill -B main -H ${{ env.BRANCH_NAME }} --title "Merge translations" --body "This PR was created by GitHub Actions"
+        PR_URL="$(gh pr list --head "${{ env.BRANCH }}" --state open --json url --jq .[].url)"
+        if [[ -n "${PR_URL}" ]]; then
+            echo "PR already exists -> ${PR_URL}"
+            gh pr edit "${{ env.BRANCH }}" -t "${{ env.TITLE }}" -b "${{ env.BODY }}"
+        else
+            gh pr create -B main -H "${{ env.BRANCH }}" -t "${{ env.TITLE }}" -b "${{ env.BODY }}"
+        fi
