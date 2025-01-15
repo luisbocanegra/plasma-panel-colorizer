@@ -20,11 +20,26 @@ jobs:
         with:
           token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
 
+      - uses: actions/setup-python@v5
+        with:
+          # Semantic version range syntax or exact version of a Python version
+          python-version: '3.x'
+          # Optional - x64 or x86 architecture, defaults to x64
+          architecture: 'x64'
+      
+      - name: Install gettext
+        run: sudo apt-get install gettext
+
       - name: Extract project name
         if: ${{ steps.release.outputs.release_created }}
         run: |
           PROJECT_NAME=$(grep -Po '(?<=project\().*(?=\))' CMakeLists.txt)
           echo "PROJECT_NAME=$PROJECT_NAME" >> $GITHUB_ENV
+
+      - name: Build translations
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          python ./kpac i18n --no-merge
 
       - name: Generate plasmoid package
         if: ${{ steps.release.outputs.release_created }}
