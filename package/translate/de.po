@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-01-12 20:45-0600\n"
+"POT-Creation-Date: 2025-01-15 13:44+0000\n"
 "PO-Revision-Date: DA-Mo-YEAR HO:MI+ZONE\n"
 "Last-Translator: Stefan Wannemacher <swannema@t-online.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -502,6 +502,10 @@ msgstr "Normal:"
 msgid "Widget Click"
 msgstr ""
 
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides should be saved to a preset in <strong>Presets</strong> tab or they will be lost when presets change!"
+msgstr "Erstelle Konfigurationsüberschreibungen und appliziere diese auf andere Widgets. Diese Überschreibungen sollten gesichert werden oder gehen bei der nächsten Änderung verloren"
+
 #: ../contents/ui/configPresets.qml
 msgid "This will permanently delete the file from your system!"
 msgstr "Das wird die Datei dauerhaft löschen"
@@ -553,10 +557,6 @@ msgstr "Ertselle Vorschau"
 #: ../contents/ui/configPresets.qml
 msgid "Update preview"
 msgstr "Aktuallisiere Vorschau"
-
-#: ../contents/ui/configPresetWidgetOverrides.qml
-msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides should be saved to a preset in <strong>Presets</strong> tab or they will be lost when presets change!"
-msgstr "Erstelle Konfigurationsüberschreibungen und appliziere diese auf andere Widgets. Diese Überschreibungen sollten gesichert werden oder gehen bei der nächsten Änderung verloren"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g top to left)."
