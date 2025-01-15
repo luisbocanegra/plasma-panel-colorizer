@@ -211,13 +211,12 @@ ColumnLayout {
 
         RowLayout {
             Kirigami.FormData.label: i18n("Spacing:")
+            visible: keyName === "widgets" && currentTab === 1
             SpinBox {
                 id: spacingCheckbox
                 value: configLocal.spacing || 0
                 from: 0
                 to: 999
-                visible: keyName === "widgets" && currentTab === 1
-                enabled: visible
                 onValueModified: {
                     if (!enabled) return
                     configLocal.spacing = value
