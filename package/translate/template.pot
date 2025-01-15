@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-01-15 13:44+0000\n"
+"POT-Creation-Date: 2025-01-15 21:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -452,6 +452,10 @@ msgstr ""
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Overrides are applied from top to bottom, if two or more configuration overrides share the same option, the last occurence replaces the value of the previous one."
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Do nothing"
 msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml

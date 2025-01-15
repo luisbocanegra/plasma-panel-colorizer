@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-01-15 13:44+0000\n"
+"POT-Creation-Date: 2025-01-15 21:56+0000\n"
 "PO-Revision-Date: DA-Mo-YEAR HO:MI+ZONE\n"
 "Last-Translator: Stefan Wannemacher <swannema@t-online.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -454,6 +454,10 @@ msgid "Overrides are applied from top to bottom, if two or more configuration ov
 msgstr "Überschreibungen werden von oben nach untern vorgenommen"
 
 #: ../contents/ui/configPresetAutoload.qml
+msgid "Do nothing"
+msgstr "Nichts tun"
+
+#: ../contents/ui/configPresetAutoload.qml
 msgid "Disable preset auto-loading when making changes to presets, unsaved preset settings will be lost when presets change!"
 msgstr "Schalte das automatische laden der Voreinstellungen aus, ungesicherte Voreinstellungen gehen verloren, wenn Veränderungen vorgenommen werden"
 
@@ -691,9 +695,6 @@ msgstr ""
 
 #~ msgid "Not getting the expeted result? Make sure you're editing the correct element."
 #~ msgstr "Nicht die erwarteten Resultate? Stelle sicher, dass die richtigen Elemente grändert wurden"
-
-#~ msgid "Do nothing"
-#~ msgstr "Nichts tun"
 
 #~ msgid "Select start and end of unified background areas, widgets between <b>Start</b> and <b>End</b> must be left Disabled."
 #~ msgstr "Wähle Start und Ende der Hintergrundbereiche, Widgets zwischen <b>Start</b> und <b>Ende</b> müssen ausgeschaltet bleiben."
