@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BRANCH: action-merge-translations
-      TITLE: Merge translations
+      TITLE: "ci: merge translations"
       BODY: This PR was created by GitHub Actions
 
     steps:
