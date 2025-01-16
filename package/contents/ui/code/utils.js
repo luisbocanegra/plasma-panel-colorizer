@@ -213,7 +213,7 @@ var themeScopes = [
 ]
 
 function getWidgetAsocIdx(id, name, config) {
-  console.log("getWidgetAsocIdx()")
+  // console.log("getWidgetAsocIdx()")
   return config.findIndex((item) => item.id == id && item.name == name)
 }
 

@@ -1277,6 +1277,23 @@ PlasmoidItem {
         }
     }
 
+    Timer {
+        id: reconfigureTimer
+        interval: 10
+        onTriggered: {
+            runCommand.run("gdbus call --session --dest org.kde.KWin --object-path /KWin --method org.kde.KWin.reconfigure")
+        }
+    }
+
+    Connections {
+        target: plasmoid.configuration
+        onValueChanged: {
+            Qt.callLater(function () {
+                reconfigureTimer.restart()
+            })
+        }
+    }
+
     function updateCurrentWidgets() {
         panelWidgets = []
         panelWidgets = Utils.findWidgets(panelLayout, panelWidgets)
@@ -1394,14 +1411,16 @@ PlasmoidItem {
         target: runCommand
         function onExited(cmd, exitCode, exitStatus, stdout, stderr, liveUpdate) {
             if (exitCode!==0) return
-            try {
-                presetContent = JSON.parse(stdout.trim())
-            } catch (e) {
-                return
+            if (cmd.startsWith("cat")) {
+                try {
+                    presetContent = JSON.parse(stdout.trim())
+                } catch (e) {
+                    return
+                }
+                Utils.loadPreset(presetContent, plasmoid.configuration, Globals.ignoredConfigs, Globals.defaultConfig, true)
+                plasmoid.configuration.lastPreset = lastPreset
+                plasmoid.configuration.writeConfig();
             }
-            Utils.loadPreset(presetContent, plasmoid.configuration, Globals.ignoredConfigs, Globals.defaultConfig, true)
-            plasmoid.configuration.lastPreset = lastPreset
-            plasmoid.configuration.writeConfig();
         }
     }
 
