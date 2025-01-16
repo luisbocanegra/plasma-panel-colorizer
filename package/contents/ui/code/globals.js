@@ -263,5 +263,6 @@ const ignoredConfigs = [
   "switchPresetsIndex",
   "enableDBusService",
   "dBusPollingRate",
-  "pythonExecutable"
+  "pythonExecutable",
+  "forceForegroundColor"
 ]
