@@ -12,10 +12,17 @@ I have:
 - [ ] Searched if this issue hasn't been reported yet.
 - [ ] Verified that I am using the latest version (see *Widget settings* > *About page* or *top right corner for version 1.1.0 and later*), **should be the same as [https://github.com/luisbocanegra/plasma-panel-colorizer/releases/latest](https://github.com/luisbocanegra/plasma-panel-colorizer/releases/latest)**
 
+Install method used:
+
+- [ ] Using Plasma's "Add new widget" (KDE Store)
+- [ ] AUR
+- [ ] Nix package
+- [ ] Manually from the latest source code
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 
-**To Reproduce**
+**Steps to reproduce**
 
 1. Go to '...'
 2. Click on '....'
@@ -24,24 +31,22 @@ A clear and concise description of what the bug is.
 5. ...
 
 **Observed Result**
-
-*Please describe and attach terminal error output (if any)*
+Please describe and attach terminal error output (if any)
 
 **Expected Result**
-
-*Please describe*
+Please describe
 
 **Screenshots**
-
 If applicable, add screenshots to help explain your problem.
 
 **System information (please complete the following):**
 
-- Operating System: [e.g. Arch Linux]
-- KDE Plasma Version: [e.g. 6.2.1]
-- KDE Frameworks Version: [e.g. 6.8.0]
-- Qt Version: [e.g. 6.8.0]
-- Graphics Platform: [e.g. Wayland]
+Run `kinfo` on a terminal and paste the output bellow
+
+```yaml
+# paste output of kinfo here
+```
+
 - Things in your system that might be relevant: [e.g. Kwin scripts, Themes, Addons]
 
 **Additional context**
