@@ -3,7 +3,9 @@
 # Panel Colorizer
 
 [![AUR version](https://img.shields.io/aur/version/plasma6-applets-panel-colorizer?logo=archlinux&labelColor=2d333b&color=1f425f)](https://aur.archlinux.org/packages/plasma6-applets-panel-colorizer)
-[![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fluisbocanegra%2Fplasma-panel-colorizer%2Fmain%2Fpackage%2Fmetadata.json&query=KPlugin.Version&color=1f425f&labelColor=2d333b&logo=kde&label=KDE%20Store)](https://store.kde.org/p/2130967) [![nixpkgs unstable package](https://repology.org/badge/version-for-repo/nix_unstable/plasma-panel-colorizer.svg)](https://repology.org/project/plasma-panel-colorizer/versions)
+[![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fluisbocanegra%2Fplasma-panel-colorizer%2Fmain%2Fpackage%2Fmetadata.json&query=KPlugin.Version&color=1f425f&labelColor=2d333b&logo=kde&label=KDE%20Store)](https://store.kde.org/p/2130967)
+[![nixpkgs unstable package](https://repology.org/badge/version-for-repo/nix_unstable/plasma-panel-colorizer.svg?header=nixpkgs%20unstable)](https://repology.org/project/plasma-panel-colorizer/versions)
+[![Matrix](https://img.shields.io/matrix/kde-plasma-panel-colorizer%3Amatrix.org?logo=matrix&label=Chat&labelColor=black)](https://matrix.to/#/#kde-plasma-panel-colorizer:matrix.org)
 
 Fully-featured widget to bring Latte-Dock and WM status bar customization features to the default Plasma panel.
 
@@ -12,13 +14,11 @@ Fully-featured widget to bring Latte-Dock and WM status bar customization featur
 </div>
 
 > [!IMPORTANT]
-> This widget makes temporary changes to internal parts to the panel that aren't meant to be changed externally.
+> **Project is under active development. Watch out for BREAKING CHANGES in the [Release notes](https://github.com/luisbocanegra/plasma-panel-colorizer/releases)**.
 >
-> If you found a bug while using Panel Colorizer please report it [here](https://github.com/luisbocanegra/plasma-panel-colorizer/issues?q=sort%3Aupdated-desc+is%3Aissue+is%3Aopen) first, only report it to KDE after we conclude is a upstream issue or you removed the widget and can still reproduce the problem.
+> - Found a bug while using Panel Colorizer? Please report it [here](https://github.com/luisbocanegra/plasma-panel-colorizer/issues?q=sort%3Aupdated-desc+is%3Aissue+is%3Aopen) first, only report it to KDE after we conclude is a upstream issue or you removed the widget and can still reproduce the problem.
 >
-> Make sure you're using the latest version of the widget and Plasma to avoid compatibility issues.
->
-> Project is under active development. **Watch out for BREAKING CHANGES in the [Release notes](https://github.com/luisbocanegra/plasma-panel-colorizer/releases)**.
+> - Make sure you're using the latest version of the widget and as close as possible to the [latest Plasma](https://kde.org/search/?s=KDE+Plasma6) to avoid compatibility issues.
 
 ## Demo
 
@@ -39,60 +39,60 @@ Fully-featured widget to bring Latte-Dock and WM status bar customization featur
 
 ### Presets
 
-* [Built-in presets](https://github.com/luisbocanegra/plasma-panel-colorizer/tree/main/package/contents/ui/presets)
-* Create your own presets
-* Preset auto-loading
-  * Fullscreen window
-  * Maximized window
-  * Window touching the panel
-  * At least one window is shown on screen
-  * Panel is floating
-  * Normal (fall-back when none of the above are meet)
-* [Switch presets from the command-line using D-Bus](#switching-presets-using-the-commandline-with-d-bus)
+- [Built-in presets](https://github.com/luisbocanegra/plasma-panel-colorizer/tree/main/package/contents/ui/presets)
+- Create your own presets
+- Preset auto-loading
+  - Fullscreen window
+  - Maximized window
+  - Window touching the panel
+  - At least one window is shown on screen
+  - Panel is floating
+  - Normal (fall-back when none of the above are meet)
+- [Switch presets from the command-line using D-Bus](#switching-presets-using-the-commandline-with-d-bus)
 
 ### Panel/Widget/System Tray elements
 
-* Color modes
-  * Static
-  * ~~Animated~~ removed in v1.0.0, might re-implement in a future version
-* Background / Icons and text color
-  * Custom
-  * System
-  * Custom list
-  * Random
-  * Follow parent background
-* Shape
-  * Spacing between widgets
-  * Radius
-  * Margins
-  * Border
-  * Shadow
-* Blur behind (requires building and installing the C++ plugin)
+- Color modes
+  - Static
+  - ~~Animated~~ removed in v1.0.0, might re-implement in a future version
+- Background / Icons and text color
+  - Custom
+  - System
+  - Custom list
+  - Random
+  - Follow parent background
+- Shape
+  - Spacing between widgets
+  - Radius
+  - Margins
+  - Border
+  - Shadow
+- Blur behind (requires building and installing the C++ plugin)
 
 ### Force Text/Icon color
 
-* Force color to icons that don't follow the theme color for specific widgets
-  * Mask for symbolic icons
-  * Effect for colorful icons
-* Periodic color refresh for widgets that reset colors when they update (e.g Global Menu)
-* Recolor applications System Tray icons
+- Force color to icons that don't follow the theme color for specific widgets
+  - Mask for symbolic icons
+  - Effect for colorful icons
+- Periodic color refresh for widgets that reset colors when they update (e.g Global Menu)
+- Recolor applications System Tray icons
 
 ### Panel background
 
-* Remove native panel background (transparent)
-* Native panel background opacity
-* Simulate an always floating panel
+- Remove native panel background (transparent)
+- Native panel background opacity
+- Simulate an always floating panel
 
 ### Unified background
 
-* Join one or more widgets to make them visually connected
+- Join one or more widgets to make them visually connected
 
 ### Configuration overrides
 
 Overrides let you give a completely different configuration to one or more widgets
 
-* Preset overrides (saved in the current preset)
-* User overrides (sour own overrides that apply over the preset configuration and overrides)
+- Preset overrides (saved in the current preset)
+- User overrides (sour own overrides that apply over the preset configuration and overrides)
 
 </details>
 
@@ -109,21 +109,21 @@ Overrides let you give a completely different configuration to one or more widge
 2. **Right click on the Panel** > **Add or manage widgets** > **Add new...** > **Download new...**
 3. **Search** for "**Panel Colorizer**", install and add it to a Panel.
 
-* ~~[Plasma 5](https://store.kde.org/p/2131149) version v0.2.0~~ **[No longer maintained](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/10)**
+- ~~[Plasma 5](https://store.kde.org/p/2131149) version v0.2.0~~ **[No longer maintained](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/10)**
 
-* [Plasma 6](https://store.kde.org/p/2130967)
+- [Plasma 6](https://store.kde.org/p/2130967)
 
 ### Manually
 
 1. Install these dependencies or the equivalents for your distribution
 
-   * Arch
+   - Arch
 
       ```txt
       git gcc cmake extra-cmake-modules libplasma spectacle python python-dbus python-gobject
       ```
 
-   * Fedora
+   - Fedora
 
       ```txt
       git gcc-c++ cmake extra-cmake-modules libplasma-devel spectacle python3 python3-dbus python3-gobject
@@ -138,13 +138,13 @@ Overrides let you give a completely different configuration to one or more widge
       cd plasma-panel-colorizer
       ```
 
-   * Install widget + plugin
+   - Install widget + plugin
 
     ```sh
     ./install.sh
     ```
 
-   * Install only the plugin if you already have the widget
+   - Install only the plugin if you already have the widget
 
    ```sh
    ./install-plugin.sh
@@ -164,7 +164,7 @@ For those using NixOS or the Nix package manager, a Nix package is available in 
 
 To install the widget use one of these methods:
 
-* NixOS
+- NixOS
 
   ```nix
   environment.systemPackages = with pkgs; [
@@ -172,7 +172,7 @@ To install the widget use one of these methods:
   ];
   ```
 
-* [Home-manager](https://github.com/nix-community/home-manager)
+- [Home-manager](https://github.com/nix-community/home-manager)
 
   ```nix
   home.packages = with pkgs; [
@@ -180,9 +180,9 @@ To install the widget use one of these methods:
   ];
   ```
 
-* [Plasma-manager](https://github.com/nix-community/plasma-manager): If the widget gets added to a panel it will automatically be installed
+- [Plasma-manager](https://github.com/nix-community/plasma-manager): If the widget gets added to a panel it will automatically be installed
 
-* Other distros using Nix package manager
+- Other distros using Nix package manager
 
   ```sh
   # without flakes:
@@ -221,11 +221,11 @@ Changes to the panel are not permanent and can be removed by disabling or removi
 
 ### How to restore the default appearance?
 
-* Click on the widget to disable/enable
-* Or **Widget Settings** > **Top left** > **Enabled** checkbox
-* Or removing the widget from the panel and restarting Plasma/logging out.
+- Click on the widget to disable/enable
+- Or **Widget Settings** > **Top left** > **Enabled** checkbox
+- Or removing the widget from the panel and restarting Plasma/logging out.
 
-**If you are troubleshooting an issue please do the third option and read the notice about reporting bugs at the start of [Install](https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#installing) section**
+**If you are troubleshooting an issue please do the third option above and read the notice about reporting bugs at the start of [Install](https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#installing) section**
 
 ### How do presets work?
 
@@ -245,13 +245,13 @@ After loading a preset and editing any of the settings the new changes are not a
 
 The same applies to the preset auto-loading feature, if you are making changes to your presets it is recommended to temporary disable this feature so your unsaved edits don't get overwritten when a preset auto-loads.
 
-### Updated to v1.0.0, where are my presets?
+### Updated to v1.0.0+, where are my presets?
 
 The location where they are stored has changed, the new locations are:
 
-* Presets: `/home/$USER/.config/panel-colorizer/presets/`
-* User overrides: `/home/$USER/.config/panel-colorizer/overrides.json`
-* Text and icon options: `/home/$USER/.config/panel-colorizer/forceForegroundColor.json`
+- Presets: `/home/$USER/.config/panel-colorizer/presets/`
+- User overrides: `/home/$USER/.config/panel-colorizer/overrides.json`
+- Text and icon options: `/home/$USER/.config/panel-colorizer/forceForegroundColor.json`
 
 **The format of the presets has changed, presets from previous version will need to be recreated manually**
 
@@ -277,15 +277,15 @@ Please read the [Contributing guidelines in this repository](https://github.com/
 
 ## Support the development
 
-* If you like the project please consider donating/sponsoring this and [my other open source work](https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers)
+- If you like the project please consider donating/sponsoring this and [my other open source work](https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers)
 
   [![GitHub Sponsors](https://img.shields.io/badge/GitHub_Sponsors-supporter?logo=githubsponsors&color=%2329313C)](https://github.com/sponsors/luisbocanegra) [![Ko-fi](https://img.shields.io/badge/Ko--fi-supporter?logo=ko-fi&logoColor=%23ffffff&color=%23467BEB)](https://ko-fi.com/luisbocanegra) [!["Buy Me A Coffee"](https://img.shields.io/badge/Buy%20me%20a%20coffe-supporter?logo=buymeacoffee&logoColor=%23282828&color=%23FF803F)](https://www.buymeacoffee.com/luisbocanegra) [![Liberapay](https://img.shields.io/badge/Liberapay-supporter?logo=liberapay&logoColor=%23282828&color=%23F6C814)](https://liberapay.com/luisbocanegra/) [![PayPal](https://img.shields.io/badge/PayPal-supporter?logo=paypal&logoColor=%23ffffff&color=%23003087)](https://www.paypal.com/donate/?hosted_button_id=Y5TMH3Z4YZRDA)
 
-* [Give it a star on GitHub](https://github.com/luisbocanegra/plasma-panel-colorizer)
-* Rate / leave review in the [KDE Store](https://store.kde.org/p/2130967)
+- [Give it a star on GitHub](https://github.com/luisbocanegra/plasma-panel-colorizer)
+- Rate / leave review in the [KDE Store](https://store.kde.org/p/2130967)
 
 ## Acknowledgements
 
-* [Search the actual gridLayout of the panel from Plasma panel spacer](https://invent.kde.org/plasma/plasma-workspace/-/blob/Plasma/5.27/applets/panelspacer/package/contents/ui/main.qml?ref_type=heads#L37) code that inspired this project.
-* [Google LLC. / Pictogrammers](https://pictogrammers.com/library/mdi/) assets used for panel icon.
-* [sanjay-kr-commit/panelTransparencyToggleForPlasma6](https://github.com/sanjay-kr-commit/panelTransparencyToggleForPlasma6) / [psifidotos/paneltransparencybutton](https://github.com/psifidotos/paneltransparencybutton) for the implementation of panel transparency
+- [Search the actual gridLayout of the panel from Plasma panel spacer](https://invent.kde.org/plasma/plasma-workspace/-/blob/Plasma/5.27/applets/panelspacer/package/contents/ui/main.qml?ref_type=heads#L37) that inspired this project.
+- [Google LLC. / Pictogrammers](https://pictogrammers.com/library/mdi/) assets used for panel icon.
+- [sanjay-kr-commit/panelTransparencyToggleForPlasma6](https://github.com/sanjay-kr-commit/panelTransparencyToggleForPlasma6) / [psifidotos/paneltransparencybutton](https://github.com/psifidotos/paneltransparencybutton) for the implementation of panel transparency

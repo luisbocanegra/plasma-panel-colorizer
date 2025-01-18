@@ -69,11 +69,16 @@ RowLayout {
             onTriggered: Qt.openUrlExternally("https://github.com/luisbocanegra/plasma-panel-colorizer/releases")
             icon.name: "update-none-symbolic"
         }
+        Action {
+            text: "Matrix chat"
+            icon.name: Qt.resolvedUrl("../../icons/matrix_logo.svg").toString().replace("file://", "")
+            onTriggered: Qt.openUrlExternally("https://matrix.to/#/#kde-plasma-panel-colorizer:matrix.org")
+        }
 
         MenuSeparator { }
 
         Menu {
-            title: "Project page"
+            title: "Home page"
             icon.name: "globe"
             Action {
                 text: "GitHub"
@@ -119,13 +124,11 @@ RowLayout {
             }
         }
 
+        MenuSeparator { }
+
         Menu {
             title: "Donate"
             icon.name: "love"
-            Action {
-                text: "GitHub sponsors"
-                onTriggered: Qt.openUrlExternally("https://github.com/sponsors/luisbocanegra")
-            }
             Action {
                 text: "Ko-fi"
                 onTriggered: Qt.openUrlExternally("https://ko-fi.com/luisbocanegra")
@@ -134,14 +137,16 @@ RowLayout {
                 text: "Paypal"
                 onTriggered: Qt.openUrlExternally("https://www.paypal.com/donate/?hosted_button_id=Y5TMH3Z4YZRDA")
             }
+            Action {
+                text: "GitHub sponsors"
+                onTriggered: Qt.openUrlExternally("https://github.com/sponsors/luisbocanegra")
+            }
         }
 
-        MenuSeparator { }
-
         Action {
-            text: "More projects"
-            onTriggered: Qt.openUrlExternally("https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers")
-            icon.name: "starred-symbolic"
+            text: "My projects"
+            onTriggered: Qt.openUrlExternally("https://github.com/luisbocanegra?tab=repositories&type=source&sort=stargazers")
+            icon.name: "starred"
         }
     }
     ToolButton {
