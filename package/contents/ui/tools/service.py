@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 """
-D-Bus service to interact with the current panel
+D-Bus service to interact with the panel
 """
-
 import sys
 import dbus
 import dbus.service
@@ -10,11 +9,11 @@ from dbus.mainloop.glib import DBusGMainLoop
 from gi.repository import GLib
 
 DBusGMainLoop(set_as_default=True)
-bus = dbus.SessionBus()
 
 CONTAINMENT_ID = sys.argv[1]
 PANEL_ID = sys.argv[2]
 SERVICE_NAME = "luisbocanegra.panel.colorizer.c" + CONTAINMENT_ID + ".w" + PANEL_ID
+SHARED_INTERFACE = "luisbocanegra.panel.colorizer.all"
 PATH = "/preset"
 
 
@@ -25,15 +24,21 @@ class Service(dbus.service.Object):
         dbus (dbus.service.Object): D-Bus object
     """
 
-    def __init__(self):
+    def __init__(self, bus: dbus.Bus):
         self._loop = GLib.MainLoop()
         self._last_preset = ""
         self._pending_witch = False
+        self._bus = bus
         super().__init__()
 
     def run(self):
         """run"""
         DBusGMainLoop(set_as_default=True)
+        self._bus.add_signal_receiver(
+            self.on_shared_preset_signal,
+            dbus_interface=SHARED_INTERFACE,
+            signal_name="preset",
+        )
         bus_name = dbus.service.BusName(SERVICE_NAME, dbus.SessionBus())
         dbus.service.Object.__init__(self, bus_name, PATH)
 
@@ -53,11 +58,18 @@ class Service(dbus.service.Object):
         """
         if m:
             if m != self._last_preset:
-                print(f"last_last_preset: '{m}'")
                 self._last_preset = m
                 self._pending_witch = True
             return "saved"
         return self._last_preset
+
+    def on_shared_preset_signal(self, preset_name: str):
+        """Handle the shared signal to set the preset
+
+        Args:
+            preset_name (str): The preset name from the signal
+        """
+        self.preset(preset_name)
 
     @dbus.service.method(SERVICE_NAME, in_signature="", out_signature="b")
     def pending_switch(self) -> bool:
@@ -82,8 +94,9 @@ class Service(dbus.service.Object):
 
 if __name__ == "__main__":
     # Keep a single instance of the service
+    session_bus = dbus.SessionBus()
     try:
-        bus.get_object(SERVICE_NAME, PATH)
+        session_bus.get_object(SERVICE_NAME, PATH)
         print("Service is already running")
     except dbus.exceptions.DBusException:
-        Service().run()
+        Service(session_bus).run()
