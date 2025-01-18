@@ -230,6 +230,10 @@ const baseStockPanelSettings = {
   "thickness": {
     "enabled": false,
     "value": 48
+  },
+  "visible": {
+    "enabled": false,
+    "value": true
   }
 }
 

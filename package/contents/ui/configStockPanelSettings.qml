@@ -324,6 +324,32 @@ KCM.SimpleKCM {
                 }
                 enabled: thicknessEnabled.checked
             }
+
+            Kirigami.Separator {
+                Kirigami.FormData.isSection: true
+                Kirigami.FormData.label: i18n("Show/Hide AKA Toggle panel")
+            }
+
+            CheckBox {
+                Kirigami.FormData.label: i18n("Enabled:")
+                id: visibleEnabled
+                checked: config.visible.enabled
+                onCheckedChanged: {
+                    config.visible.enabled = checked
+                    updateConfig()
+                }
+            }
+
+            CheckBox {
+                Kirigami.FormData.label: i18n("Visible:")
+                id: visible
+                checked: config.visible.value
+                onCheckedChanged: {
+                    config.visible.value = checked
+                    updateConfig()
+                }
+                enabled: visibleEnabled.checked
+            }
         }
     }
 }

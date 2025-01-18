@@ -75,7 +75,7 @@ function dumpProps(obj) {
   console.error(obj);
   for (var k of Object.keys(obj)) {
     const val = obj[k]
-    if (typeof val === 'function') continue
+    if (k.endsWith("Changed")) continue
     if (k === 'metaData') continue
     console.log(k + "=" + val + "\n")
   }

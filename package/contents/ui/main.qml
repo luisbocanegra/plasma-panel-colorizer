@@ -147,11 +147,17 @@ PlasmoidItem {
     signal updateMasks()
 
     property var switchPresets: JSON.parse(plasmoid.configuration.switchPresets)
+    property QtObject panelView: null
 
     onStockPanelSettingsChanged: {
         Qt.callLater(function() {
             // console.error(JSON.stringify(stockPanelSettings))
             let script = Utils.setPanelModeScript(panelPosition, stockPanelSettings)
+            if (stockPanelSettings.visible.enabled) {
+                panelView.visible = stockPanelSettings.visible.value
+            } else {
+                panelView.visible = true
+            }
             Utils.evaluateScript(script)
         })
     }
@@ -1282,6 +1288,13 @@ PlasmoidItem {
         interval: 10
         onTriggered: {
             runCommand.run("gdbus call --session --dest org.kde.KWin --object-path /KWin --method org.kde.KWin.reconfigure")
+        }
+    }
+
+    // https://github.com/olib14/pinpanel/blob/2d126f0f3ac3e35a725f05b0060a3dd5c924cbe7/package/contents/ui/main.qml#L58 ♥
+    Item {
+        onWindowChanged: (window) => {
+            main.panelView = window
         }
     }
 
