@@ -327,7 +327,7 @@ KCM.SimpleKCM {
 
             Kirigami.Separator {
                 Kirigami.FormData.isSection: true
-                Kirigami.FormData.label: i18n("Show/Hide AKA Toggle panel")
+                Kirigami.FormData.label: i18n("Show/Hide")
             }
 
             CheckBox {
@@ -341,7 +341,7 @@ KCM.SimpleKCM {
             }
 
             CheckBox {
-                Kirigami.FormData.label: i18n("Visible:")
+                Kirigami.FormData.label: i18n("Show:")
                 id: visible
                 checked: config.visible.value
                 onCheckedChanged: {

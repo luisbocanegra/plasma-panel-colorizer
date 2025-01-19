@@ -495,3 +495,76 @@ function getWidgetConfigIdx(id, name, config) {
 function makeEven(n) {
   return n - n % 2
 }
+
+function parseValue(rawValue) {
+  try {
+      return JSON.parse(rawValue)
+  } catch (e) {
+      if (rawValue.toLowerCase() === "true") {
+          return true
+      }
+      if (rawValue.toLowerCase() === "false") {
+          return false
+      }
+      if (!isNaN(rawValue)) {
+          return Number(rawValue)
+      }
+
+      return rawValue
+  }
+}
+
+/**
+* Edit an existing object property using dot and square brackets notation
+* Overrides objects if the new value is also an object
+* For array allows setting per index (appending if not consecutive) or replacing with a new array
+* @param {Object} object - The object to set the property on.
+* @param {string} path - The path to the property.
+* @param {string} value - The value to set.
+*/
+function editProperty(object, path, value) {
+  console.log(`editing property path: ${path}, value: ${value}`)
+  value = parseValue(value)
+  const keys = path.replace(/\[/g, ".").replace(/\]/g, "").split(".")
+  let current = object
+
+  for (let i = 0; i < keys.length - 1; i++) {
+      const key = keys[i]
+      if (!current.hasOwnProperty(key)) return
+      current = current[key]
+      if (typeof current !== "object" || current === null) return
+  }
+
+  const lastKey = keys[keys.length - 1]
+
+  // no new keys unless it's an array
+  if (!current.hasOwnProperty(lastKey) && !Array.isArray(current)) return
+
+  console.log(lastKey)
+
+  if (Array.isArray(current)) {
+    const index = parseInt(lastKey, 10)
+    // add to array if it's the next index
+    if (index === current.length) {
+        current.push(value)
+    } else if (index < current.length) {
+        current[index] = value
+    } else if (Array.isArray(value)) {
+        current[lastKey] = value
+    } else {
+        return
+    }
+  } else if (
+    typeof current[lastKey] === "object" &&
+    current[lastKey] !== null
+  ) {
+    // override only if the new value is an object
+    if (typeof value === "object" && value !== null) {
+        current[lastKey] = value
+    } else {
+        return
+    }
+  } else {
+      current[lastKey] = value
+  }
+}

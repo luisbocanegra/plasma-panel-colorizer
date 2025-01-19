@@ -28,6 +28,7 @@ class Service(dbus.service.Object):
         self._loop = GLib.MainLoop()
         self._last_preset = ""
         self._pending_witch = False
+        self._property = ""
         self._bus = bus
         super().__init__()
 
@@ -38,6 +39,11 @@ class Service(dbus.service.Object):
             self.on_shared_preset_signal,
             dbus_interface=SHARED_INTERFACE,
             signal_name="preset",
+        )
+        self._bus.add_signal_receiver(
+            self.on_shared_property_signal,
+            dbus_interface=SHARED_INTERFACE,
+            signal_name="property",
         )
         bus_name = dbus.service.BusName(SERVICE_NAME, dbus.SessionBus())
         dbus.service.Object.__init__(self, bus_name, PATH)
@@ -63,6 +69,16 @@ class Service(dbus.service.Object):
             return "saved"
         return self._last_preset
 
+    @dbus.service.method(SERVICE_NAME, in_signature="s", out_signature="s")
+    def property(self, m=""):
+        """Set a specific property using dot notation
+        e.g `'stockPanelSettings.visible {"enabled": true, "value": false}'`
+        """
+        if m:
+            if m != self._property:
+                self._property = m
+        return self._property
+
     def on_shared_preset_signal(self, preset_name: str):
         """Handle the shared signal to set the preset
 
@@ -70,6 +86,14 @@ class Service(dbus.service.Object):
             preset_name (str): The preset name from the signal
         """
         self.preset(preset_name)
+
+    def on_shared_property_signal(self, edited_property: str):
+        """Handle the shared signal to set the preset
+
+        Args:
+            edited_property (str): The property from the signal
+        """
+        self.property(edited_property)
 
     @dbus.service.method(SERVICE_NAME, in_signature="", out_signature="b")
     def pending_switch(self) -> bool:
