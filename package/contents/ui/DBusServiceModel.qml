@@ -7,6 +7,7 @@ Item {
     id: root
     property bool enabled: false
     property string preset: ""
+    property string propertyToApply: ""
     property bool switchIsPending: false
     property int poolingRate: 250
 
@@ -19,6 +20,7 @@ Item {
     property string pendingSwitchCmd: gdbusPartial +".pending_switch"
     property string switchDoneCmd: gdbusPartial +".switch_done"
     property string getPresetCmd: gdbusPartial +".preset"
+    property string getPropertyToApplyCmd: gdbusPartial + ".property"
     property string quitServiceCmd: gdbusPartial +".quit"
 
     RunCommand {
@@ -26,7 +28,11 @@ Item {
         onExited: (cmd, exitCode, exitStatus, stdout, stderr) => {
             // console.error(cmd, exitCode, exitStatus, stdout, stderr)
             if (exitCode!==0) return
-            stdout = stdout.trim().replace(/[()',]/g, "")
+            stdout = stdout
+            .trim()
+            .replace(/^\(\s*'/, '') // starting "('"
+            .replace(/',?\s*\)$/, '') // ending "',)" or ")"
+            .trim();
             // console.log("stdout parsed:", stdout)
             if(cmd === pendingSwitchCmd) {
                 switchIsPending = stdout === "true"
@@ -34,6 +40,9 @@ Item {
             if (cmd === getPresetCmd) {
                 preset = stdout
                 switchIsPending = false
+            }
+            if (cmd === getPropertyToApplyCmd) {
+                propertyToApply = stdout
             }
         }
     }
@@ -65,6 +74,7 @@ Item {
         running: enabled
         repeat: true
         onTriggered: {
+            runCommand.run(getPropertyToApplyCmd)
             if (switchIsPending) return
             runCommand.run(pendingSwitchCmd)
         }

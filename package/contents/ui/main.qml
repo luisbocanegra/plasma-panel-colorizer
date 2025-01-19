@@ -1632,5 +1632,10 @@ PlasmoidItem {
         onPresetChanged: {
             applyPreset(preset)
         }
+        onPropertyToApplyChanged: {
+            const [path, ...value] = propertyToApply.split(" ")
+            Utils.editProperty(main.cfg, path, value.join(" "))
+            plasmoid.configuration.globalSettings = JSON.stringify(main.cfg)
+        }
     }
 }
