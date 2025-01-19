@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-01-15 21:56+0000\n"
+"POT-Creation-Date: 2025-01-19 07:45+0000\n"
 "PO-Revision-Date: DA-Mo-YEAR HO:MI+ZONE\n"
 "Last-Translator: Stefan Wannemacher <swannema@t-online.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -673,6 +673,14 @@ msgstr "Dicke"
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Thickness:"
 msgstr "Dicke"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Show/Hide"
+msgstr ""
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Show:"
+msgstr ""
 
 #: ../contents/ui/configUnifiedBackground.qml
 msgid "Select start and end of unified background areas, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Note: <strong>odd</strong> widget spacing values are automatically converted to <strong>evens</strong> when this feature is used."

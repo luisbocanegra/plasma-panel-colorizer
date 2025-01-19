@@ -4,8 +4,8 @@
 
 |  Locale  |  Lines  | % Done|
 |----------|---------|-------|
-| Template |     167 |       |
-| de       | 147/167 |   88% |
+| Template |     169 |       |
+| de       | 147/169 |   86% |
 
 
 ## New Translations
