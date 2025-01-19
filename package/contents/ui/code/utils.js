@@ -540,8 +540,6 @@ function editProperty(object, path, value) {
   // no new keys unless it's an array
   if (!current.hasOwnProperty(lastKey) && !Array.isArray(current)) return
 
-  console.log(lastKey)
-
   if (Array.isArray(current)) {
     const index = parseInt(lastKey, 10)
     // add to array if it's the next index

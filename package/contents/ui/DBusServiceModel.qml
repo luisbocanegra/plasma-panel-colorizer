@@ -30,10 +30,9 @@ Item {
             if (exitCode!==0) return
             stdout = stdout
             .trim()
-            .replace(/^\(\s*'/, '') // starting "('"
-            .replace(/',?\s*\)$/, '') // ending "',)" or ")"
-            .trim();
-            // console.log("stdout parsed:", stdout)
+            .replace(/^\([']?/, "") // starting ( or ('
+            .replace(/[']?,\)$/, "") // ending ,) or ',)
+            // console.log(`stdout parsed: '${stdout}'`)
             if(cmd === pendingSwitchCmd) {
                 switchIsPending = stdout === "true"
             }
