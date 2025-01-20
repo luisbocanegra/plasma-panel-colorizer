@@ -1,5 +1,40 @@
 # Changelog
 
+## [2.0.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v1.2.0...v2.0.0) (2025-01-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* Force text/icons, Unified background, Preset/global overrides now use id to address multiple instances of the same widget separately and should be reconfigured. Also widget ids are unique per panel so the setting needs to be recreated and mantained per panel
+
+### Features
+
+* "At least one window is shown" preset auto-loading condition ([d930925](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/d9309259b34fd91a5b19abc756168368e380f285))
+* "Fullscreen window" preset auto-loading condition ([eba4a14](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/eba4a14364de61f924e05be83773d56f58ed3c94))
+* configure action on Panel Colorizer widget click ([b2c4418](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/b2c4418bf82a1585ee47e57191119814a6a78a7e))
+* D-Bus method & signal to edit configuration properties ([6bf4814](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/6bf4814becfa6ec8661965e4d499dc766ccd59b5))
+* D-Bus signal to apply preset to all Panel Colorizer instances ([be3aba4](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/be3aba43034bc2c962c1e9d06762a89638c5646f))
+* don't store text and icons in presets ([69827e7](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/69827e778ec681c20efa398b58114b5c0058760b))
+* enable the D-Bus service by default ([7b3c502](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/7b3c50283e50ef94e31e09fae2f9a08070bc7423))
+* log errors when loading preset fails ([d97158d](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/d97158da7611a0b9c4eb95991d2120062bae43b9))
+* register a D-Bus service per widget to apply presets ([b549534](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/b5495341122b3538c391b6ae5bd4b996973ced8d))
+* show/hide panel "AKA toggle panel" ([3f70386](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/3f703869920fac11b8e25feb748166f5bd17dd0c))
+* support per widget instance customization ([fc94f22](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/fc94f22eb63791e131a3a023eef4cf0aa8c17fed))
+
+
+### Bug Fixes
+
+* always apply alpha to avoid inheriting it from parent ([4151f6e](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/4151f6e2d6e354993e2eb277f61b907e4150ec2f))
+* color set option not changing colors ([7a527ff](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/7a527ff5ef9dfb8e7da05c2290553aa427514634))
+* disable click to edit built-in preset preview ([94a709c](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/94a709cec9660dc6428bb65a645210d90362c2ca))
+* don't change the default text/icon color if disabled ([ec3bd10](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/ec3bd105348d0e9d4a0940713351871cdfc9f577))
+* foreground color set option not changing colors ([2aee2d2](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/2aee2d28821e2348ae641cfb9d7af81477f05f00))
+* keep original color binding if fg color was never changed ([9cca3c7](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/9cca3c70d638bdcae7bfc3016babebb7997e467e))
+* new global override format not saving ([cc80c59](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/cc80c593b3c47da2e54311b3d5eb779e8ff82eff))
+* overrides not working for plasmoids in system tray ([371eaf4](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/371eaf40d65d900c8092ad285ea5cb9b97fa3257))
+* update windows geometry on config changes ([342fa50](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/342fa50aa0f375d0ee601119f42f1e1836dbdada))
+* use even spacing to avoid gaps if unified widgets feature is used ([10c3aa4](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/10c3aa4345bcd2f7227db5b8ecd8657a4ada2ea8))
+
 ## [1.2.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v1.1.0...v1.2.0) (2024-11-10)
 
 
