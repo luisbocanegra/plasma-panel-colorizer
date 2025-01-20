@@ -125,6 +125,29 @@ KCM.SimpleKCM {
                 wrapMode: Text.WordWrap
                 Layout.preferredWidth: 400
             }
+
+
+            Label {
+                text: i18n("Hide all panels")
+            }
+
+            TextArea {
+                text: `dbus-send --session --type=signal /preset luisbocanegra.panel.colorizer.all.property string:'stockPanelSettings.visible {"enabled": true, "value": false}'`
+                readOnly: true
+                wrapMode: Text.WordWrap
+                Layout.preferredWidth: 400
+            }
+
+            Label {
+                text: i18n("Show all panels")
+            }
+
+            TextArea {
+                text: `dbus-send --session --type=signal /preset luisbocanegra.panel.colorizer.all.property string:'stockPanelSettings.visible {"enabled": true, "value": true}'`
+                readOnly: true
+                wrapMode: Text.WordWrap
+                Layout.preferredWidth: 400
+            }
         }
     }
 }
