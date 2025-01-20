@@ -75,7 +75,7 @@
     <entry
         name="enableDBusService"
         type="Bool">
-        <default>false</default>
+        <default>true</default>
     </entry>
     <entry
         name="dBusPollingRate"
