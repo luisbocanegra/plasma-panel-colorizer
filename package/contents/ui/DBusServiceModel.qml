@@ -15,33 +15,59 @@ Item {
     property string serviceUtil: toolsDir+"service.py"
     property string pythonExecutable: plasmoid.configuration.pythonExecutable
     property string serviceCmd: pythonExecutable + " '" + serviceUtil + "' " + Plasmoid.containment.id + " " + Plasmoid.id
-    property string dbusName: Plasmoid.metaData.pluginId + ".c" + Plasmoid.containment.id + ".w" + Plasmoid.id
-    property string gdbusPartial: "gdbus call --session --dest "+dbusName+" --object-path /preset --method "+dbusName
-    property string pendingSwitchCmd: gdbusPartial +".pending_switch"
-    property string switchDoneCmd: gdbusPartial +".switch_done"
-    property string getPresetCmd: gdbusPartial +".preset"
-    property string getPropertyToApplyCmd: gdbusPartial + ".property"
     property string quitServiceCmd: gdbusPartial +".quit"
+
+    readonly property string service: Plasmoid.metaData.pluginId + ".c" + Plasmoid.containment.id + ".w" + Plasmoid.id
+    readonly property string path: "/preset"
+
+    function setPreset(reply) {
+        if (reply?.value) {
+            // console.log("preset", reply.value)
+            preset = reply.value
+        }
+    }
+
+    function setProperty(reply) {
+        if (reply?.value) {
+            // console.log("property", reply.value)
+            propertyToApply = reply.value
+        }
+    }
+
+    DBusMethodCall {
+        id: dbusGetPreset
+        service: root.service
+        objectPath: "/preset"
+        iface: root.service
+        method: "preset"
+        arguments: []
+        signature: "s"
+    }
+
+    DBusMethodCall {
+        id: dbusGetProperty
+        service: root.service
+        objectPath: "/preset"
+        iface: root.service
+        method: "property"
+        arguments: []
+        signature: "s"
+    }
+
+    DBusMethodCall {
+        id: dbusQuit
+        service: root.service
+        objectPath: "/preset"
+        iface: root.service
+        method: "quit"
+        arguments: []
+    }
 
     RunCommand {
         id: runCommand
         onExited: (cmd, exitCode, exitStatus, stdout, stderr) => {
-            // console.error(cmd, exitCode, exitStatus, stdout, stderr)
-            if (exitCode!==0) return
-            stdout = stdout
-            .trim()
-            .replace(/^\([']?/, "") // starting ( or ('
-            .replace(/[']?,\)$/, "") // ending ,) or ',)
-            // console.log(`stdout parsed: '${stdout}'`)
-            if(cmd === pendingSwitchCmd) {
-                switchIsPending = stdout === "true"
-            }
-            if (cmd === getPresetCmd) {
-                preset = stdout
-                switchIsPending = false
-            }
-            if (cmd === getPropertyToApplyCmd) {
-                propertyToApply = stdout
+            if (exitCode !== 0) {
+                console.error(cmd, exitCode, exitStatus, stdout, stderr)
             }
         }
     }
@@ -54,28 +80,20 @@ Item {
         if (enabled) {
             runCommand.run(serviceCmd)
         } else (
-            runCommand.run(quitServiceCmd)
+            dbusQuit.call()
         )
     }
 
     onEnabledChanged: toggleService()
 
-    onSwitchIsPendingChanged: {
-        if (switchIsPending) {
-            runCommand.run(switchDoneCmd)
-            runCommand.run(getPresetCmd)
-        }
-    }
-
     Timer {
         id: updateTimer
-        interval: poolingRate
-        running: enabled
+        interval: root.poolingRate
+        running: root.enabled
         repeat: true
         onTriggered: {
-            runCommand.run(getPropertyToApplyCmd)
-            if (switchIsPending) return
-            runCommand.run(pendingSwitchCmd)
+            dbusGetPreset.call(root.setPreset)
+            dbusGetProperty.call(root.setProperty)
         }
     }
 }

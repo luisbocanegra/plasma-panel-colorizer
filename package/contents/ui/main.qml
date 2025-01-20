@@ -1283,11 +1283,22 @@ PlasmoidItem {
         }
     }
 
+    DBusMethodCall {
+        id: dbusKWinReconfigure
+        service: "org.kde.KWin"
+        objectPath: "/KWin"
+        iface: service
+        method: "reconfigure"
+        arguments: []
+        signature: null
+        inSignature: null
+    }
+
     Timer {
         id: reconfigureTimer
         interval: 10
         onTriggered: {
-            runCommand.run("gdbus call --session --dest org.kde.KWin --object-path /KWin --method org.kde.KWin.reconfigure")
+            dbusKWinReconfigure.call()
         }
     }
 

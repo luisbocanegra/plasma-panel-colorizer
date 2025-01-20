@@ -523,7 +523,7 @@ function parseValue(rawValue) {
 * @param {string} value - The value to set.
 */
 function editProperty(object, path, value) {
-  console.log(`editing property path: ${path}, value: ${value}`)
+  console.log(`editing property path: '${path}' value: '${value}'`)
   value = parseValue(value)
   const keys = path.replace(/\[/g, ".").replace(/\]/g, "").split(".")
   let current = object
