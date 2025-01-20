@@ -25,19 +25,13 @@ Fully-featured widget to bring Latte-Dock and WM status bar customization featur
 [![Demo](https://img.shields.io/badge/watch%20on%20youtube-demo?logo=youtube&logoColor=white&labelColor=%23c30000&color=%23222222
 )](https://www.youtube.com/watch?v=0QLyEexa9Y4)
 
-<details>
-    <summary>Screenshots</summary>
+Configuration window
 
 ![tooltip](screenshots/settings.png)
 
-</details>
-
 ## Features
 
-<details>
-    <summary>Expand</summary>
-
-### Presets
+**Presets**
 
 - [Built-in presets](https://github.com/luisbocanegra/plasma-panel-colorizer/tree/main/package/contents/ui/presets)
 - Create your own presets
@@ -48,9 +42,9 @@ Fully-featured widget to bring Latte-Dock and WM status bar customization featur
   - At least one window is shown on screen
   - Panel is floating
   - Normal (fall-back when none of the above are meet)
-- [Switch presets from the command-line using D-Bus](#switching-presets-using-the-commandline-with-d-bus)
+- [Advanced commandline usage with D-Bus (version 2.0.0 or later)](#advanced-commandline-usage-with-d-bus-version-200-or-later)
 
-### Panel/Widget/System Tray elements
+**Panel/Widget/System Tray elements**
 
 - Color modes
   - Static
@@ -69,7 +63,7 @@ Fully-featured widget to bring Latte-Dock and WM status bar customization featur
   - Shadow
 - Blur behind (requires building and installing the C++ plugin)
 
-### Force Text/Icon color
+**Force Text/Icon color**
 
 - Force color to icons that don't follow the theme color for specific widgets
   - Mask for symbolic icons
@@ -77,17 +71,28 @@ Fully-featured widget to bring Latte-Dock and WM status bar customization featur
 - Periodic color refresh for widgets that reset colors when they update (e.g Global Menu)
 - Recolor applications System Tray icons
 
-### Panel background
+**Panel background**
 
 - Remove native panel background (transparent)
 - Native panel background opacity
 - Simulate an always floating panel
 
-### Unified background
+**Panel settings**
+
+- Visibility
+- Height
+- Floating
+- Location
+- Length mode
+- Alignment
+- Opacity (Plasma 6.3.0)
+- *EXPERIMENTAL* Sow/hide panel "AKA toggle panel" with D-Bus, stays hidden when hovering on screen edges
+
+**Unified background**
 
 - Join one or more widgets to make them visually connected
 
-### Configuration overrides
+**Configuration overrides**
 
 Overrides let you give a completely different configuration to one or more widgets
 
@@ -197,37 +202,7 @@ To install the widget use one of these methods:
 2. Go to the widget settings to change the current panel appearance (right click > Configure...)
 3. Widget can set to only show in panel **Edit Mode** (right click > Hide widget or from the widget settings)
 
-### Switching presets using the commandline with D-Bus
-
-1. Go to the widget settings
-2. In General tab enable the D-Bus service
-3. To apply a preset can use qdbus6 and pass the absolute path of a preset:
-
-   ```sh
-   qdbus6 luisbocanegra.panel.colorizer.c337.w2346 /preset preset /path/to/preset/dir/
-   ```
-
-Each widget instance has its own D-bus name, you can get it from the same widget settings General tab.
-
-## Adding or improving the built-in presets
-
-Instructions to add new presets or improve the existing ones are [here](https://github.com/luisbocanegra/plasma-panel-colorizer/blob/main/package/contents/ui/presets/README.md)
-
-## FAQ
-
-### Are changes permanent?
-
-Changes to the panel are not permanent and can be removed by disabling or removing the widget
-
-### How to restore the default appearance?
-
-- Click on the widget to disable/enable
-- Or **Widget Settings** > **Top left** > **Enabled** checkbox
-- Or removing the widget from the panel and restarting Plasma/logging out.
-
-**If you are troubleshooting an issue please do the third option above and read the notice about reporting bugs at the start of [Install](https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#installing) section**
-
-### How do presets work?
+### Creating and managing presets
 
 Presets are a way to store the current configuration, it allows to quickly switch between styles and also to use them on other panels.
 
@@ -245,7 +220,80 @@ After loading a preset and editing any of the settings the new changes are not a
 
 The same applies to the preset auto-loading feature, if you are making changes to your presets it is recommended to temporary disable this feature so your unsaved edits don't get overwritten when a preset auto-loads.
 
-### Updated to v1.0.0+, where are my presets?
+### Advanced commandline usage with D-Bus (version 2.0.0 or later)
+
+Each widget instance has its own D-bus name (e.g. luisbocanegra.panel.colorizer.c337.w2346), you can find it on each widget's General settings tab, you can also disable the service from there.
+
+#### Switching presets with D-Bus
+
+To apply a preset to a specific panel pass the absolute path of a preset folder:
+
+```sh
+qdbus6 luisbocanegra.panel.colorizer.c337.w2346 /preset preset /path/to/preset/dir/
+```
+
+It's also possible to apply the preset to all the panels at once
+
+```sh
+dbus-send --session --type=signal /preset luisbocanegra.panel.colorizer.all.preset string:"/path/to/preset dir/"
+```
+
+To quickly preview and switch between presets you can use this handy `fzf + qdbus6 + jq` one-liner
+
+```sh
+find /usr/share/plasma/plasmoids/luisbocanegra.panel.colorizer/contents/ui/presets/ ~/.local/share/plasma/plasmoids/luisbocanegra.panel.colorizer/contents/ui/presets/ ~/.config/panel-colorizer/presets -mindepth 1 -prune -type d 2>/dev/null -mindepth 1 -prune -type d | fzf --bind 'enter:execute(qdbus6 luisbocanegra.panel.colorizer.c337.w2346 /preset preset {})' --preview 'jq --color-output . {}/settings.json'
+```
+
+Or to all panels
+
+```sh
+find /usr/share/plasma/plasmoids/luisbocanegra.panel.colorizer/contents/ui/presets/ ~/.local/share/plasma/plasmoids/luisbocanegra.panel.colorizer/contents/ui/presets/ ~/.config/panel-colorizer/presets -mindepth 1 -prune -type d 2>/dev/null -mindepth 1 -prune -type d | fzf --bind 'enter:execute(dbus-send --session --type=signal /preset luisbocanegra.panel.colorizer.all.preset string:{})' --preview 'jq --color-output . {}/settings.json'
+```
+
+#### Changing specific configuration options with D-Bus
+
+> [!CAUTION]
+> There is no validation. Incorrectly formatted input will break the configuration! 💥
+
+To apply a specific configuration option use the `property` method or signal with the value in [Dot notation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors#dot_notation) + space + value
+
+Example to toggle a panel
+
+```sh
+# hide
+qdbus luisbocanegra.panel.colorizer.c337.w2346 /preset luisbocanegra.panel.colorizer.c337.w2346.property 'stockPanelSettings.visible {"enabled": true, "value": false}'
+# to revert:
+qdbus luisbocanegra.panel.colorizer.c337.w2346 /preset luisbocanegra.panel.colorizer.c337.w2346.property 'stockPanelSettings.visible {"enabled": false, "value": true}'
+```
+
+Just like with presets it's also possible to set a property on all the panels
+
+```sh
+# hide all panels
+dbus-send --session --type=signal /preset luisbocanegra.panel.colorizer.all.property string:'stockPanelSettings.visible {"enabled": true, "value": false}'
+# to revert:
+dbus-send --session --type=signal /preset luisbocanegra.panel.colorizer.all.property string:'stockPanelSettings.visible {"enabled": false, "value": true}'
+```
+
+## Adding or improving the built-in presets
+
+See [Adding or updating built-in presets](https://github.com/luisbocanegra/plasma-panel-colorizer/blob/main/package/contents/ui/presets/README.md)
+
+## FAQ
+
+### Are changes permanent?
+
+Changes to the panel are not permanent and can be removed by disabling or removing the widget
+
+### How to restore the default appearance?
+
+- Click on the widget to disable/enable
+- Or **Widget Settings** > **Top left** > **Enabled** checkbox
+- Or removing the widget from the panel and restarting Plasma/logging out.
+
+**If you are troubleshooting an issue please do the third option above and read the notice about reporting bugs at the start of [Install](https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#installing) section**
+
+### Updated to v1.0.0 or later, where are my presets?
 
 The location where they are stored has changed, the new locations are:
 
@@ -255,6 +303,14 @@ The location where they are stored has changed, the new locations are:
 
 **The format of the presets has changed, presets from previous version will need to be recreated manually**
 
+### Updated to v1.0.0 or later, how to blacklist widgets
+
+See [How do I blacklist widgets like before?](https://github.com/luisbocanegra/plasma-panel-colorizer/discussions/146)
+
+### Will you add support to drag/close/maximize/minimize... windows like latte had?
+
+Not in this project, use [Panel Spacer Extended](https://github.com/luisbocanegra/plasma-panel-spacer-extended) instead
+
 ### How does it work?
 
 This widget works by inject/managing the background and colors and other properties of other widgets and the panel where it is placed.
@@ -262,6 +318,8 @@ This widget works by inject/managing the background and colors and other propert
 **Technical**
 
 Backgrounds are drawn by creating rectangle areas bellow widgets/panel, text and icons repaint is done by editing some elements color property and overwriting `Kirigami.Theme.<something>Color` colors for others, while this works for most widgets, there are some that won't because they draw text and icons differently to what this project matches, if you find a widget that doesn't get colors let me know [here](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/12) and I will try supporting it.
+
+Time has passed and now the widget does a lot more than that, but the principle is basically the same.
 
 **Performance**
 
@@ -289,3 +347,4 @@ Please read the [Contributing guidelines in this repository](https://github.com/
 - [Search the actual gridLayout of the panel from Plasma panel spacer](https://invent.kde.org/plasma/plasma-workspace/-/blob/Plasma/5.27/applets/panelspacer/package/contents/ui/main.qml?ref_type=heads#L37) that inspired this project.
 - [Google LLC. / Pictogrammers](https://pictogrammers.com/library/mdi/) assets used for panel icon.
 - [sanjay-kr-commit/panelTransparencyToggleForPlasma6](https://github.com/sanjay-kr-commit/panelTransparencyToggleForPlasma6) / [psifidotos/paneltransparencybutton](https://github.com/psifidotos/paneltransparencybutton) for the implementation of panel transparency
+- [olib14/pinpanel](https://github.com/olib14/pinpanel) for the hint on how to toggle a panel
