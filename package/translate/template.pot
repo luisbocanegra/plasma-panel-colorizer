@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-01-19 07:45+0000\n"
+"POT-Creation-Date: 2025-01-20 16:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -422,6 +422,14 @@ msgstr ""
 msgid "Preview and switch presets using fzf + qdbus6 + jq:"
 msgstr ""
 
+#: ../contents/ui/configGeneral.qml
+msgid "Hide all panels"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Show all panels"
+msgstr ""
+
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides are independent and will be applied on top of the current settings and across presets."
 msgstr ""
@@ -687,6 +695,17 @@ msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Show:"
+msgstr ""
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid ""
+"WARNING: Use with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible "
+"again without manually removing the configuration, use the command below in terminal/tty then log out or reboot, it will renove the configuratiob from all Panel Colorizer instances so make sure to "
+"save the others first"
+msgstr ""
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
 msgstr ""
 
 #: ../contents/ui/configUnifiedBackground.qml
