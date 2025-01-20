@@ -22,14 +22,14 @@ Item {
 
     function setPreset(reply) {
         if (reply?.value) {
-            // console.log("preset", reply.value)
+            // console.log(`preset: '${reply.value}'`)
             preset = reply.value
         }
     }
 
     function setProperty(reply) {
         if (reply?.value) {
-            // console.log("property", reply.value)
+            // console.log(`property: '${reply.value}'`)
             propertyToApply = reply.value
         }
     }

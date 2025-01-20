@@ -1434,11 +1434,15 @@ PlasmoidItem {
     Connections {
         target: runCommand
         function onExited(cmd, exitCode, exitStatus, stdout, stderr, liveUpdate) {
-            if (exitCode!==0) return
+            if (exitCode!==0) {
+                console.error(cmd, exitCode, exitStatus, stdout, stderr)
+                return
+            }
             if (cmd.startsWith("cat")) {
                 try {
                     presetContent = JSON.parse(stdout.trim())
                 } catch (e) {
+                    console.error(`Error reading preset (${cmd}): ${e}`)
                     return
                 }
                 Utils.loadPreset(presetContent, plasmoid.configuration, Globals.ignoredConfigs, Globals.defaultConfig, true)
