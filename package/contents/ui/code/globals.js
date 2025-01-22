@@ -164,6 +164,7 @@ const basePanelConfig = {
   "padding": basePadding,
   "border": baseBorder,
   "shadow": baseShadowConfig,
+  "floatingDialogs": false
 }
 
 const baseWidgetConfig = {

@@ -50,6 +50,7 @@ PlasmoidItem {
     property string icon: Qt.resolvedUrl("../icons/" + iconName + ".svg").toString().replace("file://", "")
     property bool hideWidget: plasmoid.configuration.hideWidget
     property bool fixedSidePaddingEnabled: isEnabled && panelSettings.padding.enabled
+    property bool floatingDialogs: panelSettings.floatingDialogs
     property bool isEnabled: plasmoid.configuration.isEnabled
     property bool nativePanelBackgroundEnabled: (isEnabled ? cfg.nativePanelBackground.enabled : true) || doPanelClickFix
     property real nativePanelBackgroundOpacity: isEnabled ? cfg.nativePanelBackground.opacity : 1.0
@@ -1189,9 +1190,30 @@ PlasmoidItem {
         Utils.panelOpacity(panelElement, isEnabled, nativePanelBackgroundOpacity)
     }
 
+    onFloatingDialogsChanged: {
+        setFloatigApplets()
+    }
+
+    // inspired by https://invent.kde.org/plasma/plasma-desktop/-/merge_requests/1912
+    function setFloatigApplets() {
+        if (floatingDialogs) {
+            containmentItem.Plasmoid.containmentDisplayHints |= PlasmaCore.Types.ContainmentPrefersFloatingApplets
+        } else {
+            containmentItem.Plasmoid.containmentDisplayHints &= ~PlasmaCore.Types.ContainmentPrefersFloatingApplets
+        }
+    }
+
+    Connections {
+        target: containmentItem.Plasmoid
+        onContainmentDisplayHintsChanged: {
+            setFloatigApplets()
+        }
+    }
+
     onContainmentItemChanged: {
         if(!containmentItem) return
         Utils.toggleTransparency(containmentItem, nativePanelBackgroundEnabled)
+        setFloatigApplets()
     }
 
     // HACK: change panelLayout spacing on startup to trigger a length reload

@@ -134,8 +134,6 @@ ColumnLayout {
                     checked: configLocal.blurBehind
                     onCheckedChanged: {
                         configLocal.blurBehind = checked
-                        if (checked) {
-                        }
                         updateConfig()
                     }
                     enabled: isEnabled.checked
@@ -159,6 +157,19 @@ ColumnLayout {
                         }
                     }
                 ]
+            }
+            RowLayout {
+                Label {
+                    text: i18n("Force floating dialogs:")
+                }
+                CheckBox {
+                    checked: configLocal.floatingDialogs
+                    onCheckedChanged: {
+                        configLocal.floatingDialogs = checked
+                        updateConfig()
+                    }
+                    enabled: isEnabled.checked
+                }
             }
         }
     }
