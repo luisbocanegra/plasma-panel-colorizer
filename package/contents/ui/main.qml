@@ -1190,6 +1190,12 @@ PlasmoidItem {
         Utils.panelOpacity(panelElement, isEnabled, nativePanelBackgroundOpacity)
     }
 
+    onNativePanelBackgroundEnabledChanged: {
+        if(!containmentItem) return
+        Utils.toggleTransparency(containmentItem, nativePanelBackgroundEnabled)
+        Utils.panelOpacity(panelElement, isEnabled, nativePanelBackgroundOpacity)
+    }
+
     onFloatingDialogsChanged: {
         setFloatigApplets()
     }
@@ -1247,11 +1253,6 @@ PlasmoidItem {
         property: "rowSpacing"
         value: 0
         when: doPanelLengthFix
-    }
-
-    onNativePanelBackgroundEnabledChanged: {
-        if(!containmentItem) return
-        Utils.toggleTransparency(containmentItem, nativePanelBackgroundEnabled)
     }
 
     onPanelLayoutCountChanged: {
