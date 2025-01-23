@@ -991,6 +991,11 @@ PlasmoidItem {
             updateMask()
         }
 
+        onTopLeftRadiusChanged: updateMask()
+        onTopRightRadiusChanged: updateMask()
+        onBottomLeftRadiusChanged: updateMask()
+        onBottomRightRadiusChanged: updateMask()
+
         // TODO find where does 16 and 8 come from instead of blindly hardcoding them
         property real moveX: {
             let m = horizontal ? 0 : (panelElement?.floating && plasmoid.location === PlasmaCore.Types.RightEdge ? 16 : 0)
