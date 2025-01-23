@@ -342,9 +342,14 @@ Please read the [Contributing guidelines in this repository](https://github.com/
 - [Give it a star on GitHub](https://github.com/luisbocanegra/plasma-panel-colorizer)
 - Rate / leave review in the [KDE Store](https://store.kde.org/p/2130967)
 
-## Acknowledgements
+## Acknowledgements & useful resources
 
 - [Search the actual gridLayout of the panel from Plasma panel spacer](https://invent.kde.org/plasma/plasma-workspace/-/blob/Plasma/5.27/applets/panelspacer/package/contents/ui/main.qml?ref_type=heads#L37) that inspired this project.
 - [Google LLC. / Pictogrammers](https://pictogrammers.com/library/mdi/) assets used for panel icon.
 - [sanjay-kr-commit/panelTransparencyToggleForPlasma6](https://github.com/sanjay-kr-commit/panelTransparencyToggleForPlasma6) / [psifidotos/paneltransparencybutton](https://github.com/psifidotos/paneltransparencybutton) for the implementation of panel transparency
 - [olib14/pinpanel](https://github.com/olib14/pinpanel) for the hint on how to toggle a panel
+- [Zren/plasma-applet-lib/kpac](https://github.com/Zren/plasma-applet-lib) to manage translations
+- [KDE/plasma-desktop/desktoppackage/contents/views/Panel.qml](https://invent.kde.org/plasma/plasma-desktop/-/blob/master/desktoppackage/contents/views/Panel.qml?ref_type=heads)
+- [KDE/plasma-workspace/master/shell/panelview.cpp](https://invent.kde.org/plasma/plasma-workspace/-/blob/master/shell/panelview.cpp?ref_type=heads)
+- [Plasma scripting API](https://develop.kde.org/docs/plasma/scripting/api/)
+- [Plasma Widget tutorial](https://develop.kde.org/docs/plasma/widget/)
