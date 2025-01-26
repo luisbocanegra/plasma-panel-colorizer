@@ -16,6 +16,7 @@
         "Id": "luisbocanegra.panel.colorizer",
         "License": "GPL-3.0",
         "Name": "Panel colorizer",
+        "Name[de]": "Panel Colorizer",
         "Version": "2.1.0",
         "Website": "https://github.com/luisbocanegra/plasma-panel-colorizer"
     },

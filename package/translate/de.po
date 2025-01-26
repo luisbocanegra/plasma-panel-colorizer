@@ -1,16 +1,16 @@
-# Translation of colorizer in de
-# Copyright (C) 2024
+# Translation of colorizer in de_DE
+# Copyright (C) 2025
 # This file is distributed under the same license as the colorizer package.
-# swannema  <swannema@t-online.de>, 2024.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-01-26 01:13+0000\n"
-"PO-Revision-Date: DA-Mo-YEAR HO:MI+ZONE\n"
-"Last-Translator: Stefan Wannemacher <swannema@t-online.de>\n"
+"POT-Creation-Date: 2025-01-26 08:11-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../metadata.json
 msgid "Panel colorizer"
-msgstr ""
+msgstr "Panel Colorizer"
 
 #: ../metadata.json
 msgid "Latte-Dock and WM status bar customization features for the default Plasma panel"
@@ -235,7 +235,7 @@ msgstr "C++ PlugIn nicht installiert, <b>Individuelle Hintergrundschärfe</b> wi
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Force floating dialogs:"
-msgstr ""
+msgstr "Erzwinge schwebende Dialoge:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Spacing:"
@@ -243,7 +243,7 @@ msgstr "Abstände"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "<strong>Odd</strong> values are automatically converted to <strong>evens</strong> if <strong>Unified Background</strong> feature is used."
-msgstr ""
+msgstr "<strong>ungerade</strong> Werte Werte werden automatisch in <strong>Gerade</strong> umgewandelt, wenn <strong> allgmeine Hintergründe</strong> genutzt werden."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Background Color"
@@ -351,14 +351,14 @@ msgstr "Ende"
 
 #: ../contents/ui/configAppearance.qml
 msgid "Not getting the expected result? Make sure you're editing the correct element."
-msgstr ""
+msgstr "Nicht die erwarteten Resultate? Stelle sicher, dass die richtigen Elemente geändert wurden"
 
 #: ../contents/ui/configForeground.qml
 msgid ""
 "Force text and icon colors for specified widgets.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content themselves<br>To restore the <strong>Mask<strong> and "
 "<strong>Color Effect</strong> disable and restart Plasma or logout."
 msgstr ""
-"Erzwinge Text- und Symbolfarben für festgelgte Widgets.<br><strong>Maske</strong>: Erzwinge Symbolfarbe(symbolic icons).<br><strong>Farbeffekt</strong>: Erzwinge Text/Symboleinfärbung mit nachträglicher Bearbeitungseffekt (jedes Symbol).<br><strong>Aktualisieren</strong>: Wieder anwenden der Einfärbung mit einem vorgegebem Intervall, für Widgets, die sich selber zurücksetzen<br>Zum "
+"Erzwinge Text- und Symbolfarben für festgelgte Widgets.<br><strong>Maske</strong>: Erzwinge Symbolfarbe(symbolic icons).<br><strong>Farbeffekt</strong>: Erzwinge Text/Symboleinfärbung mit nachträglichemBearbeitungseffekt (jedes Symbol).<br><strong>Aktualisieren</strong>: Wieder anwenden der Einfärbung mit einem vorgegebem Intervall, für Widgets, die sich selber zurücksetzen<br>Zum "
 "Wiederherstellen der <strong>Maske<strong> und des <strong>Farbeffekt</strong> starte Plasma neu oder Logge dich aus."
 
 #: ../contents/ui/configForeground.qml
@@ -391,55 +391,55 @@ msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Duration:"
-msgstr ""
+msgstr "Dauer"
 
 #: ../contents/ui/configGeneral.qml
 msgid "D-Bus Service"
-msgstr ""
+msgstr "D-Bus Service"
 
 #: ../contents/ui/configGeneral.qml
 msgid "D-Bus name:"
-msgstr ""
+msgstr "D-Bus Name:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Each Panel Colorizer instance has its D-Bus name."
-msgstr ""
+msgstr "Jede Panel Colorizer instance hat seinen eigenen D-Bus Namen."
 
 #: ../contents/ui/configGeneral.qml
 msgid "Python 3 executable:"
-msgstr ""
+msgstr "Ausführbares Python 3"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Required to run the D-Bus service in the background"
-msgstr ""
+msgstr "Voraussetzung um den D-Bus Service im Hintergrund laufen zu lassen"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Polling rate:"
-msgstr ""
+msgstr "Abfragerate"
 
 #: ../contents/ui/configGeneral.qml
 msgid "How fast the widget reacts to D-Bus changes"
-msgstr ""
+msgstr "Wie schnell das Widget auf D-Bus Veränderungen reagiert"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Usage:"
-msgstr ""
+msgstr "Nutzung"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Apply a preset:"
-msgstr ""
+msgstr "Aktiviere eine Voreinstellung"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Preview and switch presets using fzf + qdbus6 + jq:"
-msgstr ""
+msgstr "Vorschau und Schalter- Voreinstellungen nutzen fzf + qdbus6 + jb:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Hide all panels"
-msgstr ""
+msgstr "Verstecke sämtliche Kontrollleisten"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Show all panels"
-msgstr ""
+msgstr "Zeige sämtliche Kontrollleisten"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides are independent and will be applied on top of the current settings and across presets."
@@ -475,19 +475,19 @@ msgstr "Überschreibungen werden von oben nach untern vorgenommen"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Do nothing"
-msgstr "Nichts tun"
+msgstr "Tue nichts"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Disable preset auto-loading when making changes to presets, unsaved preset settings will be lost when presets change!"
-msgstr "Schalte das automatische laden der Voreinstellungen aus, ungesicherte Voreinstellungen gehen verloren, wenn Veränderungen vorgenommen werden"
+msgstr "Deaktiviere das automatische laden der Voreinstellungen beim Ändern, nicht gespeicherte sonst Einstellungen!"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Switch between different panel presets based on the Panel and window states"
-msgstr "Wechsle zwischen den verschiedenen Voreinstellungen basierend auf dem Staus der Kontrollleiste und der Fenster"
+msgstr "Wechsle zwischen verschiedenen Voreinstellungen basierend auf dem Kontrolleisten- und Fensterzustand"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Environment"
-msgstr ""
+msgstr "Umgebung"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the <b>Maximized</b> preset will be applied."
@@ -495,7 +495,7 @@ msgstr "Prioritäten in absteigender Reihenfolge"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Fullscreen window:"
-msgstr ""
+msgstr "Vollbild"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Maximized window:"
@@ -512,11 +512,11 @@ msgstr "Fenster berühren die Kontrollleiste"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "At least one window is shown:"
-msgstr ""
+msgstr "Mindestens ein Fenster wird gezeigt:"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Floating panel:"
-msgstr "Schwebende Kontrollleiste"
+msgstr "Schwebende Kontrollleiste:"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Normal:"
@@ -524,11 +524,7 @@ msgstr "Normal:"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Widget Click"
-msgstr ""
-
-#: ../contents/ui/configPresetWidgetOverrides.qml
-msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides should be saved to a preset in <strong>Presets</strong> tab or they will be lost when presets change!"
-msgstr "Erstelle Konfigurationsüberschreibungen und appliziere diese auf andere Widgets. Diese Überschreibungen sollten gesichert werden oder gehen bei der nächsten Änderung verloren"
+msgstr "Widgetklick"
 
 #: ../contents/ui/configPresets.qml
 msgid "This will permanently delete the file from your system!"
@@ -582,13 +578,17 @@ msgstr "Ertselle Vorschau"
 msgid "Update preview"
 msgstr "Aktuallisiere Vorschau"
 
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides should be saved to a preset in <strong>Presets</strong> tab or they will be lost when presets change!"
+msgstr "Erstelle Konfigurationsüberschreibungen und appliziere diese auf andere Widgets. Diese Überschreibungen sollten gesichert werden oder gehen bei der nächsten Änderung verloren"
+
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g top to left)."
 msgstr "Verändern der Kontrollleistenposition is aktuell nicht stabil und kann zum Absturz von Plasma führen"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Opacity control here <b>requires Plasma 6.3</b> and depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
-msgstr "Opazitätskontrolle <b>erfordert Plamsa 6.3<b> und hängt vom aktuellem Plasma Thema ab, für eine genauere Kontrolle oder volle Transparenz nutze die <b> Kontrollleistenopazität<b> und <b>Nativer Kontrolleistenhintergrund<b> Optionen im <b>Aussehen<b> Tab"
+msgstr "Opazitätskontrolle <b>erfordert Plamsa 6.3<b> und hängt vom aktuellem Plasma Thema ab, für eine genauere Kontrolle oder volle Transparenz nutze die <b> Kontrollleistenopazität<b> und <b>Nativer Kontrolleistenhintergrund<b> Optionenim <b>Aussehen<b> Tab"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Position"
@@ -696,25 +696,27 @@ msgstr "Dicke"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Show/Hide"
-msgstr ""
+msgstr "Zeige/Verstecke"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Show:"
-msgstr ""
+msgstr "Zeige"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
 "WARNING: Use with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration, use the command below in terminal/tty then log out or reboot, it will renove the configuratiob from all Panel Colorizer instances so make sure to "
 "save the others first"
 msgstr ""
+"Warnung, nur unter Vorsicht benutzen, wenn die Kontrollleiste ausgeblendet wird und das automatische laden nicht konfiguriert ist oder du nicht weisst wie man die Voreinstellungen mit dem d-Bus ändert (oder diese abgeschaltet sind), gibt es keine Möglichkeit die Kontrollleiste wieder sichtbar zu machen ohne die Konfiguration zu löschen, nutze den unten stehenden Befehl in der Konsole/tty und "
+"melde dich ab oder starte das System neu, das wird die Konfiguration von allen Panel Colorizers löschen, also unbedingt vorher die anderen funkionierenden speichern"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
-msgstr ""
+msgstr "Wenn der D-BUS aktiv ist, ist es besser Kurzbefehle zu nutzen. Bitte das README lesen oder siehe den Allgemein Tab für einige Beispiele"
 
 #: ../contents/ui/configUnifiedBackground.qml
 msgid "Select start and end of unified background areas, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Note: <strong>odd</strong> widget spacing values are automatically converted to <strong>evens</strong> when this feature is used."
-msgstr ""
+msgstr "Wähle Start und Ende der Hintergrundbereiche, Widget uwischen <b>Start</b> und <b>Ende</b> müssen <b>ausgeschaltet</b> bleiben. Noti: <strong>ungerade</strong> Widgetabstände werden automitsch zu <strong>geradden</strong> Abständen geändert wenn dieses Feature benutzt wird"
 
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
@@ -722,17 +724,8 @@ msgstr "Verstecke Widget (sichtbar im Editmodus)"
 
 #: ../contents/ui/main.qml
 msgid "Select a preset"
-msgstr ""
+msgstr "Wähle eine Voreinstellung"
 
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
-msgstr ""
-
-#~ msgid "Panel Colorizer"
-#~ msgstr "Panel Colorizer"
-
-#~ msgid "Not getting the expeted result? Make sure you're editing the correct element."
-#~ msgstr "Nicht die erwarteten Resultate? Stelle sicher, dass die richtigen Elemente grändert wurden"
-
-#~ msgid "Select start and end of unified background areas, widgets between <b>Start</b> and <b>End</b> must be left Disabled."
-#~ msgstr "Wähle Start und Ende der Hintergrundbereiche, Widgets zwischen <b>Start</b> und <b>Ende</b> müssen ausgeschaltet bleiben."
+msgstr "Kontrollleiste nicht gefunden, dieses Widget muss in der Kontrollleiste plaziert werden, da es ansonsten nicht funktioniert"

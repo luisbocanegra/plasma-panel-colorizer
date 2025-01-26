@@ -5,7 +5,7 @@
 |  Locale  |  Lines  | % Done|
 |----------|---------|-------|
 | Template |     176 |       |
-| de       | 147/176 |   83% |
+| de       | 175/176 |   99% |
 
 
 ## New Translations
