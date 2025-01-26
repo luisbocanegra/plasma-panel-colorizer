@@ -2,12 +2,12 @@
     "globalSettings": {
         "panel": {
             "enabled": true,
-            "blurBehind": false,
+            "blurBehind": true,
             "backgroundColor": {
                 "enabled": true,
                 "lightnessValue": 0.5,
                 "saturationValue": 0.5,
-                "alpha": 0.25,
+                "alpha": 0.15,
                 "systemColor": "backgroundColor",
                 "systemColorSet": "View",
                 "custom": "#013eff",
@@ -60,26 +60,26 @@
             "radius": {
                 "enabled": true,
                 "corner": {
-                    "topLeft": 24,
-                    "topRight": 24,
-                    "bottomRight": 0,
-                    "bottomLeft": 0
+                    "topLeft": 15,
+                    "topRight": 15,
+                    "bottomRight": 15,
+                    "bottomLeft": 15
                 }
             },
             "margin": {
-                "enabled": false,
+                "enabled": true,
                 "side": {
                     "right": 4,
                     "left": 4,
                     "top": 4,
-                    "bottom": 0
+                    "bottom": 4
                 }
             },
             "padding": {
-                "enabled": false,
+                "enabled": true,
                 "side": {
-                    "right": 0,
-                    "left": 0,
+                    "right": 2,
+                    "left": 2,
                     "top": 0,
                     "bottom": 0
                 }
@@ -113,14 +113,14 @@
                         }
                     }
                 },
-                "width": 0,
+                "width": 1,
                 "color": {
-                    "lightnessValue": 0.5,
-                    "saturationValue": 0.5,
-                    "alpha": 1,
-                    "systemColor": "highlightColor",
+                    "lightnessValue": 0.4,
+                    "saturationValue": 0.1,
+                    "alpha": 0.1,
+                    "systemColor": "textColor",
                     "systemColorSet": "View",
-                    "custom": "#ff6c06",
+                    "custom": "#fafafa",
                     "list": [
                         "#ED8796",
                         "#A6DA95",
@@ -144,14 +144,14 @@
             },
             "shadow": {
                 "background": {
-                    "enabled": false,
+                    "enabled": true,
                     "color": {
                         "lightnessValue": 0.5,
                         "saturationValue": 0.5,
-                        "alpha": 1,
+                        "alpha": 0.3,
                         "systemColor": "backgroundColor",
                         "systemColorSet": "View",
-                        "custom": "#282828",
+                        "custom": "#121212",
                         "list": [
                             "#ED8796",
                             "#A6DA95",
@@ -169,12 +169,12 @@
                             "interval": 3000,
                             "smoothing": 800
                         },
-                        "sourceType": 1,
+                        "sourceType": 0,
                         "enabled": true
                     },
-                    "size": 5,
+                    "size": 8,
                     "xOffset": 0,
-                    "yOffset": 0
+                    "yOffset": 1
                 },
                 "foreground": {
                     "enabled": false,
@@ -213,7 +213,7 @@
             "unfiedBackground": {
                 "org.kde.plasma.digitalclock": 0
             },
-            "floatingDialogs": true
+            "floatingDialogs": false
         },
         "widgets": {
             "enabled": true,
@@ -222,8 +222,8 @@
                 "enabled": false,
                 "lightnessValue": 0.5,
                 "saturationValue": 0.5,
-                "alpha": 0.3,
-                "systemColor": "textColor",
+                "alpha": 1,
+                "systemColor": "backgroundColor",
                 "systemColorSet": "View",
                 "custom": "#013eff",
                 "list": [
@@ -246,11 +246,11 @@
                 "sourceType": 1
             },
             "foregroundColor": {
-                "enabled": false,
+                "enabled": true,
                 "lightnessValue": 0.5,
                 "saturationValue": 0.5,
                 "alpha": 1,
-                "systemColor": "highlightColor",
+                "systemColor": "textColor",
                 "systemColorSet": "View",
                 "custom": "#fc0000",
                 "list": [
@@ -273,24 +273,24 @@
                 "sourceType": 1
             },
             "radius": {
-                "enabled": true,
+                "enabled": false,
                 "corner": {
-                    "topLeft": 8,
-                    "topRight": 8,
-                    "bottomRight": 8,
-                    "bottomLeft": 8
+                    "topLeft": 5,
+                    "topRight": 5,
+                    "bottomRight": 5,
+                    "bottomLeft": 5
                 }
             },
             "margin": {
-                "enabled": true,
+                "enabled": false,
                 "side": {
-                    "right": 4,
-                    "left": 4,
-                    "top": 4,
-                    "bottom": 4
+                    "right": 0,
+                    "left": 0,
+                    "top": 0,
+                    "bottom": 0
                 }
             },
-            "spacing": 3,
+            "spacing": 4,
             "border": {
                 "enabled": false,
                 "customSides": false,
@@ -388,7 +388,7 @@
                     "color": {
                         "lightnessValue": 0.5,
                         "saturationValue": 0.5,
-                        "alpha": 1,
+                        "alpha": 0.05,
                         "systemColor": "backgroundColor",
                         "systemColorSet": "View",
                         "custom": "#282828",
@@ -409,12 +409,12 @@
                             "interval": 3000,
                             "smoothing": 800
                         },
-                        "sourceType": 1,
+                        "sourceType": 0,
                         "enabled": true
                     },
-                    "size": 5,
+                    "size": 4,
                     "xOffset": 0,
-                    "yOffset": 0
+                    "yOffset": 1
                 }
             },
             "unfiedBackground": {
@@ -627,8 +627,27 @@
             }
         },
         "nativePanelBackground": {
-            "enabled": false,
+            "enabled": true,
             "opacity": 0
+        },
+        "forceForegroundColor": {
+            "widgets": {
+                "com.github.antroids.application-title-bar": {
+                    "method": {
+                        "mask": false,
+                        "multiEffect": false
+                    },
+                    "reload": true
+                },
+                "org.kde.plasma.appmenu": {
+                    "method": {
+                        "mask": false,
+                        "multiEffect": false
+                    },
+                    "reload": true
+                }
+            },
+            "reloadInterval": 250
         },
         "stockPanelSettings": {
             "position": 3,
@@ -650,32 +669,11 @@
                 "value": true
             }
         },
-        "forceForegroundColor": {
-            "widgets": {
-                "com.github.antroids.application-title-bar": {
-                    "method": {
-                        "mask": false,
-                        "multiEffect": false
-                    },
-                    "reload": true
-                },
-                "org.kde.plasma.appmenu": {
-                    "method": {
-                        "mask": false,
-                        "multiEffect": false
-                    },
-                    "reload": true
-                }
-            },
-            "reloadInterval": 250
-        },
         "configurationOverrides": {
             "overrides": {},
             "associations": {}
         },
         "overrideAssociations": {},
-        "unifiedBackground": {
-            "org.kde.netspeedWidget": 1
-        }
+        "unifiedBackground": {}
     }
 }

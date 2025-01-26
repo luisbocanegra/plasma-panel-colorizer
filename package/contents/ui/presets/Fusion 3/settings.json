@@ -2,12 +2,12 @@
     "globalSettings": {
         "panel": {
             "enabled": true,
-            "blurBehind": false,
+            "blurBehind": true,
             "backgroundColor": {
                 "enabled": true,
                 "lightnessValue": 0.5,
                 "saturationValue": 0.5,
-                "alpha": 0.25,
+                "alpha": 1,
                 "systemColor": "backgroundColor",
                 "systemColorSet": "View",
                 "custom": "#013eff",
@@ -60,26 +60,26 @@
             "radius": {
                 "enabled": true,
                 "corner": {
-                    "topLeft": 24,
-                    "topRight": 24,
-                    "bottomRight": 0,
-                    "bottomLeft": 0
+                    "topLeft": 8,
+                    "topRight": 8,
+                    "bottomRight": 8,
+                    "bottomLeft": 8
                 }
             },
             "margin": {
-                "enabled": false,
+                "enabled": true,
                 "side": {
-                    "right": 4,
-                    "left": 4,
-                    "top": 4,
-                    "bottom": 0
+                    "right": 5,
+                    "left": 5,
+                    "top": 5,
+                    "bottom": 5
                 }
             },
             "padding": {
-                "enabled": false,
+                "enabled": true,
                 "side": {
-                    "right": 0,
-                    "left": 0,
+                    "right": 2,
+                    "left": 2,
                     "top": 0,
                     "bottom": 0
                 }
@@ -89,9 +89,9 @@
                 "customSides": false,
                 "custom": {
                     "widths": {
-                        "left": 0,
-                        "bottom": 3,
-                        "right": 0,
+                        "left": 1,
+                        "bottom": 2,
+                        "right": 1,
                         "top": 0
                     },
                     "margin": {
@@ -113,11 +113,11 @@
                         }
                     }
                 },
-                "width": 0,
+                "width": 1,
                 "color": {
                     "lightnessValue": 0.5,
                     "saturationValue": 0.5,
-                    "alpha": 1,
+                    "alpha": 0.2,
                     "systemColor": "highlightColor",
                     "systemColorSet": "View",
                     "custom": "#ff6c06",
@@ -144,11 +144,11 @@
             },
             "shadow": {
                 "background": {
-                    "enabled": false,
+                    "enabled": true,
                     "color": {
                         "lightnessValue": 0.5,
                         "saturationValue": 0.5,
-                        "alpha": 1,
+                        "alpha": 0.3,
                         "systemColor": "backgroundColor",
                         "systemColorSet": "View",
                         "custom": "#282828",
@@ -219,12 +219,12 @@
             "enabled": true,
             "blurBehind": false,
             "backgroundColor": {
-                "enabled": false,
+                "enabled": true,
                 "lightnessValue": 0.5,
                 "saturationValue": 0.5,
-                "alpha": 0.3,
-                "systemColor": "textColor",
-                "systemColorSet": "View",
+                "alpha": 1,
+                "systemColor": "backgroundColor",
+                "systemColorSet": "Button",
                 "custom": "#013eff",
                 "list": [
                     "#ED8796",
@@ -246,7 +246,7 @@
                 "sourceType": 1
             },
             "foregroundColor": {
-                "enabled": false,
+                "enabled": true,
                 "lightnessValue": 0.5,
                 "saturationValue": 0.5,
                 "alpha": 1,
@@ -270,34 +270,34 @@
                     "interval": 3000,
                     "smoothing": 800
                 },
-                "sourceType": 1
+                "sourceType": 2
             },
             "radius": {
                 "enabled": true,
                 "corner": {
-                    "topLeft": 8,
-                    "topRight": 8,
-                    "bottomRight": 8,
-                    "bottomLeft": 8
+                    "topLeft": 5,
+                    "topRight": 5,
+                    "bottomRight": 5,
+                    "bottomLeft": 5
                 }
             },
             "margin": {
                 "enabled": true,
                 "side": {
-                    "right": 4,
-                    "left": 4,
-                    "top": 4,
-                    "bottom": 4
+                    "right": 0,
+                    "left": 0,
+                    "top": 2,
+                    "bottom": 2
                 }
             },
-            "spacing": 3,
+            "spacing": 2,
             "border": {
-                "enabled": false,
-                "customSides": false,
+                "enabled": true,
+                "customSides": true,
                 "custom": {
                     "widths": {
                         "left": 0,
-                        "bottom": 3,
+                        "bottom": 2,
                         "right": 0,
                         "top": 0
                     },
@@ -320,7 +320,7 @@
                         }
                     }
                 },
-                "width": 0,
+                "width": 1,
                 "color": {
                     "lightnessValue": 0.5,
                     "saturationValue": 0.5,
@@ -345,7 +345,7 @@
                         "interval": 3000,
                         "smoothing": 800
                     },
-                    "sourceType": 1,
+                    "sourceType": 2,
                     "enabled": true
                 }
             },
@@ -627,8 +627,27 @@
             }
         },
         "nativePanelBackground": {
-            "enabled": false,
+            "enabled": true,
             "opacity": 0
+        },
+        "forceForegroundColor": {
+            "widgets": {
+                "com.github.antroids.application-title-bar": {
+                    "method": {
+                        "mask": false,
+                        "multiEffect": false
+                    },
+                    "reload": true
+                },
+                "org.kde.plasma.appmenu": {
+                    "method": {
+                        "mask": false,
+                        "multiEffect": false
+                    },
+                    "reload": true
+                }
+            },
+            "reloadInterval": 250
         },
         "stockPanelSettings": {
             "position": 3,
@@ -650,32 +669,11 @@
                 "value": true
             }
         },
-        "forceForegroundColor": {
-            "widgets": {
-                "com.github.antroids.application-title-bar": {
-                    "method": {
-                        "mask": false,
-                        "multiEffect": false
-                    },
-                    "reload": true
-                },
-                "org.kde.plasma.appmenu": {
-                    "method": {
-                        "mask": false,
-                        "multiEffect": false
-                    },
-                    "reload": true
-                }
-            },
-            "reloadInterval": 250
-        },
         "configurationOverrides": {
             "overrides": {},
             "associations": {}
         },
         "overrideAssociations": {},
-        "unifiedBackground": {
-            "org.kde.netspeedWidget": 1
-        }
+        "unifiedBackground": {}
     }
 }
