@@ -82,5 +82,15 @@
         type="Int">
         <default>250</default>
     </entry>
+    <entry
+        name="animatePropertyChanges"
+        type="Bool">
+        <default>false</default>
+    </entry>
+    <entry
+        name="animationDuration"
+        type="Int">
+        <default>250</default>
+    </entry>
   </group>
 </kcfg>

@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import QtCore
 import QtQuick
 import QtQuick.Controls
@@ -67,6 +69,9 @@ PlasmoidItem {
     property Item trayWidgetBgItem
     property string lastPreset
     property var presetContent: ""
+    property bool animatePropertyChanges: plasmoid.configuration.animatePropertyChanges
+    property int animationDuration: plasmoid.configuration.animationDuration
+    property int animationEasingType: Easing.OutCubic
     property var panelState: {
         "fullscreenWindow": tasksModel.fullscreenExists,
         "maximized": tasksModel.maximizedExists,
@@ -461,11 +466,48 @@ PlasmoidItem {
             bottomRightRadius: bottomRightRadius
         }
 
+        Behavior on topLeftRadius {
+            enabled: animatePropertyChanges
+            NumberAnimation {
+                duration: main.animationDuration
+                easing.type: main.animationEasingType
+            }
+        }
+        Behavior on topRightRadius {
+            enabled: animatePropertyChanges
+            NumberAnimation {
+                duration: main.animationDuration
+                easing.type: main.animationEasingType
+            }
+        }
+        Behavior on bottomLeftRadius {
+            enabled: animatePropertyChanges
+            NumberAnimation {
+                duration: main.animationDuration
+                easing.type: main.animationEasingType
+            }
+        }
+        Behavior on bottomRightRadius {
+            enabled: animatePropertyChanges
+            NumberAnimation {
+                duration: main.animationDuration
+                easing.type: main.animationEasingType
+            }
+        }
+
         color: {
             if (bgEnabled) {
                 return getColor(bgColorCfg, targetIndex, null, itemType, bgColorHolder)
             } else {
                 return "transparent"
+            }
+        }
+
+        Behavior on color {
+            enabled: animatePropertyChanges
+            ColorAnimation {
+                duration: main.animationDuration
+                easing.type: main.animationEasingType
             }
         }
 
@@ -531,6 +573,20 @@ PlasmoidItem {
 
         height: isTray ? target.height : parent.height
         width: isTray ? target.width : parent.width
+        Behavior on height {
+            enabled: animatePropertyChanges
+            NumberAnimation {
+                duration: main.animationDuration
+                easing.type: main.animationEasingType
+            }
+        }
+        Behavior on width {
+            enabled: animatePropertyChanges
+            NumberAnimation {
+                duration: main.animationDuration
+                easing.type: main.animationEasingType
+            }
+        }
         anchors.centerIn: (isTray || isTrayArrow) ? parent : undefined
         anchors.fill: (isPanel ||isTray || isTrayArrow) ? parent : undefined
 
@@ -550,6 +606,21 @@ PlasmoidItem {
         property int marginBottom: (marginEnabled ? cfg.margin.side.bottom : 0)
             + extraBSpacing
         property int verticalWidth: marginTop + marginBottom
+
+        Behavior on horizontalWidth {
+            enabled: animatePropertyChanges
+            NumberAnimation {
+                duration: main.animationDuration
+                easing.type: main.animationEasingType
+            }
+        }
+        Behavior on verticalWidth {
+            enabled: animatePropertyChanges
+            NumberAnimation {
+                duration: main.animationDuration
+                easing.type: main.animationEasingType
+            }
+        }
 
         Binding {
             target: rect
@@ -727,6 +798,14 @@ PlasmoidItem {
                 return getColor(borderColorCfg, targetIndex, rect.color, itemType, borderRec)
             }
 
+            Behavior on borderColor {
+                enabled: animatePropertyChanges
+                ColorAnimation {
+                    duration: main.animationDuration
+                    easing.type: main.animationEasingType
+                }
+            }
+
             Rectangle {
                 id: customBorderTop
                 width: parent.width
@@ -846,6 +925,35 @@ PlasmoidItem {
             }
             xOffset: bgShadow.xOffset
             yOffset: bgShadow.yOffset
+
+            Behavior on size {
+                enabled: animatePropertyChanges
+                NumberAnimation {
+                    duration: main.animationDuration
+                    easing.type: main.animationEasingType
+                }
+            }
+            Behavior on xOffset {
+                enabled: animatePropertyChanges
+                NumberAnimation {
+                    duration: main.animationDuration
+                    easing.type: main.animationEasingType
+                }
+            }
+            Behavior on yOffset {
+                enabled: animatePropertyChanges
+                NumberAnimation {
+                    duration: main.animationDuration
+                    easing.type: main.animationEasingType
+                }
+            }
+            Behavior on color {
+                enabled: animatePropertyChanges
+                ColorAnimation {
+                    duration: main.animationDuration
+                    easing.type: main.animationEasingType
+                }
+            }
         }
 
         // paddingRect to hide the shadow in one or two sides Qt.rect(left,top,right,bottom)
@@ -890,6 +998,34 @@ PlasmoidItem {
             }
             source: target.applet
             visible: fgShadowEnabled
+            Behavior on color {
+                enabled: animatePropertyChanges
+                ColorAnimation {
+                    duration: main.animationDuration
+                    easing.type: main.animationEasingType
+                }
+            }
+            Behavior on radius {
+                enabled: animatePropertyChanges
+                NumberAnimation {
+                    duration: main.animationDuration
+                    easing.type: main.animationEasingType
+                }
+            }
+            Behavior on horizontalOffset {
+                enabled: animatePropertyChanges
+                NumberAnimation {
+                    duration: main.animationDuration
+                    easing.type: main.animationEasingType
+                }
+            }
+            Behavior on verticalOffset {
+                enabled: animatePropertyChanges
+                NumberAnimation {
+                    duration: main.animationDuration
+                    easing.type: main.animationEasingType
+                }
+            }
         }
 
         property real blurMaskX: {
@@ -1193,6 +1329,14 @@ PlasmoidItem {
     onNativePanelBackgroundOpacityChanged: {
         if(!panelElement) return
         Utils.panelOpacity(panelElement, isEnabled, nativePanelBackgroundOpacity)
+    }
+
+    Behavior on nativePanelBackgroundOpacity {
+        enabled: animatePropertyChanges
+        NumberAnimation {
+            duration: main.animationDuration
+            easing.type: main.animationEasingType
+        }
     }
 
     onNativePanelBackgroundEnabledChanged: {

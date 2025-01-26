@@ -19,6 +19,8 @@ KCM.SimpleKCM {
     property alias cfg_enableDBusService: enableDBusService.checked
     property alias cfg_pythonExecutable: pythonExecutable.text
     property alias cfg_dBusPollingRate: dBusPollingRate.value
+    property alias cfg_animatePropertyChanges: animatePropertyChanges.checked
+    property alias cfg_animationDuration: animationDuration.value
 
     property string presetsDir: StandardPaths.writableLocation(
                     StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/presets"
@@ -50,6 +52,27 @@ KCM.SimpleKCM {
                 checked: cfg_enableDebug
                 onCheckedChanged: cfg_enableDebug = checked
                 text: i18n("Show debugging information")
+            }
+
+            Kirigami.Separator {
+                Kirigami.FormData.isSection: true
+                Kirigami.FormData.label: i18n("Property change animations")
+                Layout.fillWidth: true
+            }
+
+            CheckBox {
+                Kirigami.FormData.label: i18n("Enabled:")
+                id: animatePropertyChanges
+                onCheckedChanged: cfg_animatePropertyChanges = checked
+            }
+
+            SpinBox {
+                Kirigami.FormData.label: i18n("Duration:")
+                from: 0
+                to: 9999
+                stepSize: 50
+                id: animationDuration
+                enabled: animatePropertyChanges.checked
             }
 
             Kirigami.Separator {
@@ -93,6 +116,7 @@ KCM.SimpleKCM {
                 to: 9999
                 stepSize: 100
                 id: dBusPollingRate
+                enabled: enableDBusService.checked
             }
 
             Label {
@@ -113,6 +137,7 @@ KCM.SimpleKCM {
                 readOnly: true
                 wrapMode: Text.WordWrap
                 Layout.preferredWidth: 400
+                enabled: enableDBusService.checked
             }
 
             Label {
@@ -124,6 +149,7 @@ KCM.SimpleKCM {
                 readOnly: true
                 wrapMode: Text.WordWrap
                 Layout.preferredWidth: 400
+                enabled: enableDBusService.checked
             }
 
 
@@ -136,6 +162,7 @@ KCM.SimpleKCM {
                 readOnly: true
                 wrapMode: Text.WordWrap
                 Layout.preferredWidth: 400
+                enabled: enableDBusService.checked
             }
 
             Label {
@@ -147,6 +174,7 @@ KCM.SimpleKCM {
                 readOnly: true
                 wrapMode: Text.WordWrap
                 Layout.preferredWidth: 400
+                enabled: enableDBusService.checked
             }
         }
     }

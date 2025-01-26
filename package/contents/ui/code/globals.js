@@ -269,5 +269,7 @@ const ignoredConfigs = [
   "enableDBusService",
   "dBusPollingRate",
   "pythonExecutable",
-  "forceForegroundColor"
+  "forceForegroundColor",
+  "animatePropertyChanges",
+  "animationDuration"
 ]
