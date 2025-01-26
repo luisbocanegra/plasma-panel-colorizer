@@ -163,7 +163,7 @@ KCM.SimpleKCM {
             }
         }
         runCommand.run("mkdir -p '"+presetDir+"'")
-        runCommand.run("echo '" + JSON.stringify(output) + "' > '" + presetDir + "/settings.json'")
+        runCommand.run("echo '" + JSON.stringify(output, null, 4) + "' > '" + presetDir + "/settings.json'")
     }
 
     function deletePreset(path) {
