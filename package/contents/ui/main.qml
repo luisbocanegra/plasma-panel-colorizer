@@ -52,7 +52,7 @@ PlasmoidItem {
     property string icon: Qt.resolvedUrl("../icons/" + iconName + ".svg").toString().replace("file://", "")
     property bool hideWidget: plasmoid.configuration.hideWidget
     property bool fixedSidePaddingEnabled: isEnabled && panelSettings.padding.enabled
-    property bool floatingDialogs: panelSettings.floatingDialogs
+    property bool floatingDialogs: main.isEnabled ? panelSettings.floatingDialogs : false
     property bool isEnabled: plasmoid.configuration.isEnabled
     property bool nativePanelBackgroundEnabled: (isEnabled ? cfg.nativePanelBackground.enabled : true) || doPanelClickFix
     property real nativePanelBackgroundOpacity: isEnabled ? cfg.nativePanelBackground.opacity : 1.0

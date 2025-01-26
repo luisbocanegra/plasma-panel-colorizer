@@ -168,7 +168,6 @@ ColumnLayout {
                         configLocal.floatingDialogs = checked
                         updateConfig()
                     }
-                    enabled: isEnabled.checked
                 }
             }
         }
