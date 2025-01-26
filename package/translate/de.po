@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-01-20 16:03+0000\n"
+"POT-Creation-Date: 2025-01-26 01:13+0000\n"
 "PO-Revision-Date: DA-Mo-YEAR HO:MI+ZONE\n"
 "Last-Translator: Stefan Wannemacher <swannema@t-online.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -234,6 +234,10 @@ msgid "C++ plugin not installed, <b>Blur custom background</b> will not work.<br
 msgstr "C++ PlugIn nicht installiert, <b>Individuelle Hintergrundschärfe</b> wird nicht funktionieren.<br>Check the repository README on GitHub for details."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Force floating dialogs:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Spacing:"
 msgstr "Abstände"
 
@@ -380,6 +384,14 @@ msgstr "Debug Modus"
 #: ../contents/ui/configGeneral.qml
 msgid "Show debugging information"
 msgstr "Zeige Debugging Info"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Property change animations"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Duration:"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "D-Bus Service"
