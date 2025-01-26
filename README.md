@@ -23,11 +23,7 @@ Fully-featured widget to bring Latte-Dock and WM status bar customization featur
 ## Demo
 
 [![Demo](https://img.shields.io/badge/watch%20on%20youtube-demo?logo=youtube&logoColor=white&labelColor=%23c30000&color=%23222222
-)](https://www.youtube.com/watch?v=0QLyEexa9Y4)
-
-Configuration window
-
-![tooltip](screenshots/settings.png)
+)](https://www.youtube.com/watch?v=0QLyEexa9Y4) (outdated)
 
 ## Features
 
@@ -353,3 +349,13 @@ Please read the [Contributing guidelines in this repository](https://github.com/
 - [KDE/plasma-workspace/master/shell/panelview.cpp](https://invent.kde.org/plasma/plasma-workspace/-/blob/master/shell/panelview.cpp?ref_type=heads)
 - [Plasma scripting API](https://develop.kde.org/docs/plasma/scripting/api/)
 - [Plasma Widget tutorial](https://develop.kde.org/docs/plasma/widget/)
+
+## Screenshots
+
+Configurations
+
+![tooltip](screenshots/settings.png)
+
+Built-in presets
+
+![presets](screenshots/presets.png)
