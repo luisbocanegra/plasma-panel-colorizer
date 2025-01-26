@@ -174,7 +174,7 @@ const baseWidgetConfig = {
   "foregroundColor": baseFgColor,
   "radius": baseRadius,
   "margin": baseMargin,
-  "spacing": 3,
+  "spacing": 4,
   "border": baseBorder,
   "shadow": baseShadowConfig,
 }
@@ -196,7 +196,7 @@ const baseOverrideConfig = {
   "foregroundColor": baseFgColor,
   "radius": baseRadius,
   "margin": baseMargin,
-  "spacing": 3,
+  "spacing": 4,
   "border": baseBorder,
   "shadow": baseShadowConfig,
   "enabled": true,

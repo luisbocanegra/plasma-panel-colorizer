@@ -288,7 +288,7 @@
                     "bottom": 4
                 }
             },
-            "spacing": 3,
+            "spacing": 4,
             "border": {
                 "enabled": true,
                 "customSides": false,
