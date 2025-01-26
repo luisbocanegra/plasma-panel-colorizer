@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.1.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.0.0...v2.1.0) (2025-01-26)
+
+
+### Features
+
+* change default spacing to 4 ([03090e8](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/03090e876d14a335d4fe6ce600119c24e0e74f34))
+* option to animate propery changes ([7497524](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/7497524a7011c82131f6f7c42dd1c5f3b9879565))
+* option to force always floating dialogs ([6f435ae](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/6f435ae9e58c5e1ec8b95cb6a95596f8e99751d8))
+* update and add new presets ([b52b82e](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/b52b82e91be6740dadf87e4ad2ac5a8eaf45f814))
+
+
+### Bug Fixes
+
+* panel opacity sometimes not applying ([c7bae60](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/c7bae60cca7bb72bf6f949f621b2b75610c4ea57))
+* update blur mask after changing radius ([b6d505f](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/b6d505fb9292192bd6fb1202786aba7c23510f39))
+
 ## [2.0.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v1.2.0...v2.0.0) (2025-01-20)
 
 
