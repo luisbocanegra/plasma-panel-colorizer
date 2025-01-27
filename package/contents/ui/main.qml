@@ -25,26 +25,6 @@ PlasmoidItem {
     property int panelLayoutCount: panelLayout?.children?.length || 0
     property int trayGridViewCount: trayGridView?.count || 0
     property int trayGridViewCountOld: 0
-    property var panelPrefixes: ["north","south","west","east"]
-    property var panelPosition: {
-        var location
-        var screen = main.screen
-        switch (plasmoid.location) {
-            case PlasmaCore.Types.TopEdge:
-            location = "top"
-            break
-            case PlasmaCore.Types.BottomEdge:
-            location = "bottom"
-            break
-            case PlasmaCore.Types.LeftEdge:
-            location = "left"
-            break
-            case PlasmaCore.Types.RightEdge:
-            location = "right"
-            break
-        }
-        return { "screen": screen, "location": location }
-    }
     property bool horizontal: Plasmoid.formFactor === PlasmaCore.Types.Horizontal
     property bool editMode: Plasmoid.containment.corona?.editMode ?? false
     property bool onDesktop: plasmoid.location === PlasmaCore.Types.Floating
@@ -158,7 +138,7 @@ PlasmoidItem {
     onStockPanelSettingsChanged: {
         Qt.callLater(function() {
             // console.error(JSON.stringify(stockPanelSettings))
-            let script = Utils.setPanelModeScript(panelPosition, stockPanelSettings)
+            let script = Utils.setPanelModeScript(Plasmoid.containment.id, stockPanelSettings)
             if (stockPanelSettings.visible.enabled) {
                 panelView.visible = stockPanelSettings.visible.value
             } else {

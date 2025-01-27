@@ -417,59 +417,31 @@ function getWidgetRootDir() {
   return path.join('/')
 }
 
-function getPanelPosition() {
-  var location
-  var screen = main.screen
-
-  switch (plasmoid.location) {
-    case PlasmaCore.Types.TopEdge:
-      location = "top"
-      break
-    case PlasmaCore.Types.BottomEdge:
-      location = "bottom"
-      break
-    case PlasmaCore.Types.LeftEdge:
-      location = "left"
-      break
-    case PlasmaCore.Types.RightEdge:
-      location = "right"
-      break
-  }
-
-  console.log("location:" + location + " screen:" + screen);
-  return { "screen": screen, "location": location }
-}
-
-function setPanelModeScript(panelPosition, panelSettings) {
+function setPanelModeScript(panelId, panelSettings) {
   var setPanelModeScript = `
-for (var id of panelIds) {
-  var panel = panelById(id);
-  if (panel.screen === ${panelPosition.screen} && panel.location === "${panelPosition.location}" ) {
-    if (${panelSettings.visibility.enabled}) {
-      panel.hiding = "${panelSettings.visibility.value}"
-    }
-    if (${panelSettings.thickness.enabled}) {
-      panel.height = ${panelSettings.thickness.value}
-    }
-    if (${panelSettings.lengthMode.enabled}) {
-      panel.lengthMode = "${panelSettings.lengthMode.value}"
-    }
-    if (${panelSettings.position.enabled}) {
-      panel.location = "${panelSettings.position.value}"
-    }
-    if (${panelSettings.floating.enabled}) {
-      panel.floating = ${panelSettings.floating.value}
-    }
-    if (${panelSettings.alignment.enabled}) {
-      panel.alignment = "${panelSettings.alignment.value}"
-    }
-    if (${panelSettings.opacity.enabled}) {
-      panel.opacity = "${panelSettings.opacity.value}"
-    }
-    break
-  }
-}`
-  return setPanelModeScript
+var panel = panelById(${panelId});
+if (${panelSettings.visibility.enabled}) {
+  panel.hiding = "${panelSettings.visibility.value}"
+}
+if (${panelSettings.thickness.enabled}) {
+  panel.height = ${panelSettings.thickness.value}
+}
+if (${panelSettings.lengthMode.enabled}) {
+  panel.lengthMode = "${panelSettings.lengthMode.value}"
+}
+if (${panelSettings.position.enabled}) {
+  panel.location = "${panelSettings.position.value}"
+}
+if (${panelSettings.floating.enabled}) {
+  panel.floating = ${panelSettings.floating.value}
+}
+if (${panelSettings.alignment.enabled}) {
+  panel.alignment = "${panelSettings.alignment.value}"
+}
+if (${panelSettings.opacity.enabled}) {
+  panel.opacity = "${panelSettings.opacity.value}"
+}`;
+  return setPanelModeScript;
 }
 
 function evaluateScript(script) {
