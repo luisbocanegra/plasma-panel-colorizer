@@ -103,9 +103,23 @@ Overrides let you give a completely different configuration to one or more widge
 
 1. Install these runtime dependencies or the equivalents for your distribution
 
-    ```txt
-    python python-dbus python-gobject
-    ```
+   - Arch
+
+       ```txt
+       spectacle python python-dbus python-gobject
+       ```
+
+   - Fedora
+
+       ```txt
+       spectacle python3 python3-dbus python3-gobject
+       ```
+
+   - Kubuntu
+
+       ```txt
+       kde-spectacle python3 python3-dbus python3-gi
+       ```
 
 2. **Right click on the Panel** > **Add or manage widgets** > **Add new...** > **Download new...**
 3. **Search** for "**Panel Colorizer**", install and add it to a Panel.
@@ -130,26 +144,32 @@ Overrides let you give a completely different configuration to one or more widge
       git gcc-c++ cmake extra-cmake-modules libplasma-devel spectacle python3 python3-dbus python3-gobject
       ```
 
-    Spectacle is optional, will be used to create preset previews
+   - Kubuntu
+
+      ```txt
+      git build-essential cmake extra-cmake-modules libplasma-dev kde-spectacle python3 python3-dbus python3-gi
+      ```
+
+    Spectacle is needed to create preset previews
 
 2. Clone and install
 
-      ```sh
-      git clone https://github.com/luisbocanegra/plasma-panel-colorizer
-      cd plasma-panel-colorizer
-      ```
+    ```sh
+    git clone https://github.com/luisbocanegra/plasma-panel-colorizer
+    cd plasma-panel-colorizer
+    ```
 
    - Install widget + plugin
 
-    ```sh
-    ./install.sh
-    ```
+      ```sh
+      ./install.sh
+      ```
 
    - Install only the plugin if you already have the widget
 
-   ```sh
-   ./install-plugin.sh
-   ```
+      ```sh
+      ./install-plugin.sh
+      ```
 
 ### Arch Linux
 
