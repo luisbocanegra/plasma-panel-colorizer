@@ -145,7 +145,8 @@ PlasmoidItem {
             } else {
                 panelView.visible = true
             }
-            Utils.evaluateScript(script)
+            dbusEvaluateScript.arguments = [script.toString().replace(/\n/g,' ').trim()]
+            dbusEvaluateScript.call();
             reconfigure()
         })
     }
@@ -1448,6 +1449,19 @@ PlasmoidItem {
         signature: null
         inSignature: null
     }
+
+    DBusMethodCall {
+        id: dbusEvaluateScript
+        service: "org.kde.plasmashell"
+        objectPath: "/PlasmaShell"
+        iface: "org.kde.PlasmaShell"
+        method: "evaluateScript"
+        arguments: []
+        signature: null
+        inSignature: null
+        useGdbus: true
+    }
+
 
     // temporarily show the panel
     Timer {

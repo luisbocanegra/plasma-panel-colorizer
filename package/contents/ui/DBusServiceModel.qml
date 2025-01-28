@@ -15,7 +15,6 @@ Item {
     property string serviceUtil: toolsDir+"service.py"
     property string pythonExecutable: plasmoid.configuration.pythonExecutable
     property string serviceCmd: pythonExecutable + " '" + serviceUtil + "' " + Plasmoid.containment.id + " " + Plasmoid.id
-    property string quitServiceCmd: gdbusPartial +".quit"
 
     readonly property string service: Plasmoid.metaData.pluginId + ".c" + Plasmoid.containment.id + ".w" + Plasmoid.id
     readonly property string path: "/preset"

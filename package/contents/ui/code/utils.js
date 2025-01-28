@@ -444,10 +444,6 @@ if (${panelSettings.opacity.enabled}) {
   return setPanelModeScript;
 }
 
-function evaluateScript(script) {
-  runCommand.run("gdbus call --session --dest org.kde.plasmashell --object-path /PlasmaShell --method org.kde.PlasmaShell.evaluateScript '" + script + "'")
-}
-
 function getForceFgWidgetConfig(id, name, config) {
   return config.find((item) => item.id == id && item.name == name)
 }
