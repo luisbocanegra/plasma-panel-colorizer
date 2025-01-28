@@ -28,6 +28,7 @@ PlasmoidItem {
     property bool horizontal: Plasmoid.formFactor === PlasmaCore.Types.Horizontal
     property bool editMode: Plasmoid.containment.corona?.editMode ?? false
     property bool onDesktop: plasmoid.location === PlasmaCore.Types.Floating
+    property bool isWayland: Qt.platform.pluginName.includes("wayland")
     property string iconName: !onDesktop ? "icon" : "error"
     property string icon: Qt.resolvedUrl("../icons/" + iconName + ".svg").toString().replace("file://", "")
     property bool hideWidget: plasmoid.configuration.hideWidget
@@ -145,6 +146,7 @@ PlasmoidItem {
                 panelView.visible = true
             }
             Utils.evaluateScript(script)
+            reconfigure()
         })
     }
 
@@ -1357,16 +1359,17 @@ PlasmoidItem {
 
     onPanelLayoutChanged: {
         if (!panelLayout) return
-        panelFixTimer.start()
+        panelFixTimer.restart()
     }
 
     Timer {
         id: panelFixTimer
         repeat: false
-        interval: 1000
+        interval: 2000
         onTriggered: {
             doPanelLengthFix = true
             doPanelLengthFix = false
+            reconfigure()
         }
     }
 
@@ -1446,11 +1449,35 @@ PlasmoidItem {
         inSignature: null
     }
 
+    // temporarily show the panel
     Timer {
-        id: reconfigureTimer
-        interval: 10
+        id: tempActivationTimer
+        interval: 500
+        triggeredOnStart: true
         onTriggered: {
+            Plasmoid.activated()
+            main.expanded = false
+        }
+    }
+
+    function reconfigure() {
+        // sometimes windows won't update when the panel visibility or height
+        // (and maybe other properties) changes, this is more noticeable with
+        // krohnkite tiling extension so we make the panel visible by
+        // activating the widget for a moment which in turn activates the panel
+        // and org.kde.KWin.reconfigure triggers the resize we need
+        // TODO figure out how the desktop edit mode informs the new available size
+        if (isWayland) {
+            // X11 doesn't seem to need it and also would flicker the panel/screen
             dbusKWinReconfigure.call()
+        }
+        if (["autohide", "dodgewindows"].includes(stockPanelSettings.visibility.value)) {
+            // activate the panel for a longer time if it can hide
+            // to avoid plasma crash when changing its location
+            tempActivationTimer.restart()
+        } else {
+            Plasmoid.activated()
+            Plasmoid.activated()
         }
     }
 
@@ -1458,15 +1485,6 @@ PlasmoidItem {
     Item {
         onWindowChanged: (window) => {
             main.panelView = window
-        }
-    }
-
-    Connections {
-        target: plasmoid.configuration
-        onValueChanged: {
-            Qt.callLater(function () {
-                reconfigureTimer.restart()
-            })
         }
     }
 
