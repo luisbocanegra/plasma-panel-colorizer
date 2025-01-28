@@ -25,6 +25,25 @@ PlasmoidItem {
     property int panelLayoutCount: panelLayout?.children?.length || 0
     property int trayGridViewCount: trayGridView?.count || 0
     property int trayGridViewCountOld: 0
+    property var panelPosition: {
+        var location
+        var screen = main.screen
+        switch (plasmoid.location) {
+            case PlasmaCore.Types.TopEdge:
+            location = "top"
+            break
+            case PlasmaCore.Types.BottomEdge:
+            location = "bottom"
+            break
+            case PlasmaCore.Types.LeftEdge:
+            location = "left"
+            break
+            case PlasmaCore.Types.RightEdge:
+            location = "right"
+            break
+        }
+        return { screen, location }
+    }
     property bool horizontal: Plasmoid.formFactor === PlasmaCore.Types.Horizontal
     property bool editMode: Plasmoid.containment.corona?.editMode ?? false
     property bool onDesktop: plasmoid.location === PlasmaCore.Types.Floating
@@ -1471,6 +1490,7 @@ PlasmoidItem {
         onTriggered: {
             Plasmoid.activated()
             main.expanded = false
+            bindPlasmoidStatusTimer.restart()
         }
     }
 
@@ -1485,13 +1505,16 @@ PlasmoidItem {
             // X11 doesn't seem to need it and also would flicker the panel/screen
             dbusKWinReconfigure.call()
         }
-        if (["autohide", "dodgewindows"].includes(stockPanelSettings.visibility.value)) {
+
+        Plasmoid.status = hideWidget ? PlasmaCore.Types.ActiveStatus : PlasmaCore.Types.HiddenStatus
+        if (["autohide", "dodgewindows"].includes(stockPanelSettings.visibility.value) && panelPosition.location !== stockPanelSettings.position.value) {
             // activate the panel for a longer time if it can hide
             // to avoid plasma crash when changing its location
             tempActivationTimer.restart()
         } else {
             Plasmoid.activated()
             Plasmoid.activated()
+            bindPlasmoidStatus()
         }
     }
 
@@ -1593,6 +1616,7 @@ PlasmoidItem {
     }
 
     Component.onCompleted: {
+        bindPlasmoidStatus()
         Qt.callLater(function() {
             const config = Utils.mergeConfigs(Globals.defaultConfig, cfg)
             plasmoid.configuration.globalSettings = Utils.stringify(config)
@@ -1684,9 +1708,17 @@ PlasmoidItem {
     }
     toolTipTextFormat: Text.PlainText
 
-    Plasmoid.status: (editMode || !hideWidget) ?
-        PlasmaCore.Types.ActiveStatus :
-        PlasmaCore.Types.HiddenStatus
+    function bindPlasmoidStatus() {
+        Plasmoid.status = Qt.binding(function () {return (editMode || !hideWidget) ? PlasmaCore.Types.ActiveStatus : PlasmaCore.Types.HiddenStatus})
+    }
+
+    Timer {
+        id: bindPlasmoidStatusTimer
+        interval: 600
+        onTriggered: {
+            bindPlasmoidStatus()
+        }
+    }
 
     Plasmoid.contextualActions: [
         PlasmaCore.Action {
