@@ -1,12 +1,8 @@
-pragma ComponentBehavior: Bound
-pragma ValueTypeBehavior: Addressable
-
 import QtQuick
-import org.kde.plasma.workspace.dbus as DBus
 
-QtObject {
+Item {
     id: root
-    property string busType: DBus.BusType.Session
+    property string busType
     property string service: ""
     property string objectPath: ""
     property string iface: ""
@@ -14,21 +10,34 @@ QtObject {
     property var arguments: []
     property var signature: null
     property var inSignature: null
+    property bool useGdbus: false
 
-    property DBus.dbusMessage msg: {
-        "service": root.service,
-        "path": root.objectPath,
-        "iface": root.iface,
-        "member": root.method,
-        "arguments": root.arguments,
-        "signature": root.signature,
-        "inSignature": root.inSignature,
+    onArgumentsChanged: dbusLoader.item.arguments = root.arguments
+
+    Loader {
+        id: dbusLoader
+        source: root.useGdbus ? "DBusFallback.qml" : "DBusPrimary.qml"
+        onStatusChanged: {
+            if (status === Loader.Error) {
+                dbusLoader.source = "DBusFallback.qml"
+            }
+        }
+        onLoaded: {
+            dbusLoader.item.service = root.service
+            dbusLoader.item.objectPath = root.objectPath
+            dbusLoader.item.iface = root.iface
+            dbusLoader.item.method = root.method
+            dbusLoader.item.arguments = root.arguments
+            dbusLoader.item.signature = root.signature
+            dbusLoader.item.inSignature = root.inSignature
+        }
     }
 
     function call(callback) {
-        const reply = DBus.SessionBus.asyncCall(root.msg) as DBus.DBusPendingReply
-        if (callback) {
-            reply.finished.connect(() => callback(reply))
+        if (dbusLoader.item && typeof dbusLoader.item.call === "function") {
+            dbusLoader.item.call(callback);
+        } else {
+            console.error("No valid DBus implementation loaded.");
         }
     }
 }
