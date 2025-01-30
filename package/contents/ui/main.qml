@@ -199,6 +199,13 @@ PlasmoidItem {
 
     onFloatignessChanged: {
         updateMasks()
+        // fixes the mask getting stuck a couple of pixels off for some reason
+        if (main.floatigness === 1 || main.floatigness === 0) {
+            Utils.delay(10, () => {
+                updateMasks()
+                activatePlasmoidCycle()
+            }, main)
+        }
     }
 
     function getColor(colorCfg, targetIndex, parentColor, itemType, kirigamiColorItem) {
@@ -1140,13 +1147,13 @@ PlasmoidItem {
         property real moveX: {
             const edge = main.plasmaVersion.isLowerThan("6.2.0") ? PlasmaCore.Types.LeftEdge : PlasmaCore.Types.RightEdge
             const m = horizontal ? 0 : (panelElement?.floating && plasmoid.location === edge ? 16 : 0)
-            return floatigness > 0 ? 8 : m
+            return floatigness > 0 ? (8*floatigness) : m
         }
 
         property real moveY: {
             const edge = main.plasmaVersion.isLowerThan("6.2.0") ? PlasmaCore.Types.TopEdge : PlasmaCore.Types.BottomEdge
             const m = horizontal ? (panelElement?.floating && plasmoid.location === edge ? 16 : 0) : 0
-            return floatigness > 0 ? 8 : m
+            return floatigness > 0 ? (8*floatigness) : m
         }
 
         onVisibleChanged: {
@@ -1514,10 +1521,14 @@ PlasmoidItem {
             // to avoid plasma crash when changing its location
             tempActivationTimer.restart()
         } else {
-            Plasmoid.activated()
-            Plasmoid.activated()
+            activatePlasmoidCycle()
             bindPlasmoidStatus()
         }
+    }
+
+    function activatePlasmoidCycle() {
+        Plasmoid.activated()
+        Plasmoid.activated()
     }
 
     // https://github.com/olib14/pinpanel/blob/2d126f0f3ac3e35a725f05b0060a3dd5c924cbe7/package/contents/ui/main.qml#L58 ♥
