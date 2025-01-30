@@ -19,6 +19,7 @@ import "components" as Components
 import "code/utils.js" as Utils
 import "code/globals.js" as Globals
 import "code/enum.js" as Enum
+import "code/version.js" as VersionUtil
 
 PlasmoidItem {
     id: main
@@ -147,6 +148,7 @@ PlasmoidItem {
     property var panelWidth: panelElement?.width ?? 0
     property var panelHeight: panelElement?.height ?? 0
     property bool debug: plasmoid.configuration.enableDebug
+    property var plasmaVersion: new VersionUtil.Version("999.999.999") // to assume latest
     signal recolorCountChanged()
     signal refreshNeeded()
     signal updateUnified()
@@ -1136,12 +1138,14 @@ PlasmoidItem {
 
         // TODO find where does 16 and 8 come from instead of blindly hardcoding them
         property real moveX: {
-            let m = horizontal ? 0 : (panelElement?.floating && plasmoid.location === PlasmaCore.Types.RightEdge ? 16 : 0)
+            const edge = main.plasmaVersion.isLowerThan("6.2.0") ? PlasmaCore.Types.LeftEdge : PlasmaCore.Types.RightEdge
+            const m = horizontal ? 0 : (panelElement?.floating && plasmoid.location === edge ? 16 : 0)
             return floatigness > 0 ? 8 : m
         }
 
         property real moveY: {
-            let m = horizontal ? (panelElement?.floating && plasmoid.location === PlasmaCore.Types.BottomEdge ? 16 : 0) : 0
+            const edge = main.plasmaVersion.isLowerThan("6.2.0") ? PlasmaCore.Types.TopEdge : PlasmaCore.Types.BottomEdge
+            const m = horizontal ? (panelElement?.floating && plasmoid.location === edge ? 16 : 0) : 0
             return floatigness > 0 ? 8 : m
         }
 
@@ -1228,8 +1232,6 @@ PlasmoidItem {
         delayed: true
     }
 
-    // TODO: should we remove option for blur from per-widget settings?
-    // IMO doesn't make much sense to have only some widgets blurred...
     Binding {
         target: panelElement
         property: "panelMask"
@@ -1617,6 +1619,7 @@ PlasmoidItem {
 
     Component.onCompleted: {
         bindPlasmoidStatus()
+        runCommand.run("plasmashell --version")
         Qt.callLater(function() {
             const config = Utils.mergeConfigs(Globals.defaultConfig, cfg)
             plasmoid.configuration.globalSettings = Utils.stringify(config)
@@ -1646,9 +1649,10 @@ PlasmoidItem {
                 console.error(cmd, exitCode, exitStatus, stdout, stderr)
                 return
             }
+            stdout = stdout.trim()
             if (cmd.startsWith("cat")) {
                 try {
-                    presetContent = JSON.parse(stdout.trim())
+                    presetContent = JSON.parse(stdout)
                 } catch (e) {
                     console.error(`Error reading preset (${cmd}): ${e}`)
                     return
@@ -1656,6 +1660,11 @@ PlasmoidItem {
                 Utils.loadPreset(presetContent, plasmoid.configuration, Globals.ignoredConfigs, Globals.defaultConfig, true)
                 plasmoid.configuration.lastPreset = lastPreset
                 plasmoid.configuration.writeConfig();
+            }
+            if (cmd === "plasmashell --version") {
+                const parts = stdout.split(" ")
+                if (parts.length < 2) return
+                main.plasmaVersion = new VersionUtil.Version(parts[1])
             }
         }
     }
