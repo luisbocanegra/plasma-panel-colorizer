@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-01-26 14:13+0000\n"
+"POT-Creation-Date: 2025-01-31 23:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -153,7 +153,7 @@ msgstr "Farbeneinstellung:"
 msgid "Color:"
 msgstr "Farbe:"
 
-#: ../contents/ui/components/FormColors.qml
+#: ../contents/ui/components/FormColors.qml ../contents/ui/configGeneral.qml
 msgid "Alpha:"
 msgstr "Alpha:"
 
@@ -384,6 +384,38 @@ msgstr "Debug Modus"
 #: ../contents/ui/configGeneral.qml
 msgid "Show debugging information"
 msgstr "Zeige Debugging Info"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Grid"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Enabled"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Visible while configuring"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Background"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Minor line:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "spacing"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Major line:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "every"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Property change animations"
