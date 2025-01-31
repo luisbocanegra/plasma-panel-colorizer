@@ -149,6 +149,8 @@ PlasmoidItem {
     property var panelHeight: panelElement?.height ?? 0
     property bool debug: plasmoid.configuration.enableDebug
     property var plasmaVersion: new VersionUtil.Version("999.999.999") // to assume latest
+    property var editModeGrid: JSON.parse(plasmoid.configuration.editModeGridSettings)
+    property bool showEditingGrid: (editModeGrid?.enabled ?? false) && Plasmoid.userConfiguring
     signal recolorCountChanged()
     signal refreshNeeded()
     signal updateUnified()
@@ -1337,6 +1339,29 @@ PlasmoidItem {
         Utils.panelOpacity(panelElement, isEnabled, nativePanelBackgroundOpacity)
     }
 
+    property Component gridComponent: RectangularGrid {
+        id: gridComponent
+        backgroundColor: editModeGrid.background.color
+        backgroundOpacity: editModeGrid.background.alpha
+
+        minorLineColor: editModeGrid.minorLine.color
+        minorLineOpacity: editModeGrid.minorLine.alpha
+
+        majorLineColor: editModeGrid.majorLine.color
+        majorLineOpacity: editModeGrid.majorLine.alpha
+
+        spacing: editModeGrid.spacing
+        majorLineEvery: editModeGrid.majorLineEvery
+        Component.onCompleted: {
+            main.onShowEditingGridChanged.connect(function release() {
+                if (!main.showEditingGrid) {
+                    main.onShowEditingGridChanged.disconnect(release)
+                    gridComponent.destroy()
+                }
+            })
+        }
+    }
+
     onNativePanelBackgroundOpacityChanged: {
         if(!panelElement) return
         Utils.panelOpacity(panelElement, isEnabled, nativePanelBackgroundOpacity)
@@ -1535,6 +1560,13 @@ PlasmoidItem {
     Item {
         onWindowChanged: (window) => {
             main.panelView = window
+        }
+    }
+
+    onShowEditingGridChanged: {
+        if (showEditingGrid) {
+            gridComponent.createObject(main.panelView, {"z": -1})
+            // gridComponent.createObject(main.panelBg, {"z": -1})
         }
     }
 

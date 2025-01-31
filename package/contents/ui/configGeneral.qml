@@ -5,7 +5,6 @@ import QtQuick.Layouts
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
-import org.kde.plasma.plasma5support as P5Support
 
 import "components" as Components
 import "code/utils.js" as Utils
@@ -21,6 +20,8 @@ KCM.SimpleKCM {
     property alias cfg_dBusPollingRate: dBusPollingRate.value
     property alias cfg_animatePropertyChanges: animatePropertyChanges.checked
     property alias cfg_animationDuration: animationDuration.value
+    property string cfg_editModeGridSettings
+    property var editModeGridSettings: JSON.parse(cfg_editModeGridSettings)
 
     property string presetsDir: StandardPaths.writableLocation(
                     StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/presets"
@@ -36,9 +37,14 @@ KCM.SimpleKCM {
         }
     }
 
+    function updateConfig() {
+        cfg_editModeGridSettings = JSON.stringify(editModeGridSettings, null, null)
+    }
+
     ColumnLayout {
         Kirigami.FormLayout {
             id: form
+
             CheckBox {
                 Kirigami.FormData.label: i18n("Hide widget:")
                 id: hideWidget
@@ -46,12 +52,143 @@ KCM.SimpleKCM {
                 onCheckedChanged: cfg_hideWidget = checked
                 text: i18n("visible in Panel Edit Mode")
             }
+
             CheckBox {
                 Kirigami.FormData.label: i18n("Debug mode:")
                 id: enableDebug
                 checked: cfg_enableDebug
                 onCheckedChanged: cfg_enableDebug = checked
                 text: i18n("Show debugging information")
+            }
+
+            Kirigami.Separator {
+                Kirigami.FormData.isSection: true
+                Kirigami.FormData.label: i18n("Grid")
+                Layout.fillWidth: true
+            }
+
+            CheckBox {
+                Kirigami.FormData.label: i18n("Enabled")
+                id: editGridEnabled
+                checked: root.editModeGridSettings.enabled
+                onCheckedChanged: {
+                    root.editModeGridSettings.enabled = checked
+                    root.updateConfig()
+                }
+                text: i18n("Visible while configuring")
+            }
+
+            RowLayout {
+                enabled: editGridEnabled.checked
+                Kirigami.FormData.label: i18n("Background")
+                Components.ColorButton {
+                    id: bgColorBtn
+                    showAlphaChannel: false
+                    dialogTitle: bgColorBtn.Kirigami.FormData.label
+                    color: root.editModeGridSettings.background.color
+                    onAccepted: (color) => {
+                        root.editModeGridSettings.background.color = color.toString()
+                        root.updateConfig()
+                    }
+                }
+                Label {
+                    text: i18n("Alpha:")
+                }
+                Components.SpinBoxDecimal {
+                    Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
+                    from: 0
+                    to: 1
+                    value: root.editModeGridSettings.background.alpha ?? 0
+                    onValueChanged: {
+                        root.editModeGridSettings.background.alpha = value
+                        root.updateConfig()
+                    }
+                }
+            }
+
+            RowLayout {
+                enabled: editGridEnabled.checked
+                Kirigami.FormData.label: i18n("Minor line:")
+                Components.ColorButton {
+                    id: minorLineColorBtn
+                    showAlphaChannel: false
+                    dialogTitle: minorLineColorBtn.Kirigami.FormData.label
+                    color: root.editModeGridSettings.minorLine.color
+                    onAccepted: (color) => {
+                        root.editModeGridSettings.minorLine.color = color.toString()
+                        root.updateConfig()
+                    }
+                }
+                Label {
+                    text: i18n("Alpha:")
+                }
+                Components.SpinBoxDecimal {
+                    Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
+                    from: 0
+                    to: 1
+                    value: root.editModeGridSettings.minorLine.alpha ?? 0
+                    onValueChanged: {
+                        root.editModeGridSettings.minorLine.alpha = value
+                        root.updateConfig()
+                    }
+                }
+                Label {
+                    text: i18n("spacing")
+                }
+                SpinBox {
+                    from: 1
+                    to: 99999
+                    stepSize: 1
+                    value: root.editModeGridSettings.spacing
+                    onValueModified: {
+                        root.editModeGridSettings.spacing = value
+                        root.updateConfig()
+                    }
+                }
+            }
+
+            RowLayout {
+                enabled: editGridEnabled.checked
+                Kirigami.FormData.label: i18n("Major line:")
+                Components.ColorButton {
+                    id: majorLineColorBtn
+                    showAlphaChannel: false
+                    dialogTitle: majorLineColorBtn.Kirigami.FormData.label
+                    color: root.editModeGridSettings.majorLine.color
+                    onAccepted: (color) => {
+                        root.editModeGridSettings.majorLine.color = color.toString()
+                        root.updateConfig()
+                    }
+                    enabled: majorLineEverySpinbox.value !== 0
+                }
+                Label {
+                    text: i18n("Alpha:")
+                }
+                Components.SpinBoxDecimal {
+                    Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
+                    from: 0
+                    to: 1
+                    value: root.editModeGridSettings.majorLine.alpha ?? 0
+                    onValueChanged: {
+                        root.editModeGridSettings.majorLine.alpha = value
+                        root.updateConfig()
+                    }
+                    enabled: majorLineEverySpinbox.value !== 0
+                }
+                Label {
+                    text: i18n("every")
+                }
+                SpinBox {
+                    id: majorLineEverySpinbox
+                    from: 0
+                    to: 99999
+                    stepSize: 1
+                    value: root.editModeGridSettings.majorLineEvery
+                    onValueModified: {
+                        root.editModeGridSettings.majorLineEvery = value
+                        root.updateConfig()
+                    }
+                }
             }
 
             Kirigami.Separator {
