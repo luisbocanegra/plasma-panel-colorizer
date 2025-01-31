@@ -1362,6 +1362,18 @@ PlasmoidItem {
         }
     }
 
+    property Component configuringIndicator: ConfiguringIndicator {
+        id: configuringIndicator
+        Component.onCompleted: {
+            Plasmoid.onUserConfiguringChanged.connect(function release() {
+                if (!Plasmoid.userConfiguring) {
+                    Plasmoid.onUserConfiguringChanged.disconnect(release)
+                    configuringIndicator.destroy()
+                }
+            })
+        }
+    }
+
     onNativePanelBackgroundOpacityChanged: {
         if(!panelElement) return
         Utils.panelOpacity(panelElement, isEnabled, nativePanelBackgroundOpacity)
@@ -1565,9 +1577,12 @@ PlasmoidItem {
 
     onShowEditingGridChanged: {
         if (showEditingGrid) {
-            gridComponent.createObject(main.panelView, {"z": -1})
-            // gridComponent.createObject(main.panelBg, {"z": -1})
+            gridComponent.createObject(main.panelView, {"z": -999})
         }
+    }
+
+    Plasmoid.onUserConfiguringChanged: {
+        if(Plasmoid.userConfiguring) configuringIndicator.createObject(main.panelBg, {"z": 999})
     }
 
     function updateCurrentWidgets() {
