@@ -271,5 +271,16 @@ const ignoredConfigs = [
   "pythonExecutable",
   "forceForegroundColor",
   "animatePropertyChanges",
-  "animationDuration"
+  "animationDuration",
+  "editModeGridSettings"
 ]
+
+const editModeGridSettings = {
+  enabled: true,
+  spacing: 4,
+  majorLineEvery: 0,
+  background: { color: "#00ffff", alpha: 0.25 },
+  minorLine: { color: "#000000", alpha: 1 },
+  majorLine: { color: "#ff0000", alpha: 0 },
+  mayorLineEvery: 2,
+};
