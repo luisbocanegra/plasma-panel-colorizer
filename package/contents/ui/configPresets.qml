@@ -1,3 +1,4 @@
+pragma ComponentBehavior: Bound
 import QtCore
 import QtQuick
 import QtQuick.Controls
@@ -5,7 +6,6 @@ import QtQuick.Layouts
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
-import org.kde.plasma.plasma5support as P5Support
 
 import "components" as Components
 import "code/utils.js" as Utils
@@ -34,7 +34,7 @@ KCM.SimpleKCM {
     Connections {
         target: plasmoid.configuration
         onValueChanged: {
-            plasmoid.configuration.lastPreset = lastPreset
+            plasmoid.configuration.lastPreset = root.lastPreset
             plasmoid.configuration.writeConfig();
         }
     }
@@ -54,10 +54,12 @@ KCM.SimpleKCM {
     Connections {
         target: runCommand
         function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
-            console.error(cmd, exitCode, exitStatus, stdout, stderr)
-            if (exitCode!==0) return
-            if(cmd === listPresetsCmd) {
-                presets = ({})
+            if (exitCode!==0) {
+                console.error(cmd, exitCode, exitStatus, stdout, stderr)
+                return
+            }
+            if(cmd === root.listPresetsCmd) {
+                root.presets = ({})
                 if (stdout.length === 0) return
                 const out = stdout.trim().split("\n")
                 var tmp = {}
@@ -70,43 +72,43 @@ KCM.SimpleKCM {
                     if (line.startsWith("b:")) {
                         builtin = true
                     }
-                    console.error(parts[1])
+                    console.log("Found preset:", parts[1])
                     tmp[name] = {"dir": parts[1], "builtin": builtin}
                 }
-                presets = tmp
+                root.presets = tmp
             }
             if (cmd.startsWith("cat")) {
-                presetContent = JSON.parse(stdout.trim())
-                Utils.loadPreset(presetContent, root, Globals.ignoredConfigs, Globals.defaultConfig, false)
+                root.presetContent = JSON.parse(stdout.trim())
+                Utils.loadPreset(root.presetContent, root, Globals.ignoredConfigs, Globals.defaultConfig, false)
             }
             if (cmd.startsWith("echo")) {
-                reloadPresetList()
+                root.reloadPresetList()
                 createPreviewDialog.open()
             }
             if (cmd.startsWith("spectacle")) {
-                reloadPresetList()
+                root.reloadPresetList()
             }
         }
     }
 
     Kirigami.PromptDialog {
         id: deletePresetDialog
-        title: "Delete preset '"+editingPreset+"?"
+        title: "Delete preset '"+root.editingPreset+"?"
         subtitle: i18n("This will permanently delete the file from your system!")
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {
-            deletePreset(editingPreset)
-            runCommand.run(listPresetsCmd)
+            root.deletePreset(root.editingPreset)
+            runCommand.run(root.listPresetsCmd)
         }
     }
 
     Kirigami.PromptDialog {
         id: updatePresetDialog
-        title: "Update preset '"+editingPreset+"'?"
+        title: "Update preset '"+root.editingPreset+"'?"
         subtitle: i18n("Preset configuration will be overwritten!")
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {
-            savePreset(editingPreset)
+            root.savePreset(root.editingPreset)
         }
     }
 
@@ -116,17 +118,17 @@ KCM.SimpleKCM {
         subtitle: i18n("Current preview will be overwritten!")
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {
-            runCommand.run(spectaclePreviewCmd+"'" + editingPreset + "/preview.png'")
+            runCommand.run(root.spectaclePreviewCmd+"'" + root.editingPreset + "/preview.png'")
         }
     }
 
     Kirigami.PromptDialog {
         id: newPresetDialog
-        title: "Create preset '"+editingPreset+"'?"
+        title: "Create preset '"+root.editingPreset+"'?"
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {
-            savePreset(editingPreset)
-            runCommand.run(listPresetsCmd)
+            root.savePreset(root.editingPreset)
+            runCommand.run(root.listPresetsCmd)
             saveNameField.text = ""
         }
     }
@@ -179,8 +181,10 @@ KCM.SimpleKCM {
     }
 
     Component.onCompleted: {
-        runCommand.run(cratePresetsDirCmd)
-        runCommand.run(listPresetsCmd)
+        Utils.delay(100, () => {
+            runCommand.run(cratePresetsDirCmd)
+            runCommand.run(listPresetsCmd)
+        }, root)
     }
 
     header: ColumnLayout {
@@ -199,7 +203,7 @@ KCM.SimpleKCM {
             type: Kirigami.MessageType.Information
         }
         Kirigami.FormLayout {
-            enabled: cfg_isEnabled
+            enabled: root.cfg_isEnabled
             RowLayout {
                 Layout.preferredWidth: presetCards.width
                 Layout.minimumWidth: 300
@@ -207,7 +211,7 @@ KCM.SimpleKCM {
                     text: i18n("Restore default panel appearance")
                     icon.name: "kt-restore-defaults-symbolic"
                     onClicked: {
-                        restoreSettings()
+                        root.restoreSettings()
                     }
                     Layout.fillWidth: true
                 }
@@ -227,9 +231,9 @@ KCM.SimpleKCM {
                 Button {
                     icon.name: "document-save-symbolic"
                     text: i18n("Save")
-                    enabled: saveNameField.acceptableInput && !(Object.keys(presets).includes(saveNameField.text))
+                    enabled: saveNameField.acceptableInput && !(Object.keys(root.presets).includes(saveNameField.text))
                     onClicked: {
-                        editingPreset = presetsDir+saveNameField.text
+                        root.editingPreset = root.presetsDir+saveNameField.text
                         newPresetDialog.open()
                     }
                 }
@@ -245,35 +249,38 @@ KCM.SimpleKCM {
                         text: i18n("Refresh presets")
                         icon.name: "view-refresh-symbolic"
                         onClicked: {
-                            runCommand.run(listPresetsCmd)
+                            runCommand.run(root.listPresetsCmd)
                         }
                     }
                 }
                 Repeater {
-                    model: Object.keys(presets)
-                    delegate: Kirigami.AbstractCard {
+                    model: Object.keys(root.presets)
+                    Kirigami.AbstractCard {
+                        id: content
+                        required property int index
+                        required property var modelData
+                        property string dir: root.presets[content.modelData].dir
                         contentItem: ColumnLayout {
                             width: row.implicitWidth
                             height: row.implicitHeight + scrollView.implicitHeight
-                            property string currentPreset: presets[modelData].dir
                             RowLayout {
                                 id: row
                                 Label {
-                                    text: (parseInt(index)+1).toString()+"."
+                                    text: (parseInt(content.index)+1)+"."
                                     font.bold: true
                                 }
                                 Label {
-                                    text: modelData
+                                    text: content.modelData
                                     elide: Text.ElideRight
                                 }
 
                                 Rectangle {
-                                    visible: presets[modelData].builtin
+                                    visible: root.presets[content.modelData].builtin
                                     color: Kirigami.Theme.highlightColor
                                     Kirigami.Theme.colorSet: root.Kirigami.Theme["Selection"]
                                     radius: parent.height / 2
-                                    width: label.width + 12
-                                    height: label.height + 2
+                                    implicitWidth: label.width + 12
+                                    implicitHeight: label.height + 2
                                     Kirigami.Theme.inherit: false
                                     Label {
                                         anchors.centerIn: parent
@@ -295,8 +302,8 @@ KCM.SimpleKCM {
                                     text: i18n("Load")
                                     Layout.preferredHeight: saveBtn.height
                                     onClicked: {
-                                        lastPreset = presets[modelData].dir
-                                        applyPreset(lastPreset)
+                                        root.lastPreset = content.dir
+                                        root.applyPreset(root.lastPreset)
                                     }
                                 }
                                 Button {
@@ -304,19 +311,19 @@ KCM.SimpleKCM {
                                     icon.name: "document-save-symbolic"
                                     text: i18n("Update")
                                     onClicked: {
-                                        editingPreset = presets[modelData].dir
+                                        root.editingPreset = content.dir
                                         updatePresetDialog.open()
                                     }
-                                    visible: !presets[modelData].builtin
+                                    visible: !root.presets[content.modelData].builtin
                                 }
                                 Button {
                                     text: i18n("Delete")
                                     icon.name: "edit-delete-remove-symbolic"
                                     onClicked: {
-                                        editingPreset = presets[modelData].dir
+                                        root.editingPreset = content.dir
                                         deletePresetDialog.open()
                                     }
-                                    visible: !presets[modelData].builtin
+                                    visible: !root.presets[content.modelData].builtin
                                 }
                             }
                             Button {
@@ -325,7 +332,7 @@ KCM.SimpleKCM {
                                 visible: !scrollView.visible
                                 Layout.alignment: Qt.AlignHCenter
                                 onClicked: {
-                                    runCommand.run(spectaclePreviewCmd+"'" + presets[modelData].dir + "/preview.png'")
+                                    runCommand.run(root.spectaclePreviewCmd+"'" + content.dir + "/preview.png'")
                                 }
                             }
                             ScrollView {
@@ -333,8 +340,8 @@ KCM.SimpleKCM {
                                 Layout.maximumHeight: 100
                                 id: scrollView
                                 visible: false
-                                contentWidth: image.implicitWidth
-                                contentHeight: image.implicitHeight
+                                contentWidth: btn.implicitWidth
+                                contentHeight: btn.implicitHeight
 
                                 Image {
                                     id: image
@@ -344,16 +351,16 @@ KCM.SimpleKCM {
                                     } else {
                                         scrollView.visible = false
                                     }
-                                    source: presets[modelData].dir+"/preview.png"
+                                    source: content.dir+"/preview.png"
                                     fillMode: Image.PreserveAspectCrop
                                     horizontalAlignment: Image.AlignLeft
                                     cache: false
                                     asynchronous: true
                                     function refresh(presetName) {
                                         // only refresh preview of the changed preset
-                                        if (presetName !== presets[modelData].dir) return
+                                        if (presetName !== content.dir) return
                                         source = ""
-                                        source = presets[modelData].dir+"/preview.png"
+                                        source = content.dir+"/preview.png"
                                     }
                                     Component.onCompleted: {
                                         root.refreshImage.connect(refresh)
@@ -365,9 +372,9 @@ KCM.SimpleKCM {
                                     text: i18n("Update preview")
                                     anchors.fill: parent
                                     icon.name: "edit-image-symbolic"
-                                    enabled: !presets[modelData].builtin
+                                    enabled: !root.presets[content.modelData].builtin
                                     onClicked: {
-                                        runCommand.run(spectaclePreviewCmd+"'" + presets[modelData].dir+"/preview.png" + "'")
+                                        runCommand.run(root.spectaclePreviewCmd+"'" + content.dir+"/preview.png" + "'")
                                     }
                                     property bool showTooltip: false
                                     property bool hasPosition: tooltipX !== 0 && tooltipY !== 0
@@ -376,9 +383,9 @@ KCM.SimpleKCM {
                                     ToolTip {
                                         text: i18n("Update preview")
                                         parent: btn
-                                        visible: parent.showTooltip && parent.hasPosition
-                                        x: parent.tooltipX - width / 2
-                                        y: parent.tooltipY - height - 2
+                                        visible: btn.showTooltip && btn.hasPosition
+                                        x: btn.tooltipX - width / 2
+                                        y: btn.tooltipY - height - 2
                                         delay: 1
                                     }
                                     background: Rectangle {
@@ -403,9 +410,9 @@ KCM.SimpleKCM {
                                             }
                                         }
                                         TapHandler {
-                                            enabled: !presets[modelData].builtin
+                                            enabled: !root.presets[content.modelData].builtin
                                             onTapped: runCommand.run(
-                                                spectaclePreviewCmd+"'" + presets[modelData].dir+"/preview.png" + "'"
+                                                root.spectaclePreviewCmd+"'" + content.dir+"/preview.png" + "'"
                                             )
                                         }
                                         Timer {

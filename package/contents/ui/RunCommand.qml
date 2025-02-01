@@ -2,6 +2,7 @@ import QtQuick
 import org.kde.plasma.plasma5support as P5Support
 
 Item {
+    id: root
     property string output: ""
     signal exited(string cmd, int exitCode, int exitStatus, string stdout, string stderr)
 
@@ -10,7 +11,6 @@ Item {
         if (stdout.length > 0) {
             try {
                 output = stdout.trim()
-                ready(output)
             } catch (e) {
                 console.error(e, e.stack)
             }
@@ -31,7 +31,7 @@ Item {
             var exitStatus = data["exit status"]
             var stdout = data["stdout"]
             var stderr = data["stderr"]
-            exited(source, exitCode, exitStatus, stdout, stderr)
+            root.exited(source, exitCode, exitStatus, stdout, stderr)
             disconnectSource(source)
             sourceConnected(source)
         }

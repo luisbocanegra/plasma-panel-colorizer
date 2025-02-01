@@ -66,8 +66,8 @@ PlasmoidItem {
     // the same foreground when we're not coloring them separately
     property int trayIndex: 0
     // keep track of these to allow others to follow their color
-    property Item panelBgItem
-    property Item trayWidgetBgItem
+    property QtObject panelBgItem
+    property QtObject trayWidgetBgItem
     property string lastPreset
     property var presetContent: ""
     property bool animatePropertyChanges: plasmoid.configuration.animatePropertyChanges
@@ -329,7 +329,7 @@ PlasmoidItem {
         // the usual way
         id: effectRect
         property bool luisbocanegraPanelColorizerEffectManaged: true
-        property Item target
+        property QtObject target
         height: target.height
         width: target.width
         anchors.centerIn: parent
@@ -340,7 +340,7 @@ PlasmoidItem {
 
     property Component backgroundComponent: Kirigami.ShadowedRectangle {
         id: rect
-        property Item target
+        property QtObject target
         property int targetIndex
         // use an exra id so we can track the panel and items in tray separately
         property int maskIndex: {
@@ -1204,7 +1204,7 @@ PlasmoidItem {
         return null
     }
 
-    property Item panelLayoutContainer: {
+    property QtObject panelLayoutContainer: {
         if (!panelLayout) return null
         return panelLayout.parent
     }
@@ -1266,7 +1266,7 @@ PlasmoidItem {
         when: !editMode
     }
 
-    property Item panelBg: {
+    property QtObject panelBg: {
         if (!panelLayoutContainer) return null
         return panelLayoutContainer.parent
     }
@@ -1286,7 +1286,7 @@ PlasmoidItem {
         return null;
     }
 
-    property Item trayExpandArrow: {
+    property QtObject trayExpandArrow: {
         if (trayGridView?.parent) {
             return Utils.findTrayExpandArrow(trayGridView.parent)
         }
@@ -1295,14 +1295,14 @@ PlasmoidItem {
 
     Connections {
         target: trayGridView
-        onWidthChanged: {
+        function onWidthChanged() {
             if (horizontal) {
                 trayExpandArrow.iconSize = trayGridView.cellWidth
             } else {
                 trayExpandArrow.iconSize = trayGridView.cellHeight
             }
         }
-        onHeightChanged: {
+        function onHeightChanged() {
             if (horizontal) {
                 trayExpandArrow.iconSize = trayGridView.cellWidth
             } else {
@@ -1312,7 +1312,7 @@ PlasmoidItem {
     }
 
     // Search for the element containing the panel background
-    property var panelElement: {
+    property QtObject panelElement: {
         let candidate = main.parent;
         while (candidate) {
             if (candidate.hasOwnProperty("floating")) {
@@ -1323,7 +1323,7 @@ PlasmoidItem {
         return null
     }
 
-    property ContainmentItem containmentItem: {
+    property QtObject containmentItem: {
         let candidate = main.parent;
         while (candidate) {
             if (candidate.toString().indexOf("ContainmentItem_QML") > -1 ) {
@@ -1335,7 +1335,6 @@ PlasmoidItem {
     }
 
     onPanelElementChanged: {
-        if(!panelElement) return
         Utils.panelOpacity(panelElement, isEnabled, nativePanelBackgroundOpacity)
     }
 
@@ -1375,7 +1374,6 @@ PlasmoidItem {
     }
 
     onNativePanelBackgroundOpacityChanged: {
-        if(!panelElement) return
         Utils.panelOpacity(panelElement, isEnabled, nativePanelBackgroundOpacity)
     }
 
@@ -1388,7 +1386,6 @@ PlasmoidItem {
     }
 
     onNativePanelBackgroundEnabledChanged: {
-        if(!containmentItem) return
         Utils.toggleTransparency(containmentItem, nativePanelBackgroundEnabled)
         Utils.panelOpacity(panelElement, isEnabled, nativePanelBackgroundOpacity)
     }
@@ -1399,6 +1396,7 @@ PlasmoidItem {
 
     // inspired by https://invent.kde.org/plasma/plasma-desktop/-/merge_requests/1912
     function setFloatigApplets() {
+        if (!containmentItem) return
         if (floatingDialogs) {
             containmentItem.Plasmoid.containmentDisplayHints |= PlasmaCore.Types.ContainmentPrefersFloatingApplets
         } else {
@@ -1406,17 +1404,11 @@ PlasmoidItem {
         }
     }
 
-    Connections {
-        target: containmentItem.Plasmoid
-        onContainmentDisplayHintsChanged: {
-            setFloatigApplets()
-        }
-    }
-
     onContainmentItemChanged: {
-        if(!containmentItem) return
         Utils.toggleTransparency(containmentItem, nativePanelBackgroundEnabled)
         setFloatigApplets()
+        if (!containmentItem) return
+        containmentItem.Plasmoid.onContainmentDisplayHintsChanged.connect(setFloatigApplets)
     }
 
     // HACK: change panelLayout spacing on startup to trigger a length reload
@@ -1455,7 +1447,7 @@ PlasmoidItem {
 
     onPanelLayoutCountChanged: {
         if (panelLayoutCount === 0) return
-        console.error("onPanelLayoutCountChanged")
+        console.log("onPanelLayoutCountChanged")
         Qt.callLater(function() {
             trayInitTimer.restart()
             showWidgets(panelLayout)
@@ -1638,7 +1630,7 @@ PlasmoidItem {
     }
 
     function showWidgets(panelLayout) {
-        console.error("showWidgets()")
+        console.log("showWidgets()")
         for (var i in panelLayout.children) {
             const child = panelLayout.children[i];
             // name may not be available while gragging into the panel and
@@ -1684,9 +1676,9 @@ PlasmoidItem {
         })
         try {
             panelColorizer = Qt.createQmlObject("import org.kde.plasma.panelcolorizer 1.0; PanelColorizer { id: panelColorizer }", main)
-            console.error("QML Plugin org.kde.plasma.panelcolorizer loaded");
+            console.log("QML Plugin org.kde.plasma.panelcolorizer loaded");
         } catch (err) {
-            console.error("QML Plugin org.kde.plasma.panelcolorizer not found");
+            console.warn("QML Plugin org.kde.plasma.panelcolorizer not found. Custom blur background will not work.");
         }
     }
 
@@ -1832,9 +1824,10 @@ PlasmoidItem {
             Connections {
                 target: runCommand
                 function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
-                    console.error(cmd, exitCode, exitStatus, stdout, stderr)
-                    if (exitCode!==0) return
-                    // console.log(stdout);
+                    if (exitCode!==0) {
+                        console.error(cmd, exitCode, exitStatus, stdout, stderr)
+                        return
+                    }
                     if(cmd === listPresetsCmd) {
                         if (stdout.length === 0) return
 
