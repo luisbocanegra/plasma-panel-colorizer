@@ -18,8 +18,25 @@ PanelColorizer::PanelColorizer(QObject *parent) : QObject(parent) {}
 void PanelColorizer::updatePanelMask(int index, QRectF rect, double topLeftRadius, double topRightRadius,
                                      double bottomLeftRadius, double bottomRightRadius, QPointF offset,
                                      int radiusCompensation, bool visible) {
-    // qDebug() << "updatePanelMask x:" << offset.x() << " y:" << offset.y() << " W:" << rect.width()
-    //          << " H:" << rect.height();
+    if (rect.isEmpty()) {
+        qWarning() << "PanelColorizer::updatePanelMask: Invalid rect: " << rect;
+        return;
+    }
+
+    QPixmap pixmap(rect.size().toSize());
+    pixmap.fill(Qt::transparent);
+    // Draw the QPainterPath onto the QPixmap for antialiasing
+    QPainter painter(&pixmap);
+    if (!painter.isActive()) {
+        qWarning() << "PanelColorizer::updatePanelMask: QPainter is not active";
+        return;
+    }
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setBrush(Qt::black);
+    // no border
+    painter.setPen(Qt::NoPen);
+
+    // HACK: make the kornes less visible
     topLeftRadius += (topLeftRadius != 0) ? radiusCompensation : 0;
     topRightRadius += (topRightRadius != 0) ? radiusCompensation : 0;
     bottomLeftRadius += (bottomLeftRadius != 0) ? radiusCompensation : 0;
@@ -35,14 +52,6 @@ void PanelColorizer::updatePanelMask(int index, QRectF rect, double topLeftRadiu
     path.lineTo(rect.topLeft() + QPointF(0, topLeftRadius));
     path.quadTo(rect.topLeft(), rect.topLeft() + QPointF(topLeftRadius, 0));
 
-    QPixmap pixmap(rect.size().toSize());
-    pixmap.fill(Qt::transparent);
-    // Draw the QPainterPath onto the QPixmap for antialiasing
-    QPainter painter(&pixmap);
-    painter.setRenderHint(QPainter::Antialiasing);
-    painter.setBrush(Qt::black);
-    // no border
-    painter.setPen(Qt::NoPen);
     painter.drawPath(path);
 
     QRegion region = QRegion(pixmap.createMaskFromColor(Qt::transparent));
