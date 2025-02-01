@@ -202,7 +202,7 @@ PlasmoidItem {
     onFloatignessChanged: {
         updateMasks()
         // fixes the mask getting stuck a couple of pixels off for some reason
-        if (main.floatigness === 1 || main.floatigness === 0) {
+        if ((main.floatigness === 1 || main.floatigness === 0) && !editMode) {
             Utils.delay(10, () => {
                 updateMasks()
                 activatePlasmoidCycle()
@@ -1772,6 +1772,8 @@ PlasmoidItem {
     function bindPlasmoidStatus() {
         Plasmoid.status = Qt.binding(function () {return (editMode || !hideWidget) ? PlasmaCore.Types.ActiveStatus : PlasmaCore.Types.HiddenStatus})
     }
+
+    onHideWidgetChanged: bindPlasmoidStatus()
 
     Timer {
         id: bindPlasmoidStatusTimer
