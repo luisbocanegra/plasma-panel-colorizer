@@ -1176,7 +1176,9 @@ PlasmoidItem {
 
         function updateMask() {
             if (panelColorizer === null || !borderRec) return
-            // console.error("updateMask()", widgetName)
+            // don't try to create a mask if the widget is not visible
+            // for example with PlasmaCore.Types.HiddenStatus
+            if (borderRec.width <= 0 || borderRec.height <= 0) return
             position = Utils.getGlobalPosition(borderRec, panelElement)
             panelColorizer.updatePanelMask(
                 maskIndex,
