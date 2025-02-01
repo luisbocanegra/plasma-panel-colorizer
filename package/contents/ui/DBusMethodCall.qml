@@ -12,7 +12,11 @@ Item {
     property var inSignature: null
     property bool useGdbus: false
 
-    onArgumentsChanged: dbusLoader.item.arguments = root.arguments
+    onArgumentsChanged: {
+        if (dbusLoader.status === Loader.Ready) {
+            dbusLoader.item.arguments = root.arguments
+        }
+    }
 
     Loader {
         id: dbusLoader

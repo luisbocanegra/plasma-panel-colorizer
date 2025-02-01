@@ -25,6 +25,7 @@ ColumnLayout {
     property alias isEnabled: isEnabled.checked
     property int currentTab
     property var panelColorizer: null
+    property bool ready: false
 
     signal tabChanged(currentTab: int)
 
@@ -48,24 +49,27 @@ ColumnLayout {
     }
 
     function updateConfig() {
-        if (keyName) {
-            config[keyName] = configLocal
-        } else {
-            config = configLocal
-        }
-        configString = JSON.stringify(config, null, null)
-        // console.error(configString)
-        updateConfigString(configString, config)
-        // console.error(JSON.stringify(configLocal, null, null))
+        Qt.callLater(() => {
+            if (keyName) {
+                config[keyName] = configLocal
+            } else {
+                config = configLocal
+            }
+            configString = JSON.stringify(config, null, null)
+            updateConfigString(configString, config)
+        })
     }
 
     Component.onCompleted: {
-        try {
-            panelColorizer = Qt.createQmlObject("import org.kde.plasma.panelcolorizer 1.0; PanelColorizer { id: panelColorizer }", backgroundRoot)
-            console.error("QML Plugin org.kde.plasma.panelcolorizer loaded");
-        } catch (err) {
-            console.error("QML Plugin org.kde.plasma.panelcolorizer not found");
-        }
+        Qt.callLater(() => {
+            try {
+                panelColorizer = Qt.createQmlObject("import org.kde.plasma.panelcolorizer 1.0; PanelColorizer { id: panelColorizer }", backgroundRoot)
+                console.error("QML Plugin org.kde.plasma.panelcolorizer loaded");
+            } catch (err) {
+                console.error("QML Plugin org.kde.plasma.panelcolorizer not found");
+            }
+            ready = true
+        })
     }
 
     RowLayout {
@@ -146,7 +150,7 @@ ColumnLayout {
                 id: warningResources
                 Layout.fillWidth: true
                 text: i18n("C++ plugin not installed, <b>Blur custom background</b> will not work.<br>Check the repository README on GitHub for details.")
-                visible: panelColorizer === null
+                visible: backgroundRoot.panelColorizer === null && backgroundRoot.ready
                 type: Kirigami.MessageType.Warning
                 actions: [
                     Kirigami.Action {

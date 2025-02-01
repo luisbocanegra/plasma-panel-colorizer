@@ -61,6 +61,7 @@ function findTrayExpandArrow(item) {
 
 
 function panelOpacity(panelElement, enabled, panelRealBgOpacity) {
+  if (!panelElement) return
   for (let i in panelElement.children) {
     const current = panelElement.children[i]
 
@@ -82,6 +83,7 @@ function dumpProps(obj) {
 }
 
 function toggleTransparency(containmentItem, nativePanelBackgroundEnabled) {
+  if (!containmentItem) return
   containmentItem.Plasmoid.backgroundHints = !nativePanelBackgroundEnabled
     ? PlasmaCore.Types.NoBackground
     : PlasmaCore.Types.DefaultBackground

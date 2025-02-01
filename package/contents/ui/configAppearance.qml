@@ -6,6 +6,7 @@ import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
 import "components" as Components
+import "code/utils.js" as Utils
 
 KCM.SimpleKCM {
     id: root
@@ -13,6 +14,7 @@ KCM.SimpleKCM {
     property int currentTab
     property string cfg_globalSettings
     property alias cfg_isEnabled: headerComponent.isEnabled
+    property bool ready: false
 
     property var followVisbility: {
         "widgets": {
@@ -84,14 +86,21 @@ KCM.SimpleKCM {
                 }
                 onCurrentValueChanged: {
                     componentLoader.sourceComponent = null
+                    if (!root.ready) return
                     componentLoader.sourceComponent = settingsComp
                 }
             }
         }
+        Component.onCompleted: {
+            Utils.delay(500, () => {
+                componentLoader.sourceComponent = settingsComp
+                root.ready = true
+            }, root)
+        }
         Loader {
             asynchronous: true
             id: componentLoader
-            sourceComponent: settingsComp
+            sourceComponent: null
             Layout.fillWidth: true
             onLoaded: {
                 item.configString = cfg_globalSettings
