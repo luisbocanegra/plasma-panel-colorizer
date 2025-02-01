@@ -77,8 +77,8 @@ PlasmoidItem {
         "fullscreenWindow": tasksModel.fullscreenExists,
         "maximized": tasksModel.maximizedExists,
         "visibleWindows": tasksModel.visibleExists,
-        "touchingWindow": !panelElement ? false : Boolean(panelElement.touchingWindow),
-        "floating": !panelElement ? false : Boolean(panelElement.floatingness)
+        "touchingWindow": panelElement && panelElement.touchingWindow,
+        "floating": panelElement && panelElement.floatingness > 0
     }
     property var widgetsDoingBlur: ({})
     property var trayItemsDoingBlur: ({})
@@ -1465,8 +1465,8 @@ PlasmoidItem {
     }
 
     function switchPreset() {
-        let nextPresetDir = Utils.getPresetName(panelState, presetAutoloading)
-        if (!nextPresetDir) return
+        const nextPresetDir = Utils.getPresetName(panelState, presetAutoloading)
+        if (nextPresetDir && nextPresetDir !== lastPreset)
         applyPreset(nextPresetDir)
     }
 

@@ -363,7 +363,7 @@ function getPresetName(panelState, presetAutoloading) {
   const priority = ["fullscreenWindow", "maximized", "touchingWindow", "visibleWindows", "floating", "normal"]
   for (let state of priority) {
     if ((panelState[state] || state === "normal") && presetAutoloading[state]) {
-      console.error("getPresetName()", state, "->", presetAutoloading[state])
+      // console.error("getPresetName()", state, "->", presetAutoloading[state])
       return presetAutoloading[state]
     }
   }

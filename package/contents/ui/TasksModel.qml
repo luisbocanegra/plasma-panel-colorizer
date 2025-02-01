@@ -69,9 +69,18 @@ Item {
         filterMinimized: true
 
         onDataChanged: {
-            if (!updateTimer.running) {
-                updateTimer.start()
-            }
+            Qt.callLater(() => {
+                if (!updateTimer.running) {
+                    updateTimer.start()
+                }
+            })
+        }
+        onCountChanged: {
+            Qt.callLater(() => {
+                if (!updateTimer.running) {
+                    updateTimer.start()
+                }
+            })
         }
     }
 
@@ -79,7 +88,7 @@ Item {
         id: updateTimer
         interval: 5
         onTriggered: {
-            updateWindowsinfo()
+            root.updateWindowsinfo()
         }
     }
 
