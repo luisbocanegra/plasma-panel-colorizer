@@ -21,7 +21,7 @@ KCM.SimpleKCM {
         // fix 1.0.0 old config format
         if (loaded) return
         if (typeof config.position !== "object") {
-            console.error("fix 1.0.0 old config format")
+            console.warn("fix 1.0.0 old config format")
             config = Globals.baseStockPanelSettings
             updateConfig()
         }

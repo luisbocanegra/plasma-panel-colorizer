@@ -25,7 +25,7 @@ KCM.SimpleKCM {
     Component.onCompleted: {
         // ignore 1.2.0- old config format
         forceFgConfig = Utils.clearOldWidgetConfig(config.widgets)
-        console.error(JSON.stringify(forceFgConfig, null, null))
+        console.log(JSON.stringify(forceFgConfig, null, null))
         initWidgets()
         updateWidgetsModel()
     }
@@ -75,9 +75,9 @@ KCM.SimpleKCM {
             if (cmd.startsWith("cat")) {
                 const content = stdout.trim()
                 try {
-                    console.error(content)
+                    console.log(content)
                     const newConfig = JSON.parse(content)
-                    importConfig(newConfig)
+                    root.importConfig(newConfig)
                 } catch (e) {
                     console.error(e)
                 }

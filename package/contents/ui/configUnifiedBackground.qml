@@ -20,7 +20,7 @@ KCM.SimpleKCM {
     Component.onCompleted: {
         // ignore 1.2.0- old config format
         unifiedBackgroundSettings = Utils.clearOldWidgetConfig(config.unifiedBackground)
-        console.error(JSON.stringify(unifiedBackgroundSettings, null, null))
+        console.log(JSON.stringify(unifiedBackgroundSettings, null, null))
         initWidgets()
         updateWidgetsModel()
     }
@@ -32,7 +32,7 @@ KCM.SimpleKCM {
             const id = widget.id
             const name = widget.name
             const unifyBgType = widget.unifyBgType
-            console.error(name, unifyBgType)
+            console.log(name, unifyBgType)
 
             const cfgIndex = Utils.getWidgetConfigIdx(id, name, unifiedBackgroundSettings)
             if (unifyBgType != 0) {

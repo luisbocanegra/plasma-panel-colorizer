@@ -49,8 +49,10 @@ KCM.SimpleKCM {
     Connections {
         target: runCommand
         function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
-            console.error(cmd, exitCode, exitStatus, stdout, stderr)
-            if (exitCode!==0) return
+            if (exitCode!==0) {
+                console.error(cmd, exitCode, exitStatus, stdout, stderr)
+                return
+            }
             // console.log(stdout);
             if(cmd === listPresetsCmd) {
                 if (stdout.length === 0) return
@@ -68,7 +70,7 @@ KCM.SimpleKCM {
                     let name = path.split("/")
                     name = name[name.length-1]
                     const dir = parts[1]
-                    console.error(dir)
+                    console.log(dir)
                     const preset = {
                         "name": name,
                         "value": dir,

@@ -72,7 +72,7 @@ KCM.SimpleKCM {
                 const content = stdout.trim().split("\n")
                 try {
                     const newConfig = JSON.parse(content)
-                    importConfig(newConfig)
+                    root.importConfig(newConfig)
                 } catch (e) {
                     console.error(e)
                 }
@@ -269,7 +269,7 @@ KCM.SimpleKCM {
                     onAddOverride: (preset, index) => {
                         if (!loaded) return
                         let asocIndex = Utils.getWidgetConfigIdx(id, name, associationsModel)
-                        console.error("asocIndex", asocIndex)
+                        console.log("asocIndex", asocIndex)
                         if (asocIndex === -1) {
                             associationsModel.push({
                                 "id": id,

@@ -176,7 +176,7 @@ KCM.SimpleKCM {
             console.error(`Detected unsafe deletion of '${path}' aborting.`)
             return
         }
-        console.error("rm -r '" + path + "'" )
+        console.warn("rm -r '" + path + "'" )
         runCommand.run("rm -r '" + path + "'" )
     }
 
