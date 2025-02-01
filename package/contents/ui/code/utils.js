@@ -90,6 +90,7 @@ function toggleTransparency(containmentItem, nativePanelBackgroundEnabled) {
 }
 
 function findWidgets(panelLayout, panelWidgets) {
+  if (!panelLayout) return panelWidgets
   // console.log("Updating panel widgets list");
   for (let i in panelLayout.children) {
     const child = panelLayout.children[i];
@@ -108,6 +109,7 @@ function findWidgets(panelLayout, panelWidgets) {
   return panelWidgets
 }
 function findWidgetsTray(grid, panelWidgets) {
+  if (!grid) return panelWidgets
   if (grid instanceof GridView) {
     for (let i = 0; i < grid.count; i++) {
       const item = grid.itemAtIndex(i);
@@ -159,6 +161,7 @@ function findWidgetsTray(grid, panelWidgets) {
 function getWidgetNameAndId(item) {
   let name = ""
   let id = -1
+  if (!item) return { name, id }
   if (item.applet?.plasmoid?.pluginName) {
     name = item.applet.plasmoid.pluginName
     id = item.applet.plasmoid.id

@@ -330,8 +330,8 @@ PlasmoidItem {
         id: effectRect
         property bool luisbocanegraPanelColorizerEffectManaged: true
         property QtObject target
-        height: target.height
-        width: target.width
+        height: target?.height ?? 0
+        width: target?.width ?? 0
         anchors.centerIn: parent
         source: target
         colorization: 1
@@ -356,7 +356,8 @@ PlasmoidItem {
         property bool isTrayArrow: itemType === Enums.ItemType.TrayArrow
         property bool inTray: isTray || isTrayArrow
         property bool luisbocanegraPanelColorizerBgManaged: true
-        property var widgetProperties: isTrayArrow ? { "id":-1, "name": "org.kde.plasma.systemtray.expand" } :
+        property var widgetProperties: isTrayArrow ?
+            { "id":-1, "name": "org.kde.plasma.systemtray.expand" } :
             Utils.getWidgetNameAndId(target)
         property string widgetName: widgetProperties.name
         property int widgetId: widgetProperties.id
@@ -524,17 +525,17 @@ PlasmoidItem {
             }
         }
 
-        property int targetChildren: target.children.length
+        property int targetChildren: target?.children.length ?? 0
         onTargetChildrenChanged: {
             // console.error("CHILDREN CHANGED", targetChildren, target)
             recolorTimer.restart()
         }
-        property int targetVisibleChildren: target.visibleChildren.length
+        property int targetVisibleChildren: target?.visibleChildren.length ?? 0
         onTargetVisibleChildrenChanged: {
             // console.error("CHILDREN CHANGED", targetVisibleChildren, target)
             recolorTimer.restart()
         }
-        property int targetCount: target.count || 0
+        property int targetCount: target?.count ?? 0
         onTargetCountChanged: {
             // console.error("COUNT CHANGED", targetCount, target)
             recolorTimer.restart()
@@ -584,8 +585,8 @@ PlasmoidItem {
             recolorTimer.start()
         }
 
-        height: isTray ? target.height : parent.height
-        width: isTray ? target.width : parent.width
+        height: isTray ? (target?.height ?? 0) : parent.height
+        width: isTray ? (target?.width ?? 0 ): parent.width
         Behavior on height {
             enabled: animatePropertyChanges
             NumberAnimation {
@@ -654,7 +655,7 @@ PlasmoidItem {
         Binding {
             target: rect
             property: "width"
-            value: parent.width + horizontalWidth
+            value: (parent?.width ?? 0) + horizontalWidth
             when: isWidget
             delayed: true
         }
@@ -662,7 +663,7 @@ PlasmoidItem {
         Binding {
             target: rect
             property: "height"
-            value: parent.height + verticalWidth
+            value: (parent?.height ?? 0) + verticalWidth
             when: isWidget && !horizontal
             delayed: true
         }
@@ -1009,7 +1010,7 @@ PlasmoidItem {
             color: {
                 return getColor(shadowColorCfg, targetIndex, rect.color, itemType, dropShadow)
             }
-            source: target.applet
+            source: target?.applet ?? null
             visible: fgShadowEnabled
             Behavior on color {
                 enabled: animatePropertyChanges
@@ -1448,14 +1449,31 @@ PlasmoidItem {
     }
 
     onPanelLayoutCountChanged: {
-        if (panelLayoutCount === 0) return
         console.log("onPanelLayoutCountChanged")
+        initAll()
+        // re-apply customizations after the widget stops being dagged around
+        for (var i = 0; i < panelLayout.children.length; i++) {
+            var item = panelLayout.children[i];
+            if (!item || (!item.hasOwnProperty("draggingChanged"))) return
+            item.draggingChanged.connect(function() {
+                initAll()
+            })
+        }
+    }
+
+    function initAll() {
+        if (!panelLayout || panelLayoutCount === 0) return
         Qt.callLater(function() {
             trayInitTimer.restart()
             showWidgets(panelLayout)
             updateCurrentWidgets()
             showPanelBg(panelBg)
         })
+    }
+
+    onEditModeChanged: {
+        if (editMode) return
+        initAll()
     }
 
     onTrayGridViewCountChanged: {
@@ -1632,6 +1650,7 @@ PlasmoidItem {
     }
 
     function showWidgets(panelLayout) {
+        if (!panelLayout) return
         console.log("showWidgets()")
         for (var i in panelLayout.children) {
             const child = panelLayout.children[i];
