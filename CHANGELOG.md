@@ -1,5 +1,28 @@
 # Changelog
 
+## [2.2.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.1.0...v2.2.0) (2025-02-01)
+
+
+### Features
+
+* option to show a grid behind the panel while configuring ([fedefd9](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/fedefd9b7cdd99c407767ed08a18e0102c075471))
+* show spinning indicator on the panel being configured ([b4b8ca4](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/b4b8ca474085c871fee0726f408bcabd20ba301b))
+
+
+### Bug Fixes
+
+* downgrade a bunch error messages ([e8c526a](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/e8c526af3b55e6ad3537b4a3d9f38cf1f1e86cc5))
+* fallback to gdbus for plasma 6.1 ([c699660](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/c699660eaff4a6c2f3cd621f8daec5a9844e98d2))
+* floating panel auto-loading condition not working after closing a window ([83b2e58](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/83b2e58c10997a924c95a15bb3809bf4c8b7c5e5))
+* mask off by a couple of pixels when panel de-floats ([f266ab2](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/f266ab2165642612473d3a71fe0e7951f9c7af96))
+* re-apply customization after changing order of widgets ([b61d14e](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/b61d14e8c9a925c20565225832189ed571a2dd40))
+* target current panel by id when changing stock panel settings ([7cf87cb](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/7cf87cbca56b283d41a751fa910024828f355f01))
+* updatePanelMask QPainter warnings log spam caused by hidden widgets ([fbd55a3](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/fbd55a3d8cf692d1ee2900f448e8bfe227352d8e))
+* use old mask offset for plasma 6.1.x or lower ([495578c](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/495578c8e1a3bf7c25fdd7e3acef1381b219f098))
+* widget not hiding (main) ([adb3219](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/adb32194b3f0931f3401bef6f4de43753b331e23))
+* widget not hiding once again (main) ([19639a3](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/19639a3e4567bd26035e0d0c765893f6cb1ea63f))
+* X11 screen flicker and window resizing with panel ([56c2a4a](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/56c2a4ac7a766bc63c3c6f76c45bdebbaa0b13ea))
+
 ## [2.1.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.0.0...v2.1.0) (2025-01-26)
 
 
