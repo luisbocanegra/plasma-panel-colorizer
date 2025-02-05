@@ -801,132 +801,55 @@ PlasmoidItem {
             delayed: true
         }
 
-        Rectangle {
+        CustomBorder {
             id: borderRec
-            anchors.fill: parent
-            color: "transparent"
             visible: borderEnabled && Math.min(rect.height, rect.width) > 1
-            property var borderColorCfg: cfg.border.color
-            Kirigami.Theme.colorSet: Kirigami.Theme[borderColorCfg.systemColorSet]
-            property color borderColor: {
-                return getColor(borderColorCfg, targetIndex, rect.color, itemType, borderRec)
-            }
-
             Behavior on borderColor {
-                enabled: animatePropertyChanges
+                enabled: main.animatePropertyChanges
                 ColorAnimation {
                     duration: main.animationDuration
                     easing.type: main.animationEasingType
                 }
             }
+            horizontal: main.horizontal
+            unifyBgType: unifyBgType
+            corners: {
+                "topLeftRadius": rect.topLeftRadius,
+                "topRightRadius": rect.topRightRadius,
+                "bottomLeftRadius": rect.bottomLeftRadius,
+                "bottomRightRadius": rect.bottomRightRadius
+            }
+            cfgBorder: cfg.border
+            borderColor: {
+                return getColor(cfg.border.color, targetIndex, rect.color, itemType, borderRec)
+            }
+        }
 
-            Rectangle {
-                id: customBorderTop
-                width: parent.width
-                visible: cfg.border.customSides && cfg.border.custom.widths.top
-                height: cfg.border.custom.widths.top
-                color: borderRec.borderColor
-                anchors.top: parent.top
-            }
-            Rectangle {
-                id: customBorderBottom
-                width: parent.width
-                visible: cfg.border.customSides && cfg.border.custom.widths.bottom
-                height: cfg.border.custom.widths.bottom
-                color: borderRec.borderColor
-                anchors.bottom: parent.bottom
-            }
-
-            Rectangle {
-                id: customBorderLeft
-                height: parent.height
-                visible: cfg.border.customSides && cfg.border.custom.widths.left
-                width: cfg.border.custom.widths.left
-                color: borderRec.borderColor
-                anchors.left: parent.left
-            }
-            Rectangle {
-                id: customBorderRight
-                height: parent.height
-                visible: cfg.border.customSides && cfg.border.custom.widths.right
-                width: cfg.border.custom.widths.right
-                color: borderRec.borderColor
-                anchors.right: parent.right
-            }
-
-            Kirigami.ShadowedRectangle {
-                id: normalBorder
-                anchors.fill: parent
-                color: "transparent"
-                // the mask source needs to be hidden by default
-                visible: false
-                border {
-                    color: borderRec.borderColor
-                    width: !cfg.border.customSides ? cfg.border.width || -1 : 0
-                }
-                corners {
-                    topLeftRadius: topLeftRadius
-                    topRightRadius: topRightRadius
-                    bottomLeftRadius: bottomLeftRadius
-                    bottomRightRadius: bottomRightRadius
+        CustomBorder {
+            anchors.topMargin: cfg.border.enabled ? cfg.border.width : 0
+            anchors.bottomMargin: cfg.border.enabled ? cfg.border.width : 0
+            anchors.leftMargin: cfg.border.enabled ? cfg.border.width : 0
+            anchors.rightMargin: cfg.border.enabled ? cfg.border.width : 0
+            id: borderSecondary
+            visible: cfg.borderSecondary.enabled && cfgEnabled && Math.min(rect.height, rect.width) > 1
+            Behavior on borderColor {
+                enabled: main.animatePropertyChanges
+                ColorAnimation {
+                    duration: main.animationDuration
+                    easing.type: main.animationEasingType
                 }
             }
-
-            // Mask to hide one or two borders for unified backgrounds
-            MultiEffect {
-                source: normalBorder
-                anchors.fill: normalBorder
-                maskEnabled: true
-                maskSource: rightBorderMask
-                maskInverted: true
+            horizontal: main.horizontal
+            unifyBgType: unifyBgType
+            corners: {
+                "topLeftRadius": rect.topLeftRadius,
+                "topRightRadius": rect.topRightRadius,
+                "bottomLeftRadius": rect.bottomLeftRadius,
+                "bottomRightRadius": rect.bottomRightRadius
             }
-            Item {
-                id: rightBorderMask
-                layer.enabled: true
-                visible: false
-                width: borderRec.width
-                height: borderRec.height
-                Rectangle {
-                    id: rect1
-                    width: horizontal ? cfg.border.width : borderRec.width - (cfg.border.width * 2)
-                    height: horizontal ? borderRec.height - (cfg.border.width * 2) : cfg.border.width
-                    color: (unifyBgType === 1 || unifyBgType === 2) ? "black" : "transparent"
-                    anchors.right: horizontal ? parent.right : undefined
-                    anchors.bottom: !horizontal ? parent.bottom : undefined
-                    anchors.verticalCenter: horizontal ? parent.verticalCenter : undefined
-                    anchors.horizontalCenter: !horizontal ? parent.horizontalCenter : undefined
-
-                }
-                Rectangle {
-                    id: rect2
-                    width: horizontal ? cfg.border.width : borderRec.width - (cfg.border.width * 2)
-                    height: horizontal ? borderRec.height - (cfg.border.width * 2) : cfg.border.width
-                    color: (unifyBgType === 2 || unifyBgType === 3) ? "black" : "transparent"
-                    anchors.left: horizontal ? parent.left : undefined
-                    anchors.top: !horizontal ? parent.top : undefined
-                    anchors.verticalCenter: horizontal ? parent.verticalCenter : undefined
-                    anchors.horizontalCenter: !horizontal ? parent.horizontalCenter : undefined
-                }
-            }
-
-            layer.enabled: cfg.border.customSides
-            layer.effect: MultiEffect {
-                maskEnabled: true
-                maskSpreadAtMax: 1
-                maskSpreadAtMin: 1
-                maskThresholdMin: 0.5
-                maskSource: ShaderEffectSource {
-                    sourceItem: Kirigami.ShadowedRectangle {
-                        width: rect.width
-                        height: rect.height
-                        corners {
-                            topLeftRadius: topLeftRadius
-                            topRightRadius: topRightRadius
-                            bottomLeftRadius: bottomLeftRadius
-                            bottomRightRadius: bottomRightRadius
-                        }
-                    }
-                }
+            cfgBorder: cfg.borderSecondary
+            borderColor: {
+                return getColor(cfg.borderSecondary.color, targetIndex, rect.color, itemType, borderSecondary)
             }
         }
 

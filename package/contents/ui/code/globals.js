@@ -163,6 +163,7 @@ const basePanelConfig = {
   "margin": baseMargin,
   "padding": basePadding,
   "border": baseBorder,
+  "borderSecondary": baseBorder,
   "shadow": baseShadowConfig,
   "floatingDialogs": false
 }
@@ -176,6 +177,7 @@ const baseWidgetConfig = {
   "margin": baseMargin,
   "spacing": 4,
   "border": baseBorder,
+  "borderSecondary": baseBorder,
   "shadow": baseShadowConfig,
 }
 
@@ -187,6 +189,7 @@ const baseTrayConfig = {
   "radius": baseRadius,
   "margin": baseMargin,
   "border": baseBorder,
+  "borderSecondary": baseBorder,
   "shadow": baseShadowConfig,
 }
 
@@ -198,6 +201,7 @@ const baseOverrideConfig = {
   "margin": baseMargin,
   "spacing": 4,
   "border": baseBorder,
+  "borderSecondary": baseBorder,
   "shadow": baseShadowConfig,
   "enabled": true,
   "disabledFallback": true
