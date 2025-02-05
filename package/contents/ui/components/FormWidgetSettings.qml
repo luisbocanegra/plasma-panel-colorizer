@@ -297,21 +297,48 @@ ColumnLayout {
     }
 
     FormBorder {
+        isSection: true
+        sectionName: i18n("Primary Border")
         enabled: backgroundRoot.isEnabled
         visible: currentTab === 2
-        config: backgroundRoot.configLocal
+        config: backgroundRoot.configLocal.border
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal = newConfig
+            backgroundRoot.configLocal.border = newConfig
             backgroundRoot.updateConfig()
         }
     }
 
     FormColors {
+        isSection: false
         enabled: backgroundRoot.isEnabled
         visible: currentTab === 2
         config: backgroundRoot.configLocal.border.color
         onUpdateConfigString: (newString, newConfig) => {
             backgroundRoot.configLocal.border.color = newConfig
+            backgroundRoot.updateConfig()
+        }
+        followOptions: followVisbility.foreground
+    }
+
+    FormBorder {
+        isSection: true
+        sectionName: i18n("Secondary Border")
+        enabled: backgroundRoot.isEnabled
+        visible: currentTab === 2
+        config: backgroundRoot.configLocal.borderSecondary
+        onUpdateConfigString: (newString, newConfig) => {
+            backgroundRoot.configLocal.borderSecondary = newConfig
+            backgroundRoot.updateConfig()
+        }
+    }
+
+    FormColors {
+        isSection: false
+        enabled: backgroundRoot.isEnabled
+        visible: currentTab === 2
+        config: backgroundRoot.configLocal.borderSecondary.color
+        onUpdateConfigString: (newString, newConfig) => {
+            backgroundRoot.configLocal.borderSecondary.color = newConfig
             backgroundRoot.updateConfig()
         }
         followOptions: followVisbility.foreground
