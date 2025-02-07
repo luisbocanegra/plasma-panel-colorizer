@@ -1352,7 +1352,7 @@ PlasmoidItem {
         interval: 2000
         onTriggered: {
             doPanelLengthFix = true
-            doPanelLengthFix = false
+            Utils.delay(200, ()=> { doPanelLengthFix = false }, main)
             reconfigure()
         }
     }
