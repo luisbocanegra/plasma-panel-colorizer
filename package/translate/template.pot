@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-01-31 23:42+0000\n"
+"POT-Creation-Date: 2025-02-07 18:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,6 +71,10 @@ msgstr ""
 
 #: ../contents/ui/components/ColorPickerList.qml ../contents/ui/components/FormColors.qml
 msgid "Widget background"
+msgstr ""
+
+#: ../contents/ui/components/FormBorder.qml
+msgid "Border"
 msgstr ""
 
 #: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml
@@ -253,6 +257,14 @@ msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Foreground Color"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Primary Border"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Secondary Border"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
