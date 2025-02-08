@@ -1,4 +1,4 @@
-# Translation of colorizer in LANGUAGE
+# Translation of colorizer in nl
 # Copyright (C) 2025
 # This file is distributed under the same license as the colorizer package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
