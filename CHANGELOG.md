@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.3.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.2.0...v2.3.0) (2025-02-08)
+
+
+### Features
+
+* secondary border ([27eecdf](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/27eecdfd6e2dfac83a1ce53c952f147e37ddc288))
+
+
+### Bug Fixes
+
+* update workaround for upstream panel length bug ([84bcb0b](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/84bcb0ba72c06d6f4851a9777f3899f1ff61507a))
+
 ## [2.2.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.1.0...v2.2.0) (2025-02-01)
 
 
