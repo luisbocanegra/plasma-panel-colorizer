@@ -17,7 +17,7 @@
         "License": "GPL-3.0",
         "Name": "Panel colorizer",
         "Name[de]": "Panel Colorizer",
-        "Version": "2.2.0",
+        "Version": "2.3.0",
         "Website": "https://github.com/luisbocanegra/plasma-panel-colorizer"
     },
     "X-Plasma-API-Minimum-Version": "6.0"
