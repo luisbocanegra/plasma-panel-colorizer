@@ -12,6 +12,7 @@
         "Description": "Latte-Dock and WM status bar customization features for the default Plasma panel",
         "Description[de]": "Latte-Dock und WM Statusbar individuelle Anpassungen für die Plasmakontrollleiste",
         "Description[nl]": "Aanpassingsmogelijkheden voor het standaard Plasma-paneel, gebaseerd op die van Latte-Dock en WM-statusbalk",
+        "Description[zh]": "为默认 Plasma 面板提供 Latte-Dock 和窗口管理器状态栏的自定义功能",
         "EnabledByDefault": false,
         "Icon": "desktop",
         "Id": "luisbocanegra.panel.colorizer",
@@ -19,6 +20,7 @@
         "Name": "Panel colorizer",
         "Name[de]": "Panel Colorizer",
         "Name[nl]": "Paneelkleuring",
+        "Name[zh]": "Panel colorizer",
         "Version": "2.3.0",
         "Website": "https://github.com/luisbocanegra/plasma-panel-colorizer"
     },
