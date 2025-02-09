@@ -1,0 +1,786 @@
+# Translation of colorizer in Chinese (China)
+# Copyright (C) 2025
+# This file is distributed under the same license as the colorizer package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: colorizer\n"
+"Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
+"POT-Creation-Date: 2025-02-07 18:06+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Mill413 <mill413@outlook.com>\n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../metadata.json
+msgid "Panel colorizer"
+msgstr "Panel colorizer"
+
+#: ../metadata.json
+msgid "Latte-Dock and WM status bar customization features for the default Plasma panel"
+msgstr "为默认 Plasma 面板提供 Latte-Dock 和窗口管理器状态栏的自定义功能"
+
+#: ../contents/config/config.qml
+msgid "Presets"
+msgstr "预设"
+
+#: ../contents/config/config.qml
+msgid "Presets auto-loading"
+msgstr "预设自动加载"
+
+#: ../contents/config/config.qml
+msgid "Appearance"
+msgstr "外观"
+
+#: ../contents/config/config.qml
+msgid "Stock Panel Settings"
+msgstr "原生面板设置"
+
+#: ../contents/config/config.qml
+msgid "Unified widget backgrounds"
+msgstr "统一部件背景"
+
+#: ../contents/config/config.qml
+msgid "Preset Overrides"
+msgstr "预设覆盖"
+
+#: ../contents/config/config.qml
+msgid "Global Overrides"
+msgstr "全局覆盖"
+
+#: ../contents/config/config.qml
+msgid "Text and icons"
+msgstr "文本与和图标"
+
+#: ../contents/config/config.qml
+msgid "General"
+msgstr "常规"
+
+#: ../contents/ui/components/CategoryDisabled.qml
+msgid "Panel Colorizer is disabled"
+msgstr "Panel Colorizer 已禁用"
+
+#: ../contents/ui/components/CategoryDisabled.qml ../contents/ui/components/FormWidgetSettings.qml
+msgid "Enable"
+msgstr "启用"
+
+#: ../contents/ui/components/ColorPickerList.qml ../contents/ui/components/FormColors.qml
+msgid "Widget background"
+msgstr "部件背景"
+
+#: ../contents/ui/components/FormBorder.qml
+msgid "Border"
+msgstr "边框"
+
+#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml
+#: ../contents/ui/configPresetAutoload.qml ../contents/ui/configStockPanelSettings.qml
+msgid "Enabled:"
+msgstr "已启用："
+
+#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormColors.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml
+#: ../contents/ui/components/Header.qml
+msgid "Disabled"
+msgstr "已禁用"
+
+#: ../contents/ui/components/FormBorder.qml
+msgid "Width:"
+msgstr "宽度："
+
+#: ../contents/ui/components/FormBorder.qml
+msgid "Custom widths:"
+msgstr "自定义宽度："
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Color"
+msgstr "颜色"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Enable:"
+msgstr "启用："
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Animation:"
+msgstr "动画："
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Interval (ms):"
+msgstr "间隔（毫秒）："
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Smoothing (ms):"
+msgstr "平滑（毫秒）："
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Source:"
+msgstr "来源："
+
+#: ../contents/ui/components/FormColors.qml ../contents/ui/configStockPanelSettings.qml
+msgid "Custom"
+msgstr "自定义"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "System"
+msgstr "系统"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Custom list"
+msgstr "自定义列表"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Random"
+msgstr "随机"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Follow"
+msgstr "跟随"
+
+#: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
+msgid "Element:"
+msgstr "元素："
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Panel background"
+msgstr "面板背景"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Tray widget background"
+msgstr "托盘部件背景"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Color set:"
+msgstr "配色集合："
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Color:"
+msgstr "颜色："
+
+#: ../contents/ui/components/FormColors.qml ../contents/ui/configGeneral.qml
+msgid "Alpha:"
+msgstr "透明度："
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Contrast Correction"
+msgstr "对比度校正"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Saturation:"
+msgstr "饱和度："
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Lightness:"
+msgstr "亮度："
+
+#: ../contents/ui/components/FormPadding.qml
+msgid "Padding"
+msgstr "内边距"
+
+#: ../contents/ui/components/FormPadding.qml
+msgid "Padding:"
+msgstr "内边距："
+
+#: ../contents/ui/components/FormShadow.qml
+msgid "Shadow"
+msgstr "阴影"
+
+#: ../contents/ui/components/FormShadow.qml
+msgid "Size:"
+msgstr "尺寸："
+
+#: ../contents/ui/components/FormShadow.qml
+msgid "X offset:"
+msgstr "X 偏移："
+
+#: ../contents/ui/components/FormShadow.qml
+msgid "Y offset:"
+msgstr "Y 偏移："
+
+#: ../contents/ui/components/FormShape.qml
+msgid "Radius"
+msgstr "圆角半径"
+
+#: ../contents/ui/components/FormShape.qml
+msgid "Margin"
+msgstr "外边距"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "customization"
+msgstr "自定义"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Native panel background:"
+msgstr "原生面板背景："
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Disable to make panel fully transparent, removes contrast and blur effects."
+msgstr "禁用可使面板完全透明，移除此对比度和模糊效果。"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Panel Opacity:"
+msgstr "面板不透明度："
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Set Opacity to 0 to keep just the mask required by Blur custom background."
+msgstr "将不透明度设为 0 以仅保留模糊自定义背景所需的遮罩。"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Blur custom background (Beta):"
+msgstr "模糊自定义背景（测试）："
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Draw a custom blur mask behind the custom background(s).<br><strong>Native panel background must be enabled with opacity of 0 for this to work as intended.</strong>"
+msgstr "在自定义背景后绘制模糊遮罩。<br><strong>需启用原生面板背景并将不透明度设为 0 才能生效。</strong>"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "C++ plugin not installed, <b>Blur custom background</b> will not work.<br>Check the repository README on GitHub for details."
+msgstr "未安装 C++ 插件，<b>模糊自定义背景</b>不可用。<br>详情请查看 GitHub 仓库的 README。"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Force floating dialogs:"
+msgstr "强制浮动对话框："
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Spacing:"
+msgstr "间距："
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "<strong>Odd</strong> values are automatically converted to <strong>evens</strong> if <strong>Unified Background</strong> feature is used."
+msgstr "若启用<strong>统一背景</strong>功能，<strong>奇数</strong>值将自动转换为<strong>偶数</strong>。"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Background Color"
+msgstr "背景颜色"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Foreground Color"
+msgstr "前景颜色"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Primary Border"
+msgstr "主边框"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Secondary Border"
+msgstr "次边框"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Background Shadow"
+msgstr "背景阴影"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Background Shadow Color"
+msgstr "背景阴影颜色"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Foreground Shadow"
+msgstr "前景阴影"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Foreground Shadow Color"
+msgstr "前景阴影颜色"
+
+#: ../contents/ui/components/Header.qml
+msgid "Enable Panel Colorizer:"
+msgstr "启用 Panel Colorizer："
+
+#: ../contents/ui/components/Header.qml ../contents/ui/main.qml
+msgid "Last preset loaded:"
+msgstr "最后加载的预设："
+
+#: ../contents/ui/components/Header.qml
+msgid "Version:"
+msgstr "版本："
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "Import"
+msgstr "导入"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "Export"
+msgstr "导出"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "Export these settings to the default configuration folder and import them in other instances of Panel Colorizer"
+msgstr "将当前设置导出到默认配置文件夹，以便在其他实例中导入"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "Export current settings?"
+msgstr "导出当前设置？"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "Import saved settings?"
+msgstr "导入已保存的设置？"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "This will overwrite any previous export!"
+msgstr "这将覆盖之前的导出！"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "This will replace your current settings!"
+msgstr "这将替换您当前的设置！"
+
+#: ../contents/ui/components/WidgetCardCheck.qml ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardUnifiedBg.qml
+msgid "System Tray"
+msgstr "系统托盘"
+
+#: ../contents/ui/components/WidgetCardCheck.qml
+msgid "Mask"
+msgstr "遮罩"
+
+#: ../contents/ui/components/WidgetCardCheck.qml
+msgid "Effect"
+msgstr "效果"
+
+#: ../contents/ui/components/WidgetCardCheck.qml
+msgid "Refresh"
+msgstr "刷新"
+
+#: ../contents/ui/components/WidgetCardConfig.qml
+msgid "Add"
+msgstr "添加"
+
+#: ../contents/ui/components/WidgetCardOverride.qml
+msgid "Edit"
+msgstr "编辑"
+
+#: ../contents/ui/components/WidgetCardOverride.qml ../contents/ui/configPresets.qml
+msgid "Delete"
+msgstr "删除"
+
+#: ../contents/ui/components/WidgetCardUnifiedBg.qml
+msgid "Disable"
+msgstr "禁用"
+
+#: ../contents/ui/components/WidgetCardUnifiedBg.qml
+msgid "Start"
+msgstr "起始"
+
+#: ../contents/ui/components/WidgetCardUnifiedBg.qml
+msgid "End"
+msgstr "结束"
+
+#: ../contents/ui/configAppearance.qml
+msgid "Not getting the expected result? Make sure you're editing the correct element."
+msgstr "未达到预期效果？请确保您编辑的是正确的元素。"
+
+#: ../contents/ui/configForeground.qml
+msgid ""
+"Force text and icon colors for specified widgets.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-"
+"processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content themselves<br>To restore the <strong>Mask<strong> "
+"and <strong>Color Effect</strong> disable and restart Plasma or logout."
+msgstr ""
+"强制指定部件的文本和图标颜色。<br><strong>遮罩</strong>：强制图标着色（符号图标）。<br><strong>颜色效果</strong>：通过后处理效果强制文本/图标着色（任何图标）。<br><strong>刷新</strong>：以固定间隔重新应用着色，适用于自行重绘内容的部件。<br>要恢复<strong>遮罩</strong>和<strong>颜色效果</strong>，请禁用并重启 Plasma 或注销。"
+
+#: ../contents/ui/configForeground.qml
+msgid "Force Text/Icon color"
+msgstr "强制文本/图标颜色"
+
+#: ../contents/ui/configForeground.qml
+msgid "Refresh interval:"
+msgstr "刷新间隔："
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide widget:"
+msgstr "隐藏部件："
+
+#: ../contents/ui/configGeneral.qml
+msgid "visible in Panel Edit Mode"
+msgstr "在面板编辑模式下可见"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Debug mode:"
+msgstr "调试模式："
+
+#: ../contents/ui/configGeneral.qml
+msgid "Show debugging information"
+msgstr "显示调试信息"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Grid"
+msgstr "网格"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Enabled"
+msgstr "已启用"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Visible while configuring"
+msgstr "配置时可见"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Background"
+msgstr "背景"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Minor line:"
+msgstr "次要线："
+
+#: ../contents/ui/configGeneral.qml
+msgid "spacing"
+msgstr "间距"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Major line:"
+msgstr "主要线："
+
+#: ../contents/ui/configGeneral.qml
+msgid "every"
+msgstr "每"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Property change animations"
+msgstr "属性变更动画"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Duration:"
+msgstr "持续时间："
+
+#: ../contents/ui/configGeneral.qml
+msgid "D-Bus Service"
+msgstr "D-Bus 服务"
+
+#: ../contents/ui/configGeneral.qml
+msgid "D-Bus name:"
+msgstr "D-Bus 名称："
+
+#: ../contents/ui/configGeneral.qml
+msgid "Each Panel Colorizer instance has its D-Bus name."
+msgstr "每个 Panel Colorizer 实例均有独立 D-Bus 名称。"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Python 3 executable:"
+msgstr "Python 3 可执行文件："
+
+#: ../contents/ui/configGeneral.qml
+msgid "Required to run the D-Bus service in the background"
+msgstr "需在后台运行 D-Bus 服务"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Polling rate:"
+msgstr "轮询频率："
+
+#: ../contents/ui/configGeneral.qml
+msgid "How fast the widget reacts to D-Bus changes"
+msgstr "部件响应 D-Bus 变更的速度"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Usage:"
+msgstr "用法："
+
+#: ../contents/ui/configGeneral.qml
+msgid "Apply a preset:"
+msgstr "应用预设："
+
+#: ../contents/ui/configGeneral.qml
+msgid "Preview and switch presets using fzf + qdbus6 + jq:"
+msgstr "使用 fzf + qdbus6 + jq 预览并切换预设："
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide all panels"
+msgstr "隐藏所有面板"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Show all panels"
+msgstr "显示所有面板"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides are independent and will be applied on top of the current settings and across presets."
+msgstr "创建配置覆盖，并应用于一个或多个部件。这些覆盖独立存在，并将在当前设置的基础上生效，同时适用于所有预设。"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Configuration overrides"
+msgstr "配置覆盖"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Override settings"
+msgstr "覆盖设置"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Override name"
+msgstr "覆盖名称"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+msgid "Fallback:"
+msgstr "回退："
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+msgid "Fallback to the Global/Preset widget settings for disabled options, except for <b>Enable</b> and <b>Blur</>."
+msgstr "对于已禁用的选项，回退到全局/预设部件设置（<b>启用</b>和<b>模糊</b>除外）。"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Widgets"
+msgstr "部件"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Overrides are applied from top to bottom, if two or more configuration overrides share the same option, the last occurence replaces the value of the previous one."
+msgstr "覆盖按从上到下顺序应用。若多个覆盖共享同一选项，后出现的将覆盖先前的值。"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Do nothing"
+msgstr "不执行任何操作"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Disable preset auto-loading when making changes to presets, unsaved preset settings will be lost when presets change!"
+msgstr "修改预设时请禁用自动加载，否则未保存的预设设置将在切换时丢失！"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Switch between different panel presets based on the Panel and window states"
+msgstr "根据面板和窗口状态切换不同预设"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Environment"
+msgstr "环境"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid ""
+"Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the "
+"<b>Maximized</b> preset will be applied."
+msgstr "优先级按降序排列。例如，若同时选中<b>最大化窗口显示时</b>和<b>面板接触窗口时</b>的预设，且屏幕存在最大化窗口，则应用<b>最大化</b>预设。"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Fullscreen window:"
+msgstr "全屏窗口："
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Maximized window:"
+msgstr "最大化窗口："
+
+#. i18n("Active window only:")
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Active window only"
+msgstr "仅活动窗口"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Window touching panel:"
+msgstr "窗口接触面板时："
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "At least one window is shown:"
+msgstr "至少显示一个窗口时："
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Floating panel:"
+msgstr "浮动面板时："
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Normal:"
+msgstr "常规："
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Widget Click"
+msgstr "点击部件"
+
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides should be saved to a preset in <strong>Presets</strong> tab or they will be lost when presets change!"
+msgstr "创建配置覆盖，并应用于一个或多个部件。这些覆盖需保存到<strong>预设</strong>标签页的预设中，否则切换预设时将丢失！"
+
+#: ../contents/ui/configPresets.qml
+msgid "This will permanently delete the file from your system!"
+msgstr "这将从系统中永久删除该文件！"
+
+#: ../contents/ui/configPresets.qml
+msgid "Preset configuration will be overwritten!"
+msgstr "预设配置将被覆盖！"
+
+#: ../contents/ui/configPresets.qml
+msgid "Current preview will be overwritten!"
+msgstr "当前预览将被覆盖！"
+
+#: ../contents/ui/configPresets.qml
+msgid ""
+"Changes to the current preset are not synced to disk automatically. You should come back to this tab and update it manually before switching to a different preset, otherwise unsaved preset settings "
+"will be lost when presets change!"
+msgstr "当前预设的更改不会自动保存。切换预设前请返回此标签页手动更新，否则未保存的设置将在切换时丢失！"
+
+#: ../contents/ui/configPresets.qml
+msgid "Restore default panel appearance"
+msgstr "恢复默认面板外观"
+
+#: ../contents/ui/configPresets.qml
+msgid "New from current settings"
+msgstr "从当前设置新建"
+
+#: ../contents/ui/configPresets.qml
+msgid "Save"
+msgstr "保存"
+
+#: ../contents/ui/configPresets.qml
+msgid "Refresh presets"
+msgstr "刷新预设"
+
+#: ../contents/ui/configPresets.qml
+msgid "Built-in"
+msgstr "内置"
+
+#: ../contents/ui/configPresets.qml
+msgid "Load"
+msgstr "加载"
+
+#: ../contents/ui/configPresets.qml
+msgid "Update"
+msgstr "更新"
+
+#: ../contents/ui/configPresets.qml
+msgid "Create preview"
+msgstr "创建预览"
+
+#: ../contents/ui/configPresets.qml
+msgid "Update preview"
+msgstr "更新预览"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g top to left)."
+msgstr "更改面板位置功能不稳定，在非平行边缘间移动面板（如顶部到左侧）可能导致 Plasma 崩溃。"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid ""
+"Opacity control here <b>requires Plasma 6.3</b> and depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options "
+"in <b>Appearance</b> tab instead."
+msgstr "此处的不透明度控制<b>需 Plasma 6.3</b>且依赖当前 Plasma 主题。如需更精细控制或完全透明，请使用<b>外观</b>标签页的<b>面板不透明度</b>和<b>原生面板背景</b>选项。"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Position"
+msgstr "位置"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Position:"
+msgstr "位置："
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Top"
+msgstr "顶部"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Bottom"
+msgstr "底部"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Left"
+msgstr "左侧"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Right"
+msgstr "右侧"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Alignment"
+msgstr "对齐方式"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Alignment:"
+msgstr "对齐方式："
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Center"
+msgstr "居中"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Length mode"
+msgstr "长度模式"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Mode:"
+msgstr "模式："
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Fill"
+msgstr "填充"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Fit content"
+msgstr "适应内容"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Visibility"
+msgstr "可见性"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Always visible"
+msgstr "始终可见"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Auto hide"
+msgstr "自动隐藏"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Dodge windows"
+msgstr "避开窗口"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Windows go below"
+msgstr "窗口置于下方"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Opacity"
+msgstr "不透明度"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Adaptive"
+msgstr "自适应"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Opaque"
+msgstr "不透明"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Translucent"
+msgstr "半透明"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Floating"
+msgstr "浮动"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Floating:"
+msgstr "浮动："
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Thickness"
+msgstr "高度"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Thickness:"
+msgstr "高度："
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Show/Hide"
+msgstr "显示/隐藏"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Show:"
+msgstr "显示："
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid ""
+"WARNING: Use with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible "
+"again without manually removing the configuration, use the command below in terminal/tty then log out or reboot, it will renove the configuratiob from all Panel Colorizer instances so make sure to "
+"save the others first"
+msgstr ""
+"警告：谨慎使用！若隐藏面板且未配置预设自动加载或不熟悉 D-Bus 切换预设（或已禁用 D-Bus），则需手动删除配置才能恢复可见性。请在终端/tty 执行以下命令后注销或重启，"
+"此操作将删除所有 Panel Colorizer 实例的配置，请确保已保存其他实例的配置："
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
+msgstr "若已启用 D-Bus，建议改用快捷键操作。详情请参阅 README 或查看常规标签页的示例。"
+
+#: ../contents/ui/configUnifiedBackground.qml
+msgid ""
+"Select start and end of unified background areas, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Note: <strong>odd</strong> widget spacing values are automatically "
+"converted to <strong>evens</strong> when this feature is used."
+msgstr "选择统一背景区域的起始和结束点，<b>起始</b>和<b>结束</b>间的部件需保持<b>禁用</b>。注：启用此功能时，<strong>奇数</strong>间距值将自动转换为<strong>偶数</strong>。"
+
+#: ../contents/ui/main.qml
+msgid "Hide widget (visible in panel Edit Mode)"
+msgstr "隐藏部件（面板编辑模式下可见）"
+
+#: ../contents/ui/main.qml
+msgid "Select a preset"
+msgstr "选择预设"
+
+#: ../contents/ui/main.qml
+msgid "Panel not found, this widget must be placed on a panel to work"
+msgstr "未找到面板，此部件需放置在面板上才能工作"
