@@ -77,13 +77,11 @@ msgstr "部件背景"
 msgid "Border"
 msgstr "边框"
 
-#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml
-#: ../contents/ui/configPresetAutoload.qml ../contents/ui/configStockPanelSettings.qml
+#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml ../contents/ui/configPresetAutoload.qml ../contents/ui/configStockPanelSettings.qml
 msgid "Enabled:"
 msgstr "已启用："
 
-#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormColors.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml
-#: ../contents/ui/components/Header.qml
+#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormColors.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/components/Header.qml
 msgid "Disabled"
 msgstr "已禁用"
 
@@ -369,11 +367,9 @@ msgstr "未达到预期效果？请确保您编辑的是正确的元素。"
 
 #: ../contents/ui/configForeground.qml
 msgid ""
-"Force text and icon colors for specified widgets.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-"
-"processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content themselves<br>To restore the <strong>Mask<strong> "
-"and <strong>Color Effect</strong> disable and restart Plasma or logout."
-msgstr ""
-"强制指定部件的文本和图标颜色。<br><strong>遮罩</strong>：强制图标着色（符号图标）。<br><strong>颜色效果</strong>：通过后处理效果强制文本/图标着色（任何图标）。<br><strong>刷新</strong>：以固定间隔重新应用着色，适用于自行重绘内容的部件。<br>要恢复<strong>遮罩</strong>和<strong>颜色效果</strong>，请禁用并重启 Plasma 或注销。"
+"Force text and icon colors for specified widgets.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content themselves<br>To restore the <strong>Mask<strong> and "
+"<strong>Color Effect</strong> disable and restart Plasma or logout."
+msgstr "强制指定部件的文本和图标颜色。<br><strong>遮罩</strong>：强制图标着色（符号图标）。<br><strong>颜色效果</strong>：通过后处理效果强制文本/图标着色（任何图标）。<br><strong>刷新</strong>：以固定间隔重新应用着色，适用于自行重绘内容的部件。<br>要恢复<strong>遮罩</strong>和<strong>颜色效果</strong>，请禁用并重启 Plasma 或注销。"
 
 #: ../contents/ui/configForeground.qml
 msgid "Force Text/Icon color"
@@ -536,9 +532,7 @@ msgid "Environment"
 msgstr "环境"
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid ""
-"Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the "
-"<b>Maximized</b> preset will be applied."
+msgid "Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the <b>Maximized</b> preset will be applied."
 msgstr "优先级按降序排列。例如，若同时选中<b>最大化窗口显示时</b>和<b>面板接触窗口时</b>的预设，且屏幕存在最大化窗口，则应用<b>最大化</b>预设。"
 
 #: ../contents/ui/configPresetAutoload.qml
@@ -591,9 +585,7 @@ msgid "Current preview will be overwritten!"
 msgstr "当前预览将被覆盖！"
 
 #: ../contents/ui/configPresets.qml
-msgid ""
-"Changes to the current preset are not synced to disk automatically. You should come back to this tab and update it manually before switching to a different preset, otherwise unsaved preset settings "
-"will be lost when presets change!"
+msgid "Changes to the current preset are not synced to disk automatically. You should come back to this tab and update it manually before switching to a different preset, otherwise unsaved preset settings will be lost when presets change!"
 msgstr "当前预设的更改不会自动保存。切换预设前请返回此标签页手动更新，否则未保存的设置将在切换时丢失！"
 
 #: ../contents/ui/configPresets.qml
@@ -637,9 +629,7 @@ msgid "Changing panel position is currently unstable and may cause Plasma to cra
 msgstr "更改面板位置功能不稳定，在非平行边缘间移动面板（如顶部到左侧）可能导致 Plasma 崩溃。"
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid ""
-"Opacity control here <b>requires Plasma 6.3</b> and depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options "
-"in <b>Appearance</b> tab instead."
+msgid "Opacity control here <b>requires Plasma 6.3</b> and depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
 msgstr "此处的不透明度控制<b>需 Plasma 6.3</b>且依赖当前 Plasma 主题。如需更精细控制或完全透明，请使用<b>外观</b>标签页的<b>面板不透明度</b>和<b>原生面板背景</b>选项。"
 
 #: ../contents/ui/configStockPanelSettings.qml
@@ -756,21 +746,16 @@ msgstr "显示："
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
-"WARNING: Use with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible "
-"again without manually removing the configuration, use the command below in terminal/tty then log out or reboot, it will renove the configuratiob from all Panel Colorizer instances so make sure to "
+"WARNING: Use with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration, use the command below in terminal/tty then log out or reboot, it will renove the configuratiob from all Panel Colorizer instances so make sure to "
 "save the others first"
-msgstr ""
-"警告：谨慎使用！若隐藏面板且未配置预设自动加载或不熟悉 D-Bus 切换预设（或已禁用 D-Bus），则需手动删除配置才能恢复可见性。请在终端/tty 执行以下命令后注销或重启，"
-"此操作将删除所有 Panel Colorizer 实例的配置，请确保已保存其他实例的配置："
+msgstr "警告：谨慎使用！若隐藏面板且未配置预设自动加载或不熟悉 D-Bus 切换预设（或已禁用 D-Bus），则需手动删除配置才能恢复可见性。请在终端/tty 执行以下命令后注销或重启，此操作将删除所有 Panel Colorizer 实例的配置，请确保已保存其他实例的配置："
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
 msgstr "若已启用 D-Bus，建议改用快捷键操作。详情请参阅 README 或查看常规标签页的示例。"
 
 #: ../contents/ui/configUnifiedBackground.qml
-msgid ""
-"Select start and end of unified background areas, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Note: <strong>odd</strong> widget spacing values are automatically "
-"converted to <strong>evens</strong> when this feature is used."
+msgid "Select start and end of unified background areas, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Note: <strong>odd</strong> widget spacing values are automatically converted to <strong>evens</strong> when this feature is used."
 msgstr "选择统一背景区域的起始和结束点，<b>起始</b>和<b>结束</b>间的部件需保持<b>禁用</b>。注：启用此功能时，<strong>奇数</strong>间距值将自动转换为<strong>偶数</strong>。"
 
 #: ../contents/ui/main.qml
