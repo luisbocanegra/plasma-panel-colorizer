@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-02-07 18:06+0000\n"
+"POT-Creation-Date: 2025-03-02 13:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -458,10 +458,6 @@ msgid "Required to run the D-Bus service in the background"
 msgstr "Voraussetzung um den D-Bus Service im Hintergrund laufen zu lassen"
 
 #: ../contents/ui/configGeneral.qml
-msgid "Polling rate:"
-msgstr "Abfragerate"
-
-#: ../contents/ui/configGeneral.qml
 msgid "How fast the widget reacts to D-Bus changes"
 msgstr "Wie schnell das Widget auf D-Bus Veränderungen reagiert"
 
@@ -773,3 +769,6 @@ msgstr "Wähle eine Voreinstellung"
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr "Kontrollleiste nicht gefunden, dieses Widget muss in der Kontrollleiste plaziert werden, da es ansonsten nicht funktioniert"
+
+#~ msgid "Polling rate:"
+#~ msgstr "Abfragerate"
