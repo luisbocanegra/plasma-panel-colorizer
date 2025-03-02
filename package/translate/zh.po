@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-02-07 18:06+0000\n"
+"POT-Creation-Date: 2025-03-02 13:47+0000\n"
 "PO-Revision-Date: 2025-02-09 12:42+0800\n"
 "Last-Translator: Mill413 <mill413@outlook.com>\n"
 "Language-Team: \n"
@@ -456,10 +456,6 @@ msgid "Required to run the D-Bus service in the background"
 msgstr "需在后台运行 D-Bus 服务"
 
 #: ../contents/ui/configGeneral.qml
-msgid "Polling rate:"
-msgstr "轮询频率："
-
-#: ../contents/ui/configGeneral.qml
 msgid "How fast the widget reacts to D-Bus changes"
 msgstr "部件响应 D-Bus 变更的速度"
 
@@ -769,3 +765,6 @@ msgstr "选择预设"
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr "未找到面板，此部件需放置在面板上才能工作"
+
+#~ msgid "Polling rate:"
+#~ msgstr "轮询频率："
