@@ -27,7 +27,6 @@ class Service(dbus.service.Object):
     def __init__(self, bus: dbus.Bus):
         self._loop = GLib.MainLoop()
         self._last_preset = ""
-        self._pending_witch = False
         self._property = ""
         self._bus = bus
         super().__init__()
@@ -65,7 +64,7 @@ class Service(dbus.service.Object):
         if m:
             if m != self._last_preset:
                 self._last_preset = m
-                self._pending_witch = True
+                self.preset_changed(m)
             return "saved"
         return self._last_preset
 
@@ -77,6 +76,8 @@ class Service(dbus.service.Object):
         if m:
             if m != self._property:
                 self._property = m
+                self.property_changed(m)
+            return "saved"
         return self._property
 
     def on_shared_preset_signal(self, preset_name: str):
@@ -95,25 +96,27 @@ class Service(dbus.service.Object):
         """
         self.property(edited_property)
 
-    @dbus.service.method(SERVICE_NAME, in_signature="", out_signature="b")
-    def pending_switch(self) -> bool:
-        """Wether there is a pending preset switch
-
-        Returns:
-            bool: Pending
-        """
-        return self._pending_witch
-
-    @dbus.service.method(SERVICE_NAME, in_signature="", out_signature="")
-    def switch_done(self):
-        """Void the pending switch"""
-        self._pending_witch = False
-
     @dbus.service.method(SERVICE_NAME, in_signature="", out_signature="")
     def quit(self):
         """Stop the service"""
         print("Shutting down")
         self._loop.quit()
+
+    @dbus.service.signal(SERVICE_NAME, signature="s")
+    def preset_changed(self, preset: str):
+        """To inform the widget of new preset
+
+        Args:
+            preset (str): Preset name
+        """
+
+    @dbus.service.signal(SERVICE_NAME, signature="s")
+    def property_changed(self, property: str):
+        """To inform the widget of new property
+
+        Args:
+            property (str): Property string
+        """
 
 
 if __name__ == "__main__":

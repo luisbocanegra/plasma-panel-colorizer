@@ -6,10 +6,6 @@ Item {
 
     id: root
     property bool enabled: false
-    property string preset: ""
-    property string propertyToApply: ""
-    property bool switchIsPending: false
-    property int poolingRate: 250
 
     property string toolsDir: Qt.resolvedUrl("./tools").toString().substring(7) + "/"
     property string serviceUtil: toolsDir+"service.py"
@@ -18,40 +14,6 @@ Item {
 
     readonly property string service: Plasmoid.metaData.pluginId + ".c" + Plasmoid.containment.id + ".w" + Plasmoid.id
     readonly property string path: "/preset"
-
-    function setPreset(reply) {
-        if (reply?.value) {
-            // console.log(`preset: '${reply.value}'`)
-            preset = reply.value
-        }
-    }
-
-    function setProperty(reply) {
-        if (reply?.value) {
-            // console.log(`property: '${reply.value}'`)
-            propertyToApply = reply.value
-        }
-    }
-
-    DBusMethodCall {
-        id: dbusGetPreset
-        service: root.service
-        objectPath: "/preset"
-        iface: root.service
-        method: "preset"
-        arguments: []
-        signature: "s"
-    }
-
-    DBusMethodCall {
-        id: dbusGetProperty
-        service: root.service
-        objectPath: "/preset"
-        iface: root.service
-        method: "property"
-        arguments: []
-        signature: "s"
-    }
 
     DBusMethodCall {
         id: dbusQuit
@@ -71,10 +33,6 @@ Item {
         }
     }
 
-    Component.onCompleted: {
-        toggleService()
-    }
-
     function toggleService() {
         if (enabled) {
             runCommand.run(serviceCmd)
@@ -84,16 +42,6 @@ Item {
     }
 
     onEnabledChanged: toggleService()
-
-    Timer {
-        id: updateTimer
-        interval: root.poolingRate
-        running: root.enabled
-        repeat: true
-        onTriggered: {
-            dbusGetPreset.call(root.setPreset)
-            dbusGetProperty.call(root.setProperty)
-        }
-    }
+    Component.onCompleted: toggleService()
 }
 

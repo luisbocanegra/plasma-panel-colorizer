@@ -1412,10 +1412,10 @@ PlasmoidItem {
     }
 
     function applyPreset(presetDir) {
-        if (!presetDir) return
+        if (!presetDir || presetDir === lastPreset) return
         console.log("Reading preset:", presetDir);
-        lastPreset = presetDir
         runCommand.run("cat '" + presetDir + "/settings.json'")
+        lastPreset = presetDir
     }
 
     onPanelStateChanged: {
@@ -1864,15 +1864,33 @@ PlasmoidItem {
     fullRepresentation: onDesktop ? desktopView : popupView
 
     DBusServiceModel {
+        id: serviceModel
         enabled: plasmoid.configuration.enableDBusService
-        poolingRate: plasmoid.configuration.dBusPollingRate
-        onPresetChanged: {
-            applyPreset(preset)
+    }
+
+    DBusSignalMonitor {
+        enabled: plasmoid.configuration.enableDBusService
+        service: Plasmoid.metaData.pluginId + ".c" + Plasmoid.containment.id + ".w" + Plasmoid.id
+        path: "preset"
+        method: "property_changed"
+        onSignalReceived: (message) => {
+            if (message) {
+                const [path, ...value] = message.split(" ")
+                Utils.editProperty(main.cfg, path, value.join(" "))
+                plasmoid.configuration.globalSettings = JSON.stringify(main.cfg)
+            }
         }
-        onPropertyToApplyChanged: {
-            const [path, ...value] = propertyToApply.split(" ")
-            Utils.editProperty(main.cfg, path, value.join(" "))
-            plasmoid.configuration.globalSettings = JSON.stringify(main.cfg)
+    }
+
+    DBusSignalMonitor {
+        enabled: plasmoid.configuration.enableDBusService
+        service: Plasmoid.metaData.pluginId + ".c" + Plasmoid.containment.id + ".w" + Plasmoid.id
+        path: "preset"
+        method: "preset_changed"
+        onSignalReceived: (message) => {
+            if (message) {
+                applyPreset(message)
+            }
         }
     }
 }

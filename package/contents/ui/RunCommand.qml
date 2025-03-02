@@ -21,6 +21,10 @@ Item {
         runCommand.exec(cmd)
     }
 
+    function terminate(cmd) {
+        runCommand.exit(cmd)
+    }
+
     P5Support.DataSource {
         id: runCommand
         engine: "executable"
@@ -33,11 +37,14 @@ Item {
             var stderr = data["stderr"]
             root.exited(source, exitCode, exitStatus, stdout, stderr)
             disconnectSource(source)
-            sourceConnected(source)
         }
 
         function exec(cmd) {
             runCommand.connectSource(cmd)
+        }
+
+        function exit(cmd) {
+            runCommand.disconnectSource(cmd)
         }
     }
 }
