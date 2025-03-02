@@ -17,7 +17,6 @@ KCM.SimpleKCM {
     property alias cfg_enableDebug: enableDebug.checked
     property alias cfg_enableDBusService: enableDBusService.checked
     property alias cfg_pythonExecutable: pythonExecutable.text
-    property alias cfg_dBusPollingRate: dBusPollingRate.value
     property alias cfg_animatePropertyChanges: animatePropertyChanges.checked
     property alias cfg_animationDuration: animationDuration.value
     property string cfg_editModeGridSettings
@@ -245,15 +244,6 @@ KCM.SimpleKCM {
                 wrapMode: Text.WordWrap
                 Layout.preferredWidth: 400
                 opacity: 0.6
-            }
-
-            SpinBox {
-                Kirigami.FormData.label: i18n("Polling rate:")
-                from: 10
-                to: 9999
-                stepSize: 100
-                id: dBusPollingRate
-                enabled: enableDBusService.checked
             }
 
             Label {
