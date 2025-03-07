@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.3.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.3.0...v2.3.1) (2025-03-07)
+
+
+### Bug Fixes
+
+* don't leak dbus replies ([f8cb1c1](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/f8cb1c1660798d9df8670a24edc0376d0742c984))
+
+
+### Miscellaneous Chores
+
+* release 2.3.1 ([4ef9ea2](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/4ef9ea279e39a85546edb881cc0f92d1bc878fdf))
+
 ## [2.3.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.2.0...v2.3.0) (2025-02-08)
 
 
