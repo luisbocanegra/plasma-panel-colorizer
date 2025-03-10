@@ -10,3 +10,4 @@ cmake --build build/
 cmake --install build/
 # CMakeLists.txt plasma_install_package does't copy executable permission
 chmod 700 "$HOME/.local/share/plasma/plasmoids/luisbocanegra.panel.colorizer/contents/ui/tools/list_presets.sh"
+chmod 700 "$HOME/.local/share/plasma/plasmoids/luisbocanegra.panel.colorizer/contents/ui/tools/gdbus_get_signal.sh"
