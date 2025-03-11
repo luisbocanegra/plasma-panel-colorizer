@@ -450,6 +450,7 @@ PlasmoidItem {
                 return getColor(widgetSettings.foregroundColor, targetIndex, rect.color, itemType, fgColorHolder)
             }
         }
+        property bool throttleMaskUpdate: false
         Rectangle {
             id: fgColorHolder
             height: 6
@@ -581,7 +582,7 @@ PlasmoidItem {
         Component.onCompleted: {
             main.recolorCountChanged.connect(rect.recolor)
             main.updateUnified.connect(updateUnifyType)
-            main.updateMasks.connect(updateMask)
+            main.updateMasks.connect(updateMaskDebounced)
             recolorTimer.start()
         }
 
@@ -1036,12 +1037,12 @@ PlasmoidItem {
 
         onXChanged: {
             // console.error("onXChanged()")
-            updateMask()
+            updateMaskDebounced()
         }
 
         onYChanged: {
             // console.error("onYChanged()")
-            updateMask()
+            updateMaskDebounced()
         }
 
         onWidthChanged: {
@@ -1056,18 +1057,18 @@ PlasmoidItem {
 
         onBlurMaskXChanged: {
             // console.error("onBlurMaskXChanged()")
-            updateMask()
+            updateMaskDebounced()
         }
 
         onBlurMaskYChanged: {
             // console.error("onBlurMaskYChanged()")
-            updateMask()
+            updateMaskDebounced()
         }
 
-        onTopLeftRadiusChanged: updateMask()
-        onTopRightRadiusChanged: updateMask()
-        onBottomLeftRadiusChanged: updateMask()
-        onBottomRightRadiusChanged: updateMask()
+        onTopLeftRadiusChanged: updateMaskDebounced()
+        onTopRightRadiusChanged: updateMaskDebounced()
+        onBottomLeftRadiusChanged: updateMaskDebounced()
+        onBottomRightRadiusChanged: updateMaskDebounced()
 
         // TODO find where does 16 and 8 come from instead of blindly hardcoding them
         property real moveX: {
@@ -1084,7 +1085,7 @@ PlasmoidItem {
 
         onVisibleChanged: {
             main.updateUnified()
-            updateMask()
+            updateMaskDebounced()
         }
 
         onBlurBehindChanged: {
@@ -1095,7 +1096,18 @@ PlasmoidItem {
                 trayItemsDoingBlur[maskIndex] = blurBehind
                 anyTrayItemDoingBlur = Object.values(trayItemsDoingBlur).some(state => state)
             }
-            updateMask()
+            updateMaskDebounced()
+        }
+
+        function updateMaskDebounced() {
+            if (rect.throttleMaskUpdate) {
+                return
+            }
+            rect.throttleMaskUpdate = true
+            Qt.callLater(function () {
+                updateMask()
+                rect.throttleMaskUpdate = false
+            })
         }
 
         function updateMask() {
@@ -1372,7 +1384,7 @@ PlasmoidItem {
     }
 
     onPanelLayoutCountChanged: {
-        console.log("onPanelLayoutCountChanged")
+        // console.log("onPanelLayoutCountChanged")
         initAll()
         // re-apply customizations after the widget stops being dagged around
         for (var i = 0; i < panelLayout.children.length; i++) {
@@ -1574,7 +1586,7 @@ PlasmoidItem {
 
     function showWidgets(panelLayout) {
         if (!panelLayout) return
-        console.log("showWidgets()")
+        // console.log("showWidgets()")
         for (var i in panelLayout.children) {
             const child = panelLayout.children[i];
             // name may not be available while gragging into the panel and
