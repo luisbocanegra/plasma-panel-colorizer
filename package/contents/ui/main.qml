@@ -843,10 +843,10 @@ PlasmoidItem {
             horizontal: main.horizontal
             unifyBgType: unifyBgType
             corners: {
-                "topLeftRadius": rect.topLeftRadius,
-                "topRightRadius": rect.topRightRadius,
-                "bottomLeftRadius": rect.bottomLeftRadius,
-                "bottomRightRadius": rect.bottomRightRadius
+                "topLeftRadius": Math.max(rect.topLeftRadius - cfg.border.width, 0),
+                "topRightRadius": Math.max(rect.topRightRadius - cfg.border.width, 0),
+                "bottomLeftRadius": Math.max(rect.bottomLeftRadius - cfg.border.width, 0),
+                "bottomRightRadius": Math.max(rect.bottomRightRadius - cfg.border.width, 0)
             }
             cfgBorder: cfg.borderSecondary
             borderColor: {
