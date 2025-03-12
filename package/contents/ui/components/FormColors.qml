@@ -1,4 +1,3 @@
-import "../code/utils.js" as Utils
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts

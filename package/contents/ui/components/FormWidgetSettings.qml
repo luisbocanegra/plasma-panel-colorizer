@@ -1,12 +1,7 @@
-import "../code/globals.js" as Globals
-import "../code/utils.js" as Utils
-import QtCore
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
-import org.kde.plasma.plasma5support as P5Support
 import org.kde.plasma.plasmoid
 
 ColumnLayout {

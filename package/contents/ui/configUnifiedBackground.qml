@@ -1,6 +1,4 @@
-import QtCore
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Layouts
 import "code/utils.js" as Utils
 import "components" as Components

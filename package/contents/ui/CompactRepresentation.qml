@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Layouts
 import "components" as Components
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.core as PlasmaCore
