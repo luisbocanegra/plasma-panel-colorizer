@@ -291,7 +291,9 @@ PlasmoidItem {
                     }
                 }
                 count++
-                // repaintDebugComponent.createObject(child)
+                if (debug) {
+                    repaintDebugComponent.createObject(child)
+                }
             }
             if (child.visibleChildren?.length ?? 0 > 0) {
                 const result = applyFgColor(child, newColor, fgColorCfg, depth + 1, wRecolorCfg, fgColorModified)
