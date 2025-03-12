@@ -8,9 +8,24 @@
     ],
     "files.trimTrailingWhitespace": true,
     "[cpp]": {
-        "editor.formatOnSave": true
+        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+        "editor.tabSize": 4,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
     },
     "[qml]": {
-        "editor.formatOnSave": false
-    }
+        "editor.defaultFormatter": "theqtcompany.qt-qml",
+        "editor.tabSize": 4,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+    },
+    "qt-qml.qmlls.enabled": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+    },
+    "editor.indentSize": "tabSize",
+    "editor.insertSpaces": true,
 }
