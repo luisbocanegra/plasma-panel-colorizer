@@ -5,9 +5,7 @@ import QtQuick.Layouts
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
-import org.kde.plasma.plasma5support as P5Support
 import "components" as Components
-import "code/utils.js" as Utils
 import "code/enum.js" as Enum
 
 KCM.SimpleKCM {

@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Controls
 import org.kde.kirigami as Kirigami
 
 Item {

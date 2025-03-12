@@ -1,9 +1,7 @@
-import QtCore
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import "code/globals.js" as Globals
-import "code/utils.js" as Utils
 import "components" as Components
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami

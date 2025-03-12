@@ -1,7 +1,5 @@
-import "."
 import QtQuick
 import org.kde.kirigami as Kirigami
-import org.kde.ksvg as KSvg
 
 Item {
     id: root

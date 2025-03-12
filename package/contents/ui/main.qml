@@ -8,14 +8,9 @@ import org.kde.kirigami as Kirigami
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.plasmoid
-import org.kde.plasma.extras 2.0 as PlasmaExtras
-import org.kde.plasma.plasma5support as P5Support
-import org.kde.plasma.workspace.components as WorkspaceComponents
-import org.kde.taskmanager 0.1 as TaskManager
 import QtQuick.Effects
 import Qt5Compat.GraphicalEffects
 
-import "components" as Components
 import "code/utils.js" as Utils
 import "code/globals.js" as Globals
 import "code/enum.js" as Enum

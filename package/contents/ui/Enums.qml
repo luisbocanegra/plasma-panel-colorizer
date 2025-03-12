@@ -1,4 +1,3 @@
-import QtCore
 import QtQuick
 
 Item {
