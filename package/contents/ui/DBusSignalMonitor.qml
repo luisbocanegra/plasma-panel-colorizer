@@ -20,33 +20,32 @@ Item {
     signal signalReceived(message: string)
 
     function getMessage(rawOutput) {
-        let [path, interfaceAndMember, ...message] = rawOutput.split(" ")
+        let [path, interfaceAndMember, ...message] = rawOutput.split(" ");
 
-        return message.join(" ")
-            .replace(/^\([']?/, "") // starting ( or ('
-            .replace(/[']?,\)$/, "") // ending ,) or ',)
+        return message.join(" ").replace(/^\([']?/, "") // starting ( or ('
+        .replace(/[']?,\)$/, ""); // ending ,) or ',)
     }
 
     RunCommand {
         id: runCommand
         onExited: (cmd, exitCode, exitStatus, stdout, stderr) => {
             if (exitCode !== 130) {
-                console.error(cmd, exitCode, exitStatus, stdout, stderr)
-                return
+                console.error(cmd, exitCode, exitStatus, stdout, stderr);
+                return;
             }
-            root.signalReceived(root.getMessage(stdout.trim()))
+            root.signalReceived(root.getMessage(stdout.trim()));
             // for some reason it won't restart without a delay???
             Utils.delay(50, () => {
-                runCommand.run(root.monitorCmd)
-            }, root)
+                runCommand.run(root.monitorCmd);
+            }, root);
         }
     }
 
     function toggleMontitor() {
         if (enabled) {
-            runCommand.run(monitorCmd)
+            runCommand.run(monitorCmd);
         } else {
-            runCommand.terminate(monitorCmd)
+            runCommand.terminate(monitorCmd);
         }
     }
 

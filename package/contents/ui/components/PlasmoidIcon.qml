@@ -1,12 +1,14 @@
+import "."
 import QtQuick
 import org.kde.kirigami as Kirigami
 import org.kde.ksvg as KSvg
-import "."
 
 Item {
     id: root
-    anchors.centerIn: parent
+
     property var source
+
+    anchors.centerIn: parent
     anchors.fill: parent
 
     Kirigami.Icon {

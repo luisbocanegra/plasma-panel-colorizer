@@ -1,39 +1,39 @@
 function getRandomColor() {
-  const h = Math.random()
-  const s = Math.random()
-  const l = Math.random()
-  const a = 1.0
-  return Qt.hsla(h, s, l, a)
+  const h = Math.random();
+  const s = Math.random();
+  const l = Math.random();
+  const a = 1.0;
+  return Qt.hsla(h, s, l, a);
 }
 
 function getBgManaged(item) {
-  let managed = null
+  let managed = null;
   if (item?.children) {
     for (let i in item.children) {
       const child = item.children[i];
-      if (!child?.luisbocanegraPanelColorizerBgManaged) continue
-      managed = child
+      if (!child?.luisbocanegraPanelColorizerBgManaged) continue;
+      managed = child;
     }
   }
   // console.error(item, "managed:", managed);
-  return managed
+  return managed;
 }
 
 function getEffectItem(item) {
-  let managed = null
+  let managed = null;
   if (item?.children) {
     for (let i in item.children) {
       const child = item.children[i];
-      if (!child?.luisbocanegraPanelColorizerEffectManaged) continue
-      managed = child
+      if (!child?.luisbocanegraPanelColorizerEffectManaged) continue;
+      managed = child;
     }
   }
   // console.error(item, "managed:", managed);
-  return managed
+  return managed;
 }
 
 function findTrayGridView(item) {
-  if (!item?.children) return null
+  if (!item?.children) return null;
   if (item instanceof GridView) {
     return item;
   }
@@ -46,27 +46,28 @@ function findTrayGridView(item) {
   return null;
 }
 
-
 function findTrayExpandArrow(item) {
   if (item instanceof GridLayout) {
     for (let i in item.children) {
-      const child = item.children[i]
+      const child = item.children[i];
       if (!(child instanceof GridView)) {
-        return child
+        return child;
       }
     }
   }
-  return null
+  return null;
 }
 
-
 function panelOpacity(panelElement, enabled, panelRealBgOpacity) {
-  if (!panelElement) return
+  if (!panelElement) return;
   for (let i in panelElement.children) {
-    const current = panelElement.children[i]
+    const current = panelElement.children[i];
 
-    if (current.imagePath && current.imagePath.toString().includes("panel-background")) {
-      current.opacity = enabled ? panelRealBgOpacity : 1
+    if (
+      current.imagePath &&
+      current.imagePath.toString().includes("panel-background")
+    ) {
+      current.opacity = enabled ? panelRealBgOpacity : 1;
     }
   }
 }
@@ -75,70 +76,89 @@ function dumpProps(obj) {
   console.error("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
   console.error(obj);
   for (var k of Object.keys(obj)) {
-    const val = obj[k]
-    if (k.endsWith("Changed")) continue
-    if (k === 'metaData') continue
-    console.log(k + "=" + val + "\n")
+    const val = obj[k];
+    if (k.endsWith("Changed")) continue;
+    if (k === "metaData") continue;
+    console.log(k + "=" + val + "\n");
   }
 }
 
 function toggleTransparency(containmentItem, nativePanelBackgroundEnabled) {
-  if (!containmentItem) return
+  if (!containmentItem) return;
   containmentItem.Plasmoid.backgroundHints = !nativePanelBackgroundEnabled
     ? PlasmaCore.Types.NoBackground
-    : PlasmaCore.Types.DefaultBackground
+    : PlasmaCore.Types.DefaultBackground;
 }
 
 function findWidgets(panelLayout, panelWidgets) {
-  if (!panelLayout) return panelWidgets
+  if (!panelLayout) return panelWidgets;
   // console.log("Updating panel widgets list");
   for (let i in panelLayout.children) {
     const child = panelLayout.children[i];
     // name may not be available while gragging into the panel and
     // other situations
-    if (!child.applet?.plasmoid?.pluginName) continue
+    if (!child.applet?.plasmoid?.pluginName) continue;
     // Utils.dumpProps(child.applet.plasmoid)
-    const id = child.applet.plasmoid.id
-    const name = child.applet.plasmoid.pluginName
-    const title = child.applet.plasmoid.title
-    const icon = child.applet.plasmoid.icon
-    if (panelWidgets.find((item) => item.id === id)) continue
+    const id = child.applet.plasmoid.id;
+    const name = child.applet.plasmoid.pluginName;
+    const title = child.applet.plasmoid.title;
+    const icon = child.applet.plasmoid.icon;
+    if (panelWidgets.find((item) => item.id === id)) continue;
     // console.error(name, title, icon)
-    panelWidgets.push({ "id": id, "name": name, "title": title, "icon": icon, "inTray": false })
+    panelWidgets.push({
+      id: id,
+      name: name,
+      title: title,
+      icon: icon,
+      inTray: false,
+    });
   }
-  return panelWidgets
+  return panelWidgets;
 }
 function findWidgetsTray(grid, panelWidgets) {
-  if (!grid) return panelWidgets
+  if (!grid) return panelWidgets;
   if (grid instanceof GridView) {
     for (let i = 0; i < grid.count; i++) {
       const item = grid.itemAtIndex(i);
-      if (!item) continue
+      if (!item) continue;
       for (let j in item.children) {
-        if (!(item.children[j].model)) continue
-        const model = item.children[j].model
+        if (!item.children[j].model) continue;
+        const model = item.children[j].model;
         // App tray icons
         if (model.itemType === "StatusNotifier") {
           // in contrast with applet?.plasmoid.id, Id is not actually given by plasma,
           // but since there should be only a single instance of StatusNotifier per app,
           // model.Id _should_ be enough for any sane implementation of tray icon
-          const name = model.Id
-          const title = model.ToolTipTitle !== "" ? model.ToolTipTitle : model.Title
-          const icon = model.IconName
-          if (panelWidgets.find((item) => item.name === name)) continue
+          const name = model.Id;
+          const title =
+            model.ToolTipTitle !== "" ? model.ToolTipTitle : model.Title;
+          const icon = model.IconName;
+          if (panelWidgets.find((item) => item.name === name)) continue;
           // console.error(name, title, icon)
-          panelWidgets.push({ "id": -1, "name": name, "title": title, "icon": icon, "inTray": true })
+          panelWidgets.push({
+            id: -1,
+            name: name,
+            title: title,
+            icon: icon,
+            inTray: true,
+          });
         }
         // normal plasmoids in tray
         if (model.itemType === "Plasmoid") {
-          const applet = model.applet ?? null
-          const id = applet?.plasmoid.id ?? -1
-          const name = applet?.plasmoid.pluginName ?? ""
-          const title = applet?.plasmoid.title ?? ""
-          const icon = applet?.plasmoid.icon ?? ""
-          if (panelWidgets.find((item) => item.id === id)) continue
+          const applet = model.applet ?? null;
+          const id = applet?.plasmoid.id ?? -1;
+          const name = applet?.plasmoid.pluginName ?? "";
+          const title = applet?.plasmoid.title ?? "";
+          const icon = applet?.plasmoid.icon ?? "";
+          if (panelWidgets.find((item) => item.id === id)) continue;
           // console.error(name, title, icon)
-          panelWidgets.push({ "id": id, "name": name, "title": title, "icon": icon, "inTray": true })
+          panelWidgets.push({
+            id: id,
+            name: name,
+            title: title,
+            icon: icon,
+            inTray: true,
+          });
         }
       }
     }
@@ -146,42 +166,48 @@ function findWidgetsTray(grid, panelWidgets) {
   // find the expand tray arrow
   if (grid instanceof GridLayout) {
     for (let i in grid.children) {
-      const item = grid.children[i]
+      const item = grid.children[i];
       if (!(item instanceof GridView)) {
-        const name = "org.kde.plasma.systemtray.expand"
-        if (panelWidgets.find((item) => item.name === name)) continue
-        const title = item.subText || "Show hidden icons"
-        panelWidgets.push({ "id": -1, "name": name, "title": title, "icon": "arrow-down", "inTray": true })
+        const name = "org.kde.plasma.systemtray.expand";
+        if (panelWidgets.find((item) => item.name === name)) continue;
+        const title = item.subText || "Show hidden icons";
+        panelWidgets.push({
+          id: -1,
+          name: name,
+          title: title,
+          icon: "arrow-down",
+          inTray: true,
+        });
       }
     }
   }
-  return panelWidgets
+  return panelWidgets;
 }
 
 function getWidgetNameAndId(item) {
-  let name = ""
-  let id = -1
-  if (!item) return { name, id }
+  let name = "";
+  let id = -1;
+  if (!item) return { name, id };
   if (item.applet?.plasmoid?.pluginName) {
-    name = item.applet.plasmoid.pluginName
-    id = item.applet.plasmoid.id
+    name = item.applet.plasmoid.pluginName;
+    id = item.applet.plasmoid.id;
   } else {
     for (let i in item.children) {
-      if (!(item.children[i].model)) continue
-      const model = item.children[i].model
+      if (!item.children[i].model) continue;
+      const model = item.children[i].model;
       if (model.itemType === "StatusNotifier") {
-        name = model.Id
+        name = model.Id;
       } else if (model.itemType === "Plasmoid") {
-        const applet = model.applet ?? null
-        name = applet?.plasmoid.pluginName ?? ""
-        id = applet?.plasmoid.id ?? -1
+        const applet = model.applet ?? null;
+        name = applet?.plasmoid.pluginName ?? "";
+        id = applet?.plasmoid.id ?? -1;
       }
     }
   }
   // if (name) {
   //   console.error("@@@@ getWidgetName ->", name)
   // }
-  return { name, id }
+  return { name, id };
 }
 
 var themeColors = [
@@ -204,8 +230,8 @@ var themeColors = [
   "positiveBackgroundColor",
   "alternateBackgroundColor",
   "focusColor",
-  "hoverColor"
-]
+  "hoverColor",
+];
 
 var themeScopes = [
   "View",
@@ -214,89 +240,114 @@ var themeScopes = [
   "Selection",
   "Tooltip",
   "Complementary",
-  "Header"
-]
+  "Header",
+];
 
 function getWidgetAsocIdx(id, name, config) {
   // console.log("getWidgetAsocIdx()")
-  return config.findIndex((item) => item.id == id && item.name == name)
+  return config.findIndex((item) => item.id == id && item.name == name);
 }
 
 function getCustomCfg(widgetName, widgetId, configurationOverrides) {
-  if (!widgetId) return null
-  var custom = {}
-  configurationOverrides.associations = clearOldWidgetConfig(configurationOverrides.associations)
-  let asocIndex = getWidgetAsocIdx(widgetId, widgetName, configurationOverrides.associations)
+  if (!widgetId) return null;
+  var custom = {};
+  configurationOverrides.associations = clearOldWidgetConfig(
+    configurationOverrides.associations,
+  );
+  let asocIndex = getWidgetAsocIdx(
+    widgetId,
+    widgetName,
+    configurationOverrides.associations,
+  );
   if (asocIndex !== -1) {
-
-    const overrideNames = configurationOverrides.associations[asocIndex].presets
+    const overrideNames =
+      configurationOverrides.associations[asocIndex].presets;
 
     for (let overrideName of overrideNames) {
-      if (!(overrideName in configurationOverrides.overrides)) continue
-      const current = configurationOverrides.overrides[overrideName]
-      custom = getEffectiveSettings(current, custom)
+      if (!(overrideName in configurationOverrides.overrides)) continue;
+      const current = configurationOverrides.overrides[overrideName];
+      custom = getEffectiveSettings(current, custom);
     }
   }
   if (Object.keys(custom).length !== 0) {
-    return custom
+    return custom;
   }
-  return null
+  return null;
 }
 
 function getGlobalSettings(itemType) {
-  let globalSettings = {}
+  let globalSettings = {};
   if (itemType === Enums.ItemType.PanelBgItem) {
-    globalSettings = panelSettings
-  }
-  else if (itemType === Enums.ItemType.TrayItem || itemType === Enums.ItemType.TrayArrow) {
-    globalSettings = trayWidgetSettings
+    globalSettings = panelSettings;
+  } else if (
+    itemType === Enums.ItemType.TrayItem ||
+    itemType === Enums.ItemType.TrayArrow
+  ) {
+    globalSettings = trayWidgetSettings;
   } else {
-    globalSettings = widgetSettings
+    globalSettings = widgetSettings;
   }
-  return globalSettings
+  return globalSettings;
 }
 
 function getEffectiveSettings(customSettings, globalSettings) {
   let effectiveSettings = JSON.parse(JSON.stringify(customSettings));
   for (var key in customSettings) {
-    if (typeof customSettings[key] === "object" && customSettings[key] !== null && globalSettings.hasOwnProperty(key)) {
-      effectiveSettings[key] = getEffectiveSettings(customSettings[key], globalSettings[key])
+    if (
+      typeof customSettings[key] === "object" &&
+      customSettings[key] !== null &&
+      globalSettings.hasOwnProperty(key)
+    ) {
+      effectiveSettings[key] = getEffectiveSettings(
+        customSettings[key],
+        globalSettings[key],
+      );
     }
     if (customSettings[key].hasOwnProperty("enabled")) {
       if (!customSettings[key].enabled && globalSettings.hasOwnProperty(key)) {
-        effectiveSettings[key] = globalSettings[key]
+        effectiveSettings[key] = globalSettings[key];
       }
     }
   }
-  return effectiveSettings
+  return effectiveSettings;
 }
 
-function getItemCfg(itemType, widgetName, widgetId, config, configurationOverrides) {
-  let output = { override: false }
-  let custom = getCustomCfg(widgetName, widgetId, configurationOverrides)
-  let presetOverrides = getCustomCfg(widgetName, widgetId, config.configurationOverrides)
+function getItemCfg(
+  itemType,
+  widgetName,
+  widgetId,
+  config,
+  configurationOverrides,
+) {
+  let output = { override: false };
+  let custom = getCustomCfg(widgetName, widgetId, configurationOverrides);
+  let presetOverrides = getCustomCfg(
+    widgetName,
+    widgetId,
+    config.configurationOverrides,
+  );
   if (presetOverrides) {
     if (custom && custom.disabledFallback) {
-      custom = getEffectiveSettings(custom, presetOverrides)
+      custom = getEffectiveSettings(custom, presetOverrides);
     } else {
-      custom = presetOverrides
+      custom = presetOverrides;
     }
   }
   if (custom) {
-    output.settings = custom
-    output.override = true
-    const disabledFallback = custom.disabledFallback
+    output.settings = custom;
+    output.override = true;
+    const disabledFallback = custom.disabledFallback;
 
     if (disabledFallback) {
-      const global = getGlobalSettings(itemType)
-      output.settings = getEffectiveSettings(custom, global)
+      const global = getGlobalSettings(itemType);
+      output.settings = getEffectiveSettings(custom, global);
     } else {
-      output.settings = custom
+      output.settings = custom;
     }
   } else {
-    output.settings = getGlobalSettings(itemType)
+    output.settings = getGlobalSettings(itemType);
   }
-  return output
+  return output;
 }
 
 function scaleSaturation(color, saturation) {
@@ -309,77 +360,86 @@ function scaleLightness(color, lightness) {
 
 function hexToRgb(hex) {
   var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result ? {
-    r: parseInt(result[1], 16),
-    g: parseInt(result[2], 16),
-    b: parseInt(result[3], 16)
-  } : null;
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
 }
 
 function rgbToQtColor(rgb) {
-  return Qt.rgba(rgb.r / 255, rgb.g / 255, rgb.b / 255, 1)
+  return Qt.rgba(rgb.r / 255, rgb.g / 255, rgb.b / 255, 1);
 }
-
 
 function mergeConfigs(sourceConfig, newConfig) {
   for (var key in sourceConfig) {
     if (typeof sourceConfig[key] === "object" && sourceConfig[key] !== null) {
       if (!newConfig.hasOwnProperty(key)) {
-        newConfig[key] = {}
+        newConfig[key] = {};
       }
-      mergeConfigs(sourceConfig[key], newConfig[key])
+      mergeConfigs(sourceConfig[key], newConfig[key]);
     } else {
       if (!newConfig.hasOwnProperty(key)) {
-        newConfig[key] = sourceConfig[key]
+        newConfig[key] = sourceConfig[key];
       }
     }
   }
-  return newConfig
+  return newConfig;
 }
 
 function stringify(config) {
-  return JSON.stringify(config, null, null)
+  return JSON.stringify(config, null, null);
 }
 
 function loadPreset(presetContent, item, ignoredConfigs, defaults, store) {
   for (let key in presetContent) {
-    let val = presetContent[key]
+    let val = presetContent[key];
     const cfgKey = "cfg_" + key;
-    if (ignoredConfigs.some(function (k) { return key.includes(k) })) continue
+    if (
+      ignoredConfigs.some(function (k) {
+        return key.includes(k);
+      })
+    )
+      continue;
     if (key === "globalSettings") {
-      val = mergeConfigs(defaults, val)
+      val = mergeConfigs(defaults, val);
     }
-    const valStr = stringify(val)
+    const valStr = stringify(val);
     if (store) {
-      if (item[key]) item[key] = valStr
+      if (item[key]) item[key] = valStr;
     } else {
-      if (item[cfgKey]) item[cfgKey] = valStr
+      if (item[cfgKey]) item[cfgKey] = valStr;
     }
     // }
   }
 }
 
 function getPresetName(panelState, presetAutoloading) {
-  if (presetAutoloading.hasOwnProperty("enabled") && !presetAutoloading.enabled) return null
+  if (presetAutoloading.hasOwnProperty("enabled") && !presetAutoloading.enabled)
+    return null;
   // loop until we find a the currently active 'true' panel state with a configured preset
   // normal is our fallback so does not need active state
-  const priority = ["fullscreenWindow", "maximized", "touchingWindow", "visibleWindows", "floating", "normal"]
+  const priority = [
+    "fullscreenWindow",
+    "maximized",
+    "touchingWindow",
+    "visibleWindows",
+    "floating",
+    "normal",
+  ];
   for (let state of priority) {
     if ((panelState[state] || state === "normal") && presetAutoloading[state]) {
       // console.error("getPresetName()", state, "->", presetAutoloading[state])
-      return presetAutoloading[state]
+      return presetAutoloading[state];
     }
   }
-  return null
+  return null;
 }
 
-
 function getGlobalPosition(rect, panelElement) {
-  return rect.mapToItem(
-    panelElement, 0, 0,
-    rect.width,
-    rect.height
-  )
+  return rect.mapToItem(panelElement, 0, 0, rect.width, rect.height);
 }
 
 function getUnifyBgType(itemTypes, index) {
@@ -400,7 +460,7 @@ function getUnifyBgType(itemTypes, index) {
     }
     for (let i = index + 1; i < itemTypes.length; i++) {
       if (itemTypes[i] === 1) {
-        break
+        break;
       }
       if (itemTypes[i] === 2) {
         hasType2After = true;
@@ -416,10 +476,10 @@ function getUnifyBgType(itemTypes, index) {
 
 // https://github.com/rbn42/panon/blob/stable/plasmoid/contents/ui/utils.js
 function getWidgetRootDir() {
-  var path = plasmoid.metaData.fileName
-  path = path.split('/')
-  path[path.length - 1] = 'contents/'
-  return path.join('/')
+  var path = plasmoid.metaData.fileName;
+  path = path.split("/");
+  path[path.length - 1] = "contents/";
+  return path.join("/");
 }
 
 function setPanelModeScript(panelId, panelSettings) {
@@ -450,80 +510,79 @@ if (${panelSettings.opacity.enabled}) {
 }
 
 function getForceFgWidgetConfig(id, name, config) {
-  return config.find((item) => item.id == id && item.name == name)
+  return config.find((item) => item.id == id && item.name == name);
 }
 
 function clearOldWidgetConfig(config) {
   if (Array.isArray(config)) {
-    return config
-  }
-  else return []
+    return config;
+  } else return [];
 }
 
 function getWidgetConfigIdx(id, name, config) {
   // console.log("getWidgetConfigIdx()")
-  return config.findIndex((item) => item.id == id && item.name == name)
+  return config.findIndex((item) => item.id == id && item.name == name);
 }
 
 function makeEven(n) {
-  return n - n % 2
+  return n - (n % 2);
 }
 
 function parseValue(rawValue) {
   try {
-      return JSON.parse(rawValue)
+    return JSON.parse(rawValue);
   } catch (e) {
-      if (rawValue.toLowerCase() === "true") {
-          return true
-      }
-      if (rawValue.toLowerCase() === "false") {
-          return false
-      }
-      if (!isNaN(rawValue)) {
-          return Number(rawValue)
-      }
+    if (rawValue.toLowerCase() === "true") {
+      return true;
+    }
+    if (rawValue.toLowerCase() === "false") {
+      return false;
+    }
+    if (!isNaN(rawValue)) {
+      return Number(rawValue);
+    }
 
-      return rawValue
+    return rawValue;
   }
 }
 
 /**
-* Edit an existing object property using dot and square brackets notation
-* Overrides objects if the new value is also an object
-* For array allows setting per index (appending if not consecutive) or replacing with a new array
-* @param {Object} object - The object to set the property on.
-* @param {string} path - The path to the property.
-* @param {string} value - The value to set.
-*/
+ * Edit an existing object property using dot and square brackets notation
+ * Overrides objects if the new value is also an object
+ * For array allows setting per index (appending if not consecutive) or replacing with a new array
+ * @param {Object} object - The object to set the property on.
+ * @param {string} path - The path to the property.
+ * @param {string} value - The value to set.
+ */
 function editProperty(object, path, value) {
-  console.log(`editing property path: '${path}' value: '${value}'`)
-  value = parseValue(value)
-  const keys = path.replace(/\[/g, ".").replace(/\]/g, "").split(".")
-  let current = object
+  console.log(`editing property path: '${path}' value: '${value}'`);
+  value = parseValue(value);
+  const keys = path.replace(/\[/g, ".").replace(/\]/g, "").split(".");
+  let current = object;
 
   for (let i = 0; i < keys.length - 1; i++) {
-      const key = keys[i]
-      if (!current.hasOwnProperty(key)) return
-      current = current[key]
-      if (typeof current !== "object" || current === null) return
+    const key = keys[i];
+    if (!current.hasOwnProperty(key)) return;
+    current = current[key];
+    if (typeof current !== "object" || current === null) return;
   }
 
-  const lastKey = keys[keys.length - 1]
+  const lastKey = keys[keys.length - 1];
 
   // no new keys unless it's an array
-  if (!current.hasOwnProperty(lastKey) && !Array.isArray(current)) return
+  if (!current.hasOwnProperty(lastKey) && !Array.isArray(current)) return;
 
   if (Array.isArray(current)) {
-    const index = parseInt(lastKey, 10)
+    const index = parseInt(lastKey, 10);
     // add to array if it's the next index
     if (index === current.length) {
-        current.push(value)
+      current.push(value);
     } else if (index < current.length) {
-        current[index] = value
+      current[index] = value;
     } else if (Array.isArray(value)) {
-        current[lastKey] = value
+      current[lastKey] = value;
     } else {
-        return
+      return;
     }
   } else if (
     typeof current[lastKey] === "object" &&
@@ -531,12 +590,12 @@ function editProperty(object, path, value) {
   ) {
     // override only if the new value is an object
     if (typeof value === "object" && value !== null) {
-        current[lastKey] = value
+      current[lastKey] = value;
     } else {
-        return
+      return;
     }
   } else {
-      current[lastKey] = value
+    current[lastKey] = value;
   }
 }
 
@@ -547,9 +606,9 @@ function delay(interval, callback, parentItem) {
   timer.repeat = false;
   timer.triggered.connect(callback);
   timer.triggered.connect(function release() {
-      timer.triggered.disconnect(callback);
-      timer.triggered.disconnect(release);
-      timer.destroy();
+    timer.triggered.disconnect(callback);
+    timer.triggered.disconnect(release);
+    timer.destroy();
   });
   timer.start();
 }

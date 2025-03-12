@@ -1,9 +1,9 @@
 import QtQuick
 import QtQuick.Controls
 
-
 TextField {
     id: root
+
     property real from: 0
     property real to: 1
     property int decimals: 2
@@ -12,22 +12,15 @@ TextField {
 
     placeholderText: "0-1"
     text: "0.00"
-
     onTextChanged: {
-        if (!acceptableInput) return
-        value = parseFloat(text).toFixed(2)
-    }
+        if (!acceptableInput)
+            return;
 
-    validator: DoubleValidator {
-        bottom: root.from
-        top: root.to
-        decimals: root.decimals
-        notation: DoubleValidator.StandardNotation
+        value = parseFloat(text).toFixed(2);
     }
-
     onValueChanged: {
-        root.value = isNaN(value) ? 0 : value
-        text = root.value.toFixed(validator.decimals).toString() ?? "0.00"
+        root.value = isNaN(value) ? 0 : value;
+        text = root.value.toFixed(validator.decimals).toString() ?? "0.00";
     }
 
     ValueMouseControl {
@@ -36,14 +29,20 @@ TextField {
         anchors.right: parent.right
         anchors.rightMargin: 4
         anchors.verticalCenter: parent.verticalCenter
-
         from: parent.validator.bottom
         to: parent.validator.top
         decimals: parent.validator.decimals
         stepSize: 0.05
         value: parent.value
         onValueChanged: {
-            parent.value = parseFloat(value).toFixed(decimals)
+            parent.value = parseFloat(value).toFixed(decimals);
         }
+    }
+
+    validator: DoubleValidator {
+        bottom: root.from
+        top: root.to
+        decimals: root.decimals
+        notation: DoubleValidator.StandardNotation
     }
 }

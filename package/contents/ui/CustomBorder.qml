@@ -94,7 +94,6 @@ Rectangle {
             anchors.bottom: !root.horizontal ? parent.bottom : undefined
             anchors.verticalCenter: root.horizontal ? parent.verticalCenter : undefined
             anchors.horizontalCenter: !root.horizontal ? parent.horizontalCenter : undefined
-
         }
         Rectangle {
             id: rect2
