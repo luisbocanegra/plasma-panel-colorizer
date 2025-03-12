@@ -12,15 +12,14 @@ import "code/utils.js" as Utils
 import "code/globals.js" as Globals
 
 KCM.SimpleKCM {
-    id:root
-    property string presetsDir: StandardPaths.writableLocation(
-                    StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/presets/"
+    id: root
+    property string presetsDir: StandardPaths.writableLocation(StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/presets/"
     property string cratePresetsDirCmd: "mkdir -p '" + presetsDir + "'"
     property string presetsBuiltinDir: Qt.resolvedUrl("./presets").toString().substring(7) + "/"
     property string toolsDir: Qt.resolvedUrl("./tools").toString().substring(7) + "/"
     property string listUserPresetsCmd: "'" + toolsDir + "list_presets.sh' '" + presetsDir + "'"
     property string listBuiltinPresetsCmd: "'" + toolsDir + "list_presets.sh' '" + presetsBuiltinDir + "' b"
-    property string listPresetsCmd: listBuiltinPresetsCmd+";"+listUserPresetsCmd
+    property string listPresetsCmd: listBuiltinPresetsCmd + ";" + listUserPresetsCmd
     property string spectaclePreviewCmd: "spectacle -bn -r -o "
     property var presets: ({})
     property var presetContent: ""
@@ -34,7 +33,7 @@ KCM.SimpleKCM {
     Connections {
         target: plasmoid.configuration
         onValueChanged: {
-            plasmoid.configuration.lastPreset = root.lastPreset
+            plasmoid.configuration.lastPreset = root.lastPreset;
             plasmoid.configuration.writeConfig();
         }
     }
@@ -45,70 +44,74 @@ KCM.SimpleKCM {
 
     signal refreshImage(editingPreset: string)
 
-    signal reloadPresetList()
+    signal reloadPresetList
 
     onReloadPresetList: {
-        runCommand.run(listPresetsCmd)
+        runCommand.run(listPresetsCmd);
     }
 
     Connections {
         target: runCommand
         function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
-            if (exitCode!==0) {
-                console.error(cmd, exitCode, exitStatus, stdout, stderr)
-                return
+            if (exitCode !== 0) {
+                console.error(cmd, exitCode, exitStatus, stdout, stderr);
+                return;
             }
-            if(cmd === root.listPresetsCmd) {
-                root.presets = ({})
-                if (stdout.length === 0) return
-                const out = stdout.trim().split("\n")
-                var tmp = {}
+            if (cmd === root.listPresetsCmd) {
+                root.presets = ({});
+                if (stdout.length === 0)
+                    return;
+                const out = stdout.trim().split("\n");
+                var tmp = {};
                 for (const line of out) {
-                    let builtin = false
-                    const parts = line.split(":")
-                    const path = parts[parts.length -1]
-                    let name = path.split("/")
-                    name = name[name.length-1]
+                    let builtin = false;
+                    const parts = line.split(":");
+                    const path = parts[parts.length - 1];
+                    let name = path.split("/");
+                    name = name[name.length - 1];
                     if (line.startsWith("b:")) {
-                        builtin = true
+                        builtin = true;
                     }
-                    console.log("Found preset:", parts[1])
-                    tmp[name] = {"dir": parts[1], "builtin": builtin}
+                    console.log("Found preset:", parts[1]);
+                    tmp[name] = {
+                        "dir": parts[1],
+                        "builtin": builtin
+                    };
                 }
-                root.presets = tmp
+                root.presets = tmp;
             }
             if (cmd.startsWith("cat")) {
-                root.presetContent = JSON.parse(stdout.trim())
-                Utils.loadPreset(root.presetContent, root, Globals.ignoredConfigs, Globals.defaultConfig, false)
+                root.presetContent = JSON.parse(stdout.trim());
+                Utils.loadPreset(root.presetContent, root, Globals.ignoredConfigs, Globals.defaultConfig, false);
             }
             if (cmd.startsWith("echo")) {
-                root.reloadPresetList()
-                createPreviewDialog.open()
+                root.reloadPresetList();
+                createPreviewDialog.open();
             }
             if (cmd.startsWith("spectacle")) {
-                root.reloadPresetList()
+                root.reloadPresetList();
             }
         }
     }
 
     Kirigami.PromptDialog {
         id: deletePresetDialog
-        title: "Delete preset '"+root.editingPreset+"?"
+        title: "Delete preset '" + root.editingPreset + "?"
         subtitle: i18n("This will permanently delete the file from your system!")
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {
-            root.deletePreset(root.editingPreset)
-            runCommand.run(root.listPresetsCmd)
+            root.deletePreset(root.editingPreset);
+            runCommand.run(root.listPresetsCmd);
         }
     }
 
     Kirigami.PromptDialog {
         id: updatePresetDialog
-        title: "Update preset '"+root.editingPreset+"'?"
+        title: "Update preset '" + root.editingPreset + "'?"
         subtitle: i18n("Preset configuration will be overwritten!")
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {
-            root.savePreset(root.editingPreset)
+            root.savePreset(root.editingPreset);
         }
     }
 
@@ -118,73 +121,72 @@ KCM.SimpleKCM {
         subtitle: i18n("Current preview will be overwritten!")
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {
-            runCommand.run(root.spectaclePreviewCmd+"'" + root.editingPreset + "/preview.png'")
+            runCommand.run(root.spectaclePreviewCmd + "'" + root.editingPreset + "/preview.png'");
         }
     }
 
     Kirigami.PromptDialog {
         id: newPresetDialog
-        title: "Create preset '"+root.editingPreset+"'?"
+        title: "Create preset '" + root.editingPreset + "'?"
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {
-            root.savePreset(root.editingPreset)
-            runCommand.run(root.listPresetsCmd)
-            saveNameField.text = ""
+            root.savePreset(root.editingPreset);
+            runCommand.run(root.listPresetsCmd);
+            saveNameField.text = "";
         }
     }
 
     function applyPreset(presetDir) {
         console.log("Reading preset:", presetDir);
-        runCommand.run("cat '" + presetDir + "/settings.json'")
+        runCommand.run("cat '" + presetDir + "/settings.json'");
     }
 
     function restoreSettings() {
         console.log("Restoring default configuration");
-        cfg_globalSettings = JSON.stringify(Globals.defaultConfig, null, null)
+        cfg_globalSettings = JSON.stringify(Globals.defaultConfig, null, null);
     }
 
     function savePreset(presetDir) {
         console.log("Saving preset ", presetDir);
-        var config = plasmoid.configuration
-        var output = {}
+        var config = plasmoid.configuration;
+        var output = {};
         for (var key of Object.keys(config)) {
-            if (typeof config[key] === "function") continue
+            if (typeof config[key] === "function")
+                continue;
             if (key.endsWith("Default")) {
-                if (Globals.ignoredConfigs.some(
-                    function (k) {return key.includes(k) }
-                )) continue
-                let name = key.slice(0, -7)
-                let val = config[name]
-                let parsed = JSON.parse(val)
+                if (Globals.ignoredConfigs.some(function (k) {
+                    return key.includes(k);
+                }))
+                    continue;
+                let name = key.slice(0, -7);
+                let val = config[name];
+                let parsed = JSON.parse(val);
                 if (name === "globalSettings") {
-                    val = Utils.mergeConfigs(Globals.defaultConfig, parsed)
+                    val = Utils.mergeConfigs(Globals.defaultConfig, parsed);
                 } else {
-                    parsed
+                    parsed;
                 }
-                output[name] = parsed
+                output[name] = parsed;
             }
         }
-        runCommand.run("mkdir -p '"+presetDir+"'")
-        runCommand.run("echo '" + JSON.stringify(output, null, 4) + "' > '" + presetDir + "/settings.json'")
+        runCommand.run("mkdir -p '" + presetDir + "'");
+        runCommand.run("echo '" + JSON.stringify(output, null, 4) + "' > '" + presetDir + "/settings.json'");
     }
 
     function deletePreset(path) {
-        if (!path.includes("panel-colorizer/presets/")
-        || path.includes("/ ") || path.includes(" /") || path.endsWith(" ")
-        || path.includes("..")
-        ) {
-            console.error(`Detected unsafe deletion of '${path}' aborting.`)
-            return
+        if (!path.includes("panel-colorizer/presets/") || path.includes("/ ") || path.includes(" /") || path.endsWith(" ") || path.includes("..")) {
+            console.error(`Detected unsafe deletion of '${path}' aborting.`);
+            return;
         }
-        console.warn("rm -r '" + path + "'" )
-        runCommand.run("rm -r '" + path + "'" )
+        console.warn("rm -r '" + path + "'");
+        runCommand.run("rm -r '" + path + "'");
     }
 
     Component.onCompleted: {
         Utils.delay(100, () => {
-            runCommand.run(cratePresetsDirCmd)
-            runCommand.run(listPresetsCmd)
-        }, root)
+            runCommand.run(cratePresetsDirCmd);
+            runCommand.run(listPresetsCmd);
+        }, root);
     }
 
     header: ColumnLayout {
@@ -211,7 +213,7 @@ KCM.SimpleKCM {
                     text: i18n("Restore default panel appearance")
                     icon.name: "kt-restore-defaults-symbolic"
                     onClicked: {
-                        root.restoreSettings()
+                        root.restoreSettings();
                     }
                     Layout.fillWidth: true
                 }
@@ -233,8 +235,8 @@ KCM.SimpleKCM {
                     text: i18n("Save")
                     enabled: saveNameField.acceptableInput && !(Object.keys(root.presets).includes(saveNameField.text))
                     onClicked: {
-                        root.editingPreset = root.presetsDir+saveNameField.text
-                        newPresetDialog.open()
+                        root.editingPreset = root.presetsDir + saveNameField.text;
+                        newPresetDialog.open();
                     }
                 }
             }
@@ -249,7 +251,7 @@ KCM.SimpleKCM {
                         text: i18n("Refresh presets")
                         icon.name: "view-refresh-symbolic"
                         onClicked: {
-                            runCommand.run(root.listPresetsCmd)
+                            runCommand.run(root.listPresetsCmd);
                         }
                     }
                 }
@@ -266,7 +268,7 @@ KCM.SimpleKCM {
                             RowLayout {
                                 id: row
                                 Label {
-                                    text: (parseInt(content.index)+1)+"."
+                                    text: (parseInt(content.index) + 1) + "."
                                     font.bold: true
                                 }
                                 Label {
@@ -283,8 +285,8 @@ KCM.SimpleKCM {
                                     implicitHeight: label.height + 2
                                     Kirigami.Theme.inherit: false
                                     Label {
-                                        anchors.centerIn: parent
                                         id: label
+                                        anchors.centerIn: parent
                                         text: i18n("Built-in")
                                         color: Kirigami.Theme.textColor
                                         Kirigami.Theme.colorSet: root.Kirigami.Theme["Selection"]
@@ -302,8 +304,8 @@ KCM.SimpleKCM {
                                     text: i18n("Load")
                                     Layout.preferredHeight: saveBtn.height
                                     onClicked: {
-                                        root.lastPreset = content.dir
-                                        root.applyPreset(root.lastPreset)
+                                        root.lastPreset = content.dir;
+                                        root.applyPreset(root.lastPreset);
                                     }
                                 }
                                 Button {
@@ -311,8 +313,8 @@ KCM.SimpleKCM {
                                     icon.name: "document-save-symbolic"
                                     text: i18n("Update")
                                     onClicked: {
-                                        root.editingPreset = content.dir
-                                        updatePresetDialog.open()
+                                        root.editingPreset = content.dir;
+                                        updatePresetDialog.open();
                                     }
                                     visible: !root.presets[content.modelData].builtin
                                 }
@@ -320,8 +322,8 @@ KCM.SimpleKCM {
                                     text: i18n("Delete")
                                     icon.name: "edit-delete-remove-symbolic"
                                     onClicked: {
-                                        root.editingPreset = content.dir
-                                        deletePresetDialog.open()
+                                        root.editingPreset = content.dir;
+                                        deletePresetDialog.open();
                                     }
                                     visible: !root.presets[content.modelData].builtin
                                 }
@@ -332,13 +334,13 @@ KCM.SimpleKCM {
                                 visible: !scrollView.visible
                                 Layout.alignment: Qt.AlignHCenter
                                 onClicked: {
-                                    runCommand.run(root.spectaclePreviewCmd+"'" + content.dir + "/preview.png'")
+                                    runCommand.run(root.spectaclePreviewCmd + "'" + content.dir + "/preview.png'");
                                 }
                             }
                             ScrollView {
+                                id: scrollView
                                 Layout.preferredWidth: 500
                                 Layout.maximumHeight: 100
-                                id: scrollView
                                 visible: false
                                 contentWidth: btn.implicitWidth
                                 contentHeight: btn.implicitHeight
@@ -346,24 +348,25 @@ KCM.SimpleKCM {
                                 Image {
                                     id: image
                                     onStatusChanged: if (image.status == Image.Ready) {
-                                        scrollView.visible = true
-                                        scrollView.height = sourceSize.height
+                                        scrollView.visible = true;
+                                        scrollView.height = sourceSize.height;
                                     } else {
-                                        scrollView.visible = false
+                                        scrollView.visible = false;
                                     }
-                                    source: content.dir+"/preview.png"
+                                    source: content.dir + "/preview.png"
                                     fillMode: Image.PreserveAspectCrop
                                     horizontalAlignment: Image.AlignLeft
                                     cache: false
                                     asynchronous: true
                                     function refresh(presetName) {
                                         // only refresh preview of the changed preset
-                                        if (presetName !== content.dir) return
-                                        source = ""
-                                        source = content.dir+"/preview.png"
+                                        if (presetName !== content.dir)
+                                            return;
+                                        source = "";
+                                        source = content.dir + "/preview.png";
                                     }
                                     Component.onCompleted: {
-                                        root.refreshImage.connect(refresh)
+                                        root.refreshImage.connect(refresh);
                                     }
                                 }
                                 Button {
@@ -374,7 +377,7 @@ KCM.SimpleKCM {
                                     icon.name: "edit-image-symbolic"
                                     enabled: !root.presets[content.modelData].builtin
                                     onClicked: {
-                                        runCommand.run(root.spectaclePreviewCmd+"'" + content.dir+"/preview.png" + "'")
+                                        runCommand.run(root.spectaclePreviewCmd + "'" + content.dir + "/preview.png" + "'");
                                     }
                                     property bool showTooltip: false
                                     property bool hasPosition: tooltipX !== 0 && tooltipY !== 0
@@ -399,28 +402,27 @@ KCM.SimpleKCM {
                                             cursorShape: hovered ? Qt.PointingHandCursor : Qt.ArrowCursor
                                             onHoveredChanged: {
                                                 if (hovered) {
-                                                    btn.tooltipX = 0
-                                                    btn.tooltipY = 0
+                                                    btn.tooltipX = 0;
+                                                    btn.tooltipY = 0;
                                                 }
-                                                btn.showTooltip = hovered
-                                                if (!hovered) hoverTimer.stop()
+                                                btn.showTooltip = hovered;
+                                                if (!hovered)
+                                                    hoverTimer.stop();
                                             }
                                             onPointChanged: {
-                                                hoverTimer.restart()
+                                                hoverTimer.restart();
                                             }
                                         }
                                         TapHandler {
                                             enabled: !root.presets[content.modelData].builtin
-                                            onTapped: runCommand.run(
-                                                root.spectaclePreviewCmd+"'" + content.dir+"/preview.png" + "'"
-                                            )
+                                            onTapped: runCommand.run(root.spectaclePreviewCmd + "'" + content.dir + "/preview.png" + "'")
                                         }
                                         Timer {
                                             id: hoverTimer
                                             interval: 500
                                             onTriggered: {
-                                                btn.tooltipX = hoverHandler.point.position.x
-                                                btn.tooltipY = hoverHandler.point.position.y
+                                                btn.tooltipX = hoverHandler.point.position.x;
+                                                btn.tooltipY = hoverHandler.point.position.y;
                                             }
                                         }
                                     }
@@ -433,4 +435,3 @@ KCM.SimpleKCM {
         }
     }
 }
-

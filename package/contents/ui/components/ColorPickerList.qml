@@ -15,9 +15,9 @@ ColumnLayout {
     property bool ready: false
     signal removeColor(index: int)
 
-    onRemoveColor: (index) => {
-        colorsListModel.remove(index)
-        updateColorsList()
+    onRemoveColor: index => {
+        colorsListModel.remove(index);
+        updateColorsList();
     }
 
     ListModel {
@@ -34,48 +34,51 @@ ColumnLayout {
     Connections {
         target: colorsListModel
         function onCountChanged(count, ready) {
-            if (!ready) return
+            if (!ready)
+                return;
             console.log("model count changed:", count);
-            updateColorsList()
+            updateColorsList();
         }
     }
 
     onColorsListChanged: {
-        initColorsListModel()
+        initColorsListModel();
     }
 
     function initColorsListModel() {
-        ready = false
-        colorsListModel.clear()
-        const colors = colorsList
+        ready = false;
+        colorsListModel.clear();
+        const colors = colorsList;
         for (let i in colors) {
-            colorsListModel.append({"color": colors[i]})
+            colorsListModel.append({
+                "color": colors[i]
+            });
         }
-        ready = true
+        ready = true;
     }
 
     function getRandomColor() {
-        const h = Math.random()
-        const s = Math.random()
-        const l = Math.random()
-        const a = 1.0
-        console.log(h,s,l);
-        return Qt.hsla(h,s,l,a)
+        const h = Math.random();
+        const s = Math.random();
+        const l = Math.random();
+        const a = 1.0;
+        console.log(h, s, l);
+        return Qt.hsla(h, s, l, a);
     }
 
     function updateColorsList() {
         console.log("updateColorsList()");
-        let colors_list = []
+        let colors_list = [];
         for (let i = 0; i < colorsListModel.count; i++) {
-            let c = colorsListModel.get(i).color
-            colors_list.push(c)
+            let c = colorsListModel.get(i).color;
+            colors_list.push(c);
         }
-        colorsList = colors_list
-        colorsChanged(colorsList)
+        colorsList = colors_list;
+        colorsChanged(colorsList);
     }
 
     Component.onCompleted: {
-        initColorsListModel()
+        initColorsListModel();
     }
 
     GroupBox {
@@ -85,7 +88,7 @@ ColumnLayout {
             Repeater {
                 id: customColorsRepeater
                 model: ready ? colorsListModel : []
-                delegate : RowLayout {
+                delegate: RowLayout {
 
                     TextMetrics {
                         id: metrics
@@ -111,32 +114,38 @@ ColumnLayout {
 
                     ColorButton {
                         showAlphaChannel: false
-                        dialogTitle: i18n("Widget background") + "("+index+")"
+                        dialogTitle: i18n("Widget background") + "(" + index + ")"
                         color: modelData
                         showCurentColor: false
-                        onAccepted: (color) => {
-                            colorsListModel.set(index, {"color": color.toString()})
-                            updateColorsList()
+                        onAccepted: color => {
+                            colorsListModel.set(index, {
+                                "color": color.toString()
+                            });
+                            updateColorsList();
                         }
                     }
 
                     Button {
                         icon.name: "randomize-symbolic"
                         onClicked: {
-                            colorsListModel.set(index, {"color": getRandomColor().toString() })
-                            updateColorsList()
+                            colorsListModel.set(index, {
+                                "color": getRandomColor().toString()
+                            });
+                            updateColorsList();
                         }
                     }
 
                     Button {
                         icon.name: "arrow-up"
-                        enabled: index>0
+                        enabled: index > 0
                         onClicked: {
-                            let prevIndex = index-1
-                            let prev = colorsListModel.get(prevIndex).color
-                            colorsListModel.set(prevIndex, colorsListModel.get(index))
-                            colorsListModel.set(index, {"color":prev})
-                            updateColorsList()
+                            let prevIndex = index - 1;
+                            let prev = colorsListModel.get(prevIndex).color;
+                            colorsListModel.set(prevIndex, colorsListModel.get(index));
+                            colorsListModel.set(index, {
+                                "color": prev
+                            });
+                            updateColorsList();
                         }
                     }
 
@@ -144,26 +153,30 @@ ColumnLayout {
                         icon.name: "arrow-down"
                         enabled: index < colorsListModel.count - 1
                         onClicked: {
-                            let nextIndex = index+1
-                            let next = colorsListModel.get(nextIndex).color
-                            colorsListModel.set(nextIndex, colorsListModel.get(index))
-                            colorsListModel.set(index, {"color":next})
-                            updateColorsList()
+                            let nextIndex = index + 1;
+                            let next = colorsListModel.get(nextIndex).color;
+                            colorsListModel.set(nextIndex, colorsListModel.get(index));
+                            colorsListModel.set(index, {
+                                "color": next
+                            });
+                            updateColorsList();
                         }
                     }
 
                     Button {
                         icon.name: "edit-delete-remove"
                         onClicked: {
-                            root.removeColor(index)
+                            root.removeColor(index);
                         }
                     }
 
                     Button {
                         icon.name: "list-add-symbolic"
                         onClicked: {
-                            colorsListModel.insert(index+1, {"color": getRandomColor().toString() })
-                            updateColorsList()
+                            colorsListModel.insert(index + 1, {
+                                "color": getRandomColor().toString()
+                            });
+                            updateColorsList();
                         }
                     }
                 }
@@ -177,8 +190,10 @@ ColumnLayout {
                 Button {
                     icon.name: "list-add-symbolic"
                     onClicked: {
-                        colorsListModel.insert(0, {"color": getRandomColor().toString() })
-                        updateColorsList()
+                        colorsListModel.insert(0, {
+                            "color": getRandomColor().toString()
+                        });
+                        updateColorsList();
                     }
                 }
             }
@@ -197,8 +212,8 @@ ColumnLayout {
                     id: btn
                     icon.name: "view-refresh-symbolic"
                     onClicked: {
-                        colorsList = customColors.text.split(" ")
-                        colorsChanged(colorsList)
+                        colorsList = customColors.text.split(" ");
+                        colorsChanged(colorsList);
                     }
                 }
             }

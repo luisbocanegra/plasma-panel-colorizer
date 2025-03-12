@@ -1,11 +1,12 @@
 import QtQuick
+
 Item {
     id: scheme
+
     property string fgContrast
     property string fgWithAlpha
     property string opacityComponent: "FF"
-
-    property string text:`[General]
+    property string text: `[General]
 ColorScheme=PanelColorizer
 Name=Panel colorizer for Window Buttons (${plasmoid.id})
 shadeSortColumn=true

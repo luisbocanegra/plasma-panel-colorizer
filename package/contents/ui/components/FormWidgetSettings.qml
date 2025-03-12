@@ -1,16 +1,17 @@
+import "../code/globals.js" as Globals
+import "../code/utils.js" as Utils
 import QtCore
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
-import org.kde.plasma.plasmoid
 import org.kde.plasma.plasma5support as P5Support
-import "../code/utils.js" as Utils
-import "../code/globals.js" as Globals
+import org.kde.plasma.plasmoid
 
 ColumnLayout {
     id: backgroundRoot
+
     property bool isSection: true
     // wether read from the string or existing config object
     property bool handleString: false
@@ -21,20 +22,11 @@ ColumnLayout {
     property string configString: "{}"
     property var config: handleString ? JSON.parse(configString) : undefined
     property var configLocal: keyName ? config[keyName] : config
-    signal updateConfigString(configString: string, config: var)
     property alias isEnabled: isEnabled.checked
     property int currentTab
     property var panelColorizer: null
     property bool ready: false
-
-    signal tabChanged(currentTab: int)
-
-    onCurrentTabChanged: {
-        tabChanged(currentTab)
-    }
-
     property bool showBlurMessage: false
-
     property var followVisbility: {
         "background": {
             "panel": false,
@@ -45,109 +37,131 @@ ColumnLayout {
             "panel": false,
             "widget": false,
             "tray": false
-        },
+        }
     }
+
+    signal updateConfigString(string configString, var config)
+    signal tabChanged(int currentTab)
 
     function updateConfig() {
         Qt.callLater(() => {
-            if (keyName) {
-                config[keyName] = configLocal
-            } else {
-                config = configLocal
-            }
-            configString = JSON.stringify(config, null, null)
-            updateConfigString(configString, config)
-        })
+            if (keyName)
+                config[keyName] = configLocal;
+            else
+                config = configLocal;
+            configString = JSON.stringify(config, null, null);
+            updateConfigString(configString, config);
+        });
     }
 
+    onCurrentTabChanged: {
+        tabChanged(currentTab);
+    }
     Component.onCompleted: {
         Qt.callLater(() => {
             try {
-                panelColorizer = Qt.createQmlObject("import org.kde.plasma.panelcolorizer 1.0; PanelColorizer { id: panelColorizer }", backgroundRoot)
+                panelColorizer = Qt.createQmlObject("import org.kde.plasma.panelcolorizer 1.0; PanelColorizer { id: panelColorizer }", backgroundRoot);
                 console.error("QML Plugin org.kde.plasma.panelcolorizer loaded");
             } catch (err) {
                 console.error("QML Plugin org.kde.plasma.panelcolorizer not found");
             }
-            ready = true
-        })
+            ready = true;
+        });
     }
 
     RowLayout {
         Layout.leftMargin: Kirigami.Units.mediumSpacing
         Layout.rightMargin: Kirigami.Units.smallSpacing
         Layout.bottomMargin: Kirigami.Units.smallSpacing
-        ColumnLayout {
 
+        ColumnLayout {
             RowLayout {
                 // Layout.alignment: Qt.AlignRight
                 Label {
                     text: i18n("Enable") + " " + keyFriendlyName + " " + i18n("customization") + ":"
                 }
+
                 CheckBox {
                     id: isEnabled
+
                     checked: configLocal.enabled
                     onCheckedChanged: {
-                        configLocal.enabled = checked
-                        updateConfig()
+                        configLocal.enabled = checked;
+                        updateConfig();
                     }
                 }
             }
+
             RowLayout {
                 visible: keyName === "panel"
+
                 Label {
                     text: i18n("Native panel background:")
                 }
+
                 CheckBox {
                     id: nativePanelBackgroundCheckbox
+
                     checked: config.nativePanelBackground.enabled
                     onCheckedChanged: {
-                        config.nativePanelBackground.enabled = checked
-                        updateConfig()
+                        config.nativePanelBackground.enabled = checked;
+                        updateConfig();
                     }
                 }
+
                 Kirigami.ContextualHelpButton {
                     toolTipText: i18n("Disable to make panel fully transparent, removes contrast and blur effects.")
                 }
             }
+
             RowLayout {
                 visible: keyName === "panel"
+
                 Label {
                     text: i18n("Panel Opacity:")
                 }
+
                 SpinBoxDecimal {
                     Layout.preferredWidth: backgroundRoot.Kirigami.Units.gridUnit * 5
                     from: 0
                     to: 1
                     value: config.nativePanelBackground.opacity ?? 0
                     onValueChanged: {
-                        config.nativePanelBackground.opacity = value
-                        updateConfig()
+                        config.nativePanelBackground.opacity = value;
+                        updateConfig();
                     }
                     enabled: nativePanelBackgroundCheckbox.checked
                 }
+
                 Kirigami.ContextualHelpButton {
                     toolTipText: i18n("Set Opacity to 0 to keep just the mask required by Blur custom background.")
                 }
             }
+
             RowLayout {
                 Label {
                     text: i18n("Blur custom background (Beta):")
                 }
+
                 CheckBox {
                     id: blurCheckbox
+
                     checked: configLocal.blurBehind
                     onCheckedChanged: {
-                        configLocal.blurBehind = checked
-                        updateConfig()
+                        configLocal.blurBehind = checked;
+                        updateConfig();
                     }
                     enabled: isEnabled.checked
                 }
+
                 Kirigami.ContextualHelpButton {
                     toolTipText: i18n("Draw a custom blur mask behind the custom background(s).<br><strong>Native panel background must be enabled with opacity of 0 for this to work as intended.</strong>")
                 }
             }
+
             Kirigami.InlineMessage {
                 id: warningResources
+
                 Layout.fillWidth: true
                 text: i18n("C++ plugin not installed, <b>Blur custom background</b> will not work.<br>Check the repository README on GitHub for details.")
                 visible: backgroundRoot.panelColorizer === null && backgroundRoot.ready
@@ -157,26 +171,27 @@ ColumnLayout {
                         icon.name: "view-readermode-symbolic"
                         text: "Plugin install instructions"
                         onTriggered: {
-                            Qt.openUrlExternally("https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually")
+                            Qt.openUrlExternally("https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually");
                         }
                     }
                 ]
             }
+
             RowLayout {
                 Label {
                     text: i18n("Force floating dialogs:")
                 }
+
                 CheckBox {
                     checked: configLocal.floatingDialogs
                     onCheckedChanged: {
-                        configLocal.floatingDialogs = checked
-                        updateConfig()
+                        configLocal.floatingDialogs = checked;
+                        updateConfig();
                     }
                 }
             }
         }
     }
-
 
     Kirigami.NavigationTabBar {
         // Layout.preferredWidth: root.parent.width
@@ -217,24 +232,29 @@ ColumnLayout {
     }
 
     Kirigami.FormLayout {
-        enabled: backgroundRoot.isEnabled
         // required to align with parent form
         property alias formLayout: backgroundRoot
+
+        enabled: backgroundRoot.isEnabled
         twinFormLayouts: parentLayout
         Layout.fillWidth: true
 
         RowLayout {
             Kirigami.FormData.label: i18n("Spacing:")
             visible: keyName === "widgets" && currentTab === 1
+
             SpinBox {
                 id: spacingCheckbox
+
                 value: configLocal.spacing || 0
                 from: 0
                 to: 999
                 onValueModified: {
-                    if (!enabled) return
-                    configLocal.spacing = value
-                    updateConfig()
+                    if (!enabled)
+                        return;
+
+                    configLocal.spacing = value;
+                    updateConfig();
                 }
             }
 
@@ -245,7 +265,6 @@ ColumnLayout {
                 highlighted: true
                 hoverEnabled: true
                 ToolTip.visible: hovered
-
             }
         }
     }
@@ -255,8 +274,8 @@ ColumnLayout {
         visible: currentTab === 0
         config: backgroundRoot.configLocal.backgroundColor
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.backgroundColor = newConfig
-            backgroundRoot.updateConfig()
+            backgroundRoot.configLocal.backgroundColor = newConfig;
+            backgroundRoot.updateConfig();
         }
         followOptions: followVisbility.background
         sectionName: i18n("Background Color")
@@ -269,8 +288,8 @@ ColumnLayout {
         config: backgroundRoot.configLocal.foregroundColor
         isSection: true
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.foregroundColor = newConfig
-            backgroundRoot.updateConfig()
+            backgroundRoot.configLocal.foregroundColor = newConfig;
+            backgroundRoot.updateConfig();
         }
         followOptions: followVisbility.foreground
         sectionName: i18n("Foreground Color")
@@ -281,8 +300,8 @@ ColumnLayout {
         visible: currentTab === 1
         config: backgroundRoot.configLocal
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal = newConfig
-            backgroundRoot.updateConfig()
+            backgroundRoot.configLocal = newConfig;
+            backgroundRoot.updateConfig();
         }
     }
 
@@ -291,8 +310,8 @@ ColumnLayout {
         visible: currentTab === 1 && keyName === "panel"
         config: backgroundRoot.configLocal
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal = newConfig
-            backgroundRoot.updateConfig()
+            backgroundRoot.configLocal = newConfig;
+            backgroundRoot.updateConfig();
         }
     }
 
@@ -303,8 +322,8 @@ ColumnLayout {
         visible: currentTab === 2
         config: backgroundRoot.configLocal.border
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.border = newConfig
-            backgroundRoot.updateConfig()
+            backgroundRoot.configLocal.border = newConfig;
+            backgroundRoot.updateConfig();
         }
     }
 
@@ -314,8 +333,8 @@ ColumnLayout {
         visible: currentTab === 2
         config: backgroundRoot.configLocal.border.color
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.border.color = newConfig
-            backgroundRoot.updateConfig()
+            backgroundRoot.configLocal.border.color = newConfig;
+            backgroundRoot.updateConfig();
         }
         followOptions: followVisbility.foreground
     }
@@ -327,8 +346,8 @@ ColumnLayout {
         visible: currentTab === 2
         config: backgroundRoot.configLocal.borderSecondary
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.borderSecondary = newConfig
-            backgroundRoot.updateConfig()
+            backgroundRoot.configLocal.borderSecondary = newConfig;
+            backgroundRoot.updateConfig();
         }
     }
 
@@ -338,8 +357,8 @@ ColumnLayout {
         visible: currentTab === 2
         config: backgroundRoot.configLocal.borderSecondary.color
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.borderSecondary.color = newConfig
-            backgroundRoot.updateConfig()
+            backgroundRoot.configLocal.borderSecondary.color = newConfig;
+            backgroundRoot.updateConfig();
         }
         followOptions: followVisbility.foreground
     }
@@ -349,8 +368,8 @@ ColumnLayout {
         visible: currentTab === 3
         config: backgroundRoot.configLocal.shadow.background
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.shadow.background = newConfig
-            backgroundRoot.updateConfig()
+            backgroundRoot.configLocal.shadow.background = newConfig;
+            backgroundRoot.updateConfig();
         }
         sectionName: i18n("Background Shadow")
     }
@@ -360,8 +379,8 @@ ColumnLayout {
         visible: currentTab === 3
         config: backgroundRoot.configLocal.shadow.background.color
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.shadow.background.color = newConfig
-            backgroundRoot.updateConfig()
+            backgroundRoot.configLocal.shadow.background.color = newConfig;
+            backgroundRoot.updateConfig();
         }
         isSection: false
         followOptions: followVisbility.foreground
@@ -373,8 +392,8 @@ ColumnLayout {
         visible: currentTab === 3 && keyName !== "panel"
         config: backgroundRoot.configLocal.shadow.foreground
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.shadow.foreground = newConfig
-            backgroundRoot.updateConfig()
+            backgroundRoot.configLocal.shadow.foreground = newConfig;
+            backgroundRoot.updateConfig();
         }
         sectionName: i18n("Foreground Shadow")
     }
@@ -384,8 +403,8 @@ ColumnLayout {
         visible: currentTab === 3 && keyName !== "panel"
         config: backgroundRoot.configLocal.shadow.foreground.color
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.shadow.foreground.color = newConfig
-            backgroundRoot.updateConfig()
+            backgroundRoot.configLocal.shadow.foreground.color = newConfig;
+            backgroundRoot.updateConfig();
         }
         isSection: false
         followOptions: followVisbility.foreground

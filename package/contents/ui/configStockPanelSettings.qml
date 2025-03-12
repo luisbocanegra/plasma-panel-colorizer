@@ -2,45 +2,39 @@ import QtCore
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import "code/globals.js" as Globals
+import "code/utils.js" as Utils
+import "components" as Components
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
-import "components" as Components
-import "code/utils.js" as Utils
-import "code/globals.js" as Globals
 
 KCM.SimpleKCM {
-    id:root
+    id: root
+
     property alias cfg_isEnabled: headerComponent.isEnabled
     property string cfg_globalSettings
     property var globalSettings: JSON.parse(cfg_globalSettings)
     property var config: globalSettings.stockPanelSettings
     property bool loaded: false
 
+    function updateConfig() {
+        globalSettings.stockPanelSettings = config;
+        cfg_globalSettings = JSON.stringify(globalSettings, null, null);
+    }
+
     onConfigChanged: {
         // fix 1.0.0 old config format
-        if (loaded) return
+        if (loaded)
+            return;
+
         if (typeof config.position !== "object") {
-            console.warn("fix 1.0.0 old config format")
-            config = Globals.baseStockPanelSettings
-            updateConfig()
+            console.warn("fix 1.0.0 old config format");
+            config = Globals.baseStockPanelSettings;
+            updateConfig();
         }
-        loaded = true
+        loaded = true;
     }
-
-    function updateConfig() {
-        globalSettings.stockPanelSettings = config
-        cfg_globalSettings = JSON.stringify(globalSettings, null, null)
-    }
-
-    header: ColumnLayout {
-        Components.Header {
-            id: headerComponent
-            Layout.leftMargin: Kirigami.Units.mediumSpacing
-            Layout.rightMargin: Kirigami.Units.mediumSpacing
-        }
-    }
-
 
     ColumnLayout {
         Kirigami.InlineMessage {
@@ -58,6 +52,13 @@ KCM.SimpleKCM {
         }
 
         Kirigami.FormLayout {
+            // ---------------------------------------------------------------------
+            // ---------------------------------------------------------------------
+            // ---------------------------------------------------------------------
+            // ---------------------------------------------------------------------
+            // ---------------------------------------------------------------------
+            // ---------------------------------------------------------------------
+
             enabled: cfg_isEnabled
 
             Kirigami.Separator {
@@ -66,41 +67,54 @@ KCM.SimpleKCM {
             }
 
             CheckBox {
-                Kirigami.FormData.label: i18n("Enabled:")
                 id: positionEnabled
+
+                Kirigami.FormData.label: i18n("Enabled:")
                 checked: config.position.enabled
                 onCheckedChanged: {
-                    config.position.enabled = checked
-                    updateConfig()
+                    config.position.enabled = checked;
+                    updateConfig();
                 }
             }
 
             ComboBox {
                 Kirigami.FormData.label: i18n("Position:")
                 model: [
-                    { "name": i18n("Top"), "value": "top" },
-                    { "name": i18n("Bottom"), "value": "bottom" },
-                    { "name": i18n("Left"), "value": "left" },
-                    { "name": i18n("Right"), "value": "right" },
+                    {
+                        "name": i18n("Top"),
+                        "value": "top"
+                    },
+                    {
+                        "name": i18n("Bottom"),
+                        "value": "bottom"
+                    },
+                    {
+                        "name": i18n("Left"),
+                        "value": "left"
+                    },
+                    {
+                        "name": i18n("Right"),
+                        "value": "right"
+                    }
                 ]
                 textRole: "name"
                 valueRole: "value"
                 currentIndex: {
-                    let i = 0
+                    let i = 0;
                     for (let item of model) {
-                        if (config.position.value === item.value) break
+                        if (config.position.value === item.value)
+                            break;
+
                         i++;
                     }
-                    return i
+                    return i;
                 }
                 onCurrentValueChanged: {
-                    config.position.value = currentValue
-                    updateConfig()
+                    config.position.value = currentValue;
+                    updateConfig();
                 }
                 enabled: positionEnabled.checked
             }
-
-            // ---------------------------------------------------------------------
 
             Kirigami.Separator {
                 Kirigami.FormData.isSection: true
@@ -108,40 +122,50 @@ KCM.SimpleKCM {
             }
 
             CheckBox {
-                Kirigami.FormData.label: i18n("Enabled:")
                 id: alignmentEnabled
+
+                Kirigami.FormData.label: i18n("Enabled:")
                 checked: config.alignment.enabled
                 onCheckedChanged: {
-                    config.alignment.enabled = checked
-                    updateConfig()
+                    config.alignment.enabled = checked;
+                    updateConfig();
                 }
             }
 
             ComboBox {
                 Kirigami.FormData.label: i18n("Alignment:")
                 model: [
-                    { "name": i18n("Center"), "value": "center" },
-                    { "name": i18n("Left"), "value": "left" },
-                    { "name": i18n("Right"), "value": "right" },
+                    {
+                        "name": i18n("Center"),
+                        "value": "center"
+                    },
+                    {
+                        "name": i18n("Left"),
+                        "value": "left"
+                    },
+                    {
+                        "name": i18n("Right"),
+                        "value": "right"
+                    }
                 ]
                 textRole: "name"
                 valueRole: "value"
                 currentIndex: {
-                    let index = 0
+                    let index = 0;
                     for (let item of model) {
-                        if (config.alignment.value === item.value) break
+                        if (config.alignment.value === item.value)
+                            break;
+
                         index++;
                     }
-                    return index
+                    return index;
                 }
                 onCurrentValueChanged: {
-                    config.alignment.value = currentValue
-                    updateConfig()
+                    config.alignment.value = currentValue;
+                    updateConfig();
                 }
                 enabled: alignmentEnabled.checked
             }
-
-            // ---------------------------------------------------------------------
 
             Kirigami.Separator {
                 Kirigami.FormData.isSection: true
@@ -149,40 +173,50 @@ KCM.SimpleKCM {
             }
 
             CheckBox {
-                Kirigami.FormData.label: i18n("Enabled:")
                 id: lengthModeEnabled
+
+                Kirigami.FormData.label: i18n("Enabled:")
                 checked: config.lengthMode.enabled
                 onCheckedChanged: {
-                    config.lengthMode.enabled = checked
-                    updateConfig()
+                    config.lengthMode.enabled = checked;
+                    updateConfig();
                 }
             }
 
             ComboBox {
                 Kirigami.FormData.label: i18n("Mode:")
                 model: [
-                    { "name": i18n("Fill"), "value": "fill" },
-                    { "name": i18n("Fit content"), "value": "fit" },
-                    { "name": i18n("Custom"), "value": "custom" },
+                    {
+                        "name": i18n("Fill"),
+                        "value": "fill"
+                    },
+                    {
+                        "name": i18n("Fit content"),
+                        "value": "fit"
+                    },
+                    {
+                        "name": i18n("Custom"),
+                        "value": "custom"
+                    }
                 ]
                 textRole: "name"
                 valueRole: "value"
                 currentIndex: {
-                    let index = 0
+                    let index = 0;
                     for (let item of model) {
-                        if (config.lengthMode.value === item.value) break
+                        if (config.lengthMode.value === item.value)
+                            break;
+
                         index++;
                     }
-                    return index
+                    return index;
                 }
                 onCurrentValueChanged: {
-                    config.lengthMode.value = currentValue
-                    updateConfig()
+                    config.lengthMode.value = currentValue;
+                    updateConfig();
                 }
                 enabled: lengthModeEnabled.checked
             }
-
-            // ---------------------------------------------------------------------
 
             Kirigami.Separator {
                 Kirigami.FormData.isSection: true
@@ -190,42 +224,56 @@ KCM.SimpleKCM {
             }
 
             CheckBox {
-                Kirigami.FormData.label: i18n("Enabled:")
                 id: visibilityEnabled
+
+                Kirigami.FormData.label: i18n("Enabled:")
                 checked: config.visibility.enabled
                 onCheckedChanged: {
-                    config.visibility.enabled = checked
-                    updateConfig()
+                    config.visibility.enabled = checked;
+                    updateConfig();
                 }
             }
 
             ComboBox {
-                Kirigami.FormData.label: i18n("Mode:")
                 id: visibilityCombo
+
+                Kirigami.FormData.label: i18n("Mode:")
                 model: [
-                    { "name": i18n("Always visible"), "value": "none" },
-                    { "name": i18n("Auto hide"), "value": "autohide" },
-                    { "name": i18n("Dodge windows"), "value": "dodgewindows" },
-                    { "name": i18n("Windows go below"), "value": "windowsgobelow" },
+                    {
+                        "name": i18n("Always visible"),
+                        "value": "none"
+                    },
+                    {
+                        "name": i18n("Auto hide"),
+                        "value": "autohide"
+                    },
+                    {
+                        "name": i18n("Dodge windows"),
+                        "value": "dodgewindows"
+                    },
+                    {
+                        "name": i18n("Windows go below"),
+                        "value": "windowsgobelow"
+                    }
                 ]
                 textRole: "name"
                 valueRole: "value"
                 currentIndex: {
-                    let index = 0
+                    let index = 0;
                     for (let item of model) {
-                        if (config.visibility.value === item.value) break
+                        if (config.visibility.value === item.value)
+                            break;
+
                         index++;
                     }
-                    return index
+                    return index;
                 }
                 onCurrentValueChanged: {
-                    config.visibility.value = currentValue
-                    updateConfig()
+                    config.visibility.value = currentValue;
+                    updateConfig();
                 }
                 enabled: visibilityEnabled.checked
             }
-
-            // ---------------------------------------------------------------------
 
             Kirigami.Separator {
                 Kirigami.FormData.isSection: true
@@ -233,40 +281,50 @@ KCM.SimpleKCM {
             }
 
             CheckBox {
-                Kirigami.FormData.label: i18n("Enabled:")
                 id: opacityEnabled
+
+                Kirigami.FormData.label: i18n("Enabled:")
                 checked: config.opacity.enabled
                 onCheckedChanged: {
-                    config.opacity.enabled = checked
-                    updateConfig()
+                    config.opacity.enabled = checked;
+                    updateConfig();
                 }
             }
 
             ComboBox {
                 Kirigami.FormData.label: i18n("Mode:")
                 model: [
-                    { "name": i18n("Adaptive"), "value": "adaptive" },
-                    { "name": i18n("Opaque"), "value": "opaque" },
-                    { "name": i18n("Translucent"), "value": "translucent" },
+                    {
+                        "name": i18n("Adaptive"),
+                        "value": "adaptive"
+                    },
+                    {
+                        "name": i18n("Opaque"),
+                        "value": "opaque"
+                    },
+                    {
+                        "name": i18n("Translucent"),
+                        "value": "translucent"
+                    }
                 ]
                 textRole: "name"
                 valueRole: "value"
                 currentIndex: {
-                    let index = 0
+                    let index = 0;
                     for (let item of model) {
-                        if (config.opacity.value === item.value) break
+                        if (config.opacity.value === item.value)
+                            break;
+
                         index++;
                     }
-                    return index
+                    return index;
                 }
                 onCurrentValueChanged: {
-                    config.opacity.value = currentValue
-                    updateConfig()
+                    config.opacity.value = currentValue;
+                    updateConfig();
                 }
                 enabled: opacityEnabled.checked
             }
-
-            // ---------------------------------------------------------------------
 
             Kirigami.Separator {
                 Kirigami.FormData.isSection: true
@@ -274,27 +332,27 @@ KCM.SimpleKCM {
             }
 
             CheckBox {
-                Kirigami.FormData.label: i18n("Enabled:")
                 id: floatingEnabled
+
+                Kirigami.FormData.label: i18n("Enabled:")
                 checked: config.floating.enabled
                 onCheckedChanged: {
-                    config.floating.enabled = checked
-                    updateConfig()
+                    config.floating.enabled = checked;
+                    updateConfig();
                 }
             }
 
             CheckBox {
-                Kirigami.FormData.label: i18n("Floating:")
                 id: floating
+
+                Kirigami.FormData.label: i18n("Floating:")
                 checked: config.floating.value
                 onCheckedChanged: {
-                    config.floating.value = checked
-                    updateConfig()
+                    config.floating.value = checked;
+                    updateConfig();
                 }
                 enabled: floatingEnabled.checked
             }
-
-            // ---------------------------------------------------------------------
 
             Kirigami.Separator {
                 Kirigami.FormData.isSection: true
@@ -302,24 +360,26 @@ KCM.SimpleKCM {
             }
 
             CheckBox {
-                Kirigami.FormData.label: i18n("Enabled:")
                 id: thicknessEnabled
+
+                Kirigami.FormData.label: i18n("Enabled:")
                 checked: config.thickness.enabled
                 onCheckedChanged: {
-                    config.thickness.enabled = checked
-                    updateConfig()
+                    config.thickness.enabled = checked;
+                    updateConfig();
                 }
             }
 
             SpinBox {
-                Kirigami.FormData.label: i18n("Thickness:")
                 id: thickness
+
+                Kirigami.FormData.label: i18n("Thickness:")
                 from: 0
                 to: 999
                 value: config.thickness.value
                 onValueChanged: {
-                    config.thickness.value = value
-                    updateConfig()
+                    config.thickness.value = value;
+                    updateConfig();
                 }
                 enabled: thicknessEnabled.checked
             }
@@ -330,26 +390,29 @@ KCM.SimpleKCM {
             }
 
             CheckBox {
-                Kirigami.FormData.label: i18n("Enabled:")
                 id: visibleEnabled
+
+                Kirigami.FormData.label: i18n("Enabled:")
                 checked: config.visible.enabled
                 onCheckedChanged: {
-                    config.visible.enabled = checked
-                    updateConfig()
+                    config.visible.enabled = checked;
+                    updateConfig();
                 }
             }
 
             CheckBox {
-                Kirigami.FormData.label: i18n("Show:")
                 id: visible
+
+                Kirigami.FormData.label: i18n("Show:")
                 checked: config.visible.value
                 onCheckedChanged: {
-                    config.visible.value = checked
-                    updateConfig()
+                    config.visible.value = checked;
+                    updateConfig();
                 }
                 enabled: visibleEnabled.checked
             }
         }
+
         Kirigami.InlineMessage {
             Layout.fillWidth: true
             text: i18n("WARNING: Use with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration, use the command below in terminal/tty then log out or reboot, it will renove the configuratiob from all Panel Colorizer instances so make sure to save the others first") + ":<br><strong><code>sed -i '/^globalSettings={\"panel\"/d' \"$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc\"</code></strong> " + i18n("If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples.")
@@ -360,10 +423,19 @@ KCM.SimpleKCM {
                     icon.name: "view-readermode-symbolic"
                     text: "D-Bus usage"
                     onTriggered: {
-                        Qt.openUrlExternally("https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#advanced-commandline-usage-with-d-bus-version-200-or-later")
+                        Qt.openUrlExternally("https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#advanced-commandline-usage-with-d-bus-version-200-or-later");
                     }
                 }
             ]
+        }
+    }
+
+    header: ColumnLayout {
+        Components.Header {
+            id: headerComponent
+
+            Layout.leftMargin: Kirigami.Units.mediumSpacing
+            Layout.rightMargin: Kirigami.Units.mediumSpacing
         }
     }
 }

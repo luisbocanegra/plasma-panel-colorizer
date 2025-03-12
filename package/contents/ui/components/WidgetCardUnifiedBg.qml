@@ -28,8 +28,8 @@ Kirigami.AbstractCard {
                     height: label.height + 2
                     Kirigami.Theme.inherit: false
                     Label {
-                        anchors.centerIn: parent
                         id: label
+                        anchors.centerIn: parent
                         text: i18n("System Tray")
                         color: Kirigami.Theme.textColor
                         Kirigami.Theme.colorSet: root.Kirigami.Theme["Selection"]
@@ -88,8 +88,8 @@ Kirigami.AbstractCard {
             id: unifyButtonGroup
             onCheckedButtonChanged: {
                 if (checkedButton) {
-                    widget.unifyBgType = checkedButton.index
-                    updateWidget(widget.unifyBgType)
+                    widget.unifyBgType = checkedButton.index;
+                    updateWidget(widget.unifyBgType);
                 }
             }
         }

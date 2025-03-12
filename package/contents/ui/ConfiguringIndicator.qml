@@ -2,7 +2,6 @@ pragma ComponentBehavior: Bound
 import QtQuick 2.15
 import org.kde.kirigami as Kirigami
 
-
 Item {
     id: root
     anchors.fill: parent
@@ -31,7 +30,6 @@ Item {
             }
         }
     }
-
 
     Component.onCompleted: console.log("grid created in", root.parent)
 }

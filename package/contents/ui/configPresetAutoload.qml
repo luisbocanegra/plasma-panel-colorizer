@@ -11,16 +11,15 @@ import "code/utils.js" as Utils
 import "code/enum.js" as Enum
 
 KCM.SimpleKCM {
-    id:root
+    id: root
     property alias cfg_isEnabled: headerComponent.isEnabled
-    property string presetsDir: StandardPaths.writableLocation(
-                    StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/presets"
+    property string presetsDir: StandardPaths.writableLocation(StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/presets"
     property string cratePresetsDirCmd: "mkdir -p " + presetsDir
     property string presetsBuiltinDir: Qt.resolvedUrl("./presets").toString().substring(7) + "/"
     property string toolsDir: Qt.resolvedUrl("./tools").toString().substring(7) + "/"
     property string listUserPresetsCmd: "'" + toolsDir + "list_presets.sh' '" + presetsDir + "'"
     property string listBuiltinPresetsCmd: "'" + toolsDir + "list_presets.sh' '" + presetsBuiltinDir + "' b"
-    property string listPresetsCmd: listBuiltinPresetsCmd+";"+listUserPresetsCmd
+    property string listPresetsCmd: listBuiltinPresetsCmd + ";" + listUserPresetsCmd
 
     property string cfg_presetAutoloading
     property var autoLoadConfig: JSON.parse(cfg_presetAutoloading)
@@ -34,8 +33,8 @@ KCM.SimpleKCM {
     property var presetsList: []
 
     function updateConfig() {
-        cfg_presetAutoloading = JSON.stringify(autoLoadConfig, null, null)
-        cfg_switchPresets = JSON.stringify(switchPresets, null, null)
+        cfg_presetAutoloading = JSON.stringify(autoLoadConfig, null, null);
+        cfg_switchPresets = JSON.stringify(switchPresets, null, null);
     }
 
     ListModel {
@@ -49,46 +48,43 @@ KCM.SimpleKCM {
     Connections {
         target: runCommand
         function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
-            if (exitCode!==0) {
-                console.error(cmd, exitCode, exitStatus, stdout, stderr)
-                return
+            if (exitCode !== 0) {
+                console.error(cmd, exitCode, exitStatus, stdout, stderr);
+                return;
             }
             // console.log(stdout);
-            if(cmd === listPresetsCmd) {
-                if (stdout.length === 0) return
-                presetsModel.append(
-                    {
-                        "name": i18n("Do nothing"),
-                        "value": "",
-                    }
-                )
+            if (cmd === listPresetsCmd) {
+                if (stdout.length === 0)
+                    return;
+                presetsModel.append({
+                    "name": i18n("Do nothing"),
+                    "value": ""
+                });
 
-                const out = stdout.trim().split("\n")
+                const out = stdout.trim().split("\n");
                 for (const line of out) {
-                    const parts = line.split(":")
-                    const path = parts[parts.length -1]
-                    let name = path.split("/")
-                    name = name[name.length-1]
-                    const dir = parts[1]
-                    console.log(dir)
+                    const parts = line.split(":");
+                    const path = parts[parts.length - 1];
+                    let name = path.split("/");
+                    name = name[name.length - 1];
+                    const dir = parts[1];
+                    console.log(dir);
                     const preset = {
                         "name": name,
-                        "value": dir,
-                    }
-                    presetsModel.append(
-                        preset
-                    )
-                    presetsList.push(preset)
+                        "value": dir
+                    };
+                    presetsModel.append(preset);
+                    presetsList.push(preset);
                 }
             }
             if (presetsList.length && switchPresets.length) {
-                switchPresets = pruneMissingPresets(switchPresets)
+                switchPresets = pruneMissingPresets(switchPresets);
             }
         }
     }
 
     function pruneMissingPresets(switchPresets) {
-        return switchPresets.filter(saved => presetsList.some(p => p.value === saved))
+        return switchPresets.filter(saved => presetsList.some(p => p.value === saved));
     }
 
     function getIndex(model, savedValue) {
@@ -101,8 +97,8 @@ KCM.SimpleKCM {
     }
 
     Component.onCompleted: {
-        runCommand.run(cratePresetsDirCmd)
-        runCommand.run(listPresetsCmd)
+        runCommand.run(cratePresetsDirCmd);
+        runCommand.run(listPresetsCmd);
     }
 
     header: ColumnLayout {
@@ -140,8 +136,8 @@ KCM.SimpleKCM {
                 Kirigami.FormData.label: i18n("Enabled:")
                 checked: autoLoadConfig.enabled
                 onCheckedChanged: {
-                    autoLoadConfig.enabled = checked
-                    updateConfig()
+                    autoLoadConfig.enabled = checked;
+                    updateConfig();
                 }
             }
             Kirigami.ContextualHelpButton {
@@ -152,8 +148,8 @@ KCM.SimpleKCM {
                 textRole: "name"
                 Kirigami.FormData.label: i18n("Fullscreen window:")
                 onCurrentIndexChanged: {
-                    autoLoadConfig.fullscreenWindow = model.get(currentIndex)["value"]
-                    updateConfig()
+                    autoLoadConfig.fullscreenWindow = model.get(currentIndex)["value"];
+                    updateConfig();
                 }
                 currentIndex: getIndex(model, autoLoadConfig.fullscreenWindow)
                 enabled: enabledCheckbox.checked
@@ -164,8 +160,8 @@ KCM.SimpleKCM {
                 textRole: "name"
                 Kirigami.FormData.label: i18n("Maximized window:")
                 onCurrentIndexChanged: {
-                    autoLoadConfig.maximized = model.get(currentIndex)["value"]
-                    updateConfig()
+                    autoLoadConfig.maximized = model.get(currentIndex)["value"];
+                    updateConfig();
                 }
                 currentIndex: getIndex(model, autoLoadConfig.maximized)
                 enabled: enabledCheckbox.checked
@@ -176,8 +172,8 @@ KCM.SimpleKCM {
                 text: i18n("Active window only")
                 checked: autoLoadConfig.maximizedFilterByActive
                 onCheckedChanged: {
-                    autoLoadConfig.maximizedFilterByActive = checked
-                    updateConfig()
+                    autoLoadConfig.maximizedFilterByActive = checked;
+                    updateConfig();
                 }
                 enabled: (autoLoadConfig.maximized ?? "" !== "") && enabledCheckbox.checked
             }
@@ -187,8 +183,8 @@ KCM.SimpleKCM {
                 textRole: "name"
                 Kirigami.FormData.label: i18n("Window touching panel:")
                 onCurrentIndexChanged: {
-                    autoLoadConfig.touchingWindow = model.get(currentIndex)["value"]
-                    updateConfig()
+                    autoLoadConfig.touchingWindow = model.get(currentIndex)["value"];
+                    updateConfig();
                 }
                 currentIndex: getIndex(model, autoLoadConfig.touchingWindow)
                 enabled: enabledCheckbox.checked
@@ -199,8 +195,8 @@ KCM.SimpleKCM {
                 textRole: "name"
                 Kirigami.FormData.label: i18n("At least one window is shown:")
                 onCurrentIndexChanged: {
-                    autoLoadConfig.visibleWindows = model.get(currentIndex)["value"]
-                    updateConfig()
+                    autoLoadConfig.visibleWindows = model.get(currentIndex)["value"];
+                    updateConfig();
                 }
                 currentIndex: getIndex(model, autoLoadConfig.visibleWindows)
                 enabled: enabledCheckbox.checked
@@ -211,8 +207,8 @@ KCM.SimpleKCM {
                 textRole: "name"
                 Kirigami.FormData.label: i18n("Floating panel:")
                 onCurrentIndexChanged: {
-                    autoLoadConfig.floating = model.get(currentIndex)["value"]
-                    updateConfig()
+                    autoLoadConfig.floating = model.get(currentIndex)["value"];
+                    updateConfig();
                 }
                 currentIndex: getIndex(model, autoLoadConfig.floating)
                 enabled: enabledCheckbox.checked
@@ -223,8 +219,8 @@ KCM.SimpleKCM {
                 textRole: "name"
                 Kirigami.FormData.label: i18n("Normal:")
                 onCurrentIndexChanged: {
-                    autoLoadConfig.normal = model.get(currentIndex)["value"]
-                    updateConfig()
+                    autoLoadConfig.normal = model.get(currentIndex)["value"];
+                    updateConfig();
                 }
                 currentIndex: getIndex(model, autoLoadConfig.normal)
                 enabled: enabledCheckbox.checked
@@ -247,11 +243,11 @@ KCM.SimpleKCM {
                 ScrollView {
                     enabled: cfg_widgetClickMode === Enum.WidgetClickModes.SwitchPresets
                     Layout.fillWidth: true
-                    Layout.preferredHeight: Math.min(implicitHeight+20, 200)
+                    Layout.preferredHeight: Math.min(implicitHeight + 20, 200)
                     ListView {
                         id: listView
                         model: presetsModel
-                        Layout.preferredWidth: Math.min(width+50, 100)
+                        Layout.preferredWidth: Math.min(width + 50, 100)
                         reuseItems: true
                         clip: true
                         focus: true
@@ -267,12 +263,12 @@ KCM.SimpleKCM {
                                 onCheckedChanged: {
                                     if (checked) {
                                         if (!switchPresets.includes(model.value)) {
-                                            switchPresets.push(model.value)
+                                            switchPresets.push(model.value);
                                         }
                                     } else {
-                                        switchPresets = switchPresets.filter(p => p !== model.value)
+                                        switchPresets = switchPresets.filter(p => p !== model.value);
                                     }
-                                    updateConfig()
+                                    updateConfig();
                                 }
                             }
                         }

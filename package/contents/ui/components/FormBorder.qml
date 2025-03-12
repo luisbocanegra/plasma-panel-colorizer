@@ -5,10 +5,9 @@ import org.kde.kirigami as Kirigami
 
 Kirigami.FormLayout {
     id: borderRoot
+
     // required to align with parent form
     property alias formLayout: borderRoot
-    twinFormLayouts: parentLayout
-    Layout.fillWidth: true
     property bool isSection: true
     property string sectionName
     // wether read from the string or existing config object
@@ -16,46 +15,55 @@ Kirigami.FormLayout {
     // internal config objects to be sent, both string and json
     property string configString: "{}"
     property var config: handleString ? JSON.parse(configString) : undefined
-    signal updateConfigString(configString: string, config: var)
+
+    signal updateConfigString(string configString, var config)
 
     function updateConfig() {
-        configString = JSON.stringify(config, null, null)
-        updateConfigString(configString, config)
+        configString = JSON.stringify(config, null, null);
+        updateConfigString(configString, config);
     }
+
+    twinFormLayouts: parentLayout
+    Layout.fillWidth: true
+
     Kirigami.Separator {
         Kirigami.FormData.isSection: isSection
         Kirigami.FormData.label: sectionName || i18n("Border")
     }
 
     CheckBox {
-        Kirigami.FormData.label: i18n("Enabled:")
         id: enabledCheckbox
+
+        Kirigami.FormData.label: i18n("Enabled:")
         checked: config.enabled
         onCheckedChanged: {
-            config.enabled = checked
-            updateConfig()
+            config.enabled = checked;
+            updateConfig();
         }
+        Kirigami.Theme.inherit: false
+        text: checked ? "" : i18n("Disabled")
+
         Binding {
             target: enabledCheckbox
             property: "Kirigami.Theme.textColor"
             value: borderRoot.Kirigami.Theme.neutralTextColor
             when: !enabledCheckbox.checked
         }
-        Kirigami.Theme.inherit: false
-        text: checked ? "" : i18n("Disabled")
     }
+
     RowLayout {
         SpinBoxDecimal {
-            Kirigami.FormData.label: i18n("Width:")
             id: borderWidth
+
+            Kirigami.FormData.label: i18n("Width:")
             value: config.width
             from: 0
             to: 99
             Layout.preferredWidth: Kirigami.Units.gridUnit * 5
             Layout.fillWidth: false
             onValueChanged: {
-                config.width = value
-                updateConfig()
+                config.width = value;
+                updateConfig();
             }
             enabled: !borderCustomSidesCheckbox.checked && enabledCheckbox.checked
         }
@@ -63,12 +71,14 @@ Kirigami.FormLayout {
 
     RowLayout {
         Kirigami.FormData.label: i18n("Custom widths:")
+
         CheckBox {
             id: borderCustomSidesCheckbox
+
             checked: config.customSides
             onCheckedChanged: {
-                config.customSides = checked
-                updateConfig()
+                config.customSides = checked;
+                updateConfig();
             }
         }
 
@@ -76,56 +86,62 @@ Kirigami.FormLayout {
             columns: 3
             rows: 3
             enabled: borderCustomSidesCheckbox.checked && enabledCheckbox.checked
+
             SpinBox {
                 id: topBorderWidth
+
                 value: config.custom.widths.top
                 from: 0
                 to: 99
                 Layout.row: 0
                 Layout.column: 1
                 onValueModified: {
-                    config.custom.widths.top = value
-                    updateConfig()
+                    config.custom.widths.top = value;
+                    updateConfig();
                 }
             }
+
             SpinBox {
                 id: bottomBorderWidth
+
                 value: config.custom.widths.bottom
                 from: 0
                 to: 99
                 Layout.row: 2
                 Layout.column: 1
                 onValueModified: {
-                    config.custom.widths.bottom = value
-                    updateConfig()
+                    config.custom.widths.bottom = value;
+                    updateConfig();
                 }
             }
+
             SpinBox {
                 id: leftBorderWidth
+
                 value: config.custom.widths.left
                 from: 0
                 to: 99
                 Layout.row: 1
                 Layout.column: 0
                 onValueModified: {
-                    config.custom.widths.left = value
-                    updateConfig()
+                    config.custom.widths.left = value;
+                    updateConfig();
                 }
             }
 
             SpinBox {
                 id: rightBorderWidth
+
                 value: config.custom.widths.right
                 from: 0
                 to: 99
                 Layout.row: 1
                 Layout.column: 2
                 onValueModified: {
-                    config.custom.widths.right = value
-                    updateConfig()
+                    config.custom.widths.right = value;
+                    updateConfig();
                 }
             }
         }
     }
 }
-

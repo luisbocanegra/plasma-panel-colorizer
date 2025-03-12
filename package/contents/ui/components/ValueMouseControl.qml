@@ -4,11 +4,26 @@ import org.kde.kirigami as Kirigami
 
 Item {
     id: root
+
     property real from: 0
     property real to: 1
     property int decimals: 2
     property real stepSize: 0.1
     property real value: 0
+
+    function up() {
+        if (value < to)
+            value += stepSize;
+
+        value = Math.max(from, Math.min(to, value)).toFixed(decimals);
+    }
+
+    function down() {
+        if (value > from)
+            value -= stepSize;
+
+        value = Math.max(from, Math.min(to, value)).toFixed(decimals);
+    }
 
     Rectangle {
         anchors.fill: parent
@@ -19,15 +34,6 @@ Item {
         radius: 2
     }
 
-    function up() {
-        if (value < to) value += stepSize
-        value = Math.max(from, Math.min(to, value)).toFixed(decimals)
-    }
-    function down() {
-        if (value > from) value -= stepSize
-        value = Math.max(from, Math.min(to, value)).toFixed(decimals)
-    }
-
     Kirigami.Icon {
         source: "arrow-up"
         height: parent.height / 2
@@ -36,21 +42,29 @@ Item {
         anchors.topMargin: 0
         anchors.horizontalCenter: parent.horizontalCenter
         color: upMouse.containsMouse ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
+
         MouseArea {
             id: upMouse
+
             anchors.fill: parent
             hoverEnabled: true
-            onPressed: { timerUp.start() }
-            onReleased: { timerUp.stop() }
+            onPressed: {
+                timerUp.start();
+            }
+            onReleased: {
+                timerUp.stop();
+            }
         }
+
         Timer {
             id: timerUp
+
             interval: 150
             repeat: true
             triggeredOnStart: true
             running: false
             onTriggered: {
-                up()
+                up();
             }
         }
     }
@@ -63,21 +77,29 @@ Item {
         anchors.bottomMargin: 0
         anchors.horizontalCenter: parent.horizontalCenter
         color: downMouse.containsMouse ? Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
+
         MouseArea {
             id: downMouse
+
             anchors.fill: parent
             hoverEnabled: true
-            onPressed: { timerDown.start() }
-            onReleased: { timerDown.stop() }
+            onPressed: {
+                timerDown.start();
+            }
+            onReleased: {
+                timerDown.stop();
+            }
         }
+
         Timer {
             id: timerDown
+
             interval: 150
             repeat: true
             triggeredOnStart: true
             running: false
             onTriggered: {
-                down()
+                down();
             }
         }
     }
@@ -86,14 +108,13 @@ Item {
         anchors.fill: parent
         propagateComposedEvents: true
         acceptedButtons: Qt.MiddleButton
-        onWheel: (wheel) => {
-            root.parent.forceActiveFocus()
-            if(wheel.angleDelta.y > 0 && value < to) {
-                value += stepSize
-            } else if (wheel.angleDelta.y < 0 && value > from) {
-                value -= stepSize
-            }
-            value = Math.max(from, Math.min(to, value)).toFixed(decimals)
+        onWheel: wheel => {
+            root.parent.forceActiveFocus();
+            if (wheel.angleDelta.y > 0 && value < to)
+                value += stepSize;
+            else if (wheel.angleDelta.y < 0 && value > from)
+                value -= stepSize;
+            value = Math.max(from, Math.min(to, value)).toFixed(decimals);
         }
     }
 }
