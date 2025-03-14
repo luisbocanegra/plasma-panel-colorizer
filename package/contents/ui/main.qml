@@ -55,6 +55,7 @@ PlasmoidItem {
     property bool isEnabled: plasmoid.configuration.isEnabled
     property bool nativePanelBackgroundEnabled: (isEnabled ? cfg.nativePanelBackground.enabled : true) || doPanelClickFix
     property real nativePanelBackgroundOpacity: isEnabled ? cfg.nativePanelBackground.opacity : 1.0
+    property bool nativePanelBackgroundShadowEnabled: isEnabled ? cfg.nativePanelBackground.shadow : true
     property var panelWidgets: []
     property int panelWidgetsCount: panelWidgets?.length || 0
     property real trayItemThikness: 20
@@ -1173,6 +1174,20 @@ PlasmoidItem {
         property: "panelMask"
         value: blurMask
         when: (panelColorizer !== null && blurMask && panelColorizer?.hasRegions && (panelSettings.blurBehind || anyWidgetDoingBlur || anyTrayItemDoingBlur))
+    }
+
+    Binding {
+        target: panelElement
+        property: "topShadowMargin"
+        value: -panelView.height - 8
+        when: !nativePanelBackgroundShadowEnabled
+    }
+
+    Binding {
+        target: panelElement
+        property: "bottomShadowMargin"
+        value: -panelView.height - 8
+        when: !nativePanelBackgroundShadowEnabled
     }
 
     // The panel doesn't like having its spacings set to 0

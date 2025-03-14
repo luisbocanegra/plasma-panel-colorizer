@@ -111,9 +111,29 @@ ColumnLayout {
 
             RowLayout {
                 visible: keyName === "panel"
+                enabled: nativePanelBackgroundCheckbox.checked
 
                 Label {
-                    text: i18n("Panel Opacity:")
+                    text: i18n("Native panel background shadow:")
+                }
+
+                CheckBox {
+                    id: nativePanelBackgroundShadowCheckbox
+
+                    checked: config.nativePanelBackground.shadow
+                    onCheckedChanged: {
+                        config.nativePanelBackground.shadow = checked;
+                        updateConfig();
+                    }
+                }
+            }
+
+            RowLayout {
+                visible: keyName === "panel"
+                enabled: nativePanelBackgroundCheckbox.checked
+
+                Label {
+                    text: i18n("Native panel background opacity:")
                 }
 
                 SpinBoxDecimal {
@@ -125,7 +145,6 @@ ColumnLayout {
                         config.nativePanelBackground.opacity = value;
                         updateConfig();
                     }
-                    enabled: nativePanelBackgroundCheckbox.checked
                 }
 
                 Kirigami.ContextualHelpButton {
