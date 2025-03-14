@@ -249,6 +249,7 @@ const defaultConfig = {
   nativePanelBackground: {
     enabled: true,
     opacity: 1.0,
+    shadow: true,
   },
   stockPanelSettings: baseStockPanelSettings,
   configurationOverrides: {
