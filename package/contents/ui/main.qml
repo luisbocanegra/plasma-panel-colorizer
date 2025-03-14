@@ -579,6 +579,13 @@ PlasmoidItem {
             recolorTimer.start();
         }
 
+        Component.onDestruction: {
+            main.recolorCountChanged.disconnect(rect.recolor);
+            main.updateUnified.disconnect(updateUnifyType);
+            main.updateMasks.disconnect(updateMaskDebounced);
+            main.refreshNeeded.disconnect(rect.recolor);
+        }
+
         height: isTray ? (target?.height ?? 0) : parent.height
         width: isTray ? (target?.width ?? 0) : parent.width
         Behavior on height {
@@ -1375,13 +1382,15 @@ PlasmoidItem {
         // console.log("onPanelLayoutCountChanged")
         initAll();
         // re-apply customizations after the widget stops being dagged around
+        if (!panelLayout?.children?.length) {
+            return;
+        }
         for (var i = 0; i < panelLayout.children.length; i++) {
             var item = panelLayout.children[i];
             if (!item || (!item.hasOwnProperty("draggingChanged")))
                 return;
-            item.draggingChanged.connect(function () {
-                initAll();
-            });
+            item.draggingChanged.disconnect(initAll);
+            item.draggingChanged.connect(initAll);
         }
     }
 
