@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-03-02 13:47+0000\n"
+"POT-Creation-Date: 2025-03-15 02:15+0000\n"
 "PO-Revision-Date: 2025-02-08 18:25+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -238,8 +238,12 @@ msgstr ""
 "vervaging te ontdoen."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Panel Opacity:"
-msgstr "Doorzichtigheid:"
+msgid "Native panel background shadow:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Native panel background opacity:"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
@@ -916,6 +920,9 @@ msgstr "Kies de voorinstellingen"
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr ""
 "Er is geen paneel aangetroffen - de widget dient op een paneel te staan"
+
+#~ msgid "Panel Opacity:"
+#~ msgstr "Doorzichtigheid:"
 
 #~ msgid "Polling rate:"
 #~ msgstr "Controleren, elke"
