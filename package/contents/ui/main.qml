@@ -1870,11 +1870,13 @@ PlasmoidItem {
                 model: presetsModel
                 delegate: PlasmaComponents.ItemDelegate {
                     width: ListView.view.width
+                    required property string name
+                    required property string value
                     contentItem: RowLayout {
                         spacing: Kirigami.Units.smallSpacing
                         PlasmaComponents.Label {
                             Layout.fillWidth: true
-                            text: model.name
+                            text: name
                             textFormat: Text.PlainText
                             elide: Text.ElideRight
                         }
