@@ -810,7 +810,7 @@ PlasmoidItem {
                 }
             }
             horizontal: main.horizontal
-            unifyBgType: unifyBgType
+            unifyBgType: rect.unifyBgType
             corners: {
                 "topLeftRadius": rect.topLeftRadius,
                 "topRightRadius": rect.topRightRadius,
@@ -825,10 +825,14 @@ PlasmoidItem {
 
         CustomBorder {
             id: borderSecondary
-            anchors.topMargin: cfg.border.enabled ? cfg.border.width : 0
-            anchors.bottomMargin: cfg.border.enabled ? cfg.border.width : 0
-            anchors.leftMargin: cfg.border.enabled ? cfg.border.width : 0
-            anchors.rightMargin: cfg.border.enabled ? cfg.border.width : 0
+            property int extraLMargin: ((rect.unifyBgType === 2 || rect.unifyBgType === 3) && main.horizontal) ? 0 : cfg.border.width
+            property int extraRMargin: ((rect.unifyBgType === 1 || rect.unifyBgType === 2) && main.horizontal) ? 0 : cfg.border.width
+            property int extraTMargin: ((rect.unifyBgType === 2 || rect.unifyBgType === 3) && !main.horizontal) ? 0 : cfg.border.width
+            property int extraBMargin: ((rect.unifyBgType === 1 || rect.unifyBgType === 2) && !main.horizontal) ? 0 : cfg.border.width
+            anchors.topMargin: cfg.border.enabled ? extraTMargin : 0
+            anchors.bottomMargin: cfg.border.enabled ? extraBMargin : 0
+            anchors.leftMargin: cfg.border.enabled ? extraLMargin : 0
+            anchors.rightMargin: cfg.border.enabled ? extraRMargin : 0
             visible: cfg.borderSecondary.enabled && cfgEnabled && Math.min(rect.height, rect.width) > 1
             Behavior on borderColor {
                 enabled: main.animatePropertyChanges
@@ -838,7 +842,7 @@ PlasmoidItem {
                 }
             }
             horizontal: main.horizontal
-            unifyBgType: unifyBgType
+            unifyBgType: rect.unifyBgType
             corners: {
                 "topLeftRadius": Math.max(rect.topLeftRadius - cfg.border.width, 0),
                 "topRightRadius": Math.max(rect.topRightRadius - cfg.border.width, 0),
