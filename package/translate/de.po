@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-03-07 15:17+0100\n"
+"POT-Creation-Date: 2025-03-15 02:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -218,8 +218,12 @@ msgid "Disable to make panel fully transparent, removes contrast and blur effect
 msgstr "Ausschalten damit die Kontrollleiste voll transparent wird"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Panel Opacity:"
-msgstr "Kontrollleisten Opazität"
+msgid "Native panel background shadow:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Native panel background opacity:"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Set Opacity to 0 to keep just the mask required by Blur custom background."
@@ -566,6 +570,10 @@ msgstr "Normal:"
 msgid "Widget Click"
 msgstr "Widgetklick"
 
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides should be saved to a preset in <strong>Presets</strong> tab or they will be lost when presets change!"
+msgstr "Erstelle Konfigurationsüberschreibungen und appliziere diese auf andere Widgets. Diese Überschreibungen sollten gesichert werden oder gehen bei der nächsten Änderung verloren"
+
 #: ../contents/ui/configPresets.qml
 msgid "This will permanently delete the file from your system!"
 msgstr "Das wird die Datei dauerhaft löschen"
@@ -617,10 +625,6 @@ msgstr "Ertselle Vorschau"
 #: ../contents/ui/configPresets.qml
 msgid "Update preview"
 msgstr "Aktuallisiere Vorschau"
-
-#: ../contents/ui/configPresetWidgetOverrides.qml
-msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides should be saved to a preset in <strong>Presets</strong> tab or they will be lost when presets change!"
-msgstr "Erstelle Konfigurationsüberschreibungen und appliziere diese auf andere Widgets. Diese Überschreibungen sollten gesichert werden oder gehen bei der nächsten Änderung verloren"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g top to left)."
@@ -769,3 +773,6 @@ msgstr "Wähle eine Voreinstellung"
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr "Kontrollleiste nicht gefunden, dieses Widget muss in der Kontrollleiste plaziert werden, da es ansonsten nicht funktioniert"
+
+#~ msgid "Panel Opacity:"
+#~ msgstr "Kontrollleisten Opazität"

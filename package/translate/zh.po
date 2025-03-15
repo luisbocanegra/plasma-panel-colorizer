@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-03-02 13:47+0000\n"
+"POT-Creation-Date: 2025-03-15 02:15+0000\n"
 "PO-Revision-Date: 2025-02-09 12:42+0800\n"
 "Last-Translator: Mill413 <mill413@outlook.com>\n"
 "Language-Team: \n"
@@ -218,8 +218,12 @@ msgid "Disable to make panel fully transparent, removes contrast and blur effect
 msgstr "禁用可使面板完全透明，移除此对比度和模糊效果。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Panel Opacity:"
-msgstr "面板不透明度："
+msgid "Native panel background shadow:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Native panel background opacity:"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Set Opacity to 0 to keep just the mask required by Blur custom background."
@@ -765,6 +769,9 @@ msgstr "选择预设"
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr "未找到面板，此部件需放置在面板上才能工作"
+
+#~ msgid "Panel Opacity:"
+#~ msgstr "面板不透明度："
 
 #~ msgid "Polling rate:"
 #~ msgstr "轮询频率："
