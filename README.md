@@ -172,6 +172,20 @@ Overrides let you give a completely different configuration to one or more widge
       ./install-plugin.sh
       ```
 
+#### Manual install for immutable distributions
+
+Use the `-immutable` variants of the install script then add `~/.local/lib/qml` to `QML_IMPORT_PATH` for the C++ plugin to work:
+
+Create the file `~/.config/plasma-workspace/env/path.sh` (and folders if they don't exist) with the following:
+
+```sh
+export QML_IMPORT_PATH="$HOME/.local/lib/qml:$QML_IMPORT_PATH"
+```
+
+Log-out or reboot to apply the change
+
+For more information see <https://userbase.kde.org/Session_Environment_Variables>
+
 ### Arch Linux
 
 [aur/plasma6-applets-panel-colorizer](https://aur.archlinux.org/packages/plasma6-applets-panel-colorizer) use your preferred AUR helper e.g:
