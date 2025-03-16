@@ -10,6 +10,7 @@ import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.plasmoid
 import QtQuick.Effects
 import Qt5Compat.GraphicalEffects
+import "components" as Components
 
 import "code/utils.js" as Utils
 import "code/globals.js" as Globals
@@ -1120,6 +1121,61 @@ PlasmoidItem {
                 return;
             position = Utils.getGlobalPosition(borderRec, panelElement);
             panelColorizer.updatePanelMask(maskIndex, borderRec, rect.corners.topLeftRadius, rect.corners.topRightRadius, rect.corners.bottomLeftRadius, rect.corners.bottomRightRadius, Qt.point(rect.positionX - moveX, rect.positionY - moveY), 5, visible && blurBehind);
+        }
+
+        Kirigami.ShadowedRectangle {
+            id: backgroundMaskSource
+            anchors.fill: parent
+            corners {
+                topLeftRadius: topLeftRadius
+                topRightRadius: topRightRadius
+                bottomLeftRadius: bottomLeftRadius
+                bottomRightRadius: bottomRightRadius
+            }
+        }
+
+        Components.MaskEffect {
+            id: backgroundMask
+            anchors.fill: parent
+            source: targetShaderSource
+            mask: maskShaderSource
+            enabled: rect.isWidget && !panelBgItem.bgEnabled || true
+            sourceOpacity: 1
+        }
+
+        Components.MaskEffect {
+            id: dropShadowMask
+            anchors.fill: parent
+            source: shadowShaderSource
+            mask: maskShaderSource
+            enabled: rect.isWidget && !panelBgItem.bgEnabled || true
+            sourceOpacity: 1
+        }
+
+        ShaderEffectSource {
+            id: targetShaderSource
+            sourceItem: {
+                if (rect.isPanel && panelBgItem.bgEnabled) {
+                    return rect.target.visibleChildren[0];
+                }
+                return rect.target?.applet ?? null;
+            }
+            live: true
+            hideSource: true
+        }
+
+        ShaderEffectSource {
+            id: shadowShaderSource
+            sourceItem: dropShadow
+            live: true
+            hideSource: true
+        }
+
+        ShaderEffectSource {
+            id: maskShaderSource
+            sourceItem: backgroundMaskSource
+            hideSource: true
+            live: true
         }
     }
 
