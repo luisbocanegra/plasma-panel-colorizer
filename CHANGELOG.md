@@ -1,5 +1,28 @@
 # Changelog
 
+## [2.4.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.3.1...v2.4.0) (2025-03-16)
+
+
+### Features
+
+* add option to disable native panel background shadow ([444311f](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/444311fc26c04310b065539276f69941d30b0f2c))
+* flash small rectangle for foreground color update in debug mode ([216fd13](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/216fd13e2143d85ba2d62f873e3b4116ebd88c8c))
+* make custom background clip widget content ([7debc85](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/7debc8515582526875df2fae6e3e9f4a46744a09))
+
+
+### Bug Fixes
+
+* blur mask sometimes not updating due to very frequent events ([b4ab72d](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/b4ab72dfb30e5c1634a1d460549de87131a0d402))
+* borders not merging for unified widgets ([6ca187b](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/6ca187b787edf3323747b021eec55ca3853b0227))
+* missing gdbus_get_signal.sh executable permission for manual install.sh ([97259be](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/97259be87028c9a4f5a79f3453e78ec2e5221a07))
+* radious gap between primary and secondary border ([9ef81be](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/9ef81be34ac7b2a42ed3d689d89fbd6b79ac31c8))
+* widget click popup not loading presets properly ([08134a8](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/08134a8e71ebb57e472d1e66299ca1fadc5dd063))
+
+
+### Reverts
+
+* "build: change plugin install from system-wide to widget directory" ([6bd8c23](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/6bd8c23ac050d32a1150df727bcfcd26c087b8c0))
+
 ## [2.3.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.3.0...v2.3.1) (2025-03-07)
 
 
