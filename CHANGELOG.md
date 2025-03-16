@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.4.0...v2.4.1) (2025-03-16)
+
+
+### Bug Fixes
+
+* revert problematic content clipping to background ([74dedae](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/74dedae28eb67d5211de82686e0a9b19287b0cba))
+
 ## [2.4.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.3.1...v2.4.0) (2025-03-16)
 
 
