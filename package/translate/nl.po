@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
 "POT-Creation-Date: 2025-03-15 02:15+0000\n"
-"PO-Revision-Date: 2025-02-08 18:25+0100\n"
+"PO-Revision-Date: 2025-03-17 16:07+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -239,11 +239,11 @@ msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel background shadow:"
-msgstr ""
+msgstr "Achtergrondschaduw van paneel:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel background opacity:"
-msgstr ""
+msgstr "Doorzichtigheid van paneel:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
