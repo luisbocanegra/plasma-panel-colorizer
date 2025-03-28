@@ -21,6 +21,15 @@ Fully-featured widget to bring Latte-Dock and WM status bar customization featur
 >
 > - Make sure you're using the latest version of the widget and as close as possible to the [latest Plasma](https://kde.org/search/?s=KDE+Plasma6) to avoid compatibility issues.
 
+> [!WARNING]
+> [The C++ plugin may cause plasma to crash after an update](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/209) and you will need to rebuild it, see [Installing](#installing).
+>
+> To temporarily recover from the crashes, you can manually remove the plugin:
+>
+> ```sh
+> sudo rm -rf /usr/lib/qt6/qml/org/kde/plasma/panelcolorizer/ ~/.local/lib/qml/org/kde/plasma/panelcolorizer/
+> ```
+
 ## Demo
 
 [![Demo](https://img.shields.io/badge/watch%20on%20youtube-demo?logo=youtube&logoColor=white&labelColor=%23c30000&color=%23222222
