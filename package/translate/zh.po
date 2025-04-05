@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
 "POT-Creation-Date: 2025-03-15 02:15+0000\n"
-"PO-Revision-Date: 2025-02-09 12:42+0800\n"
+"PO-Revision-Date: 2025-04-05 20:32+0800\n"
 "Last-Translator: Mill413 <mill413@outlook.com>\n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -55,7 +55,7 @@ msgstr "全局覆盖"
 
 #: ../contents/config/config.qml
 msgid "Text and icons"
-msgstr "文本与和图标"
+msgstr "文本和图标"
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -219,11 +219,11 @@ msgstr "禁用可使面板完全透明，移除此对比度和模糊效果。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel background shadow:"
-msgstr ""
+msgstr "原生面板背景阴影："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel background opacity:"
-msgstr ""
+msgstr "原生面板背景不透明度"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Set Opacity to 0 to keep just the mask required by Blur custom background."
