@@ -442,11 +442,14 @@ PlasmoidItem {
             }
         }
         property bool throttleMaskUpdate: false
+        // `visible: false` breaks in Plasma 6.3.4, so we use `opacity: 0` instead
+        // https://github.com/luisbocanegra/plasma-panel-colorizer/issues/212
+        // https://bugs.kde.org/show_bug.cgi?id=502480
         Rectangle {
             id: fgColorHolder
             height: 6
             width: height
-            visible: false
+            opacity: 0
             radius: height / 2
             anchors.right: parent.right
             Kirigami.Theme.colorSet: Kirigami.Theme[fgColorCfg.systemColorSet]
@@ -455,7 +458,7 @@ PlasmoidItem {
             id: bgColorHolder
             height: 6
             width: height
-            visible: false
+            opacity: 0
             radius: height / 2
             anchors.right: parent.right
             Kirigami.Theme.colorSet: Kirigami.Theme[bgColorCfg.systemColorSet]
