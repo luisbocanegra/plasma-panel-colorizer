@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.2](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.4.1...v2.4.2) (2025-04-06)
+
+
+### Bug Fixes
+
+* broken coloring in Plasma 6.3.4 ([73f69b3](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/73f69b3211b9d9d2e94aae9d49e7b278b244c999))
+
 ## [2.4.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.4.0...v2.4.1) (2025-03-16)
 
 
