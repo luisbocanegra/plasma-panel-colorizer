@@ -85,3 +85,16 @@ void PanelColorizer::combineRegions() {
 }
 
 bool PanelColorizer::hasRegions() const { return !m_mask.isEmpty(); }
+
+void PanelColorizer::popLastVisibleMaskRegion() {
+    if (!m_regions.isEmpty()) {
+        int regionToRemove;
+        for (int i = 0; i < m_regions.size(); i++) {
+            if (m_regions.constFind(i)->second) {
+                regionToRemove = i;
+            }
+        }
+        m_regions.remove(regionToRemove);
+        combineRegions();
+    }
+};

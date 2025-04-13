@@ -584,6 +584,9 @@ PlasmoidItem {
         }
 
         Component.onDestruction: {
+            if (main.panelColorizer) {
+                main.panelColorizer.popLastVisibleMaskRegion();
+            }
             main.recolorCountChanged.disconnect(rect.recolor);
             main.updateUnified.disconnect(updateUnifyType);
             main.updateMasks.disconnect(updateMaskDebounced);
