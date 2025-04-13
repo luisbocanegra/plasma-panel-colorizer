@@ -5,7 +5,7 @@ if [ -d "build" ]; then
 fi
 
 # Install widget for current user
-cmake -B build/plasmoid -S . -DINSTALL_PLASMOID=ON -DCMAKE_INSTALL_PREFIX=~/.local
+cmake -B build/plasmoid -S . -DINSTALL_PLASMOID=ON -DCMAKE_INSTALL_PREFIX="$HOME/.local"
 cmake --build build/plasmoid
 cmake --install build/plasmoid
 # CMakeLists.txt plasma_install_package does't copy executable permission
