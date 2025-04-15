@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.3](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.4.2...v2.4.3) (2025-04-15)
+
+
+### Bug Fixes
+
+* stuck custom blur/contrast region after removing widget ([48c69d7](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/48c69d710cc0373600688b7efa3f13c136a37516))
+
 ## [2.4.2](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.4.1...v2.4.2) (2025-04-06)
 
 
