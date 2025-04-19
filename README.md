@@ -183,12 +183,12 @@ Overrides let you give a completely different configuration to one or more widge
 
 #### Manual install for immutable distributions
 
-Use the `-immutable` variants of the install script then add `~/.local/lib/qml` to `QML_IMPORT_PATH` for the C++ plugin to work:
+Use the `-immutable` variants of the install script then add `QML_IMPORT_PATH` environment variable for the C++ plugin to work:
 
 Create the file `~/.config/plasma-workspace/env/path.sh` (and folders if they don't exist) with the following:
 
 ```sh
-export QML_IMPORT_PATH="$HOME/.local/lib/qml:$QML_IMPORT_PATH"
+export QML_IMPORT_PATH="$HOME/.local/lib64/qml:$HOME/.local/lib/qml:$QML_IMPORT_PATH"
 ```
 
 Log-out or reboot to apply the change
