@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.5.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.4.3...v2.5.0) (2025-04-19)
+
+
+### Features
+
+* allow floating point values in custom borders ([cb54e0e](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/cb54e0e21168671ac1222162ca0bd4dbd6e4b470))
+
+
+### Bug Fixes
+
+* add lib64 to QML_IMPORT_PATH for distributions that split lib/lib64 ([0cc3157](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/0cc3157f50551997d523dd7967194b61d3953410))
+* secondary custom border offset and radius ([2fe96a5](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/2fe96a588c5c274634df189137fc805fd79fa509))
+* unified widgets not saving sometimes ([1f8ebf5](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/1f8ebf556ca0ba02926d473e1fe0e22bea6696d8))
+
 ## [2.4.3](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.4.2...v2.4.3) (2025-04-15)
 
 
