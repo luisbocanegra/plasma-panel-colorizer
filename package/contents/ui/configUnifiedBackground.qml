@@ -1,10 +1,10 @@
+pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import "code/utils.js" as Utils
 import "components" as Components
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
-import org.kde.plasma.plasmoid
 
 KCM.SimpleKCM {
     id: root
@@ -23,19 +23,21 @@ KCM.SimpleKCM {
             const id = widget.id;
             const name = widget.name;
             const unifyBgType = widget.unifyBgType;
-            console.log(name, unifyBgType);
             const cfgIndex = Utils.getWidgetConfigIdx(id, name, unifiedBackgroundSettings);
+            console.log(name, unifyBgType, cfgIndex);
             if (unifyBgType != 0) {
-                if (cfgIndex !== -1)
+                if (cfgIndex !== -1) {
                     unifiedBackgroundSettings[cfgIndex].unifyBgType = unifyBgType;
-                else
+                } else {
+                    console.log("push");
                     unifiedBackgroundSettings.push({
                         "name": name,
                         "id": id,
                         "unifyBgType": unifyBgType
                     });
-            } else {
-                unifiedBackgroundSettings.splice(i);
+                }
+            } else if (cfgIndex !== -1) {
+                unifiedBackgroundSettings.splice(cfgIndex);
             }
         }
         console.log(JSON.stringify(unifiedBackgroundSettings));
@@ -104,7 +106,7 @@ KCM.SimpleKCM {
     }
 
     ColumnLayout {
-        enabled: cfg_isEnabled
+        enabled: root.cfg_isEnabled
 
         Kirigami.FormLayout {
             Kirigami.InlineMessage {
@@ -120,13 +122,16 @@ KCM.SimpleKCM {
                 Repeater {
                     model: widgetsModel
 
-                    delegate: Components.WidgetCardUnifiedBg {
+                    Components.WidgetCardUnifiedBg {
+                        required property int index
+                        required property string name
+                        required property var model
                         widget: model
                         onUpdateWidget: unifyBgType => {
-                            if (!loaded)
+                            if (!root.loaded)
                                 return;
 
-                            console.log(model.name, unifyBgType);
+                            console.log(name, unifyBgType);
                             widgetsModel.set(index, {
                                 "unifyBgType": unifyBgType
                             });
