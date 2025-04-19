@@ -87,57 +87,57 @@ Kirigami.FormLayout {
             rows: 3
             enabled: borderCustomSidesCheckbox.checked && enabledCheckbox.checked
 
-            SpinBox {
+            SpinBoxDecimal {
                 id: topBorderWidth
-
+                Layout.preferredWidth: backgroundRoot.Kirigami.Units.gridUnit * 5
                 value: config.custom.widths.top
                 from: 0
                 to: 99
                 Layout.row: 0
                 Layout.column: 1
-                onValueModified: {
+                onValueChanged: {
                     config.custom.widths.top = value;
                     updateConfig();
                 }
             }
 
-            SpinBox {
+            SpinBoxDecimal {
                 id: bottomBorderWidth
-
+                Layout.preferredWidth: backgroundRoot.Kirigami.Units.gridUnit * 5
                 value: config.custom.widths.bottom
                 from: 0
                 to: 99
                 Layout.row: 2
                 Layout.column: 1
-                onValueModified: {
+                onValueChanged: {
                     config.custom.widths.bottom = value;
                     updateConfig();
                 }
             }
 
-            SpinBox {
+            SpinBoxDecimal {
                 id: leftBorderWidth
-
+                Layout.preferredWidth: backgroundRoot.Kirigami.Units.gridUnit * 5
                 value: config.custom.widths.left
                 from: 0
                 to: 99
                 Layout.row: 1
                 Layout.column: 0
-                onValueModified: {
+                onValueChanged: {
                     config.custom.widths.left = value;
                     updateConfig();
                 }
             }
 
-            SpinBox {
+            SpinBoxDecimal {
                 id: rightBorderWidth
-
+                Layout.preferredWidth: backgroundRoot.Kirigami.Units.gridUnit * 5
                 value: config.custom.widths.right
                 from: 0
                 to: 99
                 Layout.row: 1
                 Layout.column: 2
-                onValueModified: {
+                onValueChanged: {
                     config.custom.widths.right = value;
                     updateConfig();
                 }

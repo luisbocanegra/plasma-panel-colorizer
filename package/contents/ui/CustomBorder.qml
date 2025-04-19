@@ -26,6 +26,7 @@ Rectangle {
         height: root.cfgBorder.custom.widths.top
         color: root.borderColor
         anchors.top: parent.top
+        antialiasing: true
     }
     Rectangle {
         id: customBorderBottom
@@ -34,6 +35,7 @@ Rectangle {
         height: root.cfgBorder.custom.widths.bottom
         color: root.borderColor
         anchors.bottom: parent.bottom
+        antialiasing: true
     }
 
     Rectangle {
@@ -43,6 +45,7 @@ Rectangle {
         width: root.cfgBorder.custom.widths.left
         color: root.borderColor
         anchors.left: parent.left
+        antialiasing: true
     }
     Rectangle {
         id: customBorderRight
@@ -51,6 +54,7 @@ Rectangle {
         width: root.cfgBorder.custom.widths.right
         color: root.borderColor
         anchors.right: parent.right
+        antialiasing: true
     }
 
     Kirigami.ShadowedRectangle {
@@ -76,11 +80,11 @@ Rectangle {
         source: normalBorder
         anchors.fill: normalBorder
         maskEnabled: true
-        maskSource: rightBorderMask
+        maskSource: unifiedBorderMask
         maskInverted: true
     }
     Item {
-        id: rightBorderMask
+        id: unifiedBorderMask
         layer.enabled: true
         visible: false
         width: root.width
@@ -94,6 +98,7 @@ Rectangle {
             anchors.bottom: !root.horizontal ? parent.bottom : undefined
             anchors.verticalCenter: root.horizontal ? parent.verticalCenter : undefined
             anchors.horizontalCenter: !root.horizontal ? parent.horizontalCenter : undefined
+            antialiasing: true
         }
         Rectangle {
             id: rect2
@@ -104,6 +109,7 @@ Rectangle {
             anchors.top: !root.horizontal ? parent.top : undefined
             anchors.verticalCenter: root.horizontal ? parent.verticalCenter : undefined
             anchors.horizontalCenter: !root.horizontal ? parent.horizontalCenter : undefined
+            antialiasing: true
         }
     }
 
