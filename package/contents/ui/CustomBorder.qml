@@ -112,24 +112,4 @@ Rectangle {
             antialiasing: true
         }
     }
-
-    layer.enabled: root.cfgBorder.customSides
-    layer.effect: MultiEffect {
-        maskEnabled: true
-        maskSpreadAtMax: 1
-        maskSpreadAtMin: 1
-        maskThresholdMin: 0.5
-        maskSource: ShaderEffectSource {
-            sourceItem: Kirigami.ShadowedRectangle {
-                width: root.width
-                height: root.height
-                corners {
-                    topLeftRadius: root.corners.topLeftRadius
-                    topRightRadius: root.corners.topRightRadius
-                    bottomLeftRadius: root.corners.bottomLeftRadius
-                    bottomRightRadius: root.corners.bottomRightRadius
-                }
-            }
-        }
-    }
 }

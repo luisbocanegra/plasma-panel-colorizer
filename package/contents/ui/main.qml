@@ -805,59 +805,86 @@ PlasmoidItem {
             delayed: true
         }
 
-        CustomBorder {
-            id: borderRec
-            visible: borderEnabled && Math.min(rect.height, rect.width) > 1
-            Behavior on borderColor {
-                enabled: main.animatePropertyChanges
-                ColorAnimation {
-                    duration: main.animationDuration
-                    easing.type: main.animationEasingType
+        Item {
+            anchors.fill: parent
+            CustomBorder {
+                id: borderRec
+                visible: borderEnabled && Math.min(rect.height, rect.width) > 1
+                Behavior on borderColor {
+                    enabled: main.animatePropertyChanges
+                    ColorAnimation {
+                        duration: main.animationDuration
+                        easing.type: main.animationEasingType
+                    }
+                }
+                horizontal: main.horizontal
+                unifyBgType: rect.unifyBgType
+                corners: {
+                    "topLeftRadius": rect.topLeftRadius,
+                    "topRightRadius": rect.topRightRadius,
+                    "bottomLeftRadius": rect.bottomLeftRadius,
+                    "bottomRightRadius": rect.bottomRightRadius
+                }
+                cfgBorder: cfg.border
+                borderColor: {
+                    return getColor(cfg.border.color, targetIndex, rect.color, itemType, borderRec);
                 }
             }
-            horizontal: main.horizontal
-            unifyBgType: rect.unifyBgType
-            corners: {
-                "topLeftRadius": rect.topLeftRadius,
-                "topRightRadius": rect.topRightRadius,
-                "bottomLeftRadius": rect.bottomLeftRadius,
-                "bottomRightRadius": rect.bottomRightRadius
-            }
-            cfgBorder: cfg.border
-            borderColor: {
-                return getColor(cfg.border.color, targetIndex, rect.color, itemType, borderRec);
-            }
-        }
 
-        CustomBorder {
-            id: borderSecondary
-            property int extraLMargin: ((rect.unifyBgType === 2 || rect.unifyBgType === 3) && main.horizontal) ? 0 : cfg.border.width
-            property int extraRMargin: ((rect.unifyBgType === 1 || rect.unifyBgType === 2) && main.horizontal) ? 0 : cfg.border.width
-            property int extraTMargin: ((rect.unifyBgType === 2 || rect.unifyBgType === 3) && !main.horizontal) ? 0 : cfg.border.width
-            property int extraBMargin: ((rect.unifyBgType === 1 || rect.unifyBgType === 2) && !main.horizontal) ? 0 : cfg.border.width
-            anchors.topMargin: cfg.border.enabled ? extraTMargin : 0
-            anchors.bottomMargin: cfg.border.enabled ? extraBMargin : 0
-            anchors.leftMargin: cfg.border.enabled ? extraLMargin : 0
-            anchors.rightMargin: cfg.border.enabled ? extraRMargin : 0
-            visible: cfg.borderSecondary.enabled && cfgEnabled && Math.min(rect.height, rect.width) > 1
-            Behavior on borderColor {
-                enabled: main.animatePropertyChanges
-                ColorAnimation {
-                    duration: main.animationDuration
-                    easing.type: main.animationEasingType
+            CustomBorder {
+                id: borderSecondary
+                property real parentBorderLeft: cfg.border.customSides ? cfg.border.custom.widths.left : cfg.border.width
+                property real parentBorderRight: cfg.border.customSides ? cfg.border.custom.widths.right : cfg.border.width
+                property real parentBorderTop: cfg.border.customSides ? cfg.border.custom.widths.top : cfg.border.width
+                property real parentBorderBottom: cfg.border.customSides ? cfg.border.custom.widths.bottom : cfg.border.width
+                property real extraLMargin: ((rect.unifyBgType === 2 || rect.unifyBgType === 3) && main.horizontal) ? 0 : parentBorderLeft
+                property real extraRMargin: ((rect.unifyBgType === 1 || rect.unifyBgType === 2) && main.horizontal) ? 0 : parentBorderRight
+                property real extraTMargin: ((rect.unifyBgType === 2 || rect.unifyBgType === 3) && !main.horizontal) ? 0 : parentBorderTop
+                property real extraBMargin: ((rect.unifyBgType === 1 || rect.unifyBgType === 2) && !main.horizontal) ? 0 : parentBorderBottom
+                anchors.topMargin: cfg.border.enabled ? extraTMargin : 0
+                anchors.bottomMargin: cfg.border.enabled ? extraBMargin : 0
+                anchors.leftMargin: cfg.border.enabled ? extraLMargin : 0
+                anchors.rightMargin: cfg.border.enabled ? extraRMargin : 0
+                visible: cfg.borderSecondary.enabled && cfgEnabled && Math.min(rect.height, rect.width) > 1
+                Behavior on borderColor {
+                    enabled: main.animatePropertyChanges
+                    ColorAnimation {
+                        duration: main.animationDuration
+                        easing.type: main.animationEasingType
+                    }
+                }
+                horizontal: main.horizontal
+                unifyBgType: rect.unifyBgType
+                corners: {
+                    "topLeftRadius": Math.max(rect.topLeftRadius - cfg.border.width, 0),
+                    "topRightRadius": Math.max(rect.topRightRadius - cfg.border.width, 0),
+                    "bottomLeftRadius": Math.max(rect.bottomLeftRadius - cfg.border.width, 0),
+                    "bottomRightRadius": Math.max(rect.bottomRightRadius - cfg.border.width, 0)
+                }
+                cfgBorder: cfg.borderSecondary
+                borderColor: {
+                    return getColor(cfg.borderSecondary.color, targetIndex, rect.color, itemType, borderSecondary);
                 }
             }
-            horizontal: main.horizontal
-            unifyBgType: rect.unifyBgType
-            corners: {
-                "topLeftRadius": Math.max(rect.topLeftRadius - cfg.border.width, 0),
-                "topRightRadius": Math.max(rect.topRightRadius - cfg.border.width, 0),
-                "bottomLeftRadius": Math.max(rect.bottomLeftRadius - cfg.border.width, 0),
-                "bottomRightRadius": Math.max(rect.bottomRightRadius - cfg.border.width, 0)
-            }
-            cfgBorder: cfg.borderSecondary
-            borderColor: {
-                return getColor(cfg.borderSecondary.color, targetIndex, rect.color, itemType, borderSecondary);
+
+            layer.enabled: cfg.border.customSides
+            layer.effect: MultiEffect {
+                maskEnabled: true
+                maskSpreadAtMax: 1
+                maskSpreadAtMin: 1
+                maskThresholdMin: 0.5
+                maskSource: ShaderEffectSource {
+                    sourceItem: Kirigami.ShadowedRectangle {
+                        width: rect.width
+                        height: rect.height
+                        corners {
+                            topLeftRadius: rect.topLeftRadius
+                            topRightRadius: rect.topRightRadius
+                            bottomLeftRadius: rect.bottomLeftRadius
+                            bottomRightRadius: rect.bottomRightRadius
+                        }
+                    }
+                }
             }
         }
 
