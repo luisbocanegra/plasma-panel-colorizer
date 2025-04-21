@@ -505,10 +505,22 @@ PlasmoidItem {
         }
 
         color: {
-            if (bgEnabled) {
+            if (bgEnabled && bgColorCfg.sourceType !== 5) {
                 return getColor(bgColorCfg, targetIndex, null, itemType, bgColorHolder);
             } else {
                 return "transparent";
+            }
+        }
+
+        GradientRoundedRectangle {
+            stops: bgColorCfg.gradient?.stops || []
+            visible: bgColorCfg.sourceType === 5 && bgColorCfg.gradient?.stops && bgEnabled
+            orientation: bgColorCfg.gradient?.orientation === 0 ? Gradient.Horizontal : Gradient.Vertical
+            corners: {
+                "topLeftRadius": rect.topLeftRadius,
+                "topRightRadius": rect.topRightRadius,
+                "bottomLeftRadius": rect.bottomLeftRadius,
+                "bottomRightRadius": rect.bottomRightRadius
             }
         }
 

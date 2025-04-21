@@ -4,10 +4,10 @@ import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 
 Kirigami.FormLayout {
-    id: colorRoot
+    id: root
 
     // required to align with parent form
-    property alias formLayout: colorRoot
+    property alias formLayout: root
     property bool isSection: true
     property string sectionName
     // wether read from the string or existing config object
@@ -25,8 +25,9 @@ Kirigami.FormLayout {
     property bool showFollowWidget: followOptions.widget
     property bool showFollowTray: followOptions.tray
     property bool showFollowRadio: showFollowPanel || showFollowWidget || showFollowTray
-    // wether or not show color list option
+    // wether or not show these options
     property bool multiColor: true
+    property bool supportsGradient: false
     property alias isEnabled: enabledCheckbox.checked
 
     signal updateConfigString(string configString, var config)
@@ -203,7 +204,7 @@ Kirigami.FormLayout {
         Binding {
             target: enabledCheckbox
             property: "Kirigami.Theme.textColor"
-            value: colorRoot.Kirigami.Theme.neutralTextColor
+            value: root.Kirigami.Theme.neutralTextColor
             when: !enabledCheckbox.checked
         }
     }
@@ -313,6 +314,16 @@ Kirigami.FormLayout {
         checked: config.sourceType === index
         enabled: !animationCheckbox.checked && isEnabled
         visible: showFollowRadio
+    }
+
+    RadioButton {
+        id: gradientRadio
+        property int index: 5
+        text: i18n("Gradient")
+        ButtonGroup.group: colorModeGroup
+        checked: config.sourceType === index
+        visible: root.supportsGradient
+        enabled: isEnabled
     }
 
     ButtonGroup {
@@ -464,12 +475,68 @@ Kirigami.FormLayout {
         }
     }
 
+    RadioButton {
+        id: gradientHorizontalRadio
+        Kirigami.FormData.label: i18n("Orientation:")
+        property int index: 0
+        text: i18n("Horizontal")
+        ButtonGroup.group: gradientOrientationBtnGroup
+        checked: config.gradient.orientation === index
+        enabled: isEnabled
+        visible: root.supportsGradient && gradientRadio.checked
+    }
+
+    RadioButton {
+        id: gradientVerticalRadio
+        property int index: 1
+        text: i18n("Vertical")
+        ButtonGroup.group: gradientOrientationBtnGroup
+        checked: config.gradient.orientation === index
+        enabled: isEnabled
+        visible: root.supportsGradient && gradientRadio.checked
+    }
+
+    ButtonGroup {
+        id: gradientOrientationBtnGroup
+
+        onCheckedButtonChanged: {
+            if (checkedButton) {
+                config.gradient.orientation = checkedButton.index;
+                updateConfig();
+            }
+        }
+    }
+
+    ColumnLayout {
+        visible: root.supportsGradient && gradientRadio.checked
+        enabled: isEnabled
+
+        Loader {
+            asynchronous: true
+            sourceComponent: gradientRadio.checked ? pickerGradientList : null
+            onLoaded: {
+                item.stopsList = config.gradient.stops;
+                item.onColorsChanged.connect(stopsList => {
+                    config.gradient.stops = stopsList;
+                    updateConfig();
+                });
+            }
+        }
+
+        Component {
+            id: pickerGradientList
+
+            ColorPickerGradientList {}
+        }
+    }
+
     RowLayout {
         enabled: isEnabled
         Kirigami.FormData.label: i18n("Alpha:")
+        visible: colorModeGroup.checkedButton.index !== 5
 
         SpinBoxDecimal {
-            Layout.preferredWidth: colorRoot.Kirigami.Units.gridUnit * 5
+            Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
             from: 0
             to: 1
             value: config.alpha ?? 0
@@ -484,11 +551,13 @@ Kirigami.FormLayout {
         Kirigami.FormData.isSection: false
         Kirigami.FormData.label: i18n("Contrast Correction")
         Layout.fillWidth: true
+        visible: colorModeGroup.checkedButton.index !== 5
     }
 
     RowLayout {
         enabled: isEnabled
         Kirigami.FormData.label: i18n("Saturation:")
+        visible: colorModeGroup.checkedButton.index !== 5
 
         CheckBox {
             id: saturationEnabled
@@ -501,7 +570,7 @@ Kirigami.FormLayout {
         }
 
         SpinBoxDecimal {
-            Layout.preferredWidth: colorRoot.Kirigami.Units.gridUnit * 5
+            Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
             from: 0
             to: 1
             value: config.saturationValue ?? 0
@@ -515,6 +584,7 @@ Kirigami.FormLayout {
     RowLayout {
         enabled: isEnabled
         Kirigami.FormData.label: i18n("Lightness:")
+        visible: colorModeGroup.checkedButton.index !== 5
 
         CheckBox {
             id: lightnessEnabled
@@ -527,7 +597,7 @@ Kirigami.FormLayout {
         }
 
         SpinBoxDecimal {
-            Layout.preferredWidth: colorRoot.Kirigami.Units.gridUnit * 5
+            Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
             from: 0
             to: 1
             value: config.lightnessValue ?? 0
