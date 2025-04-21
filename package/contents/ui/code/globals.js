@@ -8,6 +8,19 @@ const baseColorList = [
   "#f5a97f",
 ];
 
+const baseGradientList = [
+  { color: "#ff0000", position: 0 },
+  { color: "#f9f54e", position: 0.25 },
+  { color: "#21fd00", position: 0.5 },
+  { color: "#0e1eff", position: 0.75 },
+  { color: "#fd12ff", position: 1 }
+]
+
+const baseGradientConfig = {
+  stops: baseGradientList,
+  orientation: 0
+}
+
 const baseAnimation = {
   enabled: false,
   interval: 3000,
@@ -28,6 +41,7 @@ const basePanelBgColor = {
   lightnessEnabled: false,
   animation: baseAnimation,
   sourceType: 1,
+  gradient: baseGradientConfig
 };
 
 const baseBgColor = {
@@ -44,6 +58,7 @@ const baseBgColor = {
   lightnessEnabled: false,
   animation: baseAnimation,
   sourceType: 1,
+  gradient: baseGradientConfig
 };
 
 const baseFgColor = {
