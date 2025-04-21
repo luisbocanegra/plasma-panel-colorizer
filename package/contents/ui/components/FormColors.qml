@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Dialogs
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 
@@ -28,6 +29,7 @@ Kirigami.FormLayout {
     // wether or not show these options
     property bool multiColor: true
     property bool supportsGradient: false
+    property bool supportsImage: false
     property alias isEnabled: enabledCheckbox.checked
 
     signal updateConfigString(string configString, var config)
@@ -326,6 +328,16 @@ Kirigami.FormLayout {
         enabled: isEnabled
     }
 
+    RadioButton {
+        id: imageRadio
+        property int index: 6
+        text: i18n("Image")
+        ButtonGroup.group: colorModeGroup
+        checked: config.sourceType === index
+        visible: root.supportsImage
+        enabled: isEnabled
+    }
+
     ButtonGroup {
         id: colorModeGroup
 
@@ -382,6 +394,72 @@ Kirigami.FormLayout {
             if (checkedButton) {
                 config.followColor = checkedButton.index;
                 updateConfig();
+            }
+        }
+    }
+
+    ComboBox {
+        id: imageFillMode
+        Kirigami.FormData.label: i18n("Positioning:")
+        visible: root.supportsImage && imageRadio.checked
+        model: [
+            {
+                'label': i18n("Stretch"),
+                'fillMode': Image.Stretch
+            },
+            {
+                'label': i18n("Tile"),
+                'fillMode': Image.Tile
+            },
+            {
+                'label': i18n("Scaled and Cropped"),
+                'fillMode': Image.PreserveAspectCrop
+            }
+        ]
+        textRole: "label"
+        onCurrentIndexChanged: {
+            config.image.fillMode = model[currentIndex]["fillMode"];
+            updateConfig();
+        }
+        Component.onCompleted: setMethod()
+
+        function setMethod() {
+            for (var i = 0; i < model.length; i++) {
+                if (model[i]["fillMode"] == config.image.fillMode) {
+                    imageFillMode.currentIndex = i;
+                }
+            }
+        }
+    }
+
+    RowLayout {
+        visible: root.supportsImage && imageRadio.checked
+        TextArea {
+            id: imgTextArea
+            Layout.preferredWidth: 300
+            text: config.image.source
+            onTextChanged: {
+                if (config.image.source !== text) {
+                    config.image.source = text;
+                    updateConfig();
+                }
+            }
+        }
+        Button {
+            icon.name: "insert-image-symbolic"
+            onClicked: fileDialog.open()
+        }
+    }
+
+    FileDialog {
+        id: fileDialog
+        fileMode: FileDialog.OpenFile
+        title: i18n("Pick a image file")
+        nameFilters: [i18n("Image files") + " (*.png *.jpg *.jpeg *.gif *.webp *.bmp *.svg)", i18n("All files") + " (*)"]
+        onAccepted: {
+            if (fileDialog.selectedFile) {
+                console.log(fileDialog.selectedFile);
+                imgTextArea.text = fileDialog.selectedFile;
             }
         }
     }
@@ -533,7 +611,7 @@ Kirigami.FormLayout {
     RowLayout {
         enabled: isEnabled
         Kirigami.FormData.label: i18n("Alpha:")
-        visible: colorModeGroup.checkedButton.index !== 5
+        visible: colorModeGroup.checkedButton.index < 5
 
         SpinBoxDecimal {
             Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
@@ -551,13 +629,13 @@ Kirigami.FormLayout {
         Kirigami.FormData.isSection: false
         Kirigami.FormData.label: i18n("Contrast Correction")
         Layout.fillWidth: true
-        visible: colorModeGroup.checkedButton.index !== 5
+        visible: colorModeGroup.checkedButton.index < 5
     }
 
     RowLayout {
         enabled: isEnabled
         Kirigami.FormData.label: i18n("Saturation:")
-        visible: colorModeGroup.checkedButton.index !== 5
+        visible: colorModeGroup.checkedButton.index < 5
 
         CheckBox {
             id: saturationEnabled
@@ -584,7 +662,7 @@ Kirigami.FormLayout {
     RowLayout {
         enabled: isEnabled
         Kirigami.FormData.label: i18n("Lightness:")
-        visible: colorModeGroup.checkedButton.index !== 5
+        visible: colorModeGroup.checkedButton.index < 5
 
         CheckBox {
             id: lightnessEnabled

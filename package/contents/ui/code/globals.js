@@ -21,6 +21,11 @@ const baseGradientConfig = {
   orientation: 0
 }
 
+const baseImageConfig = {
+  source: "",
+  fillMode: 2
+}
+
 const baseAnimation = {
   enabled: false,
   interval: 3000,
@@ -41,7 +46,8 @@ const basePanelBgColor = {
   lightnessEnabled: false,
   animation: baseAnimation,
   sourceType: 1,
-  gradient: baseGradientConfig
+  gradient: baseGradientConfig,
+  image: baseImageConfig
 };
 
 const baseBgColor = {
@@ -58,7 +64,8 @@ const baseBgColor = {
   lightnessEnabled: false,
   animation: baseAnimation,
   sourceType: 1,
-  gradient: baseGradientConfig
+  gradient: baseGradientConfig,
+  image: baseImageConfig
 };
 
 const baseFgColor = {
