@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-03-15 02:15+0000\n"
+"POT-Creation-Date: 2025-04-21 18:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,7 +69,7 @@ msgstr "Panel Colorizer ist abgeschaltet"
 msgid "Enable"
 msgstr "Anschalten"
 
-#: ../contents/ui/components/ColorPickerList.qml ../contents/ui/components/FormColors.qml
+#: ../contents/ui/components/ColorPickerGradientList.qml ../contents/ui/components/ColorPickerList.qml ../contents/ui/components/FormColors.qml
 msgid "Widget background"
 msgstr "Widget Hintergrund"
 
@@ -137,6 +137,10 @@ msgstr "Zufällig"
 msgid "Follow"
 msgstr "Folge"
 
+#: ../contents/ui/components/FormColors.qml
+msgid "Gradient"
+msgstr ""
+
 #: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
 msgid "Element:"
 msgstr "Element:"
@@ -156,6 +160,18 @@ msgstr "Farbeneinstellung:"
 #: ../contents/ui/components/FormColors.qml
 msgid "Color:"
 msgstr "Farbe:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Orientation:"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Horizontal"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Vertical"
+msgstr ""
 
 #: ../contents/ui/components/FormColors.qml ../contents/ui/configGeneral.qml
 msgid "Alpha:"

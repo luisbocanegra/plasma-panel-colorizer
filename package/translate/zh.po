@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-03-15 02:15+0000\n"
+"POT-Creation-Date: 2025-04-21 18:32+0000\n"
 "PO-Revision-Date: 2025-04-05 20:32+0800\n"
 "Last-Translator: Mill413 <mill413@outlook.com>\n"
 "Language-Team: \n"
@@ -69,7 +69,7 @@ msgstr "Panel Colorizer 已禁用"
 msgid "Enable"
 msgstr "启用"
 
-#: ../contents/ui/components/ColorPickerList.qml ../contents/ui/components/FormColors.qml
+#: ../contents/ui/components/ColorPickerGradientList.qml ../contents/ui/components/ColorPickerList.qml ../contents/ui/components/FormColors.qml
 msgid "Widget background"
 msgstr "部件背景"
 
@@ -137,6 +137,10 @@ msgstr "随机"
 msgid "Follow"
 msgstr "跟随"
 
+#: ../contents/ui/components/FormColors.qml
+msgid "Gradient"
+msgstr ""
+
 #: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
 msgid "Element:"
 msgstr "元素："
@@ -156,6 +160,18 @@ msgstr "配色集合："
 #: ../contents/ui/components/FormColors.qml
 msgid "Color:"
 msgstr "颜色："
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Orientation:"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Horizontal"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Vertical"
+msgstr ""
 
 #: ../contents/ui/components/FormColors.qml ../contents/ui/configGeneral.qml
 msgid "Alpha:"
