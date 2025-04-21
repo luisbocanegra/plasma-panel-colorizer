@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-04-21 18:32+0000\n"
+"POT-Creation-Date: 2025-04-21 21:46+0000\n"
 "PO-Revision-Date: 2025-03-17 16:07+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -159,6 +159,10 @@ msgstr "Volgen"
 msgid "Gradient"
 msgstr ""
 
+#: ../contents/ui/components/FormColors.qml
+msgid "Image"
+msgstr ""
+
 #: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
 msgid "Element:"
 msgstr "Element:"
@@ -170,6 +174,34 @@ msgstr "Paneelachtergrond"
 #: ../contents/ui/components/FormColors.qml
 msgid "Tray widget background"
 msgstr "Systeemvakachtergrond"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Positioning:"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Stretch"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Tile"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Scaled and Cropped"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Pick a image file"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Image files"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
+msgid "All files"
+msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Color set:"
