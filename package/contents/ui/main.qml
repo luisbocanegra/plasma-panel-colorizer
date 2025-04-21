@@ -524,6 +524,18 @@ PlasmoidItem {
             }
         }
 
+        ImageRoundedRectangle {
+            source: bgColorCfg.image?.source || ""
+            visible: bgColorCfg.sourceType === 6 && bgColorCfg.image?.source && bgEnabled
+            fillMode: bgColorCfg.image?.fillMode !== undefined ? bgColorCfg.image?.fillMode : Image.PreserveAspectCrop
+            corners: {
+                "topLeftRadius": rect.topLeftRadius,
+                "topRightRadius": rect.topRightRadius,
+                "bottomLeftRadius": rect.bottomLeftRadius,
+                "bottomRightRadius": rect.bottomRightRadius
+            }
+        }
+
         Behavior on color {
             enabled: animatePropertyChanges
             ColorAnimation {

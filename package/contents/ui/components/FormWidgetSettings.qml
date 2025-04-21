@@ -295,6 +295,7 @@ ColumnLayout {
         sectionName: i18n("Background Color")
         multiColor: keyName !== "panel"
         supportsGradient: true
+        supportsImage: true
     }
 
     FormColors {
@@ -309,7 +310,6 @@ ColumnLayout {
         }
         followOptions: followVisbility.foreground
         sectionName: i18n("Foreground Color")
-        supportsGradient: false
     }
 
     FormShape {
@@ -354,7 +354,6 @@ ColumnLayout {
             backgroundRoot.updateConfig();
         }
         followOptions: followVisbility.foreground
-        supportsGradient: false
     }
 
     FormBorder {
@@ -379,7 +378,6 @@ ColumnLayout {
             backgroundRoot.updateConfig();
         }
         followOptions: followVisbility.foreground
-        supportsGradient: false
     }
 
     FormShadow {
@@ -404,7 +402,6 @@ ColumnLayout {
         isSection: false
         followOptions: followVisbility.foreground
         sectionName: i18n("Background Shadow Color")
-        supportsGradient: false
     }
 
     FormShadow {
@@ -429,6 +426,5 @@ ColumnLayout {
         isSection: false
         followOptions: followVisbility.foreground
         sectionName: i18n("Foreground Shadow Color")
-        supportsGradient: false
     }
 }
