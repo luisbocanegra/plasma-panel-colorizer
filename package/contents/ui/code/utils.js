@@ -373,9 +373,33 @@ function rgbToQtColor(rgb) {
   return Qt.rgba(rgb.r / 255, rgb.g / 255, rgb.b / 255, 1);
 }
 
+function fixArraysAsObjects(config) {
+  for (var key in config) {
+    if (typeof config[key] === "object" && config[key] !== null) {
+      if (!Array.isArray(config[key])) {
+        const isArrayInDisguise = Object.keys(config[key]).every(
+          k => !isNaN(Number(k))
+        );
+        if (isArrayInDisguise) {
+          config[key] = Object.values(config[key]);
+        } else {
+          fixArraysAsObjects(config[key]);
+        }
+      } else {
+        fixArraysAsObjects(config[key]);
+      }
+    }
+  }
+}
+
 function mergeConfigs(sourceConfig, newConfig) {
+  fixArraysAsObjects(newConfig)
   for (var key in sourceConfig) {
-    if (typeof sourceConfig[key] === "object" && sourceConfig[key] !== null) {
+    if (Array.isArray(sourceConfig[key])) {
+      if (!newConfig.hasOwnProperty(key)) {
+        newConfig[key] = sourceConfig[key].slice();
+      }
+    } else if (typeof sourceConfig[key] === "object" && sourceConfig[key] !== null) {
       if (!newConfig.hasOwnProperty(key)) {
         newConfig[key] = {};
       }
