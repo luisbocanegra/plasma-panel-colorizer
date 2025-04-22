@@ -375,6 +375,12 @@ function rgbToQtColor(rgb) {
 
 function fixArraysAsObjects(config) {
   for (var key in config) {
+    // skip overrides because they are intentionally saved as key-value and
+    // may be empty or intentionally named with numbers by the user
+    console.error(key)
+    if (key === "overrides") {
+      continue
+    }
     if (typeof config[key] === "object" && config[key] !== null) {
       if (!Array.isArray(config[key])) {
         const isArrayInDisguise = Object.keys(config[key]).every(
