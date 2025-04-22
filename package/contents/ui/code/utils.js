@@ -377,7 +377,6 @@ function fixArraysAsObjects(config) {
   for (var key in config) {
     // skip overrides because they are intentionally saved as key-value and
     // may be empty or intentionally named with numbers by the user
-    console.error(key)
     if (key === "overrides") {
       continue
     }
