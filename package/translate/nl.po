@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
 "POT-Creation-Date: 2025-04-23 04:42+0000\n"
-"PO-Revision-Date: 2025-03-17 16:07+0100\n"
+"PO-Revision-Date: 2025-04-23 10:51+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -157,17 +157,18 @@ msgstr "Volgen"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Gradient"
-msgstr ""
+msgstr "Kleurverloop"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Image"
-msgstr ""
+msgstr "Afbeelding"
 
 #: ../contents/ui/components/FormColors.qml
 msgid ""
 "High resolution images can slow down the desktop when the panel or widget "
 "size changes!"
 msgstr ""
+"Let op: afbeeldingen met een hoge resolutie kunnen voor vertraging zorgen!"
 
 #: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
 msgid "Element:"
@@ -183,31 +184,31 @@ msgstr "Systeemvakachtergrond"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Positioning:"
-msgstr ""
+msgstr "Uitlijning:"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Stretch"
-msgstr ""
+msgstr "Uitrekken"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Tile"
-msgstr ""
+msgstr "Tegelen"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Scaled and Cropped"
-msgstr ""
+msgstr "Bijsnijden en inpassen"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Pick a image file"
-msgstr ""
+msgstr "Kies een afbeelding"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Image files"
-msgstr ""
+msgstr "Afbeeldingsbestanden"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "All files"
-msgstr ""
+msgstr "Alle bestanden"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Color set:"
@@ -219,15 +220,15 @@ msgstr "Kleur:"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Orientation:"
-msgstr ""
+msgstr "Oriëntatie:"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontaal"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Vertical"
-msgstr ""
+msgstr "Verticaal"
 
 #: ../contents/ui/components/FormColors.qml ../contents/ui/configGeneral.qml
 msgid "Alpha:"
