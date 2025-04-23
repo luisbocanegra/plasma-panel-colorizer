@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-04-21 21:46+0000\n"
+"POT-Creation-Date: 2025-04-23 04:42+0000\n"
 "PO-Revision-Date: 2025-04-05 20:32+0800\n"
 "Last-Translator: Mill413 <mill413@outlook.com>\n"
 "Language-Team: \n"
@@ -143,6 +143,10 @@ msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Image"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
+msgid "High resolution images can slow down the desktop when the panel or widget size changes!"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
