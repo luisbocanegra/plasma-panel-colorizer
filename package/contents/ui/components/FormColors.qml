@@ -328,14 +328,27 @@ Kirigami.FormLayout {
         enabled: isEnabled
     }
 
-    RadioButton {
-        id: imageRadio
-        property int index: 6
-        text: i18n("Image")
-        ButtonGroup.group: colorModeGroup
-        checked: config.sourceType === index
-        visible: root.supportsImage
-        enabled: isEnabled
+    RowLayout {
+        RadioButton {
+            id: imageRadio
+            property int index: 6
+            text: i18n("Image")
+            ButtonGroup.group: colorModeGroup
+            checked: config.sourceType === index
+            visible: root.supportsImage
+            enabled: isEnabled
+        }
+        Button {
+            icon.name: "dialog-information-symbolic"
+            ToolTip.text: i18n("High resolution images can slow down the desktop when the panel or widget size changes!")
+            hoverEnabled: true
+            flat: true
+            ToolTip.visible: hovered
+            Kirigami.Theme.inherit: false
+            Kirigami.Theme.textColor: Kirigami.Theme.neutralTextColor
+            Kirigami.Theme.highlightColor: Kirigami.Theme.neutralTextColor
+            icon.color: Kirigami.Theme.neutralTextColor
+        }
     }
 
     ButtonGroup {
@@ -405,36 +418,29 @@ Kirigami.FormLayout {
         model: [
             {
                 'label': i18n("Stretch"),
-                'fillMode': Image.Stretch
+                'fillMode': AnimatedImage.Stretch
             },
             {
                 'label': i18n("Tile"),
-                'fillMode': Image.Tile
+                'fillMode': AnimatedImage.Tile
             },
             {
                 'label': i18n("Scaled and Cropped"),
-                'fillMode': Image.PreserveAspectCrop
+                'fillMode': AnimatedImage.PreserveAspectCrop
             }
         ]
         textRole: "label"
-        onCurrentIndexChanged: {
-            config.image.fillMode = model[currentIndex]["fillMode"];
+        valueRole: "fillMode"
+        onActivated: {
+            config.image.fillMode = currentValue;
             updateConfig();
         }
-        Component.onCompleted: setMethod()
-
-        function setMethod() {
-            for (var i = 0; i < model.length; i++) {
-                if (model[i]["fillMode"] == config.image.fillMode) {
-                    imageFillMode.currentIndex = i;
-                }
-            }
-        }
+        currentIndex: indexOfValue(config.image.fillMode)
     }
 
     RowLayout {
         visible: root.supportsImage && imageRadio.checked
-        TextArea {
+        TextField {
             id: imgTextArea
             Layout.preferredWidth: 300
             text: config.image.source
