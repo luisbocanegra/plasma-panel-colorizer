@@ -1,5 +1,25 @@
 # Changelog
 
+## [2.6.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.5.0...v2.6.0) (2025-04-23)
+
+
+### Features
+
+* add option to use a gradient as background ([b93e0ec](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/b93e0ec643c1ab8290e4521d6234c0e51f0058f2))
+* add option to use an image as background ([749ca04](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/749ca04127d800b93b331d03d09c976eea99c0b4))
+
+
+### Bug Fixes
+
+* config arrays malformed as objects ([7665734](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/7665734272bb9e1dfeca3232765f1d8ba9237445))
+* oops Qt.size not Qt.rect smh ([8940d4c](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/8940d4c516028f0752fec6c6f3f75b05daa256b5))
+* override configs being converted to array ([f3e72e4](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/f3e72e49aef9c0df43677ccdcb04f0659ea7312d))
+
+
+### Performance Improvements
+
+* images: async load, sourceSize & remove source on disabled ([e29b4a9](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/e29b4a9d887352b53ecd8d6fc175343e0c701352))
+
 ## [2.5.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.4.3...v2.5.0) (2025-04-19)
 
 
