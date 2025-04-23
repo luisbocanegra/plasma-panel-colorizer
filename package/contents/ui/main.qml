@@ -538,7 +538,7 @@ PlasmoidItem {
                 if (fillMode === AnimatedImage.Tile) {
                     return undefined;
                 } else {
-                    Qt.rect(rect.width > rect.height ? rect.width : rect.height, 0);
+                    Qt.size(rect.width > rect.height ? rect.width : rect.height, 0);
                 }
             }
             onStatusChanged: {
