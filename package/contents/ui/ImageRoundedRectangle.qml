@@ -13,7 +13,7 @@ AnimatedImage {
         "bottomRightRadius": 0
     }
     fillMode: Image.PreserveAspectCrop
-
+    asynchronous: true
     anchors.fill: parent
     layer.enabled: true
     layer.live: true
