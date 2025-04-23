@@ -525,7 +525,7 @@ PlasmoidItem {
         }
 
         ImageRoundedRectangle {
-            source: bgColorCfg.image?.source || ""
+            source: visible ? bgColorCfg.image?.source : ""
             visible: bgColorCfg.sourceType === 6 && bgColorCfg.image?.source && bgEnabled
             fillMode: bgColorCfg.image?.fillMode !== undefined ? bgColorCfg.image?.fillMode : Image.PreserveAspectCrop
             corners: {
@@ -533,6 +533,18 @@ PlasmoidItem {
                 "topRightRadius": rect.topRightRadius,
                 "bottomLeftRadius": rect.bottomLeftRadius,
                 "bottomRightRadius": rect.bottomRightRadius
+            }
+            sourceSize: {
+                if (fillMode === AnimatedImage.Tile) {
+                    return undefined;
+                } else {
+                    Qt.rect(rect.width > rect.height ? rect.width : rect.height, 0);
+                }
+            }
+            onStatusChanged: {
+                if (status === AnimatedImage.Ready) {
+                    playing = true;
+                }
             }
         }
 
