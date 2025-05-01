@@ -1724,7 +1724,9 @@ PlasmoidItem {
     }
 
     function showPanelBg(panelBg) {
-        // Utils.dumpProps(panelBg)
+        if (!panelBg || Utils.getBgManaged(panelBg)) {
+            return;
+        }
         panelBgItem = backgroundComponent.createObject(panelBg, {
             "z": -1,
             "target": panelBg,
