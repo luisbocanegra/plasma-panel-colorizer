@@ -131,7 +131,6 @@ KCM.SimpleKCM {
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {
             root.savePreset(root.editingPreset);
-            runCommand.run(root.listPresetsCmd);
             saveNameField.text = "";
         }
     }
