@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.6.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.6.0...v2.6.1) (2025-05-02)
+
+
+### Bug Fixes
+
+* creating a new preset may create an empty directory ([9cc5c4c](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/9cc5c4c1254f751dfec35b525e247b34bd075aae))
+* creation of more than one panel background ([d005284](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/d0052844e3b7fe03f28db3ae67a6782de060f511))
+* set AnimatedImage layer.live on onPlayingChanged ([9dc76be](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/9dc76be5794ec0348dda7c6d3569bb0d92c801f5))
+* set AnimatedImage layer.live on onPlayingChanged ([a4ffc64](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/a4ffc64474f5d3353b65b47dda7f64ab353fb10a))
+
 ## [2.6.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.5.0...v2.6.0) (2025-04-23)
 
 
