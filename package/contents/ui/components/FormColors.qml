@@ -329,14 +329,14 @@ Kirigami.FormLayout {
     }
 
     RowLayout {
+        visible: root.supportsImage
+        enabled: isEnabled
         RadioButton {
             id: imageRadio
             property int index: 6
             text: i18n("Image")
             ButtonGroup.group: colorModeGroup
             checked: config.sourceType === index
-            visible: root.supportsImage
-            enabled: isEnabled
         }
         Button {
             icon.name: "dialog-information-symbolic"
