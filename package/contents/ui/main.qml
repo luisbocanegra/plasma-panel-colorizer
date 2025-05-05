@@ -1758,7 +1758,9 @@ PlasmoidItem {
     TasksModel {
         id: tasksModel
         screenGeometry: Plasmoid.containment.screenGeometry
-        filterByActive: presetAutoloading.maximizedFilterByActive ?? false
+        filterByActive: presetAutoloading.filterByActive ?? false
+        filterByScreen: presetAutoloading.filterByScreen ?? true
+        trackLastActive: presetAutoloading.trackLastActive ?? true
     }
 
     RunCommand {
