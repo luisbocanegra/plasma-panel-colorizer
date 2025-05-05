@@ -129,18 +129,57 @@ KCM.SimpleKCM {
                 Layout.fillWidth: true
             }
 
-            CheckBox {
-                id: enabledCheckbox
+            RowLayout {
                 Kirigami.FormData.label: i18n("Enabled:")
-                checked: autoLoadConfig.enabled
-                onCheckedChanged: {
-                    autoLoadConfig.enabled = checked;
-                    updateConfig();
+                CheckBox {
+                    id: enabledCheckbox
+                    checked: autoLoadConfig.enabled
+                    onCheckedChanged: {
+                        autoLoadConfig.enabled = checked;
+                        updateConfig();
+                    }
+                }
+                Kirigami.ContextualHelpButton {
+                    toolTipText: i18n("Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the <b>Maximized</b> preset will be applied.")
                 }
             }
-            Kirigami.ContextualHelpButton {
-                toolTipText: i18n("Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the <b>Maximized</b> preset will be applied.")
+
+            CheckBox {
+                Kirigami.FormData.label: i18n("Window tracking:")
+                text: i18n("Per screen")
+                checked: autoLoadConfig.filterByScreen
+                onCheckedChanged: {
+                    autoLoadConfig.filterByScreen = checked;
+                    updateConfig();
+                }
+                enabled: enabledCheckbox.checked
             }
+
+            CheckBox {
+                text: i18n("Active only")
+                checked: autoLoadConfig.filterByActive
+                onCheckedChanged: {
+                    autoLoadConfig.filterByActive = checked;
+                    updateConfig();
+                }
+                enabled: enabledCheckbox.checked
+            }
+
+            RowLayout {
+                CheckBox {
+                    text: i18n("Active window fallback")
+                    checked: autoLoadConfig.trackLastActive
+                    onCheckedChanged: {
+                        autoLoadConfig.trackLastActive = checked;
+                        updateConfig();
+                    }
+                    enabled: enabledCheckbox.checked
+                }
+                Kirigami.ContextualHelpButton {
+                    toolTipText: i18n("Track KWin's top window when there is no active one in the screen.")
+                }
+            }
+
             ComboBox {
                 model: presetsModel
                 textRole: "name"
@@ -165,17 +204,6 @@ KCM.SimpleKCM {
                 enabled: enabledCheckbox.checked
             }
 
-            CheckBox {
-                // Kirigami.FormData.label: i18n("Active window only:")
-                text: i18n("Active window only")
-                checked: autoLoadConfig.maximizedFilterByActive
-                onCheckedChanged: {
-                    autoLoadConfig.maximizedFilterByActive = checked;
-                    updateConfig();
-                }
-                enabled: (autoLoadConfig.maximized ?? "" !== "") && enabledCheckbox.checked
-            }
-
             ComboBox {
                 model: presetsModel
                 textRole: "name"
@@ -191,7 +219,19 @@ KCM.SimpleKCM {
             ComboBox {
                 model: presetsModel
                 textRole: "name"
-                Kirigami.FormData.label: i18n("At least one window is shown:")
+                Kirigami.FormData.label: i18n("Active window:")
+                onCurrentIndexChanged: {
+                    autoLoadConfig.activeWindow = model.get(currentIndex)["value"];
+                    updateConfig();
+                }
+                currentIndex: getIndex(model, autoLoadConfig.activeWindow)
+                enabled: enabledCheckbox.checked
+            }
+
+            ComboBox {
+                model: presetsModel
+                textRole: "name"
+                Kirigami.FormData.label: i18n("At least one window is visible:")
                 onCurrentIndexChanged: {
                     autoLoadConfig.visibleWindows = model.get(currentIndex)["value"];
                     updateConfig();

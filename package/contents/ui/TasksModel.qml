@@ -16,7 +16,25 @@ Item {
     property var isFullScreen: abstractTasksModel.IsFullScreen
     property var isMinimized: abstractTasksModel.IsMinimized
     property bool filterByActive: false
-    property var activeTask: null
+    property bool filterByScreen: false
+    property bool trackLastActive: false
+
+    function getTopTask() {
+        let highestTask = null;
+        let maxStackingOrder = 0;
+        for (var i = 0; i < tasksModel.count; i++) {
+            const currentTask = tasksModel.index(i, 0);
+            if (currentTask === undefined || !tasksModel.data(currentTask, isWindow))
+                continue;
+
+            const staskingOder = tasksModel.data(currentTask, abstractTasksModel.StackingOrder);
+            if (staskingOder > maxStackingOrder) {
+                maxStackingOrder = staskingOder;
+                highestTask = currentTask;
+            }
+        }
+        return highestTask;
+    }
 
     function updateWindowsinfo() {
         let activeCount = 0;
@@ -28,26 +46,41 @@ Item {
             if (currentTask === undefined || !tasksModel.data(currentTask, isWindow))
                 continue;
 
-            const active = tasksModel.data(currentTask, isActive);
-            if (!tasksModel.data(currentTask, isMinimized))
-                visibleCount += 1;
-
-            if (filterByActive && !active)
+            if (filterByActive && !tasksModel.data(currentTask, isActive))
                 continue;
 
-            if (active)
-                activeTask = currentTask;
-
+            visibleCount += 1;
             if (tasksModel.data(currentTask, isMaximized))
                 maximizedCount += 1;
 
             if (tasksModel.data(currentTask, isFullScreen))
                 fullscreenCount += 1;
         }
-        root.visibleExists = visibleCount > 0;
-        root.maximizedExists = filterByActive ? tasksModel.data(activeTask, isMaximized) : maximizedCount > 0;
-        root.fullscreenExists = filterByActive ? tasksModel.data(activeTask, isFullScreen) : fullscreenCount > 0;
-        root.activeExists = activeCount > 0;
+
+        let _activeExists = tasksModel.data(tasksModel.activeTask, isActive) || false;
+        let _activeTask = null;
+        let _maximizedExists = maximizedCount > 0;
+        let _fullscreenExists = fullscreenCount > 0;
+        let _visibleExists = visibleCount > 0;
+        if (filterByActive && _activeExists) {
+            _activeTask = tasksModel.activeTask;
+        }
+
+        if (filterByActive && !_activeTask && trackLastActive) {
+            _activeTask = getTopTask();
+            _activeExists = Boolean(_activeTask);
+        }
+
+        if (_activeTask) {
+            _maximizedExists = tasksModel.data(_activeTask, isMaximized) || false;
+            _fullscreenExists = tasksModel.data(_activeTask, isFullScreen) || false;
+            _visibleExists = _activeExists;
+        }
+
+        activeExists = _activeExists;
+        fullscreenExists = _fullscreenExists;
+        maximizedExists = _maximizedExists;
+        visibleExists = _visibleExists;
     }
 
     Connections {
@@ -78,7 +111,7 @@ Item {
         activity: activityInfo.currentActivity
         screenGeometry: root.screenGeometry
         filterByVirtualDesktop: true
-        filterByScreen: true
+        filterByScreen: root.filterByScreen
         filterByActivity: true
         filterMinimized: true
         onDataChanged: {

@@ -454,6 +454,7 @@ function getPresetName(panelState, presetAutoloading) {
     "fullscreenWindow",
     "maximized",
     "touchingWindow",
+    "activeWindow",
     "visibleWindows",
     "floating",
     "normal",
