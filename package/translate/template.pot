@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-04-23 04:42+0000\n"
+"POT-Creation-Date: 2025-05-07 18:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -593,6 +593,26 @@ msgid ""
 msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
+msgid "Window tracking:"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Per screen"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Active only"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Active window fallback"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Track KWin's top window when there is no active one in the screen."
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
 msgid "Fullscreen window:"
 msgstr ""
 
@@ -600,17 +620,16 @@ msgstr ""
 msgid "Maximized window:"
 msgstr ""
 
-#. i18n("Active window only:")
-#: ../contents/ui/configPresetAutoload.qml
-msgid "Active window only"
-msgstr ""
-
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Window touching panel:"
 msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "At least one window is shown:"
+msgid "Active window:"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "At least one window is visible:"
 msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml

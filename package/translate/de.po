@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-04-23 04:42+0000\n"
+"POT-Creation-Date: 2025-05-07 18:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -590,6 +590,26 @@ msgid "Priorities go in descending order. E.g. if both <b>Maximized window is sh
 msgstr "Prioritäten in absteigender Reihenfolge"
 
 #: ../contents/ui/configPresetAutoload.qml
+msgid "Window tracking:"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Per screen"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Active only"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Active window fallback"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Track KWin's top window when there is no active one in the screen."
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
 msgid "Fullscreen window:"
 msgstr "Vollbild"
 
@@ -597,18 +617,17 @@ msgstr "Vollbild"
 msgid "Maximized window:"
 msgstr "Max Fenster"
 
-#. i18n("Active window only:")
-#: ../contents/ui/configPresetAutoload.qml
-msgid "Active window only"
-msgstr "Nur das aktives Fenster"
-
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Window touching panel:"
 msgstr "Fenster berühren die Kontrollleiste"
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "At least one window is shown:"
-msgstr "Mindestens ein Fenster wird gezeigt:"
+msgid "Active window:"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "At least one window is visible:"
+msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Floating panel:"
@@ -825,6 +844,12 @@ msgstr "Wähle eine Voreinstellung"
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr "Kontrollleiste nicht gefunden, dieses Widget muss in der Kontrollleiste plaziert werden, da es ansonsten nicht funktioniert"
+
+#~ msgid "Active window only"
+#~ msgstr "Nur das aktives Fenster"
+
+#~ msgid "At least one window is shown:"
+#~ msgstr "Mindestens ein Fenster wird gezeigt:"
 
 #~ msgid "Panel Opacity:"
 #~ msgstr "Kontrollleisten Opazität"

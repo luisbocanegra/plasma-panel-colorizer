@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-04-23 04:42+0000\n"
+"POT-Creation-Date: 2025-05-07 18:13+0000\n"
 "PO-Revision-Date: 2025-04-23 10:51+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -690,6 +690,26 @@ msgstr ""
 "dan worden de <b>maximalisatieinstellingen</b> toegepast."
 
 #: ../contents/ui/configPresetAutoload.qml
+msgid "Window tracking:"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Per screen"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Active only"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Active window fallback"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Track KWin's top window when there is no active one in the screen."
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
 msgid "Fullscreen window:"
 msgstr "Schermvullend venster:"
 
@@ -697,18 +717,17 @@ msgstr "Schermvullend venster:"
 msgid "Maximized window:"
 msgstr "Gemaximaliseerd venster:"
 
-#. i18n("Active window only:")
-#: ../contents/ui/configPresetAutoload.qml
-msgid "Active window only"
-msgstr "Alleen actief venster"
-
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Window touching panel:"
 msgstr "Venster raakt paneelrand:"
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "At least one window is shown:"
-msgstr "Er wordt minimaal één venster getoond:"
+msgid "Active window:"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "At least one window is visible:"
+msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Floating panel:"
@@ -976,6 +995,12 @@ msgstr "Kies de voorinstellingen"
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr ""
 "Er is geen paneel aangetroffen - de widget dient op een paneel te staan"
+
+#~ msgid "Active window only"
+#~ msgstr "Alleen actief venster"
+
+#~ msgid "At least one window is shown:"
+#~ msgstr "Er wordt minimaal één venster getoond:"
 
 #~ msgid "Panel Opacity:"
 #~ msgstr "Doorzichtigheid:"

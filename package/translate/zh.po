@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-04-23 04:42+0000\n"
+"POT-Creation-Date: 2025-05-07 18:13+0000\n"
 "PO-Revision-Date: 2025-04-05 20:32+0800\n"
 "Last-Translator: Mill413 <mill413@outlook.com>\n"
 "Language-Team: \n"
@@ -588,6 +588,26 @@ msgid "Priorities go in descending order. E.g. if both <b>Maximized window is sh
 msgstr "优先级按降序排列。例如，若同时选中<b>最大化窗口显示时</b>和<b>面板接触窗口时</b>的预设，且屏幕存在最大化窗口，则应用<b>最大化</b>预设。"
 
 #: ../contents/ui/configPresetAutoload.qml
+msgid "Window tracking:"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Per screen"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Active only"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Active window fallback"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Track KWin's top window when there is no active one in the screen."
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
 msgid "Fullscreen window:"
 msgstr "全屏窗口："
 
@@ -595,18 +615,17 @@ msgstr "全屏窗口："
 msgid "Maximized window:"
 msgstr "最大化窗口："
 
-#. i18n("Active window only:")
-#: ../contents/ui/configPresetAutoload.qml
-msgid "Active window only"
-msgstr "仅活动窗口"
-
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Window touching panel:"
 msgstr "窗口接触面板时："
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "At least one window is shown:"
-msgstr "至少显示一个窗口时："
+msgid "Active window:"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "At least one window is visible:"
+msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Floating panel:"
@@ -821,6 +840,12 @@ msgstr "选择预设"
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr "未找到面板，此部件需放置在面板上才能工作"
+
+#~ msgid "Active window only"
+#~ msgstr "仅活动窗口"
+
+#~ msgid "At least one window is shown:"
+#~ msgstr "至少显示一个窗口时："
 
 #~ msgid "Panel Opacity:"
 #~ msgstr "面板不透明度："
