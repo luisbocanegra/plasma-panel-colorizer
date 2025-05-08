@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-05-07 18:13+0000\n"
+"POT-Creation-Date: 2025-05-08 09:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -637,6 +637,10 @@ msgid "Floating panel:"
 msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
+msgid "activity:"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
 msgid "Normal:"
 msgstr ""
 
@@ -703,13 +707,21 @@ msgid "Update preview"
 msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g top to left)."
+msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g from top to left)."
 msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
-"Opacity control here <b>requires Plasma 6.3</b> and depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options "
-"in <b>Appearance</b> tab instead."
+"Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel "
+"background</b> options in <b>Appearance</b> tab instead."
+msgstr ""
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Screen"
+msgstr ""
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Screen:"
 msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml

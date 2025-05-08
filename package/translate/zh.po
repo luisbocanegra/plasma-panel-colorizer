@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-05-07 18:13+0000\n"
+"POT-Creation-Date: 2025-05-08 09:27+0000\n"
 "PO-Revision-Date: 2025-04-05 20:32+0800\n"
 "Last-Translator: Mill413 <mill413@outlook.com>\n"
 "Language-Team: \n"
@@ -632,6 +632,10 @@ msgid "Floating panel:"
 msgstr "浮动面板时："
 
 #: ../contents/ui/configPresetAutoload.qml
+msgid "activity:"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
 msgid "Normal:"
 msgstr "常规："
 
@@ -696,12 +700,20 @@ msgid "Update preview"
 msgstr "更新预览"
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g top to left)."
-msgstr "更改面板位置功能不稳定，在非平行边缘间移动面板（如顶部到左侧）可能导致 Plasma 崩溃。"
+msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g from top to left)."
+msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Opacity control here <b>requires Plasma 6.3</b> and depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
-msgstr "此处的不透明度控制<b>需 Plasma 6.3</b>且依赖当前 Plasma 主题。如需更精细控制或完全透明，请使用<b>外观</b>标签页的<b>面板不透明度</b>和<b>原生面板背景</b>选项。"
+msgid "Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
+msgstr ""
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Screen"
+msgstr ""
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Screen:"
+msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Position"
@@ -840,6 +852,12 @@ msgstr "选择预设"
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr "未找到面板，此部件需放置在面板上才能工作"
+
+#~ msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g top to left)."
+#~ msgstr "更改面板位置功能不稳定，在非平行边缘间移动面板（如顶部到左侧）可能导致 Plasma 崩溃。"
+
+#~ msgid "Opacity control here <b>requires Plasma 6.3</b> and depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
+#~ msgstr "此处的不透明度控制<b>需 Plasma 6.3</b>且依赖当前 Plasma 主题。如需更精细控制或完全透明，请使用<b>外观</b>标签页的<b>面板不透明度</b>和<b>原生面板背景</b>选项。"
 
 #~ msgid "Active window only"
 #~ msgstr "仅活动窗口"
