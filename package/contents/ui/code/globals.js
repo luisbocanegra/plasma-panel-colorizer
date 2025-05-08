@@ -230,6 +230,10 @@ const baseOverrideConfig = {
 };
 
 const baseStockPanelSettings = {
+  screen: {
+    enabled: false,
+    value: 0,
+  },
   position: {
     enabled: false,
     value: "top",
