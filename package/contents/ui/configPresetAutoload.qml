@@ -1,7 +1,9 @@
+pragma ComponentBehavior: Bound
 import QtCore
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import org.kde.activities as Activities
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
@@ -41,6 +43,10 @@ KCM.SimpleKCM {
 
     RunCommand {
         id: runCommand
+    }
+
+    Activities.ActivityModel {
+        id: activityModel
     }
 
     Connections {
@@ -252,6 +258,42 @@ KCM.SimpleKCM {
                 enabled: enabledCheckbox.checked
             }
 
+            Repeater {
+                id: activitiesRepeater
+                model: activityModel.rowCount() > 1 ? activityModel : []
+                ComboBox {
+                    model: presetsModel
+                    textRole: "name"
+                    required property var name
+                    required property var id
+                    Kirigami.FormData.label: "\"" + name + "\" " + i18n("activity:")
+                    function cleanup() {
+                        let activityIds = [];
+                        for (let i = 0; i < activityModel.rowCount(); i++) {
+                            const current = activityModel.index(i, 0);
+                            activityIds.push(activityModel.data(current, Qt.UserRole));
+                        }
+
+                        // remove config for deleted activities
+                        for (let activity in root.autoLoadConfig.activity) {
+                            if (!(activityIds.includes(activity)) || root.autoLoadConfig.activity[activity] === "") {
+                                delete root.autoLoadConfig.activity[activity];
+                            }
+                        }
+                    }
+                    onCurrentIndexChanged: {
+                        if (!('activity' in root.autoLoadConfig)) {
+                            root.autoLoadConfig.activity = {};
+                        }
+                        root.autoLoadConfig.activity[id] = model.get(currentIndex)["value"];
+                        cleanup();
+                        root.updateConfig();
+                    }
+                    currentIndex: root.getIndex(model, root.autoLoadConfig?.activity[id])
+                    enabled: enabledCheckbox.checked
+                }
+            }
+
             ComboBox {
                 model: presetsModel
                 textRole: "name"
@@ -293,18 +335,19 @@ KCM.SimpleKCM {
                         keyNavigationEnabled: true
                         delegate: RowLayout {
                             width: ListView.view.width
+                            required property var model
                             CheckBox {
                                 id: presetCheckbox
                                 text: model.name
-                                checked: switchPresets.includes(model.value)
+                                checked: root.switchPresets.includes(model.value)
                                 Layout.rightMargin: Kirigami.Units.smallSpacing * 4
                                 onCheckedChanged: {
                                     if (checked) {
-                                        if (!switchPresets.includes(model.value)) {
-                                            switchPresets.push(model.value);
+                                        if (!root.switchPresets.includes(model.value)) {
+                                            root.switchPresets.push(model.value);
                                         }
                                     } else {
-                                        switchPresets = switchPresets.filter(p => p !== model.value);
+                                        root.switchPresets = root.switchPresets.filter(p => p !== model.value);
                                     }
                                     updateConfig();
                                 }

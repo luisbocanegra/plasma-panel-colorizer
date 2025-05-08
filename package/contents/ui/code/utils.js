@@ -457,15 +457,21 @@ function getPresetName(panelState, presetAutoloading) {
     "activeWindow",
     "visibleWindows",
     "floating",
+    "activity",
     "normal",
   ];
+  let preset = null
   for (let state of priority) {
     if ((panelState[state] || state === "normal") && presetAutoloading[state]) {
-      // console.error("getPresetName()", state, "->", presetAutoloading[state])
-      return presetAutoloading[state];
+      if (state === "activity") {
+        preset = presetAutoloading.activity[panelState[state]]
+      } else {
+        preset = presetAutoloading[state]
+      }
+      if (preset) break
     }
   }
-  return null;
+  return preset || presetAutoloading.normal;
 }
 
 function getGlobalPosition(rect, panelElement) {
