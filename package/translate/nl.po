@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-05-07 18:13+0000\n"
+"POT-Creation-Date: 2025-05-08 09:27+0000\n"
 "PO-Revision-Date: 2025-04-23 10:51+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -734,6 +734,10 @@ msgid "Floating panel:"
 msgstr "Zwevend paneel:"
 
 #: ../contents/ui/configPresetAutoload.qml
+msgid "activity:"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
 msgid "Normal:"
 msgstr "Normaal:"
 
@@ -813,24 +817,24 @@ msgstr "Voorvertoning bijwerken"
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
 "Changing panel position is currently unstable and may cause Plasma to crash "
-"when moving panels between non-parallel edges (e.g top to left)."
+"when moving panels between non-parallel edges (e.g from top to left)."
 msgstr ""
-"Let op: het aanpassen van de paneellocatie is momenteel instabiel en kan tot "
-"Plasma-crashes leiden indien niet-parallelle randen worden aangehouden "
-"(bijv. boven naar links)."
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
-"Opacity control here <b>requires Plasma 6.3</b> and depends on the current "
-"Plasma Theme, for finer control or full transparency use <b>Panel Opacity</"
-"b> and <b>Native panel background</b> options in <b>Appearance</b> tab "
-"instead."
+"Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity "
+"depends on the current Plasma Theme, for finer control or full transparency "
+"use <b>Panel Opacity</b> and <b>Native panel background</b> options in "
+"<b>Appearance</b> tab instead."
 msgstr ""
-"Voor het gebruik van de doorzichtigheidsopties is <b>Plasma 6.3 vereist</b>. "
-"De opties werken afhankelijk van het gekozen Plasma-thema. Voor nauwkeuriger "
-"afstellingen of volledige doorzichtigheid kunnen de opties "
-"<b>Paneeldoorzichtigheid</b> en <b>Standaard paneelachtergrond</b> op het "
-"tabblad <b>Vormgeving</b> worden gebruikt."
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Screen"
+msgstr ""
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Screen:"
+msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Position"
@@ -995,6 +999,26 @@ msgstr "Kies de voorinstellingen"
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr ""
 "Er is geen paneel aangetroffen - de widget dient op een paneel te staan"
+
+#~ msgid ""
+#~ "Changing panel position is currently unstable and may cause Plasma to "
+#~ "crash when moving panels between non-parallel edges (e.g top to left)."
+#~ msgstr ""
+#~ "Let op: het aanpassen van de paneellocatie is momenteel instabiel en kan "
+#~ "tot Plasma-crashes leiden indien niet-parallelle randen worden "
+#~ "aangehouden (bijv. boven naar links)."
+
+#~ msgid ""
+#~ "Opacity control here <b>requires Plasma 6.3</b> and depends on the "
+#~ "current Plasma Theme, for finer control or full transparency use <b>Panel "
+#~ "Opacity</b> and <b>Native panel background</b> options in <b>Appearance</"
+#~ "b> tab instead."
+#~ msgstr ""
+#~ "Voor het gebruik van de doorzichtigheidsopties is <b>Plasma 6.3 vereist</"
+#~ "b>. De opties werken afhankelijk van het gekozen Plasma-thema. Voor "
+#~ "nauwkeuriger afstellingen of volledige doorzichtigheid kunnen de opties "
+#~ "<b>Paneeldoorzichtigheid</b> en <b>Standaard paneelachtergrond</b> op het "
+#~ "tabblad <b>Vormgeving</b> worden gebruikt."
 
 #~ msgid "Active window only"
 #~ msgstr "Alleen actief venster"

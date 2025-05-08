@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-05-07 18:13+0000\n"
+"POT-Creation-Date: 2025-05-08 09:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -634,6 +634,10 @@ msgid "Floating panel:"
 msgstr "Schwebende Kontrollleiste:"
 
 #: ../contents/ui/configPresetAutoload.qml
+msgid "activity:"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
 msgid "Normal:"
 msgstr "Normal:"
 
@@ -698,12 +702,20 @@ msgid "Update preview"
 msgstr "Aktuallisiere Vorschau"
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g top to left)."
-msgstr "Verändern der Kontrollleistenposition is aktuell nicht stabil und kann zum Absturz von Plasma führen"
+msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g from top to left)."
+msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Opacity control here <b>requires Plasma 6.3</b> and depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
-msgstr "Opazitätskontrolle <b>erfordert Plamsa 6.3<b> und hängt vom aktuellem Plasma Thema ab, für eine genauere Kontrolle oder volle Transparenz nutze die <b> Kontrollleistenopazität<b> und <b>Nativer Kontrolleistenhintergrund<b> Optionenim <b>Aussehen<b> Tab"
+msgid "Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
+msgstr ""
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Screen"
+msgstr ""
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Screen:"
+msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Position"
@@ -844,6 +856,12 @@ msgstr "Wähle eine Voreinstellung"
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr "Kontrollleiste nicht gefunden, dieses Widget muss in der Kontrollleiste plaziert werden, da es ansonsten nicht funktioniert"
+
+#~ msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g top to left)."
+#~ msgstr "Verändern der Kontrollleistenposition is aktuell nicht stabil und kann zum Absturz von Plasma führen"
+
+#~ msgid "Opacity control here <b>requires Plasma 6.3</b> and depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
+#~ msgstr "Opazitätskontrolle <b>erfordert Plamsa 6.3<b> und hängt vom aktuellem Plasma Thema ab, für eine genauere Kontrolle oder volle Transparenz nutze die <b> Kontrollleistenopazität<b> und <b>Nativer Kontrolleistenhintergrund<b> Optionenim <b>Aussehen<b> Tab"
 
 #~ msgid "Active window only"
 #~ msgstr "Nur das aktives Fenster"
