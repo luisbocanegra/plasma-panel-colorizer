@@ -8,6 +8,7 @@ import org.kde.kirigami as Kirigami
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.plasmoid
+import org.kde.taskmanager as TaskManager
 import QtQuick.Effects
 import Qt5Compat.GraphicalEffects
 
@@ -77,7 +78,8 @@ PlasmoidItem {
         "maximized": tasksModel.maximizedExists,
         "visibleWindows": tasksModel.visibleExists,
         "touchingWindow": panelElement && panelElement.touchingWindow,
-        "floating": panelElement && panelElement.floatingness > 0
+        "floating": panelElement && panelElement.floatingness > 0,
+        "activity": activityInfo.currentActivity
     }
     property var widgetsDoingBlur: ({})
     property var trayItemsDoingBlur: ({})
@@ -2025,5 +2027,9 @@ PlasmoidItem {
                 applyPreset(message);
             }
         }
+    }
+    TaskManager.ActivityInfo {
+        id: activityInfo
+        readonly property string nullUuid: "00000000-0000-0000-0000-000000000000"
     }
 }
