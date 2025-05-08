@@ -541,7 +541,11 @@ if (${panelSettings.alignment.enabled}) {
 }
 if (${panelSettings.opacity.enabled}) {
   panel.opacity = "${panelSettings.opacity.value}"
-}`;
+}
+if (${panelSettings.screen.enabled}) {
+  panel.screen = ${panelSettings.screen.value}
+}
+`;
   return setPanelModeScript;
 }
 
