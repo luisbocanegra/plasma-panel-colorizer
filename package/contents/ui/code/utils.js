@@ -478,44 +478,62 @@ function getGlobalPosition(rect, panelElement) {
   return rect.mapToItem(panelElement, 0, 0, rect.width, rect.height);
 }
 
-function getUnifyBgType(itemTypes, index) {
-  let type = itemTypes[index];
-  if (type === 1) {
-    return 1;
-  } else if (type === 2) {
-    return 3;
-  } else {
-    // Check in between
-    let hasType1Before = false;
-    let hasType2After = false;
-    for (let i = 0; i < index; i++) {
-      if (itemTypes[i] === 1) {
-        hasType1Before = true;
-        break;
-      }
+function getUnifyBgTypes(itemTypes) {
+  // 0: default or middle | 1: start | 2: end
+  let areas = [[]]
+  for (let i = 0; i < itemTypes.length; i++) {
+    const item = itemTypes[i]
+    if (!item) continue
+
+    areas[areas.length - 1].push(item)
+    if ( (itemTypes.length > i + 1 && itemTypes[i+1]?.type === 1) || itemTypes[i]?.type === 3) {
+        areas[areas.length] = []
     }
-    for (let i = index + 1; i < itemTypes.length; i++) {
-      if (itemTypes[i] === 1) {
-        break;
-      }
-      if (itemTypes[i] === 2) {
-        hasType2After = true;
-        break;
-      }
-    }
-    if (hasType1Before && hasType2After) {
-      return 2;
-    }
-    return 0; // Default color
   }
+  // remove invalid areas
+  areas = removeInvalidAreas(areas)
+  areas.forEach(area => shrinkAreaIfNeeded(area));
+  // shrinking may leave invalid areas
+  areas = removeInvalidAreas(areas)
+  areas = setMiddleAreaType(areas)
+  return Array.prototype.concat.apply([], areas)
 }
 
-// https://github.com/rbn42/panon/blob/stable/plasmoid/contents/ui/utils.js
-function getWidgetRootDir() {
-  var path = plasmoid.metaData.fileName;
-  path = path.split("/");
-  path[path.length - 1] = "contents/";
-  return path.join("/");
+function setMiddleAreaType(areas) {
+  areas.forEach((area) => {
+    return area.forEach((item, index) => {
+      if (index !== area.length - 1 && index !== 0) {
+        item.type = 2
+      }
+    });
+  })
+  return areas
+}
+
+function removeInvalidAreas(areas) {
+  return areas.filter(area => {
+    return area.length > 1 && area[0].type === 1 && area[area.length - 1].type === 3
+  })
+}
+
+function shrinkAreaIfNeeded(area) {
+  let lo = 0
+  let hi = area.length - 1
+  while (lo < hi) {
+    if (!area[0].visible) {
+      // shift start to next item
+      area[1].type = area[0].type
+      area.shift()
+    }
+    if (!area[area.length - 1].visible) {
+      // shift end to next item
+      area[area.length - 2].type = area[area.length - 1].type
+      area.pop()
+    }
+    lo++
+    hi--
+  }
+  return area
 }
 
 function setPanelModeScript(panelId, panelSettings) {
@@ -557,6 +575,15 @@ function clearOldWidgetConfig(config) {
   if (Array.isArray(config)) {
     return config;
   } else return [];
+}
+
+function fixV2UnifiedWidgetConfig(config) {
+  config.forEach(widget => {
+    if (widget.unifyBgType === 2) {
+      widget.unifyBgType = 3
+    }
+  })
+  return config
 }
 
 function getWidgetConfigIdx(id, name, config) {

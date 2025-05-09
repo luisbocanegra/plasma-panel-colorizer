@@ -81,7 +81,7 @@ Kirigami.AbstractCard {
             checkable: true
             checked: widget?.unifyBgType === index
             icon.name: checked ? "checkmark-symbolic" : "dialog-close-symbolic"
-            property int index: 2
+            property int index: 3
             ButtonGroup.group: unifyButtonGroup
         }
         ButtonGroup {

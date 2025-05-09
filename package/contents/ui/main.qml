@@ -92,6 +92,15 @@ PlasmoidItem {
     }
 
     property var unifiedBackgroundTracker: []
+    property var unifiedBackgroundFinal: []
+    function updateUnifiedBackgroundTracker(index, type, visible) {
+        unifiedBackgroundTracker[index] = {
+            "index": index,
+            "type": type,
+            "visible": visible
+        };
+        unifiedBackgroundFinal = Utils.getUnifyBgTypes(unifiedBackgroundTracker);
+    }
     property bool doPanelClickFix: false
     property bool doPanelLengthFix: false
 
@@ -138,7 +147,14 @@ PlasmoidItem {
     property var panelSettings: cfg.panel
     property var stockPanelSettings: cfg.stockPanelSettings
     property var trayWidgetSettings: cfg.trayWidgets
-    property var unifiedBackgroundSettings: Utils.clearOldWidgetConfig(cfg.unifiedBackground)
+    property var unifiedBackgroundSettings: Utils.fixV2UnifiedWidgetConfig(Utils.clearOldWidgetConfig(cfg.unifiedBackground))
+    onUnifiedBackgroundSettingsChanged: {
+        // fix config from v2
+        if (plasmoid.configuration.globalSettings !== JSON.strinfigy(cfg)) {
+            plasmoid.configuration.globalSettings = JSON.strinfigy(cfg);
+            plasmoid.configuration.writeConfig();
+        }
+    }
     property var forceRecolorList: Utils.clearOldWidgetConfig(forceForegroundColor?.widgets ?? [])
     property int forceRecolorInterval: forceForegroundColor?.reloadInterval ?? 0
     property int forceRecolorCount: forceRecolorList.length
@@ -358,6 +374,13 @@ PlasmoidItem {
                 return (inTray ? (panelLayoutCount - 1 + targetIndex) : targetIndex) + 1;
             }
         }
+        property int widgetIndex: {
+            if (isPanel) {
+                return -1;
+            } else {
+                targetIndex;
+            }
+        }
         property int itemType
         property bool isPanel: itemType === Enums.ItemType.PanelBgItem
         property bool isWidget: itemType === Enums.ItemType.WidgetItem
@@ -378,7 +401,7 @@ PlasmoidItem {
         property int unifySection: wUnifyCfg?.unifyBgType ?? 0
 
         // 0: default | 1: start | 2: middle | 3: end
-        property int unifyBgType: 0
+        property int unifyBgType: unifiedBackgroundFinal.find(item => item.index === targetIndex)?.type ?? 0
         onUnifySectionChanged: {
             Qt.callLater(function () {
                 main.updateUnified();
@@ -386,16 +409,10 @@ PlasmoidItem {
         }
 
         function updateUnifyType() {
-            if (inTray)
+            if (inTray && !isPanel) {
                 return;
-            unifiedBackgroundTracker[targetIndex] = unifySection;
-            // FIXME: dragging a widget on the panel will trigger the following, but why??
-            // Error: Invalid write to global property "unifyBgType"
-            try {
-                unifyBgType = Utils.getUnifyBgType(unifiedBackgroundTracker, targetIndex);
-            } catch (e)
-            // hmmm
-            {}
+            }
+            main.updateUnifiedBackgroundTracker(widgetIndex, unifySection, isVisible);
         }
 
         property var itemConfig: Utils.getItemCfg(itemType, widgetName, widgetId, main.cfg, configurationOverrides)
@@ -1155,10 +1172,14 @@ PlasmoidItem {
             return floatigness > 0 ? (8 * floatigness) : m;
         }
 
-        onVisibleChanged: {
-            main.updateUnified();
-            updateMaskDebounced();
+        onIsVisibleChanged: {
+            Qt.callLater(function () {
+                main.updateUnified();
+                updateMaskDebounced();
+            });
         }
+
+        property bool isVisible: target.visibleChildren.length > 0 && visible
 
         onBlurBehindChanged: {
             if (isWidget) {
