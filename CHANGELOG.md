@@ -1,5 +1,24 @@
 # Changelog
 
+## [3.0.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.6.1...v3.0.0) (2025-05-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* If you have "Active only" enabled in auto-loading tab you will need to enable it again.
+
+### Features
+
+* add option to filter windows per screen and KWin's top window fallback ([f633405](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/f633405da975e338730d9cccdf1282e93ce7d171))
+* current activity preset auto-loading condition ([21ed66a](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/21ed66a075883daa1c45abdafc33c5a0a94f062e))
+* remove native shadow from built-in presets that don't need it ([e4ec4ae](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/e4ec4aea9e840202d2509b212dea575dc6a31df1))
+* set screen of panel ([9950a51](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/9950a51834abc6cc4af9e79539548b0f7943643b))
+
+
+### Bug Fixes
+
+* update unfied background areas on widgets HiddenStatus ([753fb9f](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/753fb9f6b5fb4d9a26716fdc2e170b2ff8755946))
+
 ## [2.6.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.6.0...v2.6.1) (2025-05-02)
 
 
