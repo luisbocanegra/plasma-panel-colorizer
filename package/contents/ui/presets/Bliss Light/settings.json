@@ -28,7 +28,36 @@
                     "interval": 3000,
                     "smoothing": 800
                 },
-                "sourceType": 0
+                "sourceType": 0,
+                "gradient": {
+                    "stops": [
+                        {
+                            "color": "#ff0000",
+                            "position": 0
+                        },
+                        {
+                            "color": "#f9f54e",
+                            "position": 0.25
+                        },
+                        {
+                            "color": "#21fd00",
+                            "position": 0.5
+                        },
+                        {
+                            "color": "#0e1eff",
+                            "position": 0.75
+                        },
+                        {
+                            "color": "#fd12ff",
+                            "position": 1
+                        }
+                    ],
+                    "orientation": 0
+                },
+                "image": {
+                    "source": "",
+                    "fillMode": 2
+                }
             },
             "foregroundColor": {
                 "enabled": false,
@@ -213,7 +242,65 @@
             "unfiedBackground": {
                 "org.kde.plasma.digitalclock": 0
             },
-            "floatingDialogs": true
+            "floatingDialogs": true,
+            "borderSecondary": {
+                "enabled": false,
+                "customSides": false,
+                "custom": {
+                    "widths": {
+                        "left": 0,
+                        "bottom": 3,
+                        "right": 0,
+                        "top": 0
+                    },
+                    "margin": {
+                        "enabled": false,
+                        "side": {
+                            "right": 0,
+                            "left": 0,
+                            "top": 0,
+                            "bottom": 0
+                        }
+                    },
+                    "radius": {
+                        "enabled": false,
+                        "corner": {
+                            "topLeft": 5,
+                            "topRight": 5,
+                            "bottomRight": 5,
+                            "bottomLeft": 5
+                        }
+                    }
+                },
+                "width": 0,
+                "color": {
+                    "lightnessValue": 0.5,
+                    "saturationValue": 0.5,
+                    "alpha": 1,
+                    "systemColor": "highlightColor",
+                    "systemColorSet": "View",
+                    "custom": "#ff6c06",
+                    "list": [
+                        "#ED8796",
+                        "#A6DA95",
+                        "#EED49F",
+                        "#8AADF4",
+                        "#F5BDE6",
+                        "#8BD5CA",
+                        "#f5a97f"
+                    ],
+                    "followColor": 0,
+                    "saturationEnabled": false,
+                    "lightnessEnabled": false,
+                    "animation": {
+                        "enabled": false,
+                        "interval": 3000,
+                        "smoothing": 800
+                    },
+                    "sourceType": 1,
+                    "enabled": true
+                }
+            }
         },
         "widgets": {
             "enabled": true,
@@ -243,7 +330,36 @@
                     "interval": 3000,
                     "smoothing": 800
                 },
-                "sourceType": 2
+                "sourceType": 2,
+                "gradient": {
+                    "stops": [
+                        {
+                            "color": "#ff0000",
+                            "position": 0
+                        },
+                        {
+                            "color": "#f9f54e",
+                            "position": 0.25
+                        },
+                        {
+                            "color": "#21fd00",
+                            "position": 0.5
+                        },
+                        {
+                            "color": "#0e1eff",
+                            "position": 0.75
+                        },
+                        {
+                            "color": "#fd12ff",
+                            "position": 1
+                        }
+                    ],
+                    "orientation": 0
+                },
+                "image": {
+                    "source": "",
+                    "fillMode": 2
+                }
             },
             "foregroundColor": {
                 "enabled": true,
@@ -419,6 +535,64 @@
             },
             "unfiedBackground": {
                 "org.kde.plasma.digitalclock": 0
+            },
+            "borderSecondary": {
+                "enabled": false,
+                "customSides": false,
+                "custom": {
+                    "widths": {
+                        "left": 0,
+                        "bottom": 3,
+                        "right": 0,
+                        "top": 0
+                    },
+                    "margin": {
+                        "enabled": false,
+                        "side": {
+                            "right": 0,
+                            "left": 0,
+                            "top": 0,
+                            "bottom": 0
+                        }
+                    },
+                    "radius": {
+                        "enabled": false,
+                        "corner": {
+                            "topLeft": 5,
+                            "topRight": 5,
+                            "bottomRight": 5,
+                            "bottomLeft": 5
+                        }
+                    }
+                },
+                "width": 0,
+                "color": {
+                    "lightnessValue": 0.5,
+                    "saturationValue": 0.5,
+                    "alpha": 1,
+                    "systemColor": "highlightColor",
+                    "systemColorSet": "View",
+                    "custom": "#ff6c06",
+                    "list": [
+                        "#ED8796",
+                        "#A6DA95",
+                        "#EED49F",
+                        "#8AADF4",
+                        "#F5BDE6",
+                        "#8BD5CA",
+                        "#f5a97f"
+                    ],
+                    "followColor": 0,
+                    "saturationEnabled": false,
+                    "lightnessEnabled": false,
+                    "animation": {
+                        "enabled": false,
+                        "interval": 3000,
+                        "smoothing": 800
+                    },
+                    "sourceType": 1,
+                    "enabled": true
+                }
             }
         },
         "trayWidgets": {
@@ -449,7 +623,36 @@
                     "interval": 3000,
                     "smoothing": 800
                 },
-                "sourceType": 1
+                "sourceType": 1,
+                "gradient": {
+                    "stops": [
+                        {
+                            "color": "#ff0000",
+                            "position": 0
+                        },
+                        {
+                            "color": "#f9f54e",
+                            "position": 0.25
+                        },
+                        {
+                            "color": "#21fd00",
+                            "position": 0.5
+                        },
+                        {
+                            "color": "#0e1eff",
+                            "position": 0.75
+                        },
+                        {
+                            "color": "#fd12ff",
+                            "position": 1
+                        }
+                    ],
+                    "orientation": 0
+                },
+                "image": {
+                    "source": "",
+                    "fillMode": 2
+                }
             },
             "foregroundColor": {
                 "enabled": false,
@@ -624,11 +827,70 @@
             },
             "unfiedBackground": {
                 "org.kde.plasma.digitalclock": 0
+            },
+            "borderSecondary": {
+                "enabled": false,
+                "customSides": false,
+                "custom": {
+                    "widths": {
+                        "left": 0,
+                        "bottom": 3,
+                        "right": 0,
+                        "top": 0
+                    },
+                    "margin": {
+                        "enabled": false,
+                        "side": {
+                            "right": 0,
+                            "left": 0,
+                            "top": 0,
+                            "bottom": 0
+                        }
+                    },
+                    "radius": {
+                        "enabled": false,
+                        "corner": {
+                            "topLeft": 5,
+                            "topRight": 5,
+                            "bottomRight": 5,
+                            "bottomLeft": 5
+                        }
+                    }
+                },
+                "width": 0,
+                "color": {
+                    "lightnessValue": 0.5,
+                    "saturationValue": 0.5,
+                    "alpha": 1,
+                    "systemColor": "highlightColor",
+                    "systemColorSet": "View",
+                    "custom": "#ff6c06",
+                    "list": [
+                        "#ED8796",
+                        "#A6DA95",
+                        "#EED49F",
+                        "#8AADF4",
+                        "#F5BDE6",
+                        "#8BD5CA",
+                        "#f5a97f"
+                    ],
+                    "followColor": 0,
+                    "saturationEnabled": false,
+                    "lightnessEnabled": false,
+                    "animation": {
+                        "enabled": false,
+                        "interval": 3000,
+                        "smoothing": 800
+                    },
+                    "sourceType": 1,
+                    "enabled": true
+                }
             }
         },
         "nativePanelBackground": {
             "enabled": true,
-            "opacity": 0
+            "opacity": 0,
+            "shadow": false
         },
         "forceForegroundColor": {
             "widgets": {
@@ -667,13 +929,17 @@
             "visible": {
                 "enabled": false,
                 "value": true
+            },
+            "screen": {
+                "enabled": false,
+                "value": 0
             }
         },
         "configurationOverrides": {
             "overrides": {},
-            "associations": {}
+            "associations": []
         },
-        "overrideAssociations": {},
-        "unifiedBackground": {}
+        "overrideAssociations": [],
+        "unifiedBackground": []
     }
 }
