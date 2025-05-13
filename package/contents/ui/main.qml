@@ -368,17 +368,10 @@ PlasmoidItem {
         property int targetIndex
         // use an exra id so we can track the panel and items in tray separately
         property int maskIndex: {
-            if (isPanel)
-                return 0;
-            else {
-                return (inTray ? (panelLayoutCount - 1 + targetIndex) : targetIndex) + 1;
-            }
-        }
-        property int widgetIndex: {
             if (isPanel) {
-                return -1;
+                return 0;
             } else {
-                targetIndex;
+                return (inTray ? (panelLayoutCount - 1 + targetIndex) : targetIndex) + 1;
             }
         }
         property int itemType
@@ -401,7 +394,7 @@ PlasmoidItem {
         property int unifySection: wUnifyCfg?.unifyBgType ?? 0
 
         // 0: default | 1: start | 2: middle | 3: end
-        property int unifyBgType: unifiedBackgroundFinal.find(item => item.index === targetIndex)?.type ?? 0
+        property int unifyBgType: unifiedBackgroundFinal.find(item => item.index === maskIndex)?.type ?? 0
         onUnifySectionChanged: {
             Qt.callLater(function () {
                 main.updateUnified();
@@ -409,10 +402,10 @@ PlasmoidItem {
         }
 
         function updateUnifyType() {
-            if (inTray && !isPanel) {
+            if (inTray || isPanel) {
                 return;
             }
-            main.updateUnifiedBackgroundTracker(widgetIndex, unifySection, isVisible);
+            main.updateUnifiedBackgroundTracker(maskIndex, unifySection, isVisible);
         }
 
         property var itemConfig: Utils.getItemCfg(itemType, widgetName, widgetId, main.cfg, configurationOverrides)
