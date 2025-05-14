@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v3.0.0...v3.0.1) (2025-05-14)
+
+
+### Bug Fixes
+
+* unified widgets right edge and system tray gaps ([eb9ec0d](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/eb9ec0dada2d2dcd6852da405d92c8f53ad19dfd))
+
 ## [3.0.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v2.6.1...v3.0.0) (2025-05-09)
 
 
