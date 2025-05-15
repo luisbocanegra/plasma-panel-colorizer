@@ -367,11 +367,12 @@ PlasmoidItem {
         property QtObject target
         property int targetIndex
         // use an exra id so we can track the panel and items in tray separately
+        // e.g panel[0, widget[1] widget[2] trayWidget[3 [widget[5], widget[6], widget[7]]] widget[4]]
         property int maskIndex: {
             if (isPanel) {
                 return 0;
             } else {
-                return (inTray ? (panelLayoutCount - 1 + targetIndex) : targetIndex) + 1;
+                return (inTray ? (panelLayoutCount - 1 + targetIndex) : targetIndex + 1);
             }
         }
         property int itemType
