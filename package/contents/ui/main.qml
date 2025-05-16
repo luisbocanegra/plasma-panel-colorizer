@@ -51,8 +51,8 @@ PlasmoidItem {
     property string iconName: !onDesktop ? "icon" : "error"
     property string icon: Qt.resolvedUrl("../icons/" + iconName + ".svg").toString().replace("file://", "")
     property bool hideWidget: plasmoid.configuration.hideWidget
-    property bool fixedSidePaddingEnabled: isEnabled && panelSettings.padding.enabled
-    property bool floatingDialogs: main.isEnabled ? panelSettings.floatingDialogs : false
+    property bool fixedSidePaddingEnabled: isEnabled && panelBgItem.cfg.padding.enabled
+    property bool floatingDialogs: main.isEnabled ? panelSettings.normal.floatingDialogs : false
     property bool isEnabled: plasmoid.configuration.isEnabled
     property bool nativePanelBackgroundEnabled: (isEnabled ? cfg.nativePanelBackground.enabled : true) || doPanelClickFix
     property real nativePanelBackgroundOpacity: isEnabled ? cfg.nativePanelBackground.opacity : 1.0
@@ -60,8 +60,8 @@ PlasmoidItem {
     property var panelWidgets: []
     property int panelWidgetsCount: panelWidgets?.length || 0
     property real trayItemThikness: 20
-    property bool widgetEnabled: widgetSettings.enabled && isEnabled
-    property bool separateTray: trayWidgetSettings.enabled
+    property bool widgetEnabled: widgetSettings.normal.enabled && isEnabled
+    property bool separateTray: trayWidgetBgItem.cfg.enabled
     // items inside the tray need to know the tray index to take
     // the same foreground when we're not coloring them separately
     property int trayIndex: 0
@@ -136,22 +136,22 @@ PlasmoidItem {
             return {};
         }
     }
+    property var panelSettings: cfg.panel
     property var widgetSettings: cfg.widgets
+    property var trayWidgetSettings: cfg.trayWidgets
+    property var stockPanelSettings: cfg.stockPanelSettings
     property var widgetsSpacing: {
         if (true) {
-            return Utils.makeEven(widgetSettings?.spacing ?? 4);
+            return Utils.makeEven(widgetSettings?.normal?.spacing ?? 4);
         } else {
-            return widgetSettings?.spacing ?? 4;
+            return widgetSettings?.normal?.spacing ?? 4;
         }
     }
-    property var panelSettings: cfg.panel
-    property var stockPanelSettings: cfg.stockPanelSettings
-    property var trayWidgetSettings: cfg.trayWidgets
     property var unifiedBackgroundSettings: Utils.fixV2UnifiedWidgetConfig(Utils.clearOldWidgetConfig(cfg.unifiedBackground))
     onUnifiedBackgroundSettingsChanged: {
         // fix config from v2
-        if (plasmoid.configuration.globalSettings !== JSON.strinfigy(cfg)) {
-            plasmoid.configuration.globalSettings = JSON.strinfigy(cfg);
+        if (plasmoid.configuration.globalSettings !== JSON.stringify(cfg)) {
+            plasmoid.configuration.globalSettings = JSON.stringify(cfg);
             plasmoid.configuration.writeConfig();
         }
     }
@@ -384,8 +384,13 @@ PlasmoidItem {
         property bool luisbocanegraPanelColorizerBgManaged: true
         property var widgetProperties: isTrayArrow ? {
             "id": -1,
-            "name": "org.kde.plasma.systemtray.expand"
-        } : Utils.getWidgetNameAndId(target)
+            "name": "org.kde.plasma.systemtray.expand",
+            "hovered": hovered,
+            // https://github.com/KDE/plasma-workspace/blob/55ea74736ccbfc2fe97fd3634e5042002e39154c/applets/systemtray/package/contents/ui/main.qml#L111
+            "expanded": target.parent.parent.parent.systemTrayState.expanded && target.parent.parent.parent.systemTrayState.activeApplet === null,
+            "needsAttention": false,
+            "busy": false
+        } : Utils.getWidgetProperties(target, PlasmaCore.Types, hovered)
         property string widgetName: widgetProperties.name
         property int widgetId: widgetProperties.id
         property var wRecolorCfg: Utils.getForceFgWidgetConfig(widgetId, widgetName, forceRecolorList)
@@ -409,7 +414,11 @@ PlasmoidItem {
             main.updateUnifiedBackgroundTracker(maskIndex, unifySection, isVisible);
         }
 
-        property var itemConfig: Utils.getItemCfg(itemType, widgetName, widgetId, main.cfg, configurationOverrides)
+        // property string state: {
+        //     let state = "normal";
+        // }
+
+        property var itemConfig: Utils.getItemCfg(itemType, widgetName, widgetId, main.cfg, configurationOverrides, widgetProperties.busy, widgetProperties.needsAttention, widgetProperties.hovered, widgetProperties.expanded)
         property var cfg: itemConfig.settings
         property bool cfgOverride: itemConfig.override
         property var bgColorCfg: cfg.backgroundColor
@@ -1207,6 +1216,13 @@ PlasmoidItem {
             position = Utils.getGlobalPosition(borderRec, panelElement);
             panelColorizer.updatePanelMask(maskIndex, borderRec, rect.corners.topLeftRadius, rect.corners.topRightRadius, rect.corners.bottomLeftRadius, rect.corners.bottomRightRadius, Qt.point(rect.positionX - moveX, rect.positionY - moveY), 5, visible && blurBehind);
         }
+
+        property bool hovered: hoverHandler.hovered
+        HoverHandler {
+            id: hoverHandler
+            parent: rect.target
+            grabPermissions: PointerHandler.CanTakeOverFromAnything
+        }
     }
 
     // Search the actual gridLayout of the panel
@@ -1230,7 +1246,7 @@ PlasmoidItem {
     Binding {
         target: panelLayoutContainer
         property: "anchors.leftMargin"
-        value: panelSettings.padding.side.left
+        value: panelBgItem.cfg.padding.side.left
         when: fixedSidePaddingEnabled
         delayed: true
     }
@@ -1238,7 +1254,7 @@ PlasmoidItem {
     Binding {
         target: panelLayoutContainer
         property: "anchors.rightMargin"
-        value: panelSettings.padding.side.right
+        value: panelBgItem.cfg.padding.side.right
         when: fixedSidePaddingEnabled
         delayed: true
     }
@@ -1246,7 +1262,7 @@ PlasmoidItem {
     Binding {
         target: panelLayoutContainer
         property: "anchors.topMargin"
-        value: panelSettings.padding.side.top
+        value: panelBgItem.cfg.padding.side.top
         when: fixedSidePaddingEnabled
         delayed: true
     }
@@ -1254,7 +1270,7 @@ PlasmoidItem {
     Binding {
         target: panelLayoutContainer
         property: "anchors.bottomMargin"
-        value: panelSettings.padding.side.bottom
+        value: panelBgItem.cfg.padding.side.bottom
         when: fixedSidePaddingEnabled
         delayed: true
     }
@@ -1263,7 +1279,7 @@ PlasmoidItem {
         target: panelElement
         property: "panelMask"
         value: blurMask
-        when: (panelColorizer !== null && blurMask && panelColorizer?.hasRegions && (panelSettings.blurBehind || anyWidgetDoingBlur || anyTrayItemDoingBlur))
+        when: (panelColorizer !== null && blurMask && panelColorizer?.hasRegions && (panelBgItem.cfg.blurBehind || anyWidgetDoingBlur || anyTrayItemDoingBlur))
     }
 
     Binding {

@@ -4,10 +4,10 @@ import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 
 Kirigami.FormLayout {
-    id: borderRoot
+    id: root
 
     // required to align with parent form
-    property alias formLayout: borderRoot
+    property alias formLayout: root
     property bool isSection: true
     property string sectionName
     // wether read from the string or existing config object
@@ -46,7 +46,7 @@ Kirigami.FormLayout {
         Binding {
             target: enabledCheckbox
             property: "Kirigami.Theme.textColor"
-            value: borderRoot.Kirigami.Theme.neutralTextColor
+            value: root.Kirigami.Theme.neutralTextColor
             when: !enabledCheckbox.checked
         }
     }
@@ -89,7 +89,7 @@ Kirigami.FormLayout {
 
             SpinBoxDecimal {
                 id: topBorderWidth
-                Layout.preferredWidth: backgroundRoot.Kirigami.Units.gridUnit * 5
+                Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
                 value: config.custom.widths.top
                 from: 0
                 to: 99
@@ -103,7 +103,7 @@ Kirigami.FormLayout {
 
             SpinBoxDecimal {
                 id: bottomBorderWidth
-                Layout.preferredWidth: backgroundRoot.Kirigami.Units.gridUnit * 5
+                Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
                 value: config.custom.widths.bottom
                 from: 0
                 to: 99
@@ -117,7 +117,7 @@ Kirigami.FormLayout {
 
             SpinBoxDecimal {
                 id: leftBorderWidth
-                Layout.preferredWidth: backgroundRoot.Kirigami.Units.gridUnit * 5
+                Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
                 value: config.custom.widths.left
                 from: 0
                 to: 99
@@ -131,7 +131,7 @@ Kirigami.FormLayout {
 
             SpinBoxDecimal {
                 id: rightBorderWidth
-                Layout.preferredWidth: backgroundRoot.Kirigami.Units.gridUnit * 5
+                Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
                 value: config.custom.widths.right
                 from: 0
                 to: 99

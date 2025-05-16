@@ -3,20 +3,42 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
+import "../code/enum.js" as Enum
 
 ColumnLayout {
-    id: backgroundRoot
+    id: root
 
     property bool isSection: true
     // wether read from the string or existing config object
     property bool handleString: false
     // key to extract config from
-    property string keyName
-    property string keyFriendlyName
+    property string elementName
+    property string elementFriendlyName
+
+    property int elementState: Enum.WidgetStates.Normal
+    property string stateFriendlyName
+
     // internal config objects to be sent, both string and json
     property string configString: "{}"
     property var config: handleString ? JSON.parse(configString) : undefined
-    property var configLocal: keyName ? config[keyName] : config
+
+    property string stateName: {
+        if (elementState === Enum.WidgetStates.Normal) {
+            return "normal";
+        } else if (elementState === Enum.WidgetStates.Busy) {
+            return "busy";
+        } else if (elementState === Enum.WidgetStates.NeedsAttention) {
+            return "needsAttention";
+        } else if (elementState === Enum.WidgetStates.Hovered) {
+            return "hovered";
+        } else if (elementState === Enum.WidgetStates.Expanded) {
+            return "expanded";
+        }
+        return "";
+    }
+
+    property var configLocal: elementName ? config[elementName][stateName] : config[stateName]
+
     property alias isEnabled: isEnabled.checked
     property int currentTab
     property var panelColorizer: null
@@ -40,10 +62,11 @@ ColumnLayout {
 
     function updateConfig() {
         Qt.callLater(() => {
-            if (keyName)
-                config[keyName] = configLocal;
-            else
-                config = configLocal;
+            if (elementName) {
+                config[elementName][stateName] = configLocal;
+            } else {
+                config[stateName] = configLocal;
+            }
             configString = JSON.stringify(config, null, null);
             updateConfigString(configString, config);
         });
@@ -55,7 +78,7 @@ ColumnLayout {
     Component.onCompleted: {
         Qt.callLater(() => {
             try {
-                panelColorizer = Qt.createQmlObject("import org.kde.plasma.panelcolorizer 1.0; PanelColorizer { id: panelColorizer }", backgroundRoot);
+                panelColorizer = Qt.createQmlObject("import org.kde.plasma.panelcolorizer 1.0; PanelColorizer { id: panelColorizer }", root);
                 console.error("QML Plugin org.kde.plasma.panelcolorizer loaded");
             } catch (err) {
                 console.error("QML Plugin org.kde.plasma.panelcolorizer not found");
@@ -64,153 +87,183 @@ ColumnLayout {
         });
     }
 
-    RowLayout {
-        Layout.leftMargin: Kirigami.Units.mediumSpacing
-        Layout.rightMargin: Kirigami.Units.smallSpacing
-        Layout.bottomMargin: Kirigami.Units.smallSpacing
+    Kirigami.FormLayout {
+        // required to align with parent form
+        property alias formLayout: root
+        twinFormLayouts: parentLayout
+        Layout.fillWidth: true
 
-        ColumnLayout {
-            RowLayout {
-                // Layout.alignment: Qt.AlignRight
-                Label {
-                    text: i18n("Enable") + " " + keyFriendlyName + " " + i18n("customization") + ":"
-                }
-
-                CheckBox {
-                    id: isEnabled
-
-                    checked: configLocal.enabled
-                    onCheckedChanged: {
-                        configLocal.enabled = checked;
-                        updateConfig();
-                    }
-                }
-            }
-
-            RowLayout {
-                visible: keyName === "panel"
-
-                Label {
-                    text: i18n("Native panel background:")
-                }
-
-                CheckBox {
-                    id: nativePanelBackgroundCheckbox
-
-                    checked: config.nativePanelBackground.enabled
-                    onCheckedChanged: {
-                        config.nativePanelBackground.enabled = checked;
-                        updateConfig();
+        RowLayout {
+            Kirigami.FormData.label: i18n("State:")
+            ComboBox {
+                id: targetState
+                textRole: "name"
+                valueRole: "value"
+                onActivated: {
+                    if (currentValue !== root.elementState && root.ready) {
+                        root.elementState = currentValue;
                     }
                 }
 
-                Kirigami.ContextualHelpButton {
-                    toolTipText: i18n("Disable to make panel fully transparent, removes contrast and blur effects.")
-                }
-            }
-
-            RowLayout {
-                visible: keyName === "panel"
-                enabled: nativePanelBackgroundCheckbox.checked
-
-                Label {
-                    text: i18n("Native panel background shadow:")
+                currentIndex: {
+                    let newValue = indexOfValue(root.elementState);
+                    return newValue !== -1 ? newValue : 0;
                 }
 
-                CheckBox {
-                    id: nativePanelBackgroundShadowCheckbox
-
-                    checked: config.nativePanelBackground.shadow
-                    onCheckedChanged: {
-                        config.nativePanelBackground.shadow = checked;
-                        updateConfig();
-                    }
-                }
-            }
-
-            RowLayout {
-                visible: keyName === "panel"
-                enabled: nativePanelBackgroundCheckbox.checked
-
-                Label {
-                    text: i18n("Native panel background opacity:")
-                }
-
-                SpinBoxDecimal {
-                    Layout.preferredWidth: backgroundRoot.Kirigami.Units.gridUnit * 5
-                    from: 0
-                    to: 1
-                    value: config.nativePanelBackground.opacity ?? 0
-                    onValueChanged: {
-                        config.nativePanelBackground.opacity = value;
-                        updateConfig();
+                onOptionsChanged: {
+                    model = options;
+                    if (root.ready) {
+                        let newValue = indexOfValue(root.elementState);
+                        currentIndex = newValue !== -1 ? newValue : 0;
                     }
                 }
 
-                Kirigami.ContextualHelpButton {
-                    toolTipText: i18n("Set Opacity to 0 to keep just the mask required by Blur custom background.")
-                }
-            }
-
-            RowLayout {
-                Label {
-                    text: i18n("Blur custom background (Beta):")
-                }
-
-                CheckBox {
-                    id: blurCheckbox
-
-                    checked: configLocal.blurBehind
-                    onCheckedChanged: {
-                        configLocal.blurBehind = checked;
-                        updateConfig();
-                    }
-                    enabled: isEnabled.checked
-                }
-
-                Kirigami.ContextualHelpButton {
-                    toolTipText: i18n("Draw a custom blur mask behind the custom background(s).<br><strong>Native panel background must be enabled with opacity of 0 for this to work as intended.</strong>")
-                }
-            }
-
-            Kirigami.InlineMessage {
-                id: warningResources
-
-                Layout.fillWidth: true
-                text: i18n("C++ plugin not installed, <b>Blur custom background</b> will not work.<br>Check the repository README on GitHub for details.")
-                visible: backgroundRoot.panelColorizer === null && backgroundRoot.ready
-                type: Kirigami.MessageType.Warning
-                actions: [
-                    Kirigami.Action {
-                        icon.name: "view-readermode-symbolic"
-                        text: "Plugin install instructions"
-                        onTriggered: {
-                            Qt.openUrlExternally("https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually");
+                property var options: {
+                    let options = [
+                        {
+                            "name": i18n("Normal"),
+                            "value": Enum.WidgetStates.Normal
+                        },
+                        {
+                            "name": i18n("Hover"),
+                            "value": Enum.WidgetStates.Hovered
                         }
+                    ];
+                    if (root.elementName !== "panel") {
+                        options = options.concat([
+                            {
+                                "name": i18n("Expanded"),
+                                "value": Enum.WidgetStates.Expanded
+                            },
+                            {
+                                "name": i18n("Needs attention"),
+                                "value": Enum.WidgetStates.NeedsAttention
+                            },
+                            {
+                                "name": i18n("Busy"),
+                                "value": Enum.WidgetStates.Busy
+                            }
+                        ]);
                     }
-                ]
+                    return options;
+                }
+                model: options
+            }
+        }
+
+        RowLayout {
+            Kirigami.FormData.label: i18n("Native panel:")
+            visible: elementName === "panel"
+            CheckBox {
+                id: nativePanelBackgroundCheckbox
+                text: i18n("Background")
+                checked: config.nativePanelBackground.enabled
+                onCheckedChanged: {
+                    config.nativePanelBackground.enabled = checked;
+                    updateConfig();
+                }
             }
 
-            RowLayout {
-                Label {
-                    text: i18n("Force floating dialogs:")
-                }
+            Kirigami.ContextualHelpButton {
+                toolTipText: i18n("Disable to make panel fully transparent, removes contrast and blur effects.")
+            }
+        }
 
-                CheckBox {
-                    checked: configLocal.floatingDialogs
-                    onCheckedChanged: {
-                        configLocal.floatingDialogs = checked;
-                        updateConfig();
-                    }
+        CheckBox {
+            id: nativePanelBackgroundShadowCheckbox
+            text: i18n("Shadow")
+            visible: elementName === "panel"
+            enabled: nativePanelBackgroundCheckbox.checked
+
+            checked: config.nativePanelBackground.shadow
+            onCheckedChanged: {
+                config.nativePanelBackground.shadow = checked;
+                updateConfig();
+            }
+        }
+
+        RowLayout {
+            visible: elementName === "panel"
+            Label {
+                text: i18n("Opacity:")
+            }
+            SpinBoxDecimal {
+                enabled: nativePanelBackgroundCheckbox.checked
+                Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
+                from: 0
+                to: 1
+                value: config.nativePanelBackground.opacity ?? 0
+                onValueChanged: {
+                    config.nativePanelBackground.opacity = value;
+                    updateConfig();
                 }
             }
+            Kirigami.ContextualHelpButton {
+                toolTipText: i18n("Set to 0 to keep the mask required for custom background blur.")
+            }
+        }
+
+        CheckBox {
+            visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+            text: i18n("Force floating dialogs")
+            checked: configLocal.floatingDialogs
+            onCheckedChanged: {
+                configLocal.floatingDialogs = checked;
+                updateConfig();
+            }
+        }
+
+        CheckBox {
+            id: isEnabled
+            Kirigami.FormData.label: elementFriendlyName + " " + i18n("customization") + ":"
+            checked: configLocal.enabled
+            onCheckedChanged: {
+                configLocal.enabled = checked;
+                updateConfig();
+            }
+        }
+
+        RowLayout {
+            Kirigami.FormData.label: i18n("Blur custom background (Beta)")
+            CheckBox {
+                id: blurCheckbox
+                enabled: isEnabled.checked
+
+                checked: configLocal.blurBehind
+                onCheckedChanged: {
+                    configLocal.blurBehind = checked;
+                    updateConfig();
+                }
+            }
+
+            Kirigami.ContextualHelpButton {
+                toolTipText: i18n("Draw a custom blur mask behind the custom background(s).<br><strong>Native panel background must be enabled with opacity of 0 for this to work as intended.</strong>")
+            }
+        }
+
+        Kirigami.InlineMessage {
+            id: warningResources
+
+            Layout.fillWidth: true
+            text: i18n("C++ plugin not installed, <b>Blur custom background</b> will not work.<br>Check the repository README on GitHub for details.")
+            visible: root.panelColorizer === null && root.ready
+            type: Kirigami.MessageType.Warning
+            actions: [
+                Kirigami.Action {
+                    icon.name: "view-readermode-symbolic"
+                    text: "Plugin install instructions"
+                    onTriggered: {
+                        Qt.openUrlExternally("https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually");
+                    }
+                }
+            ]
         }
     }
 
     Kirigami.NavigationTabBar {
         // Layout.preferredWidth: root.parent.width
         // Layout.minimumWidth: root.parent.width
-        enabled: backgroundRoot.isEnabled
+        enabled: root.isEnabled
         Layout.fillWidth: true
         maximumContentWidth: {
             const minDelegateWidth = Kirigami.Units.gridUnit * 6;
@@ -247,15 +300,15 @@ ColumnLayout {
 
     Kirigami.FormLayout {
         // required to align with parent form
-        property alias formLayout: backgroundRoot
-
-        enabled: backgroundRoot.isEnabled
+        property alias formLayout: root
         twinFormLayouts: parentLayout
         Layout.fillWidth: true
 
+        enabled: root.isEnabled
+
         RowLayout {
             Kirigami.FormData.label: i18n("Spacing:")
-            visible: keyName === "widgets" && currentTab === 1
+            visible: elementName === "widgets" && currentTab === 1 && root.elementState === Enum.WidgetStates.Normal
 
             SpinBox {
                 id: spacingCheckbox
@@ -284,74 +337,74 @@ ColumnLayout {
     }
 
     FormColors {
-        enabled: backgroundRoot.isEnabled
+        enabled: root.isEnabled
         visible: currentTab === 0
-        config: backgroundRoot.configLocal.backgroundColor
+        config: root.configLocal.backgroundColor
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.backgroundColor = newConfig;
-            backgroundRoot.updateConfig();
+            root.configLocal.backgroundColor = newConfig;
+            root.updateConfig();
         }
         followOptions: followVisbility.background
         sectionName: i18n("Background Color")
-        multiColor: keyName !== "panel"
+        multiColor: elementName !== "panel"
         supportsGradient: true
         supportsImage: true
     }
 
     FormColors {
-        enabled: backgroundRoot.isEnabled
+        enabled: root.isEnabled
         // the panel does not support foreground customization
-        visible: currentTab === 0 && keyName !== "panel"
-        config: backgroundRoot.configLocal.foregroundColor
+        visible: currentTab === 0 && elementName !== "panel"
+        config: root.configLocal.foregroundColor
         isSection: true
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.foregroundColor = newConfig;
-            backgroundRoot.updateConfig();
+            root.configLocal.foregroundColor = newConfig;
+            root.updateConfig();
         }
         followOptions: followVisbility.foreground
         sectionName: i18n("Foreground Color")
     }
 
     FormShape {
-        enabled: backgroundRoot.isEnabled
+        enabled: root.isEnabled
         visible: currentTab === 1
-        config: backgroundRoot.configLocal
+        config: root.configLocal
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal = newConfig;
-            backgroundRoot.updateConfig();
+            root.configLocal = newConfig;
+            root.updateConfig();
         }
     }
 
     FormPadding {
-        enabled: backgroundRoot.isEnabled
-        visible: currentTab === 1 && keyName === "panel"
-        config: backgroundRoot.configLocal
+        enabled: root.isEnabled
+        visible: currentTab === 1 && elementName === "panel"
+        config: root.configLocal
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal = newConfig;
-            backgroundRoot.updateConfig();
+            root.configLocal = newConfig;
+            root.updateConfig();
         }
     }
 
     FormBorder {
         isSection: true
         sectionName: i18n("Primary Border")
-        enabled: backgroundRoot.isEnabled
+        enabled: root.isEnabled
         visible: currentTab === 2
-        config: backgroundRoot.configLocal.border
+        config: root.configLocal.border
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.border = newConfig;
-            backgroundRoot.updateConfig();
+            root.configLocal.border = newConfig;
+            root.updateConfig();
         }
     }
 
     FormColors {
         isSection: false
-        enabled: backgroundRoot.isEnabled
+        enabled: root.isEnabled
         visible: currentTab === 2
-        config: backgroundRoot.configLocal.border.color
+        config: root.configLocal.border.color
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.border.color = newConfig;
-            backgroundRoot.updateConfig();
+            root.configLocal.border.color = newConfig;
+            root.updateConfig();
         }
         followOptions: followVisbility.foreground
     }
@@ -359,45 +412,45 @@ ColumnLayout {
     FormBorder {
         isSection: true
         sectionName: i18n("Secondary Border")
-        enabled: backgroundRoot.isEnabled
+        enabled: root.isEnabled
         visible: currentTab === 2
-        config: backgroundRoot.configLocal.borderSecondary
+        config: root.configLocal.borderSecondary
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.borderSecondary = newConfig;
-            backgroundRoot.updateConfig();
+            root.configLocal.borderSecondary = newConfig;
+            root.updateConfig();
         }
     }
 
     FormColors {
         isSection: false
-        enabled: backgroundRoot.isEnabled
+        enabled: root.isEnabled
         visible: currentTab === 2
-        config: backgroundRoot.configLocal.borderSecondary.color
+        config: root.configLocal.borderSecondary.color
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.borderSecondary.color = newConfig;
-            backgroundRoot.updateConfig();
+            root.configLocal.borderSecondary.color = newConfig;
+            root.updateConfig();
         }
         followOptions: followVisbility.foreground
     }
 
     FormShadow {
-        enabled: backgroundRoot.isEnabled
+        enabled: root.isEnabled
         visible: currentTab === 3
-        config: backgroundRoot.configLocal.shadow.background
+        config: root.configLocal.shadow.background
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.shadow.background = newConfig;
-            backgroundRoot.updateConfig();
+            root.configLocal.shadow.background = newConfig;
+            root.updateConfig();
         }
         sectionName: i18n("Background Shadow")
     }
 
     FormColors {
-        enabled: backgroundRoot.isEnabled
+        enabled: root.isEnabled
         visible: currentTab === 3
-        config: backgroundRoot.configLocal.shadow.background.color
+        config: root.configLocal.shadow.background.color
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.shadow.background.color = newConfig;
-            backgroundRoot.updateConfig();
+            root.configLocal.shadow.background.color = newConfig;
+            root.updateConfig();
         }
         isSection: false
         followOptions: followVisbility.foreground
@@ -405,23 +458,23 @@ ColumnLayout {
     }
 
     FormShadow {
-        enabled: backgroundRoot.isEnabled
-        visible: currentTab === 3 && keyName !== "panel"
-        config: backgroundRoot.configLocal.shadow.foreground
+        enabled: root.isEnabled
+        visible: currentTab === 3 && elementName !== "panel"
+        config: root.configLocal.shadow.foreground
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.shadow.foreground = newConfig;
-            backgroundRoot.updateConfig();
+            root.configLocal.shadow.foreground = newConfig;
+            root.updateConfig();
         }
         sectionName: i18n("Foreground Shadow")
     }
 
     FormColors {
-        enabled: backgroundRoot.isEnabled
-        visible: currentTab === 3 && keyName !== "panel"
-        config: backgroundRoot.configLocal.shadow.foreground.color
+        enabled: root.isEnabled
+        visible: currentTab === 3 && elementName !== "panel"
+        config: root.configLocal.shadow.foreground.color
         onUpdateConfigString: (newString, newConfig) => {
-            backgroundRoot.configLocal.shadow.foreground.color = newConfig;
-            backgroundRoot.updateConfig();
+            root.configLocal.shadow.foreground.color = newConfig;
+            root.updateConfig();
         }
         isSection: false
         followOptions: followVisbility.foreground
