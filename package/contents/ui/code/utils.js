@@ -184,30 +184,41 @@ function findWidgetsTray(grid, panelWidgets) {
   return panelWidgets;
 }
 
-function getWidgetNameAndId(item) {
+function getWidgetProperties(item, pcTypes) {
   let name = "";
   let id = -1;
+  let expanded = false;
+  let needsAttention = false;
+  let busy = false;
   if (!item) return { name, id };
   if (item.applet?.plasmoid?.pluginName) {
-    name = item.applet.plasmoid.pluginName;
-    id = item.applet.plasmoid.id;
+    const applet = item.applet;
+    name = applet.plasmoid.pluginName;
+    id = applet.plasmoid.id ?? -1;
+    expanded = applet.compactRepresentationItem !== null && applet.expanded ||
+      (applet.internalSystray ?? false) && (applet.internalSystray?.systemTrayState?.expanded ?? false);
+    needsAttention = pcTypes.NeedsAttentionStatus === applet.plasmoid.status ?? null;
+    busy = applet.plasmoid.busy
   } else {
     for (let i in item.children) {
-      if (!item.children[i].model) continue;
+      if (!item?.children[i]?.model) continue;
       const model = item.children[i].model;
       if (model.itemType === "StatusNotifier") {
         name = model.Id;
+        needsAttention = pcTypes.NeedsAttentionStatus === model.status;
+        break;
       } else if (model.itemType === "Plasmoid") {
-        const applet = model.applet ?? null;
-        name = applet?.plasmoid.pluginName ?? "";
-        id = applet?.plasmoid.id ?? -1;
+        const applet = model.applet;
+        name = applet.plasmoid.pluginName ?? "";
+        id = applet.plasmoid.id ?? -1;
+        expanded = applet.compactRepresentationItem !== null && applet.expanded;
+        needsAttention = pcTypes.NeedsAttentionStatus === applet.plasmoid.status;
+        busy = applet.plasmoid.busy
+        break;
       }
     }
   }
-  // if (name) {
-  //   console.error("@@@@ getWidgetName ->", name)
-  // }
-  return { name, id };
+  return { name, id, expanded, needsAttention, busy};
 }
 
 var themeColors = [
@@ -317,10 +328,10 @@ function getItemCfg(
   widgetName,
   widgetId,
   config,
-  configurationOverrides,
+  globalOverrides,
 ) {
   let output = { override: false };
-  let custom = getCustomCfg(widgetName, widgetId, configurationOverrides);
+  let custom = getCustomCfg(widgetName, widgetId, globalOverrides);
   let presetOverrides = getCustomCfg(
     widgetName,
     widgetId,

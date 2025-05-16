@@ -19,6 +19,7 @@ import "code/version.js" as VersionUtil
 
 PlasmoidItem {
     id: main
+    Plasmoid.busy: true
     property int panelLayoutCount: panelLayout?.children?.length || 0
     property int trayGridViewCount: trayGridView?.count || 0
     property int trayGridViewCountOld: 0
@@ -384,8 +385,12 @@ PlasmoidItem {
         property bool luisbocanegraPanelColorizerBgManaged: true
         property var widgetProperties: isTrayArrow ? {
             "id": -1,
-            "name": "org.kde.plasma.systemtray.expand"
-        } : Utils.getWidgetNameAndId(target)
+            "name": "org.kde.plasma.systemtray.expand",
+            // https://github.com/KDE/plasma-workspace/blob/55ea74736ccbfc2fe97fd3634e5042002e39154c/applets/systemtray/package/contents/ui/main.qml#L111
+            "expanded": target.parent.parent.parent.systemTrayState.expanded && target.parent.parent.parent.systemTrayState.activeApplet === null,
+            "needsAttention": false,
+            "busy": false
+        } : Utils.getWidgetProperties(target, PlasmaCore.Types)
         property string widgetName: widgetProperties.name
         property int widgetId: widgetProperties.id
         property var wRecolorCfg: Utils.getForceFgWidgetConfig(widgetId, widgetName, forceRecolorList)
@@ -1206,6 +1211,46 @@ PlasmoidItem {
                 return;
             position = Utils.getGlobalPosition(borderRec, panelElement);
             panelColorizer.updatePanelMask(maskIndex, borderRec, rect.corners.topLeftRadius, rect.corners.topRightRadius, rect.corners.bottomLeftRadius, rect.corners.bottomRightRadius, Qt.point(rect.positionX - moveX, rect.positionY - moveY), 5, visible && blurBehind);
+        }
+
+        HoverHandler {
+            id: hoverHandler
+            parent: rect?.target ?? rect
+            grabPermissions: PointerHandler.CanTakeOverFromAnything
+        }
+
+        Rectangle {
+            id: hoverRect
+            visible: hoverHandler.hovered
+            anchors.fill: parent
+            color: "#500000ff"
+            opacity: 1
+            border.width: 2
+            border.color: "blue"
+        }
+        Rectangle {
+            id: visibleRect
+            visible: widgetProperties.expanded
+            anchors.fill: parent
+            color: "transparent"
+            border.width: 2
+            border.color: "red"
+        }
+        Rectangle {
+            id: attentionRect
+            visible: widgetProperties.needsAttention
+            anchors.fill: parent
+            color: "transparent"
+            border.width: 2
+            border.color: "orange"
+        }
+        Rectangle {
+            id: busyRect
+            visible: widgetProperties.busy
+            anchors.fill: parent
+            color: "transparent"
+            border.width: 2
+            border.color: "cyan"
         }
     }
 
