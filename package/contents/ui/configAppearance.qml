@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import "code/utils.js" as Utils
+import "code/enum.js" as Enum
 import "components" as Components
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
@@ -11,6 +12,7 @@ KCM.SimpleKCM {
     id: root
 
     property int currentTab
+    property int currentState
     property string cfg_globalSettings
     property alias cfg_isEnabled: headerComponent.isEnabled
     property bool ready: false
@@ -80,7 +82,7 @@ KCM.SimpleKCM {
                 Kirigami.FormData.label: i18n("Element:")
                 textRole: "name"
                 valueRole: "value"
-                onCurrentValueChanged: {
+                onActivated: {
                     componentLoader.sourceComponent = null;
                     if (!root.ready)
                         return;
@@ -88,22 +90,20 @@ KCM.SimpleKCM {
                     componentLoader.sourceComponent = settingsComp;
                 }
 
-                model: ListModel {
-                    ListElement {
-                        name: "Panel"
-                        value: "panel"
+                model: [
+                    {
+                        "name": i18n("Panel"),
+                        "value": "panel"
+                    },
+                    {
+                        "name": i18n("Widgets"),
+                        "value": "widgets"
+                    },
+                    {
+                        "name": i18n("Tray widgets"),
+                        "value": "trayWidgets"
                     }
-
-                    ListElement {
-                        name: "Widgets"
-                        value: "widgets"
-                    }
-
-                    ListElement {
-                        name: "Tray elements"
-                        value: "trayWidgets"
-                    }
-                }
+                ]
             }
         }
 
@@ -120,11 +120,17 @@ KCM.SimpleKCM {
                 });
                 item.currentTab = root.currentTab;
                 item.handleString = true;
-                item.keyName = targetComponent.currentValue;
-                item.keyFriendlyName = targetComponent.currentText;
+                item.elementState = root.currentState;
+                item.elementName = targetComponent.currentValue;
+                item.elementFriendlyName = targetComponent.currentText;
                 item.followVisbility = root.followVisbility[targetComponent.currentValue];
                 item.tabChanged.connect(currentTab => {
                     root.currentTab = currentTab;
+                });
+                item.elementStateChanged.connect(() => {
+                    root.currentState = item.elementState;
+                    componentLoader.sourceComponent = null;
+                    componentLoader.sourceComponent = settingsComp;
                 });
             }
         }

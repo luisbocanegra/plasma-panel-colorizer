@@ -25,6 +25,7 @@ KCM.SimpleKCM {
     property var configOverrides
     property var associationsModel
     property int currentTab
+    property int currentState
     property string configDir: StandardPaths.writableLocation(StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/"
     property string importCmd: "cat '" + configDir + "overrides.json'"
     property string crateConfigDirCmd: "mkdir -p " + configDir
@@ -204,10 +205,16 @@ KCM.SimpleKCM {
                             configOverrides[overrideName] = config;
                             root.updateConfig();
                         });
+                        item.elementState = root.currentState;
                         item.currentTab = root.currentTab;
-                        item.keyFriendlyName = "Widgets";
+                        item.elementFriendlyName = "Widgets";
                         item.tabChanged.connect(currentTab => {
                             root.currentTab = currentTab;
+                        });
+                        item.elementStateChanged.connect(() => {
+                            root.currentState = item.elementState;
+                            componentLoader.sourceComponent = null;
+                            componentLoader.sourceComponent = Qt.binding(() => showingConfig ? settingsComp : null);
                         });
                     }
                 }

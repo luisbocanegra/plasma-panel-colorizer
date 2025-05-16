@@ -33,7 +33,7 @@ const baseAnimation = {
 };
 
 const basePanelBgColor = {
-  enabled: true,
+  enabled: false,
   lightnessValue: 0.5,
   saturationValue: 0.5,
   alpha: 1,
@@ -191,7 +191,7 @@ const basePanelConfig = {
 };
 
 const baseWidgetConfig = {
-  enabled: true,
+  enabled: false,
   blurBehind: false,
   backgroundColor: baseBgColor,
   foregroundColor: baseFgColor,
@@ -215,7 +215,7 @@ const baseTrayConfig = {
   shadow: baseShadowConfig,
 };
 
-const baseOverrideConfig = {
+const baseOverride = {
   blurBehind: false,
   backgroundColor: baseBgColor,
   foregroundColor: baseFgColor,
@@ -226,7 +226,15 @@ const baseOverrideConfig = {
   borderSecondary: baseBorder,
   shadow: baseShadowConfig,
   enabled: true,
+}
+
+const baseOverrideConfig = {
   disabledFallback: true,
+  normal: baseOverride,
+  busy: baseOverride,
+  hovered: baseOverride,
+  needsAttention: baseOverride,
+  expanded: baseOverride,
 };
 
 const baseStockPanelSettings = {
@@ -269,9 +277,27 @@ const baseStockPanelSettings = {
 };
 
 const defaultConfig = {
-  panel: basePanelConfig,
-  widgets: baseWidgetConfig,
-  trayWidgets: baseTrayConfig,
+  panel: {
+    normal: basePanelConfig,
+    busy: basePanelConfig,
+    hovered: basePanelConfig,
+    needsAttention: basePanelConfig,
+    expanded: basePanelConfig,
+  },
+  widgets: {
+    normal: baseWidgetConfig,
+    busy: baseWidgetConfig,
+    hovered: baseWidgetConfig,
+    needsAttention: baseWidgetConfig,
+    expanded: baseWidgetConfig,
+  },
+  trayWidgets: {
+    normal: baseTrayConfig,
+    busy: baseTrayConfig,
+    hovered: baseTrayConfig,
+    needsAttention: baseTrayConfig,
+    expanded: baseTrayConfig,
+  },
   nativePanelBackground: {
     enabled: true,
     opacity: 1.0,
