@@ -60,11 +60,6 @@ PlasmoidItem {
     property var panelWidgets: []
     property int panelWidgetsCount: panelWidgets?.length || 0
     property real trayItemThikness: 20
-    property bool widgetEnabled: widgetSettings.normal.enabled && isEnabled
-    property bool separateTray: trayWidgetBgItem.cfg.enabled
-    // items inside the tray need to know the tray index to take
-    // the same foreground when we're not coloring them separately
-    property int trayIndex: 0
     // keep track of these to allow others to follow their color
     property QtObject panelBgItem
     property QtObject trayWidgetBgItem
@@ -282,7 +277,7 @@ PlasmoidItem {
                 // have changed it in the first place, otherwise we have no easy way to
                 // restore the original binding for widgets that do dynamic color
                 // requires restarting plasma but is better than nothing
-                if ((fgColorCfg.enabled || fgColorModified) && child.color) {
+                if (fgColorModified && "color" in child) {
                     child.color = newColor;
                 }
                 if (child.Kirigami?.Theme) {
@@ -290,7 +285,7 @@ PlasmoidItem {
                     child.Kirigami.Theme.colorSet = Kirigami.Theme[fgColorCfg.systemColorSet];
                 }
 
-                if (child.hasOwnProperty("isMask") && forceMask) {
+                if ("isMask" in child && forceMask) {
                     child.isMask = true;
                 }
 
@@ -378,9 +373,9 @@ PlasmoidItem {
         property int itemType
         property bool isPanel: itemType === Enums.ItemType.PanelBgItem
         property bool isWidget: itemType === Enums.ItemType.WidgetItem
-        property bool isTray: itemType === Enums.ItemType.TrayItem
+        property bool isTray: widgetName === "org.kde.plasma.systemtray"
         property bool isTrayArrow: itemType === Enums.ItemType.TrayArrow
-        property bool inTray: isTray || isTrayArrow
+        property bool inTray: itemType === Enums.ItemType.TrayItem || isTrayArrow
         property bool luisbocanegraPanelColorizerBgManaged: true
         property var widgetProperties: isTrayArrow ? {
             "id": -1,
@@ -427,8 +422,8 @@ PlasmoidItem {
         property int maxDepth: 0
         visible: cfgEnabled
         property bool cfgEnabled: cfg.enabled && isEnabled
-        property bool bgEnabled: cfgEnabled && bgColorCfg.enabled
-        property bool fgEnabled: cfgEnabled && fgColorCfg.enabled
+        property bool bgEnabled: bgColorCfg.enabled
+        property bool fgEnabled: fgColorCfg.enabled
         property bool radiusEnabled: cfgEnabled && cfg.radius.enabled
         property int topLeftRadius: !radiusEnabled || unifyBgType === 2 || unifyBgType === 3 ? 0 : cfg.radius.corner.topLeft ?? 0
         property int topRightRadius: !radiusEnabled || (horizontal && (unifyBgType === 1 || unifyBgType === 2)) || (!horizontal && (unifyBgType === 2 || unifyBgType === 3)) ? 0 : cfg.radius.corner.topRight ?? 0
@@ -447,22 +442,18 @@ PlasmoidItem {
             return (isPanel && !anyWidgetDoingBlur && !anyTrayItemDoingBlur) || (isWidget) || (inTray && !trayWidgetBgItem?.blurBehind) ? cfg.blurBehind : false;
         }
         property string fgColor: {
-            if (!fgEnabled && !inTray) {
-                return main.Kirigami.Theme.textColor;
-            } else if ((!fgEnabled && inTray && widgetEnabled)) {
-                // inherit tray widget fg color to tray icons
-                return trayWidgetBgItem.fgColor;
-            } else if (separateTray || cfgOverride) {
-                // passs override config
-                return getColor(rect.fgColorCfg, targetIndex, rect.color, itemType, fgColorHolder);
-            } else if (inTray) {
-                // pass tray icon index
-                return getColor(widgetSettings.foregroundColor, trayIndex, rect.color, itemType, fgColorHolder);
-            } else {
-                // pass regular widget index
-                return getColor(widgetSettings.foregroundColor, targetIndex, rect.color, itemType, fgColorHolder);
+            if (inTray && fgEnabled && cfgEnabled) {
+                return getColor(fgColorCfg, targetIndex, color, itemType, fgColorHolder);
             }
+            if (inTray && (!fgEnabled || !cfgEnabled) && trayWidgetBgItem.cfgEnabled && trayWidgetBgItem.fgColorCfg.enabled) {
+                return trayWidgetBgItem.fgColor;
+            }
+            if (isWidget && fgEnabled && cfgEnabled) {
+                return getColor(fgColorCfg, targetIndex, color, itemType, fgColorHolder);
+            }
+            return main.Kirigami.Theme.textColor;
         }
+
         property bool throttleMaskUpdate: false
         // `visible: false` breaks in Plasma 6.3.4, so we use `opacity: 0` instead
         // https://github.com/luisbocanegra/plasma-panel-colorizer/issues/212
@@ -612,7 +603,7 @@ PlasmoidItem {
             onTriggered: {
                 if (isPanel)
                     return;
-                if (widgetName === "org.kde.plasma.systemtray" && separateTray)
+                if (isTray && trayWidgetSettings.normal.foregroundColor.enabled)
                     return;
                 const result = applyFgColor(target, fgColor, fgColorCfg, 0, wRecolorCfg, fgColorModified);
                 if (result) {
@@ -651,8 +642,8 @@ PlasmoidItem {
             main.refreshNeeded.disconnect(rect.recolor);
         }
 
-        height: isTray ? (target?.height ?? 0) : parent.height
-        width: isTray ? (target?.width ?? 0) : parent.width
+        height: inTray ? (target?.height ?? 0) : parent.height
+        width: inTray ? (target?.width ?? 0) : parent.width
         Behavior on height {
             enabled: animatePropertyChanges
             NumberAnimation {
@@ -667,8 +658,8 @@ PlasmoidItem {
                 easing.type: main.animationEasingType
             }
         }
-        anchors.centerIn: (isTray || isTrayArrow) ? parent : undefined
-        anchors.fill: (isPanel || isTray || isTrayArrow) ? parent : undefined
+        anchors.centerIn: (inTray || isTrayArrow) ? parent : undefined
+        anchors.fill: (isPanel || inTray || isTrayArrow) ? parent : undefined
 
         property int extraLSpacing: ((unifyBgType === 2 || unifyBgType === 3) && horizontal ? widgetsSpacing : 0) / 2
         property int extraRSpacing: ((unifyBgType === 1 || unifyBgType === 2) && horizontal ? widgetsSpacing : 0) / 2
@@ -802,7 +793,7 @@ PlasmoidItem {
             target: rect
             property: "anchors.leftMargin"
             value: marginLeft
-            when: marginEnabled && (isTrayArrow || isTray)
+            when: marginEnabled && inTray
             delayed: true
         }
 
@@ -810,7 +801,7 @@ PlasmoidItem {
             target: rect
             property: "anchors.rightMargin"
             value: marginRight
-            when: marginEnabled && (isTrayArrow || isTray)
+            when: marginEnabled && inTray
             delayed: true
         }
 
@@ -818,7 +809,7 @@ PlasmoidItem {
             target: rect
             property: "anchors.topMargin"
             value: marginTop
-            when: marginEnabled && (isTrayArrow || isTray)
+            when: marginEnabled && inTray
             delayed: true
         }
 
@@ -826,7 +817,7 @@ PlasmoidItem {
             target: rect
             property: "anchors.bottomMargin"
             value: marginBottom
-            when: marginEnabled && (isTrayArrow || isTray)
+            when: marginEnabled && inTray
             delayed: true
         }
 
@@ -1221,7 +1212,6 @@ PlasmoidItem {
         HoverHandler {
             id: hoverHandler
             parent: rect.target
-            grabPermissions: PointerHandler.CanTakeOverFromAnything
         }
     }
 
@@ -1738,8 +1728,6 @@ PlasmoidItem {
                 child.applet.plasmoid.contextualActions.push(configureAction);
             }
             const isTray = child.applet.plasmoid.pluginName === "org.kde.plasma.systemtray";
-            if (isTray)
-                trayIndex = i;
             const bgItem = Utils.getBgManaged(child);
             if (!bgItem) {
                 const comp = backgroundComponent.createObject(child, {
