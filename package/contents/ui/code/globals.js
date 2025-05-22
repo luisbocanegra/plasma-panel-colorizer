@@ -187,7 +187,6 @@ const basePanelConfig = {
   border: baseBorder,
   borderSecondary: baseBorder,
   shadow: baseShadowConfig,
-  floatingDialogs: false,
 };
 
 const baseWidgetConfig = {
@@ -298,10 +297,13 @@ const defaultConfig = {
     needsAttention: baseTrayConfig,
     expanded: baseTrayConfig,
   },
-  nativePanelBackground: {
-    enabled: true,
-    opacity: 1.0,
-    shadow: true,
+  nativePanel: {
+    background: {
+      enabled: true,
+      opacity: 1.0,
+      shadow: true,
+    },
+    floatingDialogs: false,
   },
   stockPanelSettings: baseStockPanelSettings,
   configurationOverrides: {

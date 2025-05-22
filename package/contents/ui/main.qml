@@ -52,11 +52,11 @@ PlasmoidItem {
     property string icon: Qt.resolvedUrl("../icons/" + iconName + ".svg").toString().replace("file://", "")
     property bool hideWidget: plasmoid.configuration.hideWidget
     property bool fixedSidePaddingEnabled: isEnabled && panelBgItem.cfg.padding.enabled
-    property bool floatingDialogs: main.isEnabled ? panelSettings.normal.floatingDialogs : false
+    property bool floatingDialogs: main.isEnabled ? cfg.nativePanel.floatingDialogs : false
     property bool isEnabled: plasmoid.configuration.isEnabled
-    property bool nativePanelBackgroundEnabled: (isEnabled ? cfg.nativePanelBackground.enabled : true) || doPanelClickFix
-    property real nativePanelBackgroundOpacity: isEnabled ? cfg.nativePanelBackground.opacity : 1.0
-    property bool nativePanelBackgroundShadowEnabled: isEnabled ? cfg.nativePanelBackground.shadow : true
+    property bool nativePanelBackgroundEnabled: (isEnabled ? cfg.nativePanel.background.enabled : true) || doPanelClickFix
+    property real nativePanelBackgroundOpacity: isEnabled ? cfg.nativePanel.background.opacity : 1.0
+    property bool nativePanelBackgroundShadowEnabled: isEnabled ? cfg.nativePanel.background.shadow : true
     property var panelWidgets: []
     property int panelWidgetsCount: panelWidgets?.length || 0
     property real trayItemThikness: 20

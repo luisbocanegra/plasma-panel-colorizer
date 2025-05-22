@@ -153,13 +153,13 @@ ColumnLayout {
 
         RowLayout {
             Kirigami.FormData.label: i18n("Native panel:")
-            visible: elementName === "panel"
+            visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
             CheckBox {
                 id: nativePanelBackgroundCheckbox
                 text: i18n("Background")
-                checked: config.nativePanelBackground.enabled
+                checked: config.nativePanel.background.enabled
                 onCheckedChanged: {
-                    config.nativePanelBackground.enabled = checked;
+                    config.nativePanel.background.enabled = checked;
                     updateConfig();
                 }
             }
@@ -172,18 +172,18 @@ ColumnLayout {
         CheckBox {
             id: nativePanelBackgroundShadowCheckbox
             text: i18n("Shadow")
-            visible: elementName === "panel"
+            visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
             enabled: nativePanelBackgroundCheckbox.checked
 
-            checked: config.nativePanelBackground.shadow
+            checked: config.nativePanel.background.shadow
             onCheckedChanged: {
-                config.nativePanelBackground.shadow = checked;
+                config.nativePanel.background.shadow = checked;
                 updateConfig();
             }
         }
 
         RowLayout {
-            visible: elementName === "panel"
+            visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
             Label {
                 text: i18n("Opacity:")
             }
@@ -192,9 +192,9 @@ ColumnLayout {
                 Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
                 from: 0
                 to: 1
-                value: config.nativePanelBackground.opacity ?? 0
+                value: config.nativePanel.background.opacity ?? 0
                 onValueChanged: {
-                    config.nativePanelBackground.opacity = value;
+                    config.nativePanel.background.opacity = value;
                     updateConfig();
                 }
             }
@@ -206,9 +206,9 @@ ColumnLayout {
         CheckBox {
             visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
             text: i18n("Force floating dialogs")
-            checked: configLocal.floatingDialogs
+            checked: config.nativePanel.floatingDialogs
             onCheckedChanged: {
-                configLocal.floatingDialogs = checked;
+                config.nativePanel.floatingDialogs = checked;
                 updateConfig();
             }
         }
