@@ -1,5 +1,26 @@
 # Changelog
 
+## [4.0.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v3.0.1...v4.0.0) (2025-05-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* the configuration and presets made or updated using this version will be no longer compatible with older versions, create a backup of `$HOME/.config/panel-colorizer/` directory just in case you want to downgrade later
+* group native background, opacity, shadow and floatingDialogs configuration
+* hover, expanded, needsAttention and busy customization
+
+### Features
+
+* group native background, opacity, shadow and floatingDialogs configuration ([c4e6f78](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/c4e6f7808ebba5e423b7bcd29406b53c941433a9))
+* hover, expanded, needsAttention and busy customization ([4011ae2](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/4011ae2752bb006075318a0d20759cdbd53816d4))
+* update existing configuration to new format ([5d2b281](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/5d2b281d69c1102f8f0a1da54e6e6982a61097e2))
+
+
+### Bug Fixes
+
+* save presets without formatting to avoid mysterious echo command bug ([ef6d875](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/ef6d87566ab19d796b6052449bcba122e3a0e4ec))
+* tray icons sometimes using wrong color ([aa53388](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/aa533880db2c9b74e98bef255611c47a628d5cdd))
+
 ## [3.0.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v3.0.0...v3.0.1) (2025-05-14)
 
 
