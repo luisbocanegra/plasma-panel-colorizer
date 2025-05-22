@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-05-08 09:27+0000\n"
+"POT-Creation-Date: 2025-05-22 06:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,7 +65,7 @@ msgstr ""
 msgid "Panel Colorizer is disabled"
 msgstr ""
 
-#: ../contents/ui/components/CategoryDisabled.qml ../contents/ui/components/FormWidgetSettings.qml
+#: ../contents/ui/components/CategoryDisabled.qml
 msgid "Enable"
 msgstr ""
 
@@ -235,7 +235,7 @@ msgstr ""
 msgid "Padding:"
 msgstr ""
 
-#: ../contents/ui/components/FormShadow.qml
+#: ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormWidgetSettings.qml
 msgid "Shadow"
 msgstr ""
 
@@ -260,11 +260,35 @@ msgid "Margin"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "customization"
+msgid "State:"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Native panel background:"
+msgid "Normal"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Hover"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Expanded"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Needs attention"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Busy"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Native panel:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml ../contents/ui/configGeneral.qml
+msgid "Background"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -272,19 +296,23 @@ msgid "Disable to make panel fully transparent, removes contrast and blur effect
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Native panel background shadow:"
+msgid "Opacity:"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Native panel background opacity:"
+msgid "Set to 0 to keep the mask required for custom background blur."
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Set Opacity to 0 to keep just the mask required by Blur custom background."
+msgid "Force floating dialogs"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Blur custom background (Beta):"
+msgid "customization"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Blur custom background (Beta)"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -293,10 +321,6 @@ msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "C++ plugin not installed, <b>Blur custom background</b> will not work.<br>Check the repository README on GitHub for details."
-msgstr ""
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Force floating dialogs:"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -423,6 +447,18 @@ msgstr ""
 msgid "Not getting the expected result? Make sure you're editing the correct element."
 msgstr ""
 
+#: ../contents/ui/configAppearance.qml
+msgid "Panel"
+msgstr ""
+
+#: ../contents/ui/configAppearance.qml ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Widgets"
+msgstr ""
+
+#: ../contents/ui/configAppearance.qml
+msgid "Tray widgets"
+msgstr ""
+
 #: ../contents/ui/configForeground.qml
 msgid ""
 "Force text and icon colors for specified widgets.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-"
@@ -464,10 +500,6 @@ msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Visible while configuring"
-msgstr ""
-
-#: ../contents/ui/configGeneral.qml
-msgid "Background"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
@@ -560,10 +592,6 @@ msgstr ""
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid "Fallback to the Global/Preset widget settings for disabled options, except for <b>Enable</b> and <b>Blur</>."
-msgstr ""
-
-#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
-msgid "Widgets"
 msgstr ""
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
