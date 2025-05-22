@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-05-08 09:27+0000\n"
+"POT-Creation-Date: 2025-05-22 06:38+0000\n"
 "PO-Revision-Date: 2025-04-05 20:32+0800\n"
 "Last-Translator: Mill413 <mill413@outlook.com>\n"
 "Language-Team: \n"
@@ -65,7 +65,7 @@ msgstr "常规"
 msgid "Panel Colorizer is disabled"
 msgstr "Panel Colorizer 已禁用"
 
-#: ../contents/ui/components/CategoryDisabled.qml ../contents/ui/components/FormWidgetSettings.qml
+#: ../contents/ui/components/CategoryDisabled.qml
 msgid "Enable"
 msgstr "启用"
 
@@ -233,7 +233,7 @@ msgstr "内边距"
 msgid "Padding:"
 msgstr "内边距："
 
-#: ../contents/ui/components/FormShadow.qml
+#: ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormWidgetSettings.qml
 msgid "Shadow"
 msgstr "阴影"
 
@@ -258,32 +258,60 @@ msgid "Margin"
 msgstr "外边距"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "customization"
-msgstr "自定义"
+msgid "State:"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Native panel background:"
-msgstr "原生面板背景："
+msgid "Normal"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Hover"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Expanded"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Needs attention"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Busy"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Native panel:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml ../contents/ui/configGeneral.qml
+msgid "Background"
+msgstr "背景"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Disable to make panel fully transparent, removes contrast and blur effects."
 msgstr "禁用可使面板完全透明，移除此对比度和模糊效果。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Native panel background shadow:"
-msgstr "原生面板背景阴影："
+msgid "Opacity:"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Native panel background opacity:"
-msgstr "原生面板背景不透明度"
+msgid "Set to 0 to keep the mask required for custom background blur."
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Set Opacity to 0 to keep just the mask required by Blur custom background."
-msgstr "将不透明度设为 0 以仅保留模糊自定义背景所需的遮罩。"
+msgid "Force floating dialogs"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Blur custom background (Beta):"
-msgstr "模糊自定义背景（测试）："
+msgid "customization"
+msgstr "自定义"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Blur custom background (Beta)"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Draw a custom blur mask behind the custom background(s).<br><strong>Native panel background must be enabled with opacity of 0 for this to work as intended.</strong>"
@@ -292,10 +320,6 @@ msgstr "在自定义背景后绘制模糊遮罩。<br><strong>需启用原生面
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "C++ plugin not installed, <b>Blur custom background</b> will not work.<br>Check the repository README on GitHub for details."
 msgstr "未安装 C++ 插件，<b>模糊自定义背景</b>不可用。<br>详情请查看 GitHub 仓库的 README。"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Force floating dialogs:"
-msgstr "强制浮动对话框："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Spacing:"
@@ -421,6 +445,18 @@ msgstr "结束"
 msgid "Not getting the expected result? Make sure you're editing the correct element."
 msgstr "未达到预期效果？请确保您编辑的是正确的元素。"
 
+#: ../contents/ui/configAppearance.qml
+msgid "Panel"
+msgstr ""
+
+#: ../contents/ui/configAppearance.qml ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Widgets"
+msgstr "部件"
+
+#: ../contents/ui/configAppearance.qml
+msgid "Tray widgets"
+msgstr ""
+
 #: ../contents/ui/configForeground.qml
 msgid ""
 "Force text and icon colors for specified widgets.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content themselves<br>To restore the <strong>Mask<strong> and "
@@ -462,10 +498,6 @@ msgstr "已启用"
 #: ../contents/ui/configGeneral.qml
 msgid "Visible while configuring"
 msgstr "配置时可见"
-
-#: ../contents/ui/configGeneral.qml
-msgid "Background"
-msgstr "背景"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Minor line:"
@@ -558,10 +590,6 @@ msgstr "回退："
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid "Fallback to the Global/Preset widget settings for disabled options, except for <b>Enable</b> and <b>Blur</>."
 msgstr "对于已禁用的选项，回退到全局/预设部件设置（<b>启用</b>和<b>模糊</b>除外）。"
-
-#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
-msgid "Widgets"
-msgstr "部件"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Overrides are applied from top to bottom, if two or more configuration overrides share the same option, the last occurence replaces the value of the previous one."
@@ -852,6 +880,24 @@ msgstr "选择预设"
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr "未找到面板，此部件需放置在面板上才能工作"
+
+#~ msgid "Native panel background:"
+#~ msgstr "原生面板背景："
+
+#~ msgid "Native panel background shadow:"
+#~ msgstr "原生面板背景阴影："
+
+#~ msgid "Native panel background opacity:"
+#~ msgstr "原生面板背景不透明度"
+
+#~ msgid "Set Opacity to 0 to keep just the mask required by Blur custom background."
+#~ msgstr "将不透明度设为 0 以仅保留模糊自定义背景所需的遮罩。"
+
+#~ msgid "Blur custom background (Beta):"
+#~ msgstr "模糊自定义背景（测试）："
+
+#~ msgid "Force floating dialogs:"
+#~ msgstr "强制浮动对话框："
 
 #~ msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g top to left)."
 #~ msgstr "更改面板位置功能不稳定，在非平行边缘间移动面板（如顶部到左侧）可能导致 Plasma 崩溃。"

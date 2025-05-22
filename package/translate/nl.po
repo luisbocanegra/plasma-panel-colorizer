@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-05-08 09:27+0000\n"
+"POT-Creation-Date: 2025-05-22 06:38+0000\n"
 "PO-Revision-Date: 2025-04-23 10:51+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -72,7 +72,6 @@ msgid "Panel Colorizer is disabled"
 msgstr "Paneelkleuring is uitgeschakeld"
 
 #: ../contents/ui/components/CategoryDisabled.qml
-#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Enable"
 msgstr "Inschakelen"
 
@@ -255,6 +254,7 @@ msgid "Padding:"
 msgstr "Opvulling:"
 
 #: ../contents/ui/components/FormShadow.qml
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Shadow"
 msgstr "Schaduw"
 
@@ -279,12 +279,37 @@ msgid "Margin"
 msgstr "Marge"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "customization"
-msgstr "Aanpassen"
+msgid "State:"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Native panel background:"
-msgstr "Standaard paneelachtergrond:"
+msgid "Normal"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Hover"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Expanded"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Needs attention"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Busy"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Native panel:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+#: ../contents/ui/configGeneral.qml
+msgid "Background"
+msgstr "Achtergrond"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
@@ -294,22 +319,24 @@ msgstr ""
 "vervaging te ontdoen."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Native panel background shadow:"
-msgstr "Achtergrondschaduw van paneel:"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Native panel background opacity:"
-msgstr "Doorzichtigheid van paneel:"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid ""
-"Set Opacity to 0 to keep just the mask required by Blur custom background."
+msgid "Opacity:"
 msgstr ""
-"Stel in op 0 om slechts het vereiste masker voor vervaging toe te passen."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Blur custom background (Beta):"
-msgstr "Eigen achtergrond vervagen (bèta):"
+msgid "Set to 0 to keep the mask required for custom background blur."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Force floating dialogs"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "customization"
+msgstr "Aanpassen"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Blur custom background (Beta)"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
@@ -329,10 +356,6 @@ msgstr ""
 "De C++-plug-in is niet geïnstalleerd - <b>hierdoor zal de "
 "achtergrondvervaging</b> niet werken.<br>Bekijk voor meer informatie het "
 "README-bestand op GitHub."
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Force floating dialogs:"
-msgstr "Zwevende dialoogvensters afdwingen:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Spacing:"
@@ -474,6 +497,20 @@ msgstr ""
 "Toch niet het verwachte resultaat behaald? Controleer dan of je het juiste "
 "element bewerkt."
 
+#: ../contents/ui/configAppearance.qml
+msgid "Panel"
+msgstr ""
+
+#: ../contents/ui/configAppearance.qml
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Widgets"
+msgstr "Widgets"
+
+#: ../contents/ui/configAppearance.qml
+msgid "Tray widgets"
+msgstr ""
+
 #: ../contents/ui/configForeground.qml
 msgid ""
 "Force text and icon colors for specified widgets.<br><strong>Mask</strong>: "
@@ -528,10 +565,6 @@ msgstr "Ingeschakeld"
 #: ../contents/ui/configGeneral.qml
 msgid "Visible while configuring"
 msgstr "Zichtbaar tijdens het instellen"
-
-#: ../contents/ui/configGeneral.qml
-msgid "Background"
-msgstr "Achtergrond"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Minor line:"
@@ -638,11 +671,6 @@ msgid ""
 msgstr ""
 "Val bij uitgeschakelde opties terug op globale of voorinstellingen, met "
 "uitzondering van <b>Inschakelen</b> en <b>Vervagen</b>."
-
-#: ../contents/ui/configGlobalWidgetOverrides.qml
-#: ../contents/ui/configPresetWidgetOverrides.qml
-msgid "Widgets"
-msgstr "Widgets"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 #: ../contents/ui/configPresetWidgetOverrides.qml
@@ -999,6 +1027,26 @@ msgstr "Kies de voorinstellingen"
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr ""
 "Er is geen paneel aangetroffen - de widget dient op een paneel te staan"
+
+#~ msgid "Native panel background:"
+#~ msgstr "Standaard paneelachtergrond:"
+
+#~ msgid "Native panel background shadow:"
+#~ msgstr "Achtergrondschaduw van paneel:"
+
+#~ msgid "Native panel background opacity:"
+#~ msgstr "Doorzichtigheid van paneel:"
+
+#~ msgid ""
+#~ "Set Opacity to 0 to keep just the mask required by Blur custom background."
+#~ msgstr ""
+#~ "Stel in op 0 om slechts het vereiste masker voor vervaging toe te passen."
+
+#~ msgid "Blur custom background (Beta):"
+#~ msgstr "Eigen achtergrond vervagen (bèta):"
+
+#~ msgid "Force floating dialogs:"
+#~ msgstr "Zwevende dialoogvensters afdwingen:"
 
 #~ msgid ""
 #~ "Changing panel position is currently unstable and may cause Plasma to "

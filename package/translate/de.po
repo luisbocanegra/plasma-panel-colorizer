@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-05-08 09:27+0000\n"
+"POT-Creation-Date: 2025-05-22 06:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,7 +65,7 @@ msgstr "Allgemein"
 msgid "Panel Colorizer is disabled"
 msgstr "Panel Colorizer ist abgeschaltet"
 
-#: ../contents/ui/components/CategoryDisabled.qml ../contents/ui/components/FormWidgetSettings.qml
+#: ../contents/ui/components/CategoryDisabled.qml
 msgid "Enable"
 msgstr "Anschalten"
 
@@ -233,7 +233,7 @@ msgstr "Füllung"
 msgid "Padding:"
 msgstr "Füllung"
 
-#: ../contents/ui/components/FormShadow.qml
+#: ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormWidgetSettings.qml
 msgid "Shadow"
 msgstr "Schatten"
 
@@ -258,32 +258,60 @@ msgid "Margin"
 msgstr "Abstand"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "customization"
-msgstr "Individuallisierung"
+msgid "State:"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Native panel background:"
-msgstr "Nativer Kontrolleistenhintergrund"
+msgid "Normal"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Hover"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Expanded"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Needs attention"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Busy"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Native panel:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml ../contents/ui/configGeneral.qml
+msgid "Background"
+msgstr "Hintergrund"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Disable to make panel fully transparent, removes contrast and blur effects."
 msgstr "Ausschalten damit die Kontrollleiste voll transparent wird"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Native panel background shadow:"
+msgid "Opacity:"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Native panel background opacity:"
+msgid "Set to 0 to keep the mask required for custom background blur."
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Set Opacity to 0 to keep just the mask required by Blur custom background."
-msgstr "Setze Opazität auf 0 zum Behalten der Maske, die von der individuellen Hintergrundschärfe benötigt wird"
+msgid "Force floating dialogs"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Blur custom background (Beta):"
-msgstr "Eintrüben des Individuellen Hintergrundes (Beta)"
+msgid "customization"
+msgstr "Individuallisierung"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Blur custom background (Beta)"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Draw a custom blur mask behind the custom background(s).<br><strong>Native panel background must be enabled with opacity of 0 for this to work as intended.</strong>"
@@ -292,10 +320,6 @@ msgstr "Zeichene eine individuelle Hintergrundschärfe-Maske hinter dem individu
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "C++ plugin not installed, <b>Blur custom background</b> will not work.<br>Check the repository README on GitHub for details."
 msgstr "C++ PlugIn nicht installiert, <b>Individuelle Hintergrundschärfe</b> wird nicht funktionieren.<br>Check the repository README on GitHub for details."
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Force floating dialogs:"
-msgstr "Erzwinge schwebende Dialoge:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Spacing:"
@@ -421,6 +445,18 @@ msgstr "Ende"
 msgid "Not getting the expected result? Make sure you're editing the correct element."
 msgstr "Nicht die erwarteten Resultate? Stelle sicher, dass die richtigen Elemente geändert wurden"
 
+#: ../contents/ui/configAppearance.qml
+msgid "Panel"
+msgstr ""
+
+#: ../contents/ui/configAppearance.qml ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Widgets"
+msgstr "Widget"
+
+#: ../contents/ui/configAppearance.qml
+msgid "Tray widgets"
+msgstr ""
+
 #: ../contents/ui/configForeground.qml
 msgid ""
 "Force text and icon colors for specified widgets.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content themselves<br>To restore the <strong>Mask<strong> and "
@@ -464,10 +500,6 @@ msgstr "Aktiv"
 #: ../contents/ui/configGeneral.qml
 msgid "Visible while configuring"
 msgstr "Sichtbar während der Konfiguration"
-
-#: ../contents/ui/configGeneral.qml
-msgid "Background"
-msgstr "Hintergrund"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Minor line:"
@@ -560,10 +592,6 @@ msgstr "Rückfall"
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid "Fallback to the Global/Preset widget settings for disabled options, except for <b>Enable</b> and <b>Blur</>."
 msgstr "Rückfall auf die globalen/voreingestellten Einstellungen für abgeschaltete Optionen, Ausnahme für<b>Anschalten</b> and <b>Hintergrundschärfe</>."
-
-#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
-msgid "Widgets"
-msgstr "Widget"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Overrides are applied from top to bottom, if two or more configuration overrides share the same option, the last occurence replaces the value of the previous one."
@@ -856,6 +884,18 @@ msgstr "Wähle eine Voreinstellung"
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr "Kontrollleiste nicht gefunden, dieses Widget muss in der Kontrollleiste plaziert werden, da es ansonsten nicht funktioniert"
+
+#~ msgid "Native panel background:"
+#~ msgstr "Nativer Kontrolleistenhintergrund"
+
+#~ msgid "Set Opacity to 0 to keep just the mask required by Blur custom background."
+#~ msgstr "Setze Opazität auf 0 zum Behalten der Maske, die von der individuellen Hintergrundschärfe benötigt wird"
+
+#~ msgid "Blur custom background (Beta):"
+#~ msgstr "Eintrüben des Individuellen Hintergrundes (Beta)"
+
+#~ msgid "Force floating dialogs:"
+#~ msgstr "Erzwinge schwebende Dialoge:"
 
 #~ msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g top to left)."
 #~ msgstr "Verändern der Kontrollleistenposition is aktuell nicht stabil und kann zum Absturz von Plasma führen"
