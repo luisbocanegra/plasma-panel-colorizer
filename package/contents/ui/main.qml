@@ -100,12 +100,22 @@ PlasmoidItem {
     property bool doPanelLengthFix: false
 
     property var cfg: {
+        let globalSettings;
         try {
-            return JSON.parse(plasmoid.configuration.globalSettings);
+            globalSettings = JSON.parse(plasmoid.configuration.globalSettings);
         } catch (e) {
             console.error(e, e.stack);
-            return Globals.defaultConfig;
+            globalSettings = Globals.defaultConfig;
         }
+
+        Utils.fixGlobalSettingsV3(globalSettings);
+        const config = Utils.mergeConfigs(Globals.defaultConfig, globalSettings);
+        const configStr = JSON.stringify(config);
+        if (plasmoid.configuration.globalSettings !== configStr) {
+            plasmoid.configuration.globalSettings = configStr;
+            plasmoid.configuration.writeConfig();
+        }
+        return config;
     }
     property var presetAutoloading: {
         try {
@@ -116,12 +126,20 @@ PlasmoidItem {
         }
     }
     property var configurationOverrides: {
+        let globalOverrides = {};
         try {
-            return JSON.parse(plasmoid.configuration.configurationOverrides);
+            globalOverrides = JSON.parse(plasmoid.configuration.configurationOverrides);
         } catch (e) {
             console.error(e, e.stack);
-            return {};
         }
+        Utils.fixConfigurationOverridesV3(globalOverrides.overrides);
+        const config = Utils.mergeConfigs(Globals.baseOverrideConfig, globalOverrides);
+        const configStr = JSON.stringify(config);
+        if (plasmoid.configuration.configurationOverrides !== configStr) {
+            plasmoid.configuration.configurationOverrides = configStr;
+            plasmoid.configuration.writeConfig();
+        }
+        return config;
     }
     property var forceForegroundColor: {
         try {
@@ -1764,10 +1782,6 @@ PlasmoidItem {
     Component.onCompleted: {
         bindPlasmoidStatus();
         runCommand.run("plasmashell --version");
-        Qt.callLater(function () {
-            const config = Utils.mergeConfigs(Globals.defaultConfig, cfg);
-            plasmoid.configuration.globalSettings = Utils.stringify(config);
-        });
         try {
             panelColorizer = Qt.createQmlObject("import org.kde.plasma.panelcolorizer 1.0; PanelColorizer { id: panelColorizer }", main);
             console.log("QML Plugin org.kde.plasma.panelcolorizer loaded");

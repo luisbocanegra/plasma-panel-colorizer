@@ -467,7 +467,7 @@ function loadPreset(presetContent, item, ignoredConfigs, defaults, store) {
     )
       continue;
     if (key === "globalSettings") {
-      val = mergeConfigs(defaults, val);
+      val = val
     }
     const valStr = stringify(val);
     if (store) {
@@ -712,4 +712,58 @@ function delay(interval, callback, parentItem) {
     timer.destroy();
   });
   timer.start();
+}
+
+function fixElementSettingsV3(elementSettings) {
+  for (let key of ["panel", "widgets", "trayWidgets"]) {
+    const current = elementSettings[key];
+    if ("normal" in current) {
+        continue;
+    }
+    elementSettings[key] = {};
+    elementSettings[key].normal = current;
+    if (!("nativePanel" in current)) {
+        elementSettings[key] = {};
+        elementSettings[key].normal = current;
+    }
+  }
+}
+
+function fixConfigurationOverridesV3(configurationOverrides) {
+  if (Object.keys(configurationOverrides)) {
+    Object.keys(configurationOverrides).forEach(key => {
+
+      if (!("normal" in configurationOverrides[key])) {
+        const current = configurationOverrides[key]
+        configurationOverrides[key] = {}
+        configurationOverrides[key].normal = current
+        configurationOverrides[key].disabledFallback = current.disabledFallback ?? true
+      }
+    })
+  }
+}
+
+function fixGlobalSettingsV3(globalSettings) {
+  fixElementSettingsV3(globalSettings)
+  let floatingDialogs = false;
+  if ("floatingDialogs" in globalSettings.panel.normal) {
+      floatingDialogs = globalSettings.panel.normal.floatingDialogs;
+      delete globalSettings.panel.normal.floatingDialogs;
+  }
+  let nativePanelBackground = true;
+  let nativePanelOpacity = 1.0;
+  let nativePanelShadow = true;
+  if ("nativePanelBackground" in globalSettings && !("nativePanel" in globalSettings)) {
+      nativePanelBackground = globalSettings.nativePanelBackground.enabled ?? true;
+      nativePanelOpacity = globalSettings.nativePanelBackground.opacity ?? 1.0;
+      nativePanelShadow = globalSettings.nativePanelBackground.shadow ?? true;
+      globalSettings.nativePanel = {
+          background: {}
+      };
+      globalSettings.nativePanel.background.enabled = nativePanelBackground;
+      globalSettings.nativePanel.background.opacity = nativePanelOpacity;
+      globalSettings.nativePanel.background.shadow = nativePanelShadow;
+      globalSettings.nativePanel.floatingDialogs = floatingDialogs;
+  }
+  fixConfigurationOverridesV3(globalSettings.configurationOverrides.overrides)
 }
