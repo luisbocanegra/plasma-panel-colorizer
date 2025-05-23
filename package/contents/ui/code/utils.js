@@ -730,6 +730,9 @@ function fixElementSettingsV3(elementSettings) {
 }
 
 function fixConfigurationOverridesV3(configurationOverrides) {
+  if (!configurationOverrides) {
+    return
+  }
   if (Object.keys(configurationOverrides)) {
     Object.keys(configurationOverrides).forEach(key => {
 
