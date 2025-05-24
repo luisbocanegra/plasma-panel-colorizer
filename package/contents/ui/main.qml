@@ -469,7 +469,7 @@ PlasmoidItem {
             if (isWidget && fgEnabled && cfgEnabled) {
                 return getColor(fgColorCfg, targetIndex, color, itemType, fgColorHolder);
             }
-            return main.Kirigami.Theme.textColor;
+            return main.panelElement.Kirigami.Theme.textColor;
         }
 
         property bool throttleMaskUpdate: false
