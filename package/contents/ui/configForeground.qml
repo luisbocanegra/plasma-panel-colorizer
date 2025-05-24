@@ -115,6 +115,13 @@ KCM.SimpleKCM {
         loaded = true;
     }
 
+    function restoreSettings() {
+        importConfig({
+            "widgets": [],
+            "reloadInterval": 250
+        });
+    }
+
     Component.onCompleted: {
         // ignore 1.2.0- old config format
         forceFgConfig = Utils.clearOldWidgetConfig(config.widgets);
@@ -156,9 +163,20 @@ KCM.SimpleKCM {
 
         Kirigami.InlineMessage {
             Layout.fillWidth: true
-            text: i18n("Force text and icon colors for specified widgets.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content themselves<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout.")
+            text: i18n("Fix text and icon colors for widgets where the normal method doesn't work or isn't permanent.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content themselves<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout.")
             visible: true
             type: Kirigami.MessageType.Information
+        }
+
+        RowLayout {
+            Button {
+                text: i18n("Restore default (removes all icon and text fixes)")
+                icon.name: "kt-restore-defaults-symbolic"
+                onClicked: {
+                    root.restoreSettings();
+                }
+                Layout.fillWidth: true
+            }
         }
 
         Components.SettingImportExport {

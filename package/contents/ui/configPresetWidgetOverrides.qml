@@ -101,6 +101,12 @@ KCM.SimpleKCM {
         loaded = true;
     }
 
+    function restoreSettings() {
+        configOverrides = {};
+        associationsModel = [];
+        updateConfig();
+    }
+
     header: ColumnLayout {
         Components.Header {
             id: headerComponent
@@ -116,6 +122,17 @@ KCM.SimpleKCM {
             text: i18n("Create configuration overrides and apply them to one or multiple widgets. These overrides should be saved to a preset in <strong>Presets</strong> tab or they will be lost when presets change!")
             visible: true
             type: Kirigami.MessageType.Information
+        }
+
+        RowLayout {
+            Button {
+                text: i18n("Restore default (removes all overrides)")
+                icon.name: "kt-restore-defaults-symbolic"
+                onClicked: {
+                    root.restoreSettings();
+                }
+                Layout.fillWidth: true
+            }
         }
 
         Kirigami.FormLayout {

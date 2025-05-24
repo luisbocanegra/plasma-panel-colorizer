@@ -209,7 +209,7 @@ KCM.SimpleKCM {
                 Layout.preferredWidth: presetCards.width
                 Layout.minimumWidth: 300
                 Button {
-                    text: i18n("Restore default panel appearance")
+                    text: i18n("Restore default preset")
                     icon.name: "kt-restore-defaults-symbolic"
                     onClicked: {
                         root.restoreSettings();
