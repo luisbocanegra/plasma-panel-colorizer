@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.1.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v4.0.0...v4.1.0) (2025-05-24)
+
+
+### Features
+
+* improve some presets ([86b5aa7](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/86b5aa7b4b67c622babe00de3ff61851d7426c25))
+* update built-in presets to current config format ([b131408](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/b131408971ec6eadf9c3b0e2124981b9a317a954))
+
+
+### Bug Fixes
+
+* preset without overrides not loading ([4a2953c](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/4a2953c9e21c5e003bfe15c80fa8840855be9d7a))
+
 ## [4.0.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v3.0.1...v4.0.0) (2025-05-22)
 
 
