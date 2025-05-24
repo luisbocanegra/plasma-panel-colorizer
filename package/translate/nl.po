@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-05-22 06:38+0000\n"
+"POT-Creation-Date: 2025-05-24 19:16+0000\n"
 "PO-Revision-Date: 2025-04-23 10:51+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -498,6 +498,10 @@ msgstr ""
 "element bewerkt."
 
 #: ../contents/ui/configAppearance.qml
+msgid "Restore default (removes all customizations)"
+msgstr ""
+
+#: ../contents/ui/configAppearance.qml
 msgid "Panel"
 msgstr ""
 
@@ -513,22 +517,18 @@ msgstr ""
 
 #: ../contents/ui/configForeground.qml
 msgid ""
-"Force text and icon colors for specified widgets.<br><strong>Mask</strong>: "
-"Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: "
-"Force Text/Icons colorization using post-processing effect (any icon)."
-"<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for "
-"widgets that recreate or recolor content themselves<br>To restore the "
-"<strong>Mask<strong> and <strong>Color Effect</strong> disable and restart "
-"Plasma or logout."
+"Fix text and icon colors for widgets where the normal method doesn't work or "
+"isn't permanent.<br><strong>Mask</strong>: Force Icon colorization (symbolic "
+"icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization "
+"using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-"
+"apply colorization at a fixed interval, for widgets that recreate or recolor "
+"content themselves<br>To restore the <strong>Mask<strong> and <strong>Color "
+"Effect</strong> disable and restart Plasma or logout."
 msgstr ""
-"Dwing tekst- en pictogramkleuren af op bepaalde widgets."
-"<br><strong>Maskeren</strong>: dwing inkleuring van symbolische pictogrammen "
-"af.<br><strong>Kleureffect</strong>: pas tekst- en pictogramkleuren toe met "
-"behulp van voorverwerking.<br><strong>Herladen</strong>: pas kleuring na een "
-"ingestelde tussenpoos telkens opnieuw toe. Handig voor widgets die bij "
-"wijzigingen zelf kleuren instellen.<br>Alles herstellen kan door het "
-"<strong>masker<strong> en <strong>kleureffect</strong> uit te schakelen en "
-"Plasma te herstarten of af en aan te melden."
+
+#: ../contents/ui/configForeground.qml
+msgid "Restore default (removes all icon and text fixes)"
+msgstr ""
 
 #: ../contents/ui/configForeground.qml
 msgid "Force Text/Icon color"
@@ -647,6 +647,11 @@ msgstr ""
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 #: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Restore default (removes all overrides)"
+msgstr ""
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Configuration overrides"
 msgstr "Voorrangsregels"
 
@@ -689,17 +694,14 @@ msgstr "Niets doen"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid ""
-"Disable preset auto-loading when making changes to presets, unsaved preset "
-"settings will be lost when presets change!"
+"Switch between different presets based on the Panel and window states."
+"<br>Disable preset auto-loading when making changes to presets, unsaved "
+"preset settings will be lost when presets change!"
 msgstr ""
-"Schakel het automatisch laden na het aanpassen van de voorinstellingen uit. "
-"Let op: niet-opgeslagen instellingen worden hierdoor gewist!"
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid ""
-"Switch between different panel presets based on the Panel and window states"
+msgid "Restore default (removes all autoloading conditions)"
 msgstr ""
-"Schakelen tussen voorinstellingen op basis van paneel- en vensterstatus"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Environment"
@@ -807,8 +809,8 @@ msgstr ""
 "set voorinstellingen te kiezen, anders worden ze gewist!"
 
 #: ../contents/ui/configPresets.qml
-msgid "Restore default panel appearance"
-msgstr "Standaard paneelvormgeving herstellen"
+msgid "Restore default preset"
+msgstr ""
 
 #: ../contents/ui/configPresets.qml
 msgid "New from current settings"
@@ -1015,6 +1017,10 @@ msgstr ""
 "<strong>oneven</strong> widgetafstanden worden automatisch omgezet in "
 "<strong>even</strong> afstanden."
 
+#: ../contents/ui/configUnifiedBackground.qml
+msgid "Restore default (removes all unified areas)"
+msgstr ""
+
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Widget verbergen (zichtbaar in paneelbewerkmodus)"
@@ -1027,6 +1033,40 @@ msgstr "Kies de voorinstellingen"
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr ""
 "Er is geen paneel aangetroffen - de widget dient op een paneel te staan"
+
+#~ msgid ""
+#~ "Force text and icon colors for specified widgets.<br><strong>Mask</"
+#~ "strong>: Force Icon colorization (symbolic icons).<br><strong>Color "
+#~ "Effect</strong>: Force Text/Icons colorization using post-processing "
+#~ "effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at "
+#~ "a fixed interval, for widgets that recreate or recolor content "
+#~ "themselves<br>To restore the <strong>Mask<strong> and <strong>Color "
+#~ "Effect</strong> disable and restart Plasma or logout."
+#~ msgstr ""
+#~ "Dwing tekst- en pictogramkleuren af op bepaalde widgets."
+#~ "<br><strong>Maskeren</strong>: dwing inkleuring van symbolische "
+#~ "pictogrammen af.<br><strong>Kleureffect</strong>: pas tekst- en "
+#~ "pictogramkleuren toe met behulp van voorverwerking.<br><strong>Herladen</"
+#~ "strong>: pas kleuring na een ingestelde tussenpoos telkens opnieuw toe. "
+#~ "Handig voor widgets die bij wijzigingen zelf kleuren instellen.<br>Alles "
+#~ "herstellen kan door het <strong>masker<strong> en <strong>kleureffect</"
+#~ "strong> uit te schakelen en Plasma te herstarten of af en aan te melden."
+
+#~ msgid ""
+#~ "Disable preset auto-loading when making changes to presets, unsaved "
+#~ "preset settings will be lost when presets change!"
+#~ msgstr ""
+#~ "Schakel het automatisch laden na het aanpassen van de voorinstellingen "
+#~ "uit. Let op: niet-opgeslagen instellingen worden hierdoor gewist!"
+
+#~ msgid ""
+#~ "Switch between different panel presets based on the Panel and window "
+#~ "states"
+#~ msgstr ""
+#~ "Schakelen tussen voorinstellingen op basis van paneel- en vensterstatus"
+
+#~ msgid "Restore default panel appearance"
+#~ msgstr "Standaard paneelvormgeving herstellen"
 
 #~ msgid "Native panel background:"
 #~ msgstr "Standaard paneelachtergrond:"
