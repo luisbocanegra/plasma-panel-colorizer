@@ -132,14 +132,17 @@ PlasmoidItem {
         } catch (e) {
             console.error(e, e.stack);
         }
+        if (!("overrides" in globalOverrides)) {
+            globalOverrides.overrides = {};
+        }
         Utils.fixConfigurationOverridesV3(globalOverrides.overrides);
-        const config = Utils.mergeConfigs(Globals.baseOverrideConfig, globalOverrides);
-        const configStr = JSON.stringify(config);
+        globalOverrides = Utils.mergeConfigs(Globals.defaultConfig.configurationOverrides, globalOverrides);
+        const configStr = JSON.stringify(globalOverrides);
         if (plasmoid.configuration.configurationOverrides !== configStr) {
             plasmoid.configuration.configurationOverrides = configStr;
             plasmoid.configuration.writeConfig();
         }
-        return config;
+        return globalOverrides;
     }
     property var forceForegroundColor: {
         try {
