@@ -1,5 +1,6 @@
 pragma ComponentBehavior: Bound
 import QtQuick
+import QtQuick.Controls
 import QtQuick.Layouts
 import "code/utils.js" as Utils
 import "components" as Components
@@ -89,6 +90,14 @@ KCM.SimpleKCM {
         loaded = true;
     }
 
+    function restoreSettings() {
+        loaded = false;
+        unifiedBackgroundSettings = [];
+        loaded = true;
+        initWidgets();
+        updateConfig();
+    }
+
     Component.onCompleted: {
         // ignore 1.2.0- old config format
         unifiedBackgroundSettings = Utils.clearOldWidgetConfig(config.unifiedBackground);
@@ -114,6 +123,15 @@ KCM.SimpleKCM {
                 text: i18n("Select start and end of unified background areas, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Note: <strong>odd</strong> widget spacing values are automatically converted to <strong>evens</strong> when this feature is used.")
                 visible: true
                 type: Kirigami.MessageType.Information
+            }
+
+            Button {
+                text: i18n("Restore default (removes all unified areas)")
+                icon.name: "kt-restore-defaults-symbolic"
+                onClicked: {
+                    root.restoreSettings();
+                }
+                Layout.fillWidth: true
             }
 
             ColumnLayout {

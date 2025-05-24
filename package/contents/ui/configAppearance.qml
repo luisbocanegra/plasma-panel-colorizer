@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import "code/utils.js" as Utils
-import "code/enum.js" as Enum
+import "code/globals.js" as Globals
 import "components" as Components
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
@@ -69,6 +69,17 @@ KCM.SimpleKCM {
             text: i18n("Not getting the expected result? Make sure you're editing the correct element.")
             visible: true
             type: Kirigami.MessageType.Information
+        }
+
+        Button {
+            text: i18n("Restore default (removes all customizations)")
+            icon.name: "kt-restore-defaults-symbolic"
+            onClicked: {
+                cfg_globalSettings = JSON.stringify(Globals.defaultConfig);
+                componentLoader.sourceComponent = null;
+                componentLoader.sourceComponent = settingsComp;
+            }
+            Layout.fillWidth: true
         }
 
         Kirigami.FormLayout {

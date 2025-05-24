@@ -100,6 +100,13 @@ KCM.SimpleKCM {
         return 0;
     }
 
+    function restoreSettings() {
+        autoLoadConfig = JSON.parse(plasmoid.configuration.presetAutoloadingDefault);
+        cfg_widgetClickMode = plasmoid.configuration.widgetClickModeDefault;
+        switchPresets = JSON.parse(plasmoid.configuration.switchPresetsDefault);
+        updateConfig();
+    }
+
     Component.onCompleted: {
         runCommand.run(cratePresetsDirCmd);
         runCommand.run(listPresetsCmd);
@@ -117,14 +124,18 @@ KCM.SimpleKCM {
         enabled: cfg_isEnabled
         Kirigami.InlineMessage {
             Layout.fillWidth: true
-            text: i18n("Disable preset auto-loading when making changes to presets, unsaved preset settings will be lost when presets change!")
+            text: i18n("Switch between different presets based on the Panel and window states.<br>Disable preset auto-loading when making changes to presets, unsaved preset settings will be lost when presets change!")
             visible: true
             type: Kirigami.MessageType.Information
         }
-        Label {
-            text: i18n("Switch between different panel presets based on the Panel and window states")
-            Layout.maximumWidth: root.width - (Kirigami.Units.gridUnit * 2)
-            wrapMode: Text.Wrap
+
+        Button {
+            text: i18n("Restore default (removes all autoloading conditions)")
+            icon.name: "kt-restore-defaults-symbolic"
+            onClicked: {
+                root.restoreSettings();
+            }
+            Layout.fillWidth: true
         }
 
         Kirigami.FormLayout {
@@ -139,7 +150,7 @@ KCM.SimpleKCM {
                 Kirigami.FormData.label: i18n("Enabled:")
                 CheckBox {
                     id: enabledCheckbox
-                    checked: autoLoadConfig.enabled
+                    checked: autoLoadConfig.enabled ?? false
                     onCheckedChanged: {
                         autoLoadConfig.enabled = checked;
                         updateConfig();

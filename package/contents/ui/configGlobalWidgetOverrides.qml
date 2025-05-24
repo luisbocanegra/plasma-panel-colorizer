@@ -57,6 +57,13 @@ KCM.SimpleKCM {
         cfg_configurationOverrides = JSON.stringify(config, null, null);
     }
 
+    function restoreSettings() {
+        importConfig({
+            "overrides": {},
+            "associations": []
+        });
+    }
+
     ListModel {
         id: widgetsModel
     }
@@ -126,6 +133,16 @@ KCM.SimpleKCM {
             text: i18n("Create configuration overrides and apply them to one or multiple widgets. These overrides are independent and will be applied on top of the current settings and across presets.")
             visible: true
             type: Kirigami.MessageType.Information
+        }
+        RowLayout {
+            Button {
+                text: i18n("Restore default (removes all overrides)")
+                icon.name: "kt-restore-defaults-symbolic"
+                onClicked: {
+                    root.restoreSettings();
+                }
+                Layout.fillWidth: true
+            }
         }
         Components.SettingImportExport {
             onExportConfirmed: {
