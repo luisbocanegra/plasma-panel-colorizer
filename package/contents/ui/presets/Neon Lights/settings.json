@@ -11,7 +11,7 @@
                     "alpha": 1,
                     "systemColor": "backgroundColor",
                     "systemColorSet": "Window",
-                    "custom": "#121212",
+                    "custom": "#000000",
                     "list": [
                         "#ED8796",
                         "#A6DA95",
@@ -152,7 +152,7 @@
                             "alpha": 1,
                             "systemColor": "backgroundColor",
                             "systemColorSet": "View",
-                            "custom": "#121212",
+                            "custom": "#000000",
                             "list": [
                                 "#ED8796",
                                 "#A6DA95",
@@ -185,7 +185,7 @@
                             "alpha": 1,
                             "systemColor": "backgroundColor",
                             "systemColorSet": "View",
-                            "custom": "#282828",
+                            "custom": "#000000",
                             "list": [
                                 "#ED8796",
                                 "#A6DA95",
@@ -224,7 +224,7 @@
                     "alpha": 1,
                     "systemColor": "highlightColor",
                     "systemColorSet": "Window",
-                    "custom": "#121212",
+                    "custom": "#000000",
                     "list": [
                         "#ED8796",
                         "#A6DA95",
@@ -357,7 +357,7 @@
                             "alpha": 0.85,
                             "systemColor": "backgroundColor",
                             "systemColorSet": "View",
-                            "custom": "#282828",
+                            "custom": "#000000",
                             "list": [
                                 "#ED8796",
                                 "#A6DA95",
@@ -390,7 +390,7 @@
                             "alpha": 0.7,
                             "systemColor": "backgroundColor",
                             "systemColorSet": "View",
-                            "custom": "#282828",
+                            "custom": "#000000",
                             "list": [
                                 "#ED8796",
                                 "#A6DA95",
@@ -561,7 +561,7 @@
                             "alpha": 1,
                             "systemColor": "backgroundColor",
                             "systemColorSet": "View",
-                            "custom": "#282828",
+                            "custom": "#000000",
                             "list": [
                                 "#ED8796",
                                 "#A6DA95",
@@ -594,7 +594,7 @@
                             "alpha": 1,
                             "systemColor": "backgroundColor",
                             "systemColorSet": "View",
-                            "custom": "#282828",
+                            "custom": "#000000",
                             "list": [
                                 "#ED8796",
                                 "#A6DA95",

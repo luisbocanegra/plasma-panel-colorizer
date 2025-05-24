@@ -106,7 +106,7 @@ const baseShadowColor = {
   alpha: 1,
   systemColor: "backgroundColor",
   systemColorSet: "View",
-  custom: "#282828",
+  custom: "#000000",
   list: baseColorList,
   followColor: 0,
   saturationEnabled: false,
