@@ -1,5 +1,19 @@
 # Changelog
 
+## [4.2.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v4.1.0...v4.2.0) (2025-05-24)
+
+
+### Features
+
+* add restore default button to most tabs ([8ef35f8](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/8ef35f84f2d5a157b81cc5575da27cff529ef557))
+
+
+### Bug Fixes
+
+* default configuration not loading on fresh installs ([9662dfb](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/9662dfbe36769be2d0db881d9beae7167f12f399))
+* default text color not updating when color scheme changes ([504fd24](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/504fd2451d6217b37b6dc01cbb574d9c696002b3))
+* global overrides bad format update ([c335264](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/c335264d91a99be260e9b4491183966b7af136f0))
+
 ## [4.1.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v4.0.0...v4.1.0) (2025-05-24)
 
 
