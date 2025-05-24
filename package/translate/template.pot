@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-05-22 06:38+0000\n"
+"POT-Creation-Date: 2025-05-24 19:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -448,6 +448,10 @@ msgid "Not getting the expected result? Make sure you're editing the correct ele
 msgstr ""
 
 #: ../contents/ui/configAppearance.qml
+msgid "Restore default (removes all customizations)"
+msgstr ""
+
+#: ../contents/ui/configAppearance.qml
 msgid "Panel"
 msgstr ""
 
@@ -461,9 +465,13 @@ msgstr ""
 
 #: ../contents/ui/configForeground.qml
 msgid ""
-"Force text and icon colors for specified widgets.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-"
-"processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content themselves<br>To restore the <strong>Mask<strong> "
-"and <strong>Color Effect</strong> disable and restart Plasma or logout."
+"Fix text and icon colors for widgets where the normal method doesn't work or isn't permanent.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: "
+"Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content "
+"themselves<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
+msgstr ""
+
+#: ../contents/ui/configForeground.qml
+msgid "Restore default (removes all icon and text fixes)"
 msgstr ""
 
 #: ../contents/ui/configForeground.qml
@@ -575,6 +583,10 @@ msgid "Create configuration overrides and apply them to one or multiple widgets.
 msgstr ""
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Restore default (removes all overrides)"
+msgstr ""
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Configuration overrides"
 msgstr ""
 
@@ -603,11 +615,11 @@ msgid "Do nothing"
 msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "Disable preset auto-loading when making changes to presets, unsaved preset settings will be lost when presets change!"
+msgid "Switch between different presets based on the Panel and window states.<br>Disable preset auto-loading when making changes to presets, unsaved preset settings will be lost when presets change!"
 msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "Switch between different panel presets based on the Panel and window states"
+msgid "Restore default (removes all autoloading conditions)"
 msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
@@ -699,7 +711,7 @@ msgid ""
 msgstr ""
 
 #: ../contents/ui/configPresets.qml
-msgid "Restore default panel appearance"
+msgid "Restore default preset"
 msgstr ""
 
 #: ../contents/ui/configPresets.qml
@@ -879,6 +891,10 @@ msgstr ""
 msgid ""
 "Select start and end of unified background areas, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Note: <strong>odd</strong> widget spacing values are automatically "
 "converted to <strong>evens</strong> when this feature is used."
+msgstr ""
+
+#: ../contents/ui/configUnifiedBackground.qml
+msgid "Restore default (removes all unified areas)"
 msgstr ""
 
 #: ../contents/ui/main.qml
