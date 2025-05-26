@@ -441,7 +441,8 @@ PlasmoidItem {
         property var fgColorCfg: cfg.foregroundColor
         property int itemCount: 0
         property int maxDepth: 0
-        visible: cfgEnabled
+        opacity: cfgEnabled ? 1 : 0
+        property bool isVisible: target.visibleChildren.length > 0 && opacity !== 0
         property bool cfgEnabled: cfg.enabled && isEnabled
         property bool bgEnabled: bgColorCfg.enabled
         property bool fgEnabled: fgColorCfg.enabled
@@ -472,7 +473,7 @@ PlasmoidItem {
             if (isWidget && fgEnabled && cfgEnabled) {
                 return getColor(fgColorCfg, targetIndex, color, itemType, fgColorHolder);
             }
-            return main.panelElement.Kirigami.Theme.textColor;
+            return defaultColorHolder.Kirigami.Theme.textColor;
         }
 
         property bool throttleMaskUpdate: false
@@ -480,23 +481,19 @@ PlasmoidItem {
         // https://github.com/luisbocanegra/plasma-panel-colorizer/issues/212
         // https://bugs.kde.org/show_bug.cgi?id=502480
         Rectangle {
+            id: defaultColorHolder
+            height: 6
+            width: height
+            opacity: 0
+        }
+        Rectangle {
             id: fgColorHolder
             height: 6
             width: height
             opacity: 0
-            radius: height / 2
-            anchors.right: parent.right
             Kirigami.Theme.colorSet: Kirigami.Theme[fgColorCfg.systemColorSet]
         }
-        Rectangle {
-            id: bgColorHolder
-            height: 6
-            width: height
-            opacity: 0
-            radius: height / 2
-            anchors.right: parent.right
-            Kirigami.Theme.colorSet: Kirigami.Theme[bgColorCfg.systemColorSet]
-        }
+
         // Label {
         //     id: debugLabel
         //     text: targetIndex+","+trayIndex //maxDepth+","+itemCount
@@ -538,9 +535,10 @@ PlasmoidItem {
             }
         }
 
+        Kirigami.Theme.colorSet: Kirigami.Theme[bgColorCfg.systemColorSet]
         color: {
             if (bgEnabled && bgColorCfg.sourceType !== 5) {
-                return getColor(bgColorCfg, targetIndex, null, itemType, bgColorHolder);
+                return getColor(bgColorCfg, targetIndex, null, itemType, rect);
             } else {
                 return "transparent";
             }
@@ -1194,8 +1192,6 @@ PlasmoidItem {
             });
         }
 
-        property bool isVisible: target.visibleChildren.length > 0 && visible
-
         onBlurBehindChanged: {
             if (isWidget) {
                 widgetsDoingBlur[maskIndex] = blurBehind;
@@ -1226,7 +1222,7 @@ PlasmoidItem {
             if (borderRec.width <= 0 || borderRec.height <= 0)
                 return;
             position = Utils.getGlobalPosition(borderRec, panelElement);
-            panelColorizer.updatePanelMask(maskIndex, borderRec, rect.corners.topLeftRadius, rect.corners.topRightRadius, rect.corners.bottomLeftRadius, rect.corners.bottomRightRadius, Qt.point(rect.positionX - moveX, rect.positionY - moveY), 5, visible && blurBehind);
+            panelColorizer.updatePanelMask(maskIndex, borderRec, rect.corners.topLeftRadius, rect.corners.topRightRadius, rect.corners.bottomLeftRadius, rect.corners.bottomRightRadius, Qt.point(rect.positionX - moveX, rect.positionY - moveY), 5, isVisible && blurBehind);
         }
 
         property bool hovered: hoverHandler.hovered
