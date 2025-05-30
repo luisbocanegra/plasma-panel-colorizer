@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.2.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v4.2.0...v4.2.1) (2025-05-30)
+
+
+### Bug Fixes
+
+* color set option not changing colors ([b4fec65](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/b4fec658748edbeb55f191e51bcc12b0fe031f6b))
+
 ## [4.2.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v4.1.0...v4.2.0) (2025-05-24)
 
 
