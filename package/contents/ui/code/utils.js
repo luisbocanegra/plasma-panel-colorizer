@@ -184,7 +184,20 @@ function findWidgetsTray(grid, panelWidgets) {
   return panelWidgets;
 }
 
-function getWidgetProperties(item, pcTypes, hovered) {
+function getSystemTrayState(applet, plasmaVersion) {
+  if (!applet) {
+    return null
+  }
+  let systemTrayState = null
+  if (plasmaVersion.isGreaterThan("6.3.5")) {
+    systemTrayState = "systemTrayState" in applet && (applet.systemTrayState)
+  } else {
+    systemTrayState = "internalSystray" in applet && (applet.internalSystray.systemTrayState)
+  }
+  return systemTrayState
+}
+
+function getWidgetProperties(item, pcTypes, hovered, plasmaVersion) {
   let name = "";
   let id = -1;
   let expanded = false;
@@ -195,8 +208,11 @@ function getWidgetProperties(item, pcTypes, hovered) {
     const applet = item.applet;
     name = applet.plasmoid.pluginName;
     id = applet.plasmoid.id ?? -1;
-    expanded = applet.compactRepresentationItem !== null && applet.expanded ||
-      (applet.internalSystray ?? false) && (applet.internalSystray?.systemTrayState?.expanded ?? false);
+    if (applet.compactRepresentationItem !== null) {
+      expanded = applet.expanded
+    } else {
+      expanded = getSystemTrayState(applet, plasmaVersion)?.expanded ?? false
+    }
     needsAttention = pcTypes.NeedsAttentionStatus === applet.plasmoid.status ?? null;
     busy = applet.plasmoid.busy
   } else {

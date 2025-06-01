@@ -398,15 +398,21 @@ PlasmoidItem {
         property bool isTrayArrow: itemType === Enums.ItemType.TrayArrow
         property bool inTray: itemType === Enums.ItemType.TrayItem || isTrayArrow
         property bool luisbocanegraPanelColorizerBgManaged: true
-        property var widgetProperties: isTrayArrow ? {
-            "id": -1,
-            "name": "org.kde.plasma.systemtray.expand",
-            "hovered": hovered,
-            // https://github.com/KDE/plasma-workspace/blob/55ea74736ccbfc2fe97fd3634e5042002e39154c/applets/systemtray/package/contents/ui/main.qml#L111
-            "expanded": target.parent.parent.parent.systemTrayState.expanded && target.parent.parent.parent.systemTrayState.activeApplet === null,
-            "needsAttention": false,
-            "busy": false
-        } : Utils.getWidgetProperties(target, PlasmaCore.Types, hovered)
+        property var widgetProperties: {
+            if (isTrayArrow) {
+                const systemTrayState = Utils.getSystemTrayState(trayWidgetBgItem?.target?.applet, main.plasmaVersion);
+                return {
+                    "id": -1,
+                    "name": "org.kde.plasma.systemtray.expand",
+                    "hovered": hovered,
+                    "expanded": (systemTrayState?.expanded) && systemTrayState?.activeApplet === null,
+                    "needsAttention": false,
+                    "busy": false
+                };
+            } else {
+                return Utils.getWidgetProperties(target, PlasmaCore.Types, hovered, main.plasmaVersion);
+            }
+        }
         property string widgetName: widgetProperties.name
         property int widgetId: widgetProperties.id
         property var wRecolorCfg: Utils.getForceFgWidgetConfig(widgetId, widgetName, forceRecolorList)
