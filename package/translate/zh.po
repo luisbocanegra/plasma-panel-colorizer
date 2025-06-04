@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-05-24 19:16+0000\n"
+"POT-Creation-Date: 2025-06-04 23:21+0000\n"
 "PO-Revision-Date: 2025-04-05 20:32+0800\n"
 "Last-Translator: Mill413 <mill413@outlook.com>\n"
 "Language-Team: \n"
@@ -114,31 +114,55 @@ msgid "Smoothing (ms):"
 msgstr "平滑（毫秒）："
 
 #: ../contents/ui/components/FormColors.qml
-msgid "Source:"
-msgstr "来源："
+msgid "Color source:"
+msgstr ""
 
 #: ../contents/ui/components/FormColors.qml ../contents/ui/configStockPanelSettings.qml
 msgid "Custom"
 msgstr "自定义"
 
 #: ../contents/ui/components/FormColors.qml
+msgid "A fixed custom color"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
 msgid "System"
 msgstr "系统"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Color that updates with your System theme"
+msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Custom list"
 msgstr "自定义列表"
 
 #: ../contents/ui/components/FormColors.qml
+msgid "Define a list of colors that will be applied to all the elements, wraps around if there are more elements than colors"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
 msgid "Random"
 msgstr "随机"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Random color for each element"
+msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Follow"
 msgstr "跟随"
 
 #: ../contents/ui/components/FormColors.qml
+msgid "Follow the color of a parent element"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
 msgid "Gradient"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Horizontal or vertical customizable color gradient"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
@@ -178,6 +202,10 @@ msgid "Scaled and Cropped"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
+msgid "Image:"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
 msgid "Pick a image file"
 msgstr ""
 
@@ -190,12 +218,16 @@ msgid "All files"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
+msgid "Color:"
+msgstr "颜色："
+
+#: ../contents/ui/components/FormColors.qml
 msgid "Color set:"
 msgstr "配色集合："
 
 #: ../contents/ui/components/FormColors.qml
-msgid "Color:"
-msgstr "颜色："
+msgid "Colors:"
+msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Orientation:"
@@ -207,6 +239,10 @@ msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Vertical"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Gradient steps:"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml ../contents/ui/configGeneral.qml
@@ -228,10 +264,6 @@ msgstr "亮度："
 #: ../contents/ui/components/FormPadding.qml
 msgid "Padding"
 msgstr "内边距"
-
-#: ../contents/ui/components/FormPadding.qml
-msgid "Padding:"
-msgstr "内边距："
 
 #: ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormWidgetSettings.qml
 msgid "Shadow"
@@ -282,6 +314,10 @@ msgid "Busy"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Change element appearance based on their state, configuration is stacked on top of the current appearance"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel:"
 msgstr ""
 
@@ -292,6 +328,10 @@ msgstr "背景"
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Disable to make panel fully transparent, removes contrast and blur effects."
 msgstr "禁用可使面板完全透明，移除此对比度和模糊效果。"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "The shadow from the Plasma theme"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Opacity:"
@@ -318,8 +358,12 @@ msgid "Draw a custom blur mask behind the custom background(s).<br><strong>Nativ
 msgstr "在自定义背景后绘制模糊遮罩。<br><strong>需启用原生面板背景并将不透明度设为 0 才能生效。</strong>"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "C++ plugin not installed, <b>Blur custom background</b> will not work.<br>Check the repository README on GitHub for details."
-msgstr "未安装 C++ 插件，<b>模糊自定义背景</b>不可用。<br>详情请查看 GitHub 仓库的 README。"
+msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Plugin install instructions"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Spacing:"
@@ -552,10 +596,6 @@ msgid "Required to run the D-Bus service in the background"
 msgstr "需在后台运行 D-Bus 服务"
 
 #: ../contents/ui/configGeneral.qml
-msgid "How fast the widget reacts to D-Bus changes"
-msgstr "部件响应 D-Bus 变更的速度"
-
-#: ../contents/ui/configGeneral.qml
 msgid "Usage:"
 msgstr "用法："
 
@@ -568,12 +608,12 @@ msgid "Preview and switch presets using fzf + qdbus6 + jq:"
 msgstr "使用 fzf + qdbus6 + jq 预览并切换预设："
 
 #: ../contents/ui/configGeneral.qml
-msgid "Hide all panels"
-msgstr "隐藏所有面板"
+msgid "Hide/show this panel"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Show all panels"
-msgstr "显示所有面板"
+msgid "Hide/show all panels"
+msgstr ""
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides are independent and will be applied on top of the current settings and across presets."
@@ -896,6 +936,24 @@ msgstr "选择预设"
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr "未找到面板，此部件需放置在面板上才能工作"
+
+#~ msgid "Source:"
+#~ msgstr "来源："
+
+#~ msgid "Padding:"
+#~ msgstr "内边距："
+
+#~ msgid "C++ plugin not installed, <b>Blur custom background</b> will not work.<br>Check the repository README on GitHub for details."
+#~ msgstr "未安装 C++ 插件，<b>模糊自定义背景</b>不可用。<br>详情请查看 GitHub 仓库的 README。"
+
+#~ msgid "How fast the widget reacts to D-Bus changes"
+#~ msgstr "部件响应 D-Bus 变更的速度"
+
+#~ msgid "Hide all panels"
+#~ msgstr "隐藏所有面板"
+
+#~ msgid "Show all panels"
+#~ msgstr "显示所有面板"
 
 #~ msgid ""
 #~ "Force text and icon colors for specified widgets.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content themselves<br>To restore the <strong>Mask<strong> and "
