@@ -57,12 +57,6 @@ KCM.SimpleKCM {
 
     ColumnLayout {
         enabled: cfg_isEnabled
-        Component.onCompleted: {
-            Utils.delay(500, () => {
-                componentLoader.sourceComponent = settingsComp;
-                root.ready = true;
-            }, root);
-        }
 
         Kirigami.InlineMessage {
             Layout.fillWidth: true
@@ -76,8 +70,6 @@ KCM.SimpleKCM {
             icon.name: "kt-restore-defaults-symbolic"
             onClicked: {
                 cfg_globalSettings = JSON.stringify(Globals.defaultConfig);
-                componentLoader.sourceComponent = null;
-                componentLoader.sourceComponent = settingsComp;
             }
             Layout.fillWidth: true
         }
@@ -93,13 +85,6 @@ KCM.SimpleKCM {
                 Kirigami.FormData.label: i18n("Element:")
                 textRole: "name"
                 valueRole: "value"
-                onActivated: {
-                    componentLoader.sourceComponent = null;
-                    if (!root.ready)
-                        return;
-
-                    componentLoader.sourceComponent = settingsComp;
-                }
 
                 model: [
                     {
@@ -118,38 +103,20 @@ KCM.SimpleKCM {
             }
         }
 
-        Loader {
-            id: componentLoader
-
-            asynchronous: true
-            sourceComponent: null
-            Layout.fillWidth: true
-            onLoaded: {
-                item.configString = cfg_globalSettings;
-                item.onUpdateConfigString.connect((newString, config) => {
-                    cfg_globalSettings = newString;
-                });
-                item.currentTab = root.currentTab;
-                item.handleString = true;
-                item.elementState = root.currentState;
-                item.elementName = targetComponent.currentValue;
-                item.elementFriendlyName = targetComponent.currentText;
-                item.followVisbility = root.followVisbility[targetComponent.currentValue];
-                item.tabChanged.connect(currentTab => {
-                    root.currentTab = currentTab;
-                });
-                item.elementStateChanged.connect(() => {
-                    root.currentState = item.elementState;
-                    componentLoader.sourceComponent = null;
-                    componentLoader.sourceComponent = settingsComp;
-                });
-            }
-        }
-
-        Component {
+        Components.FormWidgetSettings {
             id: settingsComp
-
-            Components.FormWidgetSettings {}
+            currentTab: root.currentTab
+            configString: root.cfg_globalSettings
+            handleString: true
+            elementState: root.currentState
+            elementName: targetComponent.currentValue
+            elementFriendlyName: targetComponent.currentText
+            followVisbility: root.followVisbility[targetComponent.currentValue]
+            onElementStateChanged: root.currentState = elementState
+            onTabChanged: root.currentTab = currentTab
+            onUpdateConfigString: (newString, newConfig) => {
+                root.cfg_globalSettings = JSON.stringify(newConfig);
+            }
         }
     }
 

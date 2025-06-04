@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
 import "../code/enum.js" as Enum
+import "../code/utils.js" as Utils
 
 ColumnLayout {
     id: root
@@ -37,11 +38,26 @@ ColumnLayout {
         return "";
     }
 
-    property var configLocal: elementName ? config[elementName][stateName] : config[stateName]
+    signal reloaded
+
+    function reload() {
+        if (!ready) {
+            return;
+        }
+        console.error("FormWidgetSettings reload()");
+        configLocal = JSON.parse(JSON.stringify(elementName ? config[elementName][stateName] : config[stateName]));
+        reloaded();
+    }
+
+    onStateNameChanged: reload()
+    onElementNameChanged: reload()
+
+    property var configLocal: {
+        return elementName ? config[elementName][stateName] : config[stateName];
+    }
 
     property alias isEnabled: isEnabled.checked
     property int currentTab
-    property var panelColorizer: null
     property bool ready: false
     property bool showBlurMessage: false
     property var followVisbility: {
@@ -67,8 +83,7 @@ ColumnLayout {
             } else {
                 config[stateName] = configLocal;
             }
-            configString = JSON.stringify(config, null, null);
-            updateConfigString(configString, config);
+            updateConfigString(JSON.stringify(config, null, null), config);
         });
     }
 
@@ -76,15 +91,7 @@ ColumnLayout {
         tabChanged(currentTab);
     }
     Component.onCompleted: {
-        Qt.callLater(() => {
-            try {
-                panelColorizer = Qt.createQmlObject("import org.kde.plasma.panelcolorizer 1.0; PanelColorizer { id: panelColorizer }", root);
-                console.error("QML Plugin org.kde.plasma.panelcolorizer loaded");
-            } catch (err) {
-                console.error("QML Plugin org.kde.plasma.panelcolorizer not found");
-            }
-            ready = true;
-        });
+        Utils.delay(50, () => ready = true, root);
     }
 
     Kirigami.FormLayout {
@@ -149,6 +156,9 @@ ColumnLayout {
                 }
                 model: options
             }
+            Kirigami.ContextualHelpButton {
+                toolTipText: i18n("Change element appearance based on their state, configuration is stacked on top of the current appearance")
+            }
         }
 
         RowLayout {
@@ -168,17 +178,21 @@ ColumnLayout {
                 toolTipText: i18n("Disable to make panel fully transparent, removes contrast and blur effects.")
             }
         }
-
-        CheckBox {
-            id: nativePanelBackgroundShadowCheckbox
-            text: i18n("Shadow")
+        RowLayout {
             visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
-            enabled: nativePanelBackgroundCheckbox.checked
+            CheckBox {
+                id: nativePanelBackgroundShadowCheckbox
+                text: i18n("Shadow")
+                enabled: nativePanelBackgroundCheckbox.checked
 
-            checked: config.nativePanel.background.shadow
-            onCheckedChanged: {
-                config.nativePanel.background.shadow = checked;
-                updateConfig();
+                checked: config.nativePanel.background.shadow
+                onCheckedChanged: {
+                    config.nativePanel.background.shadow = checked;
+                    updateConfig();
+                }
+            }
+            Kirigami.ContextualHelpButton {
+                toolTipText: i18n("The shadow from the Plasma theme")
             }
         }
 
@@ -187,14 +201,14 @@ ColumnLayout {
             Label {
                 text: i18n("Opacity:")
             }
-            SpinBoxDecimal {
+            DoubleSpinBox {
+                id: opacitySpinbox
                 enabled: nativePanelBackgroundCheckbox.checked
-                Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
-                from: 0
-                to: 1
-                value: config.nativePanel.background.opacity ?? 0
-                onValueChanged: {
-                    config.nativePanel.background.opacity = value;
+                from: 0 * multiplier
+                to: 1 * multiplier
+                value: (config.nativePanel.background.opacity ?? 0) * multiplier
+                onValueModified: {
+                    config.nativePanel.background.opacity = value / opacitySpinbox.multiplier;
                     updateConfig();
                 }
             }
@@ -241,22 +255,21 @@ ColumnLayout {
             }
         }
 
-        Kirigami.InlineMessage {
-            id: warningResources
-
-            Layout.fillWidth: true
-            text: i18n("C++ plugin not installed, <b>Blur custom background</b> will not work.<br>Check the repository README on GitHub for details.")
-            visible: root.panelColorizer === null && root.ready
-            type: Kirigami.MessageType.Warning
-            actions: [
-                Kirigami.Action {
-                    icon.name: "view-readermode-symbolic"
-                    text: "Plugin install instructions"
-                    onTriggered: {
-                        Qt.openUrlExternally("https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually");
-                    }
+        ColumnLayout {
+            visible: !plasmoid.configuration.pluginFound
+            Layout.preferredWidth: 300
+            Label {
+                text: i18n("C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it.")
+                Layout.fillWidth: true
+                wrapMode: Text.Wrap
+            }
+            Button {
+                text: i18n("Plugin install instructions")
+                icon.name: "view-readermode-symbolic"
+                onClicked: {
+                    Qt.openUrlExternally("https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually");
                 }
-            ]
+            }
         }
     }
 

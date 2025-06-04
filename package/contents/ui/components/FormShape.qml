@@ -18,7 +18,6 @@ Kirigami.FormLayout {
     signal updateConfigString(string configString, var config)
 
     function updateConfig() {
-        configString = JSON.stringify(config, null, null);
         updateConfigString(configString, config);
     }
 
@@ -30,76 +29,76 @@ Kirigami.FormLayout {
         Kirigami.FormData.label: i18n("Radius")
     }
 
-    CheckBox {
-        id: radiusEnabledCheckbox
-
+    RowLayout {
         Kirigami.FormData.label: i18n("Enabled:")
-        checked: config.radius.enabled
-        onCheckedChanged: {
-            config.radius.enabled = checked;
-            updateConfig();
-        }
-        Kirigami.Theme.inherit: false
-        text: checked ? "" : i18n("Disabled")
+        CheckBox {
+            id: radiusEnabledCheckbox
 
-        Binding {
-            target: radiusEnabledCheckbox
-            property: "Kirigami.Theme.textColor"
-            value: shapeRoot.Kirigami.Theme.neutralTextColor
-            when: !radiusEnabledCheckbox.checked
-        }
-    }
-
-    GridLayout {
-        columns: 2
-        rows: 2
-        enabled: radiusEnabledCheckbox.checked
-
-        SpinBox {
-            id: topLeftRadius
-
-            value: config.radius.corner.topLeft
-            from: 0
-            to: 99
-            onValueModified: {
-                config.radius.corner.topLeft = value;
+            checked: config.radius.enabled
+            onCheckedChanged: {
+                config.radius.enabled = checked;
                 updateConfig();
             }
-        }
+            Kirigami.Theme.inherit: false
+            text: checked ? "" : i18n("Disabled")
 
-        SpinBox {
-            id: topRightRadius
-
-            value: config.radius.corner.topRight
-            from: 0
-            to: 99
-            onValueModified: {
-                config.radius.corner.topRight = value;
-                updateConfig();
+            Binding {
+                target: radiusEnabledCheckbox
+                property: "Kirigami.Theme.textColor"
+                value: shapeRoot.Kirigami.Theme.neutralTextColor
+                when: !radiusEnabledCheckbox.checked
             }
         }
+        ColumnLayout {
+            enabled: radiusEnabledCheckbox.checked
+            RowLayout {
+                SpinBox {
+                    id: topLeftRadius
 
-        SpinBox {
-            id: bottomLeftRadius
+                    value: config.radius.corner.topLeft
+                    from: 0
+                    to: 99
+                    onValueModified: {
+                        config.radius.corner.topLeft = value;
+                        updateConfig();
+                    }
+                }
+                SpinBox {
+                    id: topRightRadius
 
-            value: config.radius.corner.bottomLeft
-            from: 0
-            to: 99
-            onValueModified: {
-                config.radius.corner.bottomLeft = value;
-                updateConfig();
+                    value: config.radius.corner.topRight
+                    from: 0
+                    to: 99
+                    onValueModified: {
+                        config.radius.corner.topRight = value;
+                        updateConfig();
+                    }
+                }
             }
-        }
+            RowLayout {
+                SpinBox {
+                    id: bottomLeftRadius
 
-        SpinBox {
-            id: bottomRightRadius
+                    value: config.radius.corner.bottomLeft
+                    from: 0
+                    to: 99
+                    onValueModified: {
+                        config.radius.corner.bottomLeft = value;
+                        updateConfig();
+                    }
+                }
 
-            value: config.radius.corner.bottomRight
-            from: 0
-            to: 99
-            onValueModified: {
-                config.radius.corner.bottomRight = value;
-                updateConfig();
+                SpinBox {
+                    id: bottomRightRadius
+
+                    value: config.radius.corner.bottomRight
+                    from: 0
+                    to: 99
+                    onValueModified: {
+                        config.radius.corner.bottomRight = value;
+                        updateConfig();
+                    }
+                }
             }
         }
     }
@@ -109,84 +108,71 @@ Kirigami.FormLayout {
         Kirigami.FormData.label: i18n("Margin")
     }
 
-    CheckBox {
-        id: marginEnabledCheckbox
-
+    RowLayout {
         Kirigami.FormData.label: i18n("Enabled:")
-        checked: config.margin.enabled
-        onCheckedChanged: {
-            config.margin.enabled = checked;
-            updateConfig();
-        }
-        Kirigami.Theme.inherit: false
-        text: checked ? "" : i18n("Disabled")
+        CheckBox {
+            id: marginEnabledCheckbox
 
-        Binding {
-            target: marginEnabledCheckbox
-            property: "Kirigami.Theme.textColor"
-            value: shapeRoot.Kirigami.Theme.neutralTextColor
-            when: !marginEnabledCheckbox.checked
-        }
-    }
-
-    GridLayout {
-        columns: 3
-        rows: 3
-        enabled: marginEnabledCheckbox.checked
-
-        SpinBox {
-            id: topMargin
-
-            value: config.margin.side.top
-            from: -99
-            to: 99
-            Layout.row: 0
-            Layout.column: 1
-            onValueModified: {
-                config.margin.side.top = value;
+            checked: config.margin.enabled
+            onCheckedChanged: {
+                config.margin.enabled = checked;
                 updateConfig();
             }
-        }
+            Kirigami.Theme.inherit: false
+            text: checked ? "" : i18n("Disabled")
 
-        SpinBox {
-            id: bottomMargin
-
-            value: config.margin.side.bottom
-            from: -99
-            to: 99
-            Layout.row: 2
-            Layout.column: 1
-            onValueModified: {
-                config.margin.side.bottom = value;
-                updateConfig();
+            Binding {
+                target: marginEnabledCheckbox
+                property: "Kirigami.Theme.textColor"
+                value: shapeRoot.Kirigami.Theme.neutralTextColor
+                when: !marginEnabledCheckbox.checked
             }
         }
-
-        SpinBox {
-            id: leftMargin
-
-            value: config.margin.side.left
-            from: -99
-            to: 99
-            Layout.row: 1
-            Layout.column: 0
-            onValueModified: {
-                config.margin.side.left = value;
-                updateConfig();
+        RowLayout {
+            enabled: marginEnabledCheckbox.checked
+            SpinBox {
+                id: leftMargin
+                value: config.margin.side.left
+                from: -99
+                to: 99
+                onValueModified: {
+                    config.margin.side.left = value;
+                    updateConfig();
+                }
             }
-        }
 
-        SpinBox {
-            id: rightMargin
+            ColumnLayout {
+                SpinBox {
+                    id: topMargin
+                    value: config.margin.side.top
+                    from: -99
+                    to: 99
+                    onValueModified: {
+                        config.margin.side.top = value;
+                        updateConfig();
+                    }
+                }
 
-            value: config.margin.side.right
-            from: -99
-            to: 99
-            Layout.row: 1
-            Layout.column: 2
-            onValueModified: {
-                config.margin.side.right = value;
-                updateConfig();
+                SpinBox {
+                    id: bottomMargin
+                    value: config.margin.side.bottom
+                    from: -99
+                    to: 99
+                    onValueModified: {
+                        config.margin.side.bottom = value;
+                        updateConfig();
+                    }
+                }
+            }
+            SpinBox {
+                id: rightMargin
+                value: config.margin.side.right
+                from: -99
+                to: 99
+                onValueModified: {
+                    config.margin.side.right = value;
+                    updateConfig();
+                }
             }
         }
     }

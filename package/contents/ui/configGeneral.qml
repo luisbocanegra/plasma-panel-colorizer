@@ -87,13 +87,13 @@ KCM.SimpleKCM {
                     text: i18n("Alpha:")
                 }
 
-                Components.SpinBoxDecimal {
-                    Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
-                    from: 0
-                    to: 1
-                    value: root.editModeGridSettings.background.alpha ?? 0
-                    onValueChanged: {
-                        root.editModeGridSettings.background.alpha = value;
+                Components.DoubleSpinBox {
+                    id: bgAlphaSpinbox
+                    from: 0 * multiplier
+                    to: 1 * multiplier
+                    value: (root.editModeGridSettings.background.alpha ?? 0) * multiplier
+                    onValueModified: {
+                        root.editModeGridSettings.background.alpha = value / bgAlphaSpinbox.multiplier;
                         root.updateConfig();
                     }
                 }
@@ -119,13 +119,13 @@ KCM.SimpleKCM {
                     text: i18n("Alpha:")
                 }
 
-                Components.SpinBoxDecimal {
-                    Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
-                    from: 0
-                    to: 1
-                    value: root.editModeGridSettings.minorLine.alpha ?? 0
-                    onValueChanged: {
-                        root.editModeGridSettings.minorLine.alpha = value;
+                Components.DoubleSpinBox {
+                    id: minorLineSpinbox
+                    from: 0 * multiplier
+                    to: 1 * multiplier
+                    value: (root.editModeGridSettings.minorLine.alpha ?? 0) * multiplier
+                    onValueModified: {
+                        root.editModeGridSettings.minorLine.alpha = value / minorLineSpinbox.multiplier;
                         root.updateConfig();
                     }
                 }
@@ -167,13 +167,13 @@ KCM.SimpleKCM {
                     text: i18n("Alpha:")
                 }
 
-                Components.SpinBoxDecimal {
-                    Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
-                    from: 0
-                    to: 1
-                    value: root.editModeGridSettings.majorLine.alpha ?? 0
-                    onValueChanged: {
-                        root.editModeGridSettings.majorLine.alpha = value;
+                Components.DoubleSpinBox {
+                    id: majorLineSpinbox
+                    from: 0 * multiplier
+                    to: 1 * multiplier
+                    value: (root.editModeGridSettings.majorLine.alpha ?? 0) * multiplier
+                    onValueModified: {
+                        root.editModeGridSettings.majorLine.alpha = value / majorLineSpinbox.multiplier;
                         root.updateConfig();
                     }
                     enabled: majorLineEverySpinbox.value !== 0
@@ -240,6 +240,7 @@ KCM.SimpleKCM {
                 wrapMode: Text.WordWrap
                 Layout.preferredWidth: 400
                 opacity: 0.6
+                font: Kirigami.Theme.smallFont
             }
 
             TextField {
@@ -255,13 +256,7 @@ KCM.SimpleKCM {
                 wrapMode: Text.WordWrap
                 Layout.preferredWidth: 400
                 opacity: 0.6
-            }
-
-            Label {
-                text: i18n("How fast the widget reacts to D-Bus changes")
-                wrapMode: Text.WordWrap
-                Layout.preferredWidth: 400
-                opacity: 0.6
+                font: Kirigami.Theme.smallFont
             }
 
             Label {
@@ -290,7 +285,27 @@ KCM.SimpleKCM {
             }
 
             Label {
-                text: i18n("Hide all panels")
+                text: i18n("Hide/show this panel")
+            }
+
+            TextArea {
+                text: `qdbus6 ${root.dbusName} /preset property 'stockPanelSettings.visible {"enabled": true, "value": false}'`
+                readOnly: true
+                wrapMode: Text.WordWrap
+                Layout.preferredWidth: 400
+                enabled: enableDBusService.checked
+            }
+
+            TextArea {
+                text: `qdbus6 ${root.dbusName} /preset property 'stockPanelSettings.visible {"enabled": true, "value": true}'`
+                readOnly: true
+                wrapMode: Text.WordWrap
+                Layout.preferredWidth: 400
+                enabled: enableDBusService.checked
+            }
+
+            Label {
+                text: i18n("Hide/show all panels")
             }
 
             TextArea {
@@ -299,10 +314,6 @@ KCM.SimpleKCM {
                 wrapMode: Text.WordWrap
                 Layout.preferredWidth: 400
                 enabled: enableDBusService.checked
-            }
-
-            Label {
-                text: i18n("Show all panels")
             }
 
             TextArea {

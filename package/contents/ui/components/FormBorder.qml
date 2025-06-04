@@ -15,11 +15,11 @@ Kirigami.FormLayout {
     // internal config objects to be sent, both string and json
     property string configString: "{}"
     property var config: handleString ? JSON.parse(configString) : undefined
+    property string key
 
     signal updateConfigString(string configString, var config)
 
     function updateConfig() {
-        configString = JSON.stringify(config, null, null);
         updateConfigString(configString, config);
     }
 
@@ -35,10 +35,10 @@ Kirigami.FormLayout {
         id: enabledCheckbox
 
         Kirigami.FormData.label: i18n("Enabled:")
-        checked: config.enabled
+        checked: root.config.enabled
         onCheckedChanged: {
-            config.enabled = checked;
-            updateConfig();
+            root.config.enabled = checked;
+            root.updateConfig();
         }
         Kirigami.Theme.inherit: false
         text: checked ? "" : i18n("Disabled")
@@ -51,22 +51,17 @@ Kirigami.FormLayout {
         }
     }
 
-    RowLayout {
-        SpinBoxDecimal {
-            id: borderWidth
-
-            Kirigami.FormData.label: i18n("Width:")
-            value: config.width
-            from: 0
-            to: 99
-            Layout.preferredWidth: Kirigami.Units.gridUnit * 5
-            Layout.fillWidth: false
-            onValueChanged: {
-                config.width = value;
-                updateConfig();
-            }
-            enabled: !borderCustomSidesCheckbox.checked && enabledCheckbox.checked
+    DoubleSpinBox {
+        id: borderWidth
+        Kirigami.FormData.label: i18n("Width:")
+        value: root.config.width * multiplier
+        from: 0 * multiplier
+        to: 99 * multiplier
+        onValueModified: {
+            root.config.width = value / borderWidth.multiplier;
+            root.updateConfig();
         }
+        enabled: !borderCustomSidesCheckbox.checked && enabledCheckbox.checked
     }
 
     RowLayout {
@@ -75,71 +70,58 @@ Kirigami.FormLayout {
         CheckBox {
             id: borderCustomSidesCheckbox
 
-            checked: config.customSides
+            checked: root.config.customSides
             onCheckedChanged: {
-                config.customSides = checked;
-                updateConfig();
+                root.config.customSides = checked;
+                root.updateConfig();
             }
         }
 
-        GridLayout {
-            columns: 3
-            rows: 3
+        RowLayout {
             enabled: borderCustomSidesCheckbox.checked && enabledCheckbox.checked
-
-            SpinBoxDecimal {
-                id: topBorderWidth
-                Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
-                value: config.custom.widths.top
-                from: 0
-                to: 99
-                Layout.row: 0
-                Layout.column: 1
-                onValueChanged: {
-                    config.custom.widths.top = value;
-                    updateConfig();
-                }
-            }
-
-            SpinBoxDecimal {
-                id: bottomBorderWidth
-                Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
-                value: config.custom.widths.bottom
-                from: 0
-                to: 99
-                Layout.row: 2
-                Layout.column: 1
-                onValueChanged: {
-                    config.custom.widths.bottom = value;
-                    updateConfig();
-                }
-            }
-
-            SpinBoxDecimal {
+            DoubleSpinBox {
                 id: leftBorderWidth
-                Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
-                value: config.custom.widths.left
-                from: 0
-                to: 99
-                Layout.row: 1
-                Layout.column: 0
-                onValueChanged: {
-                    config.custom.widths.left = value;
-                    updateConfig();
+                value: root.config.custom.widths.left * multiplier
+                from: 0 * multiplier
+                to: 99 * multiplier
+                onValueModified: {
+                    root.config.custom.widths.left = value / leftBorderWidth.multiplier;
+                    root.updateConfig();
                 }
             }
 
-            SpinBoxDecimal {
+            ColumnLayout {
+                DoubleSpinBox {
+                    id: topBorderWidth
+                    value: root.config.custom.widths.top * multiplier
+                    from: 0 * multiplier
+                    to: 99 * multiplier
+                    onValueModified: {
+                        root.config.custom.widths.top = value / topBorderWidth.multiplier;
+                        root.updateConfig();
+                    }
+                }
+
+                DoubleSpinBox {
+                    id: bottomBorderWidth
+                    value: root.config.custom.widths.bottom * multiplier
+                    from: 0 * multiplier
+                    to: 99 * multiplier
+                    onValueModified: {
+                        root.config.custom.widths.bottom = value / bottomBorderWidth.multiplier;
+                        root.updateConfig();
+                    }
+                }
+            }
+
+            DoubleSpinBox {
                 id: rightBorderWidth
-                Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
-                value: config.custom.widths.right
-                from: 0
-                to: 99
-                Layout.row: 1
-                Layout.column: 2
-                onValueChanged: {
-                    config.custom.widths.right = value;
-                    updateConfig();
+                value: root.config.custom.widths.right * multiplier
+                from: 0 * multiplier
+                to: 99 * multiplier
+                onValueModified: {
+                    root.config.custom.widths.right = value / rightBorderWidth.multiplier;
+                    root.updateConfig();
                 }
             }
         }

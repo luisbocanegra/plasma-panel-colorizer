@@ -35,7 +35,6 @@ Kirigami.FormLayout {
     signal updateConfigString(string configString, var config)
 
     function updateConfig() {
-        configString = JSON.stringify(config, null, null);
         updateConfigString(configString, config);
     }
 
@@ -260,72 +259,102 @@ Kirigami.FormLayout {
         visible: false
     }
 
-    RadioButton {
-        id: singleColorRadio
+    RowLayout {
+        Kirigami.FormData.label: i18n("Color source:")
+        RadioButton {
+            id: singleColorRadio
 
-        property int index: 0
+            property int index: 0
 
-        Kirigami.FormData.label: i18n("Source:")
-        text: i18n("Custom")
-        ButtonGroup.group: colorModeGroup
-        checked: config.sourceType === index
-        enabled: !animationCheckbox.checked && isEnabled
+            text: i18n("Custom")
+            ButtonGroup.group: colorModeGroup
+            checked: config.sourceType === index
+            enabled: !animationCheckbox.checked && isEnabled
+        }
+        Kirigami.ContextualHelpButton {
+            toolTipText: i18n("A fixed custom color")
+        }
     }
 
-    RadioButton {
-        id: accentColorRadio
+    RowLayout {
+        RadioButton {
+            id: accentColorRadio
 
-        property int index: 1
+            property int index: 1
 
-        text: i18n("System")
-        ButtonGroup.group: colorModeGroup
-        checked: config.sourceType === index
-        enabled: !animationCheckbox.checked && isEnabled
+            text: i18n("System")
+            ButtonGroup.group: colorModeGroup
+            checked: config.sourceType === index
+            enabled: !animationCheckbox.checked && isEnabled
+        }
+        Kirigami.ContextualHelpButton {
+            toolTipText: i18n("Color that updates with your System theme")
+        }
     }
 
-    RadioButton {
-        id: listColorRadio
-
-        property int index: 2
-
-        text: i18n("Custom list")
-        ButtonGroup.group: colorModeGroup
-        checked: config.sourceType === index
+    RowLayout {
         visible: multiColor
-        enabled: isEnabled
+        RadioButton {
+            id: listColorRadio
+
+            property int index: 2
+
+            text: i18n("Custom list")
+            ButtonGroup.group: colorModeGroup
+            checked: config.sourceType === index
+            enabled: isEnabled
+        }
+        Kirigami.ContextualHelpButton {
+            toolTipText: i18n("Define a list of colors that will be applied to all the elements, wraps around if there are more elements than colors")
+        }
     }
 
-    RadioButton {
-        id: randomColorRadio
+    RowLayout {
+        RadioButton {
+            id: randomColorRadio
 
-        property int index: 3
+            property int index: 3
 
-        text: i18n("Random")
-        ButtonGroup.group: colorModeGroup
-        checked: config.sourceType === index
-        enabled: isEnabled
+            text: i18n("Random")
+            ButtonGroup.group: colorModeGroup
+            checked: config.sourceType === index
+            enabled: isEnabled
+        }
+        Kirigami.ContextualHelpButton {
+            toolTipText: i18n("Random color for each element")
+        }
     }
 
-    RadioButton {
-        id: followColorRadio
-
-        property int index: 4
-
-        text: i18n("Follow")
-        ButtonGroup.group: colorModeGroup
-        checked: config.sourceType === index
-        enabled: !animationCheckbox.checked && isEnabled
+    RowLayout {
         visible: showFollowRadio
+        RadioButton {
+            id: followColorRadio
+
+            property int index: 4
+
+            text: i18n("Follow")
+            ButtonGroup.group: colorModeGroup
+            checked: config.sourceType === index
+            enabled: !animationCheckbox.checked && isEnabled
+        }
+        Kirigami.ContextualHelpButton {
+            toolTipText: i18n("Follow the color of a parent element")
+        }
     }
 
-    RadioButton {
-        id: gradientRadio
-        property int index: 5
-        text: i18n("Gradient")
-        ButtonGroup.group: colorModeGroup
-        checked: config.sourceType === index
+    RowLayout {
         visible: root.supportsGradient
-        enabled: isEnabled
+        RadioButton {
+            id: gradientRadio
+            property int index: 5
+            text: i18n("Gradient")
+            ButtonGroup.group: colorModeGroup
+            checked: config.sourceType === index
+            enabled: isEnabled
+        }
+        Kirigami.ContextualHelpButton {
+            toolTipText: i18n("Horizontal or vertical customizable color gradient")
+        }
     }
 
     RowLayout {
@@ -338,16 +367,8 @@ Kirigami.FormLayout {
             ButtonGroup.group: colorModeGroup
             checked: config.sourceType === index
         }
-        Button {
-            icon.name: "dialog-information-symbolic"
-            ToolTip.text: i18n("High resolution images can slow down the desktop when the panel or widget size changes!")
-            hoverEnabled: true
-            flat: true
-            ToolTip.visible: hovered
-            Kirigami.Theme.inherit: false
-            Kirigami.Theme.textColor: Kirigami.Theme.neutralTextColor
-            Kirigami.Theme.highlightColor: Kirigami.Theme.neutralTextColor
-            icon.color: Kirigami.Theme.neutralTextColor
+        Kirigami.ContextualHelpButton {
+            toolTipText: i18n("High resolution images can slow down the desktop when the panel or widget size changes!")
         }
     }
 
@@ -440,6 +461,7 @@ Kirigami.FormLayout {
 
     RowLayout {
         visible: root.supportsImage && imageRadio.checked
+        Kirigami.FormData.label: i18n("Image:")
         TextField {
             id: imgTextArea
             Layout.preferredWidth: 300
@@ -472,9 +494,7 @@ Kirigami.FormLayout {
 
     ColorButton {
         id: customColorBtn
-
-        showAlphaChannel: false
-        // dialogTitle: i18n("Widget background")
+        Kirigami.FormData.label: i18n("Color:")
         color: config.custom
         visible: singleColorRadio.checked
         onAccepted: color => {
@@ -539,6 +559,7 @@ Kirigami.FormLayout {
     ColumnLayout {
         visible: multiColor && listColorRadio.checked
         enabled: isEnabled
+        Kirigami.FormData.label: i18n("Colors:")
 
         Loader {
             asynchronous: true
@@ -594,6 +615,7 @@ Kirigami.FormLayout {
     ColumnLayout {
         visible: root.supportsGradient && gradientRadio.checked
         enabled: isEnabled
+        Kirigami.FormData.label: i18n("Gradient steps:")
 
         Loader {
             asynchronous: true
@@ -619,13 +641,13 @@ Kirigami.FormLayout {
         Kirigami.FormData.label: i18n("Alpha:")
         visible: colorModeGroup.checkedButton.index < 5
 
-        SpinBoxDecimal {
-            Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
-            from: 0
-            to: 1
-            value: config.alpha ?? 0
-            onValueChanged: {
-                config.alpha = value;
+        DoubleSpinBox {
+            id: alphaSpinbox
+            from: 0 * multiplier
+            to: 1 * multiplier
+            value: (config.alpha ?? 0) * multiplier
+            onValueModified: {
+                config.alpha = value / alphaSpinbox.multiplier;
                 updateConfig();
             }
         }
@@ -653,13 +675,13 @@ Kirigami.FormLayout {
             }
         }
 
-        SpinBoxDecimal {
-            Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
-            from: 0
-            to: 1
-            value: config.saturationValue ?? 0
-            onValueChanged: {
-                config.saturationValue = value;
+        DoubleSpinBox {
+            id: saturationSpinbox
+            from: 0 * multiplier
+            to: 1 * multiplier
+            value: (config.saturationValue ?? 0) * multiplier
+            onValueModified: {
+                config.saturationValue = value / saturationSpinbox.multiplier;
                 updateConfig();
             }
         }
@@ -680,13 +702,13 @@ Kirigami.FormLayout {
             }
         }
 
-        SpinBoxDecimal {
-            Layout.preferredWidth: root.Kirigami.Units.gridUnit * 5
-            from: 0
-            to: 1
-            value: config.lightnessValue ?? 0
-            onValueChanged: {
-                config.lightnessValue = value;
+        DoubleSpinBox {
+            id: lightnessSpinbox
+            from: 0 * multiplier
+            to: 1 * multiplier
+            value: (config.lightnessValue ?? 0) * multiplier
+            onValueModified: {
+                config.lightnessValue = value / lightnessSpinbox.multiplier;
                 updateConfig();
             }
         }
