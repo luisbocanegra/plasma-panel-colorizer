@@ -60,6 +60,7 @@ Kirigami.AbstractCard {
                         color: Kirigami.Theme.textColor
                         selectedTextColor: Kirigami.Theme.highlightedTextColor
                         selectionColor: Kirigami.Theme.highlightColor
+                        font: Kirigami.Theme.smallFont
                     }
 
                     TextEdit {
@@ -69,6 +70,7 @@ Kirigami.AbstractCard {
                         color: Kirigami.Theme.textColor
                         selectedTextColor: Kirigami.Theme.highlightedTextColor
                         selectionColor: Kirigami.Theme.highlightColor
+                        font: Kirigami.Theme.smallFont
                     }
                 }
             }

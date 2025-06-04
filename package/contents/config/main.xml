@@ -92,5 +92,10 @@
         type="String">
         <default>{"enabled":false,"spacing":4,"majorLineEvery":0,"background":{"color":"#00ffff","alpha":0.25},"minorLine":{"color":"#000000","alpha":1},"majorLine":{"color":"#ff0000","alpha":1},"mayorLineEvery":2}</default>
     </entry>
+    <entry
+        name="pluginFound"
+        type="Bool">
+        <default>false</default>
+    </entry>
   </group>
 </kcfg>

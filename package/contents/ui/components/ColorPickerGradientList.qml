@@ -177,16 +177,16 @@ ColumnLayout {
                         }
                     }
 
-                    SpinBoxDecimal {
-                        Layout.preferredWidth: backgroundRoot.Kirigami.Units.gridUnit * 5
-                        value: model.position
+                    DoubleSpinBox {
+                        id: stepPositionSpinbox
+                        value: model.position * multiplier
                         // Component.onCompleted: value = parseFloat(model.position)
-                        from: 0
-                        to: 1
-                        onValueChanged: {
-                            if (value !== model.position) {
+                        from: 0 * multiplier
+                        to: 1 * multiplier
+                        onValueModified: {
+                            if (value !== model.position / stepPositionSpinbox.multiplier) {
                                 stopsListModel.set(index, {
-                                    "position": value
+                                    "position": value / stepPositionSpinbox.multiplier
                                 });
                                 updateColorsList();
                             }

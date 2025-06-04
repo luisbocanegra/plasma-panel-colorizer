@@ -19,7 +19,6 @@ Kirigami.FormLayout {
     signal updateConfigString(string configString, var config)
 
     function updateConfig() {
-        configString = JSON.stringify(config, null, null);
         updateConfigString(configString, config);
     }
 

@@ -1,5 +1,5 @@
-// This is a modified version of https://invent.kde.org/frameworks/kdeclarative/-/blob/master/src/qmlcontrols/kquickcontrols/root.qml to make it look more like a button
-
+// This is a modified version of https://invent.kde.org/frameworks/kdeclarative/-/blob/master/src/qmlcontrols/kquickcontrols/ColorButton.qml to make it look more like a button
+pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Dialogs
@@ -12,11 +12,11 @@ Button {
     /**
      * The user selected color
      */
-    property color color
+    property alias color: colorDialog.selectedColor
     /**
      * Title to show in the dialog
      */
-    property string dialogTitle
+    property alias dialogTitle: colorDialog.title
     /**
      * Allow the user to configure an alpha value
      */
@@ -28,41 +28,17 @@ Button {
      *
      * @since 5.61
      */
-    signal accepted(color color)
+    signal accepted(string color)
 
     onClicked: {
-        colorWindowComponent.createObject(root);
+        colorDialog.open();
     }
 
-    Component {
-        id: colorWindowComponent
-
-        // QTBUG-119055 https://invent.kde.org/plasma/kdeplasma-addons/-/commit/797cef06882acdf4257d8c90b8768a74fdef0955
-        Window {
-            id: window
-
-            width: Kirigami.Units.gridUnit * 16
-            height: Kirigami.Units.gridUnit * 23
-            visible: true
-            title: plasmoid.title
-            onClosing: destroy()
-            Component.onCompleted: colorDialog.open()
-
-            ColorDialog {
-                id: colorDialog
-
-                title: root.dialogTitle
-                selectedColor: root.color || undefined // Prevent transparent colors
-                options: root.showAlphaChannel
-                parentWindow: window.Window.window
-                onAccepted: {
-                    root.color = selectedColor;
-                    root.accepted(selectedColor);
-                    window.destroy();
-                }
-                onRejected: window.destroy()
-            }
-        }
+    ColorDialog {
+        id: colorDialog
+        onAccepted: root.accepted(color)
+        parentWindow: root.Window.window
+        options: root.showAlphaChannel ? ColorDialog.ShowAlphaChannel : undefined
     }
 
     contentItem: Item {

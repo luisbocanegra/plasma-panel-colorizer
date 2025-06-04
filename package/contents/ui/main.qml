@@ -192,6 +192,14 @@ PlasmoidItem {
     property var switchPresets: JSON.parse(plasmoid.configuration.switchPresets)
     property QtObject panelView: null
 
+    onPanelColorizerChanged: {
+        const found = panelColorizer !== null;
+        if (plasmoid.configuration.pluginFound !== found) {
+            plasmoid.configuration.pluginFound = found;
+            plasmoid.configuration.writeConfig();
+        }
+    }
+
     onStockPanelSettingsChanged: {
         Qt.callLater(function () {
             // console.error(JSON.stringify(stockPanelSettings))
