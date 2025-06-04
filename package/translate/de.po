@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-05-24 19:16+0000\n"
+"POT-Creation-Date: 2025-06-04 23:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -114,31 +114,55 @@ msgid "Smoothing (ms):"
 msgstr "Glättend (ms):"
 
 #: ../contents/ui/components/FormColors.qml
-msgid "Source:"
-msgstr "Quelle:"
+msgid "Color source:"
+msgstr ""
 
 #: ../contents/ui/components/FormColors.qml ../contents/ui/configStockPanelSettings.qml
 msgid "Custom"
 msgstr "Individuell"
 
 #: ../contents/ui/components/FormColors.qml
+msgid "A fixed custom color"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
 msgid "System"
 msgstr "System"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Color that updates with your System theme"
+msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Custom list"
 msgstr "Individuelle Liste"
 
 #: ../contents/ui/components/FormColors.qml
+msgid "Define a list of colors that will be applied to all the elements, wraps around if there are more elements than colors"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
 msgid "Random"
 msgstr "Zufällig"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Random color for each element"
+msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Follow"
 msgstr "Folge"
 
 #: ../contents/ui/components/FormColors.qml
+msgid "Follow the color of a parent element"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
 msgid "Gradient"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Horizontal or vertical customizable color gradient"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
@@ -178,6 +202,10 @@ msgid "Scaled and Cropped"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
+msgid "Image:"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
 msgid "Pick a image file"
 msgstr ""
 
@@ -190,12 +218,16 @@ msgid "All files"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
+msgid "Color:"
+msgstr "Farbe:"
+
+#: ../contents/ui/components/FormColors.qml
 msgid "Color set:"
 msgstr "Farbeneinstellung:"
 
 #: ../contents/ui/components/FormColors.qml
-msgid "Color:"
-msgstr "Farbe:"
+msgid "Colors:"
+msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Orientation:"
@@ -207,6 +239,10 @@ msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Vertical"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Gradient steps:"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml ../contents/ui/configGeneral.qml
@@ -227,10 +263,6 @@ msgstr "Helligkeit"
 
 #: ../contents/ui/components/FormPadding.qml
 msgid "Padding"
-msgstr "Füllung"
-
-#: ../contents/ui/components/FormPadding.qml
-msgid "Padding:"
 msgstr "Füllung"
 
 #: ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormWidgetSettings.qml
@@ -282,6 +314,10 @@ msgid "Busy"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Change element appearance based on their state, configuration is stacked on top of the current appearance"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel:"
 msgstr ""
 
@@ -292,6 +328,10 @@ msgstr "Hintergrund"
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Disable to make panel fully transparent, removes contrast and blur effects."
 msgstr "Ausschalten damit die Kontrollleiste voll transparent wird"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "The shadow from the Plasma theme"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Opacity:"
@@ -318,8 +358,12 @@ msgid "Draw a custom blur mask behind the custom background(s).<br><strong>Nativ
 msgstr "Zeichene eine individuelle Hintergrundschärfe-Maske hinter dem individuellen Hintergrund.<br><streng>Nativer Kontrolleistenhintergrund muss auf eine Opazität 0 gesetzt werden, damit es funktioniert.</streng> "
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "C++ plugin not installed, <b>Blur custom background</b> will not work.<br>Check the repository README on GitHub for details."
-msgstr "C++ PlugIn nicht installiert, <b>Individuelle Hintergrundschärfe</b> wird nicht funktionieren.<br>Check the repository README on GitHub for details."
+msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Plugin install instructions"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Spacing:"
@@ -552,10 +596,6 @@ msgid "Required to run the D-Bus service in the background"
 msgstr "Voraussetzung um den D-Bus Service im Hintergrund laufen zu lassen"
 
 #: ../contents/ui/configGeneral.qml
-msgid "How fast the widget reacts to D-Bus changes"
-msgstr "Wie schnell das Widget auf D-Bus Veränderungen reagiert"
-
-#: ../contents/ui/configGeneral.qml
 msgid "Usage:"
 msgstr "Nutzung"
 
@@ -568,12 +608,12 @@ msgid "Preview and switch presets using fzf + qdbus6 + jq:"
 msgstr "Vorschau und Schalter- Voreinstellungen nutzen fzf + qdbus6 + jb:"
 
 #: ../contents/ui/configGeneral.qml
-msgid "Hide all panels"
-msgstr "Verstecke sämtliche Kontrollleisten"
+msgid "Hide/show this panel"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Show all panels"
-msgstr "Zeige sämtliche Kontrollleisten"
+msgid "Hide/show all panels"
+msgstr ""
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides are independent and will be applied on top of the current settings and across presets."
@@ -898,6 +938,24 @@ msgstr "Wähle eine Voreinstellung"
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr "Kontrollleiste nicht gefunden, dieses Widget muss in der Kontrollleiste plaziert werden, da es ansonsten nicht funktioniert"
+
+#~ msgid "Source:"
+#~ msgstr "Quelle:"
+
+#~ msgid "Padding:"
+#~ msgstr "Füllung"
+
+#~ msgid "C++ plugin not installed, <b>Blur custom background</b> will not work.<br>Check the repository README on GitHub for details."
+#~ msgstr "C++ PlugIn nicht installiert, <b>Individuelle Hintergrundschärfe</b> wird nicht funktionieren.<br>Check the repository README on GitHub for details."
+
+#~ msgid "How fast the widget reacts to D-Bus changes"
+#~ msgstr "Wie schnell das Widget auf D-Bus Veränderungen reagiert"
+
+#~ msgid "Hide all panels"
+#~ msgstr "Verstecke sämtliche Kontrollleisten"
+
+#~ msgid "Show all panels"
+#~ msgstr "Zeige sämtliche Kontrollleisten"
 
 #~ msgid ""
 #~ "Force text and icon colors for specified widgets.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content themselves<br>To restore the <strong>Mask<strong> and "

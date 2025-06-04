@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-05-24 19:16+0000\n"
+"POT-Creation-Date: 2025-06-04 23:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -116,7 +116,7 @@ msgid "Smoothing (ms):"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
-msgid "Source:"
+msgid "Color source:"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml ../contents/ui/configStockPanelSettings.qml
@@ -124,7 +124,15 @@ msgid "Custom"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
+msgid "A fixed custom color"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
 msgid "System"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Color that updates with your System theme"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
@@ -132,7 +140,15 @@ msgid "Custom list"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
+msgid "Define a list of colors that will be applied to all the elements, wraps around if there are more elements than colors"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
 msgid "Random"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Random color for each element"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
@@ -140,7 +156,15 @@ msgid "Follow"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
+msgid "Follow the color of a parent element"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
 msgid "Gradient"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Horizontal or vertical customizable color gradient"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
@@ -180,6 +204,10 @@ msgid "Scaled and Cropped"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
+msgid "Image:"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
 msgid "Pick a image file"
 msgstr ""
 
@@ -192,11 +220,15 @@ msgid "All files"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
+msgid "Color:"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
 msgid "Color set:"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
-msgid "Color:"
+msgid "Colors:"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
@@ -209,6 +241,10 @@ msgstr ""
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Vertical"
+msgstr ""
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Gradient steps:"
 msgstr ""
 
 #: ../contents/ui/components/FormColors.qml ../contents/ui/configGeneral.qml
@@ -229,10 +265,6 @@ msgstr ""
 
 #: ../contents/ui/components/FormPadding.qml
 msgid "Padding"
-msgstr ""
-
-#: ../contents/ui/components/FormPadding.qml
-msgid "Padding:"
 msgstr ""
 
 #: ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormWidgetSettings.qml
@@ -284,6 +316,10 @@ msgid "Busy"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Change element appearance based on their state, configuration is stacked on top of the current appearance"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel:"
 msgstr ""
 
@@ -293,6 +329,10 @@ msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Disable to make panel fully transparent, removes contrast and blur effects."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "The shadow from the Plasma theme"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -320,7 +360,11 @@ msgid "Draw a custom blur mask behind the custom background(s).<br><strong>Nativ
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "C++ plugin not installed, <b>Blur custom background</b> will not work.<br>Check the repository README on GitHub for details."
+msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Plugin install instructions"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -555,10 +599,6 @@ msgid "Required to run the D-Bus service in the background"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "How fast the widget reacts to D-Bus changes"
-msgstr ""
-
-#: ../contents/ui/configGeneral.qml
 msgid "Usage:"
 msgstr ""
 
@@ -571,11 +611,11 @@ msgid "Preview and switch presets using fzf + qdbus6 + jq:"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Hide all panels"
+msgid "Hide/show this panel"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Show all panels"
+msgid "Hide/show all panels"
 msgstr ""
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
