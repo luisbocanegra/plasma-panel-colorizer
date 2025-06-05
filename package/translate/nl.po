@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
 "POT-Creation-Date: 2025-06-05 04:58+0000\n"
-"PO-Revision-Date: 2025-05-26 10:54+0200\n"
+"PO-Revision-Date: 2025-06-05 11:02+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -131,7 +131,7 @@ msgstr "Vloeiend maken (in ms):"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Color source:"
-msgstr ""
+msgstr "Kleurbron:"
 
 #: ../contents/ui/components/FormColors.qml
 #: ../contents/ui/configStockPanelSettings.qml
@@ -140,7 +140,7 @@ msgstr "Aangepast"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "A fixed custom color"
-msgstr ""
+msgstr "Een zelfgekozen kleur"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "System"
@@ -148,7 +148,7 @@ msgstr "Systeeminstellingen"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Color that updates with your System theme"
-msgstr ""
+msgstr "De kleur van het systeemthema"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Custom list"
@@ -159,6 +159,8 @@ msgid ""
 "Define a list of colors that will be applied to all the elements, wraps "
 "around if there are more elements than colors"
 msgstr ""
+"Stel een lijst samen met kleuren die worden toegepast op alle elementen - in "
+"herhaalde volgorde indien er meer elementen dat kleuren zijn"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Random"
@@ -166,15 +168,15 @@ msgstr "Willekeurig"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Random color for each element"
-msgstr ""
+msgstr "Gebruik een willekeurige kleur per element"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Follow"
-msgstr "Volgen"
+msgstr "Hoofdelement volgen"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Follow the color of a parent element"
-msgstr ""
+msgstr "Gebruik de kleur van het hoofdelement"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Gradient"
@@ -182,7 +184,7 @@ msgstr "Kleurverloop"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Horizontal or vertical customizable color gradient"
-msgstr ""
+msgstr "Een horizontaal of verticaal kleurverloop, naar eigen inzicht"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Image"
@@ -225,7 +227,7 @@ msgstr "Bijsnijden en inpassen"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Image:"
-msgstr ""
+msgstr "Afbeelding:"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Pick a image file"
@@ -249,7 +251,7 @@ msgstr "Kleurenschema:"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Colors:"
-msgstr ""
+msgstr "Kleuren:"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Orientation:"
@@ -265,7 +267,7 @@ msgstr "Verticaal"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Gradient steps:"
-msgstr ""
+msgstr "Kleurverloopstappen:"
 
 #: ../contents/ui/components/FormColors.qml ../contents/ui/configGeneral.qml
 msgid "Alpha:"
@@ -341,6 +343,8 @@ msgid ""
 "Change element appearance based on their state, configuration is stacked on "
 "top of the current appearance"
 msgstr ""
+"Pas de vormgeving van elementen aan op basis van hun status - de "
+"instellingen worden bovenop de huidige vormgeving toegepast"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel:"
@@ -360,7 +364,7 @@ msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "The shadow from the Plasma theme"
-msgstr ""
+msgstr "De schaduw van het Plasma-thema"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Opacity:"
@@ -398,10 +402,12 @@ msgid ""
 "C++ plugin not found, this feature will not work. Install the plugin and "
 "reboot or restart plasmashell to be able to use it."
 msgstr ""
+"Deze functie werkt niet, omdat de C++-plug-in niet is aangetroffen. "
+"Installeer de plug-in en herstart (plasmashell) om er gebruik van te maken."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Plugin install instructions"
-msgstr ""
+msgstr "Installatie-instructies"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Spacing:"
@@ -450,7 +456,7 @@ msgstr "Voorgrondschaduwkleur"
 
 #: ../contents/ui/components/Header.qml
 msgid "Enable %1:"
-msgstr ""
+msgstr "%1 inschakelen:"
 
 #: ../contents/ui/components/Header.qml ../contents/ui/main.qml
 msgid "Last preset loaded:"
@@ -466,6 +472,9 @@ msgid ""
 "please log out and back in (or restart plasmashell user unit) to ensure "
 "things work correctly!"
 msgstr ""
+"De actieve versie van de widget (%1) komt niet overeen met de geïnstalleerde "
+"versie (%2). Meld je af en aan (of herstart plasmashell) om optimaal te "
+"kunnen werken!"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "Import"
@@ -687,11 +696,11 @@ msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Hide/show this panel"
-msgstr ""
+msgstr "Paneel tonen/verbergen"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Hide/show all panels"
-msgstr ""
+msgstr "Alle panelen tonen/verbergen"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid ""
@@ -1101,7 +1110,7 @@ msgstr "Kies de voorinstellingen"
 
 #: ../contents/ui/main.qml
 msgid "Running outdated version of %1"
-msgstr ""
+msgstr "Verouderde versie van ‘%1’"
 
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
