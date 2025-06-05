@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
 "POT-Creation-Date: 2025-06-05 04:58+0000\n"
-"PO-Revision-Date: 2025-04-05 20:32+0800\n"
+"PO-Revision-Date: 2025-06-05 23:14+0800\n"
 "Last-Translator: Mill413 <mill413@outlook.com>\n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -717,7 +717,7 @@ msgstr "浮动面板时："
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "activity:"
-msgstr ""
+msgstr "活动："
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Normal:"
