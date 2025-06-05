@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-06-04 23:21+0000\n"
+"POT-Creation-Date: 2025-06-05 04:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -408,7 +408,7 @@ msgid "Foreground Shadow Color"
 msgstr ""
 
 #: ../contents/ui/components/Header.qml
-msgid "Enable Panel Colorizer:"
+msgid "Enable %1:"
 msgstr ""
 
 #: ../contents/ui/components/Header.qml ../contents/ui/main.qml
@@ -417,6 +417,10 @@ msgstr ""
 
 #: ../contents/ui/components/Header.qml
 msgid "Version:"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml ../contents/ui/main.qml
+msgid "Running version of the widget (%1) is different to the one on disk (%2), please log out and back in (or restart plasmashell user unit) to ensure things work correctly!"
 msgstr ""
 
 #: ../contents/ui/components/SettingImportExport.qml
@@ -943,6 +947,10 @@ msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Select a preset"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Running outdated version of %1"
 msgstr ""
 
 #: ../contents/ui/main.qml

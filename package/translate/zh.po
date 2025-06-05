@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-06-04 23:21+0000\n"
+"POT-Creation-Date: 2025-06-05 04:58+0000\n"
 "PO-Revision-Date: 2025-04-05 20:32+0800\n"
 "Last-Translator: Mill413 <mill413@outlook.com>\n"
 "Language-Team: \n"
@@ -406,8 +406,8 @@ msgid "Foreground Shadow Color"
 msgstr "前景阴影颜色"
 
 #: ../contents/ui/components/Header.qml
-msgid "Enable Panel Colorizer:"
-msgstr "启用 Panel Colorizer："
+msgid "Enable %1:"
+msgstr ""
 
 #: ../contents/ui/components/Header.qml ../contents/ui/main.qml
 msgid "Last preset loaded:"
@@ -416,6 +416,10 @@ msgstr "最后加载的预设："
 #: ../contents/ui/components/Header.qml
 msgid "Version:"
 msgstr "版本："
+
+#: ../contents/ui/components/Header.qml ../contents/ui/main.qml
+msgid "Running version of the widget (%1) is different to the one on disk (%2), please log out and back in (or restart plasmashell user unit) to ensure things work correctly!"
+msgstr ""
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "Import"
@@ -934,8 +938,15 @@ msgid "Select a preset"
 msgstr "选择预设"
 
 #: ../contents/ui/main.qml
+msgid "Running outdated version of %1"
+msgstr ""
+
+#: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr "未找到面板，此部件需放置在面板上才能工作"
+
+#~ msgid "Enable Panel Colorizer:"
+#~ msgstr "启用 Panel Colorizer："
 
 #~ msgid "Source:"
 #~ msgstr "来源："
