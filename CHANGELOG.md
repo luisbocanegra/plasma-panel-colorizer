@@ -1,5 +1,19 @@
 # Changelog
 
+## [4.3.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v4.2.0...v4.3.0) (2025-06-05)
+
+
+### Features
+
+* improve Presets & Appearance tab loading speed and misc UI/UX tweaks ([9dfa8b5](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/9dfa8b51b890082bb5cedf451dacfbef1ea2ec95))
+* warn about running old version after widget update ([5153555](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/5153555bdabf6e81d564df46479488cc81da2bc1))
+
+
+### Bug Fixes
+
+* color set option not changing colors ([b4fec65](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/b4fec658748edbeb55f191e51bcc12b0fe031f6b))
+* system tray expanded state detection on Plasma 6.4 ([6338acf](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/6338acf2c3e2e25ce34971b19a8e69f6a1b59be7))
+
 ## [4.2.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v4.1.0...v4.2.0) (2025-05-24)
 
 
