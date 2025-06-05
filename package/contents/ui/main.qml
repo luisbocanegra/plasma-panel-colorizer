@@ -2059,7 +2059,6 @@ PlasmoidItem {
         repeat: true
         triggeredOnStart: true
         onTriggered: {
-            console.error(main.localVersion.version, Plasmoid.metaData.version, main.runningLatest);
             versionChecker.run(main.localVersionCmd);
         }
     }
