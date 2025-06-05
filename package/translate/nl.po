@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-06-04 23:21+0000\n"
+"POT-Creation-Date: 2025-06-05 04:58+0000\n"
 "PO-Revision-Date: 2025-05-26 10:54+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -449,8 +449,8 @@ msgid "Foreground Shadow Color"
 msgstr "Voorgrondschaduwkleur"
 
 #: ../contents/ui/components/Header.qml
-msgid "Enable Panel Colorizer:"
-msgstr "Paneelkleuring inschakelen:"
+msgid "Enable %1:"
+msgstr ""
 
 #: ../contents/ui/components/Header.qml ../contents/ui/main.qml
 msgid "Last preset loaded:"
@@ -459,6 +459,13 @@ msgstr "Vorige voorinstellingen:"
 #: ../contents/ui/components/Header.qml
 msgid "Version:"
 msgstr "Versie:"
+
+#: ../contents/ui/components/Header.qml ../contents/ui/main.qml
+msgid ""
+"Running version of the widget (%1) is different to the one on disk (%2), "
+"please log out and back in (or restart plasmashell user unit) to ensure "
+"things work correctly!"
+msgstr ""
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "Import"
@@ -1093,9 +1100,16 @@ msgid "Select a preset"
 msgstr "Kies de voorinstellingen"
 
 #: ../contents/ui/main.qml
+msgid "Running outdated version of %1"
+msgstr ""
+
+#: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr ""
 "Er is geen paneel aangetroffen - de widget dient op een paneel te staan"
+
+#~ msgid "Enable Panel Colorizer:"
+#~ msgstr "Paneelkleuring inschakelen:"
 
 #~ msgid "Source:"
 #~ msgstr "Bron:"
