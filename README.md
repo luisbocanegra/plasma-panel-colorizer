@@ -14,19 +14,22 @@ Fully-featured widget to bring Latte-Dock and WM status bar customization featur
 </div>
 
 > [!IMPORTANT]
-> **Project is under active development. Watch out for BREAKING CHANGES in the [Release notes](https://github.com/luisbocanegra/plasma-panel-colorizer/releases)**.
+> Always log out and back in (or restart plasmashell user unit) after a Panel Colorizer or Plasma update to ensure things work correctly. **Please don't report bugs without doing that first.**
+
+> [!WARNING]
+> **Project is under active development. Look for BREAKING CHANGES in the [Release notes](https://github.com/luisbocanegra/plasma-panel-colorizer/releases)**.
 >
 > - Found a bug while using Panel Colorizer? Please report it [here](https://github.com/luisbocanegra/plasma-panel-colorizer/issues?q=sort%3Aupdated-desc+is%3Aissue+is%3Aopen) first, only report it to KDE after we conclude is a upstream issue or you removed the widget and can still reproduce the problem.
 >
 > - Make sure you're using the latest version of the widget and as close as possible to the [latest Plasma](https://kde.org/search/?s=KDE+Plasma6) to avoid compatibility issues.
 
-> [!WARNING]
+> [!CAUTION]
 > [The C++ plugin may cause plasma to crash after an update](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/209) and you will need to rebuild it, see [Installing](#installing).
 >
 > To temporarily recover from the crashes, you can manually remove the plugin:
 >
 > ```sh
-> sudo rm -rf /usr/lib/qt6/qml/org/kde/plasma/panelcolorizer/ ~/.local/lib/qml/org/kde/plasma/panelcolorizer/
+> sudo rm -rf /usr/lib/qt6/qml/org/kde/plasma/panelcolorizer/ /usr/lib64/qt6/qml/org/kde/plasma/panelcolorizer/ $HOME/.local/lib/qml/org/kde/plasma/panelcolorizer/ $HOME/.local/lib64/qml/org/kde/plasma/panelcolorizer/
 > ```
 
 ## Demo
@@ -43,30 +46,31 @@ Fully-featured widget to bring Latte-Dock and WM status bar customization featur
 - Preset auto-loading
   - Fullscreen window
   - Maximized window
+  - Active window
   - Window touching the panel
   - At least one window is shown on screen
   - Panel is floating
+  - Activities
   - Normal (fall-back when none of the above are meet)
 - [Advanced commandline usage with D-Bus (version 2.0.0 or later)](#advanced-commandline-usage-with-d-bus-version-200-or-later)
 
 **Panel/Widget/System Tray elements**
 
 - Color modes
-  - Static
-  - ~~Animated~~ removed in v1.0.0, might re-implement in a future version
-- Background / Icons and text color
-  - Custom
-  - System
-  - Custom list
+  - Custom color
+  - System theme
+  - Color list
   - Random
+  - Gradient
   - Follow parent background
+- Static/Animated background images
 - Shape
   - Spacing between widgets
   - Radius
   - Margins
   - Border
   - Shadow
-- Blur behind (requires building and installing the C++ plugin)
+- Blur behind custom background (requires building and installing the C++ plugin)
 
 **Force Text/Icon color**
 
@@ -78,9 +82,11 @@ Fully-featured widget to bring Latte-Dock and WM status bar customization featur
 
 **Panel background**
 
-- Remove native panel background (transparent)
+- Hide native panel background (transparent)
 - Native panel background opacity
+- Hide native panel shadow
 - Simulate an always floating panel
+- Force floating dialogs
 
 **Panel settings**
 
@@ -93,7 +99,7 @@ Fully-featured widget to bring Latte-Dock and WM status bar customization featur
 - Opacity (Plasma 6.3.0)
 - *EXPERIMENTAL* Sow/hide panel "AKA toggle panel" with D-Bus, stays hidden when hovering on screen edges
 
-**Unified background**
+**Unified background (islands)**
 
 - Join one or more widgets to make them visually connected
 
@@ -115,19 +121,19 @@ Overrides let you give a completely different configuration to one or more widge
    - Arch
 
        ```txt
-       spectacle python python-dbus python-gobject
+       sudo pacman -S spectacle python python-dbus python-gobject
        ```
 
    - Fedora
 
        ```txt
-       spectacle python3 python3-dbus python3-gobject
+       sudo dnf install spectacle python3 python3-dbus python3-gobject
        ```
 
    - Kubuntu
 
        ```txt
-       kde-spectacle python3 python3-dbus python3-gi
+       sudo apt install kde-spectacle python3 python3-dbus python3-gi
        ```
 
 2. **Right click on the Panel** > **Add or manage widgets** > **Add new...** > **Download new...**
@@ -144,19 +150,19 @@ Overrides let you give a completely different configuration to one or more widge
    - Arch
 
       ```txt
-      git gcc cmake extra-cmake-modules libplasma spectacle python python-dbus python-gobject
+      sudo pacman -S git gcc cmake extra-cmake-modules libplasma spectacle python python-dbus python-gobject
       ```
 
    - Fedora
 
       ```txt
-      git gcc-c++ cmake extra-cmake-modules libplasma-devel spectacle python3 python3-dbus python3-gobject
+      sudo dnf install git gcc-c++ cmake extra-cmake-modules libplasma-devel spectacle python3 python3-dbus python3-gobject
       ```
 
    - Kubuntu
 
       ```txt
-      git build-essential cmake extra-cmake-modules libplasma-dev kde-spectacle python3 python3-dbus python3-gi
+      sudo apt install git build-essential cmake extra-cmake-modules libplasma-dev kde-spectacle python3 python3-dbus python3-gi
       ```
 
     Spectacle is needed to create preset previews
