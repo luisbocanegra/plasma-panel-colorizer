@@ -115,8 +115,6 @@ KCM.SimpleKCM {
     header: ColumnLayout {
         Components.Header {
             id: headerComponent
-            Layout.leftMargin: Kirigami.Units.mediumSpacing
-            Layout.rightMargin: Kirigami.Units.mediumSpacing
         }
     }
 

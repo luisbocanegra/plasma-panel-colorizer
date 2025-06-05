@@ -7,6 +7,7 @@ import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.extras as PlasmaExtras
 import org.kde.plasma.plasmoid
 import org.kde.taskmanager as TaskManager
 import QtQuick.Effects
@@ -48,7 +49,7 @@ PlasmoidItem {
     property bool editMode: Plasmoid.containment.corona?.editMode ?? false
     property bool onDesktop: plasmoid.location === PlasmaCore.Types.Floating
     property bool isWayland: Qt.platform.pluginName.includes("wayland")
-    property string iconName: !onDesktop ? "icon" : "error"
+    property string iconName: (onDesktop || !runningLatest) ? "error" : "icon"
     property string icon: Qt.resolvedUrl("../icons/" + iconName + ".svg").toString().replace("file://", "")
     property bool hideWidget: plasmoid.configuration.hideWidget
     property bool fixedSidePaddingEnabled: isEnabled && panelBgItem.cfg.padding.enabled
@@ -1644,7 +1645,7 @@ PlasmoidItem {
             dbusKWinReconfigure.call();
         }
 
-        Plasmoid.status = hideWidget ? PlasmaCore.Types.ActiveStatus : PlasmaCore.Types.HiddenStatus;
+        Plasmoid.status = (hideWidget || !runningLatest) ? PlasmaCore.Types.ActiveStatus : PlasmaCore.Types.HiddenStatus;
         if (["autohide", "dodgewindows"].includes(stockPanelSettings.visibility.value) && panelPosition.location !== stockPanelSettings.position.value) {
             // activate the panel for a longer time if it can hide
             // to avoid plasma crash when changing its location
@@ -1893,7 +1894,7 @@ PlasmoidItem {
 
     function bindPlasmoidStatus() {
         Plasmoid.status = Qt.binding(function () {
-            return (editMode || !hideWidget) ? PlasmaCore.Types.ActiveStatus : PlasmaCore.Types.HiddenStatus;
+            return (editMode || !hideWidget || !runningLatest) ? PlasmaCore.Types.ActiveStatus : PlasmaCore.Types.HiddenStatus;
         });
     }
 
@@ -1923,10 +1924,10 @@ PlasmoidItem {
     Component {
         id: popupView
         ColumnLayout {
-            Layout.minimumWidth: main.Kirigami.Units.gridUnit * 10
-            Layout.minimumHeight: main.Kirigami.Units.gridUnit * 10
-            Layout.maximumWidth: main.Kirigami.Units.gridUnit * 20
-            Layout.maximumHeight: main.Kirigami.Units.gridUnit * 20
+            Layout.minimumWidth: main.Kirigami.Units.gridUnit * 25
+            Layout.minimumHeight: main.Kirigami.Units.gridUnit * 25
+            Layout.maximumWidth: main.Kirigami.Units.gridUnit * 25
+            Layout.maximumHeight: main.Kirigami.Units.gridUnit * 25
 
             property string presetsDir: StandardPaths.writableLocation(StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/presets"
             property string cratePresetsDirCmd: "mkdir -p " + presetsDir
@@ -1941,15 +1942,15 @@ PlasmoidItem {
             }
 
             RunCommand {
-                id: runCommand
+                id: listPresets
             }
 
             Component.onCompleted: {
-                runCommand.run(listPresetsCmd);
+                listPresets.run(listPresetsCmd);
             }
 
             Connections {
-                target: runCommand
+                target: listPresets
                 function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
                     if (exitCode !== 0) {
                         console.error(cmd, exitCode, exitStatus, stdout, stderr);
@@ -1977,41 +1978,89 @@ PlasmoidItem {
                     }
                 }
             }
+            ColumnLayout {
+                visible: main.runningLatest
+                PlasmaComponents.Label {
+                    text: i18n("Select a preset")
+                    Layout.fillWidth: true
+                    font.weight: Font.DemiBold
+                    Layout.leftMargin: Kirigami.Units.smallSpacing
+                }
 
-            PlasmaComponents.Label {
-                text: i18n("Select a preset")
-                Layout.fillWidth: true
-                font.weight: Font.DemiBold
-                Layout.leftMargin: Kirigami.Units.smallSpacing
-            }
-
-            ListView {
-                id: listView
-                clip: true
-                // Layout.preferredWidth: Kirigami.Units.gridUnit * 10
-                // Layout.preferredHeight: Kirigami.Units.gridUnit * 12
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                model: presetsModel
-                delegate: PlasmaComponents.ItemDelegate {
-                    width: ListView.view.width
-                    required property string name
-                    required property string value
-                    contentItem: RowLayout {
-                        spacing: Kirigami.Units.smallSpacing
-                        PlasmaComponents.Label {
-                            Layout.fillWidth: true
-                            text: name
-                            textFormat: Text.PlainText
-                            elide: Text.ElideRight
+                ListView {
+                    id: listView
+                    clip: true
+                    // Layout.preferredWidth: Kirigami.Units.gridUnit * 10
+                    // Layout.preferredHeight: Kirigami.Units.gridUnit * 12
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    model: presetsModel
+                    delegate: PlasmaComponents.ItemDelegate {
+                        width: ListView.view.width
+                        required property string name
+                        required property string value
+                        contentItem: RowLayout {
+                            spacing: Kirigami.Units.smallSpacing
+                            PlasmaComponents.Label {
+                                Layout.fillWidth: true
+                                text: name
+                                textFormat: Text.PlainText
+                                elide: Text.ElideRight
+                            }
                         }
-                    }
 
-                    onClicked: {
-                        applyPreset(value);
+                        onClicked: {
+                            applyPreset(value);
+                        }
                     }
                 }
             }
+
+            ColumnLayout {
+                visible: !main.runningLatest
+                PlasmaExtras.PlaceholderMessage {
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                    Layout.margins: Kirigami.Units.gridUnit
+                    iconName: "dialog-warning"
+                    text: i18n("Running outdated version of %1", Plasmoid.metaData.name)
+                }
+
+                PlasmaComponents.Label {
+                    Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                    Layout.margins: Kirigami.Units.gridUnit
+                    text: i18n("Running version of the widget (%1) is different to the one on disk (%2), please log out and back in (or restart plasmashell user unit) to ensure things work correctly!", Plasmoid.metaData.version, main.localVersion.version)
+                    Layout.fillWidth: true
+                    wrapMode: Text.Wrap
+                }
+            }
+        }
+    }
+
+    property var localVersion: new VersionUtil.Version("999.999.999") // to assume latest
+    property string metadataFile: Qt.resolvedUrl("../../metadata.json").toString().substring(7)
+    property string localVersionCmd: `cat '${metadataFile}' | grep \\"Version | sed 's/.* //;s/[",]//g'`
+    property bool runningLatest: true
+    RunCommand {
+        id: versionChecker
+        onExited: (cmd, exitCode, exitStatus, stdout, stderr) => {
+            if (exitCode !== 0) {
+                console.error(cmd, exitCode, exitStatus, stdout, stderr);
+                return;
+            }
+            if (stdout) {
+                main.localVersion = new VersionUtil.Version(stdout.trim());
+                main.runningLatest = main.localVersion.isEqual(Plasmoid.metaData.version);
+            }
+        }
+    }
+    Timer {
+        running: true
+        interval: 5000
+        repeat: true
+        triggeredOnStart: true
+        onTriggered: {
+            console.error(main.localVersion.version, Plasmoid.metaData.version, main.runningLatest);
+            versionChecker.run(main.localVersionCmd);
         }
     }
 
