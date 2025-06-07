@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.3.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v4.3.0...v4.3.1) (2025-06-07)
+
+
+### Bug Fixes
+
+* remove version check logging ([c29295d](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/c29295da0a0773abbe36ea1cd7301a547c81b2a8))
+
 ## [4.3.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v4.2.0...v4.3.0) (2025-06-05)
 
 
