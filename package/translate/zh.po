@@ -675,7 +675,7 @@ msgstr "优先级按降序排列。例如，若同时选中<b>最大化窗口显
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Window tracking:"
-msgstr ""
+msgstr "跟踪窗口："
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Per screen"
@@ -687,11 +687,11 @@ msgstr "仅活动窗口"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Active window fallback"
-msgstr ""
+msgstr "活动窗口回退"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Track KWin's top window when there is no active one in the screen."
-msgstr ""
+msgstr "当前屏幕上没有活动窗口时，追踪 KWin 的顶层窗口。"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Fullscreen window:"
