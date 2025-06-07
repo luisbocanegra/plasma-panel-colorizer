@@ -43,7 +43,7 @@ msgstr "原生面板设置"
 
 #: ../contents/config/config.qml
 msgid "Unified widget backgrounds"
-msgstr "统一部件背景"
+msgstr "统一挂件背景"
 
 #: ../contents/config/config.qml
 msgid "Preset Overrides"
@@ -71,7 +71,7 @@ msgstr "启用"
 
 #: ../contents/ui/components/ColorPickerGradientList.qml ../contents/ui/components/ColorPickerList.qml ../contents/ui/components/FormColors.qml
 msgid "Widget background"
-msgstr "部件背景"
+msgstr "挂件背景"
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Border"
@@ -171,7 +171,7 @@ msgstr "图像"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "High resolution images can slow down the desktop when the panel or widget size changes!"
-msgstr "在面板或小部件尺寸变化时，高分辨率图像可能会导致桌面运行缓慢！"
+msgstr "在面板或挂件尺寸变化时，高分辨率图像可能会导致桌面运行缓慢！"
 
 #: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
 msgid "Element:"
@@ -183,7 +183,7 @@ msgstr "面板背景"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Tray widget background"
-msgstr "托盘部件背景"
+msgstr "托盘挂件背景"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Positioning:"
@@ -623,7 +623,7 @@ msgstr "隐藏/显示所有面板"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides are independent and will be applied on top of the current settings and across presets."
-msgstr "创建配置覆盖，并应用于一个或多个部件。这些覆盖独立存在，并将在当前设置的基础上生效，同时适用于所有预设。"
+msgstr "创建配置覆盖，并应用于一个或多个挂件。这些覆盖独立存在，并将在当前设置的基础上生效，同时适用于所有预设。"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Restore default (removes all overrides)"
@@ -647,7 +647,7 @@ msgstr "回退："
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid "Fallback to the Global/Preset widget settings for disabled options, except for <b>Enable</b> and <b>Blur</>."
-msgstr "对于已禁用的选项，回退到全局/预设部件设置（<b>启用</b>和<b>模糊</b>除外）。"
+msgstr "对于已禁用的选项，回退到全局/预设挂件设置（<b>启用</b>和<b>模糊</b>除外）。"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Overrides are applied from top to bottom, if two or more configuration overrides share the same option, the last occurence replaces the value of the previous one."
@@ -727,11 +727,11 @@ msgstr "常规："
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Widget Click"
-msgstr "点击部件"
+msgstr "点击挂件"
 
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides should be saved to a preset in <strong>Presets</strong> tab or they will be lost when presets change!"
-msgstr "创建配置覆盖，并应用于一个或多个部件。这些覆盖需保存到<strong>预设</strong>标签页的预设中，否则切换预设时将丢失！"
+msgstr "创建配置覆盖，并应用于一个或多个挂件。这些覆盖需保存到<strong>预设</strong>标签页的预设中，否则切换预设时将丢失！"
 
 #: ../contents/ui/configPresets.qml
 msgid "This will permanently delete the file from your system!"
@@ -925,7 +925,7 @@ msgstr "若已启用 D-Bus，建议改用快捷键操作。详情请参阅 READM
 
 #: ../contents/ui/configUnifiedBackground.qml
 msgid "Select start and end of unified background areas, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Note: <strong>odd</strong> widget spacing values are automatically converted to <strong>evens</strong> when this feature is used."
-msgstr "选择统一背景区域的起始和结束点，<b>起始</b>和<b>结束</b>间的部件需保持<b>禁用</b>。注：启用此功能时，<strong>奇数</strong>间距值将自动转换为<strong>偶数</strong>。"
+msgstr "选择统一背景区域的起始和结束点，<b>起始</b>和<b>结束</b>间的挂件需保持<b>禁用</b>。注：启用此功能时，<strong>奇数</strong>间距值将自动转换为<strong>偶数</strong>。"
 
 #: ../contents/ui/configUnifiedBackground.qml
 msgid "Restore default (removes all unified areas)"
@@ -933,7 +933,7 @@ msgstr "恢复默认设置（移除所有统一区域）"
 
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
-msgstr "隐藏部件（面板编辑模式下可见）"
+msgstr "隐藏挂件（面板编辑模式下可见）"
 
 #: ../contents/ui/main.qml
 msgid "Select a preset"
@@ -945,7 +945,7 @@ msgstr "当前运行的 %1 版本已过时"
 
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
-msgstr "未找到面板，此部件需放置在面板上才能工作"
+msgstr "未找到面板，此挂件需放置在面板上才能工作"
 
 #~ msgid "Enable Panel Colorizer:"
 #~ msgstr "启用 Panel Colorizer："
@@ -960,7 +960,7 @@ msgstr "未找到面板，此部件需放置在面板上才能工作"
 #~ msgstr "未安装 C++ 插件，<b>模糊自定义背景</b>不可用。<br>详情请查看 GitHub 仓库的 README。"
 
 #~ msgid "How fast the widget reacts to D-Bus changes"
-#~ msgstr "部件响应 D-Bus 变更的速度"
+#~ msgstr "挂件响应 D-Bus 变更的速度"
 
 #~ msgid "Hide all panels"
 #~ msgstr "隐藏所有面板"
@@ -971,7 +971,7 @@ msgstr "未找到面板，此部件需放置在面板上才能工作"
 #~ msgid ""
 #~ "Force text and icon colors for specified widgets.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content themselves<br>To restore the <strong>Mask<strong> and "
 #~ "<strong>Color Effect</strong> disable and restart Plasma or logout."
-#~ msgstr "强制指定部件的文本和图标颜色。<br><strong>遮罩</strong>：强制图标着色（符号图标）。<br><strong>颜色效果</strong>：通过后处理效果强制文本/图标着色（任何图标）。<br><strong>刷新</strong>：以固定间隔重新应用着色，适用于自行重绘内容的部件。<br>要恢复<strong>遮罩</strong>和<strong>颜色效果</strong>，请禁用并重启 Plasma 或注销。"
+#~ msgstr "强制指定挂件的文本和图标颜色。<br><strong>遮罩</strong>：强制图标着色（符号图标）。<br><strong>颜色效果</strong>：通过后处理效果强制文本/图标着色（任何图标）。<br><strong>刷新</strong>：以固定间隔重新应用着色，适用于自行重绘内容的挂件。<br>要恢复<strong>遮罩</strong>和<strong>颜色效果</strong>，请禁用并重启 Plasma 或注销。"
 
 #~ msgid "Disable preset auto-loading when making changes to presets, unsaved preset settings will be lost when presets change!"
 #~ msgstr "修改预设时请禁用自动加载，否则未保存的预设设置将在切换时丢失！"
