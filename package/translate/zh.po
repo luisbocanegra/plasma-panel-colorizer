@@ -419,7 +419,7 @@ msgstr "版本："
 
 #: ../contents/ui/components/Header.qml ../contents/ui/main.qml
 msgid "Running version of the widget (%1) is different to the one on disk (%2), please log out and back in (or restart plasmashell user unit) to ensure things work correctly!"
-msgstr ""
+msgstr "正在运行的挂件版本（%1）与已安装的版本（%2）不一致，请注销并重新登录（或重启 plasmashell 用户单元）以确保功能正常运行！"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "Import"
@@ -514,10 +514,12 @@ msgid ""
 "Fix text and icon colors for widgets where the normal method doesn't work or isn't permanent.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content "
 "themselves<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
 msgstr ""
+"修复那些常规方法无法正常生效或无法永久生效的挂件中的文本与图标颜色。<br><strong>遮罩</strong>：强制图标着色（符号图标）。<br><strong>颜色效果</strong>：使用后处理效果强制为文本/图标着色（任意图标）。<br><strong>刷新</strong>：以固定间隔重新着色，用于会自行重绘或重新着色内容的挂件。"
+“<br>要恢复 <strong>遮罩</strong> 和 <strong>颜色效果</strong>，请禁用它们并重启 Plasma 或注销。”
 
 #: ../contents/ui/configForeground.qml
 msgid "Restore default (removes all icon and text fixes)"
-msgstr ""
+msgstr "恢复默认（移除所有图标和文本的修复）"
 
 #: ../contents/ui/configForeground.qml
 msgid "Force Text/Icon color"
