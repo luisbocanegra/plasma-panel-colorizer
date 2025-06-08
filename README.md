@@ -170,7 +170,7 @@ Overrides let you give a completely different configuration to one or more widge
 2. Clone and install
 
     ```sh
-    git clone https://github.com/luisbocanegra/plasma-panel-colorizer
+    git clone https://github.com/luisbocanegra/plasma-panel-colorizer.git
     cd plasma-panel-colorizer
     ```
 
