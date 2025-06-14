@@ -29,7 +29,14 @@ QtObject {
         const reply = DBus.SessionBus.asyncCall(root.msg) as DBus.DBusPendingReply;
         if (callback) {
             reply.finished.connect(() => {
-                callback(reply);
+                // some values are nested, idk why but make it match DBusFallback version
+                if (reply?.value?.value ?? null) {
+                    const replyFlatValue = JSON.parse(JSON.stringify(reply));
+                    replyFlatValue.value = replyFlatValue.value.value;
+                    callback(replyFlatValue);
+                } else {
+                    callback(reply);
+                }
                 // Make sure to destroy after the reply is finished otherwise it may get leaked because the connected signal
                 // holds a reference and prevents garbage collection.
                 // https://discuss.kde.org/t/high-memory-usage-from-plasmashell-is-it-a-memory-leak/29105
