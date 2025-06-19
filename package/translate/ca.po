@@ -1,4 +1,4 @@
-# Translation of colorizer in LANGUAGE
+# Translation of colorizer in ca
 # Copyright (C) 2025
 # This file is distributed under the same license as the colorizer package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
@@ -77,13 +77,11 @@ msgstr "Fons del giny"
 msgid "Border"
 msgstr "Vora"
 
-#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml
-#: ../contents/ui/configPresetAutoload.qml ../contents/ui/configStockPanelSettings.qml
+#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml ../contents/ui/configPresetAutoload.qml ../contents/ui/configStockPanelSettings.qml
 msgid "Enabled:"
 msgstr "Activat:"
 
-#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormColors.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml
-#: ../contents/ui/components/Header.qml
+#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormColors.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/components/Header.qml
 msgid "Disabled"
 msgstr "Desactivat"
 
@@ -513,12 +511,11 @@ msgstr "Ginys de la safata"
 
 #: ../contents/ui/configForeground.qml
 msgid ""
-"Fix text and icon colors for widgets where the normal method doesn't work or isn't permanent.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: "
-"Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content "
+"Fix text and icon colors for widgets where the normal method doesn't work or isn't permanent.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content "
 "themselves<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
-msgstr "Arregla els colors de text i d'icona per als ginys per als quals el mètode normal no funciona o l'efecte no és permanent.<br><strong>Màscara</strong>: Força l'acoloriment d'icones (icones simbòliques).<br><strong>Efecte de color</strong>: "
-"Força l'acoloriment de text/icones fent servir un efecte de post-processat (per a qualsevol icona).<br><strong>Actualitza</strong>: Torna a aplicar l'acoloriment a un interval fixat, per a ginys que recreen o canvien el color del contingut "
-"per si mateixos<br>Per a restaura la <strong>Màscara<strong> i l'<strong>Efecte de color</strong>, desactiveu i reinicieu el Plasma o sortiu de la sessió."
+msgstr ""
+"Arregla els colors de text i d'icona per als ginys per als quals el mètode normal no funciona o l'efecte no és permanent.<br><strong>Màscara</strong>: Força l'acoloriment d'icones (icones simbòliques).<br><strong>Efecte de color</strong>: Força l'acoloriment de text/icones fent servir un efecte de post-processat (per a qualsevol icona).<br><strong>Actualitza</strong>: Torna a aplicar "
+"l'acoloriment a un interval fixat, per a ginys que recreen o canvien el color del contingut per si mateixos<br>Per a restaura la <strong>Màscara<strong> i l'<strong>Efecte de color</strong>, desactiveu i reinicieu el Plasma o sortiu de la sessió."
 
 #: ../contents/ui/configForeground.qml
 msgid "Restore default (removes all icon and text fixes)"
@@ -673,11 +670,8 @@ msgid "Environment"
 msgstr "Entorn"
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid ""
-"Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the "
-"<b>Maximized</b> preset will be applied."
-msgstr "Les prioritas van en ordre descendent. Per exemple, si ambdues opcions <b>Es mostra una finestra maximitzada</b> i <b>Una finestra toca el panell</b> tenen un perfil seleccionat i hi ha una finestra maximitzada a la pantalla, s'aplicarà el perfil "
-"<b>Maximitzat</b>."
+msgid "Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the <b>Maximized</b> preset will be applied."
+msgstr "Les prioritas van en ordre descendent. Per exemple, si ambdues opcions <b>Es mostra una finestra maximitzada</b> i <b>Una finestra toca el panell</b> tenen un perfil seleccionat i hi ha una finestra maximitzada a la pantalla, s'aplicarà el perfil <b>Maximitzat</b>."
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Window tracking:"
@@ -752,9 +746,7 @@ msgid "Current preview will be overwritten!"
 msgstr "Se sobreescriurà la vista actual."
 
 #: ../contents/ui/configPresets.qml
-msgid ""
-"Changes to the current preset are not synced to disk automatically. You should come back to this tab and update it manually before switching to a different preset, otherwise unsaved preset settings "
-"will be lost when presets change!"
+msgid "Changes to the current preset are not synced to disk automatically. You should come back to this tab and update it manually before switching to a different preset, otherwise unsaved preset settings will be lost when presets change!"
 msgstr "Els canvis del perfil actual no es sincronitzen amb el disc automàticament. Heu de tornar enrere a aquesta pestanya i actualitzar-ho manualment abans de canviar a un altre perfil. Si no, la configuració de perfils sense desar es perdrà quan canviï el perfil."
 
 #: ../contents/ui/configPresets.qml
@@ -798,11 +790,8 @@ msgid "Changing panel position is currently unstable and may cause Plasma to cra
 msgstr "Canviar la posició del panell és inestable ara mateix i pot provocar que el Plasma falli quan es mouen els panells entre vores no paral·leles, com ara de dalt a l'esquerra."
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid ""
-"Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel "
-"background</b> options in <b>Appearance</b> tab instead."
-msgstr "Les opcions d'opacitat i pantalla requereixen la versió del <b>Plasma 6.3</b> o superior.<br>L'opacitat depèn del tema del Plasma actual. Si voleu un control més fi o transparència total, feu servir les opcions d'<b>Opacitat del Panell</b> i de <b>Fons nadiu del panell"
-"</b> a la pestanya <b>Aparença</b>."
+msgid "Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
+msgstr "Les opcions d'opacitat i pantalla requereixen la versió del <b>Plasma 6.3</b> o superior.<br>L'opacitat depèn del tema del Plasma actual. Si voleu un control més fi o transparència total, feu servir les opcions d'<b>Opacitat del Panell</b> i de <b>Fons nadiu del panell</b> a la pestanya <b>Aparença</b>."
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Screen"
@@ -926,22 +915,19 @@ msgstr "Mostra:"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
-"WARNING: Use with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible "
-"again without manually removing the configuration, use the command below in terminal/tty then log out or reboot, it will renove the configuratiob from all Panel Colorizer instances so make sure to "
+"WARNING: Use with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration, use the command below in terminal/tty then log out or reboot, it will renove the configuratiob from all Panel Colorizer instances so make sure to "
 "save the others first"
-msgstr "AVÍS: Feu-ho servir amb compte. Si amagueu el panell i no heu configurat la càrrega automàtica de perfils o sabeu com canviar de perfil amb el D-Bus ‒o l'heu desactivat‒, no podreu fer-ho visible de nou "
-"sense traure manualment la configuració. Feu servir l'ordre següent al terminal/tty i tanqueu sessió o reinicieu. Renovarà la configuració de totes les instàncies de l'Acoloridor de Panells per a assegurar que es desin primer les altres"
+msgstr ""
+"AVÍS: Feu-ho servir amb compte. Si amagueu el panell i no heu configurat la càrrega automàtica de perfils o sabeu com canviar de perfil amb el D-Bus ‒o l'heu desactivat‒, no podreu fer-ho visible de nou sense traure manualment la configuració. Feu servir l'ordre següent al terminal/tty i tanqueu sessió o reinicieu. Renovarà la configuració de totes les instàncies de l'Acoloridor de Panells per "
+"a assegurar que es desin primer les altres"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
 msgstr "Si teniu el D-Bus activat, es recomana que el feu servir en lloc de les dreceres. Consulteu el LLEGEIX-ME per a saber més de la pestanya General i veure'n alguns exemples."
 
 #: ../contents/ui/configUnifiedBackground.qml
-msgid ""
-"Select start and end of unified background areas, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Note: <strong>odd</strong> widget spacing values are automatically "
-"converted to <strong>evens</strong> when this feature is used."
-msgstr "Trieu l'inici i final de les àrees de fons unificat. Els ginys entre l'<b>Inici</b> i el <b>Final</b> han d'estar <b>desactivats</b> a l'esquerra. Nota: els valors d'espaiat <strong>imparells</strong> es convertiran automàticament a "
-"<strong>parells</strong> quan es fa servir aquesta funció."
+msgid "Select start and end of unified background areas, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Note: <strong>odd</strong> widget spacing values are automatically converted to <strong>evens</strong> when this feature is used."
+msgstr "Trieu l'inici i final de les àrees de fons unificat. Els ginys entre l'<b>Inici</b> i el <b>Final</b> han d'estar <b>desactivats</b> a l'esquerra. Nota: els valors d'espaiat <strong>imparells</strong> es convertiran automàticament a <strong>parells</strong> quan es fa servir aquesta funció."
 
 #: ../contents/ui/configUnifiedBackground.qml
 msgid "Restore default (removes all unified areas)"
