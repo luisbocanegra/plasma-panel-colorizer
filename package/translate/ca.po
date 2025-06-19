@@ -1,0 +1,964 @@
+# Translation of colorizer in LANGUAGE
+# Copyright (C) 2025
+# This file is distributed under the same license as the colorizer package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: colorizer\n"
+"Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
+"POT-Creation-Date: 2025-06-05 04:58+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../metadata.json
+msgid "Panel colorizer"
+msgstr "Acoloridor de panells"
+
+#: ../metadata.json
+msgid "Latte-Dock and WM status bar customization features for the default Plasma panel"
+msgstr "Funcions de personalització de la barra d'estat WM i del Latte-Dock per al panell per defecte del Plasma"
+
+#: ../contents/config/config.qml
+msgid "Presets"
+msgstr "Perfils"
+
+#: ../contents/config/config.qml
+msgid "Presets auto-loading"
+msgstr "Càrrega automàtica de perfils"
+
+#: ../contents/config/config.qml
+msgid "Appearance"
+msgstr "Aparença"
+
+#: ../contents/config/config.qml
+msgid "Stock Panel Settings"
+msgstr "Configuració d'accions de panell"
+
+#: ../contents/config/config.qml
+msgid "Unified widget backgrounds"
+msgstr "Fons unificats dels ginys"
+
+#: ../contents/config/config.qml
+msgid "Preset Overrides"
+msgstr "Sobreescriptures de perfils"
+
+#: ../contents/config/config.qml
+msgid "Global Overrides"
+msgstr "Sobreescriptures globals"
+
+#: ../contents/config/config.qml
+msgid "Text and icons"
+msgstr "Text i icones"
+
+#: ../contents/config/config.qml
+msgid "General"
+msgstr "General"
+
+#: ../contents/ui/components/CategoryDisabled.qml
+msgid "Panel Colorizer is disabled"
+msgstr "L'Acoloridor de panells està desactivat."
+
+#: ../contents/ui/components/CategoryDisabled.qml
+msgid "Enable"
+msgstr "Activa"
+
+#: ../contents/ui/components/ColorPickerGradientList.qml ../contents/ui/components/ColorPickerList.qml ../contents/ui/components/FormColors.qml
+msgid "Widget background"
+msgstr "Fons del giny"
+
+#: ../contents/ui/components/FormBorder.qml
+msgid "Border"
+msgstr "Vora"
+
+#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml
+#: ../contents/ui/configPresetAutoload.qml ../contents/ui/configStockPanelSettings.qml
+msgid "Enabled:"
+msgstr "Activat:"
+
+#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormColors.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml
+#: ../contents/ui/components/Header.qml
+msgid "Disabled"
+msgstr "Desactivat"
+
+#: ../contents/ui/components/FormBorder.qml
+msgid "Width:"
+msgstr "Amplada:"
+
+#: ../contents/ui/components/FormBorder.qml
+msgid "Custom widths:"
+msgstr "Amplades personalitzades:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Color"
+msgstr "Color"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Enable:"
+msgstr "Activa:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Animation:"
+msgstr "Animació:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Interval (ms):"
+msgstr "Interval (ms):"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Smoothing (ms):"
+msgstr "Suavitzat (ms):"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Color source:"
+msgstr "Origen de color:"
+
+#: ../contents/ui/components/FormColors.qml ../contents/ui/configStockPanelSettings.qml
+msgid "Custom"
+msgstr "Personalitzat"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "A fixed custom color"
+msgstr "Un color personalitzat fix"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "System"
+msgstr "Sistema"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Color that updates with your System theme"
+msgstr "Color que s'actualitza d'acord amb el tema del sistema"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Custom list"
+msgstr "Llista personalitzada"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Define a list of colors that will be applied to all the elements, wraps around if there are more elements than colors"
+msgstr "Defineix una llista de color que s'aplicaran a tots els elements i que es tornarà a aplicar des del principi si hi ha més elements que colors."
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Random"
+msgstr "Aleatori"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Random color for each element"
+msgstr "Color aleatori per a cada element"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Follow"
+msgstr "Segueix"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Follow the color of a parent element"
+msgstr "Segueix el color d'un element pare."
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Gradient"
+msgstr "Gradient"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Horizontal or vertical customizable color gradient"
+msgstr "Gradient de color personalitzable horitzontal o vertical"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Image"
+msgstr "Imatge"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "High resolution images can slow down the desktop when the panel or widget size changes!"
+msgstr "Les imatges d'alta resolució poden alentir l'escriptori quan canvia la mida dels ginys o del panell!"
+
+#: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
+msgid "Element:"
+msgstr "Element:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Panel background"
+msgstr "Fons del panell"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Tray widget background"
+msgstr "Fons de la safata de ginys"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Positioning:"
+msgstr "Posicionament:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Stretch"
+msgstr "Escalat"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Tile"
+msgstr "Mosaic"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Scaled and Cropped"
+msgstr "Escalat i escapçat"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Image:"
+msgstr "Imatge:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Pick a image file"
+msgstr "Tria un fitxer d'imatge"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Image files"
+msgstr "Fitxers d'imatge"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "All files"
+msgstr "Tots els fitxers"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Color:"
+msgstr "Color:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Color set:"
+msgstr "Conjunt de colors:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Colors:"
+msgstr "Colors:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Orientation:"
+msgstr "Orientació:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Horizontal"
+msgstr "Horitzontal"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Vertical"
+msgstr "Vertical"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Gradient steps:"
+msgstr "Passos del gradient:"
+
+#: ../contents/ui/components/FormColors.qml ../contents/ui/configGeneral.qml
+msgid "Alpha:"
+msgstr "Alfa:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Contrast Correction"
+msgstr "Correcció del contrast"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Saturation:"
+msgstr "Saturació"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Lightness:"
+msgstr "Brillantor:"
+
+#: ../contents/ui/components/FormPadding.qml
+msgid "Padding"
+msgstr "Farciment"
+
+#: ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormWidgetSettings.qml
+msgid "Shadow"
+msgstr "Ombra"
+
+#: ../contents/ui/components/FormShadow.qml
+msgid "Size:"
+msgstr "Mida:"
+
+#: ../contents/ui/components/FormShadow.qml
+msgid "X offset:"
+msgstr "Òffset X"
+
+#: ../contents/ui/components/FormShadow.qml
+msgid "Y offset:"
+msgstr "Òffset Y:"
+
+#: ../contents/ui/components/FormShape.qml
+msgid "Radius"
+msgstr "Radi"
+
+#: ../contents/ui/components/FormShape.qml
+msgid "Margin"
+msgstr "Marge"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "State:"
+msgstr "Estat:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Normal"
+msgstr "Normal"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Hover"
+msgstr "Ratolí a sobre"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Expanded"
+msgstr "Expandit"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Needs attention"
+msgstr "Necessita atenció"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Busy"
+msgstr "Ocupat"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Change element appearance based on their state, configuration is stacked on top of the current appearance"
+msgstr "Canvia l'aparença de l'element segons els seu estat. La configuració s'aplica al damunt de l'aparença actual.
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Native panel:"
+msgstr "Panell nadiu:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml ../contents/ui/configGeneral.qml
+msgid "Background"
+msgstr "Fons"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Disable to make panel fully transparent, removes contrast and blur effects."
+msgstr "Desactiveu-ho per tal que el panell sigui transparent del tot i traure'n tots els efectes de contrast i difuminat."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "The shadow from the Plasma theme"
+msgstr "L'ombra del tema del Plasma"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Opacity:"
+msgstr "Opacitat:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Set to 0 to keep the mask required for custom background blur."
+msgstr "Establiu-ho a 0 per a mantenir la màscara necessària per a un fons difuminat personalitzat."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Force floating dialogs"
+msgstr "Força els diàlegs flotants"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "customization"
+msgstr "personalització"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Blur custom background (Beta)"
+msgstr "Difumina el fons personalitzat (beta)"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Draw a custom blur mask behind the custom background(s).<br><strong>Native panel background must be enabled with opacity of 0 for this to work as intended.</strong>"
+msgstr "Dibuixa una màscara difuminada personalitzada al darrera dels fons personalitzats.<br><strong>El fons nadiu del panell s'ha d'activar amb opacitat 0 per tal que pugui funcionar com s'espera.</strong>"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it."
+msgstr "No s'ha trobat el complement C++. Aquesta opció no funcionarà. Instal·leu el complement i reinicieu l'ordinador o el plasmashell per a fer-ho servir."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Plugin install instructions"
+msgstr "Instruccions d'instal·lació del complement"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Spacing:"
+msgstr "Espaiat:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "<strong>Odd</strong> values are automatically converted to <strong>evens</strong> if <strong>Unified Background</strong> feature is used."
+msgstr "Els valors <strong>imparells</strong> es converteixen automàticament en <strong>parells</strong> si es fa servir l'opció <strong>Fons Unificat</strong>."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Background Color"
+msgstr "Color de fons"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Foreground Color"
+msgstr "Color de primer pla"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Primary Border"
+msgstr "Vora primària"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Secondary Border"
+msgstr "Vora secundària"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Background Shadow"
+msgstr "Ombra de fons"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Background Shadow Color"
+msgstr "Color de l'ombra de fons"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Foreground Shadow"
+msgstr "Ombra de primer pla"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Foreground Shadow Color"
+msgstr "Color de l'ombra de primer pla"
+
+#: ../contents/ui/components/Header.qml
+msgid "Enable %1:"
+msgstr "Activa %1:"
+
+#: ../contents/ui/components/Header.qml ../contents/ui/main.qml
+msgid "Last preset loaded:"
+msgstr "Últim perfil carregat:"
+
+#: ../contents/ui/components/Header.qml
+msgid "Version:"
+msgstr "Versió:"
+
+#: ../contents/ui/components/Header.qml ../contents/ui/main.qml
+msgid "Running version of the widget (%1) is different to the one on disk (%2), please log out and back in (or restart plasmashell user unit) to ensure things work correctly!"
+msgstr "La versió del giny que s'executa (%1) és diferent de la del disc (%2). Sortiu de la sessió i torneu a entrar ‒o reinicieu la unitat d'usuari del plasmashell‒ per a assegurar que funciona correctament!"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "Import"
+msgstr "Importa"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "Export"
+msgstr "Exporta"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "Export these settings to the default configuration folder and import them in other instances of Panel Colorizer"
+msgstr "Exporta aquesta configuració a la carpeta de configuració i importa-la a altres instàncies de l'Acoloridor de Panells."
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "Export current settings?"
+msgstr "Exporta la configuració actual?"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "Import saved settings?"
+msgstr "Importa la configuració desada?"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "This will overwrite any previous export!"
+msgstr "Això sobreescriurà qualsevol exportació prèvia."
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "This will replace your current settings!"
+msgstr "Això reemplaçarà la configuració actual."
+
+#: ../contents/ui/components/WidgetCardCheck.qml ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardUnifiedBg.qml
+msgid "System Tray"
+msgstr "Safata del sistema"
+
+#: ../contents/ui/components/WidgetCardCheck.qml
+msgid "Mask"
+msgstr "Màscara"
+
+#: ../contents/ui/components/WidgetCardCheck.qml
+msgid "Effect"
+msgstr "Efecte"
+
+#: ../contents/ui/components/WidgetCardCheck.qml
+msgid "Refresh"
+msgstr "Actualitza"
+
+#: ../contents/ui/components/WidgetCardConfig.qml
+msgid "Add"
+msgstr "Afegeix"
+
+#: ../contents/ui/components/WidgetCardOverride.qml
+msgid "Edit"
+msgstr "Edita"
+
+#: ../contents/ui/components/WidgetCardOverride.qml ../contents/ui/configPresets.qml
+msgid "Delete"
+msgstr "Esborra"
+
+#: ../contents/ui/components/WidgetCardUnifiedBg.qml
+msgid "Disable"
+msgstr "Desactiva"
+
+#: ../contents/ui/components/WidgetCardUnifiedBg.qml
+msgid "Start"
+msgstr "Inicia"
+
+#: ../contents/ui/components/WidgetCardUnifiedBg.qml
+msgid "End"
+msgstr "Finalitza"
+
+#: ../contents/ui/configAppearance.qml
+msgid "Not getting the expected result? Make sure you're editing the correct element."
+msgstr "No aconseguiu el resultat esperat? Assegureu-vos que editeu l'element correcte."
+
+#: ../contents/ui/configAppearance.qml
+msgid "Restore default (removes all customizations)"
+msgstr "Restaura els valors per defecte (trau totes les personalitzacions)"
+
+#: ../contents/ui/configAppearance.qml
+msgid "Panel"
+msgstr "Panell"
+
+#: ../contents/ui/configAppearance.qml ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Widgets"
+msgstr "Ginys"
+
+#: ../contents/ui/configAppearance.qml
+msgid "Tray widgets"
+msgstr "Ginys de la safata"
+
+#: ../contents/ui/configForeground.qml
+msgid ""
+"Fix text and icon colors for widgets where the normal method doesn't work or isn't permanent.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: "
+"Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content "
+"themselves<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
+msgstr "Arregla els colors de text i d'icona per als ginys per als quals el mètode normal no funciona o l'efecte no és permanent.<br><strong>Màscara</strong>: Força l'acoloriment d'icones (icones simbòliques).<br><strong>Efecte de color</strong>: "
+"Força l'acoloriment de text/icones fent servir un efecte de post-processat (per a qualsevol icona).<br><strong>Actualitza</strong>: Torna a aplicar l'acoloriment a un interval fixat, per a ginys que recreen o canvien el color del contingut "
+"per si mateixos<br>Per a restaura la <strong>Màscara<strong> i l'<strong>Efecte de color</strong>, desactiveu i reinicieu el Plasma o sortiu de la sessió."
+
+#: ../contents/ui/configForeground.qml
+msgid "Restore default (removes all icon and text fixes)"
+msgstr "Restaura els valors per defecte (trau tots els canvis d'icones i textos)"
+
+#: ../contents/ui/configForeground.qml
+msgid "Force Text/Icon color"
+msgstr "Força el color de text/icona"
+
+#: ../contents/ui/configForeground.qml
+msgid "Refresh interval:"
+msgstr "Interval d'actualització"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide widget:"
+msgstr "Amaga el giny:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "visible in Panel Edit Mode"
+msgstr "visible en Mode d'Edició del Panell
+
+#: ../contents/ui/configGeneral.qml
+msgid "Debug mode:"
+msgstr "Mode de depuració:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Show debugging information"
+msgstr "Mostra informació de depuració"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Grid"
+msgstr "Graella"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Enabled"
+msgstr "Activat"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Visible while configuring"
+msgstr "Visible mentre es configura"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Minor line:"
+msgstr "Línia menor:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "spacing"
+msgstr "espaiat"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Major line:"
+msgstr "Línia major:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "every"
+msgstr "cada"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Property change animations"
+msgstr "Animacions de canvi de propietats"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Duration:"
+msgstr "Durada:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "D-Bus Service"
+msgstr "Servei de D-Bus"
+
+#: ../contents/ui/configGeneral.qml
+msgid "D-Bus name:"
+msgstr "Nom de D-Bus:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Each Panel Colorizer instance has its D-Bus name."
+msgstr "Cada instància de l'Acoloridor de Panells té el seu nom de D-Bus."
+
+#: ../contents/ui/configGeneral.qml
+msgid "Python 3 executable:"
+msgstr "Executable Python 3:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Required to run the D-Bus service in the background"
+msgstr "Necessari per a executar el servei de D-Bus en segon pla"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Usage:"
+msgstr "Ús:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Apply a preset:"
+msgstr "Aplica un perfil:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Preview and switch presets using fzf + qdbus6 + jq:"
+msgstr "Previsualitzeu i canvieu de perfils amb fzf + qdbus6 + jq:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide/show this panel"
+msgstr "Mostra/Amaga aquest panell"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide/show all panels"
+msgstr "Mostra/Amaga tots els panells"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides are independent and will be applied on top of the current settings and across presets."
+msgstr "Crea una configuració de sobreescriptura i aplica-la a un o múltiples ginys. Aquestes sobreescriptures són independents i s'aplicaran al damunt de la configuració actual i pels diferents perfils."
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Restore default (removes all overrides)"
+msgstr "Restaura els valors per defecte (trau totes les sobreescriptures)"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Configuration overrides"
+msgstr "Configuració de la sobreescriptura"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Override settings"
+msgstr "Configuració de les sobreescriptures"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Override name"
+msgstr "Nom de la sobreescriptura"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+msgid "Fallback:"
+msgstr "Alternativa:"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+msgid "Fallback to the Global/Preset widget settings for disabled options, except for <b>Enable</b> and <b>Blur</>."
+msgstr "Alternativa a la configuració Global/Perfil del giny per a opcions desactivades, excepte per a <b>Activa</b> i <b>Difumina</>."
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Overrides are applied from top to bottom, if two or more configuration overrides share the same option, the last occurence replaces the value of the previous one."
+msgstr "Les sobreescriptures s'apliquen de dalt a baix. Si dues o més configuracions de sobreescriptura comparteixen la mateixa opció, l'última reemplaça el valor de la prèvia."
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Do nothing"
+msgstr "No facis res"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Switch between different presets based on the Panel and window states.<br>Disable preset auto-loading when making changes to presets, unsaved preset settings will be lost when presets change!"
+msgstr "Canvia entre perfils diferents segons els estats del panell i de les finestres.<br>Si es desactiva la càrrega automàtica de perfils mentre es fan canvis als perfils, els canvis sense desar es perdran quan canviï el perfil."
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Restore default (removes all autoloading conditions)"
+msgstr "Restaura els valors per defecte (trau totes les condicions de càrrega automàtica)"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Environment"
+msgstr "Entorn"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid ""
+"Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the "
+"<b>Maximized</b> preset will be applied."
+msgstr "Les prioritas van en ordre descendent. Per exemple, si ambdues opcions <b>Es mostra una finestra maximitzada</b> i <b>Una finestra toca el panell</b> tenen un perfil seleccionat i hi ha una finestra maximitzada a la pantalla, s'aplicarà el perfil "
+"<b>Maximitzat</b>."
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Window tracking:"
+msgstr "Seguiment de finestres"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Per screen"
+msgstr "Per pantalla"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Active only"
+msgstr "Només l'activa"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Active window fallback"
+msgstr "Alternativa per a la finestra activa"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Track KWin's top window when there is no active one in the screen."
+msgstr "Segueix la finestra superior del KWin quan no n'hi ha d'actives a la pantalla."
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Fullscreen window:"
+msgstr "Pantalla completa"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Maximized window:"
+msgstr "Finestra maximitzada:"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Window touching panel:"
+msgstr "Una finestra toca un panell:"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Active window:"
+msgstr "Finestra activa:"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "At least one window is visible:"
+msgstr "Almenys una finestra visible"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Floating panel:"
+msgstr "Panell flotant:"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "activity:"
+msgstr "activitat:"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Normal:"
+msgstr "Normal:"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Widget Click"
+msgstr "Clic al giny"
+
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides should be saved to a preset in <strong>Presets</strong> tab or they will be lost when presets change!"
+msgstr "Crea configuracions de sobreescriptura i aplica-les a un o múltiples ginys. Aquestes sobreescriptures s'han de desar en un perfil a la pestanya <strong>Perfils</strong> o es pedran els canvis quan canviï el perfil."
+
+#: ../contents/ui/configPresets.qml
+msgid "This will permanently delete the file from your system!"
+msgstr "Això esborrarà permanentment el fitxer del sistema."
+
+#: ../contents/ui/configPresets.qml
+msgid "Preset configuration will be overwritten!"
+msgstr "Se sobreescriurà la configuració del perfil."
+
+#: ../contents/ui/configPresets.qml
+msgid "Current preview will be overwritten!"
+msgstr "Se sobreescriurà la vista actual."
+
+#: ../contents/ui/configPresets.qml
+msgid ""
+"Changes to the current preset are not synced to disk automatically. You should come back to this tab and update it manually before switching to a different preset, otherwise unsaved preset settings "
+"will be lost when presets change!"
+msgstr "Els canvis del perfil actual no es sincronitzen amb el disc automàticament. Heu de tornar enrere a aquesta pestanya i actualitzar-ho manualment abans de canviar a un altre perfil. Si no, la configuració de perfils sense desar es perdrà quan canviï el perfil."
+
+#: ../contents/ui/configPresets.qml
+msgid "Restore default preset"
+msgstr "Restaura el perfil per defecte"
+
+#: ../contents/ui/configPresets.qml
+msgid "New from current settings"
+msgstr "Nou a partir de la configuració actual"
+
+#: ../contents/ui/configPresets.qml
+msgid "Save"
+msgstr "Desa"
+
+#: ../contents/ui/configPresets.qml
+msgid "Refresh presets"
+msgstr "Actualitza els perfils"
+
+#: ../contents/ui/configPresets.qml
+msgid "Built-in"
+msgstr "Intern"
+
+#: ../contents/ui/configPresets.qml
+msgid "Load"
+msgstr "Carrega"
+
+#: ../contents/ui/configPresets.qml
+msgid "Update"
+msgstr "Actualitza"
+
+#: ../contents/ui/configPresets.qml
+msgid "Create preview"
+msgstr "Crea una vista prèvia"
+
+#: ../contents/ui/configPresets.qml
+msgid "Update preview"
+msgstr "Actualitza la vista prèvia"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g from top to left)."
+msgstr "Canviar la posició del panell és inestable ara mateix i pot provocar que el Plasma falli quan es mouen els panells entre vores no paral·leles, com ara de dalt a l'esquerra."
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid ""
+"Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel "
+"background</b> options in <b>Appearance</b> tab instead."
+msgstr "Les opcions d'opacitat i pantalla requereixen la versió del <b>Plasma 6.3</b> o superior.<br>L'opacitat depèn del tema del Plasma actual. Si voleu un control més fi o transparència total, feu servir les opcions d'<b>Opacitat del Panell</b> i de <b>Fons nadiu del panell"
+"</b> a la pestanya <b>Aparença</b>."
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Screen"
+msgstr "Pantalla"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Screen:"
+msgstr "Pantalla:"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Position"
+msgstr "Posició"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Position:"
+msgstr "Posició:"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Top"
+msgstr "Superior"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Bottom"
+msgstr "Inferior"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Left"
+msgstr "Esquerra"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Right"
+msgstr "Dreta"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Alignment"
+msgstr "Alineació"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Alignment:"
+msgstr "Alineació:"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Center"
+msgstr "Centre"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Length mode"
+msgstr "Mode de llargada"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Mode:"
+msgstr "Mode:"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Fill"
+msgstr "Omple"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Fit content"
+msgstr "Ajusta al contingut"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Visibility"
+msgstr "Visibilitat"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Always visible"
+msgstr "Sempre visible"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Auto hide"
+msgstr "Amaga automàticament"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Dodge windows"
+msgstr "Esvaeix les finestres"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Windows go below"
+msgstr "Les finestres van a sota"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Opacity"
+msgstr "Opacitat"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Adaptive"
+msgstr "Adaptatiu"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Opaque"
+msgstr "Opac"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Translucent"
+msgstr "Translúcid"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Floating"
+msgstr "Flotant"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Floating:"
+msgstr "Flotant:"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Thickness"
+msgstr "Gruix"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Thickness:"
+msgstr "Gruix:"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Show/Hide"
+msgstr "Mostra/Amaga"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Show:"
+msgstr "Mostra:"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid ""
+"WARNING: Use with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible "
+"again without manually removing the configuration, use the command below in terminal/tty then log out or reboot, it will renove the configuratiob from all Panel Colorizer instances so make sure to "
+"save the others first"
+msgstr "AVÍS: Feu-ho servir amb compte. Si amagueu el panell i no heu configurat la càrrega automàtica de perfils o sabeu com canviar de perfil amb el D-Bus ‒o l'heu desactivat‒, no podreu fer-ho visible de nou "
+"sense traure manualment la configuració. Feu servir l'ordre següent al terminal/tty i tanqueu sessió o reinicieu. Renovarà la configuració de totes les instàncies de l'Acoloridor de Panells per a assegurar que es desin primer les altres"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
+msgstr "Si teniu el D-Bus activat, es recomana que el feu servir en lloc de les dreceres. Consulteu el LLEGEIX-ME per a saber més de la pestanya General i veure'n alguns exemples."
+
+#: ../contents/ui/configUnifiedBackground.qml
+msgid ""
+"Select start and end of unified background areas, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Note: <strong>odd</strong> widget spacing values are automatically "
+"converted to <strong>evens</strong> when this feature is used."
+msgstr "Trieu l'inici i final de les àrees de fons unificat. Els ginys entre l'<b>Inici</b> i el <b>Final</b> han d'estar <b>desactivats</b> a l'esquerra. Nota: els valors d'espaiat <strong>imparells</strong> es convertiran automàticament a "
+"<strong>parells</strong> quan es fa servir aquesta funció."
+
+#: ../contents/ui/configUnifiedBackground.qml
+msgid "Restore default (removes all unified areas)"
+msgstr "Restaura els valors per defecte (trau les àrees unificades)"
+
+#: ../contents/ui/main.qml
+msgid "Hide widget (visible in panel Edit Mode)"
+msgstr "Amaga el giny (visible en Mode d'Edició del Panell)"
+
+#: ../contents/ui/main.qml
+msgid "Select a preset"
+msgstr "Tria un perfil"
+
+#: ../contents/ui/main.qml
+msgid "Running outdated version of %1"
+msgstr "S'executa la versió desactualitzada de %1"
+
+#: ../contents/ui/main.qml
+msgid "Panel not found, this widget must be placed on a panel to work"
+msgstr "El panell no s'ha trobat. Aquest giny s'ha de posar a dins d'un panell per tal que funcioni."
