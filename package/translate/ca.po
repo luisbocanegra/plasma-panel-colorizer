@@ -317,7 +317,7 @@ msgstr "Ocupat"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Change element appearance based on their state, configuration is stacked on top of the current appearance"
-msgstr "Canvia l'aparença de l'element segons els seu estat. La configuració s'aplica al damunt de l'aparença actual.
+msgstr "Canvia l'aparença de l'element segons els seu estat. La configuració s'aplica al damunt de l'aparença actual."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel:"
@@ -538,7 +538,7 @@ msgstr "Amaga el giny:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "visible in Panel Edit Mode"
-msgstr "visible en Mode d'Edició del Panell
+msgstr "visible en Mode d'Edició del Panell"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Debug mode:"
