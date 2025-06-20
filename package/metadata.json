@@ -23,7 +23,7 @@
         "Name[de]": "Panel Colorizer",
         "Name[nl]": "Paneelkleuring",
         "Name[zh]": "Panel colorizer",
-        "Version": "4.3.1",
+        "Version": "4.3.2",
         "Website": "https://github.com/luisbocanegra/plasma-panel-colorizer"
     },
     "X-Plasma-API-Minimum-Version": "6.0"
