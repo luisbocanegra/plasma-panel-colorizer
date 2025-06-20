@@ -57,8 +57,10 @@ Item {
         if (callbackRef) {
             callFinished.disconnect(callbackRef);
         }
-        callbackRef = callback;
-        callFinished.connect(callback);
+        if (callback) {
+            callbackRef = callback;
+            callFinished.connect(callback);
+        }
         runCommand.run(builCmd());
     }
 }
