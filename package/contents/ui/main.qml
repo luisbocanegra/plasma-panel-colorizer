@@ -212,7 +212,13 @@ PlasmoidItem {
             }
             dbusEvaluateScript.arguments = [script.toString().replace(/\n/g, ' ').trim()];
             dbusEvaluateScript.call();
-            reconfigure();
+            // Only reconfigure if widget is not hidden or in edit mode
+            if (!hideWidget || editMode) {
+                reconfigure();
+            } else {
+                // Just update the binding without activating
+                bindPlasmoidStatus();
+            }
         });
     }
 
@@ -247,7 +253,10 @@ PlasmoidItem {
         if ((main.floatigness === 1 || main.floatigness === 0) && !editMode) {
             Utils.delay(10, () => {
                 updateMasks();
-                activatePlasmoidCycle();
+                // Only activate if widget is not hidden
+                if (!hideWidget) {
+                    activatePlasmoidCycle();
+                }
             }, main);
         }
     }
@@ -1503,7 +1512,13 @@ PlasmoidItem {
             Utils.delay(200, () => {
                 doPanelLengthFix = false;
             }, main);
-            reconfigure();
+            // Only reconfigure if widget is not hidden or in edit mode
+            if (!hideWidget || editMode) {
+                reconfigure();
+            } else {
+                // Just update the binding without activating
+                bindPlasmoidStatus();
+            }
         }
     }
 
@@ -1627,8 +1642,11 @@ PlasmoidItem {
         interval: 500
         triggeredOnStart: true
         onTriggered: {
-            Plasmoid.activated();
-            main.expanded = false;
+            // Only activate if widget is not hidden
+            if (!hideWidget || editMode) {
+                Plasmoid.activated();
+                main.expanded = false;
+            }
             bindPlasmoidStatusTimer.restart();
         }
     }
@@ -1645,20 +1663,28 @@ PlasmoidItem {
             dbusKWinReconfigure.call();
         }
 
-        Plasmoid.status = (hideWidget || !runningLatest) ? PlasmaCore.Types.ActiveStatus : PlasmaCore.Types.HiddenStatus;
-        if (["autohide", "dodgewindows"].includes(stockPanelSettings.visibility.value) && panelPosition.location !== stockPanelSettings.position.value) {
-            // activate the panel for a longer time if it can hide
-            // to avoid plasma crash when changing its location
-            tempActivationTimer.restart();
-        } else {
-            activatePlasmoidCycle();
-            bindPlasmoidStatus();
+        // Use bindPlasmoidStatus() to maintain proper Qt binding instead of direct assignment
+        // This ensures that hideWidget changes are properly reflected in panel behavior
+        bindPlasmoidStatus();
+
+        // Only activate panel if widget is not hidden or in special cases
+        if (!hideWidget || editMode) {
+            if (["autohide", "dodgewindows"].includes(stockPanelSettings.visibility.value) && panelPosition.location !== stockPanelSettings.position.value) {
+                // activate the panel for a longer time if it can hide
+                // to avoid plasma crash when changing its location
+                tempActivationTimer.restart();
+            } else {
+                activatePlasmoidCycle();
+            }
         }
     }
 
     function activatePlasmoidCycle() {
-        Plasmoid.activated();
-        Plasmoid.activated();
+        // Only activate if widget is not hidden
+        if (!hideWidget || editMode) {
+            Plasmoid.activated();
+            Plasmoid.activated();
+        }
     }
 
     // https://github.com/olib14/pinpanel/blob/2d126f0f3ac3e35a725f05b0060a3dd5c924cbe7/package/contents/ui/main.qml#L58 ♥
@@ -1894,7 +1920,12 @@ PlasmoidItem {
 
     function bindPlasmoidStatus() {
         Plasmoid.status = Qt.binding(function () {
-            return (editMode || !hideWidget || !runningLatest) ? PlasmaCore.Types.ActiveStatus : PlasmaCore.Types.HiddenStatus;
+            const status = (editMode || !hideWidget || !runningLatest) ? PlasmaCore.Types.ActiveStatus : PlasmaCore.Types.HiddenStatus;
+            if (debug) {
+                console.log("Panel Colorizer: Setting plasmoid status to", status === PlasmaCore.Types.ActiveStatus ? "Active" : "Hidden",
+                           "- editMode:", editMode, "hideWidget:", hideWidget, "runningLatest:", runningLatest);
+            }
+            return status;
         });
     }
 
