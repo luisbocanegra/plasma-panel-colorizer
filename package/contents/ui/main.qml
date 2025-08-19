@@ -211,8 +211,11 @@ PlasmoidItem {
                 panelView.visible = true;
             }
             dbusEvaluateScript.arguments = [script.toString().replace(/\n/g, ' ').trim()];
-            dbusEvaluateScript.call();
-            reconfigure();
+            dbusEvaluateScript.call(() => {
+                Utils.delay(250, () => {
+                    reconfigure();
+                }, main);
+            });
         });
     }
 
@@ -247,7 +250,9 @@ PlasmoidItem {
         if ((main.floatigness === 1 || main.floatigness === 0) && !editMode) {
             Utils.delay(10, () => {
                 updateMasks();
-                activatePlasmoidCycle();
+            // TODO this forces hidden panels to be always visible and is unclear
+            // if it actually helps
+            // activatePlasmoidCycle();
             }, main);
         }
     }
@@ -1502,8 +1507,8 @@ PlasmoidItem {
             doPanelLengthFix = true;
             Utils.delay(200, () => {
                 doPanelLengthFix = false;
+                reconfigure();
             }, main);
-            reconfigure();
         }
     }
 
@@ -1621,18 +1626,6 @@ PlasmoidItem {
         useGdbus: true
     }
 
-    // temporarily show the panel
-    Timer {
-        id: tempActivationTimer
-        interval: 500
-        triggeredOnStart: true
-        onTriggered: {
-            Plasmoid.activated();
-            main.expanded = false;
-            bindPlasmoidStatusTimer.restart();
-        }
-    }
-
     function reconfigure() {
         // sometimes windows won't update when the panel visibility or height
         // (and maybe other properties) changes, this is more noticeable with
@@ -1641,19 +1634,13 @@ PlasmoidItem {
         // and org.kde.KWin.reconfigure triggers the resize we need
         // TODO figure out how the desktop edit mode informs the new available size
         if (isWayland) {
-            // X11 doesn't seem to need it and also would flicker the panel/screen
+            // X11 doesn't seem to need it and also will flicker the panel/screen
             dbusKWinReconfigure.call();
         }
+    }
 
-        Plasmoid.status = (hideWidget || !runningLatest) ? PlasmaCore.Types.ActiveStatus : PlasmaCore.Types.HiddenStatus;
-        if (["autohide", "dodgewindows"].includes(stockPanelSettings.visibility.value) && panelPosition.location !== stockPanelSettings.position.value) {
-            // activate the panel for a longer time if it can hide
-            // to avoid plasma crash when changing its location
-            tempActivationTimer.restart();
-        } else {
-            activatePlasmoidCycle();
-            bindPlasmoidStatus();
-        }
+    Label {
+        text: Plasmoid.status
     }
 
     function activatePlasmoidCycle() {
@@ -1794,7 +1781,7 @@ PlasmoidItem {
     }
 
     Component.onCompleted: {
-        bindPlasmoidStatus();
+        updatePlasmoidStatus();
         runCommand.run("plasmashell --version");
         try {
             panelColorizer = Qt.createQmlObject("import org.kde.plasma.panelcolorizer 1.0; PanelColorizer { id: panelColorizer }", main);
@@ -1892,21 +1879,11 @@ PlasmoidItem {
     }
     toolTipTextFormat: Text.PlainText
 
-    function bindPlasmoidStatus() {
-        Plasmoid.status = Qt.binding(function () {
-            return (editMode || !hideWidget || !runningLatest) ? PlasmaCore.Types.ActiveStatus : PlasmaCore.Types.HiddenStatus;
-        });
+    function updatePlasmoidStatus() {
+        Plasmoid.status = (editMode || !hideWidget || !runningLatest) ? PlasmaCore.Types.ActiveStatus : PlasmaCore.Types.HiddenStatus;
     }
 
-    onHideWidgetChanged: bindPlasmoidStatus()
-
-    Timer {
-        id: bindPlasmoidStatusTimer
-        interval: 600
-        onTriggered: {
-            bindPlasmoidStatus();
-        }
-    }
+    onHideWidgetChanged: updatePlasmoidStatus()
 
     Plasmoid.contextualActions: [
         PlasmaCore.Action {
