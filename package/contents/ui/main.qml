@@ -201,21 +201,24 @@ PlasmoidItem {
         }
     }
 
+    function applyStockPanelSettings() {
+        let script = Utils.setPanelModeScript(Plasmoid.containment.id, stockPanelSettings);
+        if (stockPanelSettings.visible.enabled) {
+            panelView.visible = stockPanelSettings.visible.value;
+        } else {
+            panelView.visible = true;
+        }
+        dbusEvaluateScript.arguments = [script.toString().replace(/\n/g, ' ').trim()];
+        dbusEvaluateScript.call(() => {
+            Utils.delay(250, () => {
+                reconfigure();
+            }, main);
+        });
+    }
+
     onStockPanelSettingsChanged: {
         Qt.callLater(function () {
-            // console.error(JSON.stringify(stockPanelSettings))
-            let script = Utils.setPanelModeScript(Plasmoid.containment.id, stockPanelSettings);
-            if (stockPanelSettings.visible.enabled) {
-                panelView.visible = stockPanelSettings.visible.value;
-            } else {
-                panelView.visible = true;
-            }
-            dbusEvaluateScript.arguments = [script.toString().replace(/\n/g, ' ').trim()];
-            dbusEvaluateScript.call(() => {
-                Utils.delay(250, () => {
-                    reconfigure();
-                }, main);
-            });
+            applyStockPanelSettings();
         });
     }
 
@@ -1789,6 +1792,9 @@ PlasmoidItem {
         } catch (err) {
             console.warn("QML Plugin org.kde.plasma.panelcolorizer not found. Custom blur background will not work.");
         }
+        Utils.delay(100, () => {
+            applyStockPanelSettings();
+        }, main);
     }
 
     TasksModel {
