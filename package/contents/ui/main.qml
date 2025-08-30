@@ -54,6 +54,7 @@ PlasmoidItem {
     property bool hideWidget: plasmoid.configuration.hideWidget
     property bool fixedSidePaddingEnabled: isEnabled && panelBgItem.cfg.padding.enabled
     property bool floatingDialogs: main.isEnabled ? cfg.nativePanel.floatingDialogs : false
+    property bool floatingDialogsAllowOverride: main.isEnabled ? cfg.nativePanel.floatingDialogsAllowOverride : false
     property bool isEnabled: plasmoid.configuration.isEnabled
     property bool nativePanelBackgroundEnabled: (isEnabled ? cfg.nativePanel.background.enabled : true) || doPanelClickFix
     property real nativePanelBackgroundOpacity: isEnabled ? cfg.nativePanel.background.opacity : 1.0
@@ -1473,10 +1474,19 @@ PlasmoidItem {
         setFloatigApplets();
     }
 
+    onFloatingDialogsAllowOverrideChanged: {
+        setFloatigApplets();
+    }
+
     // inspired by https://invent.kde.org/plasma/plasma-desktop/-/merge_requests/1912
     function setFloatigApplets() {
         if (!containmentItem)
             return;
+        // Plasma 6.4 now has a floating applets option, but we are overriding it,
+        // so let's require the user to enable it before forcing one state of the other
+        if (main.plasmaVersion.isGreaterThan("6.3.5") && !floatingDialogsAllowOverride) {
+            return;
+        }
         if (floatingDialogs) {
             containmentItem.Plasmoid.containmentDisplayHints |= PlasmaCore.Types.ContainmentPrefersFloatingApplets;
         } else {

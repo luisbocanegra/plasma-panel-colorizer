@@ -918,7 +918,8 @@
                 "opacity": 0,
                 "shadow": false
             },
-            "floatingDialogs": true
+            "floatingDialogs": true,
+            "floatingDialogsAllowOverride": true
         }
     }
 }
