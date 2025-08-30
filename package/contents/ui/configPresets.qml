@@ -42,6 +42,21 @@ KCM.SimpleKCM {
         id: runCommand
     }
 
+    RunCommand {
+        id: runCommand2
+
+        onExited: (cmd, exitCode, exitStatus, stdout, stderr) => {
+            if (exitCode !== 0) {
+                console.error(cmd, exitCode, exitStatus, stdout, stderr);
+                return;
+            }
+            if (cmd.startsWith("echo")) {
+                root.reloadPresetList();
+                createPreviewDialog.open();
+            }
+        }
+    }
+
     signal refreshImage(editingPreset: string)
 
     signal reloadPresetList
@@ -168,8 +183,8 @@ KCM.SimpleKCM {
                 output[name] = parsed;
             }
         }
-        runCommand.run("mkdir -p '" + presetDir + "'");
-        runCommand.run("echo '" + JSON.stringify(output) + "' > '" + presetDir + "/settings.json'");
+        runCommand2.run("mkdir -p '" + presetDir + "'");
+        runCommand2.run("echo '" + JSON.stringify(output) + "' > '" + presetDir + "/settings.json'");
     }
 
     function deletePreset(path) {
