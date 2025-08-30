@@ -5,6 +5,8 @@ import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
 import "../code/enum.js" as Enum
 import "../code/utils.js" as Utils
+import "../code/version.js" as VersionUtil
+import ".."
 
 ColumnLayout {
     id: root
@@ -73,6 +75,23 @@ ColumnLayout {
         }
     }
 
+    property var plasmaVersion: new VersionUtil.Version("999.999.999") // to assume latest
+    RunCommand {
+        id: runCommand
+        onExited: (cmd, exitCode, exitStatus, stdout, stderr) => {
+            if (exitCode !== 0) {
+                console.error(cmd, exitCode, exitStatus, stdout, stderr);
+                return;
+            }
+            if (stdout) {
+                const parts = stdout.split(" ");
+                if (parts.length < 2)
+                    return;
+                root.plasmaVersion = new VersionUtil.Version(parts[1]);
+            }
+        }
+    }
+
     signal updateConfigString(string configString, var config)
     signal tabChanged(int currentTab)
 
@@ -92,6 +111,7 @@ ColumnLayout {
     }
     Component.onCompleted: {
         Utils.delay(50, () => ready = true, root);
+        runCommand.run('plasmashell --version');
     }
 
     Kirigami.FormLayout {
@@ -217,14 +237,33 @@ ColumnLayout {
             }
         }
 
+        RowLayout {
+            Kirigami.FormData.label: i18n("Floating applets:")
+            CheckBox {
+                id: floatingDialogsEnabledCheckbox
+                visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+                text: i18n("Allow changes (Plasma 6.4.0 and later)")
+                checked: config.nativePanel.floatingDialogsAllowOverride
+                onCheckedChanged: {
+                    config.nativePanel.floatingDialogsAllowOverride = checked;
+                    updateConfig();
+                }
+            }
+            Kirigami.ContextualHelpButton {
+                toolTipText: i18n("Since version 6.4.0, Plasma now has a built-in <b>Floating panel and applets</b> option, enabling this overrides that option.\n⚠️Changing <b>Floating</b> from the panel configuration will not work with this is enabled!")
+            }
+            visible: root.plasmaVersion.isGreaterThan("6.3.5")
+        }
+
         CheckBox {
             visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
-            text: i18n("Force floating dialogs")
+            text: i18n("Force floating applets")
             checked: config.nativePanel.floatingDialogs
             onCheckedChanged: {
                 config.nativePanel.floatingDialogs = checked;
                 updateConfig();
             }
+            enabled: floatingDialogsEnabledCheckbox.checked || root.plasmaVersion.isLowerThan("6.4.0")
         }
 
         CheckBox {
