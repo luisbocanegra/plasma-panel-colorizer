@@ -1,5 +1,19 @@
 # Changelog
 
+## [5.0.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v4.3.2...v5.0.0) (2025-08-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* If you are forcing floating dialogs (applets) you will need to update your settings/presets to allow floating applets changes in plasma 6.4.0 and later **Appearance** > **Floating applets** > enable (check) allow changes
+
+### Bug Fixes
+
+* broken panel auto hide and window sizes not updating with panel ([1247164](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/124716468c67c10767c81c0c9811084c6bcddd7b))
+* preset settings not saving sometimes ([af283ff](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/af283ffe5bb68aa4376c63280f3ffe53ba959b72))
+* require allowing floating applets changes 6.4.0 and later ([58b2196](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/58b219632c6e8f799c8bb5283ae084e9b5de89cd))
+* stockPanelSettings.visible.value not applying on Plasma start ([0c097bc](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/0c097bc29c25a18463382c517b6beb79014a51fa))
+
 ## [4.3.2](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v4.3.1...v4.3.2) (2025-06-20)
 
 
