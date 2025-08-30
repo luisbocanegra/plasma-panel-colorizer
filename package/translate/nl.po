@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-06-05 04:58+0000\n"
+"POT-Creation-Date: 2025-08-30 06:05+0000\n"
 "PO-Revision-Date: 2025-06-05 11:02+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -376,8 +376,24 @@ msgstr ""
 "Stel in op 0 om slechts het vereiste masker voor vervaging toe te passen."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Force floating dialogs"
-msgstr "Zwevende dialoogvensters afdwingen"
+msgid "Floating applets:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Allow changes (Plasma 6.4.0 and later)"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Since version 6.4.0, Plasma now has a built-in <b>Floating panel and "
+"applets</b> option, enabling this overrides that option.\n"
+"⚠️Changing <b>Floating</b> from the panel configuration will not work with "
+"this is enabled!"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Force floating applets"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "customization"
@@ -1116,6 +1132,9 @@ msgstr "Verouderde versie van ‘%1’"
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr ""
 "Er is geen paneel aangetroffen - de widget dient op een paneel te staan"
+
+#~ msgid "Force floating dialogs"
+#~ msgstr "Zwevende dialoogvensters afdwingen"
 
 #~ msgid "Enable Panel Colorizer:"
 #~ msgstr "Paneelkleuring inschakelen:"
