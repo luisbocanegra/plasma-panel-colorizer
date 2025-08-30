@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-06-05 04:58+0000\n"
+"POT-Creation-Date: 2025-08-30 06:05+0000\n"
 "PO-Revision-Date: 2025-06-05 23:14+0800\n"
 "Last-Translator: Mill413 <mill413@outlook.com>\n"
 "Language-Team: \n"
@@ -342,8 +342,22 @@ msgid "Set to 0 to keep the mask required for custom background blur."
 msgstr "设置为 0 可保留自定义背景模糊所需的遮罩。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Force floating dialogs"
-msgstr "强制对话框浮动"
+msgid "Floating applets:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Allow changes (Plasma 6.4.0 and later)"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Since version 6.4.0, Plasma now has a built-in <b>Floating panel and applets</b> option, enabling this overrides that option.\n"
+"⚠️Changing <b>Floating</b> from the panel configuration will not work with this is enabled!"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Force floating applets"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "customization"
@@ -944,6 +958,9 @@ msgstr "当前运行的 %1 版本已过时"
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr "未找到面板，此挂件需放置在面板上才能工作"
+
+#~ msgid "Force floating dialogs"
+#~ msgstr "强制对话框浮动"
 
 #~ msgid "Enable Panel Colorizer:"
 #~ msgstr "启用 Panel Colorizer："
