@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
 "POT-Creation-Date: 2025-08-30 06:05+0000\n"
-"PO-Revision-Date: 2025-06-05 11:02+0200\n"
+"PO-Revision-Date: 2025-09-01 15:57+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -377,11 +377,11 @@ msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Floating applets:"
-msgstr ""
+msgstr "Zwevende applets:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Allow changes (Plasma 6.4.0 and later)"
-msgstr ""
+msgstr "Wijzigingen toestaan (Plasma 6.4.0 en nieuwer)"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
@@ -390,10 +390,15 @@ msgid ""
 "⚠️Changing <b>Floating</b> from the panel configuration will not work with "
 "this is enabled!"
 msgstr ""
+"Sinds versie 6.4.0 heeft Plasma ondersteuning voor <b>zwevende applets op "
+"zwevende panelen</b>. Schakel deze optie in om de paneelinstelling te "
+"omzeilen.\n"
+"⚠️Let op: door het inschakelen van de optie omtrent <b>zwevende applets</b> "
+"werkt de paneelinstelling niet!"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Force floating applets"
-msgstr ""
+msgstr "Zwevende applets afdwingen"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "customization"
