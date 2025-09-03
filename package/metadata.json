@@ -13,6 +13,7 @@
         "Description[ca]": "Funcions de personalització de la barra d'estat WM i del Latte-Dock per al panell per defecte del Plasma",
         "Description[de]": "Latte-Dock und WM Statusbar individuelle Anpassungen für die Plasmakontrollleiste",
         "Description[nl]": "Aanpassingsmogelijkheden voor het standaard Plasma-paneel, gebaseerd op die van Latte-Dock en WM-statusbalk",
+        "Description[pl]": "Funkcje personalizacji paska stanu Latte-Dock i WM dla domyślnego panelu Plasma",
         "Description[zh]": "为默认 Plasma 面板提供 Latte-Dock 和窗口管理器状态栏的自定义功能",
         "EnabledByDefault": false,
         "Icon": "desktop",
@@ -22,6 +23,7 @@
         "Name[ca]": "Acoloridor de panells",
         "Name[de]": "Panel Colorizer",
         "Name[nl]": "Paneelkleuring",
+        "Name[pl]": "Koloryzator panelu",
         "Name[zh]": "Panel colorizer",
         "Version": "5.0.0",
         "Website": "https://github.com/luisbocanegra/plasma-panel-colorizer"
