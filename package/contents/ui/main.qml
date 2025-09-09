@@ -52,7 +52,7 @@ PlasmoidItem {
     property string iconName: (onDesktop || !runningLatest) ? "error" : "icon"
     property string icon: Qt.resolvedUrl("../icons/" + iconName + ".svg").toString().replace("file://", "")
     property bool hideWidget: plasmoid.configuration.hideWidget
-    property bool fixedSidePaddingEnabled: isEnabled && panelBgItem.cfg.padding.enabled
+    property bool fixedSidePaddingEnabled: isEnabled && panelBgItem !== null && panelBgItem.cfg.padding.enabled
     property bool floatingDialogs: main.isEnabled ? cfg.nativePanel.floatingDialogs : false
     property bool floatingDialogsAllowOverride: main.isEnabled ? cfg.nativePanel.floatingDialogsAllowOverride : false
     property bool isEnabled: plasmoid.configuration.isEnabled
@@ -1094,7 +1094,7 @@ PlasmoidItem {
 
         property real blurMaskX: {
             const marginLeft = rect.marginEnabled ? rect.marginLeft : 0;
-            if (panelElement.floating && horizontal) {
+            if (panelElement !== null && panelElement.floating && horizontal) {
                 if (floatigness > 0) {
                     return marginLeft;
                 } else {
@@ -1107,7 +1107,7 @@ PlasmoidItem {
 
         property real blurMaskY: {
             const marginTop = rect.marginEnabled ? rect.marginTop : 0;
-            if (panelElement.floating && !horizontal) {
+            if (panelElement !== null && panelElement.floating && !horizontal) {
                 if (floatigness > 0) {
                     return marginTop;
                 } else {
@@ -1277,7 +1277,7 @@ PlasmoidItem {
     Binding {
         target: panelLayoutContainer
         property: "anchors.leftMargin"
-        value: panelBgItem.cfg.padding.side.left
+        value: fixedSidePaddingEnabled ? panelBgItem.cfg.padding.side.left : 0
         when: fixedSidePaddingEnabled
         delayed: true
     }
@@ -1285,7 +1285,7 @@ PlasmoidItem {
     Binding {
         target: panelLayoutContainer
         property: "anchors.rightMargin"
-        value: panelBgItem.cfg.padding.side.right
+        value: fixedSidePaddingEnabled ? panelBgItem.cfg.padding.side.right : 0
         when: fixedSidePaddingEnabled
         delayed: true
     }
@@ -1293,7 +1293,7 @@ PlasmoidItem {
     Binding {
         target: panelLayoutContainer
         property: "anchors.topMargin"
-        value: panelBgItem.cfg.padding.side.top
+        value: fixedSidePaddingEnabled ? panelBgItem.cfg.padding.side.top : 0
         when: fixedSidePaddingEnabled
         delayed: true
     }
@@ -1301,7 +1301,7 @@ PlasmoidItem {
     Binding {
         target: panelLayoutContainer
         property: "anchors.bottomMargin"
-        value: panelBgItem.cfg.padding.side.bottom
+        value: fixedSidePaddingEnabled ? panelBgItem.cfg.padding.side.bottom : 0
         when: fixedSidePaddingEnabled
         delayed: true
     }
@@ -1316,15 +1316,15 @@ PlasmoidItem {
     Binding {
         target: panelElement
         property: "topShadowMargin"
-        value: -panelView.height - 8
-        when: !nativePanelBackgroundShadowEnabled
+        value: panelView !== null ? -panelView.height - 8 : 0
+        when: (!nativePanelBackgroundShadowEnabled && panelView !== null)
     }
 
     Binding {
         target: panelElement
         property: "bottomShadowMargin"
-        value: -panelView.height - 8
-        when: !nativePanelBackgroundShadowEnabled
+        value: panelView !== null ? -panelView.height - 8 : 0
+        when: (!nativePanelBackgroundShadowEnabled && panelView !== null)
     }
 
     // The panel doesn't like having its spacings set to 0
