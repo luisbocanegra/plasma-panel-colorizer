@@ -1652,10 +1652,6 @@ PlasmoidItem {
         }
     }
 
-    Label {
-        text: Plasmoid.status
-    }
-
     function activatePlasmoidCycle() {
         Plasmoid.activated();
         Plasmoid.activated();
