@@ -752,7 +752,7 @@ PlasmoidItem {
             target: rect
             property: "width"
             value: (parent?.width ?? 0) + horizontalWidth
-            when: isWidget
+            when: isWidget && horizontal
             delayed: true
         }
 
