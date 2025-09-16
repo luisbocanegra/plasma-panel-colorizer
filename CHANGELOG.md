@@ -1,5 +1,14 @@
 # Changelog
 
+## [5.0.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v5.0.0...v5.0.1) (2025-09-16)
+
+
+### Bug Fixes
+
+* Fix some log spam ([132e655](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/132e6557705dc0bd9dfb330edad876c1c7f3364b))
+* remove widget status label (testing leftover) ([4a8d489](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/4a8d489ff86f883d3af7918f2dc37cc60f63cbbd))
+* widget right margin not working in vertical panels ([33c60a0](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/33c60a0b5329e6ae7ca2fc88dc77e54a9ac6e460))
+
 ## [5.0.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v4.3.2...v5.0.0) (2025-08-30)
 
 
