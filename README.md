@@ -24,7 +24,7 @@ Fully-featured widget to bring Latte-Dock and WM status bar customization featur
 > - Make sure you're using the latest version of the widget and as close as possible to the [latest Plasma](https://kde.org/search/?s=KDE+Plasma6) to avoid compatibility issues.
 
 > [!CAUTION]
-> [The C++ plugin may cause plasma to crash after an update](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/209) and you will need to rebuild it, see [Installing](#installing).
+> [The C++ plugin may stop working or cause Plasma to crash after a system update](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/209) and you will need to rebuild it, see [Build from source (With C++ Plugin)](#build-from-source-with-c-plugin).
 >
 > To temporarily recover from the crashes, you can manually remove the plugin:
 >
@@ -70,7 +70,7 @@ Fully-featured widget to bring Latte-Dock and WM status bar customization featur
   - Margins
   - Border
   - Shadow
-- Blur behind custom background (requires building and installing the C++ plugin)
+- Blur behind custom background ([requires building and installing the C++ plugin](#build-from-source-with-c-plugin))
 
 **Force Text/Icon color**
 
@@ -112,97 +112,11 @@ Overrides let you give a completely different configuration to one or more widge
 
 </details>
 
-## Installing
+## Installation
 
-### KDE Store
+### Arch Linux (AUR)
 
-1. Install these runtime dependencies or the equivalents for your distribution
-
-   - Arch
-
-       ```txt
-       sudo pacman -S spectacle python python-dbus python-gobject
-       ```
-
-   - Fedora
-
-       ```txt
-       sudo dnf install spectacle python3 python3-dbus python3-gobject
-       ```
-
-   - Kubuntu
-
-       ```txt
-       sudo apt install kde-spectacle python3 python3-dbus python3-gi
-       ```
-
-2. **Right click on the Panel** > **Add or manage widgets** > **Add new...** > **Download new...**
-3. **Search** for "**Panel Colorizer**", install and add it to a Panel.
-
-- ~~[Plasma 5](https://store.kde.org/p/2131149) version v0.2.0~~ **[No longer maintained](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/10)**
-
-- [Plasma 6](https://store.kde.org/p/2130967)
-
-### Manually
-
-1. Install these dependencies or the equivalents for your distribution
-
-   - Arch
-
-      ```txt
-      sudo pacman -S git gcc cmake extra-cmake-modules libplasma spectacle python python-dbus python-gobject
-      ```
-
-   - Fedora
-
-      ```txt
-      sudo dnf install git gcc-c++ cmake extra-cmake-modules libplasma-devel spectacle python3 python3-dbus python3-gobject
-      ```
-
-   - Kubuntu
-
-      ```txt
-      sudo apt install git build-essential cmake extra-cmake-modules libplasma-dev kde-spectacle python3 python3-dbus python3-gi
-      ```
-
-    Spectacle is needed to create preset previews
-
-2. Clone and install
-
-    ```sh
-    git clone https://github.com/luisbocanegra/plasma-panel-colorizer
-    cd plasma-panel-colorizer
-    ```
-
-   - Install widget + plugin
-
-      ```sh
-      ./install.sh
-      ```
-
-   - Install only the plugin if you already have the widget
-
-      ```sh
-      ./install-plugin.sh
-      ```
-
-#### Manual install for immutable distributions
-
-Use the `-immutable` variants of the install script then add `QML_IMPORT_PATH` environment variable for the C++ plugin to work:
-
-Create the file `~/.config/plasma-workspace/env/path.sh` (and folders if they don't exist) with the following:
-
-```sh
-export QML_IMPORT_PATH="$HOME/.local/lib64/qml:$HOME/.local/lib/qml:$QML_IMPORT_PATH"
-```
-
-Log-out or reboot to apply the change
-
-For more information see <https://userbase.kde.org/Session_Environment_Variables>
-
-### Arch Linux
-
-[aur/plasma6-applets-panel-colorizer](https://aur.archlinux.org/packages/plasma6-applets-panel-colorizer) use your preferred AUR helper e.g:
+<https://aur.archlinux.org/packages/plasma6-applets-panel-colorizer>
 
 ```sh
 yay -S plasma6-applets-panel-colorizer
@@ -240,6 +154,66 @@ To install the widget use one of these methods:
   # with flakes:
   nix profile install nixpkgs#plasma-panel-colorizer
   ```
+
+### KDE Store
+
+1. Install the following (runtime) dependencies from your distribution packages:
+
+    ```sh
+    # Arch Linux
+    sudo pacman -S spectacle python python-dbus python-gobject
+    # Fedora
+    sudo dnf install spectacle python3 python3-dbus python3-gobject
+    # Kubuntu
+    sudo apt install kde-spectacle python3 python3-dbus python3-gi
+    ```
+
+    Spectacle is needed to create preset previews
+
+2. **Right click on the Panel** > **Add or manage widgets** > **Add new...** > **Download new...**
+3. **Search** for "**Panel Colorizer**", install and add it to a Panel.
+
+- ~~[Plasma 5](https://store.kde.org/p/2131149) version v0.2.0~~ **[No longer maintained](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/10)**
+
+- [Plasma 6](https://store.kde.org/p/2130967)
+
+### Build from source (With C++ Plugin)
+
+1. Install these dependencies or the equivalents for your distribution
+
+    ```sh
+    # Arch Linux
+    sudo pacman -S git gcc cmake extra-cmake-modules libplasma spectacle python python-dbus python-gobject
+    # Fedora
+    sudo dnf install git gcc-c++ cmake extra-cmake-modules libplasma-devel spectacle python3 python3-dbus python3-gobject
+    # Kubuntu
+    sudo apt install git build-essential cmake extra-cmake-modules libplasma-dev kde-spectacle python3 python3-dbus python3-gi
+    ```
+
+    *NOTE: Packages `spectacle` `python dbus/gobject` are runtime dependencies*
+
+    Spectacle is needed to create preset previews
+
+2. Clone and install
+
+    ```sh
+    git clone https://github.com/luisbocanegra/plasma-panel-colorizer
+    cd plasma-panel-colorizer
+    ./install.sh
+    ```
+
+#### Manual install for immutable distributions
+
+1. Use the `-immutable` variants of the install script
+2. Add `QML_IMPORT_PATH` environment variable for the C++ plugin to work:
+
+    Create the file `~/.config/plasma-workspace/env/path.sh` (and folders if they don't exist) with the following:
+
+    ```sh
+    export QML_IMPORT_PATH="$HOME/.local/lib64/qml:$HOME/.local/lib/qml:$QML_IMPORT_PATH"
+    ```
+
+3. Log-out or reboot to apply the change*
 
 ## How to use
 
@@ -328,7 +302,9 @@ See [Adding or updating built-in presets](https://github.com/luisbocanegra/plasm
 
 ### Are changes permanent?
 
-Changes to the panel are not permanent and can be removed by disabling or removing the widget
+Changes to the panel are not permanent and can be removed by disabling the widget, other options require removing the widget and restarting plasmashell or logging out and back in.
+
+"Stock Panel settings" tab just change the settings that the panel exposes, to revert back to the default behavior, uncheck all the "Enabled" settings in that tab, then you can use Plasma's built-in Panel settings normally.
 
 ### How to restore the default appearance?
 
@@ -338,23 +314,24 @@ Changes to the panel are not permanent and can be removed by disabling or removi
 
 **If you are troubleshooting an issue please do the third option above and read the notice about reporting bugs at the start of [Install](https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#installing) section**
 
-### Updated to v1.0.0 or later, where are my presets?
+### Where are my presets/settings stored? (v1.0.0 or later)
 
 The location where they are stored has changed, the new locations are:
 
-- Presets: `/home/$USER/.config/panel-colorizer/presets/`
-- User overrides: `/home/$USER/.config/panel-colorizer/overrides.json`
-- Text and icon options: `/home/$USER/.config/panel-colorizer/forceForegroundColor.json`
+- Presets: `$HOME/.config/panel-colorizer/presets/`
+- User overrides: `$HOME/.config/panel-colorizer/overrides.json`
+- Text and icon options: `$HOME/.config/panel-colorizer/forceForegroundColor.json`
+- Current configuration is stored in the usual `$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc`
 
 **The format of the presets has changed, presets from previous version will need to be recreated manually**
 
-### Updated to v1.0.0 or later, how to blacklist widgets
+### How to blacklist or customize individual widgets? (v1.0.0 or later)
 
-See [How do I blacklist widgets like before?](https://github.com/luisbocanegra/plasma-panel-colorizer/discussions/146)
+Use overrides, see [How do I blacklist widgets like before?](https://github.com/luisbocanegra/plasma-panel-colorizer/discussions/146)
 
 ### Will you add support to drag/close/maximize/minimize... windows like latte had?
 
-Not in this project, use [Panel Spacer Extended](https://github.com/luisbocanegra/plasma-panel-spacer-extended) instead
+Not in this project, use my other project [Panel Spacer Extended](https://github.com/luisbocanegra/plasma-panel-spacer-extended) instead
 
 ### How does it work?
 
@@ -366,9 +343,9 @@ Backgrounds are drawn by creating rectangle areas bellow widgets/panel, text and
 
 Time has passed and now the widget does a lot more than that, but the principle is basically the same.
 
-**Performance**
+**Performance & memory usage**
 
-I tried to optimize it so CPU usage only increases around 0.5-1% on my computer, usage may vary depending on your System or how many widgets are in your panels.
+I tried to optimize it so CPU usage only increases around 0.5-1% on my computer while idle, memory usage will vary depending on the amount of panels and how many widgets are in them.
 
 ### Can this widget change the appearance of other parts of Plasma (e.g Desktop view, widget popups/tooltips, overview)
 
