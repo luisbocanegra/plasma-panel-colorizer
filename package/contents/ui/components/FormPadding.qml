@@ -41,7 +41,6 @@ Kirigami.FormLayout {
             }
         }
         RowLayout {
-            enabled: enabledCheckbox.checked
             SpinBox {
                 id: leftMargin
                 value: config.padding.side.left
@@ -51,8 +50,10 @@ Kirigami.FormLayout {
                     config.padding.side.left = value;
                     updateConfig();
                 }
+                enabled: enabledCheckbox.checked
             }
             ColumnLayout {
+                enabled: enabledCheckbox.checked
                 SpinBox {
                     id: topMargin
                     value: config.padding.side.top
@@ -76,16 +77,23 @@ Kirigami.FormLayout {
                 }
             }
 
-            SpinBox {
-                id: rightMargin
-                value: config.padding.side.right
-                from: 0
-                to: 99
-                onValueModified: {
-                    config.padding.side.right = value;
-                    updateConfig();
+            RowLayout {
+                SpinBox {
+                    id: rightMargin
+                    value: config.padding.side.right
+                    from: 0
+                    to: 99
+                    onValueModified: {
+                        config.padding.side.right = value;
+                        updateConfig();
+                    }
+                    enabled: enabledCheckbox.checked
+                }
+                Kirigami.ContextualHelpButton {
+                    toolTipText: i18n("Horizontal and vertical padding only work properly when the panel is on the same orientation.")
                 }
             }
+
         }
     }
 }
