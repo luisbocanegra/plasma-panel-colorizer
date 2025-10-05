@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v5.0.1...v5.1.0) (2025-10-05)
+
+
+### Features
+
+* add note about padding not working depending on panel orientation ([751a54d](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/751a54deaf31ae8fc2c530118e682e5768db17d2))
+
 ## [5.0.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v5.0.0...v5.0.1) (2025-09-16)
 
 
