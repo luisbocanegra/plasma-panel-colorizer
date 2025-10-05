@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-08-30 06:05+0000\n"
+"POT-Creation-Date: 2025-10-05 02:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -264,6 +264,10 @@ msgstr "Brillantor:"
 #: ../contents/ui/components/FormPadding.qml
 msgid "Padding"
 msgstr "Farciment"
+
+#: ../contents/ui/components/FormPadding.qml
+msgid "Horizontal and vertical padding only work properly when the panel is on the same orientation."
+msgstr ""
 
 #: ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormWidgetSettings.qml
 msgid "Shadow"
