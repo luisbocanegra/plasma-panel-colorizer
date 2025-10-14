@@ -267,7 +267,7 @@ msgstr "Farciment"
 
 #: ../contents/ui/components/FormPadding.qml
 msgid "Horizontal and vertical padding only work properly when the panel is on the same orientation."
-msgstr ""
+msgstr "El farciment horitzontal i vertical només funciona adequadament quan el panell té la mateixa orientació."
 
 #: ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormWidgetSettings.qml
 msgid "Shadow"
@@ -347,21 +347,24 @@ msgstr "Establiu-ho a 0 per a mantenir la màscara necessària per a un fons dif
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Floating applets:"
-msgstr ""
+msgstr "Miniaplicacions flotants:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Allow changes (Plasma 6.4.0 and later)"
-msgstr ""
+msgstr "Permet canvis (Plasma 6.4.0 o posterior)"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
 "Since version 6.4.0, Plasma now has a built-in <b>Floating panel and applets</b> option, enabling this overrides that option.\n"
 "⚠️Changing <b>Floating</b> from the panel configuration will not work with this is enabled!"
 msgstr ""
+"A partir de la versió 6.4.0, el Plasma té una opció de <b>Panell flotant i miniaplicacions</b>. Si s'activa aquesta opció, la sobreescriu.\n"
+"⚠️Si es canvia <b>Flotant</b> des del panell de configuració i aquesta opció està activa, no funcionarà!"
+
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Force floating applets"
-msgstr ""
+msgstr "Força miniaplicacions flotants"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "customization"
@@ -501,11 +504,11 @@ msgstr "Desactiva"
 
 #: ../contents/ui/components/WidgetCardUnifiedBg.qml
 msgid "Start"
-msgstr "Inicia"
+msgstr "Inici"
 
 #: ../contents/ui/components/WidgetCardUnifiedBg.qml
 msgid "End"
-msgstr "Finalitza"
+msgstr "Final"
 
 #: ../contents/ui/configAppearance.qml
 msgid "Not getting the expected result? Make sure you're editing the correct element."
@@ -553,7 +556,7 @@ msgstr "Amaga el giny:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "visible in Panel Edit Mode"
-msgstr "visible en Mode d'Edició del Panell"
+msgstr "Visible en Mode d'Edició del Panell"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Debug mode:"
@@ -569,7 +572,7 @@ msgstr "Graella"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Enabled"
-msgstr "Activat"
+msgstr "Activat/da"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Visible while configuring"
@@ -613,7 +616,7 @@ msgstr "Cada instància de l'Acoloridor de Panells té el seu nom de D-Bus."
 
 #: ../contents/ui/configGeneral.qml
 msgid "Python 3 executable:"
-msgstr "Executable Python 3:"
+msgstr "Executable del Python 3:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Required to run the D-Bus service in the background"
@@ -629,7 +632,7 @@ msgstr "Aplica un perfil:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Preview and switch presets using fzf + qdbus6 + jq:"
-msgstr "Previsualitzeu i canvieu de perfils amb fzf + qdbus6 + jq:"
+msgstr "Previsualitza i canvia de perfil amb fzf + qdbus6 + jq:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Hide/show this panel"
@@ -641,7 +644,7 @@ msgstr "Mostra/Amaga tots els panells"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides are independent and will be applied on top of the current settings and across presets."
-msgstr "Crea una configuració de sobreescriptura i aplica-la a un o múltiples ginys. Aquestes sobreescriptures són independents i s'aplicaran al damunt de la configuració actual i pels diferents perfils."
+msgstr "Crea una configuració de sobreescriptura i l'aplica a un o diversos ginys. Aquestes sobreescriptures són independents i s'aplicaran al damunt de la configuració actual i als diferents perfils."
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Restore default (removes all overrides)"
@@ -669,7 +672,7 @@ msgstr "Alternativa a la configuració Global/Perfil del giny per a opcions desa
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Overrides are applied from top to bottom, if two or more configuration overrides share the same option, the last occurence replaces the value of the previous one."
-msgstr "Les sobreescriptures s'apliquen de dalt a baix. Si dues o més configuracions de sobreescriptura comparteixen la mateixa opció, l'última reemplaça el valor de la prèvia."
+msgstr "Les sobreescriptures s'apliquen de dalt a baix. Si dues o més configuracions de sobreescriptura comparteixen la mateixa opció, l'última reemplaça el valor de l'anterior'."
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Do nothing"
@@ -677,7 +680,7 @@ msgstr "No facis res"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Switch between different presets based on the Panel and window states.<br>Disable preset auto-loading when making changes to presets, unsaved preset settings will be lost when presets change!"
-msgstr "Canvia entre perfils diferents segons els estats del panell i de les finestres.<br>Si es desactiva la càrrega automàtica de perfils mentre es fan canvis als perfils, els canvis sense desar es perdran quan canviï el perfil."
+msgstr "Canvia entre perfils diferents segons els estats del panell i de les finestres.<br>Si es desactiva la càrrega automàtica de perfils mentre es fan canvis als perfils, els canvis sense desar es perdran quan canvieu de perfil."
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Restore default (removes all autoloading conditions)"
@@ -689,7 +692,7 @@ msgstr "Entorn"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the <b>Maximized</b> preset will be applied."
-msgstr "Les prioritas van en ordre descendent. Per exemple, si ambdues opcions <b>Es mostra una finestra maximitzada</b> i <b>Una finestra toca el panell</b> tenen un perfil seleccionat i hi ha una finestra maximitzada a la pantalla, s'aplicarà el perfil <b>Maximitzat</b>."
+msgstr "Les prioritats van en ordre descendent. Per exemple, si ambdues opcions <b>Es mostra una finestra maximitzada</b> i <b>Una finestra toca el panell</b> tenen un perfil seleccionat i hi ha una finestra maximitzada a la pantalla, s'aplicarà el perfil <b>Maximitzat</b>."
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Window tracking:"
@@ -749,7 +752,7 @@ msgstr "Clic al giny"
 
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides should be saved to a preset in <strong>Presets</strong> tab or they will be lost when presets change!"
-msgstr "Crea configuracions de sobreescriptura i aplica-les a un o múltiples ginys. Aquestes sobreescriptures s'han de desar en un perfil a la pestanya <strong>Perfils</strong> o es pedran els canvis quan canviï el perfil."
+msgstr "Crea configuracions de sobreescriptura i les aplica a un o múltiples ginys. Aquestes sobreescriptures s'han de desar en un perfil a la pestanya <strong>Perfils</strong> o es pedran els canvis quan es canviï de perfil."
 
 #: ../contents/ui/configPresets.qml
 msgid "This will permanently delete the file from your system!"
@@ -765,7 +768,7 @@ msgstr "Se sobreescriurà la vista actual."
 
 #: ../contents/ui/configPresets.qml
 msgid "Changes to the current preset are not synced to disk automatically. You should come back to this tab and update it manually before switching to a different preset, otherwise unsaved preset settings will be lost when presets change!"
-msgstr "Els canvis del perfil actual no es sincronitzen amb el disc automàticament. Heu de tornar enrere a aquesta pestanya i actualitzar-ho manualment abans de canviar a un altre perfil. Si no, la configuració de perfils sense desar es perdrà quan canviï el perfil."
+msgstr "Els canvis del perfil actual no se sincronitzen amb el disc automàticament. Heu de sortir d'aquesta pestanya i actualitzar-los manualment abans de canviar de perfil. Si no, la configuració sense desar es perdrà."
 
 #: ../contents/ui/configPresets.qml
 msgid "Restore default preset"
@@ -789,7 +792,7 @@ msgstr "Intern"
 
 #: ../contents/ui/configPresets.qml
 msgid "Load"
-msgstr "Carrega"
+msgstr "Selecciona"
 
 #: ../contents/ui/configPresets.qml
 msgid "Update"
@@ -809,7 +812,7 @@ msgstr "Canviar la posició del panell és inestable ara mateix i pot provocar q
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
-msgstr "Les opcions d'opacitat i pantalla requereixen la versió del <b>Plasma 6.3</b> o superior.<br>L'opacitat depèn del tema del Plasma actual. Si voleu un control més fi o transparència total, feu servir les opcions d'<b>Opacitat del Panell</b> i de <b>Fons nadiu del panell</b> a la pestanya <b>Aparença</b>."
+msgstr "Les opcions d'opacitat i pantalla requereixen la versió del <b>Plasma 6.3</b> o superior.<br>L'opacitat depèn del tema del Plasma actual. Si voleu un control més fi o transparència total, feu servir les opcions d'<b>Opacitat del Panell</b> i de <b>Fons nadiu del panell</b> de la pestanya <b>Aparença</b>."
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Screen"
@@ -936,8 +939,8 @@ msgid ""
 "WARNING: Use with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration, use the command below in terminal/tty then log out or reboot, it will renove the configuratiob from all Panel Colorizer instances so make sure to "
 "save the others first"
 msgstr ""
-"AVÍS: Feu-ho servir amb compte. Si amagueu el panell i no heu configurat la càrrega automàtica de perfils o sabeu com canviar de perfil amb el D-Bus ‒o l'heu desactivat‒, no podreu fer-ho visible de nou sense traure manualment la configuració. Feu servir l'ordre següent al terminal/tty i tanqueu sessió o reinicieu. Renovarà la configuració de totes les instàncies de l'Acoloridor de Panells per "
-"a assegurar que es desin primer les altres"
+"AVÍS: Feu-ho servir amb compte. Si amagueu el panell i no heu configurat la càrrega automàtica de perfils o sabeu com canviar de perfil amb el D-Bus ‒o l'heu desactivat‒, no podreu fer-lo visible de nou "
+"sense traure manualment la configuració. Feu servir l'ordre següent al terminal/tty i tanqueu sessió o reinicieu. Renovarà la configuració de totes les instàncies de l'Acoloridor de Panells per a assegurar que es desin primer les altres"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
