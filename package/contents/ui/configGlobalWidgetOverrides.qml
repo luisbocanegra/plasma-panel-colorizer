@@ -128,7 +128,7 @@ KCM.SimpleKCM {
         enabled: cfg_isEnabled
         Kirigami.InlineMessage {
             Layout.fillWidth: true
-            text: i18n("Create configuration overrides and apply them to one or multiple widgets. These overrides are independent and will be applied on top of the current settings and across presets.")
+            text: i18n("Create configuration overrides and apply them to one or multiple widgets. These overrides are independent of presets and will be applied on top of the current settings and across presets.<br>To blacklist a widget from modifications, <b>uncheck</b> options <b>Enable</b> and <b>Fallback</b>, and apply the override to the widget.")
             visible: true
             type: Kirigami.MessageType.Information
         }
@@ -142,6 +142,9 @@ KCM.SimpleKCM {
                 Layout.fillWidth: true
             }
         }
+        Components.WidgetOverrideHint {
+            Layout.alignment: Qt.AlignHCenter
+        }
         Components.SettingImportExport {
             onExportConfirmed: {
                 runCommand.run(crateConfigDirCmd);
@@ -151,177 +154,179 @@ KCM.SimpleKCM {
         }
 
         Kirigami.FormLayout {
-
             Kirigami.Separator {
                 Kirigami.FormData.isSection: true
                 Kirigami.FormData.label: i18n("Configuration overrides")
             }
+        }
 
-            ColumnLayout {
-                id: presetCards
-                Layout.minimumWidth: 500
-                Repeater {
-                    model: Object.keys(root.configOverrides)
-                    delegate: Components.WidgetCardOverride {
-                        onDeleteOverride: name => {
-                            delete configOverrides[name];
-                            root.updateConfig();
+        ColumnLayout {
+            id: presetCards
+            Layout.minimumWidth: 500
+            Layout.maximumWidth: 500
+            Layout.alignment: Qt.AlignHCenter
+            Repeater {
+                model: Object.keys(root.configOverrides)
+                delegate: Components.WidgetCardOverride {
+                    onDeleteOverride: name => {
+                        delete configOverrides[name];
+                        showingConfig = false;
+                        root.updateConfig();
+                    }
+                    onEditingName: name => {
+                        overrideName = name;
+                    }
+                }
+            }
+            Button {
+                icon.name: "list-add-symbolic"
+                text: "New override"
+                Layout.fillWidth: true
+                onClicked: {
+                    let nextOverride = Object.keys(configOverrides).length + 1;
+                    while (`Global Override ${nextOverride}` in configOverrides) {
+                        nextOverride++;
+                    }
+                    configOverrides[`Global Override ${nextOverride}`] = Globals.baseOverrideConfig;
+                    root.updateConfig();
+                }
+            }
+        }
+
+        // Label {
+        //     text: overrideName
+        // }
+
+        property alias parentLayout: parentLayout
+        ColumnLayout {
+            visible: showingConfig && userInput
+            Kirigami.FormLayout {
+                id: parentLayout
+                Kirigami.Separator {
+                    Kirigami.FormData.isSection: true
+                    Kirigami.FormData.label: i18n("Override settings")
+                }
+                RowLayout {
+                    Kirigami.FormData.label: "Name:"
+                    TextField {
+                        id: nameField
+                        Layout.fillWidth: true
+                        placeholderText: i18n("Override name")
+                        text: overrideName
+                        validator: RegularExpressionValidator {
+                            regularExpression: /^(?![\s\.])([a-zA-Z0-9. _\-]+)(?<![\.|])$/
                         }
-                        onEditingName: name => {
-                            overrideName = name;
+                    }
+                    Button {
+                        icon.name: "checkmark-symbolic"
+                        text: "Rename"
+                        onClicked: {
+                            configOverrides[nameField.text] = configOverrides[overrideName];
+                            delete configOverrides[overrideName];
+                            overrideName = nameField.text;
+                            root.updateConfig();
                         }
                     }
                 }
                 RowLayout {
-                    Item {
-                        Layout.fillWidth: true
-                    }
-                    Button {
-                        icon.name: "list-add-symbolic"
-                        text: "New override"
-                        onClicked: {
-                            let nextOverride = Object.keys(configOverrides).length + 1;
-                            while (`Global Override ${nextOverride}` in configOverrides) {
-                                nextOverride++;
-                            }
-                            configOverrides[`Global Override ${nextOverride}`] = Globals.baseOverrideConfig;
+                    Kirigami.FormData.label: i18n("Fallback:")
+                    CheckBox {
+                        checked: configOverrides[overrideName]?.disabledFallback || false
+                        onCheckedChanged: {
+                            configOverrides[overrideName].disabledFallback = checked;
                             root.updateConfig();
                         }
                     }
+                    Kirigami.ContextualHelpButton {
+                        toolTipText: i18n("Fallback to the Global/Preset widget settings for disabled options, except for <b>Enable</b> and <b>Blur</>.")
+                    }
+                }
+            }
+            Loader {
+                id: componentLoader
+                asynchronous: true
+                sourceComponent: showingConfig ? settingsComp : null
+                onLoaded: {
+                    item.width = root.availableWidth;
+                    item.config = configOverrides[overrideName];
+                    item.onUpdateConfigString.connect((newString, config) => {
+                        configOverrides[overrideName] = config;
+                        root.updateConfig();
+                    });
+                    item.elementState = root.currentState;
+                    item.currentTab = root.currentTab;
+                    item.elementFriendlyName = "Widgets";
+                    item.tabChanged.connect(currentTab => {
+                        root.currentTab = currentTab;
+                    });
+                    item.elementStateChanged.connect(() => {
+                        root.currentState = item.elementState;
+                        componentLoader.sourceComponent = null;
+                        componentLoader.sourceComponent = Qt.binding(() => showingConfig ? settingsComp : null);
+                    });
                 }
             }
 
-            // Label {
-            //     text: overrideName
-            // }
-
-            ColumnLayout {
-                visible: showingConfig && userInput
-                Kirigami.FormLayout {
-                    id: parentLayout
-                    // Layout.preferredWidth: 600
-                    Kirigami.Separator {
-                        Kirigami.FormData.isSection: true
-                        Kirigami.FormData.label: i18n("Override settings")
-                    }
-                    RowLayout {
-                        Kirigami.FormData.label: "Name:"
-                        TextField {
-                            id: nameField
-                            Layout.fillWidth: true
-                            placeholderText: i18n("Override name")
-                            text: overrideName
-                            validator: RegularExpressionValidator {
-                                regularExpression: /^(?![\s\.])([a-zA-Z0-9. _\-]+)(?<![\.|])$/
-                            }
-                        }
-                        Button {
-                            icon.name: "checkmark-symbolic"
-                            text: "Rename"
-                            onClicked: {
-                                configOverrides[nameField.text] = configOverrides[overrideName];
-                                delete configOverrides[overrideName];
-                                overrideName = nameField.text;
-                                root.updateConfig();
-                            }
-                        }
-                    }
-                    RowLayout {
-                        Kirigami.FormData.label: i18n("Fallback:")
-                        CheckBox {
-                            checked: configOverrides[overrideName]?.disabledFallback || false
-                            onCheckedChanged: {
-                                configOverrides[overrideName].disabledFallback = checked;
-                                root.updateConfig();
-                            }
-                        }
-                        Kirigami.ContextualHelpButton {
-                            toolTipText: i18n("Fallback to the Global/Preset widget settings for disabled options, except for <b>Enable</b> and <b>Blur</>.")
-                        }
-                    }
-                }
-                Loader {
-                    id: componentLoader
-                    asynchronous: true
-                    sourceComponent: showingConfig ? settingsComp : null
-                    onLoaded: {
-                        item.config = configOverrides[overrideName];
-                        item.onUpdateConfigString.connect((newString, config) => {
-                            configOverrides[overrideName] = config;
-                            root.updateConfig();
-                        });
-                        item.elementState = root.currentState;
-                        item.currentTab = root.currentTab;
-                        item.elementFriendlyName = "Widgets";
-                        item.tabChanged.connect(currentTab => {
-                            root.currentTab = currentTab;
-                        });
-                        item.elementStateChanged.connect(() => {
-                            root.currentState = item.elementState;
-                            componentLoader.sourceComponent = null;
-                            componentLoader.sourceComponent = Qt.binding(() => showingConfig ? settingsComp : null);
-                        });
-                    }
-                }
-
-                Component {
-                    id: settingsComp
-                    Components.FormWidgetSettings {}
-                }
+            Component {
+                id: settingsComp
+                Components.FormWidgetSettings {}
             }
+        }
 
+        Kirigami.FormLayout {
             Kirigami.Separator {
                 Kirigami.FormData.isSection: true
                 Kirigami.FormData.label: i18n("Widgets")
             }
+        }
 
-            Label {
-                text: i18n("Overrides are applied from top to bottom, if two or more configuration overrides share the same option, the last occurence replaces the value of the previous one.")
-                opacity: 0.7
-                Layout.maximumWidth: presetCards.width
-                wrapMode: Text.Wrap
-            }
+        Label {
+            text: i18n("Overrides are applied from top to bottom, if two or more configuration overrides share the same option, the last occurence replaces the value of the previous one.")
+            opacity: 0.7
+            Layout.maximumWidth: 700
+            wrapMode: Text.Wrap
+            Layout.alignment: Qt.AlignHCenter
+        }
 
-            ColumnLayout {
-                id: widgetCards
-                Layout.minimumWidth: 500
-                Repeater {
-                    model: widgetsModel
-                    delegate: Components.WidgetCardConfig {
-                        widget: model
-                        configOverrides: Object.keys(root.configOverrides)
-                        overrideAssociations: associationsModel
-                        currentOverrides: associationsModel[Utils.getWidgetConfigIdx(id, name, associationsModel)]?.presets || []
-                        onAddOverride: (preset, index) => {
-                            if (!loaded)
-                                return;
-                            let asocIndex = Utils.getWidgetConfigIdx(id, name, associationsModel);
-                            console.log("asocIndex", asocIndex);
-                            if (asocIndex === -1) {
-                                associationsModel.push({
-                                    "id": id,
-                                    "name": name,
-                                    "presets": []
-                                });
-                                asocIndex = associationsModel.length - 1;
-                            }
-                            if (index === null) {
-                                associationsModel[asocIndex].presets.push(preset);
-                            } else {
-                                associationsModel[asocIndex].presets[index] = preset;
-                            }
-                            root.updateConfig();
+        ColumnLayout {
+            id: widgetCards
+            Layout.alignment: Qt.AlignHCenter
+            Repeater {
+                model: widgetsModel
+                delegate: Components.WidgetCardConfig {
+                    widget: model
+                    configOverrides: Object.keys(root.configOverrides)
+                    overrideAssociations: associationsModel
+                    currentOverrides: associationsModel[Utils.getWidgetConfigIdx(id, name, associationsModel)]?.presets || []
+                    onAddOverride: (preset, index) => {
+                        if (!loaded)
+                            return;
+                        let asocIndex = Utils.getWidgetConfigIdx(id, name, associationsModel);
+                        console.log("asocIndex", asocIndex);
+                        if (asocIndex === -1) {
+                            associationsModel.push({
+                                "id": id,
+                                "name": name,
+                                "presets": []
+                            });
+                            asocIndex = associationsModel.length - 1;
                         }
-                        onRemoveOverride: index => {
-                            const asocIndex = Utils.getWidgetConfigIdx(id, name, associationsModel);
-                            associationsModel[asocIndex].presets.splice(index, 1);
-                            root.updateConfig();
+                        if (index === null) {
+                            associationsModel[asocIndex].presets.push(preset);
+                        } else {
+                            associationsModel[asocIndex].presets[index] = preset;
                         }
-                        onClearOverrides: () => {
-                            const asocIndex = Utils.getWidgetConfigIdx(id, name, associationsModel);
-                            associationsModel[asocIndex].presets = [];
-                            root.updateConfig();
-                        }
+                        root.updateConfig();
+                    }
+                    onRemoveOverride: index => {
+                        const asocIndex = Utils.getWidgetConfigIdx(id, name, associationsModel);
+                        associationsModel[asocIndex].presets.splice(index, 1);
+                        root.updateConfig();
+                    }
+                    onClearOverrides: () => {
+                        const asocIndex = Utils.getWidgetConfigIdx(id, name, associationsModel);
+                        associationsModel[asocIndex].presets = [];
+                        root.updateConfig();
                     }
                 }
             }

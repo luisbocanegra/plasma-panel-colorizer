@@ -20,30 +20,10 @@ Kirigami.AbstractCard {
         }
 
         ColumnLayout {
-            RowLayout {
-                Label {
-                    text: widget.title
-                }
-
-                Rectangle {
-                    visible: widget.inTray
-                    color: Kirigami.Theme.highlightColor
-                    Kirigami.Theme.colorSet: root.Kirigami.Theme["Selection"]
-                    radius: parent.height / 2
-                    width: label.width + 12
-                    height: label.height + 2
-                    Kirigami.Theme.inherit: false
-
-                    Label {
-                        id: label
-
-                        anchors.centerIn: parent
-                        text: i18n("System Tray")
-                        color: Kirigami.Theme.textColor
-                        Kirigami.Theme.colorSet: root.Kirigami.Theme["Selection"]
-                        Kirigami.Theme.inherit: false
-                    }
-                }
+            Label {
+                text: widget.title
+                Layout.fillWidth: true
+                wrapMode: Label.Wrap
             }
 
             RowLayout {
@@ -71,6 +51,26 @@ Kirigami.AbstractCard {
 
         Item {
             Layout.fillWidth: true
+        }
+
+        Rectangle {
+            visible: widget.inTray
+            color: Kirigami.Theme.highlightColor
+            Kirigami.Theme.colorSet: root.Kirigami.Theme["Selection"]
+            radius: parent.height / 2
+            width: label.width + 12
+            height: label.height + 2
+            Kirigami.Theme.inherit: false
+
+            Label {
+                id: label
+
+                anchors.centerIn: parent
+                text: i18n("System Tray")
+                color: Kirigami.Theme.textColor
+                Kirigami.Theme.colorSet: root.Kirigami.Theme["Selection"]
+                Kirigami.Theme.inherit: false
+            }
         }
 
         Button {

@@ -122,13 +122,13 @@ KCM.SimpleKCM {
         enabled: cfg_isEnabled
         Kirigami.InlineMessage {
             Layout.fillWidth: true
-            text: i18n("Switch between different presets based on the Panel and window states.<br>Disable preset auto-loading when making changes to presets, unsaved preset settings will be lost when presets change!")
+            text: i18n("Automatically switch between different presets based on the Panel and window states.<br>Disable preset auto-loading before making changes to presets, unsaved preset settings will be lost when auto-loading switches to other preset!")
             visible: true
             type: Kirigami.MessageType.Information
         }
 
         Button {
-            text: i18n("Restore default (removes all autoloading conditions)")
+            text: i18n("Remove all auto-loading conditions")
             icon.name: "kt-restore-defaults-symbolic"
             onClicked: {
                 root.restoreSettings();
@@ -136,11 +136,15 @@ KCM.SimpleKCM {
             Layout.fillWidth: true
         }
 
+        Components.PresetAutoLoadingHint {
+            Layout.alignment: Qt.AlignHCenter
+        }
+
         Kirigami.FormLayout {
 
             Kirigami.Separator {
                 Kirigami.FormData.isSection: true
-                Kirigami.FormData.label: i18n("Environment")
+                Kirigami.FormData.label: i18n("Auto-loading conditions")
                 Layout.fillWidth: true
             }
 
