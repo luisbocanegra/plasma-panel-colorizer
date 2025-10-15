@@ -361,7 +361,6 @@ msgstr ""
 "A partir de la versió 6.4.0, el Plasma té una opció de <b>Panell flotant i miniaplicacions</b>. Si s'activa aquesta opció, la sobreescriu.\n"
 "⚠️Si es canvia <b>Flotant</b> des del panell de configuració i aquesta opció està activa, no funcionarà!"
 
-
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Force floating applets"
 msgstr "Força miniaplicacions flotants"
@@ -939,8 +938,8 @@ msgid ""
 "WARNING: Use with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration, use the command below in terminal/tty then log out or reboot, it will renove the configuratiob from all Panel Colorizer instances so make sure to "
 "save the others first"
 msgstr ""
-"AVÍS: Feu-ho servir amb compte. Si amagueu el panell i no heu configurat la càrrega automàtica de perfils o sabeu com canviar de perfil amb el D-Bus ‒o l'heu desactivat‒, no podreu fer-lo visible de nou "
-"sense traure manualment la configuració. Feu servir l'ordre següent al terminal/tty i tanqueu sessió o reinicieu. Renovarà la configuració de totes les instàncies de l'Acoloridor de Panells per a assegurar que es desin primer les altres"
+"AVÍS: Feu-ho servir amb compte. Si amagueu el panell i no heu configurat la càrrega automàtica de perfils o sabeu com canviar de perfil amb el D-Bus ‒o l'heu desactivat‒, no podreu fer-lo visible de nou sense traure manualment la configuració. Feu servir l'ordre següent al terminal/tty i tanqueu sessió o reinicieu. Renovarà la configuració de totes les instàncies de l'Acoloridor de Panells per "
+"a assegurar que es desin primer les altres"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
