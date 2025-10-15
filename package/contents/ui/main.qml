@@ -60,7 +60,7 @@ PlasmoidItem {
     property real nativePanelBackgroundOpacity: isEnabled ? cfg.nativePanel.background.opacity : 1.0
     property bool nativePanelBackgroundShadowEnabled: isEnabled ? cfg.nativePanel.background.shadow : true
     property var panelWidgets: []
-    property int panelWidgetsCount: panelWidgets?.length || 0
+    property int panelWidgetsCount: 0
     property real trayItemThikness: 20
     // keep track of these to allow others to follow their color
     property QtObject panelBgItem
@@ -1682,10 +1682,11 @@ PlasmoidItem {
     function updateCurrentWidgets() {
         panelWidgets = [];
         panelWidgets = Utils.findWidgets(panelLayout, panelWidgets);
-        if (!trayGridView)
-            return;
-        panelWidgets = Utils.findWidgetsTray(trayGridView, panelWidgets);
-        panelWidgets = Utils.findWidgetsTray(trayGridView.parent, panelWidgets);
+        if (trayGridView) {
+            panelWidgets = Utils.findWidgetsTray(trayGridView, panelWidgets);
+            panelWidgets = Utils.findWidgetsTray(trayGridView.parent, panelWidgets);
+        }
+        panelWidgetsCount = panelWidgets.length;
     }
 
     function showTrayAreas(grid) {
@@ -1787,6 +1788,7 @@ PlasmoidItem {
         // console.error( panelWidgetsCount ,JSON.stringify(panelWidgets, null, null))
         plasmoid.configuration.panelWidgets = "";
         plasmoid.configuration.panelWidgets = JSON.stringify(panelWidgets, null, null);
+        plasmoid.configuration.writeConfig();
     }
 
     Component.onCompleted: {
