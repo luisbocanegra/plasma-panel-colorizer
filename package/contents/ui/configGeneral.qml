@@ -236,7 +236,7 @@ KCM.SimpleKCM {
             }
 
             Label {
-                text: i18n("Each Panel Colorizer instance has its D-Bus name.")
+                text: i18n("Each Panel Colorizer instance has its own D-Bus name.")
                 wrapMode: Text.WordWrap
                 Layout.preferredWidth: 400
                 opacity: 0.6
@@ -260,7 +260,7 @@ KCM.SimpleKCM {
             }
 
             Label {
-                Kirigami.FormData.label: i18n("Usage:")
+                Kirigami.FormData.label: i18n("Usage examples:")
                 text: i18n("Apply a preset:")
             }
 

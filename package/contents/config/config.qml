@@ -27,8 +27,8 @@ ConfigModel {
     }
 
     ConfigCategory {
-        name: i18n("Unified widget backgrounds")
-        icon: "lines-connector-symbolic"
+        name: i18n("Widget Islands")
+        icon: "distribute-horizontal-margin-symbolic"
         source: "configUnifiedBackground.qml"
     }
 
@@ -45,9 +45,9 @@ ConfigModel {
     }
 
     ConfigCategory {
-        name: i18n("Text and icons")
+        name: i18n("Text and icon fixes")
         icon: "color-mode-invert-text-symbolic"
-        source: "configForeground.qml"
+        source: "configTextIconFix.qml"
     }
 
     ConfigCategory {

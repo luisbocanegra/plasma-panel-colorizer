@@ -60,9 +60,10 @@ KCM.SimpleKCM {
 
         Kirigami.InlineMessage {
             Layout.fillWidth: true
-            text: i18n("Not getting the expected result? Make sure you're editing the correct element.")
+            text: i18n("Not getting the expected result? Make sure you're editing the correct element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ plugin using the latest source, <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">see instructions</a>.")
             visible: true
             type: Kirigami.MessageType.Information
+            onLinkActivated: Qt.openUrlExternally(link)
         }
 
         Button {
@@ -79,27 +80,35 @@ KCM.SimpleKCM {
 
             Layout.fillWidth: true
 
-            ComboBox {
-                id: targetComponent
-
+            RowLayout {
                 Kirigami.FormData.label: i18n("Element:")
-                textRole: "name"
-                valueRole: "value"
-
-                model: [
-                    {
-                        "name": i18n("Panel"),
-                        "value": "panel"
-                    },
-                    {
-                        "name": i18n("Widgets"),
-                        "value": "widgets"
-                    },
-                    {
-                        "name": i18n("Tray widgets"),
-                        "value": "trayWidgets"
-                    }
-                ]
+                ComboBox {
+                    id: targetComponent
+                    textRole: "name"
+                    valueRole: "value"
+                    model: [
+                        {
+                            "name": i18n("Panel"),
+                            "value": "panel"
+                        },
+                        {
+                            "name": i18n("Widgets"),
+                            "value": "widgets"
+                        },
+                        {
+                            "name": i18n("Tray widgets"),
+                            "value": "trayWidgets"
+                        }
+                    ]
+                }
+                Kirigami.ContextualHelpButton {
+                    toolTipText: i18n("Part of the panel on which the options below will be applied.")
+                }
+            }
+            ColumnLayout {
+                Components.PanelElementHint {
+                    target: targetComponent.currentIndex
+                }
             }
         }
 

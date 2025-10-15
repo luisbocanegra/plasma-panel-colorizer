@@ -435,7 +435,7 @@ KCM.SimpleKCM {
 
         Kirigami.InlineMessage {
             Layout.fillWidth: true
-            text: i18n("WARNING: Use with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration, use the command below in terminal/tty then log out or reboot, it will renove the configuratiob from all Panel Colorizer instances so make sure to save the others first") + ":<br><strong><code>sed -i '/^globalSettings={\"panel\"/d' \"$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc\"</code></strong> " + i18n("If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples.")
+            text: i18n("WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will renove the configuration from all Panel Colorizer instances so make sure to save the others first") + ":<br><strong><code>sed -i '/^globalSettings={\"panel\"/d' \"$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc\"</code></strong> " + i18n("If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples.")
             visible: true
             type: Kirigami.MessageType.Warning
             actions: [

@@ -163,7 +163,7 @@ KCM.SimpleKCM {
 
         Kirigami.InlineMessage {
             Layout.fillWidth: true
-            text: i18n("Fix text and icon colors for widgets where the normal method doesn't work or isn't permanent.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content themselves<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout.")
+            text: i18n("Fix text and icon colors for widgets where the normal method doesn't work or isn't permanent.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color at a fixed interval, useful for widgets that recreate or recolor content themselves<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout.")
             visible: true
             type: Kirigami.MessageType.Information
         }
@@ -177,6 +177,10 @@ KCM.SimpleKCM {
                 }
                 Layout.fillWidth: true
             }
+        }
+
+        Components.WidgetTextIconFixHint {
+            Layout.alignment: Qt.AlignHCenter
         }
 
         Components.SettingImportExport {
@@ -206,28 +210,26 @@ KCM.SimpleKCM {
             }
         }
 
-        Kirigami.FormLayout {
-            ColumnLayout {
-                id: widgetCards
+        ColumnLayout {
+            id: widgetCards
+            Layout.alignment: Qt.AlignHCenter
+            Repeater {
+                model: widgetsModel
 
-                Repeater {
-                    model: widgetsModel
+                delegate: Components.WidgetCardTextIconFixes {
+                    widget: model
+                    onUpdateWidget: (maskEnabled, effectEnabled, reload) => {
+                        if (!loaded)
+                            return;
 
-                    delegate: Components.WidgetCardCheck {
-                        widget: model
-                        onUpdateWidget: (maskEnabled, effectEnabled, reload) => {
-                            if (!loaded)
-                                return;
-
-                            widgetsModel.set(index, {
-                                "method": {
-                                    "mask": maskEnabled,
-                                    "multiEffect": effectEnabled
-                                },
-                                "reload": reload
-                            });
-                            root.updateConfig();
-                        }
+                        widgetsModel.set(index, {
+                            "method": {
+                                "mask": maskEnabled,
+                                "multiEffect": effectEnabled
+                            },
+                            "reload": reload
+                        });
+                        root.updateConfig();
                     }
                 }
             }

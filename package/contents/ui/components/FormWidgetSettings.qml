@@ -10,6 +10,7 @@ import ".."
 
 ColumnLayout {
     id: root
+    spacing: 0
 
     property bool isSection: true
     // wether read from the string or existing config object
@@ -121,6 +122,101 @@ ColumnLayout {
         Layout.fillWidth: true
 
         RowLayout {
+            Kirigami.FormData.label: i18n("Native panel:")
+            visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+            CheckBox {
+                id: nativePanelBackgroundCheckbox
+                text: i18n("Background")
+                checked: config.nativePanel.background.enabled
+                onCheckedChanged: {
+                    config.nativePanel.background.enabled = checked;
+                    updateConfig();
+                }
+            }
+
+            Kirigami.ContextualHelpButton {
+                toolTipText: i18n("Disable to make panel fully transparent, removes contrast and blur effects.")
+            }
+        }
+        RowLayout {
+            visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+            CheckBox {
+                id: nativePanelBackgroundShadowCheckbox
+                text: i18n("Shadow")
+                enabled: nativePanelBackgroundCheckbox.checked
+
+                checked: config.nativePanel.background.shadow
+                onCheckedChanged: {
+                    config.nativePanel.background.shadow = checked;
+                    updateConfig();
+                }
+            }
+            Kirigami.ContextualHelpButton {
+                toolTipText: i18n("The shadow from the Plasma theme")
+            }
+        }
+
+        RowLayout {
+            visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+            Label {
+                text: i18n("Opacity:")
+            }
+            DoubleSpinBox {
+                id: opacitySpinbox
+                enabled: nativePanelBackgroundCheckbox.checked
+                from: 0 * multiplier
+                to: 1 * multiplier
+                value: (config.nativePanel.background.opacity ?? 0) * multiplier
+                onValueModified: {
+                    config.nativePanel.background.opacity = value / opacitySpinbox.multiplier;
+                    updateConfig();
+                }
+            }
+            Kirigami.ContextualHelpButton {
+                toolTipText: i18n("Set to 0 to keep the mask required for custom background blur.")
+            }
+        }
+
+        Item {
+            // spacing between controls
+            visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+            height: 0.5 * Kirigami.Units.gridUnit
+        }
+
+        RowLayout {
+            Kirigami.FormData.label: i18n("Floating applets:")
+            CheckBox {
+                id: floatingDialogsEnabledCheckbox
+                text: i18n("Allow changes (Plasma 6.4.0 and later)")
+                checked: config.nativePanel.floatingDialogsAllowOverride
+                onCheckedChanged: {
+                    config.nativePanel.floatingDialogsAllowOverride = checked;
+                    updateConfig();
+                }
+            }
+            Kirigami.ContextualHelpButton {
+                toolTipText: i18n("Since version 6.4.0, Plasma now has a built-in <b>Floating panel and applets</b> option, enabling this overrides that option.\n⚠️Changing <b>Floating</b> from the panel configuration will not work with this is enabled!")
+            }
+            visible: root.plasmaVersion.isGreaterThan("6.3.5") && elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+        }
+
+        CheckBox {
+            text: i18n("Force floating applets")
+            checked: config.nativePanel.floatingDialogs
+            onCheckedChanged: {
+                config.nativePanel.floatingDialogs = checked;
+                updateConfig();
+            }
+            visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal && (floatingDialogsEnabledCheckbox.checked || root.plasmaVersion.isLowerThan("6.4.0"))
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.isSection: true
+            Kirigami.FormData.label: i18n("Customization")
+            Layout.fillWidth: true
+        }
+
+        RowLayout {
             Kirigami.FormData.label: i18n("State:")
             ComboBox {
                 id: targetState
@@ -181,99 +277,27 @@ ColumnLayout {
             }
         }
 
+        ColumnLayout {
+            WidgetStateHint {
+                widgetState: targetState.currentIndex
+            }
+        }
+
         RowLayout {
-            Kirigami.FormData.label: i18n("Native panel:")
-            visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+            Kirigami.FormData.label: i18n("Enable:")
             CheckBox {
-                id: nativePanelBackgroundCheckbox
-                text: i18n("Background")
-                checked: config.nativePanel.background.enabled
+                id: isEnabled
+                checked: configLocal.enabled
                 onCheckedChanged: {
-                    config.nativePanel.background.enabled = checked;
+                    configLocal.enabled = checked;
                     updateConfig();
                 }
             }
-
-            Kirigami.ContextualHelpButton {
-                toolTipText: i18n("Disable to make panel fully transparent, removes contrast and blur effects.")
-            }
-        }
-        RowLayout {
-            visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
-            CheckBox {
-                id: nativePanelBackgroundShadowCheckbox
-                text: i18n("Shadow")
-                enabled: nativePanelBackgroundCheckbox.checked
-
-                checked: config.nativePanel.background.shadow
-                onCheckedChanged: {
-                    config.nativePanel.background.shadow = checked;
-                    updateConfig();
-                }
-            }
-            Kirigami.ContextualHelpButton {
-                toolTipText: i18n("The shadow from the Plasma theme")
-            }
         }
 
-        RowLayout {
-            visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
-            Label {
-                text: i18n("Opacity:")
-            }
-            DoubleSpinBox {
-                id: opacitySpinbox
-                enabled: nativePanelBackgroundCheckbox.checked
-                from: 0 * multiplier
-                to: 1 * multiplier
-                value: (config.nativePanel.background.opacity ?? 0) * multiplier
-                onValueModified: {
-                    config.nativePanel.background.opacity = value / opacitySpinbox.multiplier;
-                    updateConfig();
-                }
-            }
-            Kirigami.ContextualHelpButton {
-                toolTipText: i18n("Set to 0 to keep the mask required for custom background blur.")
-            }
-        }
-
-        RowLayout {
-            Kirigami.FormData.label: i18n("Floating applets:")
-            CheckBox {
-                id: floatingDialogsEnabledCheckbox
-                visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
-                text: i18n("Allow changes (Plasma 6.4.0 and later)")
-                checked: config.nativePanel.floatingDialogsAllowOverride
-                onCheckedChanged: {
-                    config.nativePanel.floatingDialogsAllowOverride = checked;
-                    updateConfig();
-                }
-            }
-            Kirigami.ContextualHelpButton {
-                toolTipText: i18n("Since version 6.4.0, Plasma now has a built-in <b>Floating panel and applets</b> option, enabling this overrides that option.\n⚠️Changing <b>Floating</b> from the panel configuration will not work with this is enabled!")
-            }
-            visible: root.plasmaVersion.isGreaterThan("6.3.5")
-        }
-
-        CheckBox {
-            visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
-            text: i18n("Force floating applets")
-            checked: config.nativePanel.floatingDialogs
-            onCheckedChanged: {
-                config.nativePanel.floatingDialogs = checked;
-                updateConfig();
-            }
-            enabled: floatingDialogsEnabledCheckbox.checked || root.plasmaVersion.isLowerThan("6.4.0")
-        }
-
-        CheckBox {
-            id: isEnabled
-            Kirigami.FormData.label: elementFriendlyName + " " + i18n("customization") + ":"
-            checked: configLocal.enabled
-            onCheckedChanged: {
-                configLocal.enabled = checked;
-                updateConfig();
-            }
+        Item {
+            // spacing between controls
+            height: Kirigami.Units.gridUnit
         }
 
         RowLayout {
@@ -313,10 +337,9 @@ ColumnLayout {
     }
 
     Kirigami.NavigationTabBar {
-        // Layout.preferredWidth: root.parent.width
-        // Layout.minimumWidth: root.parent.width
         enabled: root.isEnabled
-        Layout.fillWidth: true
+        Layout.maximumWidth: parentLayout.width
+        Layout.alignment: Qt.AlignHCenter
         maximumContentWidth: {
             const minDelegateWidth = Kirigami.Units.gridUnit * 6;
             // Always have at least the width of 5 items, so that small amounts of actions look natural.

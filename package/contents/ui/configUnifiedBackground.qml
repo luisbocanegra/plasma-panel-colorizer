@@ -117,45 +117,42 @@ KCM.SimpleKCM {
     ColumnLayout {
         enabled: root.cfg_isEnabled
 
-        Kirigami.FormLayout {
-            Kirigami.InlineMessage {
-                Layout.fillWidth: true
-                text: i18n("Select start and end of unified background areas, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Note: <strong>odd</strong> widget spacing values are automatically converted to <strong>evens</strong> when this feature is used.")
-                visible: true
-                type: Kirigami.MessageType.Information
+        Kirigami.InlineMessage {
+            Layout.fillWidth: true
+            text: i18n("Select start and end of widget islands, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Widget custom background or border is required for this option to have an effect.")
+            visible: true
+            type: Kirigami.MessageType.Information
+        }
+
+        Button {
+            text: i18n("Remove all unified areas")
+            icon.name: "kt-restore-defaults-symbolic"
+            onClicked: {
+                root.restoreSettings();
             }
+            Layout.fillWidth: true
+        }
 
-            Button {
-                text: i18n("Restore default (removes all unified areas)")
-                icon.name: "kt-restore-defaults-symbolic"
-                onClicked: {
-                    root.restoreSettings();
-                }
-                Layout.fillWidth: true
-            }
+        Components.WidgetUnifiedHint {
+            Layout.alignment: Qt.AlignHCenter
+        }
 
-            ColumnLayout {
-                id: widgetCards
+        Repeater {
+            model: widgetsModel
+            Components.WidgetCardUnifiedBg {
+                required property int index
+                required property string name
+                required property var model
+                widget: model
+                onUpdateWidget: unifyBgType => {
+                    if (!root.loaded)
+                        return;
 
-                Repeater {
-                    model: widgetsModel
-
-                    Components.WidgetCardUnifiedBg {
-                        required property int index
-                        required property string name
-                        required property var model
-                        widget: model
-                        onUpdateWidget: unifyBgType => {
-                            if (!root.loaded)
-                                return;
-
-                            console.log(name, unifyBgType);
-                            widgetsModel.set(index, {
-                                "unifyBgType": unifyBgType
-                            });
-                            root.updateConfig();
-                        }
-                    }
+                    console.log(name, unifyBgType);
+                    widgetsModel.set(index, {
+                        "unifyBgType": unifyBgType
+                    });
+                    root.updateConfig();
                 }
             }
         }

@@ -1,10 +1,16 @@
-function getRandomColor() {
-  const h = Math.random();
-  const s = Math.random();
-  const l = Math.random();
-  const a = 1.0;
+function getRandomColor(h, s, l, a) {
+  h = h ?? Math.random();
+  s = s ?? Math.random();
+  l = l ?? Math.random();
+  a = a ?? 1.0;
   return Qt.hsla(h, s, l, a);
 }
+
+function getRandomInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 
 function getBgManaged(item) {
   let managed = null;
