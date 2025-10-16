@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-10-05 02:27+0000\n"
+"POT-Creation-Date: 2025-10-16 06:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgid "Stock Panel Settings"
 msgstr ""
 
 #: ../contents/config/config.qml
-msgid "Unified widget backgrounds"
+msgid "Widget Islands"
 msgstr ""
 
 #: ../contents/config/config.qml
@@ -54,7 +54,7 @@ msgid "Global Overrides"
 msgstr ""
 
 #: ../contents/config/config.qml
-msgid "Text and icons"
+msgid "Text and icon fixes"
 msgstr ""
 
 #: ../contents/config/config.qml
@@ -99,7 +99,7 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: ../contents/ui/components/FormColors.qml
+#: ../contents/ui/components/FormColors.qml ../contents/ui/components/FormWidgetSettings.qml
 msgid "Enable:"
 msgstr ""
 
@@ -296,34 +296,6 @@ msgid "Margin"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "State:"
-msgstr ""
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Normal"
-msgstr ""
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Hover"
-msgstr ""
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Expanded"
-msgstr ""
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Needs attention"
-msgstr ""
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Busy"
-msgstr ""
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Change element appearance based on their state, configuration is stacked on top of the current appearance"
-msgstr ""
-
-#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel:"
 msgstr ""
 
@@ -366,7 +338,35 @@ msgid "Force floating applets"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "customization"
+msgid "Customization"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "State:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Normal"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Hover"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Expanded"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Needs attention"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Busy"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Change element appearance based on their state, configuration is stacked on top of the current appearance"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -469,20 +469,8 @@ msgstr ""
 msgid "This will replace your current settings!"
 msgstr ""
 
-#: ../contents/ui/components/WidgetCardCheck.qml ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardUnifiedBg.qml
+#: ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardTextIconFixes.qml ../contents/ui/components/WidgetCardUnifiedBg.qml
 msgid "System Tray"
-msgstr ""
-
-#: ../contents/ui/components/WidgetCardCheck.qml
-msgid "Mask"
-msgstr ""
-
-#: ../contents/ui/components/WidgetCardCheck.qml
-msgid "Effect"
-msgstr ""
-
-#: ../contents/ui/components/WidgetCardCheck.qml
-msgid "Refresh"
 msgstr ""
 
 #: ../contents/ui/components/WidgetCardConfig.qml
@@ -495,6 +483,18 @@ msgstr ""
 
 #: ../contents/ui/components/WidgetCardOverride.qml ../contents/ui/configPresets.qml
 msgid "Delete"
+msgstr ""
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Mask"
+msgstr ""
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Effect"
+msgstr ""
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Refresh"
 msgstr ""
 
 #: ../contents/ui/components/WidgetCardUnifiedBg.qml
@@ -510,7 +510,9 @@ msgid "End"
 msgstr ""
 
 #: ../contents/ui/configAppearance.qml
-msgid "Not getting the expected result? Make sure you're editing the correct element."
+msgid ""
+"Not getting the expected result? Make sure you're editing the correct element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ plugin using the latest source, <a href=\"https://"
+"github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">see instructions</a>."
 msgstr ""
 
 #: ../contents/ui/configAppearance.qml
@@ -529,23 +531,8 @@ msgstr ""
 msgid "Tray widgets"
 msgstr ""
 
-#: ../contents/ui/configForeground.qml
-msgid ""
-"Fix text and icon colors for widgets where the normal method doesn't work or isn't permanent.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: "
-"Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content "
-"themselves<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
-msgstr ""
-
-#: ../contents/ui/configForeground.qml
-msgid "Restore default (removes all icon and text fixes)"
-msgstr ""
-
-#: ../contents/ui/configForeground.qml
-msgid "Force Text/Icon color"
-msgstr ""
-
-#: ../contents/ui/configForeground.qml
-msgid "Refresh interval:"
+#: ../contents/ui/configAppearance.qml
+msgid "Part of the panel on which the options below will be applied."
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
@@ -609,7 +596,7 @@ msgid "D-Bus name:"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Each Panel Colorizer instance has its D-Bus name."
+msgid "Each Panel Colorizer instance has its own D-Bus name."
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
@@ -621,7 +608,7 @@ msgid "Required to run the D-Bus service in the background"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
-msgid "Usage:"
+msgid "Usage examples:"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
@@ -641,7 +628,9 @@ msgid "Hide/show all panels"
 msgstr ""
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
-msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides are independent and will be applied on top of the current settings and across presets."
+msgid ""
+"Create configuration overrides and apply them to one or multiple widgets. These overrides are independent of presets and will be applied on top of the current settings and across presets.<br>To "
+"blacklist a widget from modifications, <b>uncheck</b> options <b>Enable</b> and <b>Fallback</b>, and apply the override to the widget."
 msgstr ""
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
@@ -677,15 +666,17 @@ msgid "Do nothing"
 msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "Switch between different presets based on the Panel and window states.<br>Disable preset auto-loading when making changes to presets, unsaved preset settings will be lost when presets change!"
+msgid ""
+"Automatically switch between different presets based on the Panel and window states.<br>Disable preset auto-loading before making changes to presets, unsaved preset settings will be lost when auto-"
+"loading switches to other preset!"
 msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "Restore default (removes all autoloading conditions)"
+msgid "Remove all auto-loading conditions"
 msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "Environment"
+msgid "Auto-loading conditions"
 msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
@@ -940,23 +931,41 @@ msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
-"WARNING: Use with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible "
-"again without manually removing the configuration, use the command below in terminal/tty then log out or reboot, it will renove the configuratiob from all Panel Colorizer instances so make sure to "
-"save the others first"
+"WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make "
+"it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will renove the configuration from all Panel "
+"Colorizer instances so make sure to save the others first"
 msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
 msgstr ""
 
-#: ../contents/ui/configUnifiedBackground.qml
+#: ../contents/ui/configTextIconFix.qml
 msgid ""
-"Select start and end of unified background areas, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Note: <strong>odd</strong> widget spacing values are automatically "
-"converted to <strong>evens</strong> when this feature is used."
+"Fix text and icon colors for widgets where the normal method doesn't work or isn't permanent.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color "
+"Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color at a fixed interval, useful for widgets "
+"that recreate or recolor content themselves<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
+msgstr ""
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Restore default (removes all icon and text fixes)"
+msgstr ""
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Force Text/Icon color"
+msgstr ""
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Refresh interval:"
 msgstr ""
 
 #: ../contents/ui/configUnifiedBackground.qml
-msgid "Restore default (removes all unified areas)"
+msgid ""
+"Select start and end of widget islands, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Widget custom background or border is required for this option to have an effect."
+msgstr ""
+
+#: ../contents/ui/configUnifiedBackground.qml
+msgid "Remove all unified areas"
 msgstr ""
 
 #: ../contents/ui/main.qml
