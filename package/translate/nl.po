@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-10-05 02:27+0000\n"
+"POT-Creation-Date: 2025-10-16 06:57+0000\n"
 "PO-Revision-Date: 2025-09-01 15:57+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -48,8 +48,8 @@ msgid "Stock Panel Settings"
 msgstr "Standaardinstellingen"
 
 #: ../contents/config/config.qml
-msgid "Unified widget backgrounds"
-msgstr "Gelijke widgetachtergronden"
+msgid "Widget Islands"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Preset Overrides"
@@ -60,8 +60,8 @@ msgid "Global Overrides"
 msgstr "Globale voorrangsregels"
 
 #: ../contents/config/config.qml
-msgid "Text and icons"
-msgstr "Tekst en pictogrammen"
+msgid "Text and icon fixes"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -114,6 +114,7 @@ msgid "Color"
 msgstr "Kleur"
 
 #: ../contents/ui/components/FormColors.qml
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Enable:"
 msgstr "Inschakelen:"
 
@@ -321,38 +322,6 @@ msgid "Margin"
 msgstr "Marge"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "State:"
-msgstr "Status:"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Normal"
-msgstr "Normaal"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Hover"
-msgstr "Aangewezen"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Expanded"
-msgstr "Uitgeklapt"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Needs attention"
-msgstr "Aandacht benodigd"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Busy"
-msgstr "Bezig"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid ""
-"Change element appearance based on their state, configuration is stacked on "
-"top of the current appearance"
-msgstr ""
-"Pas de vormgeving van elementen aan op basis van hun status - de "
-"instellingen worden bovenop de huidige vormgeving toegepast"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel:"
 msgstr "Standaardpaneel:"
 
@@ -407,8 +376,40 @@ msgid "Force floating applets"
 msgstr "Zwevende applets afdwingen"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "customization"
-msgstr "Aanpassen"
+msgid "Customization"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "State:"
+msgstr "Status:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Normal"
+msgstr "Normaal"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Hover"
+msgstr "Aangewezen"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Expanded"
+msgstr "Uitgeklapt"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Needs attention"
+msgstr "Aandacht benodigd"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Busy"
+msgstr "Bezig"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Change element appearance based on their state, configuration is stacked on "
+"top of the current appearance"
+msgstr ""
+"Pas de vormgeving van elementen aan op basis van hun status - de "
+"instellingen worden bovenop de huidige vormgeving toegepast"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Blur custom background (Beta)"
@@ -535,23 +536,11 @@ msgstr "Let op: de vorige export wordt overschreven!"
 msgid "This will replace your current settings!"
 msgstr "Let op: de huidige instellingen worden vervangen!"
 
-#: ../contents/ui/components/WidgetCardCheck.qml
 #: ../contents/ui/components/WidgetCardConfig.qml
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
 #: ../contents/ui/components/WidgetCardUnifiedBg.qml
 msgid "System Tray"
 msgstr "Systeemvak"
-
-#: ../contents/ui/components/WidgetCardCheck.qml
-msgid "Mask"
-msgstr "Maskeren"
-
-#: ../contents/ui/components/WidgetCardCheck.qml
-msgid "Effect"
-msgstr "Effect"
-
-#: ../contents/ui/components/WidgetCardCheck.qml
-msgid "Refresh"
-msgstr "Herladen"
 
 #: ../contents/ui/components/WidgetCardConfig.qml
 msgid "Add"
@@ -565,6 +554,18 @@ msgstr "Bewerken"
 #: ../contents/ui/configPresets.qml
 msgid "Delete"
 msgstr "Verwĳderen"
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Mask"
+msgstr "Maskeren"
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Effect"
+msgstr "Effect"
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Refresh"
+msgstr "Herladen"
 
 #: ../contents/ui/components/WidgetCardUnifiedBg.qml
 msgid "Disable"
@@ -581,10 +582,11 @@ msgstr "Einde"
 #: ../contents/ui/configAppearance.qml
 msgid ""
 "Not getting the expected result? Make sure you're editing the correct "
-"element."
+"element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ "
+"plugin using the latest source, <a href=\"https://github.com/luisbocanegra/"
+"plasma-panel-colorizer#build-from-source-with-c-plugin\">see instructions</"
+"a>."
 msgstr ""
-"Toch niet het verwachte resultaat behaald? Controleer dan of je het juiste "
-"element bewerkt."
 
 #: ../contents/ui/configAppearance.qml
 msgid "Restore default (removes all customizations)"
@@ -604,37 +606,9 @@ msgstr "Widgets"
 msgid "Tray widgets"
 msgstr "Systeemvakwidgets"
 
-#: ../contents/ui/configForeground.qml
-msgid ""
-"Fix text and icon colors for widgets where the normal method doesn't work or "
-"isn't permanent.<br><strong>Mask</strong>: Force Icon colorization (symbolic "
-"icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization "
-"using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-"
-"apply colorization at a fixed interval, for widgets that recreate or recolor "
-"content themselves<br>To restore the <strong>Mask<strong> and <strong>Color "
-"Effect</strong> disable and restart Plasma or logout."
+#: ../contents/ui/configAppearance.qml
+msgid "Part of the panel on which the options below will be applied."
 msgstr ""
-"Los problemen op rond tekst- en pictogramkleuren van widgets indien de "
-"normale methode geen (blijvend) effect heeft.<br><strong>Maskeren</strong>: "
-"dwing inkleuring van pictogrammen af;<br><strong>Kleureffect</strong>: dwing "
-"inkleuring van tekst en pictogrammen af op basis van naverwerking;"
-"<br><strong>Herladen</strong>: pas de kleuren op ingestelde tijdstippen toe "
-"- handig voor widgets waarvan de inhoud zo nu en dan wijzigt.<br>Om de "
-"effecten van het <strong>masker</strong> of <strong>kleureffect</strong> "
-"ongedaan te maken, dient Plasma te worden herstart."
-
-#: ../contents/ui/configForeground.qml
-msgid "Restore default (removes all icon and text fixes)"
-msgstr ""
-"Standaardwaarden herstellen (alle pictogram- en tekstaanpassingen wissen)"
-
-#: ../contents/ui/configForeground.qml
-msgid "Force Text/Icon color"
-msgstr "Tekst- en pictogramkleuren afdwingen"
-
-#: ../contents/ui/configForeground.qml
-msgid "Refresh interval:"
-msgstr "Herladen, elke"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Hide widget:"
@@ -697,8 +671,8 @@ msgid "D-Bus name:"
 msgstr "D-Bus-naam:"
 
 #: ../contents/ui/configGeneral.qml
-msgid "Each Panel Colorizer instance has its D-Bus name."
-msgstr "Iedere instantie van Paneelkleuring heeft een eigen D-Bus-naam."
+msgid "Each Panel Colorizer instance has its own D-Bus name."
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Python 3 executable:"
@@ -709,8 +683,8 @@ msgid "Required to run the D-Bus service in the background"
 msgstr "Vereist om de D-Bus-dienst op de achtergrond uit te voeren"
 
 #: ../contents/ui/configGeneral.qml
-msgid "Usage:"
-msgstr "Gebruik:"
+msgid "Usage examples:"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Apply a preset:"
@@ -732,12 +706,11 @@ msgstr "Alle panelen tonen/verbergen"
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid ""
 "Create configuration overrides and apply them to one or multiple widgets. "
-"These overrides are independent and will be applied on top of the current "
-"settings and across presets."
+"These overrides are independent of presets and will be applied on top of the "
+"current settings and across presets.<br>To blacklist a widget from "
+"modifications, <b>uncheck</b> options <b>Enable</b> and <b>Fallback</b>, and "
+"apply the override to the widget."
 msgstr ""
-"Stel voorrangsregels in en pas die toe op een of meerdere widgets. De "
-"voorrangsregels werken los van elkaar en worden toegepast bovenop de huidige "
-"(voor)instellingen."
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 #: ../contents/ui/configPresetWidgetOverrides.qml
@@ -788,21 +761,19 @@ msgstr "Niets doen"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid ""
-"Switch between different presets based on the Panel and window states."
-"<br>Disable preset auto-loading when making changes to presets, unsaved "
-"preset settings will be lost when presets change!"
+"Automatically switch between different presets based on the Panel and window "
+"states.<br>Disable preset auto-loading before making changes to presets, "
+"unsaved preset settings will be lost when auto-loading switches to other "
+"preset!"
 msgstr ""
-"Wissel van voorinstelling op basis van paneel- en vensterstatussen."
-"<br>Schakel automatisch laden uit tijdens het aanbrengen van wijzigingen. "
-"Niet-opgeslagen instellingen worden gewist!"
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "Restore default (removes all autoloading conditions)"
-msgstr "Standaardwaarden herstellen (automatisch laden uitschakelen)"
+msgid "Remove all auto-loading conditions"
+msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "Environment"
-msgstr "Omgeving"
+msgid "Auto-loading conditions"
+msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid ""
@@ -1086,20 +1057,14 @@ msgstr "Tonen:"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
-"WARNING: Use with caution, if you hide the panel and have not configured "
-"preset auto-loading or know how to switch presets using D-Bus (or have "
-"disabled it), you will have no way to make it visible again without manually "
-"removing the configuration, use the command below in terminal/tty then log "
-"out or reboot, it will renove the configuratiob from all Panel Colorizer "
-"instances so make sure to save the others first"
+"WARNING: Use Show/Hide with caution, if you hide the panel and have not "
+"configured preset auto-loading or know how to switch presets using D-Bus (or "
+"have disabled it), you will have no way to make it visible again without "
+"manually removing the configuration or Panel Colorizer, use the command "
+"below in terminal/tty then log out or reboot, it will renove the "
+"configuration from all Panel Colorizer instances so make sure to save the "
+"others first"
 msgstr ""
-"WAARSCHUWING: wees voorzichtig met het gebruik hiervan als je het paneel "
-"verbergt en automatisch laden hebt uitgeschakeld of niet weet hoe "
-"instellingen aan te roepen met D-Bus. Er is dan geen methode om het paneel "
-"weer zichtbaar te maken, anders dan het verwijderen van de instellingen en "
-"onderstaande terminalopdracht te gebruiken en af en aan te melden. Ook "
-"worden alle instellingen van andere Paneelkleuringsvensters gewist indien "
-"niet opgeslagen."
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
@@ -1111,21 +1076,41 @@ msgstr ""
 "aan te roepen. Bekijk voor meer informatie de README of de voorbeelden op "
 "het tabblad <b>Algemeen</b>."
 
-#: ../contents/ui/configUnifiedBackground.qml
+#: ../contents/ui/configTextIconFix.qml
 msgid ""
-"Select start and end of unified background areas, widgets between <b>Start</"
-"b> and <b>End</b> must be left <b>disabled</b>. Note: <strong>odd</strong> "
-"widget spacing values are automatically converted to <strong>evens</strong> "
-"when this feature is used."
+"Fix text and icon colors for widgets where the normal method doesn't work or "
+"isn't permanent.<br> - <strong>Mask</strong>: Force color on SVG icons, "
+"useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color "
+"on text and icons using post-processing effect, useful for non-symbolic "
+"icons.<br> - <strong>Refresh</strong>: Re-apply color at a fixed interval, "
+"useful for widgets that recreate or recolor content themselves<br>To restore "
+"the <strong>Mask<strong> and <strong>Color Effect</strong> disable and "
+"restart Plasma or logout."
 msgstr ""
-"Kies het begin en einde van de achtergrondgebieden. Widgets tussen <b>Begin</"
-"b> en <b>Einde</b> dienen <b>uitgeschakeld</b> te blijven. Let op: "
-"<strong>oneven</strong> widgetafstanden worden automatisch omgezet in "
-"<strong>even</strong> afstanden."
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Restore default (removes all icon and text fixes)"
+msgstr ""
+"Standaardwaarden herstellen (alle pictogram- en tekstaanpassingen wissen)"
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Force Text/Icon color"
+msgstr "Tekst- en pictogramkleuren afdwingen"
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Refresh interval:"
+msgstr "Herladen, elke"
 
 #: ../contents/ui/configUnifiedBackground.qml
-msgid "Restore default (removes all unified areas)"
-msgstr "Standaardwaarden herstellen"
+msgid ""
+"Select start and end of widget islands, widgets between <b>Start</b> and "
+"<b>End</b> must be left <b>disabled</b>. Widget custom background or border "
+"is required for this option to have an effect."
+msgstr ""
+
+#: ../contents/ui/configUnifiedBackground.qml
+msgid "Remove all unified areas"
+msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
@@ -1143,6 +1128,102 @@ msgstr "Verouderde versie van ‘%1’"
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr ""
 "Er is geen paneel aangetroffen - de widget dient op een paneel te staan"
+
+#~ msgid "Unified widget backgrounds"
+#~ msgstr "Gelijke widgetachtergronden"
+
+#~ msgid "Text and icons"
+#~ msgstr "Tekst en pictogrammen"
+
+#~ msgid "customization"
+#~ msgstr "Aanpassen"
+
+#~ msgid ""
+#~ "Not getting the expected result? Make sure you're editing the correct "
+#~ "element."
+#~ msgstr ""
+#~ "Toch niet het verwachte resultaat behaald? Controleer dan of je het "
+#~ "juiste element bewerkt."
+
+#~ msgid ""
+#~ "Fix text and icon colors for widgets where the normal method doesn't work "
+#~ "or isn't permanent.<br><strong>Mask</strong>: Force Icon colorization "
+#~ "(symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons "
+#~ "colorization using post-processing effect (any icon).<br><strong>Refresh</"
+#~ "strong>: Re-apply colorization at a fixed interval, for widgets that "
+#~ "recreate or recolor content themselves<br>To restore the "
+#~ "<strong>Mask<strong> and <strong>Color Effect</strong> disable and "
+#~ "restart Plasma or logout."
+#~ msgstr ""
+#~ "Los problemen op rond tekst- en pictogramkleuren van widgets indien de "
+#~ "normale methode geen (blijvend) effect heeft.<br><strong>Maskeren</"
+#~ "strong>: dwing inkleuring van pictogrammen af;<br><strong>Kleureffect</"
+#~ "strong>: dwing inkleuring van tekst en pictogrammen af op basis van "
+#~ "naverwerking;<br><strong>Herladen</strong>: pas de kleuren op ingestelde "
+#~ "tijdstippen toe - handig voor widgets waarvan de inhoud zo nu en dan "
+#~ "wijzigt.<br>Om de effecten van het <strong>masker</strong> of "
+#~ "<strong>kleureffect</strong> ongedaan te maken, dient Plasma te worden "
+#~ "herstart."
+
+#~ msgid "Each Panel Colorizer instance has its D-Bus name."
+#~ msgstr "Iedere instantie van Paneelkleuring heeft een eigen D-Bus-naam."
+
+#~ msgid "Usage:"
+#~ msgstr "Gebruik:"
+
+#~ msgid ""
+#~ "Create configuration overrides and apply them to one or multiple widgets. "
+#~ "These overrides are independent and will be applied on top of the current "
+#~ "settings and across presets."
+#~ msgstr ""
+#~ "Stel voorrangsregels in en pas die toe op een of meerdere widgets. De "
+#~ "voorrangsregels werken los van elkaar en worden toegepast bovenop de "
+#~ "huidige (voor)instellingen."
+
+#~ msgid ""
+#~ "Switch between different presets based on the Panel and window states."
+#~ "<br>Disable preset auto-loading when making changes to presets, unsaved "
+#~ "preset settings will be lost when presets change!"
+#~ msgstr ""
+#~ "Wissel van voorinstelling op basis van paneel- en vensterstatussen."
+#~ "<br>Schakel automatisch laden uit tijdens het aanbrengen van wijzigingen. "
+#~ "Niet-opgeslagen instellingen worden gewist!"
+
+#~ msgid "Restore default (removes all autoloading conditions)"
+#~ msgstr "Standaardwaarden herstellen (automatisch laden uitschakelen)"
+
+#~ msgid "Environment"
+#~ msgstr "Omgeving"
+
+#~ msgid ""
+#~ "WARNING: Use with caution, if you hide the panel and have not configured "
+#~ "preset auto-loading or know how to switch presets using D-Bus (or have "
+#~ "disabled it), you will have no way to make it visible again without "
+#~ "manually removing the configuration, use the command below in terminal/"
+#~ "tty then log out or reboot, it will renove the configuratiob from all "
+#~ "Panel Colorizer instances so make sure to save the others first"
+#~ msgstr ""
+#~ "WAARSCHUWING: wees voorzichtig met het gebruik hiervan als je het paneel "
+#~ "verbergt en automatisch laden hebt uitgeschakeld of niet weet hoe "
+#~ "instellingen aan te roepen met D-Bus. Er is dan geen methode om het "
+#~ "paneel weer zichtbaar te maken, anders dan het verwijderen van de "
+#~ "instellingen en onderstaande terminalopdracht te gebruiken en af en aan "
+#~ "te melden. Ook worden alle instellingen van andere "
+#~ "Paneelkleuringsvensters gewist indien niet opgeslagen."
+
+#~ msgid ""
+#~ "Select start and end of unified background areas, widgets between "
+#~ "<b>Start</b> and <b>End</b> must be left <b>disabled</b>. Note: "
+#~ "<strong>odd</strong> widget spacing values are automatically converted to "
+#~ "<strong>evens</strong> when this feature is used."
+#~ msgstr ""
+#~ "Kies het begin en einde van de achtergrondgebieden. Widgets tussen "
+#~ "<b>Begin</b> en <b>Einde</b> dienen <b>uitgeschakeld</b> te blijven. Let "
+#~ "op: <strong>oneven</strong> widgetafstanden worden automatisch omgezet in "
+#~ "<strong>even</strong> afstanden."
+
+#~ msgid "Restore default (removes all unified areas)"
+#~ msgstr "Standaardwaarden herstellen"
 
 #~ msgid "Force floating dialogs"
 #~ msgstr "Zwevende dialoogvensters afdwingen"

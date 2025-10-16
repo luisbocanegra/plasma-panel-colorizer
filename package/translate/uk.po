@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-10-05 02:27+0000\n"
+"POT-Creation-Date: 2025-10-16 06:57+0000\n"
 "PO-Revision-Date: 2025-09-14 11:20-0600\n"
 "Last-Translator: https://github.com/devil6a <EMAIL@ADDRESS>\n"
 "Language-Team: Ukrainian <EMAIL@ADDRESS>\n"
@@ -48,8 +48,8 @@ msgid "Stock Panel Settings"
 msgstr "Стандартні налаштування панелі"
 
 #: ../contents/config/config.qml
-msgid "Unified widget backgrounds"
-msgstr "Уніфіковані фони віджетів"
+msgid "Widget Islands"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Preset Overrides"
@@ -60,8 +60,8 @@ msgid "Global Overrides"
 msgstr "Глобальні перевизначення"
 
 #: ../contents/config/config.qml
-msgid "Text and icons"
-msgstr "Текст та іконки"
+msgid "Text and icon fixes"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -114,6 +114,7 @@ msgid "Color"
 msgstr "Колір"
 
 #: ../contents/ui/components/FormColors.qml
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Enable:"
 msgstr "Увімкнути:"
 
@@ -322,38 +323,6 @@ msgid "Margin"
 msgstr "Поля"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "State:"
-msgstr "Стан:"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Normal"
-msgstr "Звичайний"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Hover"
-msgstr "При наведенні"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Expanded"
-msgstr "Розгорнутий"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Needs attention"
-msgstr "Потребує уваги"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Busy"
-msgstr "Зайнятий"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid ""
-"Change element appearance based on their state, configuration is stacked on "
-"top of the current appearance"
-msgstr ""
-"Змінює вигляд елементів залежно від їхнього стану, налаштування накладається "
-"поверх поточного вигляду"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel:"
 msgstr "Нативна панель:"
 
@@ -407,8 +376,40 @@ msgid "Force floating applets"
 msgstr "Примусово зробити аплети плаваючими"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "customization"
-msgstr "налаштування"
+msgid "Customization"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "State:"
+msgstr "Стан:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Normal"
+msgstr "Звичайний"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Hover"
+msgstr "При наведенні"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Expanded"
+msgstr "Розгорнутий"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Needs attention"
+msgstr "Потребує уваги"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Busy"
+msgstr "Зайнятий"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Change element appearance based on their state, configuration is stacked on "
+"top of the current appearance"
+msgstr ""
+"Змінює вигляд елементів залежно від їхнього стану, налаштування накладається "
+"поверх поточного вигляду"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Blur custom background (Beta)"
@@ -536,23 +537,11 @@ msgstr "Це перезапише будь-який попередній екс�
 msgid "This will replace your current settings!"
 msgstr "Це замінить ваші поточні налаштування!"
 
-#: ../contents/ui/components/WidgetCardCheck.qml
 #: ../contents/ui/components/WidgetCardConfig.qml
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
 #: ../contents/ui/components/WidgetCardUnifiedBg.qml
 msgid "System Tray"
 msgstr "Системний лоток"
-
-#: ../contents/ui/components/WidgetCardCheck.qml
-msgid "Mask"
-msgstr "Маска"
-
-#: ../contents/ui/components/WidgetCardCheck.qml
-msgid "Effect"
-msgstr "Ефект"
-
-#: ../contents/ui/components/WidgetCardCheck.qml
-msgid "Refresh"
-msgstr "Оновити"
 
 #: ../contents/ui/components/WidgetCardConfig.qml
 msgid "Add"
@@ -566,6 +555,18 @@ msgstr "Редагувати"
 #: ../contents/ui/configPresets.qml
 msgid "Delete"
 msgstr "Видалити"
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Mask"
+msgstr "Маска"
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Effect"
+msgstr "Ефект"
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Refresh"
+msgstr "Оновити"
 
 #: ../contents/ui/components/WidgetCardUnifiedBg.qml
 msgid "Disable"
@@ -582,10 +583,11 @@ msgstr "Кінець"
 #: ../contents/ui/configAppearance.qml
 msgid ""
 "Not getting the expected result? Make sure you're editing the correct "
-"element."
+"element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ "
+"plugin using the latest source, <a href=\"https://github.com/luisbocanegra/"
+"plasma-panel-colorizer#build-from-source-with-c-plugin\">see instructions</"
+"a>."
 msgstr ""
-"Не отримуєте очікуваний результат? Переконайтеся, що редагуєте правильний "
-"елемент."
 
 #: ../contents/ui/configAppearance.qml
 msgid "Restore default (removes all customizations)"
@@ -605,37 +607,9 @@ msgstr "Віджети"
 msgid "Tray widgets"
 msgstr "Віджети лотка"
 
-#: ../contents/ui/configForeground.qml
-msgid ""
-"Fix text and icon colors for widgets where the normal method doesn't work or "
-"isn't permanent.<br><strong>Mask</strong>: Force Icon colorization (symbolic "
-"icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization "
-"using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-"
-"apply colorization at a fixed interval, for widgets that recreate or recolor "
-"content themselves<br>To restore the <strong>Mask<strong> and <strong>Color "
-"Effect</strong> disable and restart Plasma or logout."
+#: ../contents/ui/configAppearance.qml
+msgid "Part of the panel on which the options below will be applied."
 msgstr ""
-"Виправлення кольорів тексту та іконок для віджетів, де звичайний метод не "
-"працює або не є постійним.<br><strong>Маска</strong>: Примусове забарвлення "
-"іконок (символічні іконки).<br><strong>Колірний ефект</strong>: Примусове "
-"забарвлення тексту/іконок за допомогою ефекту постобробки (будь-яка іконка)."
-"<br><strong>Оновлення</strong>: Повторне застосування забарвлення через "
-"фіксований інтервал для віджетів, які самостійно відтворюють або "
-"перефарбовують вміст<br>Щоб відновити <strong>Маску<strong> та "
-"<strong>Колірний ефект</strong>, вимкніть і перезапустіть Plasma або вийдіть "
-"із системи."
-
-#: ../contents/ui/configForeground.qml
-msgid "Restore default (removes all icon and text fixes)"
-msgstr "Відновити стандартні (видаляє всі виправлення іконок і тексту)"
-
-#: ../contents/ui/configForeground.qml
-msgid "Force Text/Icon color"
-msgstr "Примусовий колір тексту/іконок"
-
-#: ../contents/ui/configForeground.qml
-msgid "Refresh interval:"
-msgstr "Інтервал оновлення:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Hide widget:"
@@ -698,8 +672,8 @@ msgid "D-Bus name:"
 msgstr "Назва D-Bus:"
 
 #: ../contents/ui/configGeneral.qml
-msgid "Each Panel Colorizer instance has its D-Bus name."
-msgstr "Кожен екземпляр Колоризатора панелі має свою назву D-Bus."
+msgid "Each Panel Colorizer instance has its own D-Bus name."
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Python 3 executable:"
@@ -710,8 +684,8 @@ msgid "Required to run the D-Bus service in the background"
 msgstr "Необхідний для запуску служби D-Bus у фоновому режимі"
 
 #: ../contents/ui/configGeneral.qml
-msgid "Usage:"
-msgstr "Використання:"
+msgid "Usage examples:"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Apply a preset:"
@@ -732,12 +706,11 @@ msgstr "Приховати/показати всі панелі"
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid ""
 "Create configuration overrides and apply them to one or multiple widgets. "
-"These overrides are independent and will be applied on top of the current "
-"settings and across presets."
+"These overrides are independent of presets and will be applied on top of the "
+"current settings and across presets.<br>To blacklist a widget from "
+"modifications, <b>uncheck</b> options <b>Enable</b> and <b>Fallback</b>, and "
+"apply the override to the widget."
 msgstr ""
-"Створюйте перевизначення конфігурації та застосовуйте їх до одного або "
-"кількох віджетів. Ці перевизначення є незалежними і будуть застосовані "
-"поверх поточних налаштувань і між пресетами."
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 #: ../contents/ui/configPresetWidgetOverrides.qml
@@ -788,21 +761,19 @@ msgstr "Нічого не робити"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid ""
-"Switch between different presets based on the Panel and window states."
-"<br>Disable preset auto-loading when making changes to presets, unsaved "
-"preset settings will be lost when presets change!"
+"Automatically switch between different presets based on the Panel and window "
+"states.<br>Disable preset auto-loading before making changes to presets, "
+"unsaved preset settings will be lost when auto-loading switches to other "
+"preset!"
 msgstr ""
-"Перемикайтеся між різними пресетами залежно від стану панелі та вікон."
-"<br>Вимкніть автозавантаження пресетів під час внесення змін до пресетів, "
-"незбережені налаштування пресетів будуть втрачені при зміні пресетів!"
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "Restore default (removes all autoloading conditions)"
-msgstr "Відновити стандартні (видаляє всі умови автозавантаження)"
+msgid "Remove all auto-loading conditions"
+msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "Environment"
-msgstr "Середовище"
+msgid "Auto-loading conditions"
+msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid ""
@@ -1085,20 +1056,14 @@ msgstr "Показати:"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
-"WARNING: Use with caution, if you hide the panel and have not configured "
-"preset auto-loading or know how to switch presets using D-Bus (or have "
-"disabled it), you will have no way to make it visible again without manually "
-"removing the configuration, use the command below in terminal/tty then log "
-"out or reboot, it will renove the configuratiob from all Panel Colorizer "
-"instances so make sure to save the others first"
+"WARNING: Use Show/Hide with caution, if you hide the panel and have not "
+"configured preset auto-loading or know how to switch presets using D-Bus (or "
+"have disabled it), you will have no way to make it visible again without "
+"manually removing the configuration or Panel Colorizer, use the command "
+"below in terminal/tty then log out or reboot, it will renove the "
+"configuration from all Panel Colorizer instances so make sure to save the "
+"others first"
 msgstr ""
-"УВАГА: Використовуйте з обережністю. Якщо ви приховаєте панель і не "
-"налаштували автозавантаження пресетів або не знаєте, як перемикати пресети "
-"за допомогою D-Bus (або вимкнули його), у вас не буде можливості зробити її "
-"видимою знову без ручного видалення конфігурації. Використайте наведену "
-"нижче команду в терміналі/tty, а потім вийдіть із системи або "
-"перезавантажтеся. Вона видалить конфігурацію з усіх екземплярів Panel "
-"Colorizer, тому спочатку збережіть інші налаштування"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
@@ -1110,21 +1075,40 @@ msgstr ""
 "комбінаціями клавіш. Зверніться до README, щоб дізнатися більше, або "
 "перегляньте вкладку «Загальні» для прикладів."
 
-#: ../contents/ui/configUnifiedBackground.qml
+#: ../contents/ui/configTextIconFix.qml
 msgid ""
-"Select start and end of unified background areas, widgets between <b>Start</"
-"b> and <b>End</b> must be left <b>disabled</b>. Note: <strong>odd</strong> "
-"widget spacing values are automatically converted to <strong>evens</strong> "
-"when this feature is used."
+"Fix text and icon colors for widgets where the normal method doesn't work or "
+"isn't permanent.<br> - <strong>Mask</strong>: Force color on SVG icons, "
+"useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color "
+"on text and icons using post-processing effect, useful for non-symbolic "
+"icons.<br> - <strong>Refresh</strong>: Re-apply color at a fixed interval, "
+"useful for widgets that recreate or recolor content themselves<br>To restore "
+"the <strong>Mask<strong> and <strong>Color Effect</strong> disable and "
+"restart Plasma or logout."
 msgstr ""
-"Виберіть початок і кінець об'єднаних областей фону, віджети між <b>Початком</"
-"b> і <b>Кінцем</b> повинні залишатися <b>вимкненими</b>. Примітка: "
-"<strong>непарні</strong> значення відступів віджетів автоматично "
-"перетворюються на <strong>парні</strong>, коли використовується ця функція."
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Restore default (removes all icon and text fixes)"
+msgstr "Відновити стандартні (видаляє всі виправлення іконок і тексту)"
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Force Text/Icon color"
+msgstr "Примусовий колір тексту/іконок"
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Refresh interval:"
+msgstr "Інтервал оновлення:"
 
 #: ../contents/ui/configUnifiedBackground.qml
-msgid "Restore default (removes all unified areas)"
-msgstr "Відновити за замовчуванням (видаляє всі об'єднані області)"
+msgid ""
+"Select start and end of widget islands, widgets between <b>Start</b> and "
+"<b>End</b> must be left <b>disabled</b>. Widget custom background or border "
+"is required for this option to have an effect."
+msgstr ""
+
+#: ../contents/ui/configUnifiedBackground.qml
+msgid "Remove all unified areas"
+msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
@@ -1142,3 +1126,100 @@ msgstr "Використовується застаріла версія %1"
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr ""
 "Панель не знайдено, цей віджет має бути розміщений на панелі для роботи"
+
+#~ msgid "Unified widget backgrounds"
+#~ msgstr "Уніфіковані фони віджетів"
+
+#~ msgid "Text and icons"
+#~ msgstr "Текст та іконки"
+
+#~ msgid "customization"
+#~ msgstr "налаштування"
+
+#~ msgid ""
+#~ "Not getting the expected result? Make sure you're editing the correct "
+#~ "element."
+#~ msgstr ""
+#~ "Не отримуєте очікуваний результат? Переконайтеся, що редагуєте правильний "
+#~ "елемент."
+
+#~ msgid ""
+#~ "Fix text and icon colors for widgets where the normal method doesn't work "
+#~ "or isn't permanent.<br><strong>Mask</strong>: Force Icon colorization "
+#~ "(symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons "
+#~ "colorization using post-processing effect (any icon).<br><strong>Refresh</"
+#~ "strong>: Re-apply colorization at a fixed interval, for widgets that "
+#~ "recreate or recolor content themselves<br>To restore the "
+#~ "<strong>Mask<strong> and <strong>Color Effect</strong> disable and "
+#~ "restart Plasma or logout."
+#~ msgstr ""
+#~ "Виправлення кольорів тексту та іконок для віджетів, де звичайний метод не "
+#~ "працює або не є постійним.<br><strong>Маска</strong>: Примусове "
+#~ "забарвлення іконок (символічні іконки).<br><strong>Колірний ефект</"
+#~ "strong>: Примусове забарвлення тексту/іконок за допомогою ефекту "
+#~ "постобробки (будь-яка іконка).<br><strong>Оновлення</strong>: Повторне "
+#~ "застосування забарвлення через фіксований інтервал для віджетів, які "
+#~ "самостійно відтворюють або перефарбовують вміст<br>Щоб відновити "
+#~ "<strong>Маску<strong> та <strong>Колірний ефект</strong>, вимкніть і "
+#~ "перезапустіть Plasma або вийдіть із системи."
+
+#~ msgid "Each Panel Colorizer instance has its D-Bus name."
+#~ msgstr "Кожен екземпляр Колоризатора панелі має свою назву D-Bus."
+
+#~ msgid "Usage:"
+#~ msgstr "Використання:"
+
+#~ msgid ""
+#~ "Create configuration overrides and apply them to one or multiple widgets. "
+#~ "These overrides are independent and will be applied on top of the current "
+#~ "settings and across presets."
+#~ msgstr ""
+#~ "Створюйте перевизначення конфігурації та застосовуйте їх до одного або "
+#~ "кількох віджетів. Ці перевизначення є незалежними і будуть застосовані "
+#~ "поверх поточних налаштувань і між пресетами."
+
+#~ msgid ""
+#~ "Switch between different presets based on the Panel and window states."
+#~ "<br>Disable preset auto-loading when making changes to presets, unsaved "
+#~ "preset settings will be lost when presets change!"
+#~ msgstr ""
+#~ "Перемикайтеся між різними пресетами залежно від стану панелі та вікон."
+#~ "<br>Вимкніть автозавантаження пресетів під час внесення змін до пресетів, "
+#~ "незбережені налаштування пресетів будуть втрачені при зміні пресетів!"
+
+#~ msgid "Restore default (removes all autoloading conditions)"
+#~ msgstr "Відновити стандартні (видаляє всі умови автозавантаження)"
+
+#~ msgid "Environment"
+#~ msgstr "Середовище"
+
+#~ msgid ""
+#~ "WARNING: Use with caution, if you hide the panel and have not configured "
+#~ "preset auto-loading or know how to switch presets using D-Bus (or have "
+#~ "disabled it), you will have no way to make it visible again without "
+#~ "manually removing the configuration, use the command below in terminal/"
+#~ "tty then log out or reboot, it will renove the configuratiob from all "
+#~ "Panel Colorizer instances so make sure to save the others first"
+#~ msgstr ""
+#~ "УВАГА: Використовуйте з обережністю. Якщо ви приховаєте панель і не "
+#~ "налаштували автозавантаження пресетів або не знаєте, як перемикати "
+#~ "пресети за допомогою D-Bus (або вимкнули його), у вас не буде можливості "
+#~ "зробити її видимою знову без ручного видалення конфігурації. Використайте "
+#~ "наведену нижче команду в терміналі/tty, а потім вийдіть із системи або "
+#~ "перезавантажтеся. Вона видалить конфігурацію з усіх екземплярів Panel "
+#~ "Colorizer, тому спочатку збережіть інші налаштування"
+
+#~ msgid ""
+#~ "Select start and end of unified background areas, widgets between "
+#~ "<b>Start</b> and <b>End</b> must be left <b>disabled</b>. Note: "
+#~ "<strong>odd</strong> widget spacing values are automatically converted to "
+#~ "<strong>evens</strong> when this feature is used."
+#~ msgstr ""
+#~ "Виберіть початок і кінець об'єднаних областей фону, віджети між "
+#~ "<b>Початком</b> і <b>Кінцем</b> повинні залишатися <b>вимкненими</b>. "
+#~ "Примітка: <strong>непарні</strong> значення відступів віджетів "
+#~ "автоматично перетворюються на <strong>парні</strong>, коли "
+#~ "використовується ця функція."
+
+#~ msgid "Restore default (removes all unified areas)"
+#~ msgstr "Відновити за замовчуванням (видаляє всі об'єднані області)"
