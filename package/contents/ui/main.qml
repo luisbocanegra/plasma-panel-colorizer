@@ -194,14 +194,6 @@ PlasmoidItem {
     property var switchPresets: JSON.parse(plasmoid.configuration.switchPresets)
     property QtObject panelView: null
 
-    onPanelColorizerChanged: {
-        const found = panelColorizer !== null;
-        if (plasmoid.configuration.pluginFound !== found) {
-            plasmoid.configuration.pluginFound = found;
-            plasmoid.configuration.writeConfig();
-        }
-    }
-
     function applyStockPanelSettings() {
         let script = Utils.setPanelModeScript(Plasmoid.containment.id, stockPanelSettings);
         if (stockPanelSettings.visible.enabled) {
@@ -1794,11 +1786,17 @@ PlasmoidItem {
     Component.onCompleted: {
         updatePlasmoidStatus();
         runCommand.run("plasmashell --version");
+        let pluginFound = false
         try {
             panelColorizer = Qt.createQmlObject("import org.kde.plasma.panelcolorizer 1.0; PanelColorizer { id: panelColorizer }", main);
             console.log("QML Plugin org.kde.plasma.panelcolorizer loaded");
+            pluginFound = true
         } catch (err) {
             console.warn("QML Plugin org.kde.plasma.panelcolorizer not found. Custom blur background will not work.");
+        }
+        if (plasmoid.configuration.pluginFound !== pluginFound) {
+            plasmoid.configuration.pluginFound = pluginFound;
+            plasmoid.configuration.writeConfig();
         }
         Utils.delay(100, () => {
             applyStockPanelSettings();
