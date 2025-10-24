@@ -470,6 +470,7 @@ ColumnLayout {
             root.configLocal.border = newConfig;
             root.updateConfig();
         }
+        elementName: root.elementName
     }
 
     FormColors {
@@ -494,6 +495,7 @@ ColumnLayout {
             root.configLocal.borderSecondary = newConfig;
             root.updateConfig();
         }
+        elementName: root.elementName
     }
 
     FormColors {

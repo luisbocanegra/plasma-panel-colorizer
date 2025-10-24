@@ -16,6 +16,7 @@ Kirigami.FormLayout {
     property string configString: "{}"
     property var config: handleString ? JSON.parse(configString) : undefined
     property string key
+    property string elementName
 
     signal updateConfigString(string configString, var config)
 
@@ -62,6 +63,18 @@ Kirigami.FormLayout {
             root.updateConfig();
         }
         enabled: !borderCustomSidesCheckbox.checked && enabledCheckbox.checked
+    }
+    Label {
+        visible: root.elementName === "widgets" && !Number.isInteger(borderWidth.value / 100)
+        text: i18n("Use an integer when using <strong>Widget Islands</strong> to avoid rendering issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">See #64<a/>")
+        onLinkActivated: link => Qt.openUrlExternally(link)
+        font: Kirigami.Theme.smallFont
+        Layout.maximumWidth: 400
+        wrapMode: Label.Wrap
+        Layout.alignment: Qt.AlignTop
+        HoverHandler {
+            cursorShape: Qt.PointingHandCursor
+        }
     }
 
     RowLayout {
