@@ -388,11 +388,11 @@ PlasmoidItem {
         autoPaddingEnabled: false
     }
 
-    property Component backgroundComponent: Kirigami.ShadowedRectangle {
+    property Component backgroundComponent: Rectangle {
         id: rect
         property QtObject target
         property int targetIndex
-        // use an exra id so we can track the panel and items in tray separately
+        // use an extra id so we can track the panel and items in tray separately
         // e.g panel[0, widget[1] widget[2] trayWidget[3 [widget[5], widget[6], widget[7]]] widget[4]]
         property int maskIndex: {
             if (isPanel) {
@@ -446,10 +446,6 @@ PlasmoidItem {
             main.updateUnifiedBackgroundTracker(maskIndex, unifySection, isVisible);
         }
 
-        // property string state: {
-        //     let state = "normal";
-        // }
-
         property var itemConfig: Utils.getItemCfg(itemType, widgetName, widgetId, main.cfg, configurationOverrides, widgetProperties.busy, widgetProperties.needsAttention, widgetProperties.hovered, widgetProperties.expanded)
         property var cfg: itemConfig.settings
         property bool cfgOverride: itemConfig.override
@@ -463,12 +459,12 @@ PlasmoidItem {
         property bool bgEnabled: bgColorCfg.enabled
         property bool fgEnabled: fgColorCfg.enabled
         property bool radiusEnabled: cfgEnabled && cfg.radius.enabled
-        property int topLeftRadius: !radiusEnabled || unifyBgType === 2 || unifyBgType === 3 ? 0 : cfg.radius.corner.topLeft ?? 0
-        property int topRightRadius: !radiusEnabled || (horizontal && (unifyBgType === 1 || unifyBgType === 2)) || (!horizontal && (unifyBgType === 2 || unifyBgType === 3)) ? 0 : cfg.radius.corner.topRight ?? 0
+        topLeftRadius: !radiusEnabled || unifyBgType === 2 || unifyBgType === 3 ? 0 : cfg.radius.corner.topLeft ?? 0
+        topRightRadius: !radiusEnabled || (horizontal && (unifyBgType === 1 || unifyBgType === 2)) || (!horizontal && (unifyBgType === 2 || unifyBgType === 3)) ? 0 : cfg.radius.corner.topRight ?? 0
 
-        property int bottomLeftRadius: !radiusEnabled || (horizontal && (unifyBgType === 2 || unifyBgType === 3)) || (!horizontal && (unifyBgType === 1 || unifyBgType === 2)) ? 0 : cfg.radius.corner.bottomLeft ?? 0
+        bottomLeftRadius: !radiusEnabled || (horizontal && (unifyBgType === 2 || unifyBgType === 3)) || (!horizontal && (unifyBgType === 1 || unifyBgType === 2)) ? 0 : cfg.radius.corner.bottomLeft ?? 0
 
-        property int bottomRightRadius: !radiusEnabled || unifyBgType === 1 || unifyBgType === 2 || (!horizontal && (unifyBgType === 1 || unifyBgType === 2)) ? 0 : cfg.radius.corner.bottomRight ?? 0
+        bottomRightRadius: !radiusEnabled || unifyBgType === 1 || unifyBgType === 2 || (!horizontal && (unifyBgType === 1 || unifyBgType === 2)) ? 0 : cfg.radius.corner.bottomRight ?? 0
 
         property bool marginEnabled: cfg.margin.enabled && cfgEnabled
         property bool borderEnabled: cfg.border.enabled && cfgEnabled
@@ -489,7 +485,7 @@ PlasmoidItem {
             if (isWidget && fgEnabled && cfgEnabled) {
                 return getColor(fgColorCfg, targetIndex, color, itemType, fgColorHolder);
             }
-            return defaultColorHolder.Kirigami.Theme.textColor;
+            return defaultColorHolder.Kirigami.Theme.textColor.toString();
         }
 
         property bool throttleMaskUpdate: false
@@ -508,18 +504,6 @@ PlasmoidItem {
             width: height
             opacity: 0
             Kirigami.Theme.colorSet: Kirigami.Theme[fgColorCfg.systemColorSet]
-        }
-
-        // Label {
-        //     id: debugLabel
-        //     text: targetIndex+","+trayIndex //maxDepth+","+itemCount
-        //     font.pixelSize: 8
-        // }
-        corners {
-            topLeftRadius: topLeftRadius
-            topRightRadius: topRightRadius
-            bottomLeftRadius: bottomLeftRadius
-            bottomRightRadius: bottomRightRadius
         }
 
         Behavior on topLeftRadius {
@@ -952,62 +936,68 @@ PlasmoidItem {
             }
 
             layer.enabled: cfg.border.customSides
-            layer.effect: MultiEffect {
-                maskEnabled: true
-                maskSpreadAtMax: 1
-                maskSpreadAtMin: 1
-                maskThresholdMin: 0.5
-                maskSource: ShaderEffectSource {
-                    sourceItem: Kirigami.ShadowedRectangle {
-                        width: rect.width
-                        height: rect.height
-                        corners {
-                            topLeftRadius: rect.topLeftRadius
-                            topRightRadius: rect.topRightRadius
-                            bottomLeftRadius: rect.bottomLeftRadius
-                            bottomRightRadius: rect.bottomRightRadius
-                        }
+            layer.effect: OpacityMask {
+                maskSource: Item {
+                    width: rect.width
+                    height: rect.height
+                    Rectangle {
+                        anchors.fill: parent
+                        topLeftRadius: rect.topLeftRadius
+                        topRightRadius: rect.topRightRadius
+                        bottomLeftRadius: rect.bottomLeftRadius
+                        bottomRightRadius: rect.bottomRightRadius
                     }
                 }
             }
         }
 
-        shadow {
-            property var shadowColorCfg: bgShadow.color
-            Kirigami.Theme.colorSet: Kirigami.Theme[shadowColorCfg.systemColorSet]
-            size: (bgShadowEnabled && Math.min(rect.height, rect.width) > 1) ? bgShadow.size : 0
-            color: {
-                return getColor(shadowColorCfg, targetIndex, rect.color, itemType, rect.shadow);
+        Kirigami.ShadowedRectangle {
+            anchors.fill: parent
+            color: "transparent"
+            z: -1
+            corners {
+                topLeftRadius: rect.topLeftRadius
+                topRightRadius: rect.topRightRadius
+                bottomLeftRadius: rect.bottomLeftRadius
+                bottomRightRadius: rect.bottomRightRadius
             }
-            xOffset: bgShadow.xOffset
-            yOffset: bgShadow.yOffset
+            shadow {
+                property var shadowColorCfg: bgShadow.color
+                Kirigami.Theme.colorSet: Kirigami.Theme[shadowColorCfg.systemColorSet]
+                size: (bgShadowEnabled && Math.min(rect.height, rect.width) > 1) ? bgShadow.size : 0
+                color: {
+                    return getColor(shadowColorCfg, targetIndex, rect.color, itemType, rect.shadow);
+                }
+                xOffset: bgShadow.xOffset
+                yOffset: bgShadow.yOffset
 
-            Behavior on size {
-                enabled: animatePropertyChanges
-                NumberAnimation {
-                    duration: main.animationDuration
-                    easing.type: main.animationEasingType
+                Behavior on size {
+                    enabled: animatePropertyChanges
+                    NumberAnimation {
+                        duration: main.animationDuration
+                        easing.type: main.animationEasingType
+                    }
                 }
-            }
-            Behavior on xOffset {
-                enabled: animatePropertyChanges
-                NumberAnimation {
-                    duration: main.animationDuration
-                    easing.type: main.animationEasingType
+                Behavior on xOffset {
+                    enabled: animatePropertyChanges
+                    NumberAnimation {
+                        duration: main.animationDuration
+                        easing.type: main.animationEasingType
+                    }
                 }
-            }
-            Behavior on yOffset {
-                enabled: animatePropertyChanges
-                NumberAnimation {
-                    duration: main.animationDuration
-                    easing.type: main.animationEasingType
+                Behavior on yOffset {
+                    enabled: animatePropertyChanges
+                    NumberAnimation {
+                        duration: main.animationDuration
+                        easing.type: main.animationEasingType
+                    }
                 }
-            }
-            Behavior on color {
-                enabled: animatePropertyChanges
-                ColorAnimation {
-                    duration: main.animationDuration
-                    easing.type: main.animationEasingType
+                Behavior on color {
+                    enabled: animatePropertyChanges
+                    ColorAnimation {
+                        duration: main.animationDuration
+                        easing.type: main.animationEasingType
+                    }
                 }
             }
         }
@@ -1238,7 +1228,7 @@ PlasmoidItem {
             if (borderRec.width <= 0 || borderRec.height <= 0)
                 return;
             position = Utils.getGlobalPosition(borderRec, panelElement);
-            panelColorizer.updatePanelMask(maskIndex, borderRec, rect.corners.topLeftRadius, rect.corners.topRightRadius, rect.corners.bottomLeftRadius, rect.corners.bottomRightRadius, Qt.point(rect.positionX - moveX, rect.positionY - moveY), 5, isVisible && blurBehind);
+            panelColorizer.updatePanelMask(maskIndex, borderRec, rect.topLeftRadius, rect.topRightRadius, rect.bottomLeftRadius, rect.bottomRightRadius, Qt.point(rect.positionX - moveX, rect.positionY - moveY), 5, isVisible && blurBehind);
         }
 
         property bool hovered: hoverHandler.hovered
@@ -1786,11 +1776,11 @@ PlasmoidItem {
     Component.onCompleted: {
         updatePlasmoidStatus();
         runCommand.run("plasmashell --version");
-        let pluginFound = false
+        let pluginFound = false;
         try {
             panelColorizer = Qt.createQmlObject("import org.kde.plasma.panelcolorizer 1.0; PanelColorizer { id: panelColorizer }", main);
             console.log("QML Plugin org.kde.plasma.panelcolorizer loaded");
-            pluginFound = true
+            pluginFound = true;
         } catch (err) {
             console.warn("QML Plugin org.kde.plasma.panelcolorizer not found. Custom blur background will not work.");
         }

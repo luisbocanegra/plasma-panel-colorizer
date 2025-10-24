@@ -57,7 +57,7 @@ Rectangle {
         antialiasing: true
     }
 
-    Kirigami.ShadowedRectangle {
+    Rectangle {
         id: normalBorder
         anchors.fill: parent
         color: "transparent"
@@ -66,16 +66,16 @@ Rectangle {
         border {
             color: root.borderColor
             width: !root.cfgBorder.customSides ? root.cfgBorder.width || -1 : 0
+            pixelAligned: false
         }
-        corners {
-            topLeftRadius: root.corners.topLeftRadius
-            topRightRadius: root.corners.topRightRadius
-            bottomLeftRadius: root.corners.bottomLeftRadius
-            bottomRightRadius: root.corners.bottomRightRadius
-        }
+        topLeftRadius: root.corners.topLeftRadius
+        topRightRadius: root.corners.topRightRadius
+        bottomLeftRadius: root.corners.bottomLeftRadius
+        bottomRightRadius: root.corners.bottomRightRadius
+        antialiasing: true
     }
 
-    // Mask to hide one or two borders for unified backgrounds
+    // Mask to hide one (start/end) or two (middle) borders between widgets inside an island
     MultiEffect {
         source: normalBorder
         anchors.fill: normalBorder
@@ -89,6 +89,7 @@ Rectangle {
         visible: false
         width: root.width
         height: root.height
+        // right/bottom
         Rectangle {
             id: rect1
             width: root.horizontal ? root.cfgBorder.width : root.width - (root.cfgBorder.width * 2)
@@ -99,7 +100,9 @@ Rectangle {
             anchors.verticalCenter: root.horizontal ? parent.verticalCenter : undefined
             anchors.horizontalCenter: !root.horizontal ? parent.horizontalCenter : undefined
             antialiasing: true
+            anchors.alignWhenCentered: false
         }
+        // left/top
         Rectangle {
             id: rect2
             width: root.horizontal ? root.cfgBorder.width : root.width - (root.cfgBorder.width * 2)
@@ -110,6 +113,7 @@ Rectangle {
             anchors.verticalCenter: root.horizontal ? parent.verticalCenter : undefined
             anchors.horizontalCenter: !root.horizontal ? parent.horizontalCenter : undefined
             antialiasing: true
+            anchors.alignWhenCentered: false
         }
     }
 }
