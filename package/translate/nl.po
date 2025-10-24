@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-10-16 06:57+0000\n"
+"POT-Creation-Date: 2025-10-24 08:39+0000\n"
 "PO-Revision-Date: 2025-09-01 15:57+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -104,6 +104,13 @@ msgstr "Uitgeschakeld"
 #: ../contents/ui/components/FormBorder.qml
 msgid "Width:"
 msgstr "Breedte:"
+
+#: ../contents/ui/components/FormBorder.qml
+msgid ""
+"Use an integer when using <strong>Widget Islands</strong> to avoid rendering "
+"issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
+"issues/64\">See #64<a/>"
+msgstr ""
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Custom widths:"
