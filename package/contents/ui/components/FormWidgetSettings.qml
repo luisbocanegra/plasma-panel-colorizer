@@ -210,6 +210,17 @@ ColumnLayout {
             visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal && (floatingDialogsEnabledCheckbox.checked || root.plasmaVersion.isLowerThan("6.4.0"))
         }
 
+        CheckBox {
+            Kirigami.FormData.label: i18n("Anchor to edges:")
+            text: i18n("Resize content when panel enters/exits floating state")
+            checked: root.config.nativePanel.fillAreaOnDeFloat
+            onCheckedChanged: {
+                root.config.nativePanel.fillAreaOnDeFloat = checked;
+                root.updateConfig();
+            }
+            visible: root.plasmaVersion.isGreaterThan("6.3.5") && root.elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+        }
+
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
             Kirigami.FormData.label: i18n("Customization")
