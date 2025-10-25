@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-10-24 08:39+0000\n"
+"POT-Creation-Date: 2025-10-25 20:31+0000\n"
 "PO-Revision-Date: 2025-09-14 11:20-0600\n"
 "Last-Translator: https://github.com/devil6a <EMAIL@ADDRESS>\n"
 "Language-Team: Ukrainian <EMAIL@ADDRESS>\n"
@@ -381,6 +381,14 @@ msgstr ""
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Force floating applets"
 msgstr "Примусово зробити аплети плаваючими"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Anchor to edges:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Resize content when panel enters/exits floating state"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Customization"
