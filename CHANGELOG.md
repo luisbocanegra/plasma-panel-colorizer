@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.2.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v5.1.0...v5.2.0) (2025-10-25)
+
+
+### Features
+
+* option to anchor content to edges when panel de-floats ([#349](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/349)) ([24f687a](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/24f687a07c5a289e51a50a4bb9f8aefa3eb2fdf0))
+
+
+### Bug Fixes
+
+* custom background not filling de-floated floating panel ([#349](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/349)) ([3fbdf74](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/3fbdf7425c0fd5646073a28f8a0b48ccce2623f5))
+* improve rendering between widgets in islands ([#64](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64)) ([cc72c19](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/cc72c19ce38a406a7be9a678fb2d19dff22dd856))
+
 ## [5.1.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v5.0.1...v5.1.0) (2025-10-16)
 
 
