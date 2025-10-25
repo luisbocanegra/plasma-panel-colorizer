@@ -305,6 +305,7 @@ const defaultConfig = {
     },
     floatingDialogs: false,
     floatingDialogsAllowOverride: false,
+    fillAreaOnDeFloat: true
   },
   stockPanelSettings: baseStockPanelSettings,
   configurationOverrides: {

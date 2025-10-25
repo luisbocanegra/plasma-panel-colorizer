@@ -55,6 +55,7 @@ PlasmoidItem {
     property bool fixedSidePaddingEnabled: isEnabled && panelBgItem !== null && panelBgItem.cfg.padding.enabled
     property bool floatingDialogs: main.isEnabled ? cfg.nativePanel.floatingDialogs : false
     property bool floatingDialogsAllowOverride: main.isEnabled ? cfg.nativePanel.floatingDialogsAllowOverride : false
+    property bool fillAreaOnDeFloat: main.isEnabled ? cfg.nativePanel.fillAreaOnDeFloat : false
     property bool isEnabled: plasmoid.configuration.isEnabled
     property bool nativePanelBackgroundEnabled: (isEnabled ? cfg.nativePanel.background.enabled : true) || doPanelClickFix
     property real nativePanelBackgroundOpacity: isEnabled ? cfg.nativePanel.background.opacity : 1.0
@@ -660,16 +661,34 @@ PlasmoidItem {
         Binding {
             target: rect.target
             property: "anchors.leftMargin"
-            value: (marginEnabled && marginLeft !== 0 ? marginLeft : 0) - (panelElement.floating && (panelElement.floatingness !== 1) ? (8 * (1 - panelElement.floatingness)) : 0)
-            when: isPanel
+            value: {
+                let margin = 0;
+                if (rect.marginEnabled && rect.marginLeft !== 0) {
+                    margin = rect.marginLeft;
+                }
+                if (main.fillAreaOnDeFloat && main.panelElement.floating && (main.panelElement.floatingness !== 1)) {
+                    margin -= (8 * (1 - main.panelElement.floatingness));
+                }
+                return margin;
+            }
+            when: rect.isPanel && main.isEnabled
             delayed: true
         }
 
         Binding {
             target: rect.target
             property: "anchors.rightMargin"
-            value: (marginEnabled && marginRight !== 0 ? marginRight : 0) - (panelElement.floating && (panelElement.floatingness !== 1) ? (8 * (1 - panelElement.floatingness)) : 0)
-            when: isPanel
+            value: {
+                let margin = 0;
+                if (rect.marginEnabled && rect.marginRight !== 0) {
+                    margin = rect.marginRight;
+                }
+                if (main.fillAreaOnDeFloat && main.panelElement.floating && (main.panelElement.floatingness !== 1)) {
+                    margin -= (8 * (1 - main.panelElement.floatingness));
+                }
+                return margin;
+            }
+            when: rect.isPanel && main.isEnabled
             delayed: true
         }
 
@@ -1258,7 +1277,7 @@ PlasmoidItem {
     }
 
     // Search for the element containing the panel background
-    property QtObject panelElement: {
+    property var panelElement: {
         let candidate = main.parent;
         while (candidate) {
             if (candidate.hasOwnProperty("floating")) {
