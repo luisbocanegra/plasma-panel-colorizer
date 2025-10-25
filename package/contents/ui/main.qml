@@ -777,7 +777,7 @@ PlasmoidItem {
         Binding {
             target: rect.target
             property: "anchors.leftMargin"
-            value: marginEnabled ? marginLeft : 0
+            value: (marginEnabled && marginLeft !== 0 ? marginLeft : 0) - (panelElement.floating && (panelElement.floatingness !== 1) ? (8 * (1 - panelElement.floatingness)) : 0)
             when: isPanel
             delayed: true
         }
@@ -785,7 +785,7 @@ PlasmoidItem {
         Binding {
             target: rect.target
             property: "anchors.rightMargin"
-            value: marginEnabled ? marginRight : 0
+            value: (marginEnabled && marginRight !== 0 ? marginRight : 0) - (panelElement.floating && (panelElement.floatingness !== 1) ? (8 * (1 - panelElement.floatingness)) : 0)
             when: isPanel
             delayed: true
         }
@@ -952,6 +952,7 @@ PlasmoidItem {
         }
 
         Kirigami.ShadowedRectangle {
+            id: backgroundShadow
             anchors.fill: parent
             color: "transparent"
             z: -1
@@ -966,7 +967,7 @@ PlasmoidItem {
                 Kirigami.Theme.colorSet: Kirigami.Theme[shadowColorCfg.systemColorSet]
                 size: (bgShadowEnabled && Math.min(rect.height, rect.width) > 1) ? bgShadow.size : 0
                 color: {
-                    return getColor(shadowColorCfg, targetIndex, rect.color, itemType, rect.shadow);
+                    return getColor(shadowColorCfg, targetIndex, rect.color, itemType, backgroundShadow.shadow);
                 }
                 xOffset: bgShadow.xOffset
                 yOffset: bgShadow.yOffset
