@@ -832,3 +832,190 @@ function gVariantTupleToArray(str) {
     return `(${inner})`;
   });
 }
+
+function showWidgets(panelLayout, backgroundComponent, Plasmoid) {
+  if (!panelLayout)
+    return;
+  // console.log("showWidgets()")
+  for (var i in panelLayout.children) {
+    const child = panelLayout.children[i];
+    // name may not be available while dragging into the panel and
+    // other situations
+    if (!child.applet?.plasmoid?.pluginName)
+      continue;
+    // if (getBgManaged(child)) continue
+    // console.error(child.applet?.plasmoid?.pluginName)
+    if (child.applet.plasmoid.pluginName !== Plasmoid.metaData.pluginId) {
+      child.applet.plasmoid.contextualActions.push(configureAction);
+    }
+    const isTray = child.applet.plasmoid.pluginName === "org.kde.plasma.systemtray";
+    const bgItem = getBgManaged(child);
+    if (!bgItem) {
+      const comp = backgroundComponent.createObject(child, {
+        "z": -1,
+        "target": child,
+        "itemType": Enums.ItemType.WidgetItem,
+        "targetIndex": i
+      });
+      if (isTray)
+        trayWidgetBgItem = comp;
+    } else {
+      bgItem.targetIndex = i;
+    }
+  }
+}
+
+function showTrayAreas(trayGridView, backgroundComponent, horizontal) {
+  if (trayGridView instanceof GridView) {
+    let index = 0;
+    for (let i = 0; i < trayGridView.count; i++) {
+      const item = trayGridView.itemAtIndex(i);
+      if (!item.visible)
+        continue;
+      const bgItem = getBgManaged(item);
+      if (!bgItem) {
+        backgroundComponent.createObject(item, {
+          "z": -1,
+          "target": item,
+          "itemType": Enums.ItemType.TrayItem,
+          "targetIndex": index
+        });
+      } else {
+        bgItem.targetIndex = index;
+      }
+      if (item.visible) {
+        index++;
+      }
+    }
+
+    for (let i in trayGridView.parent.children) {
+      const item = trayGridView.parent.children[i];
+      if (!(item instanceof GridView)) {
+        if (!item.visible)
+          continue;
+        const bgItem = getBgManaged(item);
+        if (!bgItem) {
+          backgroundComponent.createObject(item, {
+            "z": -1,
+            "target": item,
+            "itemType": Enums.ItemType.TrayArrow,
+            "targetIndex": index
+          });
+        } else {
+          bgItem.targetIndex = index;
+        }
+        item.iconSize = horizontal ? trayGridView.cellWidth : trayGridView.cellHeight;
+      }
+    }
+  }
+}
+
+function getColor(colorCfg, targetIndex, parentColor, itemType, kirigamiColorItem) {
+  let newColor = "transparent";
+  switch (colorCfg.sourceType) {
+    case 0:
+      newColor = rgbToQtColor(hexToRgb(colorCfg.custom));
+      break;
+    case 1:
+      newColor = kirigamiColorItem.Kirigami.Theme[colorCfg.systemColor];
+      break;
+    case 2:
+      const nextIndex = targetIndex % colorCfg.list.length;
+      newColor = rgbToQtColor(hexToRgb(colorCfg.list[nextIndex]));
+      break;
+    case 3:
+      newColor = getRandomColor();
+      break;
+    case 4:
+      if (colorCfg.followColor === 0) {
+        newColor = panelBgItem.color;
+      } else if (colorCfg.followColor === 1) {
+        newColor = itemType === Enums.ItemType.TrayItem || itemType === Enums.ItemType.TrayArrow ? trayWidgetBgItem.color : parentColor;
+      } else if (colorCfg.followColor === 2) {
+        newColor = parentColor;
+      }
+
+      break;
+    default:
+      newColor = Qt.hsla(0, 0, 0, 0);
+  }
+  if (colorCfg.saturationEnabled) {
+    newColor = scaleSaturation(newColor, colorCfg.saturationValue);
+  }
+  if (colorCfg.lightnessEnabled) {
+    newColor = scaleLightness(newColor, colorCfg.lightnessValue);
+  }
+  newColor = Qt.hsla(newColor.hslHue, newColor.hslSaturation, newColor.hslLightness, colorCfg.alpha);
+  return newColor;
+}
+
+function applyFgColor(element, newColor, fgColorCfg, depth, wRecolorCfg, fgColorModified, colorEffectComponent, repaintDebugComponent) {
+  let count = 0;
+  let maxDepth = depth;
+  const forceMask = wRecolorCfg?.method?.mask ?? false;
+  const forceEffect = wRecolorCfg?.method?.multiEffect ?? false;
+
+  for (var i = 0; i < element.visibleChildren.length; i++) {
+    var child = element.visibleChildren[i];
+    let targetTypes = [Text, ToolButton, Label, Canvas, Kirigami.Icon];
+    if (targetTypes.some(function (type) {
+      return child instanceof type;
+    })) {
+      // before trying to apply the foreground color, we need to know if we
+      // have changed it in the first place, otherwise we have no easy way to
+      // restore the original binding for widgets that do dynamic color
+      // requires restarting plasma but is better than nothing
+      if (fgColorModified && "color" in child) {
+        child.color = newColor;
+      }
+      if (child.Kirigami?.Theme) {
+        child.Kirigami.Theme.textColor = newColor;
+        child.Kirigami.Theme.colorSet = main.Kirigami.Theme[fgColorCfg.systemColorSet];
+      }
+
+      if ("isMask" in child && forceMask) {
+        child.isMask = true;
+      }
+
+      if (forceEffect && [Canvas, Kirigami.Icon].some(function (type) {
+        return child instanceof type;
+      })) {
+        const effectItem = getEffectItem(child.parent);
+        if (!effectItem) {
+          colorEffectComponent.createObject(child.parent, {
+            "target": child,
+            "colorizationColor": newColor
+          });
+        } else {
+          effectItem.source = null;
+          effectItem.colorizationColor = newColor;
+          effectItem.source = child;
+        }
+      }
+      count++;
+      if (debug) {
+        repaintDebugComponent.createObject(child);
+      }
+    }
+    if (child.visibleChildren?.length ?? 0 > 0) {
+      const result = applyFgColor(child, newColor, fgColorCfg, depth + 1, wRecolorCfg, fgColorModified);
+      count += result.count;
+      if (result.depth > maxDepth) {
+        maxDepth = result.depth;
+      }
+    }
+  }
+  return {
+    "count": count,
+    "depth": maxDepth
+  };
+}
+
+function updateUnifiedBackgroundTracker(index, type, visible, tracker) {
+  tracker[index] = {
+    "index": index,
+    "type": type,
+    "visible": visible
+  };
+  return getUnifyBgTypes(tracker);
+}
