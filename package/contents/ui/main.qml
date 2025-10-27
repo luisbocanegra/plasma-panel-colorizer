@@ -334,7 +334,7 @@ PlasmoidItem {
             main.unifiedBackgroundFinal = Utils.updateUnifiedBackgroundTracker(maskIndex, unifySection, isVisible, main.unifiedBackgroundTracker);
         }
 
-        property var itemConfig: Utils.getItemCfg(itemType, widgetName, widgetId, main.cfg, configurationOverrides, widgetProperties.busy, widgetProperties.needsAttention, widgetProperties.hovered, widgetProperties.expanded)
+        property var itemConfig: Utils.getItemCfg(itemType, widgetName, widgetId, main.cfg, main.configurationOverrides, widgetProperties.busy, widgetProperties.needsAttention, widgetProperties.hovered, widgetProperties.expanded)
         property var cfg: itemConfig.settings
         property bool cfgOverride: itemConfig.override
         property var bgColorCfg: cfg.backgroundColor
