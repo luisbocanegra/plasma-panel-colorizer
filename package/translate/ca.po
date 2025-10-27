@@ -933,7 +933,9 @@ msgstr "Mostra:"
 msgid ""
 "WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will renove the configuration from all Panel Colorizer "
 "instances so make sure to save the others first"
-msgstr "AVÍS: Feu servir Mostra/Amaga amb compte. Si amagueu el panell i no teniu configurada la càrrega automàtica de perfils o no sabeu com canviar de perfil amb el D-Bus (o l'heu desactivat), no podreu tornar-lo a visibilitzar sense eliminar manualment la configuració o l'Acoloridor de panells. Feu servir la comanda de més a sota al terminal/tty i sortiu de la sessió o reinicieu. Així, es reiniciarà la configuració de totes les instàncies de l'Acoloridor de panells. Abans, però, potser us aniria bé desar una còpia de seguretat de totes les altres instàncies."
+msgstr ""
+"AVÍS: Feu servir Mostra/Amaga amb compte. Si amagueu el panell i no teniu configurada la càrrega automàtica de perfils o no sabeu com canviar de perfil amb el D-Bus (o l'heu desactivat), no podreu tornar-lo a visibilitzar sense eliminar manualment la configuració o l'Acoloridor de panells. Feu servir la comanda de més a sota al terminal/tty i sortiu de la sessió o reinicieu. Així, es reiniciarà "
+"la configuració de totes les instàncies de l'Acoloridor de panells. Abans, però, potser us aniria bé desar una còpia de seguretat de totes les altres instàncies."
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
@@ -943,7 +945,9 @@ msgstr "Si teniu el D-Bus activat, es recomana que el feu servir en lloc de les 
 msgid ""
 "Fix text and icon colors for widgets where the normal method doesn't work or isn't permanent.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color at a fixed interval, useful for widgets that "
 "recreate or recolor content themselves<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
-msgstr "Arregla els colors de les icones i els textos dels ginys on el mètode normal no funciona o no és permanent.<br> - <strong>Màscar</strong>: Força un color a les icones SVG. Útil per a icones simbòliques.<br> - <strong>Efecte de color</strong>: Força un color al text i les icones amb un efecte de post-processat. Útil per a icones no simbòliques.<br> - <strong>Actualitza</strong>: Torna a aplicar el color regularment cada determinat període de temps. Útil per a ginys que recreen o canvien el color per si mateixos.<br>Per a restaurar la <strong>Màscara<strong> i l'<strong>Efecte de color</strong>, desactiveu i reinicieu el Plasma o sortiu de la sessió."
+msgstr ""
+"Arregla els colors de les icones i els textos dels ginys on el mètode normal no funciona o no és permanent.<br> - <strong>Màscar</strong>: Força un color a les icones SVG. Útil per a icones simbòliques.<br> - <strong>Efecte de color</strong>: Força un color al text i les icones amb un efecte de post-processat. Útil per a icones no simbòliques.<br> - <strong>Actualitza</strong>: Torna a aplicar "
+"el color regularment cada determinat període de temps. Útil per a ginys que recreen o canvien el color per si mateixos.<br>Per a restaurar la <strong>Màscara<strong> i l'<strong>Efecte de color</strong>, desactiveu i reinicieu el Plasma o sortiu de la sessió."
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
