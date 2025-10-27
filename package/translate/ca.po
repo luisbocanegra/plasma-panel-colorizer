@@ -543,7 +543,7 @@ msgstr "Ginys de la safata"
 
 #: ../contents/ui/configAppearance.qml
 msgid "Part of the panel on which the options below will be applied."
-msgstr "Part del panell a la qual s'aplicaran les opcions de sota.'
+msgstr "Part del panell a la qual s'aplicaran les opcions de sota."
 
 #: ../contents/ui/configGeneral.qml
 msgid "Hide widget:"
