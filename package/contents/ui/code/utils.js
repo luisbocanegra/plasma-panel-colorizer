@@ -351,19 +351,19 @@ function getElementStateConfig(config, state) {
   }
   let stateConfig = config.normal;
 
-  if (state.busy && config.busy.enabled) {
+  if (state.busy && config.busy?.enabled) {
       stateConfig = Utils.getEffectiveSettings(config.busy, stateConfig);
   }
 
-  if (state.needsAttention && config.needsAttention.enabled) {
+  if (state.needsAttention && config.needsAttention?.enabled) {
       stateConfig = Utils.getEffectiveSettings(config.needsAttention, stateConfig);
   }
 
-  if (state.hovered && config.hovered.enabled) {
+  if (state.hovered && config.hovered?.enabled) {
       stateConfig = Utils.getEffectiveSettings(config.hovered, stateConfig);
   }
 
-  if (state.expanded && config.expanded.enabled) {
+  if (state.expanded && config.expanded?.enabled) {
       stateConfig = Utils.getEffectiveSettings(config.expanded, stateConfig);
   }
   return stateConfig;
@@ -949,7 +949,7 @@ function getColor(colorCfg, targetIndex, parentColor, itemType, kirigamiColorIte
   return newColor;
 }
 
-function applyFgColor(element, newColor, fgColorCfg, depth, wRecolorCfg, fgColorModified, colorEffectComponent, repaintDebugComponent) {
+function applyFgColor(element, newColor, fgColorCfg, depth, wRecolorCfg, fgColorModified) {
   let count = 0;
   let maxDepth = depth;
   const forceMask = wRecolorCfg?.method?.mask ?? false;
@@ -982,7 +982,7 @@ function applyFgColor(element, newColor, fgColorCfg, depth, wRecolorCfg, fgColor
       })) {
         const effectItem = getEffectItem(child.parent);
         if (!effectItem) {
-          colorEffectComponent.createObject(child.parent, {
+          main.colorEffectComponent.createObject(child.parent, {
             "target": child,
             "colorizationColor": newColor
           });
@@ -994,7 +994,7 @@ function applyFgColor(element, newColor, fgColorCfg, depth, wRecolorCfg, fgColor
       }
       count++;
       if (debug) {
-        repaintDebugComponent.createObject(child);
+        main.repaintDebugComponent.createObject(child);
       }
     }
     if (child.visibleChildren?.length ?? 0 > 0) {
