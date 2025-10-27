@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v5.2.0...v5.2.1) (2025-10-27)
+
+
+### Bug Fixes
+
+* undefined property log spam ([908c802](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/908c802bd4c0ed8bb7bc62ee2897ce38625f21b2))
+
 ## [5.2.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v5.1.0...v5.2.0) (2025-10-25)
 
 
