@@ -78,19 +78,19 @@ ColumnLayout {
             x: linksButton.x
 
             Action {
-                text: "Changelog"
+                text: i18n("Changelog")
                 onTriggered: Qt.openUrlExternally("https://github.com/luisbocanegra/plasma-panel-colorizer/blob/main/CHANGELOG.md")
                 icon.name: "view-calendar-list-symbolic"
             }
 
             Action {
-                text: "Releases"
+                text: i18n("Releases")
                 onTriggered: Qt.openUrlExternally("https://github.com/luisbocanegra/plasma-panel-colorizer/releases")
                 icon.name: "update-none-symbolic"
             }
 
             Action {
-                text: "Matrix chat"
+                text: i18n("Matrix chat")
                 icon.name: Qt.resolvedUrl("../../icons/matrix_logo.svg").toString().replace("file://", "")
                 onTriggered: Qt.openUrlExternally("https://matrix.to/#/#kde-plasma-panel-colorizer:matrix.org")
             }
@@ -98,7 +98,7 @@ ColumnLayout {
             MenuSeparator {}
 
             Menu {
-                title: "Home page"
+                title: i18n("Home page")
                 icon.name: "globe"
 
                 Action {
@@ -107,47 +107,47 @@ ColumnLayout {
                 }
 
                 Action {
-                    text: "KDE Store"
+                    text: i18n("KDE Store")
                     onTriggered: Qt.openUrlExternally("https://store.kde.org/p/2130967")
                 }
             }
 
             Menu {
-                title: "Issues"
+                title: i18n("Issues")
                 icon.name: "project-open-symbolic"
 
                 Action {
-                    text: "Current issues"
+                    text: i18n("Current issues")
                     onTriggered: Qt.openUrlExternally("https://github.com/luisbocanegra/plasma-panel-colorizer/issues?q=sort%3Aupdated-desc+is%3Aissue+is%3Aopen")
                 }
 
                 Action {
-                    text: "Report a bug"
+                    text: i18n("Report a bug")
                     onTriggered: Qt.openUrlExternally("https://github.com/luisbocanegra/plasma-panel-colorizer/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=%5BBug%5D%3A+")
                 }
 
                 Action {
-                    text: "Request a feature"
+                    text: i18n("Request a feature")
                     onTriggered: Qt.openUrlExternally("https://github.com/luisbocanegra/plasma-panel-colorizer/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.md&title=%5BFeature+Request%5D%3A+")
                 }
             }
 
             Menu {
-                title: "Help"
+                title: i18n("Help")
                 icon.name: "question-symbolic"
 
                 Action {
-                    text: "FAQ"
+                    text: i18n("FAQ")
                     onTriggered: Qt.openUrlExternally("https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#faq")
                 }
 
                 Action {
-                    text: "Discussions"
+                    text: i18n("Discussions")
                     onTriggered: Qt.openUrlExternally("https://github.com/luisbocanegra/plasma-panel-colorizer/discussions")
                 }
 
                 Action {
-                    text: "Send an email"
+                    text: i18n("Send an email")
                     onTriggered: Qt.openUrlExternally("mailto:luisbocanegra17b@gmail.com")
                 }
             }
@@ -155,11 +155,11 @@ ColumnLayout {
             MenuSeparator {}
 
             Menu {
-                title: "Donate"
+                title: i18n("Donate")
                 icon.name: "love"
 
                 Action {
-                    text: "GitHub sponsors"
+                    text: i18n("GitHub sponsors")
                     onTriggered: Qt.openUrlExternally("https://github.com/sponsors/luisbocanegra")
                 }
 
@@ -175,7 +175,7 @@ ColumnLayout {
             }
 
             Action {
-                text: "My other projects"
+                text: i18n("My other projects")
                 onTriggered: Qt.openUrlExternally("https://github.com/luisbocanegra?tab=repositories&type=source")
                 icon.name: "starred"
             }
