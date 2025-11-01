@@ -25,7 +25,7 @@ KCM.SimpleKCM {
     property var autoLoadConfig: JSON.parse(cfg_presetAutoloading)
 
     property alias cfg_widgetClickMode: widgetClickModeCombo.currentIndex
-    readonly property list<string> widgetClickModes: ["Toggle Panel Colorizer", "Switch presets", "Show popup"]
+    readonly property list<string> widgetClickModes: [i18n("Toggle Panel Colorizer"), i18n("Switch presets"), i18n("Show popup")]
 
     property string cfg_switchPresets
     property var switchPresets: JSON.parse(cfg_switchPresets)
@@ -327,7 +327,7 @@ KCM.SimpleKCM {
 
             ComboBox {
                 id: widgetClickModeCombo
-                Kirigami.FormData.label: "Action:"
+                Kirigami.FormData.label: i18n("Action:")
                 model: widgetClickModes
             }
 
