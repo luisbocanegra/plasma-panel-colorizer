@@ -359,25 +359,25 @@ ColumnLayout {
         actions: [
             Kirigami.Action {
                 icon.name: "color-picker"
-                text: "Color"
+                text: i18n("Color")
                 checked: currentTab === 0
                 onTriggered: currentTab = 0
             },
             Kirigami.Action {
                 icon.name: "rectangle-shape-symbolic"
-                text: "Shape"
+                text: i18n("Shape")
                 checked: currentTab === 1
                 onTriggered: currentTab = 1
             },
             Kirigami.Action {
                 icon.name: "bordertool-symbolic"
-                text: "Border"
+                text: i18n("Border")
                 checked: currentTab === 2
                 onTriggered: currentTab = 2
             },
             Kirigami.Action {
                 icon.name: "kstars_horizon-symbolic"
-                text: "Shadow"
+                text: i18n("Shadow")
                 checked: currentTab === 3
                 onTriggered: currentTab = 3
             }
