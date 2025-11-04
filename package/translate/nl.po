@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-10-25 20:31+0000\n"
+"POT-Creation-Date: 2025-11-04 23:26+0000\n"
 "PO-Revision-Date: 2025-09-01 15:57+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -82,6 +82,7 @@ msgid "Widget background"
 msgstr "Widgetachtergrond"
 
 #: ../contents/ui/components/FormBorder.qml
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Border"
 msgstr "Rand"
 
@@ -117,6 +118,7 @@ msgid "Custom widths:"
 msgstr "Aangepaste breedtes:"
 
 #: ../contents/ui/components/FormColors.qml
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Color"
 msgstr "Kleur"
 
@@ -453,6 +455,10 @@ msgid "Plugin install instructions"
 msgstr "Installatie-instructies"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Shape"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Spacing:"
 msgstr "Afstand:"
 
@@ -508,6 +514,70 @@ msgstr "Vorige voorinstellingen:"
 #: ../contents/ui/components/Header.qml
 msgid "Version:"
 msgstr "Versie:"
+
+#: ../contents/ui/components/Header.qml
+msgid "Changelog"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Releases"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Matrix chat"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Home page"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "KDE Store"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Issues"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Current issues"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Report a bug"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Request a feature"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Help"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "FAQ"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Discussions"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Send an email"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Donate"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "GitHub sponsors"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "My other projects"
+msgstr ""
 
 #: ../contents/ui/components/Header.qml ../contents/ui/main.qml
 msgid ""
@@ -771,6 +841,18 @@ msgstr ""
 "afgedwongen."
 
 #: ../contents/ui/configPresetAutoload.qml
+msgid "Toggle Panel Colorizer"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Switch presets"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Show popup"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
 msgid "Do nothing"
 msgstr "Niets doen"
 
@@ -858,6 +940,10 @@ msgstr "Normaal:"
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Widget Click"
 msgstr "Aanklikken van widget"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Action:"
+msgstr ""
 
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid ""

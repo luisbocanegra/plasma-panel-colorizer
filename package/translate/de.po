@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-10-25 20:31+0000\n"
+"POT-Creation-Date: 2025-11-04 23:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -73,7 +73,7 @@ msgstr "Anschalten"
 msgid "Widget background"
 msgstr "Widget Hintergrund"
 
-#: ../contents/ui/components/FormBorder.qml
+#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormWidgetSettings.qml
 msgid "Border"
 msgstr "Ränder"
 
@@ -97,7 +97,7 @@ msgstr ""
 msgid "Custom widths:"
 msgstr "Individuelle Breiten"
 
-#: ../contents/ui/components/FormColors.qml
+#: ../contents/ui/components/FormColors.qml ../contents/ui/components/FormWidgetSettings.qml
 msgid "Color"
 msgstr "Farbe"
 
@@ -396,6 +396,10 @@ msgid "Plugin install instructions"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Shape"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Spacing:"
 msgstr "Abstände"
 
@@ -446,6 +450,70 @@ msgstr "Letzte Voreinstellungen laden"
 #: ../contents/ui/components/Header.qml
 msgid "Version:"
 msgstr "Version"
+
+#: ../contents/ui/components/Header.qml
+msgid "Changelog"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Releases"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Matrix chat"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Home page"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "KDE Store"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Issues"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Current issues"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Report a bug"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Request a feature"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Help"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "FAQ"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Discussions"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Send an email"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Donate"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "GitHub sponsors"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "My other projects"
+msgstr ""
 
 #: ../contents/ui/components/Header.qml ../contents/ui/main.qml
 msgid "Running version of the widget (%1) is different to the one on disk (%2), please log out and back in (or restart plasmashell user unit) to ensure things work correctly!"
@@ -668,6 +736,18 @@ msgid "Overrides are applied from top to bottom, if two or more configuration ov
 msgstr "Überschreibungen werden von oben nach untern vorgenommen"
 
 #: ../contents/ui/configPresetAutoload.qml
+msgid "Toggle Panel Colorizer"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Switch presets"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Show popup"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
 msgid "Do nothing"
 msgstr "Tue nichts"
 
@@ -742,6 +822,10 @@ msgstr "Normal:"
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Widget Click"
 msgstr "Widgetklick"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Action:"
+msgstr ""
 
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides should be saved to a preset in <strong>Presets</strong> tab or they will be lost when presets change!"
