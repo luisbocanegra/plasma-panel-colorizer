@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-10-25 20:31+0000\n"
+"POT-Creation-Date: 2025-11-04 23:26+0000\n"
 "PO-Revision-Date: 2025-09-03 13:56-0600\n"
 "Last-Translator: AUTHOR <EMAIL@ADDRESS>\n"
 "Language-Team: Polish <EMAIL@ADDRESS>\n"
@@ -84,6 +84,7 @@ msgid "Widget background"
 msgstr "Tło widżetu"
 
 #: ../contents/ui/components/FormBorder.qml
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Border"
 msgstr "Ramka"
 
@@ -119,6 +120,7 @@ msgid "Custom widths:"
 msgstr "Niestandardowe szerokości:"
 
 #: ../contents/ui/components/FormColors.qml
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Color"
 msgstr "Kolor"
 
@@ -453,6 +455,10 @@ msgid "Plugin install instructions"
 msgstr "Instrukcje instalacji wtyczki"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Shape"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Spacing:"
 msgstr "Odstępy:"
 
@@ -508,6 +514,70 @@ msgstr "Ostatnio załadowane ustawienie wstępne:"
 #: ../contents/ui/components/Header.qml
 msgid "Version:"
 msgstr "Wersja:"
+
+#: ../contents/ui/components/Header.qml
+msgid "Changelog"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Releases"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Matrix chat"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Home page"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "KDE Store"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Issues"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Current issues"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Report a bug"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Request a feature"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Help"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "FAQ"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Discussions"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Send an email"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "Donate"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "GitHub sponsors"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
+msgid "My other projects"
+msgstr ""
 
 #: ../contents/ui/components/Header.qml ../contents/ui/main.qml
 msgid ""
@@ -769,6 +839,18 @@ msgstr ""
 "dzieli tę samą opcję, ostatnie zastępuje poprzednie."
 
 #: ../contents/ui/configPresetAutoload.qml
+msgid "Toggle Panel Colorizer"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Switch presets"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Show popup"
+msgstr ""
+
+#: ../contents/ui/configPresetAutoload.qml
 msgid "Do nothing"
 msgstr "Nie rób nic"
 
@@ -855,6 +937,10 @@ msgstr "Normalny:"
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Widget Click"
 msgstr "Kliknięcie widżetu"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Action:"
+msgstr ""
 
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid ""
