@@ -232,7 +232,7 @@ ColumnLayout {
             }
             Layout.maximumWidth: 400
             Layout.alignment: Qt.AlignTop
-            visible: root.plasmaVersion.isGreaterThan("6.3.5") && root.elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+            visible: root.elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
         }
 
         Kirigami.Separator {
