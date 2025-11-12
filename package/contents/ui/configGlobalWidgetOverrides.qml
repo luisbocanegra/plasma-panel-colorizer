@@ -180,7 +180,7 @@ KCM.SimpleKCM {
             }
             Button {
                 icon.name: "list-add-symbolic"
-                text: "New override"
+                text: i18n("New override")
                 Layout.fillWidth: true
                 onClicked: {
                     let nextOverride = Object.keys(configOverrides).length + 1;
@@ -219,7 +219,7 @@ KCM.SimpleKCM {
                     }
                     Button {
                         icon.name: "checkmark-symbolic"
-                        text: "Rename"
+                        text: i18n("Rename")
                         onClicked: {
                             configOverrides[nameField.text] = configOverrides[overrideName];
                             delete configOverrides[overrideName];
@@ -255,7 +255,7 @@ KCM.SimpleKCM {
                     });
                     item.elementState = root.currentState;
                     item.currentTab = root.currentTab;
-                    item.elementFriendlyName = "Widgets";
+                    item.elementFriendlyName = i18n("Widgets");
                     item.tabChanged.connect(currentTab => {
                         root.currentTab = currentTab;
                     });

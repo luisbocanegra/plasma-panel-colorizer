@@ -12,7 +12,7 @@ ColumnLayout {
     property string lastPresetDir: plasmoid.configuration.lastPreset
     property string lastPresetName: {
         let name = lastPresetDir.split("/");
-        return name[name.length - 1] || "None";
+        return name[name.length - 1] || i18n("None");
     }
     property var localVersion: new VersionUtil.Version("999.999.999") // to assume latest
     property string metadataFile: Qt.resolvedUrl("../../../metadata.json").toString().substring(7)

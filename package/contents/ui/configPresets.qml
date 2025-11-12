@@ -111,7 +111,7 @@ KCM.SimpleKCM {
 
     Kirigami.PromptDialog {
         id: deletePresetDialog
-        title: "Delete preset '" + root.editingPreset + "?"
+        title: i18n("Delete preset") + " '" + root.editingPreset + "'?"
         subtitle: i18n("This will permanently delete the file from your system!")
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {
@@ -122,7 +122,7 @@ KCM.SimpleKCM {
 
     Kirigami.PromptDialog {
         id: updatePresetDialog
-        title: "Update preset '" + root.editingPreset + "'?"
+        title: i18n("Update preset") + " '" + root.editingPreset + "'?"
         subtitle: i18n("Preset configuration will be overwritten!")
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {
@@ -132,7 +132,7 @@ KCM.SimpleKCM {
 
     Kirigami.PromptDialog {
         id: createPreviewDialog
-        title: "Create preview?"
+        title: i18n("Create preset preview?")
         subtitle: i18n("Current preview will be overwritten!")
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {
@@ -142,7 +142,7 @@ KCM.SimpleKCM {
 
     Kirigami.PromptDialog {
         id: newPresetDialog
-        title: "Create preset '" + root.editingPreset + "'?"
+        title: i18n("Create preset") + " '" + saveNameField.text + "'?"
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {
             root.savePreset(root.editingPreset);
