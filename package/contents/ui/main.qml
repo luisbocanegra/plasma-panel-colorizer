@@ -173,6 +173,7 @@ PlasmoidItem {
     property var panelColorizer: null
     property var blurMask: panelColorizer?.mask ?? null
     property var floatigness: panelElement?.floatingness ?? 0
+    property bool panelIsFloating: (panelElement?.floating ?? false) && (floatigness !== 0)
     property var panelWidth: panelElement?.width ?? 0
     property var panelHeight: panelElement?.height ?? 0
     property bool debug: plasmoid.configuration.enableDebug
@@ -347,12 +348,34 @@ PlasmoidItem {
         property bool bgEnabled: bgColorCfg.enabled
         property bool fgEnabled: fgColorCfg.enabled
         property bool radiusEnabled: cfgEnabled && cfg.radius.enabled
-        topLeftRadius: !radiusEnabled || unifyBgType === 2 || unifyBgType === 3 ? 0 : cfg.radius.corner.topLeft ?? 0
-        topRightRadius: !radiusEnabled || (horizontal && (unifyBgType === 1 || unifyBgType === 2)) || (!horizontal && (unifyBgType === 2 || unifyBgType === 3)) ? 0 : cfg.radius.corner.topRight ?? 0
 
-        bottomLeftRadius: !radiusEnabled || (horizontal && (unifyBgType === 2 || unifyBgType === 3)) || (!horizontal && (unifyBgType === 1 || unifyBgType === 2)) ? 0 : cfg.radius.corner.bottomLeft ?? 0
+        property bool panelTouchingTop: isPanel && main.panelElement && !main.panelIsFloating && main.panelPosition.location === "top"
+        property bool panelTouchingBottom: isPanel && main.panelElement && !main.panelIsFloating && main.panelPosition.location === "bottom"
+        property bool panelTouchingLeft: isPanel && main.panelElement && !main.panelIsFloating && main.panelPosition.location === "left"
+        property bool panelTouchingRight: isPanel && main.panelElement && !main.panelIsFloating && main.panelPosition.location === "right"
 
-        bottomRightRadius: !radiusEnabled || unifyBgType === 1 || unifyBgType === 2 || (!horizontal && (unifyBgType === 1 || unifyBgType === 2)) ? 0 : cfg.radius.corner.bottomRight ?? 0
+        function cornerForcedZero(cornerName) {
+            if (!isPanel || !(cfg.flattenOnDeFloat ?? false))
+                return false;
+            switch (cornerName) {
+            case "topLeft":
+                return panelTouchingTop || panelTouchingLeft;
+            case "topRight":
+                return panelTouchingTop || panelTouchingRight;
+            case "bottomLeft":
+                return panelTouchingBottom || panelTouchingLeft;
+            case "bottomRight":
+                return panelTouchingBottom || panelTouchingRight;
+            }
+            return false;
+        }
+
+        topLeftRadius: (!radiusEnabled || unifyBgType === 2 || unifyBgType === 3 || cornerForcedZero("topLeft")) ? 0 : cfg.radius.corner.topLeft ?? 0
+        topRightRadius: (!radiusEnabled || (horizontal && (unifyBgType === 1 || unifyBgType === 2)) || (!horizontal && (unifyBgType === 2 || unifyBgType === 3)) || cornerForcedZero("topRight")) ? 0 : cfg.radius.corner.topRight ?? 0
+
+        bottomLeftRadius: (!radiusEnabled || (horizontal && (unifyBgType === 2 || unifyBgType === 3)) || (!horizontal && (unifyBgType === 1 || unifyBgType === 2)) || cornerForcedZero("bottomLeft")) ? 0 : cfg.radius.corner.bottomLeft ?? 0
+
+        bottomRightRadius: (!radiusEnabled || unifyBgType === 1 || unifyBgType === 2 || (!horizontal && (unifyBgType === 1 || unifyBgType === 2)) || cornerForcedZero("bottomRight")) ? 0 : cfg.radius.corner.bottomRight ?? 0
 
         property bool marginEnabled: cfg.margin.enabled && cfgEnabled
         property bool borderEnabled: cfg.border.enabled && cfgEnabled
@@ -796,6 +819,11 @@ PlasmoidItem {
                     "bottomRightRadius": rect.bottomRightRadius
                 }
                 cfgBorder: cfg.border
+                panelTouchingTop: rect.panelTouchingTop
+                panelTouchingBottom: rect.panelTouchingBottom
+                panelTouchingLeft: rect.panelTouchingLeft
+                panelTouchingRight: rect.panelTouchingRight
+                flattenPanelBordersOnEdge: cfg.flattenOnDeFloat ?? false
                 borderColor: {
                     return Utils.getColor(cfg.border.color, targetIndex, rect.color, itemType, borderRec);
                 }
@@ -832,6 +860,11 @@ PlasmoidItem {
                     "bottomRightRadius": Math.max(rect.bottomRightRadius - cfg.border.width, 0)
                 }
                 cfgBorder: cfg.borderSecondary
+                panelTouchingTop: rect.panelTouchingTop
+                panelTouchingBottom: rect.panelTouchingBottom
+                panelTouchingLeft: rect.panelTouchingLeft
+                panelTouchingRight: rect.panelTouchingRight
+                flattenPanelBordersOnEdge: cfg.flattenOnDeFloat ?? false
                 borderColor: {
                     return Utils.getColor(cfg.borderSecondary.color, targetIndex, rect.color, itemType, borderSecondary);
                 }
