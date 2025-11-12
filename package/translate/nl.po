@@ -114,8 +114,8 @@ msgid ""
 msgstr ""
 "Let op: kies altijd voor een geheel getal bij het gebruik van "
 "<strong>widgeteislanden</strong> om problemen te voorkomen! <a "
-"href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/"
-"64\">Zie #64 (Engels)<a/>"
+"href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
+"issues/64\">Zie #64 (Engels)<a/>"
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Custom widths:"
