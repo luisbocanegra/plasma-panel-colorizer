@@ -221,6 +221,20 @@ ColumnLayout {
             visible: root.plasmaVersion.isGreaterThan("6.3.5") && root.elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
         }
 
+        CheckBox {
+            id: flattenOnDeFloatCheckbox
+            Kirigami.FormData.label: i18n("Panel de-float:")
+            text: i18n("Remove custom background rounded corners and borders on screen edge when panel is not floating")
+            checked: configLocal.flattenOnDeFloat
+            onCheckedChanged: {
+                configLocal.flattenOnDeFloat = checked;
+                updateConfig();
+            }
+            Layout.maximumWidth: 400
+            Layout.alignment: Qt.AlignTop
+            visible: root.plasmaVersion.isGreaterThan("6.3.5") && root.elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+        }
+
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
             Kirigami.FormData.label: i18n("Customization")

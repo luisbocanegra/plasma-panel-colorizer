@@ -7,6 +7,12 @@ Rectangle {
     id: root
     anchors.fill: parent
     color: "transparent"
+    property bool panelTouchingTop: false
+    property bool panelTouchingBottom: false
+    property bool panelTouchingLeft: false
+    property bool panelTouchingRight: false
+    // when true, hide the border touching the screen edge
+    property bool flattenPanelBordersOnEdge: false
     property var cfgBorder
     Kirigami.Theme.colorSet: Kirigami.Theme[cfgBorder.color.systemColorSet]
     property color borderColor
@@ -89,7 +95,7 @@ Rectangle {
         visible: false
         width: root.width
         height: root.height
-        // right/bottom
+        // island widget mask right/bottom
         Rectangle {
             id: rect1
             width: root.horizontal ? root.cfgBorder.width : root.width - (root.cfgBorder.width * 2)
@@ -102,7 +108,7 @@ Rectangle {
             antialiasing: true
             anchors.alignWhenCentered: false
         }
-        // left/top
+        // island widget mask left/top
         Rectangle {
             id: rect2
             width: root.horizontal ? root.cfgBorder.width : root.width - (root.cfgBorder.width * 2)
@@ -114,6 +120,43 @@ Rectangle {
             anchors.horizontalCenter: !root.horizontal ? parent.horizontalCenter : undefined
             antialiasing: true
             anchors.alignWhenCentered: false
+        }
+        // mask the border touching the screen edge
+        Rectangle {
+            id: edgeMaskTop
+            width: parent.width - (root.cfgBorder.width * 2)
+            height: root.cfgBorder.width
+            anchors.top: parent.top
+            color: (root.flattenPanelBordersOnEdge && root.panelTouchingTop) ? "black" : "transparent"
+            antialiasing: true
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+        Rectangle {
+            id: edgeMaskBottom
+            width: parent.width - (root.cfgBorder.width * 2)
+            height: root.cfgBorder.width
+            anchors.bottom: parent.bottom
+            color: (root.flattenPanelBordersOnEdge && root.panelTouchingBottom) ? "black" : "transparent"
+            antialiasing: true
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+        Rectangle {
+            id: edgeMaskLeft
+            width: root.cfgBorder.width
+            height: parent.height - (root.cfgBorder.width * 2)
+            anchors.left: parent.left
+            color: (root.flattenPanelBordersOnEdge && root.panelTouchingLeft) ? "black" : "transparent"
+            antialiasing: true
+            anchors.verticalCenter: parent.verticalCenter
+        }
+        Rectangle {
+            id: edgeMaskRight
+            width: root.cfgBorder.width
+            height: parent.height - (root.cfgBorder.width * 2)
+            anchors.right: parent.right
+            color: (root.flattenPanelBordersOnEdge && root.panelTouchingRight) ? "black" : "transparent"
+            antialiasing: true
+            anchors.verticalCenter: parent.verticalCenter
         }
     }
 }

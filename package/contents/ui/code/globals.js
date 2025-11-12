@@ -179,6 +179,7 @@ const basePadding = {
 const basePanelConfig = {
   enabled: false,
   blurBehind: false,
+  flattenOnDeFloat: false,
   backgroundColor: basePanelBgColor,
   foregroundColor: baseFgColor,
   radius: baseRadius,
