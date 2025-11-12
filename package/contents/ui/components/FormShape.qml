@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
+import "../"
 
 Kirigami.FormLayout {
     id: shapeRoot
@@ -14,6 +15,7 @@ Kirigami.FormLayout {
     // internal config objects to be sent, both string and json
     property string configString: "{}"
     property var config: handleString ? JSON.parse(configString) : undefined
+    property string elementName
 
     signal updateConfigString(string configString, var config)
 
@@ -174,6 +176,25 @@ Kirigami.FormLayout {
                     updateConfig();
                 }
             }
+        }
+    }
+
+    RunCommand {
+        id: runCommand
+    }
+
+    Label {
+        visible: root.elementName === "widgets"
+        text: i18n("Requires plasmashell restart after disabling to restore the default. <a href=\"#\">Restart now</a>.")
+        onLinkActivated: {
+            runCommand.run("systemctl restart --user plasma-plasmashell");
+        }
+        font: Kirigami.Theme.smallFont
+        Layout.maximumWidth: 400
+        wrapMode: Label.Wrap
+        Layout.alignment: Qt.AlignTop
+        HoverHandler {
+            cursorShape: Qt.PointingHandCursor
         }
     }
 }

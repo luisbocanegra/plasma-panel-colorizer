@@ -459,6 +459,7 @@ ColumnLayout {
             root.configLocal = newConfig;
             root.updateConfig();
         }
+        elementName: root.elementName
     }
 
     FormPadding {
