@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-11-04 23:26+0000\n"
+"POT-Creation-Date: 2025-11-12 07:49+0000\n"
 "PO-Revision-Date: 2025-09-14 11:20-0600\n"
 "Last-Translator: https://github.com/devil6a <EMAIL@ADDRESS>\n"
 "Language-Team: Ukrainian <EMAIL@ADDRESS>\n"
@@ -331,6 +331,12 @@ msgstr "Радіус"
 msgid "Margin"
 msgstr "Поля"
 
+#: ../contents/ui/components/FormShape.qml
+msgid ""
+"Requires plasmashell restart after disabling to restore the default. <a "
+"href=\"#\">Restart now</a>."
+msgstr ""
+
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel:"
 msgstr "Нативна панель:"
@@ -390,6 +396,16 @@ msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Resize content when panel enters/exits floating state"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Panel de-float:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Remove custom background rounded corners and borders on screen edge when "
+"panel is not floating"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -503,6 +519,10 @@ msgstr "Тінь переднього плану"
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Foreground Shadow Color"
 msgstr "Колір тіні переднього плану"
+
+#: ../contents/ui/components/Header.qml
+msgid "None"
+msgstr ""
 
 #: ../contents/ui/components/Header.qml
 msgid "Enable %1:"
@@ -809,6 +829,11 @@ msgstr "Перевизначення конфігурації"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 #: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "New override"
+msgstr ""
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Override settings"
 msgstr "Перевизначити налаштування"
 
@@ -816,6 +841,11 @@ msgstr "Перевизначити налаштування"
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Override name"
 msgstr "Назва перевизначення"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Rename"
+msgstr ""
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid "Fallback:"
@@ -954,17 +984,37 @@ msgstr ""
 "кількох віджетів. Ці перевизначення слід зберегти в пресеті на вкладці "
 "<strong>Пресети</strong>, інакше вони будуть втрачені при зміні пресетів!"
 
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Name:"
+msgstr ""
+
+#: ../contents/ui/configPresets.qml
+msgid "Delete preset"
+msgstr ""
+
 #: ../contents/ui/configPresets.qml
 msgid "This will permanently delete the file from your system!"
 msgstr "Це назавжди видалить файл із вашої системи!"
+
+#: ../contents/ui/configPresets.qml
+msgid "Update preset"
+msgstr ""
 
 #: ../contents/ui/configPresets.qml
 msgid "Preset configuration will be overwritten!"
 msgstr "Конфігурація пресета буде перезаписана!"
 
 #: ../contents/ui/configPresets.qml
+msgid "Create preset preview?"
+msgstr ""
+
+#: ../contents/ui/configPresets.qml
 msgid "Current preview will be overwritten!"
 msgstr "Поточний перегляд буде перезаписано!"
+
+#: ../contents/ui/configPresets.qml
+msgid "Create preset"
+msgstr ""
 
 #: ../contents/ui/configPresets.qml
 msgid ""

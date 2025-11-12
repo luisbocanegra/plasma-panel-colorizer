@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-11-04 23:26+0000\n"
+"POT-Creation-Date: 2025-11-12 07:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -297,6 +297,10 @@ msgstr "Radius"
 msgid "Margin"
 msgstr "Abstand"
 
+#: ../contents/ui/components/FormShape.qml
+msgid "Requires plasmashell restart after disabling to restore the default. <a href=\"#\">Restart now</a>."
+msgstr ""
+
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel:"
 msgstr ""
@@ -345,6 +349,14 @@ msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Resize content when panel enters/exits floating state"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Panel de-float:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Remove custom background rounded corners and borders on screen edge when panel is not floating"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -438,6 +450,10 @@ msgstr "Vordergrund Sichtbarkeit"
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Foreground Shadow Color"
 msgstr "Farbe des Vordergrundes"
+
+#: ../contents/ui/components/Header.qml
+msgid "None"
+msgstr ""
 
 #: ../contents/ui/components/Header.qml
 msgid "Enable %1:"
@@ -716,12 +732,20 @@ msgid "Configuration overrides"
 msgstr "Konfigurationsüberschreibungen"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "New override"
+msgstr ""
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Override settings"
 msgstr "Überschreibe Einstellungen"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Override name"
 msgstr "Überschreibe Name"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Rename"
+msgstr ""
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid "Fallback:"
@@ -831,17 +855,37 @@ msgstr ""
 msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides should be saved to a preset in <strong>Presets</strong> tab or they will be lost when presets change!"
 msgstr "Erstelle Konfigurationsüberschreibungen und appliziere diese auf andere Widgets. Diese Überschreibungen sollten gesichert werden oder gehen bei der nächsten Änderung verloren"
 
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Name:"
+msgstr ""
+
+#: ../contents/ui/configPresets.qml
+msgid "Delete preset"
+msgstr ""
+
 #: ../contents/ui/configPresets.qml
 msgid "This will permanently delete the file from your system!"
 msgstr "Das wird die Datei dauerhaft löschen"
+
+#: ../contents/ui/configPresets.qml
+msgid "Update preset"
+msgstr ""
 
 #: ../contents/ui/configPresets.qml
 msgid "Preset configuration will be overwritten!"
 msgstr "Voreinstellungen werden überschrieben"
 
 #: ../contents/ui/configPresets.qml
+msgid "Create preset preview?"
+msgstr ""
+
+#: ../contents/ui/configPresets.qml
 msgid "Current preview will be overwritten!"
 msgstr "Aktuelle Vorschau wird überschrieben"
+
+#: ../contents/ui/configPresets.qml
+msgid "Create preset"
+msgstr ""
 
 #: ../contents/ui/configPresets.qml
 msgid "Changes to the current preset are not synced to disk automatically. You should come back to this tab and update it manually before switching to a different preset, otherwise unsaved preset settings will be lost when presets change!"

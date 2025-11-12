@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-11-04 23:26+0000\n"
+"POT-Creation-Date: 2025-11-12 07:49+0000\n"
 "PO-Revision-Date: 2025-09-03 13:56-0600\n"
 "Last-Translator: AUTHOR <EMAIL@ADDRESS>\n"
 "Language-Team: Polish <EMAIL@ADDRESS>\n"
@@ -331,6 +331,12 @@ msgstr "Promień"
 msgid "Margin"
 msgstr "Margines"
 
+#: ../contents/ui/components/FormShape.qml
+msgid ""
+"Requires plasmashell restart after disabling to restore the default. <a "
+"href=\"#\">Restart now</a>."
+msgstr ""
+
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel:"
 msgstr "Natywny panel:"
@@ -390,6 +396,16 @@ msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Resize content when panel enters/exits floating state"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Panel de-float:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Remove custom background rounded corners and borders on screen edge when "
+"panel is not floating"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -502,6 +518,10 @@ msgstr "Cień pierwszoplanowy"
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Foreground Shadow Color"
 msgstr "Kolor cienia pierwszoplanowego"
+
+#: ../contents/ui/components/Header.qml
+msgid "None"
+msgstr ""
 
 #: ../contents/ui/components/Header.qml
 msgid "Enable %1:"
@@ -808,6 +828,11 @@ msgstr "Nadpisania konfiguracji"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 #: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "New override"
+msgstr ""
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Override settings"
 msgstr "Nadpisz ustawienia"
 
@@ -815,6 +840,11 @@ msgstr "Nadpisz ustawienia"
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Override name"
 msgstr "Nazwa nadpisania"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Rename"
+msgstr ""
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid "Fallback:"
@@ -952,17 +982,37 @@ msgstr ""
 "Zapisz je w zakładce <strong>Ustawienia wstępne</strong>, inaczej utracisz "
 "je przy zmianie!"
 
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Name:"
+msgstr ""
+
+#: ../contents/ui/configPresets.qml
+msgid "Delete preset"
+msgstr ""
+
 #: ../contents/ui/configPresets.qml
 msgid "This will permanently delete the file from your system!"
 msgstr "To trwale usunie plik z systemu!"
+
+#: ../contents/ui/configPresets.qml
+msgid "Update preset"
+msgstr ""
 
 #: ../contents/ui/configPresets.qml
 msgid "Preset configuration will be overwritten!"
 msgstr "Konfiguracja ustawienia wstępnego zostanie nadpisana!"
 
 #: ../contents/ui/configPresets.qml
+msgid "Create preset preview?"
+msgstr ""
+
+#: ../contents/ui/configPresets.qml
 msgid "Current preview will be overwritten!"
 msgstr "Bieżący podgląd zostanie nadpisany!"
+
+#: ../contents/ui/configPresets.qml
+msgid "Create preset"
+msgstr ""
 
 #: ../contents/ui/configPresets.qml
 msgid ""
