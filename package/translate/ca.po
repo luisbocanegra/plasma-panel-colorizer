@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-11-04 23:26+0000\n"
+"POT-Creation-Date: 2025-11-12 07:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -297,6 +297,10 @@ msgstr "Radi"
 msgid "Margin"
 msgstr "Marge"
 
+#: ../contents/ui/components/FormShape.qml
+msgid "Requires plasmashell restart after disabling to restore the default. <a href=\"#\">Restart now</a>."
+msgstr ""
+
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel:"
 msgstr "Panell nadiu:"
@@ -348,6 +352,14 @@ msgstr "Ancora a les vores:"
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Resize content when panel enters/exits floating state"
 msgstr "Redimensiona el contingut quan el panell entri o surti de l'estat flotant."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Panel de-float:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Remove custom background rounded corners and borders on screen edge when panel is not floating"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Customization"
@@ -440,6 +452,10 @@ msgstr "Ombra de primer pla"
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Foreground Shadow Color"
 msgstr "Color de l'ombra de primer pla"
+
+#: ../contents/ui/components/Header.qml
+msgid "None"
+msgstr ""
 
 #: ../contents/ui/components/Header.qml
 msgid "Enable %1:"
@@ -718,12 +734,20 @@ msgid "Configuration overrides"
 msgstr "Configuració de la sobreescriptura"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "New override"
+msgstr ""
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Override settings"
 msgstr "Configuració de les sobreescriptures"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Override name"
 msgstr "Nom de la sobreescriptura"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Rename"
+msgstr ""
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid "Fallback:"
@@ -833,17 +857,37 @@ msgstr "Acció:"
 msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides should be saved to a preset in <strong>Presets</strong> tab or they will be lost when presets change!"
 msgstr "Crea configuracions de sobreescriptura i les aplica a un o múltiples ginys. Aquestes sobreescriptures s'han de desar en un perfil a la pestanya <strong>Perfils</strong> o es pedran els canvis quan es canviï de perfil."
 
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Name:"
+msgstr ""
+
+#: ../contents/ui/configPresets.qml
+msgid "Delete preset"
+msgstr ""
+
 #: ../contents/ui/configPresets.qml
 msgid "This will permanently delete the file from your system!"
 msgstr "Això esborrarà permanentment el fitxer del sistema."
+
+#: ../contents/ui/configPresets.qml
+msgid "Update preset"
+msgstr ""
 
 #: ../contents/ui/configPresets.qml
 msgid "Preset configuration will be overwritten!"
 msgstr "Se sobreescriurà la configuració del perfil."
 
 #: ../contents/ui/configPresets.qml
+msgid "Create preset preview?"
+msgstr ""
+
+#: ../contents/ui/configPresets.qml
 msgid "Current preview will be overwritten!"
 msgstr "Se sobreescriurà la vista actual."
+
+#: ../contents/ui/configPresets.qml
+msgid "Create preset"
+msgstr ""
 
 #: ../contents/ui/configPresets.qml
 msgid "Changes to the current preset are not synced to disk automatically. You should come back to this tab and update it manually before switching to a different preset, otherwise unsaved preset settings will be lost when presets change!"
