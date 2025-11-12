@@ -1,5 +1,14 @@
 # Changelog
 
+## [5.3.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v5.2.1...v5.3.0) (2025-11-12)
+
+
+### Features
+
+* add note about needed plasma restart to restore widget margins ([5e3a7cf](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/5e3a7cfee5c1515ca2212f88aab948e9394508c0))
+* allow localization of more strings ([d0c0198](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/d0c019899a8b7f9e2808cf0e81e0d20a8d6bd773))
+* remove panel radius/border on screen edges when panel defloats ([9b2e352](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/9b2e352a246c6f4113bf02298e248464c667e301))
+
 ## [5.2.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v5.2.0...v5.2.1) (2025-10-27)
 
 
