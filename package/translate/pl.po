@@ -1,7 +1,7 @@
 # Translation of colorizer in pl
 # Copyright (C) 2025
 # This file is distributed under the same license as the colorizer package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# RygorrMortis <rygorrmortis@github.com>, 2025.
 #
 #, fuzzy
 msgid ""
@@ -9,17 +9,17 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-11-12 07:49+0000\n"
-"PO-Revision-Date: 2025-09-03 13:56-0600\n"
-"Last-Translator: AUTHOR <EMAIL@ADDRESS>\n"
-"Language-Team: Polish <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2025-11-13 12:21-0600\n"
+"PO-Revision-Date: 2025-11-12 12:00+0100\n"
+"Last-Translator: RygorrMortis <rygorrmortis@github.com>\n"
+"Language-Team: Polish <pl@li.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 25.08.0\n"
+"X-Generator: Manual\n"
 
 #: ../metadata.json
 msgid "Panel colorizer"
@@ -51,7 +51,7 @@ msgstr "Ustawienia standardowego panelu"
 
 #: ../contents/config/config.qml
 msgid "Widget Islands"
-msgstr ""
+msgstr "Wyspy widżetów"
 
 #: ../contents/config/config.qml
 msgid "Preset Overrides"
@@ -63,7 +63,7 @@ msgstr "Globalne nadpisywanie"
 
 #: ../contents/config/config.qml
 msgid "Text and icon fixes"
-msgstr ""
+msgstr "Poprawki tekstu i ikon"
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -114,6 +114,9 @@ msgid ""
 "issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
 "issues/64\">See #64<a/>"
 msgstr ""
+"Użyj liczby całkowitej przy korzystaniu z <strong>Wysp widżetów</strong>, "
+"aby uniknąć problemów z renderowaniem! <a href=\"https://github.com/"
+"luisbocanegra/plasma-panel-colorizer/issues/64\">Zobacz #64<a/>"
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Custom widths:"
@@ -152,7 +155,7 @@ msgstr "Niestandardowe"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "A fixed custom color"
-msgstr "Stały niestandardowy kolor"
+msgstr "Stały kolor niestandardowy"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "System"
@@ -160,7 +163,7 @@ msgstr "System"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Color that updates with your System theme"
-msgstr "Kolor, który aktualizuje się wraz z motywem systemowym"
+msgstr "Kolor aktualizujący się wraz z motywem systemowym"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Custom list"
@@ -171,6 +174,8 @@ msgid ""
 "Define a list of colors that will be applied to all the elements, wraps "
 "around if there are more elements than colors"
 msgstr ""
+"Zdefiniuj listę kolorów, która zostanie zastosowana do wszystkich elementów, "
+"zawija się, jeśli elementów jest więcej niż kolorów"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Random"
@@ -178,7 +183,7 @@ msgstr "Losowy"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Random color for each element"
-msgstr "Losowy kolor dla każdego element"
+msgstr "Losowy kolor dla każdego elementu"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Follow"
@@ -205,8 +210,8 @@ msgid ""
 "High resolution images can slow down the desktop when the panel or widget "
 "size changes!"
 msgstr ""
-"Obrazy o wysokiej rozdzielczości mogą spowolnić pulpit, gdy zmienia się "
-"rozmiar panelu lub widżetu!"
+"Obrazy o wysokiej rozdzielczości mogą spowolnić pulpit przy zmianie rozmiaru "
+"panelu lub widżetu!"
 
 #: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
 msgid "Element:"
@@ -242,7 +247,7 @@ msgstr "Obraz:"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Pick a image file"
-msgstr "Wybierz plik obrazu\""
+msgstr "Wybierz plik obrazu"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Image files"
@@ -266,7 +271,7 @@ msgstr "Kolory:"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Orientation:"
-msgstr "Orientacj:"
+msgstr "Orientacja:"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Horizontal"
@@ -305,6 +310,8 @@ msgid ""
 "Horizontal and vertical padding only work properly when the panel is on the "
 "same orientation."
 msgstr ""
+"Wypełnienie poziome i pionowe działa poprawnie tylko wtedy, gdy panel ma tę "
+"samą orientację."
 
 #: ../contents/ui/components/FormShadow.qml
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -336,10 +343,12 @@ msgid ""
 "Requires plasmashell restart after disabling to restore the default. <a "
 "href=\"#\">Restart now</a>."
 msgstr ""
+"Wymaga restartu plasmashell po wyłączeniu, aby przywrócić domyślne. <a "
+"href=\"#\">Restartuj teraz</a>."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel:"
-msgstr "Natywny panel:"
+msgstr "Domyślny panel:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 #: ../contents/ui/configGeneral.qml
@@ -350,7 +359,7 @@ msgstr "Tło"
 msgid ""
 "Disable to make panel fully transparent, removes contrast and blur effects."
 msgstr ""
-"Wyłącz, aby panel był całkowicie przezroczysty, usuwa efekty kontrastu i "
+"Wyłącz, aby panel był całkowicie przezroczysty – usuwa efekty kontrastu i "
 "rozmycia."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -364,7 +373,7 @@ msgstr "Nieprzezroczystość:"
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Set to 0 to keep the mask required for custom background blur."
 msgstr ""
-"Ustaw na 0, aby zachować maskę wymaganą do niestandardowego rozmycia tła."
+"Ustaw na 0, aby zachować maskę wymaganą dla niestandardowego rozmycia tła."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Floating applets:"
@@ -372,7 +381,7 @@ msgstr "Pływające aplety:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Allow changes (Plasma 6.4.0 and later)"
-msgstr "Zezwalaj na zmiany (Plasma 6.4.0 i nowsze)"
+msgstr "Zezwól na zmiany (Plasma 6.4.0 i nowsze)"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
@@ -383,8 +392,8 @@ msgid ""
 msgstr ""
 "Od wersji 6.4.0 Plasma ma wbudowaną opcję <b>Pływający panel i aplety</b>, "
 "włączenie tego nadpisuje tę opcję.\n"
-"⚠️Zmiana <b>Pływającego</b> z konfiguracji panelu nie zadziała, gdy ta opcja "
-"jest włączona!"
+"⚠️Zmiana <b>Pływającego</b> z konfiguracji panelu nie będzie działać, gdy to "
+"jest włączone!"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Force floating applets"
@@ -392,25 +401,28 @@ msgstr "Wymuś pływające aplety"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Anchor to edges:"
-msgstr ""
+msgstr "Przyczep do krawędzi:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Resize content when panel enters/exits floating state"
 msgstr ""
+"Zmieniaj rozmiar zawartości, gdy panel wchodzi/wychodzi ze stanu pływającego"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Panel de-float:"
-msgstr ""
+msgstr "Panel de-float:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
 "Remove custom background rounded corners and borders on screen edge when "
 "panel is not floating"
 msgstr ""
+"Usuń niestandardowe zaokrąglone rogi i ramki tła na krawędzi ekranu, gdy "
+"panel nie jest pływający"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Customization"
-msgstr ""
+msgstr "Personalizacja"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "State:"
@@ -422,11 +434,11 @@ msgstr "Normalny"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Hover"
-msgstr "Najedź"
+msgstr "Najazd"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Expanded"
-msgstr "Rozwinięty"
+msgstr "Rozszerzony"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Needs attention"
@@ -441,12 +453,12 @@ msgid ""
 "Change element appearance based on their state, configuration is stacked on "
 "top of the current appearance"
 msgstr ""
-"Zmieniaj wygląd elementu w zależności od stanu, konfiguracja jest nakładana "
-"na bieżący wygląd"
+"Zmieniaj wygląd elementów na podstawie ich stanu, konfiguracja jest "
+"nakładana na bieżący wygląd"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Blur custom background (Beta)"
-msgstr "Rozmyj niestandardowe tło (Beta)"
+msgstr "Rozmycie niestandardowego tła (beta)"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
@@ -455,16 +467,17 @@ msgid ""
 "intended.</strong>"
 msgstr ""
 "Rysuj niestandardową maskę rozmycia za niestandardowymi tłami."
-"<br><strong>Natywne tło panelu musi być włączone z nieprzezroczystością 0, "
-"aby to działało poprawnie.</strong>"
+"<br><strong>Domyślne tło panelu musi być włączone z nieprzezroczystością 0, "
+"aby to działało zgodnie z zamierzeniem.</strong>"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
 "C++ plugin not found, this feature will not work. Install the plugin and "
 "reboot or restart plasmashell to be able to use it."
 msgstr ""
-"Nie znaleziono wtyczki C++, ta funkcja nie zadziała. Zainstaluj wtyczkę i "
-"zrestartuj system lub plasmashell, aby ją użyć."
+"Nie znaleziono wtyczki C++, ta funkcja nie będzie działać. Zainstaluj "
+"wtyczkę i zrestartuj lub uruchom ponownie plasmashell, aby móc z niej "
+"korzystać."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Plugin install instructions"
@@ -472,18 +485,18 @@ msgstr "Instrukcje instalacji wtyczki"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Shape"
-msgstr ""
+msgstr "Kształt"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Spacing:"
-msgstr "Odstępy:"
+msgstr "Odstęp:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
 "<strong>Odd</strong> values are automatically converted to <strong>evens</"
 "strong> if <strong>Unified Background</strong> feature is used."
 msgstr ""
-"Wartości <strong>nieparzyste</strong> są automatycznie konwertowane na "
+"<strong>Nieparzyste</strong> wartości są automatycznie konwertowane na "
 "<strong>parzyste</strong>, jeśli używana jest funkcja <strong>Ujednolicone "
 "tło</strong>."
 
@@ -493,7 +506,7 @@ msgstr "Kolor tła"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Foreground Color"
-msgstr "Kolor pierwszoplanowy"
+msgstr "Kolor pierwszego planu"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Primary Border"
@@ -501,7 +514,7 @@ msgstr "Główna ramka"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Secondary Border"
-msgstr "Drugorzędna ramka"
+msgstr "Dodatkowa ramka"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Background Shadow"
@@ -513,15 +526,15 @@ msgstr "Kolor cienia tła"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Foreground Shadow"
-msgstr "Cień pierwszoplanowy"
+msgstr "Cień pierwszego planu"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Foreground Shadow Color"
-msgstr "Kolor cienia pierwszoplanowego"
+msgstr "Kolor cienia pierwszego planu"
 
 #: ../contents/ui/components/Header.qml
 msgid "None"
-msgstr ""
+msgstr "Brak"
 
 #: ../contents/ui/components/Header.qml
 msgid "Enable %1:"
@@ -529,7 +542,7 @@ msgstr "Włącz %1:"
 
 #: ../contents/ui/components/Header.qml ../contents/ui/main.qml
 msgid "Last preset loaded:"
-msgstr "Ostatnio załadowane ustawienie wstępne:"
+msgstr "Ostatnio wczytany preset:"
 
 #: ../contents/ui/components/Header.qml
 msgid "Version:"
@@ -537,67 +550,67 @@ msgstr "Wersja:"
 
 #: ../contents/ui/components/Header.qml
 msgid "Changelog"
-msgstr ""
+msgstr "Dziennik zmian"
 
 #: ../contents/ui/components/Header.qml
 msgid "Releases"
-msgstr ""
+msgstr "Wydania"
 
 #: ../contents/ui/components/Header.qml
 msgid "Matrix chat"
-msgstr ""
+msgstr "Czat Matrix"
 
 #: ../contents/ui/components/Header.qml
 msgid "Home page"
-msgstr ""
+msgstr "Strona główna"
 
 #: ../contents/ui/components/Header.qml
 msgid "KDE Store"
-msgstr ""
+msgstr "Sklep KDE"
 
 #: ../contents/ui/components/Header.qml
 msgid "Issues"
-msgstr ""
+msgstr "Problemy"
 
 #: ../contents/ui/components/Header.qml
 msgid "Current issues"
-msgstr ""
+msgstr "Bieżące problemy"
 
 #: ../contents/ui/components/Header.qml
 msgid "Report a bug"
-msgstr ""
+msgstr "Zgłoś błąd"
 
 #: ../contents/ui/components/Header.qml
 msgid "Request a feature"
-msgstr ""
+msgstr "Zgłoś prośbę o funkcję"
 
 #: ../contents/ui/components/Header.qml
 msgid "Help"
-msgstr ""
+msgstr "Pomoc"
 
 #: ../contents/ui/components/Header.qml
 msgid "FAQ"
-msgstr ""
+msgstr "FAQ"
 
 #: ../contents/ui/components/Header.qml
 msgid "Discussions"
-msgstr ""
+msgstr "Dyskusje"
 
 #: ../contents/ui/components/Header.qml
 msgid "Send an email"
-msgstr ""
+msgstr "Wyślij e-mail"
 
 #: ../contents/ui/components/Header.qml
 msgid "Donate"
-msgstr ""
+msgstr "Wesprzyj"
 
 #: ../contents/ui/components/Header.qml
 msgid "GitHub sponsors"
-msgstr ""
+msgstr "Sponsorzy GitHub"
 
 #: ../contents/ui/components/Header.qml
 msgid "My other projects"
-msgstr ""
+msgstr "Moje inne projekty"
 
 #: ../contents/ui/components/Header.qml ../contents/ui/main.qml
 msgid ""
@@ -605,47 +618,47 @@ msgid ""
 "please log out and back in (or restart plasmashell user unit) to ensure "
 "things work correctly!"
 msgstr ""
-"Uruchomiona wersja widżetu (%1) różni się od tej na dysku (%2), proszę "
+"Uruchamiana wersja widżetu (%1) różni się od tej na dysku (%2), proszę "
 "wylogować się i zalogować ponownie (lub zrestartować jednostkę użytkownika "
-"plasmashell), aby zapewnić poprawne działanie!"
+"plasmashell), aby upewnić się, że wszystko działa poprawnie!"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "Import"
-msgstr "Import"
+msgstr "Importuj"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "Export"
-msgstr "Eksport"
+msgstr "Eksportuj"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid ""
 "Export these settings to the default configuration folder and import them in "
 "other instances of Panel Colorizer"
 msgstr ""
-"Wyeksportuj te ustawienia do domyślnego folderu konfiguracyjnego i "
-"zaimportuj je do innych instancji programu Panel Colorize"
+"Eksportuj te ustawienia do domyślnego folderu konfiguracji i importuj je w "
+"innych instancjach Koloryzatora Panelu"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "Export current settings?"
-msgstr "Eksportować bieżące ustawienia?"
+msgstr "Eksportuj bieżące ustawienia?"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "Import saved settings?"
-msgstr "Importować zapisane ustawienia?"
+msgstr "Importuj zapisane ustawienia?"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "This will overwrite any previous export!"
-msgstr ""
+msgstr "To nadpisze poprzedni eksport!"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "This will replace your current settings!"
-msgstr "Spowoduje to nadpisanie wszystkich poprzednich eksportów!"
+msgstr "To zastąpi bieżące ustawienia!"
 
 #: ../contents/ui/components/WidgetCardConfig.qml
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
 #: ../contents/ui/components/WidgetCardUnifiedBg.qml
 msgid "System Tray"
-msgstr "Tacka systemowa"
+msgstr "Zasobnik systemowy"
 
 #: ../contents/ui/components/WidgetCardConfig.qml
 msgid "Add"
@@ -692,10 +705,15 @@ msgid ""
 "plasma-panel-colorizer#build-from-source-with-c-plugin\">see instructions</"
 "a>."
 msgstr ""
+"Nie uzyskujesz oczekiwanego rezultatu? Upewnij się, że edytujesz poprawny "
+"element.<br>Niestandardowe rozmycie nie działa? Spróbuj ponownie "
+"zainstalować/odbudować wtyczkę C++ używając najnowszego źródła, <a "
+"href=\"https://github.com/luisbocanegra/plasma-panel-colorizer#build-from-"
+"source-with-c-plugin\">zobacz instrukcje</a>."
 
 #: ../contents/ui/configAppearance.qml
 msgid "Restore default (removes all customizations)"
-msgstr "Przywróć ustawienia domyślne (usuwa wszystkie dostosowania)"
+msgstr "Przywróć domyślne (usuwa wszystkie personalizacje)"
 
 #: ../contents/ui/configAppearance.qml
 msgid "Panel"
@@ -709,11 +727,11 @@ msgstr "Widżety"
 
 #: ../contents/ui/configAppearance.qml
 msgid "Tray widgets"
-msgstr "Widzęty tacki"
+msgstr "Widżety zasobnika"
 
 #: ../contents/ui/configAppearance.qml
 msgid "Part of the panel on which the options below will be applied."
-msgstr ""
+msgstr "Część panelu, na której zastosowane zostaną poniższe opcje."
 
 #: ../contents/ui/configGeneral.qml
 msgid "Hide widget:"
@@ -721,7 +739,7 @@ msgstr "Ukryj widżet:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "visible in Panel Edit Mode"
-msgstr "widoczne w trybie edycji panelu"
+msgstr "widoczny w trybie edycji panelu"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Debug mode:"
@@ -741,7 +759,7 @@ msgstr "Włączone"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Visible while configuring"
-msgstr "Widoczne podczas konfiguracji"
+msgstr "Widoczna podczas konfiguracji"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Minor line:"
@@ -757,7 +775,7 @@ msgstr "Linia główna:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "every"
-msgstr "wszyscy"
+msgstr "co"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Property change animations"
@@ -777,7 +795,7 @@ msgstr "Nazwa D-Bus:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Each Panel Colorizer instance has its own D-Bus name."
-msgstr ""
+msgstr "Każda instancja Koloryzatora Panelu ma własną nazwę D-Bus."
 
 #: ../contents/ui/configGeneral.qml
 msgid "Python 3 executable:"
@@ -789,15 +807,15 @@ msgstr "Wymagane do uruchomienia usługi D-Bus w tle"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Usage examples:"
-msgstr ""
+msgstr "Przykłady użycia:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Apply a preset:"
-msgstr "Zastosuj ustawienie wstępne:"
+msgstr "Zastosuj preset:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Preview and switch presets using fzf + qdbus6 + jq:"
-msgstr "Podgląd i przełączanie ustawień wstępnych za pomocą fzf + qdbus6 + jq:"
+msgstr "Podgląd i przełączanie presetów za pomocą fzf + qdbus6 + jq:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Hide/show this panel"
@@ -815,26 +833,31 @@ msgid ""
 "modifications, <b>uncheck</b> options <b>Enable</b> and <b>Fallback</b>, and "
 "apply the override to the widget."
 msgstr ""
+"Utwórz nadpisywanie konfiguracji i zastosuj je do jednego lub wielu "
+"widżetów. Te nadpisywania są niezależne od presetów i zostaną zastosowane na "
+"górze bieżących ustawień i we wszystkich presetach.<br>Aby umieścić widżet "
+"na czarnej liście modyfikacji, <b>odznacz</b> opcje <b>Włącz</b> i "
+"<b>Fallback</b>, i zastosuj nadpisanie do widżetu."
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Restore default (removes all overrides)"
-msgstr "Przywróć domyślne (usuwa wszystkie nadpisania)"
+msgstr "Przywróć domyślne (usuwa wszystkie nadpisywania)"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Configuration overrides"
-msgstr "Nadpisania konfiguracji"
+msgstr "Nadpisywanie konfiguracji"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "New override"
-msgstr ""
+msgstr "Nowe nadpisanie"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Override settings"
-msgstr "Nadpisz ustawienia"
+msgstr "Ustawienia nadpisania"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 #: ../contents/ui/configPresetWidgetOverrides.qml
@@ -844,18 +867,18 @@ msgstr "Nazwa nadpisania"
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Rename"
-msgstr ""
+msgstr "Zmień nazwę"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid "Fallback:"
-msgstr "Rezerwowe:"
+msgstr "Fallback:"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid ""
 "Fallback to the Global/Preset widget settings for disabled options, except "
 "for <b>Enable</b> and <b>Blur</>."
 msgstr ""
-"Użyj rezerwowych ustawień globalnych/wstępnych dla wyłączonych opcji, z "
+"Fallback do ustawień widżetu Globalnego/Presetu dla wyłączonych opcji, z "
 "wyjątkiem <b>Włącz</b> i <b>Rozmycie</>."
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
@@ -865,24 +888,25 @@ msgid ""
 "overrides share the same option, the last occurence replaces the value of "
 "the previous one."
 msgstr ""
-"Nadpisania są stosowane od góry do dołu; jeśli dwa lub więcej nadpisań "
-"dzieli tę samą opcję, ostatnie zastępuje poprzednie."
+"Nadpisywania są stosowane od góry do dołu, jeśli dwa lub więcej nadpisywań "
+"konfiguracji dzielą tę samą opcję, ostatnia wystąpienie zastępuje wartość "
+"poprzedniego."
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Toggle Panel Colorizer"
-msgstr ""
+msgstr "Przełącz Koloryzator Panelu"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Switch presets"
-msgstr ""
+msgstr "Przełącz presety"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Show popup"
-msgstr ""
+msgstr "Pokaż wyskakujące okno"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Do nothing"
-msgstr "Nie rób nic"
+msgstr "Nic nie rób"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid ""
@@ -891,14 +915,18 @@ msgid ""
 "unsaved preset settings will be lost when auto-loading switches to other "
 "preset!"
 msgstr ""
+"Automatycznie przełączaj między różnymi presetami na podstawie stanów panelu "
+"i okna.<br>Wyłącz automatyczne ładowanie presetów przed wprowadzaniem zmian "
+"w presetach, niezapisane ustawienia presetów zostaną utracone, gdy auto-"
+"ładowanie przełączy na inny preset!"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Remove all auto-loading conditions"
-msgstr ""
+msgstr "Usuń wszystkie warunki automatycznego ładowania"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Auto-loading conditions"
-msgstr ""
+msgstr "Warunki automatycznego ładowania"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid ""
@@ -907,14 +935,14 @@ msgid ""
 "is a maximized window on the screen, the <b>Maximized</b> preset will be "
 "applied."
 msgstr ""
-"Priorytety malejąco. Np. jeśli zarówno <b>Maksymalizowane okno jest "
-"widoczne</b>, jak i <b>Panel dotyka okna</b> mają wybrane ustawienie, a na "
-"ekranie jest maksymalizowane okno, zastosowane zostanie <b>Maksymalizowane</"
-"b>."
+"Priorytety idą w porządku malejącym. Np. jeśli zarówno <b>Okno "
+"zmaksymalizowane jest wyświetlane</b> jak i <b>Panel dotykający okna</b> "
+"mają wybrany preset, i na ekranie jest zmaksymalizowane okno, to "
+"<b>Zmaksymalizowany</b> preset zostanie zastosowany."
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Window tracking:"
-msgstr "Śledzenie okna:"
+msgstr "Śledzenie okien:"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Per screen"
@@ -926,7 +954,7 @@ msgstr "Tylko aktywne"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Active window fallback"
-msgstr "Rezerwowe aktywne okno"
+msgstr "Fallback aktywnego okna"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Track KWin's top window when there is no active one in the screen."
@@ -938,7 +966,7 @@ msgstr "Okno pełnoekranowe:"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Maximized window:"
-msgstr "Okno maksymalizowane:"
+msgstr "Okno zmaksymalizowane:"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Window touching panel:"
@@ -950,7 +978,7 @@ msgstr "Aktywne okno:"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "At least one window is visible:"
-msgstr "Co najmniej jedno okno jest widoczne:"
+msgstr "Przynajmniej jedno okno jest widoczne:"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Floating panel:"
@@ -970,41 +998,27 @@ msgstr "Kliknięcie widżetu"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Action:"
-msgstr ""
-
-#: ../contents/ui/configPresetWidgetOverrides.qml
-msgid ""
-"Create configuration overrides and apply them to one or multiple widgets. "
-"These overrides should be saved to a preset in <strong>Presets</strong> tab "
-"or they will be lost when presets change!"
-msgstr ""
-"Utwórz nadpisania konfiguracji i zastosuj do jednego lub wielu widżetów. "
-"Zapisz je w zakładce <strong>Ustawienia wstępne</strong>, inaczej utracisz "
-"je przy zmianie!"
-
-#: ../contents/ui/configPresetWidgetOverrides.qml
-msgid "Name:"
-msgstr ""
+msgstr "Akcja:"
 
 #: ../contents/ui/configPresets.qml
 msgid "Delete preset"
-msgstr ""
+msgstr "Usuń preset"
 
 #: ../contents/ui/configPresets.qml
 msgid "This will permanently delete the file from your system!"
-msgstr "To trwale usunie plik z systemu!"
+msgstr "To trwale usunie plik z twojego systemu!"
 
 #: ../contents/ui/configPresets.qml
 msgid "Update preset"
-msgstr ""
+msgstr "Aktualizuj preset"
 
 #: ../contents/ui/configPresets.qml
 msgid "Preset configuration will be overwritten!"
-msgstr "Konfiguracja ustawienia wstępnego zostanie nadpisana!"
+msgstr "Konfiguracja presetu zostanie nadpisana!"
 
 #: ../contents/ui/configPresets.qml
 msgid "Create preset preview?"
-msgstr ""
+msgstr "Utwórz podgląd presetu?"
 
 #: ../contents/ui/configPresets.qml
 msgid "Current preview will be overwritten!"
@@ -1012,7 +1026,7 @@ msgstr "Bieżący podgląd zostanie nadpisany!"
 
 #: ../contents/ui/configPresets.qml
 msgid "Create preset"
-msgstr ""
+msgstr "Utwórz preset"
 
 #: ../contents/ui/configPresets.qml
 msgid ""
@@ -1021,18 +1035,18 @@ msgid ""
 "different preset, otherwise unsaved preset settings will be lost when "
 "presets change!"
 msgstr ""
-"Zmiany w bieżącym ustawieniu wstępnym nie są automatycznie zapisywane na "
-"dysku. Wróć do tej zakładki i zaktualizuj ręcznie przed przełączeniem, "
-"inaczej niezapisane ustawienia zostaną utraconezostaną utracone po zmianie "
-"ustawień wstępnych!"
+"Zmiany w bieżącym presecie nie są automatycznie synchronizowane z dyskiem. "
+"Powinieneś wrócić do tej karty i zaktualizować go ręcznie przed "
+"przełączeniem na inny preset, w przeciwnym razie niezapisane ustawienia "
+"presetu zostaną utracone przy zmianie presetów!"
 
 #: ../contents/ui/configPresets.qml
 msgid "Restore default preset"
-msgstr "Przywróć domyślne ustawienie wstępne"
+msgstr "Przywróć domyślny preset"
 
 #: ../contents/ui/configPresets.qml
 msgid "New from current settings"
-msgstr "Nowe z bieżących ustawień"
+msgstr "Nowy z bieżących ustawień"
 
 #: ../contents/ui/configPresets.qml
 msgid "Save"
@@ -1040,7 +1054,7 @@ msgstr "Zapisz"
 
 #: ../contents/ui/configPresets.qml
 msgid "Refresh presets"
-msgstr "Aktualizuj ustawienia wstępne"
+msgstr "Odśwież presety"
 
 #: ../contents/ui/configPresets.qml
 msgid "Built-in"
@@ -1048,11 +1062,11 @@ msgstr "Wbudowane"
 
 #: ../contents/ui/configPresets.qml
 msgid "Load"
-msgstr "Załaduj"
+msgstr "Wczytaj"
 
 #: ../contents/ui/configPresets.qml
 msgid "Update"
-msgstr "Zaktualizuj"
+msgstr "Aktualizuj"
 
 #: ../contents/ui/configPresets.qml
 msgid "Create preview"
@@ -1060,15 +1074,30 @@ msgstr "Utwórz podgląd"
 
 #: ../contents/ui/configPresets.qml
 msgid "Update preview"
-msgstr "Zaktualizuj podgląd"
+msgstr "Aktualizuj podgląd"
+
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid ""
+"Create configuration overrides and apply them to one or multiple widgets. "
+"These overrides should be saved to a preset in <strong>Presets</strong> tab "
+"or they will be lost when presets change!"
+msgstr ""
+"Utwórz nadpisywanie konfiguracji i zastosuj je do jednego lub wielu "
+"widżetów. Te nadpisywania powinny być zapisane w presecie na karcie "
+"<strong>Ustawienia wstępne</strong>, w przeciwnym razie zostaną utracone "
+"przy zmianie presetów!"
+
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Name:"
+msgstr "Nazwa:"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
 "Changing panel position is currently unstable and may cause Plasma to crash "
 "when moving panels between non-parallel edges (e.g from top to left)."
 msgstr ""
-"Zmiana pozycji panelu jest obecnie niestabilna i może spowodować awarię "
-"Plasma przy przenoszeniu paneli między nie równoległymi krawędziami (np. z "
+"Zmiana pozycji panelu jest obecnie niestabilna i może powodować awarię "
+"Plasma przy przesuwaniu paneli między nie-równoległymi krawędziami (np. z "
 "góry na lewo)."
 
 #: ../contents/ui/configStockPanelSettings.qml
@@ -1078,10 +1107,10 @@ msgid ""
 "use <b>Panel Opacity</b> and <b>Native panel background</b> options in "
 "<b>Appearance</b> tab instead."
 msgstr ""
-"Opcje Krycie i Ekran wymagają <b>Plasma 6.3</b> lub nowszej wersji."
-"<br>Krycie zależy od bieżącego motywu Plasma. Aby uzyskać lepszą kontrolę "
-"lub pełną przezroczystość, użyj opcji <b>Krycie panelu</b> i <b>Panel "
-"natywnyzamiast tego użyj opcji tła na karcie <b>Wygląd</b>."
+"Opcje przezroczystości i ekranu wymagają <b>Plasma 6.3</b> lub nowszej."
+"<br>Przezroczystość zależy od bieżącego motywu Plasma, dla dokładniejszej "
+"kontroli lub pełnej przezroczystości użyj opcji <b>Przezroczystość panelu</"
+"b> i <b>Domyślne tło panelu </b> na karcie <b>Wygląd</b> zamiast tego."
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Screen"
@@ -1141,7 +1170,7 @@ msgstr "Wypełnij"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Fit content"
-msgstr "Dopasuj do treści"
+msgstr "Dopasuj do zawartości"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Visibility"
@@ -1153,7 +1182,7 @@ msgstr "Zawsze widoczny"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Auto hide"
-msgstr "Automatycznie ukrywaj"
+msgstr "Automatyczne ukrywanie"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Dodge windows"
@@ -1161,7 +1190,7 @@ msgstr "Unikaj okien"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Windows go below"
-msgstr "Okna pod spodem"
+msgstr "Okna przechodzą poniżej"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Opacity"
@@ -1177,7 +1206,7 @@ msgstr "Nieprzezroczysty"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Translucent"
-msgstr "Półprzezroczysty"
+msgstr "Przeświecający"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Floating"
@@ -1213,6 +1242,14 @@ msgid ""
 "configuration from all Panel Colorizer instances so make sure to save the "
 "others first"
 msgstr ""
+"OSTRZEŻENIE: Używaj Pokaż/Ukryj ostrożnie, jeśli ukryjesz panel i nie "
+"skonfigurowałeś automatycznego ładowania presetów lub nie wiesz, jak "
+"przełączać presety za pomocą D-Bus (lub go wyłączyłeś), nie będziesz miał "
+"sposobu, aby go ponownie uczynić widocznym bez ręcznego usunięcia "
+"konfiguracji lub Koloryzatora Panelu, użyj poniższego polecenia w terminalu/"
+"tty, a następnie wyloguj się lub zrestartuj, usunie to konfigurację ze "
+"wszystkich instancji Koloryzatora Panelu, więc upewnij się, że najpierw "
+"zapiszesz inne"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
@@ -1220,6 +1257,9 @@ msgid ""
 "instead. Consult the README to learn more or see the General tab for some "
 "examples."
 msgstr ""
+"Jeśli masz włączony D-Bus, zaleca się używanie go ze skrótami zamiast tego. "
+"Skonsultuj README, aby dowiedzieć się więcej lub zobacz kartę Ogólne dla "
+"niektórych przykładów."
 
 #: ../contents/ui/configTextIconFix.qml
 msgid ""
@@ -1232,18 +1272,27 @@ msgid ""
 "the <strong>Mask<strong> and <strong>Color Effect</strong> disable and "
 "restart Plasma or logout."
 msgstr ""
+"Popraw kolory tekstu i ikon dla widżetów, gdzie normalna metoda nie działa "
+"lub nie jest trwała.<br> - <strong>Maska</strong>: Wymuś kolor na ikonach "
+"SVG, przydatne dla ikon symbolicznych.<br> - <strong>Efekt koloru </strong>: "
+"Wymuś kolor na tekście i ikonach za pomocą efektu post-processing, przydatne "
+"dla ikon nie-symbolicznych.<br> - <strong>Odśwież</strong>: Ponownie "
+"zastosuj kolor w stałym interwale, przydatne dla widżetów, które odtwarzają "
+"lub recolorują zawartość samodzielnie<br>Aby przywrócić <strong>Maskę</"
+"strong> i <strong>Efekt koloru</strong> wyłącz i zrestartuj Plasma lub "
+"wyloguj się."
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
-msgstr "Przywróć domyślne ustawienia (usuwa wszystkie poprawki ikon i tekstu)"
+msgstr "Przywróć domyślne (usuwa wszystkie poprawki ikon i tekstu)"
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Force Text/Icon color"
-msgstr "Wymuś kolor tekstu/ikon"
+msgstr "Wymuś kolor tekstu/ikony"
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Refresh interval:"
-msgstr "Częstotliwość odświeżania"
+msgstr "Interwał odświeżania:"
 
 #: ../contents/ui/configUnifiedBackground.qml
 msgid ""
@@ -1251,10 +1300,13 @@ msgid ""
 "<b>End</b> must be left <b>disabled</b>. Widget custom background or border "
 "is required for this option to have an effect."
 msgstr ""
+"Wybierz początek i koniec wysp widżetów, widżety między <b>Start</b> a "
+"<b>End</b> muszą być pozostawione <b>wyłączone</b>. Niestandardowe tło lub "
+"ramka widżetu jest wymagana, aby ta opcja miała efekt."
 
 #: ../contents/ui/configUnifiedBackground.qml
 msgid "Remove all unified areas"
-msgstr ""
+msgstr "Usuń wszystkie ujednolicone obszary"
 
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
@@ -1262,228 +1314,13 @@ msgstr "Ukryj widżet (widoczny w trybie edycji panelu)"
 
 #: ../contents/ui/main.qml
 msgid "Select a preset"
-msgstr "Wybierz ustawienie wstępne"
+msgstr "Wybierz preset"
 
 #: ../contents/ui/main.qml
 msgid "Running outdated version of %1"
-msgstr "Uruchomiona jest przestarzała wersja %1"
+msgstr "Uruchamiasz przestarzałą wersję %1"
 
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr ""
-"Nie znaleziono panelu; ten widżet musi być umieszczony na panelu, aby działał"
-
-#~ msgid "Unified widget backgrounds"
-#~ msgstr "Ujednolicone tła widżetów"
-
-#~ msgid "Text and icons"
-#~ msgstr "Tekst i ikony"
-
-#~ msgid "customization"
-#~ msgstr "personalizacja"
-
-#~ msgid ""
-#~ "Not getting the expected result? Make sure you're editing the correct "
-#~ "element."
-#~ msgstr ""
-#~ "Nie uzyskujesz oczekiwanego rezultatu? Upewnij się, że edytujesz właściwy "
-#~ "element."
-
-#~ msgid ""
-#~ "Fix text and icon colors for widgets where the normal method doesn't work "
-#~ "or isn't permanent.<br><strong>Mask</strong>: Force Icon colorization "
-#~ "(symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons "
-#~ "colorization using post-processing effect (any icon).<br><strong>Refresh</"
-#~ "strong>: Re-apply colorization at a fixed interval, for widgets that "
-#~ "recreate or recolor content themselves<br>To restore the "
-#~ "<strong>Mask<strong> and <strong>Color Effect</strong> disable and "
-#~ "restart Plasma or logout."
-#~ msgstr ""
-#~ "Napraw kolory tekstu i ikon widżetów, dla których normalna metoda nie "
-#~ "działa lub nie jest trwała.<br><strong>Mask</strong>: Wymuś kolorowanie "
-#~ "ikon (ikony symboliczne).<br><strong>Efekt koloru</strong>: Wymuś "
-#~ "kolorowanie tekstu/ikon za pomocą efektu przetwarzania końcowego (dowolna "
-#~ "ikona).<br><strong>Odśwież</strong>: Ponownie zastosuj kolorowanie w "
-#~ "ustalonych odstępach czasu w przypadku widżetów, które odtwarzają lub "
-#~ "zmieniają kolor zawartości.siebie<br>Aby przywrócić <strong>Mask<strong> "
-#~ "i <strong>Efekt koloru</strong> wyłącz i ponownie uruchom Plasmę lub "
-#~ "wyloguj się."
-
-#~ msgid "Each Panel Colorizer instance has its D-Bus name."
-#~ msgstr "Każda instancja Kolorowania panelu ma swoją nazwę D-Bus."
-
-#~ msgid "Usage:"
-#~ msgstr "Użycie:"
-
-#~ msgid ""
-#~ "Create configuration overrides and apply them to one or multiple widgets. "
-#~ "These overrides are independent and will be applied on top of the current "
-#~ "settings and across presets."
-#~ msgstr ""
-#~ "Utwórz nadpisania konfiguracji i zastosuj je do jednego lub wielu "
-#~ "widżetów. Te nadpisania są niezależne i będą stosowane na bieżących "
-#~ "ustawieniach oraz we wszystkich ustawieniach wstępnych."
-
-#~ msgid ""
-#~ "Switch between different presets based on the Panel and window states."
-#~ "<br>Disable preset auto-loading when making changes to presets, unsaved "
-#~ "preset settings will be lost when presets change!"
-#~ msgstr ""
-#~ "Przełączaj ustawienia wstępne na podstawie stanu panelu i okna.<br>Wyłącz "
-#~ "automatyczne ładowanie podczas zmian; niezapisane ustawienia zostaną "
-#~ "utracone!"
-
-#~ msgid "Restore default (removes all autoloading conditions)"
-#~ msgstr ""
-#~ "Przywróć domyślne (usuwa wszystkie warunki automatycznego ładowania)"
-
-#~ msgid "Environment"
-#~ msgstr "Środowisko"
-
-#~ msgid ""
-#~ "WARNING: Use with caution, if you hide the panel and have not configured "
-#~ "preset auto-loading or know how to switch presets using D-Bus (or have "
-#~ "disabled it), you will have no way to make it visible again without "
-#~ "manually removing the configuration, use the command below in terminal/"
-#~ "tty then log out or reboot, it will renove the configuratiob from all "
-#~ "Panel Colorizer instances so make sure to save the others first"
-#~ msgstr ""
-#~ "Ostrzeżenie: należy zachować ostrożność podczas korzystania z tej "
-#~ "funkcji, ponieważ po ukryciu paska kontrolnego i braku skonfigurowania "
-#~ "automatycznego ładowania lub nieznajomości sposobu zmiany ustawień "
-#~ "domyślnych za pomocą d-bus (lub ich wyłączenia) nie ma możliwości "
-#~ "ponownego wyświetlenia paska kontrolnego bez usunięcia konfiguracji. "
-#~ "Należy użyć poniższego polecenia w konsoli/tty iWyloguj się lub uruchom "
-#~ "ponownie system, co spowoduje usunięcie konfiguracji wszystkich "
-#~ "kolorystów panelu, więc koniecznie zapisz wcześniej pozostałe działające "
-#~ "ustawienia"
-
-#~ msgid ""
-#~ "Select start and end of unified background areas, widgets between "
-#~ "<b>Start</b> and <b>End</b> must be left <b>disabled</b>. Note: "
-#~ "<strong>odd</strong> widget spacing values are automatically converted to "
-#~ "<strong>evens</strong> when this feature is used."
-#~ msgstr ""
-#~ "Wybierz początek i koniec ujednoliconych obszarów tła, widżety między "
-#~ "<b>Start</b> a <b>End</b> muszą być <b>wyłączone</b>. Uwaga: wartości "
-#~ "odstępów widżetów <strong>nieparzyste</strong> są automatycznie "
-#~ "konwertowane na <strong>parzyste</strong>, gdy ta funkcja jest używana."
-
-#~ msgid "Restore default (removes all unified areas)"
-#~ msgstr "Przywróć domyślne (usuwa wszystkie ujednolicone obszary)"
-
-#~ msgid "Force floating dialogs"
-#~ msgstr "Wymuszaj pływające okna dialogowe"
-
-#~ msgid "Enable Panel Colorizer:"
-#~ msgstr "Włącz kolorowanie panelu:"
-
-#~ msgid "Source:"
-#~ msgstr "Źródło:"
-
-#~ msgid "Padding:"
-#~ msgstr "Wypełnienie:"
-
-#~ msgid ""
-#~ "C++ plugin not installed, <b>Blur custom background</b> will not work."
-#~ "<br>Check the repository README on GitHub for details."
-#~ msgstr ""
-#~ "Wtyczka C++ nie jest zainstalowana - <b>rozmycie tła</b> nie będzie "
-#~ "działać.<br>Sprawdź plik README w repozytorium na GitHubie, aby uzyskać "
-#~ "więcej informacji."
-
-#~ msgid "How fast the widget reacts to D-Bus changes"
-#~ msgstr "Jak często widżet reaguje na zmiany D-Bus"
-
-#~ msgid "Hide all panels"
-#~ msgstr "Ukryj wszystkie panele"
-
-#~ msgid "Show all panels"
-#~ msgstr "Pokaż wszystkie panele"
-
-#~ msgid ""
-#~ "Force text and icon colors for specified widgets.<br><strong>Mask</"
-#~ "strong>: Force Icon colorization (symbolic icons).<br><strong>Color "
-#~ "Effect</strong>: Force Text/Icons colorization using post-processing "
-#~ "effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at "
-#~ "a fixed interval, for widgets that recreate or recolor content "
-#~ "themselves<br>To restore the <strong>Mask<strong> and <strong>Color "
-#~ "Effect</strong> disable and restart Plasma or logout."
-#~ msgstr ""
-#~ "Wymuszaj kolory tekstu i ikon dla określonych widżetów.<br><strong>Maska</"
-#~ "strong>: Wymuszaj kolorowanie ikon symbolicznych.<br><strong>Efekt "
-#~ "koloru</strong>: Wymuszaj kolorowanie tekstu/ikon za pomocą efektu "
-#~ "przetwarzania końcowego.<br><strong>Odśwież</strong>: Ponownie stosuj "
-#~ "kolorowanie w ustalonych odstępach czasu, dla widżetów, które same "
-#~ "zmieniają lub ponownie kolorują treść<br>Aby przywrócić <strong>Maskę</"
-#~ "strong> i <strong>Efekt koloru</strong>, wyłącz je i zrestartuj Plasma "
-#~ "lub wyloguj się."
-
-#~ msgid ""
-#~ "Disable preset auto-loading when making changes to presets, unsaved "
-#~ "preset settings will be lost when presets change!"
-#~ msgstr ""
-#~ "Wyłącz automatyczne ładowanie presetów po wprowadzeniu zmian w presetach, "
-#~ "niezapisane ustawienia presetów zostaną utracone przy zmianie presetów!"
-
-#~ msgid ""
-#~ "Switch between different panel presets based on the Panel and window "
-#~ "states"
-#~ msgstr ""
-#~ "Przełączaj się między różnymi presetami panelu na podstawie stanu panelu "
-#~ "i okien"
-
-#~ msgid "Restore default panel appearance"
-#~ msgstr "Przywróć domyślny wygląd panelu"
-
-#~ msgid "Native panel background:"
-#~ msgstr "Domyślne tło panelu:"
-
-#~ msgid "Native panel background shadow:"
-#~ msgstr "Cień tła panelu:"
-
-#~ msgid "Native panel background opacity:"
-#~ msgstr "Przezroczystość tła panelu:"
-
-#~ msgid ""
-#~ "Set Opacity to 0 to keep just the mask required by Blur custom background."
-#~ msgstr ""
-#~ "Ustaw przezroczystość na 0, aby zachować jedynie maskę wymaganą dla "
-#~ "rozmycia tła."
-
-#~ msgid "Blur custom background (Beta):"
-#~ msgstr "Rozmywanie własnego tła (beta):"
-
-#~ msgid "Force floating dialogs:"
-#~ msgstr "Wymuszaj pływające okna dialogowe:"
-
-#~ msgid ""
-#~ "Changing panel position is currently unstable and may cause Plasma to "
-#~ "crash when moving panels between non-parallel edges (e.g top to left)."
-#~ msgstr ""
-#~ "Uwaga: zmiana pozycji panelu jest obecnie niestabilna i może powodować "
-#~ "awarie Plasma przy przesuwaniu paneli między nie równoległymi krawędziami "
-#~ "(np. z góry na lewo)."
-
-#~ msgid ""
-#~ "Opacity control here <b>requires Plasma 6.3</b> and depends on the "
-#~ "current Plasma Theme, for finer control or full transparency use <b>Panel "
-#~ "Opacity</b> and <b>Native panel background</b> options in <b>Appearance</"
-#~ "b> tab instead."
-#~ msgstr ""
-#~ "Do korzystania z opcji przezroczystości wymagana jest <b>Plasma 6.3</b>. "
-#~ "Opcje te zależą od wybranego motywu Plasma. Dla dokładniejszej kontroli "
-#~ "lub pełnej przezroczystości użyj opcji <b>Przezroczystość panelu</b> oraz "
-#~ "<b>Domyślne tło panelu</b> na karcie <b>Wygląd</b>."
-
-#~ msgid "Active window only"
-#~ msgstr "Tylko aktywne okno"
-
-#~ msgid "At least one window is shown:"
-#~ msgstr "Przynajmniej jedno okno jest wyświetlane:"
-
-#~ msgid "Panel Opacity:"
-#~ msgstr "Przezroczystość panelu:"
-
-#~ msgid "Polling rate:"
-#~ msgstr "Częstotliwość sprawdzania:"
+"Nie znaleziono panelu, ten widżet musi być umieszczony na panelu, aby działał"
