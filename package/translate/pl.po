@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-11-13 12:21-0600\n"
+"POT-Creation-Date: 2025-11-12 07:49+0000\n"
 "PO-Revision-Date: 2025-11-12 12:00+0100\n"
 "Last-Translator: RygorrMortis <rygorrmortis@github.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -1000,6 +1000,21 @@ msgstr "Kliknięcie widżetu"
 msgid "Action:"
 msgstr "Akcja:"
 
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid ""
+"Create configuration overrides and apply them to one or multiple widgets. "
+"These overrides should be saved to a preset in <strong>Presets</strong> tab "
+"or they will be lost when presets change!"
+msgstr ""
+"Utwórz nadpisywanie konfiguracji i zastosuj je do jednego lub wielu "
+"widżetów. Te nadpisywania powinny być zapisane w presecie na karcie "
+"<strong>Ustawienia wstępne</strong>, w przeciwnym razie zostaną utracone "
+"przy zmianie presetów!"
+
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Name:"
+msgstr "Nazwa:"
+
 #: ../contents/ui/configPresets.qml
 msgid "Delete preset"
 msgstr "Usuń preset"
@@ -1075,21 +1090,6 @@ msgstr "Utwórz podgląd"
 #: ../contents/ui/configPresets.qml
 msgid "Update preview"
 msgstr "Aktualizuj podgląd"
-
-#: ../contents/ui/configPresetWidgetOverrides.qml
-msgid ""
-"Create configuration overrides and apply them to one or multiple widgets. "
-"These overrides should be saved to a preset in <strong>Presets</strong> tab "
-"or they will be lost when presets change!"
-msgstr ""
-"Utwórz nadpisywanie konfiguracji i zastosuj je do jednego lub wielu "
-"widżetów. Te nadpisywania powinny być zapisane w presecie na karcie "
-"<strong>Ustawienia wstępne</strong>, w przeciwnym razie zostaną utracone "
-"przy zmianie presetów!"
-
-#: ../contents/ui/configPresetWidgetOverrides.qml
-msgid "Name:"
-msgstr "Nazwa:"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
