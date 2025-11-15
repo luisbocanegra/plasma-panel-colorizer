@@ -299,7 +299,7 @@ msgstr "Marge"
 
 #: ../contents/ui/components/FormShape.qml
 msgid "Requires plasmashell restart after disabling to restore the default. <a href=\"#\">Restart now</a>."
-msgstr ""
+msgstr "Necessita que es reiniciï el plasmashell després de desactivar la restauració per defecte. <a href=\"#\">Reinicia ara</a>."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel:"
@@ -355,11 +355,11 @@ msgstr "Redimensiona el contingut quan el panell entri o surti de l'estat flotan
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Panel de-float:"
-msgstr ""
+msgstr "Desflotització del panell:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Remove custom background rounded corners and borders on screen edge when panel is not floating"
-msgstr ""
+msgstr "Trau el fons personalitzat i vores i cantonades arrodonides a la vora de la pantalla quan el panell no està flotant"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Customization"
@@ -455,7 +455,7 @@ msgstr "Color de l'ombra de primer pla"
 
 #: ../contents/ui/components/Header.qml
 msgid "None"
-msgstr ""
+msgstr "Cap"
 
 #: ../contents/ui/components/Header.qml
 msgid "Enable %1:"
@@ -735,7 +735,7 @@ msgstr "Configuració de la sobreescriptura"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "New override"
-msgstr ""
+msgstr "Sobreescriptura nova"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Override settings"
@@ -747,7 +747,7 @@ msgstr "Nom de la sobreescriptura"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Rename"
-msgstr ""
+msgstr "Reanomena"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid "Fallback:"
@@ -859,11 +859,11 @@ msgstr "Crea configuracions de sobreescriptura i les aplica a un o múltiples gi
 
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Name:"
-msgstr ""
+msgstr "Nom:"
 
 #: ../contents/ui/configPresets.qml
 msgid "Delete preset"
-msgstr ""
+msgstr "Esborra el perfil"
 
 #: ../contents/ui/configPresets.qml
 msgid "This will permanently delete the file from your system!"
@@ -871,7 +871,7 @@ msgstr "Això esborrarà permanentment el fitxer del sistema."
 
 #: ../contents/ui/configPresets.qml
 msgid "Update preset"
-msgstr ""
+msgstr "Actualitza el perfil"
 
 #: ../contents/ui/configPresets.qml
 msgid "Preset configuration will be overwritten!"
@@ -879,7 +879,7 @@ msgstr "Se sobreescriurà la configuració del perfil."
 
 #: ../contents/ui/configPresets.qml
 msgid "Create preset preview?"
-msgstr ""
+msgstr "Voleu crear una previsualització del perfil?"
 
 #: ../contents/ui/configPresets.qml
 msgid "Current preview will be overwritten!"
@@ -887,7 +887,7 @@ msgstr "Se sobreescriurà la vista actual."
 
 #: ../contents/ui/configPresets.qml
 msgid "Create preset"
-msgstr ""
+msgstr "Crea un perfil"
 
 #: ../contents/ui/configPresets.qml
 msgid "Changes to the current preset are not synced to disk automatically. You should come back to this tab and update it manually before switching to a different preset, otherwise unsaved preset settings will be lost when presets change!"
