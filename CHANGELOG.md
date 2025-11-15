@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.5.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v5.4.0...v5.5.0) (2025-11-15)
+
+
+### Features
+
+* update Catalan translation ([#383](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/383)) ([cbabeb8](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/cbabeb8571a704e07b69dcab5e759616aa1bb8f2))
+
 ## [5.4.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v5.3.0...v5.4.0) (2025-11-13)
 
 
