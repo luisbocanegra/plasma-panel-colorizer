@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-11-12 07:49+0000\n"
+"POT-Creation-Date: 2025-11-23 05:06+0000\n"
 "PO-Revision-Date: 2025-11-12 12:00+0100\n"
 "Last-Translator: RygorrMortis <rygorrmortis@github.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -738,8 +738,18 @@ msgid "Hide widget:"
 msgstr "Ukryj widżet:"
 
 #: ../contents/ui/configGeneral.qml
-msgid "visible in Panel Edit Mode"
-msgstr "widoczny w trybie edycji panelu"
+msgid "Visible in Panel Edit Mode"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Configure from any widget:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid ""
+"Disable to remove <b>%1</b> option from other widget's context (right-click) "
+"menu."
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Debug mode:"
@@ -1324,3 +1334,6 @@ msgstr "Uruchamiasz przestarzałą wersję %1"
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr ""
 "Nie znaleziono panelu, ten widżet musi być umieszczony na panelu, aby działał"
+
+#~ msgid "visible in Panel Edit Mode"
+#~ msgstr "widoczny w trybie edycji panelu"
