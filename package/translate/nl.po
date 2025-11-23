@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-11-23 05:06+0000\n"
+"POT-Creation-Date: 2025-11-23 21:10+0000\n"
 "PO-Revision-Date: 2025-11-12 10:59+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -60,8 +60,12 @@ msgid "Global Overrides"
 msgstr "Globale voorrangsregels"
 
 #: ../contents/config/config.qml
-msgid "Text and icon fixes"
-msgstr "Tekst- en pictogramoplossingen"
+msgid "Text/Icon Fixes"
+msgstr ""
+
+#: ../contents/config/config.qml
+msgid "Hide Widgets"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -653,6 +657,7 @@ msgid "This will replace your current settings!"
 msgstr "Let op: de huidige instellingen worden vervangen!"
 
 #: ../contents/ui/components/WidgetCardConfig.qml
+#: ../contents/ui/components/WidgetCardHide.qml
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
 #: ../contents/ui/components/WidgetCardUnifiedBg.qml
 msgid "System Tray"
@@ -661,6 +666,10 @@ msgstr "Systeemvak"
 #: ../contents/ui/components/WidgetCardConfig.qml
 msgid "Add"
 msgstr "Toevoegen"
+
+#: ../contents/ui/components/WidgetCardHide.qml
+msgid "Hide"
+msgstr ""
 
 #: ../contents/ui/components/WidgetCardOverride.qml
 msgid "Edit"
@@ -902,6 +911,18 @@ msgstr ""
 "Voorrangsregels worden van boven naar beneden uitgevoerd. Als twee of meer "
 "regels betrekking hebben op dezelfde optie, dan wordt de voorgaande regel "
 "afgedwongen."
+
+#: ../contents/ui/configHideWidgets.qml
+msgid ""
+"Hidden widgets can still be activated using keyboard shortcuts and are "
+"always visible in the Desktop Edit Mode.<br>The activation shortcut can be "
+"configured from the <b>Keyboard Shortcuts</b> page on each widget's "
+"configuration window."
+msgstr ""
+
+#: ../contents/ui/configHideWidgets.qml
+msgid "Restore default (controlled by each widget)"
+msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Toggle Panel Colorizer"
@@ -1334,6 +1355,9 @@ msgstr "Verouderde versie van ‘%1’"
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr ""
 "Er is geen paneel aangetroffen - de widget dient op een paneel te staan"
+
+#~ msgid "Text and icon fixes"
+#~ msgstr "Tekst- en pictogramoplossingen"
 
 #~ msgid "visible in Panel Edit Mode"
 #~ msgstr "Zichtbaar in de paneelbewerkmodus"
