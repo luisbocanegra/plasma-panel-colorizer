@@ -100,7 +100,7 @@
     <entry
         name="configureFromAllWidgets"
         type="Bool">
-        <default>false</default>
+        <default>true</default>
     </entry>
   </group>
 </kcfg>
