@@ -1482,6 +1482,7 @@ PlasmoidItem {
             Utils.showWidgets(panelLayout, backgroundComponent, Plasmoid);
             updateCurrentWidgets();
             showPanelBg(panelBg);
+            updateContextualActions(configureFromAllWidgets);
         });
     }
 
