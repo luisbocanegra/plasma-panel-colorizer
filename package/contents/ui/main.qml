@@ -60,6 +60,7 @@ PlasmoidItem {
     property bool nativePanelBackgroundEnabled: (isEnabled ? cfg.nativePanel.background.enabled : true) || doPanelClickFix
     property real nativePanelBackgroundOpacity: isEnabled ? cfg.nativePanel.background.opacity : 1.0
     property bool nativePanelBackgroundShadowEnabled: isEnabled ? cfg.nativePanel.background.shadow : true
+    property bool configureFromAllWidgets: Plasmoid.configuration.configureFromAllWidgets
     property var panelWidgets: []
     property int panelWidgetsCount: 0
     property real trayItemThikness: 20
@@ -1607,11 +1608,44 @@ PlasmoidItem {
         panelWidgetsCount = panelWidgets.length;
     }
 
-    PlasmaCore.Action {
-        id: configureAction
-        text: plasmoid.internalAction("configure").text
-        icon.name: 'configure'
-        onTriggered: plasmoid.internalAction("configure").trigger()
+    Component {
+        id: configureActionComponent
+        PlasmaCore.Action {
+            text: plasmoid.internalAction("configure").text
+            objectName: "panelColorizerConfigureAction"
+            icon.name: 'configure'
+            onTriggered: plasmoid.internalAction("configure").trigger()
+        }
+    }
+
+    onConfigureFromAllWidgetsChanged: {
+        updateContextualActions(configureFromAllWidgets);
+    }
+
+    function updateContextualActions(enabled) {
+        if (!main.panelLayout)
+            return;
+        for (var i in main.panelLayout.children) {
+            const child = main.panelLayout.children[i];
+            // may not be available while dragging into the panel and other situations
+            if (!child.applet?.plasmoid?.pluginName)
+                continue;
+
+            if (child.applet.plasmoid.pluginName === Plasmoid.metaData.pluginId) {
+                continue;
+            }
+            child.applet.plasmoid.contextualActions = child.applet.plasmoid.contextualActions.filter(item => {
+                if (item && item.objectName === "panelColorizerConfigureAction") {
+                    item.destroy();
+                    return false;
+                }
+                return true;
+            });
+            if (enabled) {
+                const action = configureActionComponent.createObject(main);
+                child.applet.plasmoid.contextualActions.push(action);
+            }
+        }
     }
 
     function showPanelBg(panelBg) {
@@ -1649,6 +1683,9 @@ PlasmoidItem {
         }
         Utils.delay(100, () => {
             applyStockPanelSettings();
+        }, main);
+        Utils.delay(500, () => {
+            updateContextualActions(configureFromAllWidgets);
         }, main);
     }
 
