@@ -334,7 +334,9 @@ const ignoredConfigs = [
   "animatePropertyChanges",
   "animationDuration",
   "editModeGridSettings",
-  "pluginFound"
+  "pluginFound",
+  "configureFromAllWidgets",
+  "hiddenWidgets"
 ];
 
 const editModeGridSettings = {
