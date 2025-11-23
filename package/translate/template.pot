@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-11-23 05:06+0000\n"
+"POT-Creation-Date: 2025-11-23 21:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,7 +54,11 @@ msgid "Global Overrides"
 msgstr ""
 
 #: ../contents/config/config.qml
-msgid "Text and icon fixes"
+msgid "Text/Icon Fixes"
+msgstr ""
+
+#: ../contents/config/config.qml
+msgid "Hide Widgets"
 msgstr ""
 
 #: ../contents/config/config.qml
@@ -565,12 +569,16 @@ msgstr ""
 msgid "This will replace your current settings!"
 msgstr ""
 
-#: ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardTextIconFixes.qml ../contents/ui/components/WidgetCardUnifiedBg.qml
+#: ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardHide.qml ../contents/ui/components/WidgetCardTextIconFixes.qml ../contents/ui/components/WidgetCardUnifiedBg.qml
 msgid "System Tray"
 msgstr ""
 
 #: ../contents/ui/components/WidgetCardConfig.qml
 msgid "Add"
+msgstr ""
+
+#: ../contents/ui/components/WidgetCardHide.qml
+msgid "Hide"
 msgstr ""
 
 #: ../contents/ui/components/WidgetCardOverride.qml
@@ -771,6 +779,16 @@ msgstr ""
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Overrides are applied from top to bottom, if two or more configuration overrides share the same option, the last occurence replaces the value of the previous one."
+msgstr ""
+
+#: ../contents/ui/configHideWidgets.qml
+msgid ""
+"Hidden widgets can still be activated using keyboard shortcuts and are always visible in the Desktop Edit Mode.<br>The activation shortcut can be configured from the <b>Keyboard Shortcuts</b> page "
+"on each widget's configuration window."
+msgstr ""
+
+#: ../contents/ui/configHideWidgets.qml
+msgid "Restore default (controlled by each widget)"
 msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
