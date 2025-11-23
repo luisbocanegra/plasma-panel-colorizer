@@ -17,6 +17,7 @@ KCM.SimpleKCM {
     property alias cfg_pythonExecutable: pythonExecutable.text
     property alias cfg_animatePropertyChanges: animatePropertyChanges.checked
     property alias cfg_animationDuration: animationDuration.value
+    property alias cfg_configureFromAllWidgets: configureFromAllWidgets.checked
     property string cfg_editModeGridSettings
     property var editModeGridSettings: JSON.parse(cfg_editModeGridSettings)
     property string presetsDir: StandardPaths.writableLocation(StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/presets"
@@ -37,7 +38,17 @@ KCM.SimpleKCM {
                 Kirigami.FormData.label: i18n("Hide widget:")
                 checked: cfg_hideWidget
                 onCheckedChanged: cfg_hideWidget = checked
-                text: i18n("visible in Panel Edit Mode")
+                text: i18n("Visible in Panel Edit Mode")
+            }
+
+            RowLayout {
+                Kirigami.FormData.label: i18n("Configure from any widget:")
+                CheckBox {
+                    id: configureFromAllWidgets
+                }
+                Kirigami.ContextualHelpButton {
+                    toolTipText: i18n("Disable to remove <b>%1</b> option from other widget's context (right-click) menu.", Plasmoid.internalAction("configure").text)
+                }
             }
 
             CheckBox {
