@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-11-12 07:49+0000\n"
+"POT-Creation-Date: 2025-11-23 05:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -632,8 +632,16 @@ msgid "Hide widget:"
 msgstr "Verstecke Widget"
 
 #: ../contents/ui/configGeneral.qml
-msgid "visible in Panel Edit Mode"
-msgstr "Sichtbar im Kontrollleisteneinstellungsmodus"
+msgid "Visible in Panel Edit Mode"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Configure from any widget:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Disable to remove <b>%1</b> option from other widget's context (right-click) menu."
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Debug mode:"
@@ -1106,6 +1114,9 @@ msgstr ""
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr "Kontrollleiste nicht gefunden, dieses Widget muss in der Kontrollleiste plaziert werden, da es ansonsten nicht funktioniert"
+
+#~ msgid "visible in Panel Edit Mode"
+#~ msgstr "Sichtbar im Kontrollleisteneinstellungsmodus"
 
 #~ msgid "Unified widget backgrounds"
 #~ msgstr "Einheitliche Widget Hintergründe"

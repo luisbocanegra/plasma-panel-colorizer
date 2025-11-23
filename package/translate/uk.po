@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-11-12 07:49+0000\n"
+"POT-Creation-Date: 2025-11-23 05:06+0000\n"
 "PO-Revision-Date: 2025-09-14 11:20-0600\n"
 "Last-Translator: https://github.com/devil6a <EMAIL@ADDRESS>\n"
 "Language-Team: Ukrainian <EMAIL@ADDRESS>\n"
@@ -721,8 +721,18 @@ msgid "Hide widget:"
 msgstr "Приховати віджет:"
 
 #: ../contents/ui/configGeneral.qml
-msgid "visible in Panel Edit Mode"
-msgstr "видимий у режимі редагування панелі"
+msgid "Visible in Panel Edit Mode"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Configure from any widget:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid ""
+"Disable to remove <b>%1</b> option from other widget's context (right-click) "
+"menu."
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Debug mode:"
@@ -1277,6 +1287,9 @@ msgstr "Використовується застаріла версія %1"
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr ""
 "Панель не знайдено, цей віджет має бути розміщений на панелі для роботи"
+
+#~ msgid "visible in Panel Edit Mode"
+#~ msgstr "видимий у режимі редагування панелі"
 
 #~ msgid "Unified widget backgrounds"
 #~ msgstr "Уніфіковані фони віджетів"
