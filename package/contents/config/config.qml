@@ -45,9 +45,15 @@ ConfigModel {
     }
 
     ConfigCategory {
-        name: i18n("Text and icon fixes")
+        name: i18n("Text/Icon Fixes")
         icon: "color-mode-invert-text-symbolic"
         source: "configTextIconFix.qml"
+    }
+
+    ConfigCategory {
+        name: i18n("Hide Widgets")
+        icon: "view-hidden-symbolic"
+        source: "configHideWidgets.qml"
     }
 
     ConfigCategory {
