@@ -1608,14 +1608,12 @@ PlasmoidItem {
         panelWidgetsCount = panelWidgets.length;
     }
 
-    Component {
-        id: configureActionComponent
-        PlasmaCore.Action {
-            text: plasmoid.internalAction("configure").text
-            objectName: "panelColorizerConfigureAction"
-            icon.name: 'configure'
-            onTriggered: plasmoid.internalAction("configure").trigger()
-        }
+    PlasmaCore.Action {
+        id: configureAction
+        text: plasmoid.internalAction("configure").text
+        objectName: "panelColorizerConfigureAction"
+        icon.name: 'configure'
+        onTriggered: plasmoid.internalAction("configure").trigger()
     }
 
     onConfigureFromAllWidgetsChanged: {
@@ -1636,14 +1634,12 @@ PlasmoidItem {
             }
             child.applet.plasmoid.contextualActions = child.applet.plasmoid.contextualActions.filter(item => {
                 if (item && item.objectName === "panelColorizerConfigureAction") {
-                    item.destroy();
                     return false;
                 }
                 return true;
             });
             if (enabled) {
-                const action = configureActionComponent.createObject(main);
-                child.applet.plasmoid.contextualActions.push(action);
+                child.applet.plasmoid.contextualActions.push(configureAction);
             }
         }
     }

@@ -843,11 +843,6 @@ function showWidgets(panelLayout, backgroundComponent, Plasmoid) {
     // other situations
     if (!child.applet?.plasmoid?.pluginName)
       continue;
-    // if (getBgManaged(child)) continue
-    // console.error(child.applet?.plasmoid?.pluginName)
-    if (child.applet.plasmoid.pluginName !== Plasmoid.metaData.pluginId) {
-      child.applet.plasmoid.contextualActions.push(configureAction);
-    }
     const isTray = child.applet.plasmoid.pluginName === "org.kde.plasma.systemtray";
     const bgItem = getBgManaged(child);
     if (!bgItem) {
