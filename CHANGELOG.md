@@ -1,5 +1,21 @@
 # Changelog
 
+## [5.5.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v5.4.0...v5.5.0) (2025-11-24)
+
+
+### Features
+
+* allow to hide any widget from the panel ([0b81c91](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/0b81c911a021d296beeb1548a07042f967414250))
+* configure from any widget is enabled by default ([7d797f9](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/7d797f9a38f3fc2b8a7ec69aec85e2173daed043))
+* option to remove 'Configure Panel Colorizer' option from other widget's context menu ([b81b371](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/b81b371b99cbc0ce90154e9490e5ccb41b7370bd))
+* update Catalan translation ([#383](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/383)) ([cbabeb8](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/cbabeb8571a704e07b69dcab5e759616aa1bb8f2))
+
+
+### Bug Fixes
+
+* configureAction missing when a widget is added to panel ([181bba5](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/181bba53b48d219e1b71619cf858d31ad0a697b7))
+* configureAction reference error ([e18ea57](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/e18ea57559aefa9fc945a417dbd2e3fe7e77df0e))
+
 ## [5.4.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v5.3.0...v5.4.0) (2025-11-13)
 
 
