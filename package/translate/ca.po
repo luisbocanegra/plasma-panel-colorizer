@@ -55,11 +55,11 @@ msgstr "Sobreescriptures globals"
 
 #: ../contents/config/config.qml
 msgid "Text/Icon Fixes"
-msgstr ""
+msgstr "Reparació de text i icones"
 
 #: ../contents/config/config.qml
 msgid "Hide Widgets"
-msgstr ""
+msgstr "Ocultació de ginys"
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -83,7 +83,7 @@ msgstr "Vora"
 
 #: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml ../contents/ui/configPresetAutoload.qml ../contents/ui/configStockPanelSettings.qml
 msgid "Enabled:"
-msgstr "Activat:"
+msgstr "Activa:"
 
 #: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormColors.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/components/Header.qml
 msgid "Disabled"
@@ -579,7 +579,7 @@ msgstr "Afegeix"
 
 #: ../contents/ui/components/WidgetCardHide.qml
 msgid "Hide"
-msgstr ""
+msgstr "Amaga"
 
 #: ../contents/ui/components/WidgetCardOverride.qml
 msgid "Edit"
@@ -643,15 +643,15 @@ msgstr "Amaga el giny:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Visible in Panel Edit Mode"
-msgstr ""
+msgstr "Visible al mode d'edició de panells"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Configure from any widget:"
-msgstr ""
+msgstr "Configura des de qualsevol giny:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Disable to remove <b>%1</b> option from other widget's context (right-click) menu."
-msgstr ""
+msgstr "Desactiva per a traure l'opció <b>%1</b> des del context del giny d'un altre menú (amb el botó dret)."
 
 #: ../contents/ui/configGeneral.qml
 msgid "Debug mode:"
@@ -667,7 +667,7 @@ msgstr "Graella"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Enabled"
-msgstr "Activat/da"
+msgstr "Activa"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Visible while configuring"
@@ -779,11 +779,11 @@ msgstr "Les sobreescriptures s'apliquen de dalt a baix. Si dues o més configura
 
 #: ../contents/ui/configHideWidgets.qml
 msgid "Hidden widgets can still be activated using keyboard shortcuts and are always visible in the Desktop Edit Mode.<br>The activation shortcut can be configured from the <b>Keyboard Shortcuts</b> page on each widget's configuration window."
-msgstr ""
+msgstr "Els ginys amagats encara es poden activar amb dreceres de teclat i són sempre visibles des del mode d'edició de panells.<br>La drecera d'activació es pot configurar a la pàgina <b>Dreceres de teclat</b> a la finestra de configuració de cada giny."
 
 #: ../contents/ui/configHideWidgets.qml
 msgid "Restore default (controlled by each widget)"
-msgstr ""
+msgstr "Restaura els valors per defecte (controlat per cada giny)"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Toggle Panel Colorizer"
