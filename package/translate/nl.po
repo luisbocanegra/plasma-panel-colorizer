@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
 "POT-Creation-Date: 2025-11-23 21:10+0000\n"
-"PO-Revision-Date: 2025-11-12 10:59+0100\n"
+"PO-Revision-Date: 2025-11-25 10:50+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -61,11 +61,11 @@ msgstr "Globale voorrangsregels"
 
 #: ../contents/config/config.qml
 msgid "Text/Icon Fixes"
-msgstr ""
+msgstr "Tekst- en pictogramoplossingen"
 
 #: ../contents/config/config.qml
 msgid "Hide Widgets"
-msgstr ""
+msgstr "Widgets verbergen"
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -118,8 +118,8 @@ msgid ""
 msgstr ""
 "Let op: kies altijd voor een geheel getal bij het gebruik van "
 "<strong>widgeteislanden</strong> om problemen te voorkomen! <a "
-"href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
-"issues/64\">Zie #64 (Engels)<a/>"
+"href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/"
+"64\">Zie #64 (Engels)<a/>"
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Custom widths:"
@@ -669,7 +669,7 @@ msgstr "Toevoegen"
 
 #: ../contents/ui/components/WidgetCardHide.qml
 msgid "Hide"
-msgstr ""
+msgstr "Verbergen"
 
 #: ../contents/ui/components/WidgetCardOverride.qml
 msgid "Edit"
@@ -747,17 +747,19 @@ msgstr "Widget verbergen:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Visible in Panel Edit Mode"
-msgstr ""
+msgstr "Zichtbaar in paneelbewerkmodus"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Configure from any widget:"
-msgstr ""
+msgstr "Instellen vanaf elke widget:"
 
 #: ../contents/ui/configGeneral.qml
 msgid ""
 "Disable to remove <b>%1</b> option from other widget's context (right-click) "
 "menu."
 msgstr ""
+"Schakel uit om de optie <b>%1</b> te verbergen uit het rechtermuisknopmenu "
+"van andere widgets."
 
 #: ../contents/ui/configGeneral.qml
 msgid "Debug mode:"
@@ -919,10 +921,13 @@ msgid ""
 "configured from the <b>Keyboard Shortcuts</b> page on each widget's "
 "configuration window."
 msgstr ""
+"Verborgen widgets kunnen nog worden geactiveerd met sneltoetsen en zijn "
+"altijd zichtbaar in de paneelbewerkmodus.<br>De activatiesneltoets kan "
+"worden ingesteld op het scherm <b>Sneltoetsen</b> van de widgetinstellingen."
 
 #: ../contents/ui/configHideWidgets.qml
 msgid "Restore default (controlled by each widget)"
-msgstr ""
+msgstr "Standaardwaarden herstellen (widgetbediening)"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Toggle Panel Colorizer"
