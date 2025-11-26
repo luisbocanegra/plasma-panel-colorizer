@@ -3,14 +3,13 @@
 # This file is distributed under the same license as the colorizer package.
 # RygorrMortis <rygorrmortis@github.com>, 2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
 "POT-Creation-Date: 2025-11-23 21:10+0000\n"
-"PO-Revision-Date: 2025-11-12 12:00+0100\n"
+"PO-Revision-Date: 2025-11-26 12:00+0100\n"
 "Last-Translator: RygorrMortis <rygorrmortis@github.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "Language: pl\n"
@@ -63,11 +62,11 @@ msgstr "Globalne nadpisywanie"
 
 #: ../contents/config/config.qml
 msgid "Text/Icon Fixes"
-msgstr ""
+msgstr "Poprawki tekstu/ikon"
 
 #: ../contents/config/config.qml
 msgid "Hide Widgets"
-msgstr ""
+msgstr "Ukryj widżety"
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -475,9 +474,7 @@ msgstr ""
 "aby to działało zgodnie z zamierzeniem.</strong>"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid ""
-"C++ plugin not found, this feature will not work. Install the plugin and "
-"reboot or restart plasmashell to be able to use it."
+msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it."
 msgstr ""
 "Nie znaleziono wtyczki C++, ta funkcja nie będzie działać. Zainstaluj "
 "wtyczkę i zrestartuj lub uruchom ponownie plasmashell, aby móc z niej "
@@ -671,7 +668,7 @@ msgstr "Dodaj"
 
 #: ../contents/ui/components/WidgetCardHide.qml
 msgid "Hide"
-msgstr ""
+msgstr "Ukryj"
 
 #: ../contents/ui/components/WidgetCardOverride.qml
 msgid "Edit"
@@ -748,17 +745,19 @@ msgstr "Ukryj widżet:"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Visible in Panel Edit Mode"
-msgstr ""
+msgstr "Widoczny w trybie edycji panelu"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Configure from any widget:"
-msgstr ""
+msgstr "Konfiguruj z dowolnego widżetu:"
 
 #: ../contents/ui/configGeneral.qml
 msgid ""
 "Disable to remove <b>%1</b> option from other widget's context (right-click) "
 "menu."
 msgstr ""
+"Wyłącz, aby usunąć opcję <b>%1</b> z menu kontekstowego (prawoklik) innych "
+"widżetów."
 
 #: ../contents/ui/configGeneral.qml
 msgid "Debug mode:"
@@ -918,10 +917,14 @@ msgid ""
 "configured from the <b>Keyboard Shortcuts</b> page on each widget's "
 "configuration window."
 msgstr ""
+"Ukryte widżety nadal mogą być aktywowane za pomocą skrótów klawiaturowych i "
+"są zawsze widoczne w trybie edycji pulpitu.<br>Skrót aktywacji można "
+"skonfigurować na stronie <b>Skróty klawiaturowe</b> w oknie konfiguracji "
+"każdego widżetu."
 
 #: ../contents/ui/configHideWidgets.qml
 msgid "Restore default (controlled by each widget)"
-msgstr ""
+msgstr "Przywróć domyślne (kontrolowane przez każdy widżet)"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Toggle Panel Colorizer"
@@ -1353,8 +1356,7 @@ msgstr "Uruchamiasz przestarzałą wersję %1"
 
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
-msgstr ""
-"Nie znaleziono panelu, ten widżet musi być umieszczony na panelu, aby działał"
+msgstr "Nie znaleziono panelu, ten widżet musi być umieszczony na panelu, aby działał"
 
 #~ msgid "Text and icon fixes"
 #~ msgstr "Poprawki tekstu i ikon"
