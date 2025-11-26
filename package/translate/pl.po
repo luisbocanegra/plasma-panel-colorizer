@@ -474,7 +474,9 @@ msgstr ""
 "aby to działało zgodnie z zamierzeniem.</strong>"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it."
+msgid ""
+"C++ plugin not found, this feature will not work. Install the plugin and "
+"reboot or restart plasmashell to be able to use it."
 msgstr ""
 "Nie znaleziono wtyczki C++, ta funkcja nie będzie działać. Zainstaluj "
 "wtyczkę i zrestartuj lub uruchom ponownie plasmashell, aby móc z niej "
@@ -1356,7 +1358,8 @@ msgstr "Uruchamiasz przestarzałą wersję %1"
 
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
-msgstr "Nie znaleziono panelu, ten widżet musi być umieszczony na panelu, aby działał"
+msgstr ""
+"Nie znaleziono panelu, ten widżet musi być umieszczony na panelu, aby działał"
 
 #~ msgid "Text and icon fixes"
 #~ msgstr "Poprawki tekstu i ikon"
