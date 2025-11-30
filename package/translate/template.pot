@@ -778,7 +778,7 @@ msgid "Fallback to the Global/Preset widget settings for disabled options, excep
 msgstr ""
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
-msgid "Overrides are applied from top to bottom, if two or more configuration overrides share the same option, the last occurence replaces the value of the previous one."
+msgid "Overrides are applied from top to bottom, if two or more configuration overrides share the same option, the last occurrence replaces the value of the previous one."
 msgstr ""
 
 #: ../contents/ui/configHideWidgets.qml

@@ -342,7 +342,7 @@
 ### Features
 
 * change default spacing to 4 ([03090e8](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/03090e876d14a335d4fe6ce600119c24e0e74f34))
-* option to animate propery changes ([7497524](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/7497524a7011c82131f6f7c42dd1c5f3b9879565))
+* option to animate property changes ([7497524](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/7497524a7011c82131f6f7c42dd1c5f3b9879565))
 * option to force always floating dialogs ([6f435ae](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/6f435ae9e58c5e1ec8b95cb6a95596f8e99751d8))
 * update and add new presets ([b52b82e](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/b52b82e91be6740dadf87e4ad2ac5a8eaf45f814))
 
@@ -357,7 +357,7 @@
 
 ### ⚠ BREAKING CHANGES
 
-* Force text/icons, Unified background, Preset/global overrides now use id to address multiple instances of the same widget separately and should be reconfigured. Also widget ids are unique per panel so the setting needs to be recreated and mantained per panel
+* Force text/icons, Unified background, Preset/global overrides now use id to address multiple instances of the same widget separately and should be reconfigured. Also widget ids are unique per panel so the setting needs to be recreated and maintained per panel
 
 ### Features
 

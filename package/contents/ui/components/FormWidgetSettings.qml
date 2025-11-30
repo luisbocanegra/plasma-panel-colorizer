@@ -13,7 +13,7 @@ ColumnLayout {
     spacing: 0
 
     property bool isSection: true
-    // wether read from the string or existing config object
+    // whether read from the string or existing config object
     property bool handleString: false
     // key to extract config from
     property string elementName

@@ -249,7 +249,7 @@ KCM.SimpleKCM {
         }
 
         Label {
-            text: i18n("Overrides are applied from top to bottom, if two or more configuration overrides share the same option, the last occurence replaces the value of the previous one.")
+            text: i18n("Overrides are applied from top to bottom, if two or more configuration overrides share the same option, the last occurrence replaces the value of the previous one.")
             opacity: 0.7
             Layout.maximumWidth: 700
             wrapMode: Text.Wrap

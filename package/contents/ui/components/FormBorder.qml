@@ -10,7 +10,7 @@ Kirigami.FormLayout {
     property alias formLayout: root
     property bool isSection: true
     property string sectionName
-    // wether read from the string or existing config object
+    // whether read from the string or existing config object
     property bool handleString
     // internal config objects to be sent, both string and json
     property string configString: "{}"

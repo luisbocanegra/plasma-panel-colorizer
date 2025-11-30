@@ -873,22 +873,18 @@ msgstr "Резервний варіант:"
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid ""
 "Fallback to the Global/Preset widget settings for disabled options, except "
-"for <b>Enable</b> and <b>Blur</>."
+"for <b>Enable</b> and <b>Blur</b>."
 msgstr ""
 "Повернення до глобальних налаштувань віджета/пресета для вимкнених опцій, "
-"крім <b>Увімкнути</b> та <b>Розмиття</>."
+"крім <b>Увімкнути</b> та <b>Розмиття</b>."
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 #: ../contents/ui/configPresetWidgetOverrides.qml
-msgid ""
-"Overrides are applied from top to bottom, if two or more configuration "
-"overrides share the same option, the last occurence replaces the value of "
-"the previous one."
+msgid "Overrides are applied from top to bottom, if two or more configuration overrides share the same option, the last occurrence replaces the value of the previous one."
 msgstr ""
 "Перевизначення застосовуються зверху вниз, якщо два або більше перевизначень "
 "конфігурації мають однакову опцію, останнє входження замінює значення "
 "попереднього."
-
 #: ../contents/ui/configHideWidgets.qml
 msgid ""
 "Hidden widgets can still be activated using keyboard shortcuts and are "

@@ -9,7 +9,7 @@ Kirigami.FormLayout {
     // required to align with parent form
     property alias formLayout: shapeRoot
     property bool isSection: true
-    // wether read from the string or existing config object
+    // whether read from the string or existing config object
     property bool handleString
     // internal config objects to be sent, both string and json
     property string configString: "{}"

@@ -905,7 +905,7 @@ msgstr ""
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid ""
 "Overrides are applied from top to bottom, if two or more configuration "
-"overrides share the same option, the last occurence replaces the value of "
+"overrides share the same option, the last occurrence replaces the value of "
 "the previous one."
 msgstr ""
 "Nadpisywania są stosowane od góry do dołu, jeśli dwa lub więcej nadpisywań "

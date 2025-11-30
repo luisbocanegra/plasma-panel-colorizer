@@ -392,7 +392,7 @@ def applyLocaleToEnv(env, langCode):
 
 
 class KPackage:
-	def __init__(self, 
+	def __init__(self,
 		sourceDir="package",
 		translateDir="package/translate",
 		compendiumDir=".compendium",
@@ -620,8 +620,8 @@ class KPackage:
 
 	@property
 	def translateRoot(self):
-		# package/tranlate/ => package/tranlate/../
-		# tranlate/ => tranlate/../package/
+		# package/translate/ => package/translate/../
+		# translate/ => translate/../package/
 		return os.path.relpath(self.sourceDir, self.translateDir) # Usually '..' or '../package'
 
 	#---
