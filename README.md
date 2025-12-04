@@ -4,8 +4,11 @@
 
 [![AUR version](https://img.shields.io/aur/version/plasma6-applets-panel-colorizer?logo=archlinux&labelColor=2d333b&color=1f425f)](https://aur.archlinux.org/packages/plasma6-applets-panel-colorizer)
 [![Store version](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opendesktop.org%2Focs%2Fv1%2Fcontent%2Fdata%2F2130967&query=%2Focs%2Fdata%2Fcontent%2Fversion%2Ftext()&color=1f425f&labelColor=2d333b&logo=kde&label=KDE%20Store)](https://store.kde.org/p/2130967)
+[![OBS Fedora 43](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FFedora_43%2Fx86_64%2Fplasma-panel-colorizer%2F_buildinfo&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=fedora&label=Fedora%2043&color=1f425f&labelColor=2d333b)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
+[![OBS Fedora Rawhide](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FFedora_Rawhide%2Fx86_64%2Fplasma-panel-colorizer%2F_buildinfo&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=fedora&label=Fedora%20Rawhide&color=1f425f&labelColor=2d333b)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
+[![OBS openSUSE Tumbleweed](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FopenSUSE_Tumbleweed%2Fx86_64%2Fplasma-panel-colorizer%2F_buildinfo&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=opensuse&label=openSUSE%20Tumbleweed&color=1f425f&labelColor=2d333b)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
+[![OBS openSUSE Slowroll](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FopenSUSE_Slowroll%2Fx86_64%2Fplasma-panel-colorizer%2F_buildinfo&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=opensuse&label=openSUSE%20Slowroll&color=1f425f&labelColor=2d333b)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
 [![nixpkgs unstable package](https://repology.org/badge/version-for-repo/nix_unstable/plasma-panel-colorizer.svg?header=nixpkgs%20unstable)](https://repology.org/project/plasma-panel-colorizer/versions)
-[![Matrix](https://img.shields.io/matrix/kde-plasma-panel-colorizer%3Amatrix.org?logo=matrix&label=Matrix&labelColor=black)](https://matrix.to/#/#kde-plasma-panel-colorizer:matrix.org)
 
 Fully-featured widget to bring Latte-Dock and WM status bar customization features to the default Plasma panel.
 
@@ -121,6 +124,12 @@ Overrides let you give a completely different configuration to one or more widge
 ```sh
 yay -S plasma6-applets-panel-colorizer
 ```
+
+### openSUSE Build Service packages (Fedora, openSUSE)
+
+Maintained with @pallaswept and me at <https://build.opensuse.org/package/show/home:luisbocanegra/plasma-panel-colorizer>
+
+Install instructions: <https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer>
 
 ### Nix package
 
