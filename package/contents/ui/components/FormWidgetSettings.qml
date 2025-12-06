@@ -200,6 +200,21 @@ ColumnLayout {
             visible: root.plasmaVersion.isGreaterThan("6.3.5") && elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
         }
 
+        RowLayout {
+            Kirigami.FormData.label: i18n("Wide expand button:")
+            CheckBox {
+                checked: config.trayWidgets.wideTrayArrow
+                onCheckedChanged: {
+                    config.trayWidgets.wideTrayArrow = checked;
+                    updateConfig();
+                }
+            }
+            Kirigami.ContextualHelpButton {
+                toolTipText: i18n("Make the System Tray expand button be the same width as the other tray items")
+            }
+            visible: elementName === "trayWidgets" && root.elementState === Enum.WidgetStates.Normal
+        }
+
         CheckBox {
             text: i18n("Force floating applets")
             checked: config.nativePanel.floatingDialogs

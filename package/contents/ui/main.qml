@@ -1313,22 +1313,12 @@ PlasmoidItem {
         return null;
     }
 
-    Connections {
-        target: trayGridView
-        function onWidthChanged() {
-            if (horizontal) {
-                trayExpandArrow.iconSize = trayGridView.cellWidth;
-            } else {
-                trayExpandArrow.iconSize = trayGridView.cellHeight;
-            }
-        }
-        function onHeightChanged() {
-            if (horizontal) {
-                trayExpandArrow.iconSize = trayGridView.cellWidth;
-            } else {
-                trayExpandArrow.iconSize = trayGridView.cellHeight;
-            }
-        }
+    Binding {
+        target: main.trayExpandArrow
+        property: "iconSize"
+        value: main.horizontal ? main.trayGridView.cellWidth : main.trayGridView.cellHeight
+        when: main.trayGridView !== null && (main.trayWidgetSettings.wideTrayArrow ?? false)
+        delayed: true
     }
 
     // Search for the element containing the panel background
@@ -1551,7 +1541,7 @@ PlasmoidItem {
         interval: 100
         onTriggered: {
             if (trayGridView && trayGridViewCount !== 0) {
-                Utils.showTrayAreas(main.trayGridView, main.backgroundComponent, main.horizontal);
+                Utils.showTrayAreas(main.trayGridView, main.backgroundComponent);
             }
             main.updateCurrentWidgets();
         }
