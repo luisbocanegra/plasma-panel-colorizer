@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.7.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v5.6.0...v5.7.0) (2025-12-06)
+
+
+### Features
+
+* make wide system tray expand button/arrow opt-in ([0a959b6](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/0a959b686bf5a364a08e43d0f031c73fccfa1b1d))
+
 ## [5.6.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v5.5.0...v5.6.0) (2025-11-26)
 
 
