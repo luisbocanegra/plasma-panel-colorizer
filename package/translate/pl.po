@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-11-23 21:10+0000\n"
+"POT-Creation-Date: 2025-12-06 07:47+0000\n"
 "PO-Revision-Date: 2025-11-26 12:00+0100\n"
 "Last-Translator: RygorrMortis <rygorrmortis@github.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
@@ -397,6 +397,15 @@ msgstr ""
 "włączenie tego nadpisuje tę opcję.\n"
 "⚠️Zmiana <b>Pływającego</b> z konfiguracji panelu nie będzie działać, gdy to "
 "jest włączone!"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Wide expand button:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Make the System Tray expand button be the same width as the other tray items"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Force floating applets"

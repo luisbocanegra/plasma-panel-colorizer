@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-11-23 21:10+0000\n"
+"POT-Creation-Date: 2025-12-06 07:47+0000\n"
 "PO-Revision-Date: 2025-09-14 11:20-0600\n"
 "Last-Translator: https://github.com/devil6a <EMAIL@ADDRESS>\n"
 "Language-Team: Ukrainian <EMAIL@ADDRESS>\n"
@@ -389,6 +389,15 @@ msgstr ""
 "Починаючи з версії 6.4.0, Plasma має вбудовану опцію <b>Плаваюча панель та "
 "аплети</b>, увімкнення цього перевизначає цю опцію.⚠️Зміна <b>Плаваючий</b> з "
 "конфігурації панелі не працюватиме, якщо це увімкнено!"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Wide expand button:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Make the System Tray expand button be the same width as the other tray items"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Force floating applets"
