@@ -860,7 +860,7 @@ function showWidgets(panelLayout, backgroundComponent, Plasmoid) {
   }
 }
 
-function showTrayAreas(trayGridView, backgroundComponent, horizontal) {
+function showTrayAreas(trayGridView, backgroundComponent) {
   if (trayGridView instanceof GridView) {
     let index = 0;
     for (let i = 0; i < trayGridView.count; i++) {
@@ -899,7 +899,6 @@ function showTrayAreas(trayGridView, backgroundComponent, horizontal) {
         } else {
           bgItem.targetIndex = index;
         }
-        item.iconSize = horizontal ? trayGridView.cellWidth : trayGridView.cellHeight;
       }
     }
   }

@@ -297,6 +297,7 @@ const defaultConfig = {
     hovered: baseTrayConfig,
     needsAttention: baseTrayConfig,
     expanded: baseTrayConfig,
+    wideTrayArrow: false,
   },
   nativePanel: {
     background: {
