@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-11-23 21:10+0000\n"
+"POT-Creation-Date: 2025-12-06 07:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -343,6 +343,14 @@ msgstr ""
 msgid ""
 "Since version 6.4.0, Plasma now has a built-in <b>Floating panel and applets</b> option, enabling this overrides that option.\n"
 "⚠️Changing <b>Floating</b> from the panel configuration will not work with this is enabled!"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Wide expand button:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Make the System Tray expand button be the same width as the other tray items"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2025-11-23 21:10+0000\n"
+"POT-Creation-Date: 2025-12-06 07:47+0000\n"
 "PO-Revision-Date: 2025-11-25 10:50+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -397,6 +397,15 @@ msgstr ""
 "omzeilen.\n"
 "⚠️Let op: door het inschakelen van de optie omtrent <b>zwevende applets</b> "
 "werkt de paneelinstelling niet!"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Wide expand button:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Make the System Tray expand button be the same width as the other tray items"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Force floating applets"
