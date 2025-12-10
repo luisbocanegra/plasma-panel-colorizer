@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.8.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v5.7.0...v5.8.0) (2025-12-10)
+
+
+### Features
+
+* update Polish translation ([1a89a8b](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/1a89a8b42acdb6aeba9497bf3e9460a1316954db))
+
 ## [5.7.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v5.6.0...v5.7.0) (2025-12-06)
 
 
