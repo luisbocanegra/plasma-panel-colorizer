@@ -1,5 +1,22 @@
 # Changelog
 
+## [6.0.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v5.7.0...v6.0.0) (2025-12-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* Fix or overrides for individual system tray widgets will need to be reconfigured again after this update. App tray icons, (e.g Spotify) and widgets outside the system tray are not affected by this change.
+
+### Features
+
+* update Catalan translation ([4137996](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/413799651108a3b07fcbcb86963776f889d84ef2))
+* update Polish translation ([1a89a8b](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/1a89a8b42acdb6aeba9497bf3e9460a1316954db))
+
+
+### Bug Fixes
+
+* system tray wiget matching not working with regular plasma widgets ([3a63635](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/3a636354b47e096705ccbfd89f541e5788c17ef3))
+
 ## [5.7.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v5.6.0...v5.7.0) (2025-12-06)
 
 
