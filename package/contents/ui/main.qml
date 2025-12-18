@@ -323,7 +323,7 @@ PlasmoidItem {
                     "busy": false
                 };
             } else {
-                return Utils.getWidgetProperties(target, PlasmaCore.Types, hovered, main.plasmaVersion);
+                return Utils.getWidgetProperties(target, PlasmaCore.Types, hovered, main.plasmaVersion, inTray);
             }
         }
         property string widgetName: widgetProperties.name
