@@ -130,16 +130,20 @@ function findWidgetsTray(grid, panelWidgets) {
       for (let j in item.children) {
         if (!item.children[j].model) continue;
         const model = item.children[j].model;
+        // in contrast with regular panel applets, an id is not given to notifier items,
+        // but since there should be only a single instance of StatusNotifier per app,
+        // model.Id _should_ be enough for any sane implementation of tray icon.
+        // Also, since plasma 6.5.something (maybe earlier) widgets in the system tray
+        // no longer use a consistent applet.plasmoid.id
+        // So we set -1 to ignore the value when matching for overrides or color fix
+
         // App tray icons
         if (model.itemType === "StatusNotifier") {
-          // in contrast with applet?.plasmoid.id, Id is not actually given by plasma,
-          // but since there should be only a single instance of StatusNotifier per app,
-          // model.Id _should_ be enough for any sane implementation of tray icon
           const name = model.Id;
           const title =
             model.ToolTipTitle !== "" ? model.ToolTipTitle : model.Title;
           const icon = model.IconName;
-          if (panelWidgets.find((item) => item.name === name)) continue;
+          if (panelWidgets.filter(item => item.inTray).find((item) => item.name === name)) continue;
           // console.error(name, title, icon)
           panelWidgets.push({
             id: -1,
@@ -152,14 +156,13 @@ function findWidgetsTray(grid, panelWidgets) {
         // normal plasmoids in tray
         if (model.itemType === "Plasmoid") {
           const applet = model.applet ?? null;
-          const id = applet?.plasmoid.id ?? -1;
           const name = applet?.plasmoid.pluginName ?? "";
           const title = applet?.plasmoid.title ?? "";
           const icon = applet?.plasmoid.icon ?? "";
-          if (panelWidgets.find((item) => item.id === id)) continue;
+          if (panelWidgets.filter(item => item.inTray).find((item) => item.name === name)) continue;
           // console.error(name, title, icon)
           panelWidgets.push({
-            id: id,
+            id: -1,
             name: name,
             title: title,
             icon: icon,
@@ -203,7 +206,7 @@ function getSystemTrayState(applet, plasmaVersion) {
   return systemTrayState
 }
 
-function getWidgetProperties(item, pcTypes, hovered, plasmaVersion) {
+function getWidgetProperties(item, pcTypes, hovered, plasmaVersion, inTray) {
   let name = "";
   let id = -1;
   let expanded = false;
@@ -213,7 +216,7 @@ function getWidgetProperties(item, pcTypes, hovered, plasmaVersion) {
   if (item.applet?.plasmoid?.pluginName) {
     const applet = item.applet;
     name = applet.plasmoid.pluginName;
-    id = applet.plasmoid.id ?? -1;
+    id = inTray ? -1 : (applet.plasmoid.id ?? -1);
     if (applet.compactRepresentationItem !== null) {
       expanded = applet.expanded
     } else {
@@ -232,7 +235,7 @@ function getWidgetProperties(item, pcTypes, hovered, plasmaVersion) {
       } else if (model.itemType === "Plasmoid") {
         const applet = model.applet;
         name = applet.plasmoid.pluginName ?? "";
-        id = applet.plasmoid.id ?? -1;
+        id = inTray ? -1 : (applet.plasmoid.id ?? -1);
         expanded = applet.compactRepresentationItem !== null && applet.expanded;
         needsAttention = pcTypes.NeedsAttentionStatus === applet.plasmoid.status;
         busy = applet.plasmoid.busy
