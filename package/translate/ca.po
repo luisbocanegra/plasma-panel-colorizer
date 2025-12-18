@@ -347,11 +347,11 @@ msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Wide expand button:"
-msgstr ""
+msgstr "Botó d'expandeix a l'ample:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Make the System Tray expand button be the same width as the other tray items"
-msgstr ""
+msgstr "Fes que el botó d'expansió a l'ample tingui la mateixa amplada que els altres elements."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Force floating applets"
