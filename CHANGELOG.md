@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.0.0...v6.1.0) (2025-12-25)
+
+
+### Features
+
+* add Finnish translation ([fc31140](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/fc31140f7d9473c9cb8de3c29925c9f94a2f7839))
+
 ## [6.0.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v5.7.0...v6.0.0) (2025-12-18)
 
 
