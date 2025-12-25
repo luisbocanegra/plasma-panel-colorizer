@@ -5,7 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
-"Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
+"Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
+"colorizer\n"
 "POT-Creation-Date: 2025-12-06 07:47+0000\n"
 "PO-Revision-Date: 2025-12-25 13:03+0200\n"
 "Last-Translator: \n"
@@ -21,8 +22,11 @@ msgid "Panel colorizer"
 msgstr "Paneelin värittäjä"
 
 #: ../metadata.json
-msgid "Latte-Dock and WM status bar customization features for the default Plasma panel"
-msgstr "Latte-Dock- ja WM-tilarivin mukautusominaisuudet Plasman oletuspaneelille"
+msgid ""
+"Latte-Dock and WM status bar customization features for the default Plasma "
+"panel"
+msgstr ""
+"Latte-Dock- ja WM-tilarivin mukautusominaisuudet Plasman oletuspaneelille"
 
 #: ../contents/config/config.qml
 msgid "Presets"
@@ -86,8 +90,7 @@ msgstr "Reunaviiva"
 #: ../contents/ui/components/FormBorder.qml
 #: ../contents/ui/components/FormPadding.qml
 #: ../contents/ui/components/FormShadow.qml
-#: ../contents/ui/components/FormShape.qml
-#: ../contents/ui/configGeneral.qml
+#: ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml
 #: ../contents/ui/configPresetAutoload.qml
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Enabled:"
@@ -96,8 +99,7 @@ msgstr "Käytössä:"
 #: ../contents/ui/components/FormBorder.qml
 #: ../contents/ui/components/FormColors.qml
 #: ../contents/ui/components/FormShadow.qml
-#: ../contents/ui/components/FormShape.qml
-#: ../contents/ui/components/Header.qml
+#: ../contents/ui/components/FormShape.qml ../contents/ui/components/Header.qml
 msgid "Disabled"
 msgstr "Ei käytössä"
 
@@ -111,9 +113,9 @@ msgid ""
 "issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
 "issues/64\">See #64<a/>"
 msgstr ""
-"Käytä kokonaislukua <strong>pienoisohjelmasaarten</strong> kanssa välttääksesi "
-"piirtovirheitä! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
-"issues/64\">Katso #64<a/>"
+"Käytä kokonaislukua <strong>pienoisohjelmasaarten</strong> kanssa "
+"välttääksesi piirtovirheitä! <a href=\"https://github.com/luisbocanegra/"
+"plasma-panel-colorizer/issues/64\">Katso #64<a/>"
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Custom widths:"
@@ -210,8 +212,7 @@ msgstr ""
 "Korkearesoluutioiset kuvat voivat hidastaa työpöytää, kun paneelin tai "
 "pienoisohjelman koko muuttuu!"
 
-#: ../contents/ui/components/FormColors.qml
-#: ../contents/ui/configAppearance.qml
+#: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
 msgid "Element:"
 msgstr "Elementti:"
 
@@ -283,8 +284,7 @@ msgstr "Pystysuuntainen"
 msgid "Gradient steps:"
 msgstr "Liukuvärin askeleet:"
 
-#: ../contents/ui/components/FormColors.qml
-#: ../contents/ui/configGeneral.qml
+#: ../contents/ui/components/FormColors.qml ../contents/ui/configGeneral.qml
 msgid "Alpha:"
 msgstr "Peittävyys (Alpha):"
 
@@ -339,8 +339,8 @@ msgstr "Marginaali"
 
 #: ../contents/ui/components/FormShape.qml
 msgid ""
-"Requires plasmashell restart after disabling to restore the default. <a href="
-"\"#\">Restart now</a>."
+"Requires plasmashell restart after disabling to restore the default. <a "
+"href=\"#\">Restart now</a>."
 msgstr ""
 "Vaatii plasmashellin uudelleenkäynnistyksen poistamisen jälkeen "
 "oletusasetusten palauttamiseksi. <a href=\"#\">Käynnistä uudelleen nyt</a>."
@@ -416,7 +416,8 @@ msgstr "Ankkuroi reunoihin:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Resize content when panel enters/exits floating state"
-msgstr "Muuta sisällön kokoa, kun paneeli siirtyy kelluvaan tilaan tai poistuu siitä"
+msgstr ""
+"Muuta sisällön kokoa, kun paneeli siirtyy kelluvaan tilaan tai poistuu siitä"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Panel de-float:"
@@ -476,17 +477,17 @@ msgid ""
 "panel background must be enabled with opacity of 0 for this to work as "
 "intended.</strong>"
 msgstr ""
-"Piirtää mukautetun sumennusmaskin mukautetun taustan taakse.<br><strong>"
-"Paneelin natiivin taustan on oltava käytössä ja sen peittävyyden 0, jotta "
-"tämä toimii oikein.</strong>"
+"Piirtää mukautetun sumennusmaskin mukautetun taustan taakse."
+"<br><strong>Paneelin natiivin taustan on oltava käytössä ja sen peittävyyden "
+"0, jotta tämä toimii oikein.</strong>"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
 "C++ plugin not found, this feature will not work. Install the plugin and "
 "reboot or restart plasmashell to be able to use it."
 msgstr ""
-"C++-liitännäistä ei löytynyt, tämä ominaisuus ei toimi. Asenna liitännäinen ja "
-"käynnistä tietokone tai plasmashell uudelleen käyttääksesi sitä."
+"C++-liitännäistä ei löytynyt, tämä ominaisuus ei toimi. Asenna liitännäinen "
+"ja käynnistä tietokone tai plasmashell uudelleen käyttääksesi sitä."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Plugin install instructions"
@@ -505,9 +506,9 @@ msgid ""
 "<strong>Odd</strong> values are automatically converted to <strong>evens</"
 "strong> if <strong>Unified Background</strong> feature is used."
 msgstr ""
-"<strong>Parittomat</strong> arvot muutetaan automaattisesti <strong>"
-"parillisiksi</strong>, jos <strong>Yhdistetty tausta</strong> -ominaisuus on "
-"käytössä."
+"<strong>Parittomat</strong> arvot muutetaan automaattisesti "
+"<strong>parillisiksi</strong>, jos <strong>Yhdistetty tausta</strong> -"
+"ominaisuus on käytössä."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Background Color"
@@ -644,8 +645,8 @@ msgid ""
 "Export these settings to the default configuration folder and import them in "
 "other instances of Panel Colorizer"
 msgstr ""
-"Vie nämä asetukset oletusasetuskansioon ja tuo ne muihin Panel Colorizer "
-"-instansseihin"
+"Vie nämä asetukset oletusasetuskansioon ja tuo ne muihin Panel Colorizer -"
+"instansseihin"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "Export current settings?"
@@ -716,12 +717,14 @@ msgid ""
 "Not getting the expected result? Make sure you're editing the correct "
 "element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ "
 "plugin using the latest source, <a href=\"https://github.com/luisbocanegra/"
-"plasma-panel-colorizer#build-from-source-with-c-plugin\">see instructions</a>."
+"plasma-panel-colorizer#build-from-source-with-c-plugin\">see instructions</"
+"a>."
 msgstr ""
-"Etkö saa odotettua tulosta? Varmista, että muokkaat oikeaa elementtiä.<br>"
-"Eikö mukautettu sumennus toimi? Kokeile asentaa C++-liitännäinen uudelleen "
-"uusimmasta lähdekoodista, <a href=\"https://github.com/luisbocanegra/plasma-"
-"panel-colorizer#build-from-source-with-c-plugin\">katso ohjeet</a>."
+"Etkö saa odotettua tulosta? Varmista, että muokkaat oikeaa elementtiä."
+"<br>Eikö mukautettu sumennus toimi? Kokeile asentaa C++-liitännäinen "
+"uudelleen uusimmasta lähdekoodista, <a href=\"https://github.com/"
+"luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">katso "
+"ohjeet</a>."
 
 #: ../contents/ui/configAppearance.qml
 msgid "Restore default (removes all customizations)"
@@ -858,10 +861,10 @@ msgid ""
 "apply the override to the widget."
 msgstr ""
 "Luo asetusohituksia ja sovella niitä yhteen tai useampaan pienoisohjelmaan. "
-"Nämä ohitukset ovat riippumattomia esiasetuksista ja ne sovelletaan nykyisten "
-"asetusten päälle.<br>Estääksesi muutokset tiettyyn pienoisohjelmaan, <b>poista "
-"valinta</b> kohdista <b>Käytössä</b> ja <b>Varavaihtoehto</b>, ja sovelta "
-"ohitus kyseiseen pienoisohjelmaan."
+"Nämä ohitukset ovat riippumattomia esiasetuksista ja ne sovelletaan "
+"nykyisten asetusten päälle.<br>Estääksesi muutokset tiettyyn "
+"pienoisohjelmaan, <b>poista valinta</b> kohdista <b>Käytössä</b> ja "
+"<b>Varavaihtoehto</b>, ja sovelta ohitus kyseiseen pienoisohjelmaan."
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 #: ../contents/ui/configPresetWidgetOverrides.qml
@@ -1144,8 +1147,8 @@ msgid ""
 msgstr ""
 "Peittävyys- ja Näyttö-asetukset vaativat <b>Plasma 6.3</b> -version tai "
 "uudemman.<br>Peittävyys riippuu nykyisestä Plasma-teemasta. Tarkempaa säätöä "
-"tai täyttä läpinäkyvyyttä varten käytä <b>Paneelin peittävyys</b> ja <b>"
-"Alkuperäinen paneelin tausta</b> -asetuksia <b>Ulkoasu</b>-välilehdellä."
+"tai täyttä läpinäkyvyyttä varten käytä <b>Paneelin peittävyys</b> ja "
+"<b>Alkuperäinen paneelin tausta</b> -asetuksia <b>Ulkoasu</b>-välilehdellä."
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Screen"
@@ -1277,8 +1280,8 @@ msgid ""
 "configuration from all Panel Colorizer instances so make sure to save the "
 "others first"
 msgstr ""
-"VAROITUS: Käytä Näytä/Piilota-toimintoa varoen. Jos piilotat paneelin etkä ole "
-"määrittänyt automaattista latausta tai tiedä miten vaihtaa esiasetuksia "
+"VAROITUS: Käytä Näytä/Piilota-toimintoa varoen. Jos piilotat paneelin etkä "
+"ole määrittänyt automaattista latausta tai tiedä miten vaihtaa esiasetuksia "
 "D-Busin kautta, et saa paneelia enää näkyviin ilman asetusten manuaalista "
 "poistamista. Alla oleva komento terminaalissa poistaa asetukset kaikilta "
 "instansseilta, joten tallenna muut ensin."
@@ -1299,16 +1302,16 @@ msgid ""
 "useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color "
 "on text and icons using post-processing effect, useful for non-symbolic "
 "icons.<br> - <strong>Refresh</strong>: Re-apply color at a fixed interval, "
-"useful for widgets that recreate or recolor content themselves<br>To "
-"restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable "
-"and restart Plasma or logout."
+"useful for widgets that recreate or recolor content themselves<br>To restore "
+"the <strong>Mask<strong> and <strong>Color Effect</strong> disable and "
+"restart Plasma or logout."
 msgstr ""
 "Korjaa tekstin ja ikonien värit pienoisohjelmissa, joissa normaali tapa ei "
 "toimi.<br> - <strong>Maski</strong>: Pakota väri SVG-ikoneille (hyödyllinen "
 "symbolisille ikoneille).<br> - <strong>Väriefekti</strong>: Pakota väri "
-"jälkikäsittelyllä (hyödyllinen tavallisille ikoneille).<br> - <strong>"
-"Päivitä</strong>: Käytä väriä uudelleen tietyin väliajoin.<br>Palauttaaksesi "
-"muutokset, poista asetukset ja käynnistä Plasma uudelleen."
+"jälkikäsittelyllä (hyödyllinen tavallisille ikoneille).<br> - "
+"<strong>Päivitä</strong>: Käytä väriä uudelleen tietyin väliajoin."
+"<br>Palauttaaksesi muutokset, poista asetukset ja käynnistä Plasma uudelleen."
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
@@ -1350,4 +1353,5 @@ msgstr "Käytössä on vanhentunut versio ohjelmasta %1"
 
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
-msgstr "Paneelia ei löytynyt; tämän pienoisohjelman on oltava paneelissa toimiakseen"
+msgstr ""
+"Paneelia ei löytynyt; tämän pienoisohjelman on oltava paneelissa toimiakseen"
