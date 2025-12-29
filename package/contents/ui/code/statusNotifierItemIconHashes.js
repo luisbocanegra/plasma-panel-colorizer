@@ -1,0 +1,195 @@
+const hashes = [
+  {
+    "description": "Discord",
+    "hash": "8329bc25398ce60c34861ae1410316ba1d233371",
+    "icon": "discord-tray",
+    "enabled": true
+  },
+  {
+    "description": "Discord (unread)",
+    "hash": "a7d1e477d6bb2b6efc4edd96eb19f4c1a83c34eb",
+    "icon": "discord-tray-unread",
+    "enabled": true
+  },
+  {
+    "description": "fooyin",
+    "hash": "78e35a2398151e346da2990e4d6d4ebba35d4758",
+    "icon": "",
+    "enabled": true
+  },
+  {
+    "description": "Element",
+    "hash": "eb02846a6e6000b6bdb55e5840ae47f5d4dc2bfb",
+    "icon": "element-desktop-tray",
+    "enabled": true
+  },
+  {
+    "description": "Element (1 unread)",
+    "hash": "09370ab19db7c74b1031d43a7e73a6c31f7918f6",
+    "icon": "",
+    "enabled": true
+  },
+  {
+    "description": "Element (2 unread)",
+    "hash": "5252f3250cec8b8b764aaeadd63e3b916270e5a2",
+    "icon": "",
+    "enabled": true
+  },
+  {
+    "description": "GPU Screen Recorder",
+    "hash": "fcc6f97b0e027399a57a7a0c856eca860d4eae91",
+    "icon": "simplescreenrecorder-panel",
+    "enabled": true
+  },
+  {
+    "description": "GPU Screen Recorder (recording)",
+    "hash": "6f1fe912b983467f314a769331855efc5a7ba830",
+    "icon": "simplescreenrecorder-recording",
+    "enabled": true
+  },
+  {
+    "description": "GPU Screen Recorder (paused)",
+    "hash": "5426ee8b99cd67148f33a3f656bfa6cb0d74f5f9",
+    "icon": "simplescreenrecorder-paused",
+    "enabled": true
+  },
+  {
+    "description": "Bitwarden",
+    "hash": "b57b039f23f9b230f3e55eb112470cc51ab97da7",
+    "icon": "bitwarden-tray",
+    "enabled": true
+  },
+  {
+    "description": "Signal",
+    "hash": "7b2020f2b27728eb56437cb72b20a35319e3da1a",
+    "icon": "signal-tray",
+    "enabled": true
+  },
+  {
+    "description": "virt-manager (replaces virt-manager icon from papirus)",
+    "hash": "c0b947cdceed56983ec965f63d6d330e3af476f2",
+    "icon": "virt-manager-panel",
+    "enabled": true
+  },
+  {
+    "description": "Obsidian (obsidian-tray add-on)",
+    "hash": "939b767c420bf752aee3d0f4c9f41b982678526a",
+    "icon": "",
+    "enabled": true
+  },
+  {
+    "description": "super productivity (launched)",
+    "hash": "7b67348b06aa7bcd0ebb2fcd73f79079a7b7f13a",
+    "icon": "superproductivity-tray-run",
+    "enabled": true
+  },
+  {
+    "description": "super productivity (done)",
+    "hash": "700ecd6bb3e811579e7f18d9e1dc742ad40e6680",
+    "icon": "superproductivity-tray",
+    "enabled": true
+  },
+  {
+    "description": "super productivity 0 (start)",
+    "hash": "d1e1350004aafa4e27d850f19d1572ddf77f40a3",
+    "icon": "superproductivity-tray-0",
+    "enabled": true
+  },
+  {
+    "description": "super productivity 1",
+    "hash": "c29b7bfc1fda1e523964cc89054145ccc6126cea",
+    "icon": "superproductivity-tray-1",
+    "enabled": true
+  },
+  {
+    "description": "super productivity 2",
+    "hash": "71ea166e4a19602adc70aa20dc6ce8f12589bb07",
+    "icon": "superproductivity-tray-2",
+    "enabled": true
+  },
+  {
+    "description": "super productivity 3",
+    "hash": "3352f642ef7687849eb73ea1ff57d9e438f82b77",
+    "icon": "superproductivity-tray-3",
+    "enabled": true
+  },
+  {
+    "description": "super productivity 4",
+    "hash": "e42e1cac870b24fb22812b1021600022f337c2f2",
+    "icon": "superproductivity-tray-4",
+    "enabled": true
+  },
+  {
+    "description": "super productivity 5",
+    "hash": "c1de0f6042e2a969b4138f7e23ebdc8d074c9e2f",
+    "icon": "superproductivity-tray-5",
+    "enabled": true
+  },
+  {
+    "description": "super productivity 6",
+    "hash": "4fd04c5ec8acb66f86b6947af94ba9b281a11d0a",
+    "icon": "superproductivity-tray-6",
+    "enabled": true
+  },
+  {
+    "description": "super productivity 7",
+    "hash": "4fd04c5ec8acb66f86b6947af94ba9b281a11d0a",
+    "icon": "superproductivity-tray-7",
+    "enabled": true
+  },
+  {
+    "description": "super productivity 8",
+    "hash": "326e2f3af2cd7633ebca9fb494778ab435ce93d7",
+    "icon": "superproductivity-tray-8",
+    "enabled": true
+  },
+  {
+    "description": "super productivity 9",
+    "hash": "bf9d328dffda92f1430f016257ad2461ba97fa50",
+    "icon": "superproductivity-tray-9",
+    "enabled": true
+  },
+  {
+    "description": "super productivity 10",
+    "hash": "3d8ea90331d50381230afd83327662d08464e2ae",
+    "icon": "superproductivity-tray-10",
+    "enabled": true
+  },
+  {
+    "description": "super productivity 11",
+    "hash": "cd27cdf64249d9731d4bf89a9bce30f382486079",
+    "icon": "superproductivity-tray-11",
+    "enabled": true
+  },
+  {
+    "description": "super productivity 12",
+    "hash": "3595f4c7e2b265d7a423d9eae0e5e46967d67c6d",
+    "icon": "superproductivity-tray-12",
+    "enabled": true
+  },
+  {
+    "description": "super productivity 13",
+    "hash": "bc403941f7f6f13229664550a1c923abc97441e5",
+    "icon": "superproductivity-tray-13",
+    "enabled": true
+  },
+  {
+    "description": "super productivity 14",
+    "hash": "0df597305998fb18ffcc5455a6f35804d5f463ff",
+    "icon": "superproductivity-tray-14",
+    "enabled": true
+  },
+  {
+    "description": "super productivity 15 (full)",
+    "hash": "e84369d6d3d49029877d4af677663da104486f80",
+    "icon": "superproductivity-tray-15",
+    "enabled": true
+  },
+  {
+    "description": "LocalSend",
+    "hash": "1ecd2bf8b9dbe96adfda270e771c8aa914aa6b32",
+    "icon": "",
+    "enabled": true
+  }
+]
+

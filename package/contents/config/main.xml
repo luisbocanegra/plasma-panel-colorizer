@@ -107,5 +107,25 @@
         type="String">
         <default>{"widgets":[]}</default>
     </entry>
+    <entry
+        name="systemTrayIconsReplacementEnabled"
+        type="Bool">
+        <default>false</default>
+    </entry>
+    <entry
+        name="systemTrayIconUserReplacements"
+        type="String">
+        <default></default>
+    </entry>
+    <entry
+        name="logSystemTrayIconChanges"
+        type="Bool">
+        <default>false</default>
+    </entry>
+    <entry
+        name="systemTrayIconBuiltinReplacementsEnabled"
+        type="Bool">
+        <default>true</default>
+    </entry>
   </group>
 </kcfg>

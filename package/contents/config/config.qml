@@ -57,6 +57,12 @@ ConfigModel {
     }
 
     ConfigCategory {
+        name: i18n("System Tray Icons Replacer")
+        icon: "document-replace-symbolic"
+        source: "configTrayIconsReplacer.qml"
+    }
+
+    ConfigCategory {
         name: i18n("General")
         icon: "configure-symbolic"
         source: "configGeneral.qml"

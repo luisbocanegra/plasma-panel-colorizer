@@ -17,6 +17,7 @@ import "code/utils.js" as Utils
 import "code/globals.js" as Globals
 import "code/enum.js" as Enum
 import "code/version.js" as VersionUtil
+import "code/statusNotifierItemIconHashes.js" as SNIIconHashes
 
 PlasmoidItem {
     id: main
@@ -180,6 +181,17 @@ PlasmoidItem {
     property var plasmaVersion: new VersionUtil.Version("999.999.999") // to assume latest
     property var editModeGrid: JSON.parse(plasmoid.configuration.editModeGridSettings)
     property bool showEditingGrid: (editModeGrid?.enabled ?? false) && Plasmoid.userConfiguring
+    property bool logSystemTrayIconChanges: plasmoid.configuration.logSystemTrayIconChanges
+    property bool systemTrayIconsReplacementEnabled: plasmoid.configuration.systemTrayIconsReplacementEnabled
+    property var systemTrayIconUserReplacements: {
+        let replacements = [];
+        try {
+            replacements = JSON.parse(plasmoid.configuration.systemTrayIconUserReplacements);
+        } catch (e) {
+            console.error(e.message, "\n", e.stack)
+        }
+        return replacements;
+    }
     signal recolorCountChanged
     signal refreshNeeded
     signal updateUnified
@@ -320,14 +332,43 @@ PlasmoidItem {
                     "hovered": hovered,
                     "expanded": (systemTrayState?.expanded) && systemTrayState?.activeApplet === null,
                     "needsAttention": false,
-                    "busy": false
+                    "busy": false,
+                    "trayIconHash": "",
+                    "title": ""
                 };
             } else {
-                return Utils.getWidgetProperties(target, PlasmaCore.Types, hovered, main.plasmaVersion, inTray);
+                return Utils.getWidgetProperties(target, PlasmaCore.Types, hovered, main.plasmaVersion, inTray, main.panelColorizer, main.logSystemTrayIconChanges && rect.hovered);
             }
         }
         property string widgetName: widgetProperties.name
+        property string widgetTitle: widgetProperties.title
         property int widgetId: widgetProperties.id
+        property string trayIconHash: widgetProperties.trayIconHash
+        onTrayIconHashChanged: {
+            if (main.logSystemTrayIconChanges) {
+                // console.log(rect.target?.item.model.decoration);
+                console.log("tray icon changed, title:", widgetTitle, "name:", widgetName, "SHA1:", trayIconHash);
+            }
+        }
+        property string customIcon: {
+            let customIcon = "";
+            if (plasmoid.configuration.systemTrayIconBuiltinReplacementsEnabled) {
+                customIcon = SNIIconHashes.hashes.find(item => item.hash === trayIconHash)?.icon ?? "";
+            }
+            const userIcon = main.systemTrayIconUserReplacements.filter(item => item.enabled).find(item => item.hash === trayIconHash)?.icon ?? "";
+            if (userIcon) {
+                customIcon = userIcon;
+            }
+            return customIcon;
+        }
+        Binding {
+            // https://github.com/KDE/plasma-workspace/blob/fd4e840e7c270b79d35e6978e44d1fe7bdaaa6e7/applets/systemtray/qml/StatusNotifierItem.qml#L25
+            target: rect.target?.item?.iconContainer?.children[0] ?? null
+            property: "source"
+            value: rect.customIcon
+            when: rect.customIcon !== "" && main.systemTrayIconsReplacementEnabled && main.isEnabled && rect.trayIconHash !== ""
+            delayed: true
+        }
         property var wRecolorCfg: Utils.getForceFgWidgetConfig(widgetId, widgetName, forceRecolorList)
         property bool requiresRefresh: wRecolorCfg?.reload ?? false
         // 0: default | 1: start | 2: end
@@ -570,7 +611,6 @@ PlasmoidItem {
             main.updateUnified.connect(updateUnifyType);
             main.updateMasks.connect(updateMaskDebounced);
             recolorTimer.start();
-            rect.target.applet.plasmoid.globalShortcutChanged.connect(main.updateCurrentWidgets);
         }
 
         Component.onDestruction: {
@@ -581,6 +621,7 @@ PlasmoidItem {
             main.updateUnified.disconnect(updateUnifyType);
             main.updateMasks.disconnect(updateMaskDebounced);
             main.refreshNeeded.disconnect(recolorTimer.restart);
+            trayInitTimer.restart();
         }
 
         height: inTray ? (target?.height ?? 0) : parent.height
@@ -814,7 +855,7 @@ PlasmoidItem {
         }
 
         Binding {
-            target: rect.target.applet?.plasmoid
+            target: rect.target.applet?.plasmoid ?? null
             property: "status"
             when: (rect.hideCfg?.hide ?? false) && !main.editMode
             value: PlasmaCore.Types.HiddenStatus
@@ -1190,6 +1231,11 @@ PlasmoidItem {
         }
 
         property bool hovered: hoverHandler.hovered
+        onHoveredChanged: {
+            if (main.logSystemTrayIconChanges && hovered && rect.inTray && rect.trayIconHash) {
+                console.log("Hovered tray item, title:", rect.widgetTitle, "name:", rect.widgetName, "SHA1:", rect.trayIconHash);
+            }
+        }
         HoverHandler {
             id: hoverHandler
             parent: rect.target
