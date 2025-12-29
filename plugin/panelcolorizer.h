@@ -3,7 +3,9 @@
 
 #pragma once
 
+#include <QCryptographicHash>
 #include <QObject>
+#include <QPixmap>
 #include <QRectF>
 #include <QRegion>
 #include <QVariant>
@@ -18,6 +20,8 @@ class PanelColorizer : public QObject {
                                      double bottomLeftRadius, double bottomRightRadius, QPointF offset,
                                      int radiusCompensation, bool visible);
     Q_INVOKABLE void popLastVisibleMaskRegion();
+
+    Q_INVOKABLE QString getIconHash(const QVariant &variant, bool logIconNames);
 
     explicit PanelColorizer(QObject *parent = nullptr);
 

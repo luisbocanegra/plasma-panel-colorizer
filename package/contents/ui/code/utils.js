@@ -83,8 +83,6 @@ function dumpProps(obj) {
   console.error(obj);
   for (var k of Object.keys(obj)) {
     const val = obj[k];
-    if (k.endsWith("Changed")) continue;
-    if (k === "metaData") continue;
     console.log(k + "=" + val + "\n");
   }
 }
@@ -136,12 +134,10 @@ function findWidgetsTray(grid, panelWidgets) {
         // Also, since plasma 6.5.something (maybe earlier) widgets in the system tray
         // no longer use a consistent applet.plasmoid.id
         // So we set -1 to ignore the value when matching for overrides or color fix
-
         // App tray icons
         if (model.itemType === "StatusNotifier") {
           const name = model.Id;
-          const title =
-            model.ToolTipTitle !== "" ? model.ToolTipTitle : model.Title;
+          const title = model.Title || model.ToolTipTitle
           const icon = model.IconName;
           if (panelWidgets.filter(item => item.inTray).find((item) => item.name === name)) continue;
           // console.error(name, title, icon)
@@ -206,16 +202,18 @@ function getSystemTrayState(applet, plasmaVersion) {
   return systemTrayState
 }
 
-function getWidgetProperties(item, pcTypes, hovered, plasmaVersion, inTray) {
+function getWidgetProperties(item, pcTypes, hovered, plasmaVersion, inTray, panelColorizer, logIconChanges) {
   let name = "";
   let id = -1;
   let expanded = false;
   let needsAttention = false;
   let busy = false;
-  if (!item) return { name, id };
+  let trayIconHash = ""
+  let title = ""
   if (item.applet?.plasmoid?.pluginName) {
     const applet = item.applet;
     name = applet.plasmoid.pluginName;
+    title = applet.plasmoid.title;
     id = inTray ? -1 : (applet.plasmoid.id ?? -1);
     if (applet.compactRepresentationItem !== null) {
       expanded = applet.expanded
@@ -230,11 +228,35 @@ function getWidgetProperties(item, pcTypes, hovered, plasmaVersion, inTray) {
       const model = item.children[i].model;
       if (model.itemType === "StatusNotifier") {
         name = model.Id;
+        title = model.Title || model.ToolTipTitle
         needsAttention = pcTypes.NeedsAttentionStatus === model.status;
+        let iconSource
+        if (model.status === PlasmaCore.Types.NeedsAttentionStatus) {
+          if (model.AttentionIcon) {
+              iconSource = model.AttentionIcon
+          }
+          if (model.AttentionIconName) {
+              iconSource = model.AttentionIconName
+          }
+        } else {
+          iconSource = model.Icon || model.IconName
+        }
+        if (panelColorizer && iconSource) {
+          if (typeof panelColorizer.getIconHash !== "function") {
+            console.error("getIconHash is not a method of", panelColorizer, "please update/rebuild the plugin using latest source")
+          } else {
+            try {
+              trayIconHash = panelColorizer.getIconHash(iconSource, logIconChanges)
+            } catch (e) {
+              console.error(e.message, "\n", e.stack)
+            }
+          }
+        }
         break;
       } else if (model.itemType === "Plasmoid") {
         const applet = model.applet;
         name = applet.plasmoid.pluginName ?? "";
+        title = applet?.plasmoid.title ?? "";
         id = inTray ? -1 : (applet.plasmoid.id ?? -1);
         expanded = applet.compactRepresentationItem !== null && applet.expanded;
         needsAttention = pcTypes.NeedsAttentionStatus === applet.plasmoid.status;
@@ -243,31 +265,9 @@ function getWidgetProperties(item, pcTypes, hovered, plasmaVersion, inTray) {
       }
     }
   }
-  return { name, id, expanded, needsAttention, busy, hovered};
+  return { name, title, id, expanded, needsAttention, busy, hovered, trayIconHash};
 }
 
-var themeColors = [
-  "textColor",
-  "disabledTextColor",
-  "highlightedTextColor",
-  "activeTextColor",
-  "linkColor",
-  "visitedLinkColor",
-  "negativeTextColor",
-  "neutralTextColor",
-  "positiveTextColor",
-  "backgroundColor",
-  "highlightColor",
-  "activeBackgroundColor",
-  "linkBackgroundColor",
-  "visitedLinkBackgroundColor",
-  "negativeBackgroundColor",
-  "neutralBackgroundColor",
-  "positiveBackgroundColor",
-  "alternateBackgroundColor",
-  "focusColor",
-  "hoverColor",
-];
 
 var themeScopes = [
   "View",

@@ -5,13 +5,14 @@
 // panelspacerplugin.cpp
 
 #include "panelcolorizer.h"
+#include <QBitmap>
 #include <QDebug>
+#include <QIcon>
 #include <QObject>
 #include <QPainter>
 #include <QPainterPath>
 #include <QPixmap>
 #include <QRegion>
-#include <qbitmap.h>
 
 PanelColorizer::PanelColorizer(QObject *parent) : QObject(parent) {}
 
@@ -98,3 +99,36 @@ void PanelColorizer::popLastVisibleMaskRegion() {
         combineRegions();
     }
 };
+
+QString PanelColorizer::getIconHash(const QVariant &variant, bool logIconNames) {
+
+    QString hashString;
+
+    if (!variant.canConvert<QIcon>()) {
+        qWarning() << variant << "is not a QIcon";
+        return hashString;
+    }
+    QIcon icon = qvariant_cast<QIcon>(variant);
+
+    if (icon.isNull()) {
+        qWarning() << "icon is empty";
+        return hashString;
+    }
+
+    QList<QSize> sizes = icon.availableSizes(QIcon::Normal, QIcon::Off);
+
+    if (sizes.empty()) {
+        qWarning() << "icon doesn't have any icon size";
+        return hashString;
+    }
+
+    QImage img = icon.pixmap(sizes.first(), QIcon::Normal, QIcon::Off).toImage().convertToFormat(QImage::Format_ARGB32);
+
+    QByteArray ba(reinterpret_cast<const char *>(img.bits()), img.sizeInBytes());
+    QByteArray hash = QCryptographicHash::hash(ba, QCryptographicHash::Sha1);
+    hashString = QString::fromUtf8(hash.toHex());
+    if (logIconNames && !icon.name().isEmpty()) {
+        qDebug() << "QIcon name:" << icon.name();
+    }
+    return hashString;
+}

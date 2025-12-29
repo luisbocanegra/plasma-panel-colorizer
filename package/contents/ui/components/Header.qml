@@ -28,16 +28,6 @@ ColumnLayout {
 
             CheckBox {
                 id: isEnabledCheckbox
-
-                Kirigami.Theme.inherit: false
-                text: checked ? "" : i18n("Disabled")
-
-                Binding {
-                    target: isEnabledCheckbox
-                    property: "Kirigami.Theme.textColor"
-                    value: Kirigami.Theme.neutralTextColor
-                    when: !isEnabledCheckbox.checked
-                }
             }
         }
 

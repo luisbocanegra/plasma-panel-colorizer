@@ -14,17 +14,17 @@ const baseGradientList = [
   { color: "#21fd00", position: 0.5 },
   { color: "#0e1eff", position: 0.75 },
   { color: "#fd12ff", position: 1 }
-]
+];
 
 const baseGradientConfig = {
   stops: baseGradientList,
   orientation: 0
-}
+};
 
 const baseImageConfig = {
   source: "",
   fillMode: 2
-}
+};
 
 const baseAnimation = {
   enabled: false,
@@ -226,7 +226,7 @@ const baseOverride = {
   borderSecondary: baseBorder,
   shadow: baseShadowConfig,
   enabled: true,
-}
+};
 
 const baseOverrideConfig = {
   disabledFallback: true,
@@ -337,7 +337,11 @@ const ignoredConfigs = [
   "editModeGridSettings",
   "pluginFound",
   "configureFromAllWidgets",
-  "hiddenWidgets"
+  "hiddenWidgets",
+  "systemTrayIconsReplacementEnabled",
+  "systemTrayIconUserReplacements",
+  "systemTrayIconBuiltinReplacementsEnabled",
+  "logSystemTrayIconChanges"
 ];
 
 const editModeGridSettings = {

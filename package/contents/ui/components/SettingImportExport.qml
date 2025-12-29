@@ -29,7 +29,9 @@ RowLayout {
     }
 
     Kirigami.ContextualHelpButton {
+        flat: false
         toolTipText: i18n("Export these settings to the default configuration folder and import them in other instances of Panel Colorizer")
+        Layout.fillHeight: true
     }
 
     Kirigami.PromptDialog {
