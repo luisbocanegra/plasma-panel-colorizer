@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.1.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.0.0...v6.1.0) (2025-12-29)
+
+
+### Features
+
+* add Finnish translation ([fc31140](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/fc31140f7d9473c9cb8de3c29925c9f94a2f7839))
+* system tray application status (StatusNotifier) icons replacement ([0445228](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/04452284d6cb208d1133c2b307665d46b9a191b8))
+
 ## [6.0.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v5.7.0...v6.0.0) (2025-12-18)
 
 
