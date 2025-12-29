@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2025-12-06 07:47+0000\n"
+"POT-Creation-Date: 2025-12-29 08:18+0000\n"
 "PO-Revision-Date: 2025-06-05 23:14+0800\n"
 "Last-Translator: Mill413 <mill413@outlook.com>\n"
 "Language-Team: \n"
@@ -62,6 +62,10 @@ msgid "Hide Widgets"
 msgstr ""
 
 #: ../contents/config/config.qml
+msgid "System Tray Icons Replacer"
+msgstr ""
+
+#: ../contents/config/config.qml
 msgid "General"
 msgstr "常规"
 
@@ -69,7 +73,7 @@ msgstr "常规"
 msgid "Panel Colorizer is disabled"
 msgstr "Panel Colorizer 已禁用"
 
-#: ../contents/ui/components/CategoryDisabled.qml
+#: ../contents/ui/components/CategoryDisabled.qml ../contents/ui/configTrayIconsReplacer.qml
 msgid "Enable"
 msgstr "启用"
 
@@ -85,7 +89,7 @@ msgstr "边框"
 msgid "Enabled:"
 msgstr "已启用："
 
-#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormColors.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/components/Header.qml
+#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormColors.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml
 msgid "Disabled"
 msgstr "已禁用"
 
@@ -1114,6 +1118,105 @@ msgstr "强制文本/图标颜色"
 #: ../contents/ui/configTextIconFix.qml
 msgid "Refresh interval:"
 msgstr "刷新间隔："
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Add new"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Remove all"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Replace System Tray icons with icons from the current icon theme or a local file. The built-in rules icons are part of <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus icon theme</a>."
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Install instructions</a>."
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "The installed version of the C++ plugin doesn't support this feature, update the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Install instructions</a>."
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Log icon changes:"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Icon hashes will be printed to the system log"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Enable built-in rules:"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Show"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "How to use"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Built-in Rules (read only)"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "User Rules"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Whether or not this replacement is enabled"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Description (optional)"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Description"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "SHA1"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Original icon SHA1"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Custom icon"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Icon name or file"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgctxt "@info:tooltip"
+msgid "Icon name is \"%1\""
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgctxt "@item:inmenu Open icon chooser dialog"
+msgid "Choose…"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgctxt "@action:inmenu"
+msgid "Remove icon"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Copy to User Rules"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Copy rule"
+msgstr ""
 
 #: ../contents/ui/configUnifiedBackground.qml
 msgid "Select start and end of widget islands, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Widget custom background or border is required for this option to have an effect."
