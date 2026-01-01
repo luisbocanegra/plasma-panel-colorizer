@@ -63,7 +63,7 @@ msgstr "Ocultació de ginys"
 
 #: ../contents/config/config.qml
 msgid "System Tray Icons Replacer"
-msgstr ""
+msgstr "Substitució d'icones de la safata d'entrada"
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -1127,102 +1127,102 @@ msgstr "Interval d'actualització"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Add new"
-msgstr ""
+msgstr "Afegeix-ne una de nova"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Remove all"
-msgstr ""
+msgstr "Trau-ho tot"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Replace System Tray icons with icons from the current icon theme or a local file. The built-in rules icons are part of <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus icon theme</a>."
-msgstr ""
+msgstr "Substitueix icones de la safata d'entrada amb icones del tema actual o d'un fitxer local. Les icones de les regles internes són part del <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">tema d'icones Papirus</a>."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Install instructions</a>."
-msgstr ""
+msgstr "El complement C++ plugin no s'ha trobat. Aquesta funció no es pot fer servir. Instal·leu el complement i reinicieu el plasmashell per a fer-lo servir. <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Instruccions d'instal·lació</a>."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "The installed version of the C++ plugin doesn't support this feature, update the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Install instructions</a>."
-msgstr ""
+msgstr "La versió instal·lada del complement C++ no suporta aquesta funció. Actualitzeu el complement i reinicieu el plasmashell per a fer-lo servir. <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Instruccions d'instal·lació</a>."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Log icon changes:"
-msgstr ""
+msgstr "Canvis d'icona d'inici de sessió:"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Icon hashes will be printed to the system log"
-msgstr ""
+msgstr "Els valors hash de la icona s'escriuran al registre del sistema"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Enable built-in rules:"
-msgstr ""
+msgstr "Activa les regles internes:"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Show"
-msgstr ""
+msgstr "Mostra"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "How to use"
-msgstr ""
+msgstr "Com fer servir"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Built-in Rules (read only)"
-msgstr ""
+msgstr "Regles internes (només lectura)"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "User Rules"
-msgstr ""
+msgstr "Regles d'usuari"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Whether or not this replacement is enabled"
-msgstr ""
+msgstr "Indica si aquesta substitució està activada."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Description (optional)"
-msgstr ""
+msgstr "Descripció (opcional)"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Description"
-msgstr ""
+msgstr "Descripció"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "SHA1"
-msgstr ""
+msgstr "SHA1"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Original icon SHA1"
-msgstr ""
+msgstr "SHA1 de la icona original"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Custom icon"
-msgstr ""
+msgstr "Icona personalitzada"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Icon name or file"
-msgstr ""
+msgstr "Nom del fitxer o de la icona"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgctxt "@info:tooltip"
 msgid "Icon name is \"%1\""
-msgstr ""
+msgstr "El nom de la icona és «%1»."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgctxt "@item:inmenu Open icon chooser dialog"
 msgid "Choose…"
-msgstr ""
+msgstr "Tria…"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgctxt "@action:inmenu"
 msgid "Remove icon"
-msgstr ""
+msgstr "Trau la icona"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Copy to User Rules"
-msgstr ""
+msgstr "Copia a les regles d'usuari"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Copy rule"
-msgstr ""
+msgstr "Copia la regla"
 
 #: ../contents/ui/configUnifiedBackground.qml
 msgid "Select start and end of widget islands, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Widget custom background or border is required for this option to have an effect."
