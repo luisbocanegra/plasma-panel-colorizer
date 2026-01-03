@@ -1,5 +1,19 @@
 # Changelog
 
+## [6.2.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.1.0...v6.2.0) (2026-01-03)
+
+
+### Features
+
+* update Catalan translation ([54dd177](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/54dd1776df76da86930a6f9a65089513e14b29bb))
+* update Polish translation ([ed23b3d](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/ed23b3d1827263ea449e3190ef6c02f563edc283))
+* update Polish translation ([9bc04ce](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/9bc04ceb09691ddf1db4876f364b0d56d30007a6))
+
+
+### Bug Fixes
+
+* systemTrayIconUserReplacements JSON.parse: Parse error ([cfb2942](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/cfb29428cad77b3e9cddc968a9b41451622a8d8e))
+
 ## [6.1.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.0.0...v6.1.0) (2025-12-29)
 
 
