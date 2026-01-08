@@ -1016,3 +1016,23 @@ function updateUnifiedBackgroundTracker(index, type, visible, tracker) {
   };
   return getUnifyBgTypes(tracker);
 }
+
+/**
+ * Finds and returns an icon from the replacement rules if it matches the tray item properties
+ * @param {Array} rules Replacement rules
+ * @param {Object} trayItemProperties Tray item properties
+ * @returns {String} Icon from rule or empty string
+ */
+function getTrayIconFromRules(rules, trayItemProperties) {
+  const filtered = rules.filter(rule => {
+    return rule.enabled && rule.hash !== "" && rule.match !== "" && rule.icon !== "";
+  });
+  return filtered.find(rule => {
+    const match = rule.hash || rule.match;
+    if (match === trayItemProperties.trayIconHash) {
+      return true;
+    }
+    const re = new RegExp(match);
+    return re.test(trayItemProperties.title) || re.test(trayItemProperties.name);
+  })?.icon ?? "";
+}
