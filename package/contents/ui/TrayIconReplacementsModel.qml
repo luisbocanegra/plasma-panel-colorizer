@@ -14,21 +14,25 @@ Item {
 
         try {
             items = JSON.parse(configString);
-            console.log(JSON.stringify(items));
         } catch (e) {
             console.error(e.message, "\n", e.stack);
         }
 
         for (let item of items) {
+            // update format
+            if (!item.match) {
+                item.match = item.hash ?? "";
+                delete item.hash;
+            }
             model.append(item);
         }
         root.isLoading = false;
     }
 
-    function addItem(hash) {
+    function addItem() {
         model.append({
             "description": "",
-            "hash": hash ?? "",
+            "match": "",
             "icon": "",
             "enabled": true
         });
@@ -65,12 +69,12 @@ Item {
         updated();
     }
 
-    function hashExists(hash) {
+    function ruleExists(match) {
         let exists = false;
 
         for (let i = 0; i < model.count; i++) {
             const item = model.get(i);
-            if (item.hash === hash) {
+            if (item.match === match) {
                 return true;
             }
         }
@@ -109,6 +113,39 @@ Item {
             } else {
                 item.enabled = false;
             }
+        }
+        updated();
+    }
+
+    function sortRules() {
+        let rules = [];
+        let sorted = [];
+
+        for (let i = 0; i < model.count; i++) {
+            const item = model.get(i);
+            rules.push({
+                "description": item.description,
+                "match": item.match,
+                "icon": item.icon,
+                "enabled": item.enabled
+            });
+        }
+
+        sorted = rules.sort((a, b) => {
+            const dA = a.description.toLocaleLowerCase();
+            const dB = b.description.toLocaleLowerCase();
+            if (dA < dB) {
+                return -1;
+            }
+            if (dA > dB) {
+                return 1;
+            }
+            return 0;
+        });
+
+        model.clear();
+        for (const rule of sorted) {
+            model.append(rule);
         }
         updated();
     }

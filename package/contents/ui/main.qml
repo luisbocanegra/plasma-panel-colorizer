@@ -17,7 +17,7 @@ import "code/utils.js" as Utils
 import "code/globals.js" as Globals
 import "code/enum.js" as Enum
 import "code/version.js" as VersionUtil
-import "code/statusNotifierItemIconHashes.js" as SNIIconHashes
+import "code/statusNotifierItemIconRules.js" as SNIIconRules
 
 PlasmoidItem {
     id: main
@@ -188,7 +188,7 @@ PlasmoidItem {
         try {
             replacements = JSON.parse(plasmoid.configuration.systemTrayIconUserReplacements);
         } catch (e) {
-            console.error(e.message, "\n", e.stack)
+            console.error(e.message, "\n", e.stack);
         }
         return replacements;
     }
@@ -346,27 +346,30 @@ PlasmoidItem {
         property string trayIconHash: widgetProperties.trayIconHash
         onTrayIconHashChanged: {
             if (main.logSystemTrayIconChanges) {
-                // console.log(rect.target?.item.model.decoration);
-                console.log("tray icon changed, title:", widgetTitle, "name:", widgetName, "SHA1:", trayIconHash);
+                console.log("Tray icon changed, title:", rect.widgetTitle, "name:", rect.widgetName, "\nSHA1:", rect.trayIconHash, "\nReplacement:", rect.customIcon);
             }
         }
+
         property string customIcon: {
-            let customIcon = "";
-            if (plasmoid.configuration.systemTrayIconBuiltinReplacementsEnabled) {
-                customIcon = SNIIconHashes.hashes.find(item => item.hash === trayIconHash)?.icon ?? "";
+            if (!main.systemTrayIconsReplacementEnabled || !main.isEnabled) {
+                return "";
             }
-            const userIcon = main.systemTrayIconUserReplacements.filter(item => item.enabled).find(item => item.hash === trayIconHash)?.icon ?? "";
-            if (userIcon) {
-                customIcon = userIcon;
+            let icon = "";
+            if (Plasmoid.configuration.systemTrayIconBuiltinReplacementsEnabled) {
+                icon = Utils.getTrayIconFromRules(SNIIconRules.rules, rect.widgetProperties);
             }
-            return customIcon;
+            const iconFromUerRule = Utils.getTrayIconFromRules(main.systemTrayIconUserReplacements, rect.widgetProperties);
+            if (iconFromUerRule) {
+                icon = iconFromUerRule;
+            }
+            return icon;
         }
         Binding {
             // https://github.com/KDE/plasma-workspace/blob/fd4e840e7c270b79d35e6978e44d1fe7bdaaa6e7/applets/systemtray/qml/StatusNotifierItem.qml#L25
             target: rect.target?.item?.iconContainer?.children[0] ?? null
             property: "source"
             value: rect.customIcon
-            when: rect.customIcon !== "" && main.systemTrayIconsReplacementEnabled && main.isEnabled && rect.trayIconHash !== ""
+            when: rect.customIcon !== ""
             delayed: true
         }
         property var wRecolorCfg: Utils.getForceFgWidgetConfig(widgetId, widgetName, forceRecolorList)
@@ -1233,7 +1236,7 @@ PlasmoidItem {
         property bool hovered: hoverHandler.hovered
         onHoveredChanged: {
             if (main.logSystemTrayIconChanges && hovered && rect.inTray && rect.trayIconHash) {
-                console.log("Hovered tray item, title:", rect.widgetTitle, "name:", rect.widgetName, "SHA1:", rect.trayIconHash);
+                console.log("Hovered tray item, title:", rect.widgetTitle, "name:", rect.widgetName, "\nSHA1:", rect.trayIconHash, "\nReplacement:", rect.customIcon);
             }
         }
         HoverHandler {
