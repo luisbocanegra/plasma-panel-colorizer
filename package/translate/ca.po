@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-01-03 19:31+0000\n"
+"POT-Creation-Date: 2026-01-08 22:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1134,6 +1134,10 @@ msgid "Remove all"
 msgstr "Trau-ho tot"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Sort"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Replace System Tray icons with icons from the current icon theme or a local file. The built-in rules icons are part of <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus icon theme</a>."
 msgstr "Substitueix icones de la safata d'entrada amb icones del tema actual o d'un fitxer local. Les icones de les regles internes són part del <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">tema d'icones Papirus</a>."
 
@@ -1186,12 +1190,12 @@ msgid "Description"
 msgstr "Descripció"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid "SHA1"
-msgstr "SHA1"
+msgid "SHA1, string or regex to match"
+msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid "Original icon SHA1"
-msgstr "SHA1 de la icona original"
+msgid "Icon SHA1, title or name of the target tray item"
+msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Custom icon"
@@ -1202,9 +1206,8 @@ msgid "Icon name or file"
 msgstr "Nom del fitxer o de la icona"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgctxt "@info:tooltip"
-msgid "Icon name is \"%1\""
-msgstr "El nom de la icona és «%1»."
+msgid "Edit icon"
+msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgctxt "@item:inmenu Open icon chooser dialog"
@@ -1247,6 +1250,16 @@ msgstr "S'executa la versió desactualitzada de %1"
 #: ../contents/ui/main.qml
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr "El panell no s'ha trobat. Aquest giny s'ha de posar a dins d'un panell per tal que funcioni."
+
+#~ msgid "SHA1"
+#~ msgstr "SHA1"
+
+#~ msgid "Original icon SHA1"
+#~ msgstr "SHA1 de la icona original"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid "Icon name is \"%1\""
+#~ msgstr "El nom de la icona és «%1»."
 
 #~ msgid "Text and icon fixes"
 #~ msgstr "Arranjaments de text i icones"

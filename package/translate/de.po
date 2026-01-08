@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-01-03 19:31+0000\n"
+"POT-Creation-Date: 2026-01-08 22:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1128,6 +1128,10 @@ msgid "Remove all"
 msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Sort"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Replace System Tray icons with icons from the current icon theme or a local file. The built-in rules icons are part of <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus icon theme</a>."
 msgstr ""
 
@@ -1180,11 +1184,11 @@ msgid "Description"
 msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid "SHA1"
+msgid "SHA1, string or regex to match"
 msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid "Original icon SHA1"
+msgid "Icon SHA1, title or name of the target tray item"
 msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
@@ -1196,8 +1200,7 @@ msgid "Icon name or file"
 msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgctxt "@info:tooltip"
-msgid "Icon name is \"%1\""
+msgid "Edit icon"
 msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
