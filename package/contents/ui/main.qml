@@ -448,8 +448,8 @@ PlasmoidItem {
             if (inTray && fgEnabled && cfgEnabled) {
                 return Utils.getColor(fgColorCfg, targetIndex, color, itemType, fgColorHolder);
             }
-            if (inTray && (!fgEnabled || !cfgEnabled) && trayWidgetBgItem.cfgEnabled && trayWidgetBgItem.fgColorCfg.enabled) {
-                return trayWidgetBgItem.fgColor;
+            if (inTray && (!fgEnabled || !cfgEnabled) && trayWidgetBgItem?.cfgEnabled && trayWidgetBgItem?.fgColorCfg?.enabled) {
+                return trayWidgetBgItem?.fgColor;
             }
             if (isWidget && fgEnabled && cfgEnabled) {
                 return Utils.getColor(fgColorCfg, targetIndex, color, itemType, fgColorHolder);
@@ -748,8 +748,8 @@ PlasmoidItem {
                 if (rect.marginEnabled && rect.marginLeft !== 0) {
                     margin = rect.marginLeft;
                 }
-                if (main.fillAreaOnDeFloat && main.panelElement.floating && (main.panelElement.floatingness !== 1)) {
-                    margin -= (8 * (1 - main.panelElement.floatingness));
+                if (main.fillAreaOnDeFloat && main.panelElement?.floating && (main.panelElement?.floatingness !== 1)) {
+                    margin -= (8 * (1 - main.panelElement?.floatingness));
                 }
                 return margin;
             }
@@ -765,8 +765,8 @@ PlasmoidItem {
                 if (rect.marginEnabled && rect.marginRight !== 0) {
                     margin = rect.marginRight;
                 }
-                if (main.fillAreaOnDeFloat && main.panelElement.floating && (main.panelElement.floatingness !== 1)) {
-                    margin -= (8 * (1 - main.panelElement.floatingness));
+                if (main.fillAreaOnDeFloat && main.panelElement?.floating && (main.panelElement?.floatingness !== 1)) {
+                    margin -= (8 * (1 - main.panelElement?.floatingness));
                 }
                 return margin;
             }
@@ -1365,7 +1365,7 @@ PlasmoidItem {
     Binding {
         target: main.trayExpandArrow
         property: "iconSize"
-        value: main.horizontal ? main.trayGridView.cellWidth : main.trayGridView.cellHeight
+        value: (main.horizontal ? main.trayGridView?.cellWidth : main.trayGridView?.cellHeight) ?? 0
         when: main.trayGridView !== null && (main.trayWidgetSettings.wideTrayArrow ?? false)
         delayed: true
     }
