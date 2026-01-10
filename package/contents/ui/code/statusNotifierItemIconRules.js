@@ -270,19 +270,3 @@ const rules = [
     "enabled": true
   }
 ];
-
-
-const s = rules.sort((a, b) => {
-  const dA = a.description.toLocaleLowerCase();
-  const dB = b.description.toLocaleLowerCase();
-
-  if (dA < dB) {
-    return -1;
-  }
-  if (dA > dB) {
-    return 1;
-  }
-  return 0;
-});
-
-console.log(JSON.stringify(s));
