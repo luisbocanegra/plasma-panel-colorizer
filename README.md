@@ -55,7 +55,7 @@ Fully-featured widget to bring Latte-Dock and WM status bar customization featur
   - Panel is floating
   - Activities
   - Normal (fall-back when none of the above are meet)
-- [Advanced commandline usage with D-Bus (version 2.0.0 or later)](#advanced-commandline-usage-with-d-bus-version-200-or-later)
+- [Advanced commandline usage with D-Bus](#advanced-commandline-usage-with-d-bus-version-200-or-later)
 
 **Panel/Widget/System Tray elements**
 
@@ -74,6 +74,7 @@ Fully-featured widget to bring Latte-Dock and WM status bar customization featur
   - Border
   - Shadow
 - Blur behind custom background ([requires building and installing the C++ plugin](#build-from-source-with-c-plugin))
+- Replace applications system tray icons (requires the C++ plugin)
 
 **Force Text/Icon color**
 
@@ -321,7 +322,7 @@ Changes to the panel are not permanent and can be removed by disabling the widge
 - Or **Widget Settings** > **Top left** > **Enabled** checkbox
 - Or removing the widget from the panel and restarting Plasma/logging out.
 
-**If you are troubleshooting an issue please do the third option above and read the notice about reporting bugs at the start of [Install](https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#installing) section**
+**If you are troubleshooting an issue please do the third option above and read the notice about reporting bugs at the start of this document**
 
 ### Where are my presets/settings stored? (v1.0.0 or later)
 
