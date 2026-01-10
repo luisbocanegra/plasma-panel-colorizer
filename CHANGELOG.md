@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.3.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.2.0...v6.3.0) (2026-01-10)
+
+
+### Features
+
+* replace system tray icon by matching the item title or name ([953b309](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/953b309408f59d48610577d60186f29122b82d8d))
+* update Polish translation ([89701a4](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/89701a406c8951898117cc15f9a85e583b732bec))
+
+
+### Bug Fixes
+
+* prevent some property type errors ([f8be624](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/f8be624bc42644dc19cb1235a3b7795672ebb698))
+
 ## [6.2.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.1.0...v6.2.0) (2026-01-03)
 
 
