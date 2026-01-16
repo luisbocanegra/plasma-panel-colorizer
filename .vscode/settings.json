@@ -11,21 +11,21 @@
         "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
         "editor.tabSize": 4,
         "editor.formatOnSave": true,
-        "editor.formatOnType": true,
+        "editor.formatOnType": true
     },
     "[qml]": {
         "editor.defaultFormatter": "theqtcompany.qt-qml",
         "editor.tabSize": 4,
         "editor.formatOnSave": true,
-        "editor.formatOnType": true,
+        "editor.formatOnType": true
     },
     "qt-qml.qmlls.enabled": true,
     "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.tabSize": 2,
+        "editor.defaultFormatter": "vscode.typescript-language-features",
+        "editor.tabSize": 4,
         "editor.formatOnSave": true,
-        "editor.formatOnType": true,
+        "editor.formatOnType": true
     },
     "editor.indentSize": "tabSize",
-    "editor.insertSpaces": true,
+    "editor.insertSpaces": true
 }

@@ -4,6 +4,6 @@
         "ms-vscode.cmake-tools",
         "llvm-vs-code-extensions.vscode-clangd",
         "TheQtCompany.qt",
-        "esbenp.prettier-vscode"
+        "vscode.typescript-language-features"
     ]
 }
