@@ -156,6 +156,19 @@ ColumnLayout {
             }
         }
 
+        DoubleSpinBox {
+            id: widgetOpacity
+            visible: root.elementName !== "panel"
+            Kirigami.FormData.label: i18n("Opacity:")
+            from: 0 * multiplier
+            to: 1 * multiplier
+            value: (root.configLocal.opacity ?? 0) * multiplier
+            onValueModified: {
+                root.configLocal.opacity = value / widgetOpacity.multiplier;
+                root.updateConfig();
+            }
+        }
+
         RowLayout {
             visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
             Label {

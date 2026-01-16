@@ -858,6 +858,14 @@ PlasmoidItem {
         }
 
         Binding {
+            target: rect.target
+            property: "opacity"
+            value: rect.cfg?.opacity ?? 1
+            when: (rect.isWidget || rect.inTray || rect.isTrayArrow) && rect.cfg?.opacity !== undefined
+            delayed: true
+        }
+
+        Binding {
             target: rect.target.applet?.plasmoid ?? null
             property: "status"
             when: (rect.hideCfg?.hide ?? false) && !main.editMode

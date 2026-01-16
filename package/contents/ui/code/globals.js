@@ -201,6 +201,7 @@ const baseWidgetConfig = {
     border: baseBorder,
     borderSecondary: baseBorder,
     shadow: baseShadowConfig,
+    opacity: 1.0,
 };
 
 const baseTrayConfig = {
@@ -213,6 +214,7 @@ const baseTrayConfig = {
     border: baseBorder,
     borderSecondary: baseBorder,
     shadow: baseShadowConfig,
+    opacity: 1.0,
 };
 
 const baseOverride = {
@@ -226,6 +228,7 @@ const baseOverride = {
     borderSecondary: baseBorder,
     shadow: baseShadowConfig,
     enabled: true,
+    opacity: 1.0,
 };
 
 const baseOverrideConfig = {
