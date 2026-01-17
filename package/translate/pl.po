@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-01-08 22:11+0000\n"
+"POT-Creation-Date: 2026-01-17 23:04+0000\n"
 "PO-Revision-Date: 2026-01-09 01:06+0100\n"
 "Last-Translator: RygorrMortis <rygorrmortis@github.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -81,6 +81,7 @@ msgid "Panel Colorizer is disabled"
 msgstr "Koloryzator panelu jest wyłączony"
 
 #: ../contents/ui/components/CategoryDisabled.qml
+#: ../contents/ui/components/FormWidgetSettings.qml
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Enable"
 msgstr "Włącz"
@@ -507,6 +508,10 @@ msgid "Shape"
 msgstr "Kształt"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Font"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Spacing:"
 msgstr "Odstęp:"
 
@@ -518,6 +523,40 @@ msgstr ""
 "<strong>Nieparzyste</strong> wartości są automatycznie konwertowane na "
 "<strong>parzyste</strong>, jeśli używana jest funkcja <strong>Ujednolicone "
 "tło</strong>."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Custom font:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"A plasmashell restart is required to restore the original values after "
+"disabling any font setting. <a href=\"#\">Restart now</a>."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Font family:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Override"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Italic:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Underline:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Font weight:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Font size:"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Background Color"
@@ -1315,24 +1354,15 @@ msgstr ""
 
 #: ../contents/ui/configTextIconFix.qml
 msgid ""
-"Fix text and icon colors for widgets where the normal method doesn't work or "
-"isn't permanent.<br> - <strong>Mask</strong>: Force color on SVG icons, "
-"useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color "
-"on text and icons using post-processing effect, useful for non-symbolic "
-"icons.<br> - <strong>Refresh</strong>: Re-apply color at a fixed interval, "
-"useful for widgets that recreate or recolor content themselves<br>To restore "
-"the <strong>Mask<strong> and <strong>Color Effect</strong> disable and "
-"restart Plasma or logout."
+"Fix text and icon colors/font for widgets where the normal method doesn't "
+"work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on "
+"SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: "
+"Force color on text and icons using post-processing effect, useful for non-"
+"symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a "
+"fixed interval, useful for widgets that recreate or recolor content "
+"themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</"
+"strong> disable and restart Plasma or logout."
 msgstr ""
-"Popraw kolory tekstu i ikon dla widżetów, gdzie normalna metoda nie działa "
-"lub nie jest trwała.<br> - <strong>Maska</strong>: Wymuś kolor na ikonach "
-"SVG, przydatne dla ikon symbolicznych.<br> - <strong>Efekt koloru </strong>: "
-"Wymuś kolor na tekście i ikonach za pomocą efektu post-processing, przydatne "
-"dla ikon nie-symbolicznych.<br> - <strong>Odśwież</strong>: Ponownie "
-"zastosuj kolor w stałym interwale, przydatne dla widżetów, które odtwarzają "
-"lub recolorują zawartość samodzielnie<br>Aby przywrócić <strong>Maskę</"
-"strong> i <strong>Efekt koloru</strong> wyłącz i zrestartuj Plasma lub "
-"wyloguj się."
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
@@ -1500,6 +1530,26 @@ msgstr "Uruchamiasz przestarzałą wersję %1"
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr ""
 "Nie znaleziono panelu, ten widżet musi być umieszczony na panelu, aby działał"
+
+#~ msgid ""
+#~ "Fix text and icon colors for widgets where the normal method doesn't work "
+#~ "or isn't permanent.<br> - <strong>Mask</strong>: Force color on SVG "
+#~ "icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: "
+#~ "Force color on text and icons using post-processing effect, useful for "
+#~ "non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color at a "
+#~ "fixed interval, useful for widgets that recreate or recolor content "
+#~ "themselves<br>To restore the <strong>Mask<strong> and <strong>Color "
+#~ "Effect</strong> disable and restart Plasma or logout."
+#~ msgstr ""
+#~ "Popraw kolory tekstu i ikon dla widżetów, gdzie normalna metoda nie "
+#~ "działa lub nie jest trwała.<br> - <strong>Maska</strong>: Wymuś kolor na "
+#~ "ikonach SVG, przydatne dla ikon symbolicznych.<br> - <strong>Efekt koloru "
+#~ "</strong>: Wymuś kolor na tekście i ikonach za pomocą efektu post-"
+#~ "processing, przydatne dla ikon nie-symbolicznych.<br> - <strong>Odśwież</"
+#~ "strong>: Ponownie zastosuj kolor w stałym interwale, przydatne dla "
+#~ "widżetów, które odtwarzają lub recolorują zawartość samodzielnie<br>Aby "
+#~ "przywrócić <strong>Maskę</strong> i <strong>Efekt koloru</strong> wyłącz "
+#~ "i zrestartuj Plasma lub wyloguj się."
 
 #~ msgid "SHA1"
 #~ msgstr "SHA1"
