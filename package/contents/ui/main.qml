@@ -192,6 +192,9 @@ PlasmoidItem {
         }
         return replacements;
     }
+    // Used by Utils.pointToPixel()
+    // https://invent.kde.org/plasma/plasma-workspace/-/blob/d5ca4251661b5adfdb9b87a4c932ed6971376cbe/applets/digital-clock/DigitalClock.qml#L133
+    property real pixelsPerInch: Screen.pixelDensity * 25.4
     signal recolorCountChanged
     signal refreshNeeded
     signal updateUnified
@@ -403,6 +406,10 @@ PlasmoidItem {
         property bool cfgEnabled: cfg.enabled && isEnabled
         property bool bgEnabled: bgColorCfg.enabled
         property bool fgEnabled: fgColorCfg.enabled
+        property var fontCfg: cfg.fontConfig
+        onFontCfgChanged: {
+            recolorTimer.restart();
+        }
         property bool radiusEnabled: cfgEnabled && cfg.radius.enabled
 
         property bool panelTouchingTop: isPanel && main.panelElement && !main.panelIsFloating && main.panelPosition.location === "top"
@@ -593,7 +600,7 @@ PlasmoidItem {
                     return;
                 if (isTray && trayWidgetSettings.normal.foregroundColor.enabled)
                     return;
-                const result = Utils.applyFgColor(target, fgColor, fgColorCfg, 0, wRecolorCfg, fgColorModified, colorEffectComponent, repaintDebugComponent);
+                const result = Utils.applyFgColor(rect.target, rect.fgColor, rect.fgColorCfg, 0, rect.wRecolorCfg, rect.fgColorModified, rect.fontCfg);
                 if (result) {
                     itemCount = result.count;
                     maxDepth = result.depth;

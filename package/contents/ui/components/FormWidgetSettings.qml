@@ -26,6 +26,20 @@ ColumnLayout {
     property string configString: "{}"
     property var config: handleString ? JSON.parse(configString) : undefined
 
+    property bool showFontConfig: elementName === "" || elementName === "widgets"
+
+    property var fontsModel: {
+        let arr = [];
+        const fonts = Qt.fontFamilies();
+        for (var i = 0; i < fonts.length; i++) {
+            arr.push({
+                text: fonts[i],
+                value: fonts[i]
+            });
+        }
+        return arr;
+    }
+
     property string stateName: {
         if (elementState === Enum.WidgetStates.Normal) {
             return "normal";
@@ -192,7 +206,7 @@ ColumnLayout {
 
         Item {
             // spacing between controls
-            visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+            visible: root.elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
             height: 0.5 * Kirigami.Units.gridUnit
         }
 
@@ -422,6 +436,13 @@ ColumnLayout {
                 text: i18n("Shadow")
                 checked: currentTab === 3
                 onTriggered: currentTab = 3
+            },
+            Kirigami.Action {
+                icon.name: "font-symbolic"
+                text: i18n("Font")
+                checked: currentTab === 4
+                onTriggered: currentTab = 4
+                visible: root.elementName === "" || root.elementName === "widgets"
             }
         ]
     }
@@ -461,6 +482,160 @@ ColumnLayout {
                 hoverEnabled: true
                 ToolTip.visible: hovered
             }
+        }
+
+        CheckBox {
+            id: customFont
+            Kirigami.FormData.label: i18n("Custom font:")
+            text: i18n("Enable")
+            checked: root.configLocal.fontConfig.enabled
+            onCheckedChanged: {
+                root.configLocal.fontConfig.enabled = checked;
+                root.updateConfig();
+            }
+            visible: (root.showFontConfig) && root.currentTab === 4
+        }
+        Label {
+            visible: (root.showFontConfig) && root.currentTab === 4
+            text: i18n("A plasmashell restart is required to restore the original values after disabling any font setting. <a href=\"#\">Restart now</a>.")
+            onLinkActivated: {
+                runCommand.run("systemctl restart --user plasma-plasmashell");
+            }
+            font: Kirigami.Theme.smallFont
+            color: Kirigami.Theme.disabledTextColor
+            wrapMode: Label.Wrap
+            Layout.maximumWidth: 400
+            HoverHandler {
+                cursorShape: Qt.PointingHandCursor
+            }
+        }
+        RowLayout {
+            Kirigami.FormData.label: i18n("Font family:")
+            visible: (root.showFontConfig) && root.currentTab === 4
+            enabled: customFont.checked
+            CheckBox {
+                id: familyOverride
+                text: i18n("Override")
+                checked: root.configLocal.fontConfig.font.familyOverride
+                onCheckedChanged: {
+                    root.configLocal.fontConfig.font.familyOverride = checked;
+                    root.updateConfig();
+                }
+            }
+            ComboBox {
+                model: root.fontsModel
+                textRole: "text"
+                valueRole: "value"
+                popup.height: 200
+                currentValue: root.configLocal.fontConfig.font.family
+                onActivated: {
+                    root.configLocal.fontConfig.font.family = currentValue;
+                    root.updateConfig();
+                }
+                enabled: familyOverride.checked
+            }
+        }
+
+        RowLayout {
+            Kirigami.FormData.label: i18n("Italic:")
+            visible: (root.showFontConfig) && root.currentTab === 4
+            enabled: customFont.checked
+            CheckBox {
+                id: italicOverride
+                text: i18n("Override")
+                checked: root.configLocal.fontConfig.font.italicOverride
+                onCheckedChanged: {
+                    root.configLocal.fontConfig.font.italicOverride = checked;
+                    root.updateConfig();
+                }
+            }
+            CheckBox {
+                text: i18n("Enable")
+                checked: root.configLocal.fontConfig.font.italic
+                onCheckedChanged: {
+                    root.configLocal.fontConfig.font.italic = checked;
+                    root.updateConfig();
+                }
+                enabled: italicOverride.checked
+            }
+        }
+        RowLayout {
+            Kirigami.FormData.label: i18n("Underline:")
+            visible: (root.showFontConfig) && root.currentTab === 4
+            enabled: customFont.checked
+            CheckBox {
+                id: underlineOverride
+                text: i18n("Override")
+                checked: root.configLocal.fontConfig.font.underlineOverride
+                onCheckedChanged: {
+                    root.configLocal.fontConfig.font.underlineOverride = checked;
+                    root.updateConfig();
+                }
+            }
+            CheckBox {
+                text: i18n("Enable")
+                checked: root.configLocal.fontConfig.font.underline
+                onCheckedChanged: {
+                    root.configLocal.fontConfig.font.underline = checked;
+                    root.updateConfig();
+                }
+                enabled: underlineOverride.checked
+            }
+        }
+        RowLayout {
+            Kirigami.FormData.label: i18n("Font weight:")
+            visible: (root.showFontConfig) && root.currentTab === 4
+            enabled: customFont.checked
+            CheckBox {
+                id: weightOverride
+                text: i18n("Override")
+                checked: root.configLocal.fontConfig.font.weightOverride
+                onCheckedChanged: {
+                    root.configLocal.fontConfig.font.weightOverride = checked;
+                    root.updateConfig();
+                }
+            }
+            SpinBox {
+                from: 100
+                to: 1000
+                stepSize: 100
+                value: root.configLocal.fontConfig.font.weight
+                onValueChanged: {
+                    root.configLocal.fontConfig.font.weight = value;
+                    root.updateConfig();
+                }
+                enabled: weightOverride.checked
+            }
+        }
+        RowLayout {
+            Kirigami.FormData.label: i18n("Font size:")
+            visible: (root.showFontConfig) && root.currentTab === 4
+            enabled: customFont.checked
+            CheckBox {
+                id: pointSizeOverride
+                text: i18n("Override")
+                checked: root.configLocal.fontConfig.font.pointSizeOverride
+                onCheckedChanged: {
+                    root.configLocal.fontConfig.font.pointSizeOverride = checked;
+                    root.updateConfig();
+                }
+            }
+            SpinBox {
+                from: 1
+                to: 1000
+                stepSize: 1
+                value: root.configLocal.fontConfig.font.pointSize
+                onValueChanged: {
+                    root.configLocal.fontConfig.font.pointSize = value;
+                    root.updateConfig();
+                }
+                enabled: pointSizeOverride.checked
+            }
+        }
+        Item {
+            // spacing between controls
+            visible: (root.showFontConfig)
+            height: 0.5 * Kirigami.Units.gridUnit
         }
     }
 

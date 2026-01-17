@@ -1021,20 +1021,21 @@ function getColor(
 }
 
 function applyFgColor(
-    element,
+    target,
     newColor,
     fgColorCfg,
     depth,
     wRecolorCfg,
     fgColorModified,
+    fontCfg,
 ) {
     let count = 0;
     let maxDepth = depth;
     const forceMask = wRecolorCfg?.method?.mask ?? false;
     const forceEffect = wRecolorCfg?.method?.multiEffect ?? false;
 
-    for (var i = 0; i < element.visibleChildren.length; i++) {
-        var child = element.visibleChildren[i];
+    for (var i = 0; i < target.visibleChildren.length; i++) {
+        var child = target.visibleChildren[i];
         let targetTypes = [Text, ToolButton, Label, Canvas, Kirigami.Icon];
         if (
             targetTypes.some(function (type) {
@@ -1056,6 +1057,26 @@ function applyFgColor(
 
             if ("isMask" in child && forceMask) {
                 child.isMask = true;
+            }
+
+            if (child instanceof Text) {
+                if (fontCfg && fontCfg.enabled) {
+                    if (fontCfg.font.familyOverride) {
+                        child.font.family = fontCfg.font.family;
+                    }
+                    if (fontCfg.font.italicOverride) {
+                        child.font.italic = fontCfg.font.italic;
+                    }
+                    if (fontCfg.font.underlineOverride) {
+                        child.font.underline = fontCfg.font.underline;
+                    }
+                    if (fontCfg.font.weightOverride) {
+                        child.font.weight = fontCfg.font.weight;
+                    }
+                    if (fontCfg.font.pointSizeOverride) {
+                        child.font.pixelSize = pointToPixel(fontCfg.font.pointSize);
+                    }
+                }
             }
 
             if (
@@ -1089,6 +1110,7 @@ function applyFgColor(
                 depth + 1,
                 wRecolorCfg,
                 fgColorModified,
+                fontCfg,
             );
             count += result.count;
             if (result.depth > maxDepth) {
@@ -1135,4 +1157,10 @@ function getTrayIconFromRules(rules, trayItemProperties) {
             );
         })?.icon ?? ""
     );
+}
+
+
+// https://invent.kde.org/plasma/plasma-workspace/-/blob/d5ca4251661b5adfdb9b87a4c932ed6971376cbe/applets/digital-clock/DigitalClock.qml#L133
+function pointToPixel(pointSize) {
+    return Math.round(pointSize / 72 * main.pixelsPerInch);
 }

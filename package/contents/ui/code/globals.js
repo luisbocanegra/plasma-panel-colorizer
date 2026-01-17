@@ -149,6 +149,22 @@ const baseMargin = {
     },
 };
 
+const baseFontConfig = {
+    enabled: false,
+    font: {
+        familyOverride: false,
+        family: "",
+        weightOverride: false,
+        weight: 400,
+        italicOverride: false,
+        italic: true,
+        underlineOverride: false,
+        underline: true,
+        pointSizeOverride: false,
+        pointSize: 10
+    }
+};
+
 const baseBorder = {
     enabled: false,
     customSides: false,
@@ -202,6 +218,7 @@ const baseWidgetConfig = {
     borderSecondary: baseBorder,
     shadow: baseShadowConfig,
     opacity: 1.0,
+    fontConfig: baseFontConfig,
 };
 
 const baseTrayConfig = {
@@ -229,6 +246,7 @@ const baseOverride = {
     shadow: baseShadowConfig,
     enabled: true,
     opacity: 1.0,
+    fontConfig: baseFontConfig,
 };
 
 const baseOverrideConfig = {
