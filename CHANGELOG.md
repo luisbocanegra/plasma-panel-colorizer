@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.4.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.3.0...v6.4.0) (2026-01-17)
+
+
+### Features
+
+* allow to override widget/tray icon opacity ([037a379](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/037a379477a51461564b16ee12ad564415c9591c))
+* font customization ([c1ae15a](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/c1ae15a6860d3348ca34e3d215f8217e8423697a))
+
 ## [6.3.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.2.0...v6.3.0) (2026-01-10)
 
 
