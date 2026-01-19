@@ -6,18 +6,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
-"Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
-"colorizer\n"
+"Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer"
+"\n"
 "POT-Creation-Date: 2026-01-17 23:04+0000\n"
-"PO-Revision-Date: 2026-01-09 01:06+0100\n"
+"PO-Revision-Date: 2026-01-18 08:43+0100\n"
 "Last-Translator: RygorrMortis <rygorrmortis@github.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 |"
+"| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 25.12.1\n"
 
 #: ../metadata.json
@@ -509,7 +509,7 @@ msgstr "Kształt"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Font"
-msgstr ""
+msgstr "Czcionka"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Spacing:"
@@ -526,37 +526,40 @@ msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Custom font:"
-msgstr ""
+msgstr "Niestandardowa czcionka:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
 "A plasmashell restart is required to restore the original values after "
 "disabling any font setting. <a href=\"#\">Restart now</a>."
 msgstr ""
+"Do przywrócenia oryginalnych wartości po wyłączeniu dowolnego ustawienia"
+"czcionki wymagany jest restart plasmashell. <a href=\"#\">Uruchom ponownie t"
+"eraz</a>."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Font family:"
-msgstr ""
+msgstr "Rodzina czcionek:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Override"
-msgstr ""
+msgstr "Nadpisz"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Italic:"
-msgstr ""
+msgstr "Kursywa:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Underline:"
-msgstr ""
+msgstr "Podkreślenie:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Font weight:"
-msgstr ""
+msgstr "Grubość czcionki:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Font size:"
-msgstr ""
+msgstr "Rozmiar czcionki:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Background Color"
@@ -1363,6 +1366,19 @@ msgid ""
 "themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</"
 "strong> disable and restart Plasma or logout."
 msgstr ""
+"Naprawia kolory tekstu i ikon oraz czcionkę w widżetach, w których zwykła meto"
+"da "
+"nie działa lub jest przez widżet resetowana.<br>"
+" - <strong>Maska</strong>: wymusza kolor na ikonach SVG – przydatne zwłaszcza "
+"dla ikon symbolicznych<br>"
+" - <strong>Efekt koloru</strong>: wymusza kolor na tekście i ikonach za pomocą"
+" "
+"efektu post-processingu – przydatne dla ikon niesymbolicznych<br>"
+" - <strong>Odświeżanie</strong>: cyklicznie ponownie nakłada kolor/czcionkę – "
+"przydatne dla widżetów, które same odtwarzają lub przekolorowują zawartość<br>"
+"Aby przywrócić działanie <strong>Maski</strong> oraz <strong>Efektu koloru</st"
+"rong>, "
+"wyłącz te opcje i zrestartuj Plasmę albo się wyloguj."
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
