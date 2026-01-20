@@ -37,7 +37,7 @@ msgstr "Voorinstellingen"
 
 #: ../contents/config/config.qml
 msgid "Presets auto-loading"
-msgstr "Voorinstellingen automatisch laden"
+msgstr "Automatisch laden"
 
 #: ../contents/config/config.qml
 msgid "Appearance"
