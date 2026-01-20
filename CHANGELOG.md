@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.5.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.4.0...v6.5.0) (2026-01-20)
+
+
+### Features
+
+* update Dutch translation ([#441](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/441)) ([e4492ac](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/e4492acbc4aabaa226cfa4a5b1919bd88f15dc3c))
+* update Polish translation ([2b2159c](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/2b2159c67f127aeb1ff8f01c7cfd0ad06b109949))
+
+
+### Bug Fixes
+
+* Appearance/Override tabs not loading with Qt older than 6.10 ([c7b7c42](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/c7b7c42d7bb033b30f26b878b965e2796403edfa))
+
 ## [6.4.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.3.0...v6.4.0) (2026-01-17)
 
 
