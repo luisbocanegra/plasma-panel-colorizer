@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
 "POT-Creation-Date: 2026-01-17 23:04+0000\n"
-"PO-Revision-Date: 2025-11-25 10:50+0100\n"
+"PO-Revision-Date: 2026-01-20 10:36+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -69,7 +69,7 @@ msgstr "Widgets verbergen"
 
 #: ../contents/config/config.qml
 msgid "System Tray Icons Replacer"
-msgstr ""
+msgstr "Systeemvakpictogrammen vervangen"
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -124,8 +124,8 @@ msgid ""
 msgstr ""
 "Let op: kies altijd voor een geheel getal bij het gebruik van "
 "<strong>widgeteislanden</strong> om problemen te voorkomen! <a "
-"href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
-"issues/64\">Zie #64 (Engels)<a/>"
+"href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/"
+"64\">Zie #64 (Engels)<a/>"
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Custom widths:"
@@ -406,12 +406,13 @@ msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Wide expand button:"
-msgstr ""
+msgstr "Brede uitvouwknop:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
 "Make the System Tray expand button be the same width as the other tray items"
 msgstr ""
+"Maak de uitvouwknop van het systeemvak even breed als de rest van de items"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Force floating applets"
@@ -506,7 +507,7 @@ msgstr "Vorm"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Font"
-msgstr ""
+msgstr "Lettertype"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Spacing:"
@@ -523,37 +524,39 @@ msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Custom font:"
-msgstr ""
+msgstr "Eigen lettertype:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
 "A plasmashell restart is required to restore the original values after "
 "disabling any font setting. <a href=\"#\">Restart now</a>."
 msgstr ""
+"Herstart plasmashell om de oorspronkelijke instellingen terug te zetten na "
+"het uitschakelen hiervan. <a href=\"#\">Nu herstarten</a>."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Font family:"
-msgstr ""
+msgstr "Lettertype:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Override"
-msgstr ""
+msgstr "Afdwingen"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Italic:"
-msgstr ""
+msgstr "Cursief:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Underline:"
-msgstr ""
+msgstr "Onderstrepen:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Font weight:"
-msgstr ""
+msgstr "Dikte:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Font size:"
-msgstr ""
+msgstr "Tekstgrootte:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Background Color"
@@ -1360,6 +1363,16 @@ msgid ""
 "themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</"
 "strong> disable and restart Plasma or logout."
 msgstr ""
+"Los problemen omtrent kleuren en lettertypen op, op widgets waarop de "
+"gebruikelijke methode niet werkt of waar de widget iets anders afdwingt.<br> "
+"- <strong>Maskeren</strong>: dwing gekleurde svg-pictogrammen af, nuttig "
+"voor symbolische pictogrammen.<br> - <strong>Kleureffect</strong>: dwing "
+"gekleurde tekst en pictogrammen af met behulp van een naverwerkingseffect, "
+"nuttig voor niet-symbolische pictogrammen.<br> - <strong>Herladen</strong>: "
+"pas kleuren en lettertypen op gezette tijden af, nuttig voor widgets die de "
+"inhoud periodiek vernieuwen.<br>Herstart Plasma of meld af en weer aan om de "
+"<strong>maskeer<strong>- en <strong>kleureffect</strong>instellingen uit te "
+"schakelen."
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
@@ -1376,15 +1389,15 @@ msgstr "Herladen, elke"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Add new"
-msgstr ""
+msgstr "Toevoegen"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Remove all"
-msgstr ""
+msgstr "Alles verwijderen"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Sort"
-msgstr ""
+msgstr "Sorteren"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid ""
@@ -1392,14 +1405,23 @@ msgid ""
 "file. The built-in rules icons are part of <a href=\"https://github.com/"
 "PapirusDevelopmentTeam/papirus-icon-theme\">Papirus icon theme</a>."
 msgstr ""
+"Vervang de systeemvakpictogrammen door die van het huidige pictogramthema of "
+"lokale bestanden. De meegeleverde regels zijn afkomstig van het <a "
+"href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-"
+"theme\">Papirus-pictogramthema</a>."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid ""
 "C++ plugin not found, this feature will not work. Install the plugin and "
-"reboot or restart plasmashell to be able to use it <a href=\"https://github."
-"com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-"
+"reboot or restart plasmashell to be able to use it <a href=\"https://"
+"github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-"
 "file#manually\">Install instructions</a>."
 msgstr ""
+"Deze functie werkt niet, omdat de C++-plug-in niet is aangetroffen. "
+"Installeer de plug-in en herstart (plasmashell) om de functie te kunnen "
+"gebruiken. Zie ook de <a href=\"https://github.com/luisbocanegra/plasma-"
+"panel-colorizer?tab=readme-ov-file#manually\">installatieaanwijzingen</a> "
+"(Engels)."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid ""
@@ -1408,84 +1430,89 @@ msgid ""
 "href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-"
 "file#manually\">Install instructions</a>."
 msgstr ""
+"Deze functie werkt niet, omdat de C++-plug-in verouderd is. Installeer de "
+"plug-in en herstart (plasmashell) om de functie te kunnen gebruiken. Zie ook "
+"de <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?"
+"tab=readme-ov-file#manually\">installatieaanwijzingen</a> (Engels)."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Log icon changes:"
-msgstr ""
+msgstr "Pictogramaanpassingen bijhouden:"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Icon hashes will be printed to the system log"
 msgstr ""
+"Controlesommen van pictogrammen worden vastgelegd in het systeemlogboek"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Enable built-in rules:"
-msgstr ""
+msgstr "Meegeleverde regels gebruiken:"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Show"
-msgstr ""
+msgstr "Tonen"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "How to use"
-msgstr ""
+msgstr "Gebruiksaanwijzing"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Built-in Rules (read only)"
-msgstr ""
+msgstr "Meegeleverde regels gebruiken (alleen-lezen)"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "User Rules"
-msgstr ""
+msgstr "Eigen regels"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Whether or not this replacement is enabled"
-msgstr ""
+msgstr "Of deze vervanging is ingeschakeld"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Description (optional)"
-msgstr ""
+msgstr "Beschrijving (optioneel)"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Description"
-msgstr ""
+msgstr "Beschrijving"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "SHA1, string or regex to match"
-msgstr ""
+msgstr "Overeen te komen SHA1, tekenreeks of reguliere uitdrukking"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Icon SHA1, title or name of the target tray item"
-msgstr ""
+msgstr "SHA1, titel of naam van het systeemvakitem in kwestie"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Custom icon"
-msgstr ""
+msgstr "Eigen pictogram"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Icon name or file"
-msgstr ""
+msgstr "Pictogramnaam of -bestand"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Edit icon"
-msgstr ""
+msgstr "Pictogram bewerken"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgctxt "@item:inmenu Open icon chooser dialog"
 msgid "Choose…"
-msgstr ""
+msgstr "Kiezen…"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgctxt "@action:inmenu"
 msgid "Remove icon"
-msgstr ""
+msgstr "Pictogram verwijderen"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Copy to User Rules"
-msgstr ""
+msgstr "Kopiëren naar eigen regels"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Copy rule"
-msgstr ""
+msgstr "Regel kopiëren"
 
 #: ../contents/ui/configUnifiedBackground.qml
 msgid ""
