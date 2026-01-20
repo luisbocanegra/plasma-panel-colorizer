@@ -527,7 +527,10 @@ ColumnLayout {
                 textRole: "text"
                 valueRole: "value"
                 popup.height: 200
-                currentValue: root.configLocal.fontConfig.font.family
+                currentIndex: {
+                    let newValue = indexOfValue(root.configLocal.fontConfig.font.family);
+                    return newValue !== -1 ? newValue : 0;
+                }
                 onActivated: {
                     root.configLocal.fontConfig.font.family = currentValue;
                     root.updateConfig();

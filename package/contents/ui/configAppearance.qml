@@ -122,7 +122,9 @@ KCM.SimpleKCM {
             elementFriendlyName: targetComponent.currentText
             followVisbility: root.followVisbility[targetComponent.currentValue]
             onElementStateChanged: root.currentState = elementState
-            onTabChanged: root.currentTab = currentTab
+            onTabChanged: currentTab => {
+                root.currentTab = currentTab;
+            }
             onUpdateConfigString: (newString, newConfig) => {
                 root.cfg_globalSettings = JSON.stringify(newConfig);
             }
