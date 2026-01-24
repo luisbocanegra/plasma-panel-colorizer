@@ -9,13 +9,14 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
 "POT-Creation-Date: 2026-01-17 23:04+0000\n"
-"PO-Revision-Date: 2025-06-05 23:14+0800\n"
-"Last-Translator: Mill413 <mill413@outlook.com>\n"
+"PO-Revision-Date: 2026-01-24 16:46+0800\n"
+"Last-Translator: Mill Haruto <mill413@outlook.com>\n"
 "Language-Team: \n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
 
 #: ../metadata.json
 msgid "Panel colorizer"
@@ -43,7 +44,7 @@ msgstr "原生面板设置"
 
 #: ../contents/config/config.qml
 msgid "Widget Islands"
-msgstr ""
+msgstr "Widget Islands"
 
 #: ../contents/config/config.qml
 msgid "Preset Overrides"
@@ -55,15 +56,15 @@ msgstr "全局覆盖"
 
 #: ../contents/config/config.qml
 msgid "Text/Icon Fixes"
-msgstr ""
+msgstr "文本/图标修复"
 
 #: ../contents/config/config.qml
 msgid "Hide Widgets"
-msgstr ""
+msgstr "隐藏挂件"
 
 #: ../contents/config/config.qml
 msgid "System Tray Icons Replacer"
-msgstr ""
+msgstr "系统托盘图标替换"
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -279,7 +280,7 @@ msgstr "内边距"
 
 #: ../contents/ui/components/FormPadding.qml
 msgid "Horizontal and vertical padding only work properly when the panel is on the same orientation."
-msgstr ""
+msgstr "仅当面板方向一致时，水平与垂直内边距才能正常工作。"
 
 #: ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormWidgetSettings.qml
 msgid "Shadow"
@@ -307,7 +308,7 @@ msgstr "外边距"
 
 #: ../contents/ui/components/FormShape.qml
 msgid "Requires plasmashell restart after disabling to restore the default. <a href=\"#\">Restart now</a>."
-msgstr ""
+msgstr "禁用后需重启 plasmashell 以恢复默认设置。<a href=\"#\">立即重启</a>。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel:"
@@ -335,17 +336,19 @@ msgstr "设置为 0 可保留自定义背景模糊所需的遮罩。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Floating applets:"
-msgstr ""
+msgstr "浮动小部件："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Allow changes (Plasma 6.4.0 and later)"
-msgstr ""
+msgstr "允许修改（Plasma 6.4.0 及更高版本）"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
 "Since version 6.4.0, Plasma now has a built-in <b>Floating panel and applets</b> option, enabling this overrides that option.\n"
 "⚠️Changing <b>Floating</b> from the panel configuration will not work with this is enabled!"
 msgstr ""
+"自 6.4.0 版本起，Plasma 现已内置<b>浮动面板与小部件</b>选项。启用本功能将覆盖该内置选项。\n"
+"⚠️启用本功能后，从面板配置中更改<b>浮动</b>设置将无效！"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Wide expand button:"
@@ -365,19 +368,19 @@ msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Resize content when panel enters/exits floating state"
-msgstr ""
+msgstr "当面板进入/退出浮动状态时，调整内容大小"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Panel de-float:"
-msgstr ""
+msgstr "取消面板浮动"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Remove custom background rounded corners and borders on screen edge when panel is not floating"
-msgstr ""
+msgstr "当面板未浮动时，移除屏幕边缘的自定义背景圆角与边框。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Customization"
-msgstr ""
+msgstr "自定义"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "State:"
@@ -425,11 +428,11 @@ msgstr "插件安装说明"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Shape"
-msgstr ""
+msgstr "形状"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Font"
-msgstr ""
+msgstr "字体"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Spacing:"
@@ -441,35 +444,35 @@ msgstr "若启用<strong>统一背景</strong>功能，<strong>奇数</strong>�
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Custom font:"
-msgstr ""
+msgstr "自定义字体："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "A plasmashell restart is required to restore the original values after disabling any font setting. <a href=\"#\">Restart now</a>."
-msgstr ""
+msgstr "禁用任何字体设置后，需重启 plasmashell 以恢复原始值。<a href=\"#\">立即重启</a>。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Font family:"
-msgstr ""
+msgstr "字体名称："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Override"
-msgstr ""
+msgstr "覆盖"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Italic:"
-msgstr ""
+msgstr "斜体："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Underline:"
-msgstr ""
+msgstr "下划线："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Font weight:"
-msgstr ""
+msgstr "字体粗细："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Font size:"
-msgstr ""
+msgstr "字体大小："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Background Color"
@@ -505,7 +508,7 @@ msgstr "前景阴影颜色"
 
 #: ../contents/ui/components/Header.qml
 msgid "None"
-msgstr ""
+msgstr "无"
 
 #: ../contents/ui/components/Header.qml
 msgid "Enable %1:"
@@ -689,15 +692,15 @@ msgstr "隐藏挂件："
 
 #: ../contents/ui/configGeneral.qml
 msgid "Visible in Panel Edit Mode"
-msgstr ""
+msgstr "面板编辑模式下可见"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Configure from any widget:"
-msgstr ""
+msgstr "从任意挂件进入配置："
 
 #: ../contents/ui/configGeneral.qml
 msgid "Disable to remove <b>%1</b> option from other widget's context (right-click) menu."
-msgstr ""
+msgstr "禁用以从其他挂件右键菜单中移除 <b>%1</b> 选项"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Debug mode:"
@@ -753,7 +756,7 @@ msgstr "D-Bus 名称："
 
 #: ../contents/ui/configGeneral.qml
 msgid "Each Panel Colorizer instance has its own D-Bus name."
-msgstr ""
+msgstr "每个 Panel Colorizer 实例都有自己的 D-Bus 名称。"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Python 3 executable:"
@@ -765,7 +768,7 @@ msgstr "需在后台运行 D-Bus 服务"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Usage examples:"
-msgstr ""
+msgstr "使用示例："
 
 #: ../contents/ui/configGeneral.qml
 msgid "Apply a preset:"
@@ -784,8 +787,9 @@ msgid "Hide/show all panels"
 msgstr "隐藏/显示所有面板"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
+#, fuzzy
 msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides are independent of presets and will be applied on top of the current settings and across presets.<br>To blacklist a widget from modifications, <b>uncheck</b> options <b>Enable</b> and <b>Fallback</b>, and apply the override to the widget."
-msgstr ""
+msgstr "创建配置覆盖并应用于一个或多个挂件。这些覆盖独立于预设方案，将叠加于当前设置之上，并在所有预设方案中生效。<br>若要"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Restore default (removes all overrides)"
@@ -797,7 +801,7 @@ msgstr "配置覆盖"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "New override"
-msgstr ""
+msgstr "新覆盖"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Override settings"
@@ -809,7 +813,7 @@ msgstr "覆盖名称"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Rename"
-msgstr ""
+msgstr "重命名"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid "Fallback:"
@@ -825,11 +829,11 @@ msgstr "覆盖按从上到下顺序应用。若多个覆盖共享同一选项，
 
 #: ../contents/ui/configHideWidgets.qml
 msgid "Hidden widgets can still be activated using keyboard shortcuts and are always visible in the Desktop Edit Mode.<br>The activation shortcut can be configured from the <b>Keyboard Shortcuts</b> page on each widget's configuration window."
-msgstr ""
+msgstr "隐藏的挂件仍可通过键盘快捷键激活，且在桌面编辑模式下始终可见。<br>此激活快捷键可在各挂件的配置窗口中，通过<b>键盘快捷键</b>页面进行配置。"
 
 #: ../contents/ui/configHideWidgets.qml
 msgid "Restore default (controlled by each widget)"
-msgstr ""
+msgstr "恢复默认（由各挂件控制）"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Toggle Panel Colorizer"
@@ -837,11 +841,11 @@ msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Switch presets"
-msgstr ""
+msgstr "切换预设"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Show popup"
-msgstr ""
+msgstr "显示弹出菜单"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Do nothing"
@@ -853,11 +857,11 @@ msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Remove all auto-loading conditions"
-msgstr ""
+msgstr "移除所有自动加载条件"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Auto-loading conditions"
-msgstr ""
+msgstr "自动加载条件"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the <b>Maximized</b> preset will be applied."
@@ -921,7 +925,7 @@ msgstr "点击挂件"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Action:"
-msgstr ""
+msgstr "行为："
 
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides should be saved to a preset in <strong>Presets</strong> tab or they will be lost when presets change!"
@@ -1217,7 +1221,7 @@ msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Description"
-msgstr ""
+msgstr "描述"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "SHA1, string or regex to match"
@@ -1259,7 +1263,7 @@ msgstr ""
 
 #: ../contents/ui/configUnifiedBackground.qml
 msgid "Select start and end of widget islands, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Widget custom background or border is required for this option to have an effect."
-msgstr ""
+msgstr "选择widget islands的起始和结束，在<b>起始</b>和<b>结束</b>间的挂件需保持禁用。 设置挂件自定义背景或边框后才会生效。"
 
 #: ../contents/ui/configUnifiedBackground.qml
 msgid "Remove all unified areas"
