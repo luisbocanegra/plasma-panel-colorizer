@@ -7,7 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
-"Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
+"Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
+"colorizer\n"
 "POT-Creation-Date: 2026-01-17 23:04+0000\n"
 "PO-Revision-Date: 2026-01-24 16:46+0800\n"
 "Last-Translator: Mill Haruto <mill413@outlook.com>\n"
@@ -23,7 +24,9 @@ msgid "Panel colorizer"
 msgstr "Panel colorizer"
 
 #: ../metadata.json
-msgid "Latte-Dock and WM status bar customization features for the default Plasma panel"
+msgid ""
+"Latte-Dock and WM status bar customization features for the default Plasma "
+"panel"
 msgstr "为默认 Plasma 面板提供 Latte-Dock 和窗口管理器状态栏的自定义功能"
 
 #: ../contents/config/config.qml
@@ -74,23 +77,36 @@ msgstr "常规"
 msgid "Panel Colorizer is disabled"
 msgstr "Panel Colorizer 已禁用"
 
-#: ../contents/ui/components/CategoryDisabled.qml ../contents/ui/components/FormWidgetSettings.qml ../contents/ui/configTrayIconsReplacer.qml
+#: ../contents/ui/components/CategoryDisabled.qml
+#: ../contents/ui/components/FormWidgetSettings.qml
+#: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Enable"
 msgstr "启用"
 
-#: ../contents/ui/components/ColorPickerGradientList.qml ../contents/ui/components/ColorPickerList.qml ../contents/ui/components/FormColors.qml
+#: ../contents/ui/components/ColorPickerGradientList.qml
+#: ../contents/ui/components/ColorPickerList.qml
+#: ../contents/ui/components/FormColors.qml
 msgid "Widget background"
 msgstr "挂件背景"
 
-#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormWidgetSettings.qml
+#: ../contents/ui/components/FormBorder.qml
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Border"
 msgstr "边框"
 
-#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml ../contents/ui/configPresetAutoload.qml ../contents/ui/configStockPanelSettings.qml
+#: ../contents/ui/components/FormBorder.qml
+#: ../contents/ui/components/FormPadding.qml
+#: ../contents/ui/components/FormShadow.qml
+#: ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml
+#: ../contents/ui/configPresetAutoload.qml
+#: ../contents/ui/configStockPanelSettings.qml
 msgid "Enabled:"
 msgstr "已启用："
 
-#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormColors.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml
+#: ../contents/ui/components/FormBorder.qml
+#: ../contents/ui/components/FormColors.qml
+#: ../contents/ui/components/FormShadow.qml
+#: ../contents/ui/components/FormShape.qml
 msgid "Disabled"
 msgstr "已禁用"
 
@@ -99,18 +115,23 @@ msgid "Width:"
 msgstr "宽度："
 
 #: ../contents/ui/components/FormBorder.qml
-msgid "Use an integer when using <strong>Widget Islands</strong> to avoid rendering issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">See #64<a/>"
+msgid ""
+"Use an integer when using <strong>Widget Islands</strong> to avoid rendering "
+"issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
+"issues/64\">See #64<a/>"
 msgstr ""
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Custom widths:"
 msgstr "自定义宽度："
 
-#: ../contents/ui/components/FormColors.qml ../contents/ui/components/FormWidgetSettings.qml
+#: ../contents/ui/components/FormColors.qml
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Color"
 msgstr "颜色"
 
-#: ../contents/ui/components/FormColors.qml ../contents/ui/components/FormWidgetSettings.qml
+#: ../contents/ui/components/FormColors.qml
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Enable:"
 msgstr "启用："
 
@@ -130,7 +151,8 @@ msgstr "平滑（毫秒）："
 msgid "Color source:"
 msgstr "颜色来源："
 
-#: ../contents/ui/components/FormColors.qml ../contents/ui/configStockPanelSettings.qml
+#: ../contents/ui/components/FormColors.qml
+#: ../contents/ui/configStockPanelSettings.qml
 msgid "Custom"
 msgstr "自定义"
 
@@ -151,8 +173,11 @@ msgid "Custom list"
 msgstr "自定义列表"
 
 #: ../contents/ui/components/FormColors.qml
-msgid "Define a list of colors that will be applied to all the elements, wraps around if there are more elements than colors"
-msgstr "定义一个颜色列表，应用于所有元素；若元素数量超过颜色数量，则循环使用颜色"
+msgid ""
+"Define a list of colors that will be applied to all the elements, wraps "
+"around if there are more elements than colors"
+msgstr ""
+"定义一个颜色列表，应用于所有元素；若元素数量超过颜色数量，则循环使用颜色"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Random"
@@ -183,7 +208,9 @@ msgid "Image"
 msgstr "图像"
 
 #: ../contents/ui/components/FormColors.qml
-msgid "High resolution images can slow down the desktop when the panel or widget size changes!"
+msgid ""
+"High resolution images can slow down the desktop when the panel or widget "
+"size changes!"
 msgstr "在面板或挂件尺寸变化时，高分辨率图像可能会导致桌面运行缓慢！"
 
 #: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
@@ -279,10 +306,13 @@ msgid "Padding"
 msgstr "内边距"
 
 #: ../contents/ui/components/FormPadding.qml
-msgid "Horizontal and vertical padding only work properly when the panel is on the same orientation."
+msgid ""
+"Horizontal and vertical padding only work properly when the panel is on the "
+"same orientation."
 msgstr "仅当面板方向一致时，水平与垂直内边距才能正常工作。"
 
-#: ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormWidgetSettings.qml
+#: ../contents/ui/components/FormShadow.qml
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Shadow"
 msgstr "阴影"
 
@@ -307,19 +337,23 @@ msgid "Margin"
 msgstr "外边距"
 
 #: ../contents/ui/components/FormShape.qml
-msgid "Requires plasmashell restart after disabling to restore the default. <a href=\"#\">Restart now</a>."
+msgid ""
+"Requires plasmashell restart after disabling to restore the default. <a "
+"href=\"#\">Restart now</a>."
 msgstr "禁用后需重启 plasmashell 以恢复默认设置。<a href=\"#\">立即重启</a>。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel:"
 msgstr "原生面板："
 
-#: ../contents/ui/components/FormWidgetSettings.qml ../contents/ui/configGeneral.qml
+#: ../contents/ui/components/FormWidgetSettings.qml
+#: ../contents/ui/configGeneral.qml
 msgid "Background"
 msgstr "背景"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Disable to make panel fully transparent, removes contrast and blur effects."
+msgid ""
+"Disable to make panel fully transparent, removes contrast and blur effects."
 msgstr "禁用可使面板完全透明，移除此对比度和模糊效果。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -344,10 +378,13 @@ msgstr "允许修改（Plasma 6.4.0 及更高版本）"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
-"Since version 6.4.0, Plasma now has a built-in <b>Floating panel and applets</b> option, enabling this overrides that option.\n"
-"⚠️Changing <b>Floating</b> from the panel configuration will not work with this is enabled!"
+"Since version 6.4.0, Plasma now has a built-in <b>Floating panel and "
+"applets</b> option, enabling this overrides that option.\n"
+"⚠️Changing <b>Floating</b> from the panel configuration will not work with "
+"this is enabled!"
 msgstr ""
-"自 6.4.0 版本起，Plasma 现已内置<b>浮动面板与小部件</b>选项。启用本功能将覆盖该内置选项。\n"
+"自 6.4.0 版本起，Plasma 现已内置<b>浮动面板与小部件</b>选项。启用本功能将覆盖"
+"该内置选项。\n"
 "⚠️启用本功能后，从面板配置中更改<b>浮动</b>设置将无效！"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -355,7 +392,8 @@ msgid "Wide expand button:"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Make the System Tray expand button be the same width as the other tray items"
+msgid ""
+"Make the System Tray expand button be the same width as the other tray items"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -375,7 +413,9 @@ msgid "Panel de-float:"
 msgstr "取消面板浮动"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Remove custom background rounded corners and borders on screen edge when panel is not floating"
+msgid ""
+"Remove custom background rounded corners and borders on screen edge when "
+"panel is not floating"
 msgstr "当面板未浮动时，移除屏幕边缘的自定义背景圆角与边框。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -407,7 +447,9 @@ msgid "Busy"
 msgstr "繁忙"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Change element appearance based on their state, configuration is stacked on top of the current appearance"
+msgid ""
+"Change element appearance based on their state, configuration is stacked on "
+"top of the current appearance"
 msgstr "根据元素状态改变其外观，配置将叠加在当前外观之上"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -415,12 +457,21 @@ msgid "Blur custom background (Beta)"
 msgstr "模糊自定义背景（Beta）"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Draw a custom blur mask behind the custom background(s).<br><strong>Native panel background must be enabled with opacity of 0 for this to work as intended.</strong>"
-msgstr "在自定义背景后绘制模糊遮罩。<br><strong>需启用原生面板背景并将不透明度设为 0 才能生效。</strong>"
+msgid ""
+"Draw a custom blur mask behind the custom background(s).<br><strong>Native "
+"panel background must be enabled with opacity of 0 for this to work as "
+"intended.</strong>"
+msgstr ""
+"在自定义背景后绘制模糊遮罩。<br><strong>需启用原生面板背景并将不透明度设为 0 "
+"才能生效。</strong>"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it."
-msgstr "未找到 C++ 插件，该功能将无法使用。请安装插件并重启系统或 plasmashell 以启用此功能。"
+msgid ""
+"C++ plugin not found, this feature will not work. Install the plugin and "
+"reboot or restart plasmashell to be able to use it."
+msgstr ""
+"未找到 C++ 插件，该功能将无法使用。请安装插件并重启系统或 plasmashell 以启用"
+"此功能。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Plugin install instructions"
@@ -439,16 +490,24 @@ msgid "Spacing:"
 msgstr "间距："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "<strong>Odd</strong> values are automatically converted to <strong>evens</strong> if <strong>Unified Background</strong> feature is used."
-msgstr "若启用<strong>统一背景</strong>功能，<strong>奇数</strong>值将自动转换为<strong>偶数</strong>。"
+msgid ""
+"<strong>Odd</strong> values are automatically converted to <strong>evens</"
+"strong> if <strong>Unified Background</strong> feature is used."
+msgstr ""
+"若启用<strong>统一背景</strong>功能，<strong>奇数</strong>值将自动转换为"
+"<strong>偶数</strong>。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Custom font:"
 msgstr "自定义字体："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "A plasmashell restart is required to restore the original values after disabling any font setting. <a href=\"#\">Restart now</a>."
-msgstr "禁用任何字体设置后，需重启 plasmashell 以恢复原始值。<a href=\"#\">立即重启</a>。"
+msgid ""
+"A plasmashell restart is required to restore the original values after "
+"disabling any font setting. <a href=\"#\">Restart now</a>."
+msgstr ""
+"禁用任何字体设置后，需重启 plasmashell 以恢复原始值。<a href=\"#\">立即重启</"
+"a>。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Font family:"
@@ -587,8 +646,13 @@ msgid "My other projects"
 msgstr ""
 
 #: ../contents/ui/components/Header.qml ../contents/ui/main.qml
-msgid "Running version of the widget (%1) is different to the one on disk (%2), please log out and back in (or restart plasmashell user unit) to ensure things work correctly!"
-msgstr "正在运行的挂件版本（%1）与已安装的版本（%2）不一致，请注销并重新登录（或重启 plasmashell 用户单元）以确保功能正常运行！"
+msgid ""
+"Running version of the widget (%1) is different to the one on disk (%2), "
+"please log out and back in (or restart plasmashell user unit) to ensure "
+"things work correctly!"
+msgstr ""
+"正在运行的挂件版本（%1）与已安装的版本（%2）不一致，请注销并重新登录（或重启 "
+"plasmashell 用户单元）以确保功能正常运行！"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "Import"
@@ -599,7 +663,9 @@ msgid "Export"
 msgstr "导出"
 
 #: ../contents/ui/components/SettingImportExport.qml
-msgid "Export these settings to the default configuration folder and import them in other instances of Panel Colorizer"
+msgid ""
+"Export these settings to the default configuration folder and import them in "
+"other instances of Panel Colorizer"
 msgstr "将当前设置导出到默认配置文件夹，以便在其他实例中导入"
 
 #: ../contents/ui/components/SettingImportExport.qml
@@ -618,7 +684,10 @@ msgstr "这将覆盖之前的导出！"
 msgid "This will replace your current settings!"
 msgstr "这将替换您当前的设置！"
 
-#: ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardHide.qml ../contents/ui/components/WidgetCardTextIconFixes.qml ../contents/ui/components/WidgetCardUnifiedBg.qml
+#: ../contents/ui/components/WidgetCardConfig.qml
+#: ../contents/ui/components/WidgetCardHide.qml
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
+#: ../contents/ui/components/WidgetCardUnifiedBg.qml
 msgid "System Tray"
 msgstr "系统托盘"
 
@@ -634,7 +703,8 @@ msgstr ""
 msgid "Edit"
 msgstr "编辑"
 
-#: ../contents/ui/components/WidgetCardOverride.qml ../contents/ui/configPresets.qml
+#: ../contents/ui/components/WidgetCardOverride.qml
+#: ../contents/ui/configPresets.qml
 msgid "Delete"
 msgstr "删除"
 
@@ -663,7 +733,12 @@ msgid "End"
 msgstr "结束"
 
 #: ../contents/ui/configAppearance.qml
-msgid "Not getting the expected result? Make sure you're editing the correct element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ plugin using the latest source, <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">see instructions</a>."
+msgid ""
+"Not getting the expected result? Make sure you're editing the correct "
+"element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ "
+"plugin using the latest source, <a href=\"https://github.com/luisbocanegra/"
+"plasma-panel-colorizer#build-from-source-with-c-plugin\">see instructions</"
+"a>."
 msgstr ""
 
 #: ../contents/ui/configAppearance.qml
@@ -674,7 +749,9 @@ msgstr "恢复默认设置（移除所有自定义项）"
 msgid "Panel"
 msgstr "面板"
 
-#: ../contents/ui/configAppearance.qml ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+#: ../contents/ui/configAppearance.qml
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Widgets"
 msgstr "挂件"
 
@@ -699,7 +776,9 @@ msgid "Configure from any widget:"
 msgstr "从任意挂件进入配置："
 
 #: ../contents/ui/configGeneral.qml
-msgid "Disable to remove <b>%1</b> option from other widget's context (right-click) menu."
+msgid ""
+"Disable to remove <b>%1</b> option from other widget's context (right-click) "
+"menu."
 msgstr "禁用以从其他挂件右键菜单中移除 <b>%1</b> 选项"
 
 #: ../contents/ui/configGeneral.qml
@@ -788,30 +867,43 @@ msgstr "隐藏/显示所有面板"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 #, fuzzy
-msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides are independent of presets and will be applied on top of the current settings and across presets.<br>To blacklist a widget from modifications, <b>uncheck</b> options <b>Enable</b> and <b>Fallback</b>, and apply the override to the widget."
-msgstr "创建配置覆盖并应用于一个或多个挂件。这些覆盖独立于预设方案，将叠加于当前设置之上，并在所有预设方案中生效。<br>若要"
+msgid ""
+"Create configuration overrides and apply them to one or multiple widgets. "
+"These overrides are independent of presets and will be applied on top of the "
+"current settings and across presets.<br>To blacklist a widget from "
+"modifications, <b>uncheck</b> options <b>Enable</b> and <b>Fallback</b>, and "
+"apply the override to the widget."
+msgstr ""
+"创建配置覆盖并应用于一个或多个挂件。这些覆盖独立于预设方案，将叠加于当前设置"
+"之上，并在所有预设方案中生效。<br>若要"
 
-#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Restore default (removes all overrides)"
 msgstr "恢复默认设置（移除所有覆盖项）"
 
-#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Configuration overrides"
 msgstr "配置覆盖"
 
-#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "New override"
 msgstr "新覆盖"
 
-#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Override settings"
 msgstr "覆盖设置"
 
-#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Override name"
 msgstr "覆盖名称"
 
-#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Rename"
 msgstr "重命名"
 
@@ -820,16 +912,30 @@ msgid "Fallback:"
 msgstr "回退："
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
-msgid "Fallback to the Global/Preset widget settings for disabled options, except for <b>Enable</b> and <b>Blur</>."
-msgstr "对于已禁用的选项，回退到全局/预设挂件设置（<b>启用</b>和<b>模糊</b>除外）。"
+msgid ""
+"Fallback to the Global/Preset widget settings for disabled options, except "
+"for <b>Enable</b> and <b>Blur</>."
+msgstr ""
+"对于已禁用的选项，回退到全局/预设挂件设置（<b>启用</b>和<b>模糊</b>除外）。"
 
-#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
-msgid "Overrides are applied from top to bottom, if two or more configuration overrides share the same option, the last occurence replaces the value of the previous one."
-msgstr "覆盖按从上到下顺序应用。若多个覆盖共享同一选项，后出现的将覆盖先前的值。"
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid ""
+"Overrides are applied from top to bottom, if two or more configuration "
+"overrides share the same option, the last occurence replaces the value of "
+"the previous one."
+msgstr ""
+"覆盖按从上到下顺序应用。若多个覆盖共享同一选项，后出现的将覆盖先前的值。"
 
 #: ../contents/ui/configHideWidgets.qml
-msgid "Hidden widgets can still be activated using keyboard shortcuts and are always visible in the Desktop Edit Mode.<br>The activation shortcut can be configured from the <b>Keyboard Shortcuts</b> page on each widget's configuration window."
-msgstr "隐藏的挂件仍可通过键盘快捷键激活，且在桌面编辑模式下始终可见。<br>此激活快捷键可在各挂件的配置窗口中，通过<b>键盘快捷键</b>页面进行配置。"
+msgid ""
+"Hidden widgets can still be activated using keyboard shortcuts and are "
+"always visible in the Desktop Edit Mode.<br>The activation shortcut can be "
+"configured from the <b>Keyboard Shortcuts</b> page on each widget's "
+"configuration window."
+msgstr ""
+"隐藏的挂件仍可通过键盘快捷键激活，且在桌面编辑模式下始终可见。<br>此激活快捷"
+"键可在各挂件的配置窗口中，通过<b>键盘快捷键</b>页面进行配置。"
 
 #: ../contents/ui/configHideWidgets.qml
 msgid "Restore default (controlled by each widget)"
@@ -852,7 +958,11 @@ msgid "Do nothing"
 msgstr "不执行任何操作"
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "Automatically switch between different presets based on the Panel and window states.<br>Disable preset auto-loading before making changes to presets, unsaved preset settings will be lost when auto-loading switches to other preset!"
+msgid ""
+"Automatically switch between different presets based on the Panel and window "
+"states.<br>Disable preset auto-loading before making changes to presets, "
+"unsaved preset settings will be lost when auto-loading switches to other "
+"preset!"
 msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
@@ -864,8 +974,14 @@ msgid "Auto-loading conditions"
 msgstr "自动加载条件"
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the <b>Maximized</b> preset will be applied."
-msgstr "优先级按降序排列。例如，若同时选中<b>最大化窗口显示时</b>和<b>面板接触窗口时</b>的预设，且屏幕存在最大化窗口，则应用<b>最大化</b>预设。"
+msgid ""
+"Priorities go in descending order. E.g. if both <b>Maximized window is "
+"shown</b> and <b>Panel touching window</b> have a preset selected, and there "
+"is a maximized window on the screen, the <b>Maximized</b> preset will be "
+"applied."
+msgstr ""
+"优先级按降序排列。例如，若同时选中<b>最大化窗口显示时</b>和<b>面板接触窗口时"
+"</b>的预设，且屏幕存在最大化窗口，则应用<b>最大化</b>预设。"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Window tracking:"
@@ -928,8 +1044,13 @@ msgid "Action:"
 msgstr "行为："
 
 #: ../contents/ui/configPresetWidgetOverrides.qml
-msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides should be saved to a preset in <strong>Presets</strong> tab or they will be lost when presets change!"
-msgstr "创建配置覆盖，并应用于一个或多个挂件。这些覆盖需保存到<strong>预设</strong>标签页的预设中，否则切换预设时将丢失！"
+msgid ""
+"Create configuration overrides and apply them to one or multiple widgets. "
+"These overrides should be saved to a preset in <strong>Presets</strong> tab "
+"or they will be lost when presets change!"
+msgstr ""
+"创建配置覆盖，并应用于一个或多个挂件。这些覆盖需保存到<strong>预设</strong>标"
+"签页的预设中，否则切换预设时将丢失！"
 
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Name:"
@@ -964,8 +1085,14 @@ msgid "Create preset"
 msgstr ""
 
 #: ../contents/ui/configPresets.qml
-msgid "Changes to the current preset are not synced to disk automatically. You should come back to this tab and update it manually before switching to a different preset, otherwise unsaved preset settings will be lost when presets change!"
-msgstr "当前预设的更改不会自动保存。切换预设前请返回此标签页手动更新，否则未保存的设置将在切换时丢失！"
+msgid ""
+"Changes to the current preset are not synced to disk automatically. You "
+"should come back to this tab and update it manually before switching to a "
+"different preset, otherwise unsaved preset settings will be lost when "
+"presets change!"
+msgstr ""
+"当前预设的更改不会自动保存。切换预设前请返回此标签页手动更新，否则未保存的设"
+"置将在切换时丢失！"
 
 #: ../contents/ui/configPresets.qml
 msgid "Restore default preset"
@@ -1004,12 +1131,23 @@ msgid "Update preview"
 msgstr "更新预览"
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g from top to left)."
-msgstr "目前更改面板位置不稳定，在将面板从非平行边（例如从顶部移动到底部）之间移动时可能会导致 Plasma 崩溃。"
+msgid ""
+"Changing panel position is currently unstable and may cause Plasma to crash "
+"when moving panels between non-parallel edges (e.g from top to left)."
+msgstr ""
+"目前更改面板位置不稳定，在将面板从非平行边（例如从顶部移动到底部）之间移动时"
+"可能会导致 Plasma 崩溃。"
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
-msgstr "不透明度和屏幕选项需要 <b>Plasma 6.3</b> 或更高版本。<br>不透明度依赖于当前 Plasma 主题，如需更精细的控制或完全透明，请在<b>外观</b>标签页中使用<b>面板不透明度</b>和<b>原生面板背景</b>选项。"
+msgid ""
+"Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity "
+"depends on the current Plasma Theme, for finer control or full transparency "
+"use <b>Panel Opacity</b> and <b>Native panel background</b> options in "
+"<b>Appearance</b> tab instead."
+msgstr ""
+"不透明度和屏幕选项需要 <b>Plasma 6.3</b> 或更高版本。<br>不透明度依赖于当前 "
+"Plasma 主题，如需更精细的控制或完全透明，请在<b>外观</b>标签页中使用<b>面板不"
+"透明度</b>和<b>原生面板背景</b>选项。"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Screen"
@@ -1133,18 +1271,34 @@ msgstr "显示："
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
-"WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will renove the configuration from all Panel Colorizer "
-"instances so make sure to save the others first"
+"WARNING: Use Show/Hide with caution, if you hide the panel and have not "
+"configured preset auto-loading or know how to switch presets using D-Bus (or "
+"have disabled it), you will have no way to make it visible again without "
+"manually removing the configuration or Panel Colorizer, use the command "
+"below in terminal/tty then log out or reboot, it will renove the "
+"configuration from all Panel Colorizer instances so make sure to save the "
+"others first"
 msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
-msgstr "若已启用 D-Bus，建议改用快捷键操作。详情请参阅 README 或查看常规标签页的示例。"
+msgid ""
+"If you have D-Bus enabled is it recommended that you use that with shortcuts "
+"instead. Consult the README to learn more or see the General tab for some "
+"examples."
+msgstr ""
+"若已启用 D-Bus，建议改用快捷键操作。详情请参阅 README 或查看常规标签页的示"
+"例。"
 
 #: ../contents/ui/configTextIconFix.qml
 msgid ""
-"Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, useful "
-"for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
+"Fix text and icon colors/font for widgets where the normal method doesn't "
+"work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on "
+"SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: "
+"Force color on text and icons using post-processing effect, useful for non-"
+"symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a "
+"fixed interval, useful for widgets that recreate or recolor content "
+"themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</"
+"strong> disable and restart Plasma or logout."
 msgstr ""
 
 #: ../contents/ui/configTextIconFix.qml
@@ -1172,15 +1326,26 @@ msgid "Sort"
 msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid "Replace System Tray icons with icons from the current icon theme or a local file. The built-in rules icons are part of <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus icon theme</a>."
+msgid ""
+"Replace System Tray icons with icons from the current icon theme or a local "
+"file. The built-in rules icons are part of <a href=\"https://github.com/"
+"PapirusDevelopmentTeam/papirus-icon-theme\">Papirus icon theme</a>."
 msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Install instructions</a>."
+msgid ""
+"C++ plugin not found, this feature will not work. Install the plugin and "
+"reboot or restart plasmashell to be able to use it <a href=\"https://github."
+"com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-"
+"file#manually\">Install instructions</a>."
 msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid "The installed version of the C++ plugin doesn't support this feature, update the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Install instructions</a>."
+msgid ""
+"The installed version of the C++ plugin doesn't support this feature, update "
+"the plugin and reboot or restart plasmashell to be able to use it <a "
+"href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-"
+"file#manually\">Install instructions</a>."
 msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
@@ -1262,8 +1427,13 @@ msgid "Copy rule"
 msgstr ""
 
 #: ../contents/ui/configUnifiedBackground.qml
-msgid "Select start and end of widget islands, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Widget custom background or border is required for this option to have an effect."
-msgstr "选择widget islands的起始和结束，在<b>起始</b>和<b>结束</b>间的挂件需保持禁用。 设置挂件自定义背景或边框后才会生效。"
+msgid ""
+"Select start and end of widget islands, widgets between <b>Start</b> and "
+"<b>End</b> must be left <b>disabled</b>. Widget custom background or border "
+"is required for this option to have an effect."
+msgstr ""
+"选择widget islands的起始和结束，在<b>起始</b>和<b>结束</b>间的挂件需保持禁"
+"用。 设置挂件自定义背景或边框后才会生效。"
 
 #: ../contents/ui/configUnifiedBackground.qml
 msgid "Remove all unified areas"
@@ -1297,13 +1467,27 @@ msgstr "未找到面板，此挂件需放置在面板上才能工作"
 #~ msgid "customization"
 #~ msgstr "自定义"
 
-#~ msgid "Not getting the expected result? Make sure you're editing the correct element."
+#~ msgid ""
+#~ "Not getting the expected result? Make sure you're editing the correct "
+#~ "element."
 #~ msgstr "未达到预期效果？请确保您编辑的是正确的元素。"
 
 #~ msgid ""
-#~ "Fix text and icon colors for widgets where the normal method doesn't work or isn't permanent.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content "
-#~ "themselves<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
-#~ msgstr "修复那些常规方法无法正常生效或无法永久生效的挂件中的文本与图标颜色。<br><strong>遮罩</strong>：强制图标着色（符号图标）。<br><strong>颜色效果</strong>：使用后处理效果强制为文本/图标着色（任意图标）。<br><strong>刷新</strong>：以固定间隔重新着色，用于会自行重绘或重新着色内容的挂件。<br>要恢复 <strong>遮罩</strong> 和 <strong>颜色效果</strong>，请禁用它们并重启 Plasma 或注销。"
+#~ "Fix text and icon colors for widgets where the normal method doesn't work "
+#~ "or isn't permanent.<br><strong>Mask</strong>: Force Icon colorization "
+#~ "(symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons "
+#~ "colorization using post-processing effect (any icon).<br><strong>Refresh</"
+#~ "strong>: Re-apply colorization at a fixed interval, for widgets that "
+#~ "recreate or recolor content themselves<br>To restore the "
+#~ "<strong>Mask<strong> and <strong>Color Effect</strong> disable and "
+#~ "restart Plasma or logout."
+#~ msgstr ""
+#~ "修复那些常规方法无法正常生效或无法永久生效的挂件中的文本与图标颜色。"
+#~ "<br><strong>遮罩</strong>：强制图标着色（符号图标）。<br><strong>颜色效果"
+#~ "</strong>：使用后处理效果强制为文本/图标着色（任意图标）。<br><strong>刷新"
+#~ "</strong>：以固定间隔重新着色，用于会自行重绘或重新着色内容的挂件。<br>要"
+#~ "恢复 <strong>遮罩</strong> 和 <strong>颜色效果</strong>，请禁用它们并重启 "
+#~ "Plasma 或注销。"
 
 #~ msgid "Each Panel Colorizer instance has its D-Bus name."
 #~ msgstr "每个 Panel Colorizer 实例均有独立 D-Bus 名称。"
@@ -1311,11 +1495,21 @@ msgstr "未找到面板，此挂件需放置在面板上才能工作"
 #~ msgid "Usage:"
 #~ msgstr "用法："
 
-#~ msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides are independent and will be applied on top of the current settings and across presets."
-#~ msgstr "创建配置覆盖，并应用于一个或多个挂件。这些覆盖独立存在，并将在当前设置的基础上生效，同时适用于所有预设。"
+#~ msgid ""
+#~ "Create configuration overrides and apply them to one or multiple widgets. "
+#~ "These overrides are independent and will be applied on top of the current "
+#~ "settings and across presets."
+#~ msgstr ""
+#~ "创建配置覆盖，并应用于一个或多个挂件。这些覆盖独立存在，并将在当前设置的基"
+#~ "础上生效，同时适用于所有预设。"
 
-#~ msgid "Switch between different presets based on the Panel and window states.<br>Disable preset auto-loading when making changes to presets, unsaved preset settings will be lost when presets change!"
-#~ msgstr "根据面板和窗口状态切换不同预设。<br>修改预设时请禁用自动加载，未保存的设置将在预设切换时丢失！"
+#~ msgid ""
+#~ "Switch between different presets based on the Panel and window states."
+#~ "<br>Disable preset auto-loading when making changes to presets, unsaved "
+#~ "preset settings will be lost when presets change!"
+#~ msgstr ""
+#~ "根据面板和窗口状态切换不同预设。<br>修改预设时请禁用自动加载，未保存的设置"
+#~ "将在预设切换时丢失！"
 
 #~ msgid "Restore default (removes all autoloading conditions)"
 #~ msgstr "恢复默认设置（移除所有自动加载条件）"
@@ -1324,12 +1518,27 @@ msgstr "未找到面板，此挂件需放置在面板上才能工作"
 #~ msgstr "环境"
 
 #~ msgid ""
-#~ "WARNING: Use with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration, use the command below in terminal/tty then log out or reboot, it will renove the configuratiob from all Panel Colorizer instances so make sure to "
-#~ "save the others first"
-#~ msgstr "警告：谨慎使用！若隐藏面板且未配置预设自动加载或不熟悉 D-Bus 切换预设（或已禁用 D-Bus），则需手动删除配置才能恢复可见性。请在终端/tty 执行以下命令后注销或重启，此操作将删除所有 Panel Colorizer 实例的配置，请确保已保存其他实例的配置："
+#~ "WARNING: Use with caution, if you hide the panel and have not configured "
+#~ "preset auto-loading or know how to switch presets using D-Bus (or have "
+#~ "disabled it), you will have no way to make it visible again without "
+#~ "manually removing the configuration, use the command below in terminal/"
+#~ "tty then log out or reboot, it will renove the configuratiob from all "
+#~ "Panel Colorizer instances so make sure to save the others first"
+#~ msgstr ""
+#~ "警告：谨慎使用！若隐藏面板且未配置预设自动加载或不熟悉 D-Bus 切换预设（或"
+#~ "已禁用 D-Bus），则需手动删除配置才能恢复可见性。请在终端/tty 执行以下命令"
+#~ "后注销或重启，此操作将删除所有 Panel Colorizer 实例的配置，请确保已保存其"
+#~ "他实例的配置："
 
-#~ msgid "Select start and end of unified background areas, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Note: <strong>odd</strong> widget spacing values are automatically converted to <strong>evens</strong> when this feature is used."
-#~ msgstr "选择统一背景区域的起始和结束点，<b>起始</b>和<b>结束</b>间的挂件需保持<b>禁用</b>。注：启用此功能时，<strong>奇数</strong>间距值将自动转换为<strong>偶数</strong>。"
+#~ msgid ""
+#~ "Select start and end of unified background areas, widgets between "
+#~ "<b>Start</b> and <b>End</b> must be left <b>disabled</b>. Note: "
+#~ "<strong>odd</strong> widget spacing values are automatically converted to "
+#~ "<strong>evens</strong> when this feature is used."
+#~ msgstr ""
+#~ "选择统一背景区域的起始和结束点，<b>起始</b>和<b>结束</b>间的挂件需保持<b>"
+#~ "禁用</b>。注：启用此功能时，<strong>奇数</strong>间距值将自动转换为"
+#~ "<strong>偶数</strong>。"
 
 #~ msgid "Restore default (removes all unified areas)"
 #~ msgstr "恢复默认设置（移除所有统一区域）"
@@ -1346,8 +1555,12 @@ msgstr "未找到面板，此挂件需放置在面板上才能工作"
 #~ msgid "Padding:"
 #~ msgstr "内边距："
 
-#~ msgid "C++ plugin not installed, <b>Blur custom background</b> will not work.<br>Check the repository README on GitHub for details."
-#~ msgstr "未安装 C++ 插件，<b>模糊自定义背景</b>不可用。<br>详情请查看 GitHub 仓库的 README。"
+#~ msgid ""
+#~ "C++ plugin not installed, <b>Blur custom background</b> will not work."
+#~ "<br>Check the repository README on GitHub for details."
+#~ msgstr ""
+#~ "未安装 C++ 插件，<b>模糊自定义背景</b>不可用。<br>详情请查看 GitHub 仓库"
+#~ "的 README。"
 
 #~ msgid "How fast the widget reacts to D-Bus changes"
 #~ msgstr "挂件响应 D-Bus 变更的速度"
@@ -1359,14 +1572,28 @@ msgstr "未找到面板，此挂件需放置在面板上才能工作"
 #~ msgstr "显示所有面板"
 
 #~ msgid ""
-#~ "Force text and icon colors for specified widgets.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content themselves<br>To restore the <strong>Mask<strong> and "
-#~ "<strong>Color Effect</strong> disable and restart Plasma or logout."
-#~ msgstr "强制指定挂件的文本和图标颜色。<br><strong>遮罩</strong>：强制图标着色（符号图标）。<br><strong>颜色效果</strong>：通过后处理效果强制文本/图标着色（任何图标）。<br><strong>刷新</strong>：以固定间隔重新应用着色，适用于自行重绘内容的挂件。<br>要恢复<strong>遮罩</strong>和<strong>颜色效果</strong>，请禁用并重启 Plasma 或注销。"
+#~ "Force text and icon colors for specified widgets.<br><strong>Mask</"
+#~ "strong>: Force Icon colorization (symbolic icons).<br><strong>Color "
+#~ "Effect</strong>: Force Text/Icons colorization using post-processing "
+#~ "effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at "
+#~ "a fixed interval, for widgets that recreate or recolor content "
+#~ "themselves<br>To restore the <strong>Mask<strong> and <strong>Color "
+#~ "Effect</strong> disable and restart Plasma or logout."
+#~ msgstr ""
+#~ "强制指定挂件的文本和图标颜色。<br><strong>遮罩</strong>：强制图标着色（符"
+#~ "号图标）。<br><strong>颜色效果</strong>：通过后处理效果强制文本/图标着色"
+#~ "（任何图标）。<br><strong>刷新</strong>：以固定间隔重新应用着色，适用于自"
+#~ "行重绘内容的挂件。<br>要恢复<strong>遮罩</strong>和<strong>颜色效果</"
+#~ "strong>，请禁用并重启 Plasma 或注销。"
 
-#~ msgid "Disable preset auto-loading when making changes to presets, unsaved preset settings will be lost when presets change!"
+#~ msgid ""
+#~ "Disable preset auto-loading when making changes to presets, unsaved "
+#~ "preset settings will be lost when presets change!"
 #~ msgstr "修改预设时请禁用自动加载，否则未保存的预设设置将在切换时丢失！"
 
-#~ msgid "Switch between different panel presets based on the Panel and window states"
+#~ msgid ""
+#~ "Switch between different panel presets based on the Panel and window "
+#~ "states"
 #~ msgstr "根据面板和窗口状态切换不同预设"
 
 #~ msgid "Restore default panel appearance"
@@ -1381,7 +1608,8 @@ msgstr "未找到面板，此挂件需放置在面板上才能工作"
 #~ msgid "Native panel background opacity:"
 #~ msgstr "原生面板背景不透明度"
 
-#~ msgid "Set Opacity to 0 to keep just the mask required by Blur custom background."
+#~ msgid ""
+#~ "Set Opacity to 0 to keep just the mask required by Blur custom background."
 #~ msgstr "将不透明度设为 0 以仅保留模糊自定义背景所需的遮罩。"
 
 #~ msgid "Blur custom background (Beta):"
@@ -1390,11 +1618,22 @@ msgstr "未找到面板，此挂件需放置在面板上才能工作"
 #~ msgid "Force floating dialogs:"
 #~ msgstr "强制浮动对话框："
 
-#~ msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g top to left)."
-#~ msgstr "更改面板位置功能不稳定，在非平行边缘间移动面板（如顶部到左侧）可能导致 Plasma 崩溃。"
+#~ msgid ""
+#~ "Changing panel position is currently unstable and may cause Plasma to "
+#~ "crash when moving panels between non-parallel edges (e.g top to left)."
+#~ msgstr ""
+#~ "更改面板位置功能不稳定，在非平行边缘间移动面板（如顶部到左侧）可能导致 "
+#~ "Plasma 崩溃。"
 
-#~ msgid "Opacity control here <b>requires Plasma 6.3</b> and depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
-#~ msgstr "此处的不透明度控制<b>需 Plasma 6.3</b>且依赖当前 Plasma 主题。如需更精细控制或完全透明，请使用<b>外观</b>标签页的<b>面板不透明度</b>和<b>原生面板背景</b>选项。"
+#~ msgid ""
+#~ "Opacity control here <b>requires Plasma 6.3</b> and depends on the "
+#~ "current Plasma Theme, for finer control or full transparency use <b>Panel "
+#~ "Opacity</b> and <b>Native panel background</b> options in <b>Appearance</"
+#~ "b> tab instead."
+#~ msgstr ""
+#~ "此处的不透明度控制<b>需 Plasma 6.3</b>且依赖当前 Plasma 主题。如需更精细控"
+#~ "制或完全透明，请使用<b>外观</b>标签页的<b>面板不透明度</b>和<b>原生面板背"
+#~ "景</b>选项。"
 
 #~ msgid "Active window only"
 #~ msgstr "仅活动窗口"
