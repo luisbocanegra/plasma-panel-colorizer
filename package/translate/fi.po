@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-01-17 23:04+0000\n"
+"POT-Creation-Date: 2026-01-28 06:20+0000\n"
 "PO-Revision-Date: 2025-12-25 13:03+0200\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
@@ -87,6 +87,11 @@ msgstr "Ota käyttöön"
 #: ../contents/ui/components/FormColors.qml
 msgid "Widget background"
 msgstr "Pienoisohjelman tausta"
+
+#: ../contents/ui/components/DesktopView.qml
+msgid "Panel not found, this widget must be placed on a panel to work"
+msgstr ""
+"Paneelia ei löytynyt; tämän pienoisohjelman on oltava paneelissa toimiakseen"
 
 #: ../contents/ui/components/FormBorder.qml
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -666,7 +671,7 @@ msgstr "GitHub-sponsorit"
 msgid "My other projects"
 msgstr "Muut projektini"
 
-#: ../contents/ui/components/Header.qml ../contents/ui/main.qml
+#: ../contents/ui/components/Header.qml ../contents/ui/components/PopupView.qml
 msgid ""
 "Running version of the widget (%1) is different to the one on disk (%2), "
 "please log out and back in (or restart plasmashell user unit) to ensure "
@@ -675,6 +680,14 @@ msgstr ""
 "Pienoisohjelman käynnissä oleva versio (%1) eroaa levyllä olevasta versiosta "
 "(%2). Kirjaudu ulos ja takaisin sisään varmistaaksesi, että kaikki toimii "
 "oikein!"
+
+#: ../contents/ui/components/PopupView.qml
+msgid "Select a preset"
+msgstr "Valitse esiasetus"
+
+#: ../contents/ui/components/PopupView.qml
+msgid "Running outdated version of %1"
+msgstr "Käytössä on vanhentunut versio ohjelmasta %1"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "Import"
@@ -1493,19 +1506,6 @@ msgstr "Poista kaikki yhdistetyt alueet"
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Piilota pienoisohjelma (näkyvissä paneelin muokkaustilassa)"
-
-#: ../contents/ui/main.qml
-msgid "Select a preset"
-msgstr "Valitse esiasetus"
-
-#: ../contents/ui/main.qml
-msgid "Running outdated version of %1"
-msgstr "Käytössä on vanhentunut versio ohjelmasta %1"
-
-#: ../contents/ui/main.qml
-msgid "Panel not found, this widget must be placed on a panel to work"
-msgstr ""
-"Paneelia ei löytynyt; tämän pienoisohjelman on oltava paneelissa toimiakseen"
 
 #~ msgid ""
 #~ "Fix text and icon colors for widgets where the normal method doesn't work "

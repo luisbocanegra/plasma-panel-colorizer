@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-01-17 23:04+0000\n"
+"POT-Creation-Date: 2026-01-28 06:20+0000\n"
 "PO-Revision-Date: 2026-01-18 08:43+0100\n"
 "Last-Translator: RygorrMortis <rygorrmortis@github.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -91,6 +91,11 @@ msgstr "Włącz"
 #: ../contents/ui/components/FormColors.qml
 msgid "Widget background"
 msgstr "Tło widżetu"
+
+#: ../contents/ui/components/DesktopView.qml
+msgid "Panel not found, this widget must be placed on a panel to work"
+msgstr ""
+"Nie znaleziono panelu, ten widżet musi być umieszczony na panelu, aby działał"
 
 #: ../contents/ui/components/FormBorder.qml
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -673,7 +678,7 @@ msgstr "Sponsorzy GitHub"
 msgid "My other projects"
 msgstr "Moje inne projekty"
 
-#: ../contents/ui/components/Header.qml ../contents/ui/main.qml
+#: ../contents/ui/components/Header.qml ../contents/ui/components/PopupView.qml
 msgid ""
 "Running version of the widget (%1) is different to the one on disk (%2), "
 "please log out and back in (or restart plasmashell user unit) to ensure "
@@ -682,6 +687,14 @@ msgstr ""
 "Uruchamiana wersja widżetu (%1) różni się od tej na dysku (%2), proszę "
 "wylogować się i zalogować ponownie (lub zrestartować jednostkę użytkownika "
 "plasmashell), aby upewnić się, że wszystko działa poprawnie!"
+
+#: ../contents/ui/components/PopupView.qml
+msgid "Select a preset"
+msgstr "Wybierz preset"
+
+#: ../contents/ui/components/PopupView.qml
+msgid "Running outdated version of %1"
+msgstr "Uruchamiasz przestarzałą wersję %1"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "Import"
@@ -1530,19 +1543,6 @@ msgstr "Usuń wszystkie ujednolicone obszary"
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Ukryj widżet (widoczny w trybie edycji panelu)"
-
-#: ../contents/ui/main.qml
-msgid "Select a preset"
-msgstr "Wybierz preset"
-
-#: ../contents/ui/main.qml
-msgid "Running outdated version of %1"
-msgstr "Uruchamiasz przestarzałą wersję %1"
-
-#: ../contents/ui/main.qml
-msgid "Panel not found, this widget must be placed on a panel to work"
-msgstr ""
-"Nie znaleziono panelu, ten widżet musi być umieszczony na panelu, aby działał"
 
 #~ msgid ""
 #~ "Fix text and icon colors for widgets where the normal method doesn't work "

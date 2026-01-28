@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-01-17 23:04+0000\n"
+"POT-Creation-Date: 2026-01-28 06:20+0000\n"
 "PO-Revision-Date: 2026-01-20 10:36+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -90,6 +90,11 @@ msgstr "Inschakelen"
 #: ../contents/ui/components/FormColors.qml
 msgid "Widget background"
 msgstr "Widgetachtergrond"
+
+#: ../contents/ui/components/DesktopView.qml
+msgid "Panel not found, this widget must be placed on a panel to work"
+msgstr ""
+"Er is geen paneel aangetroffen - de widget dient op een paneel te staan"
 
 #: ../contents/ui/components/FormBorder.qml
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -670,7 +675,7 @@ msgstr "GitHub-sponsors"
 msgid "My other projects"
 msgstr "Mijn andere projecten"
 
-#: ../contents/ui/components/Header.qml ../contents/ui/main.qml
+#: ../contents/ui/components/Header.qml ../contents/ui/components/PopupView.qml
 msgid ""
 "Running version of the widget (%1) is different to the one on disk (%2), "
 "please log out and back in (or restart plasmashell user unit) to ensure "
@@ -679,6 +684,14 @@ msgstr ""
 "De actieve versie van de widget (%1) komt niet overeen met de geïnstalleerde "
 "versie (%2). Meld je af en aan (of herstart plasmashell) om optimaal te "
 "kunnen werken!"
+
+#: ../contents/ui/components/PopupView.qml
+msgid "Select a preset"
+msgstr "Kies de voorinstellingen"
+
+#: ../contents/ui/components/PopupView.qml
+msgid "Running outdated version of %1"
+msgstr "Verouderde versie van ‘%1’"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "Import"
@@ -1531,19 +1544,6 @@ msgstr "Alle samengetrokken gebieden verwijderen"
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Widget verbergen (zichtbaar in paneelbewerkmodus)"
-
-#: ../contents/ui/main.qml
-msgid "Select a preset"
-msgstr "Kies de voorinstellingen"
-
-#: ../contents/ui/main.qml
-msgid "Running outdated version of %1"
-msgstr "Verouderde versie van ‘%1’"
-
-#: ../contents/ui/main.qml
-msgid "Panel not found, this widget must be placed on a panel to work"
-msgstr ""
-"Er is geen paneel aangetroffen - de widget dient op een paneel te staan"
 
 #~ msgid ""
 #~ "Fix text and icon colors for widgets where the normal method doesn't work "
