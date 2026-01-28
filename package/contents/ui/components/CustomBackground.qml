@@ -13,6 +13,7 @@ import "../"
 Rectangle {
     id: rect
     property var target
+    property int targetIsHidden: target.applet?.plasmoid?.status === PlasmaCore.Types.HiddenStatus
     property int targetIndex
     property var main
     property bool animatePropertyChanges: Plasmoid.configuration.animatePropertyChanges
@@ -927,6 +928,16 @@ Rectangle {
             main.updateUnified();
             updateMaskDebounced();
         });
+    }
+
+    // PlasmaCore.Types.HiddenStatus != !visible
+    onTargetIsHiddenChanged: {
+        if (!targetIsHidden) {
+            Qt.callLater(function () {
+                main.updateUnified();
+                updateMaskDebounced();
+            });
+        }
     }
 
     onBlurBehindChanged: {
