@@ -148,7 +148,7 @@ PlasmoidItem {
     property var trayWidgetSettings: cfg.trayWidgets
     property var stockPanelSettings: cfg.stockPanelSettings
     property var widgetsSpacing: {
-        if (true) {
+        if (unifiedBackgroundSettings.length) {
             return Utils.makeEven(widgetSettings?.normal?.spacing ?? 4);
         } else {
             return widgetSettings?.normal?.spacing ?? 4;

@@ -125,7 +125,7 @@ KCM.SimpleKCM {
         }
 
         Button {
-            text: i18n("Remove all unified areas")
+            text: i18n("Remove all islands")
             icon.name: "kt-restore-defaults-symbolic"
             onClicked: {
                 root.restoreSettings();
@@ -133,13 +133,13 @@ KCM.SimpleKCM {
             Layout.fillWidth: true
         }
 
-        Components.WidgetUnifiedHint {
+        Components.WidgetIslandsHint {
             Layout.alignment: Qt.AlignHCenter
         }
 
         Repeater {
             model: widgetsModel
-            Components.WidgetCardUnifiedBg {
+            Components.WidgetCardIslands {
                 required property int index
                 required property string name
                 required property var model

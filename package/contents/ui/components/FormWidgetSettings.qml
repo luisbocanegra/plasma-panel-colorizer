@@ -477,7 +477,7 @@ ColumnLayout {
             Button {
                 visible: spacingCheckbox.value % 2 !== 0 && spacingCheckbox.visible
                 icon.name: "dialog-warning-symbolic"
-                ToolTip.text: i18n("<strong>Odd</strong> values are automatically converted to <strong>evens</strong> if <strong>Unified Background</strong> feature is used.")
+                ToolTip.text: i18n("<strong>Odd spacing</strong> values will be automatically converted to <strong>evens</strong> if <strong>Widget Islands</strong> feature is used.")
                 highlighted: true
                 hoverEnabled: true
                 ToolTip.visible: hovered

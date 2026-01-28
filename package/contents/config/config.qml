@@ -29,7 +29,7 @@ ConfigModel {
     ConfigCategory {
         name: i18n("Widget Islands")
         icon: "distribute-horizontal-margin-symbolic"
-        source: "configUnifiedBackground.qml"
+        source: "configWidgetIslands.qml"
     }
 
     ConfigCategory {

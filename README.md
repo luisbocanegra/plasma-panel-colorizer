@@ -103,9 +103,9 @@ Fully-featured widget to bring Latte-Dock and WM status bar customization featur
 - Opacity (Plasma 6.3.0)
 - *EXPERIMENTAL* Sow/hide panel "AKA toggle panel" with D-Bus, stays hidden when hovering on screen edges
 
-**Unified background (islands)**
+**Widget Islands**
 
-- Join one or more widgets to make them visually connected
+- Join two or more widgets to make them visually connected
 
 **Configuration overrides**
 

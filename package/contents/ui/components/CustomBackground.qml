@@ -756,7 +756,7 @@ Rectangle {
         id: dropShadow
         anchors.fill: parent
         // we need to compensate because we now space widgets with margins
-        // instead of the layout spacing for the unified background feature
+        // instead of the layout spacing for the widget islands feature
         // can't anchor to center because we can also add different margin
         // on each side, the shadow position is off otherwise
         anchors.leftMargin: rect.horizontal ? rect.marginLeft : undefined
