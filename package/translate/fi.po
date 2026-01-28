@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-01-28 06:20+0000\n"
+"POT-Creation-Date: 2026-01-28 07:27+0000\n"
 "PO-Revision-Date: 2025-12-25 13:03+0200\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
@@ -518,12 +518,9 @@ msgstr "Välistys:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
-"<strong>Odd</strong> values are automatically converted to <strong>evens</"
-"strong> if <strong>Unified Background</strong> feature is used."
+"<strong>Odd spacing</strong> values will be automatically converted to "
+"<strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
 msgstr ""
-"<strong>Parittomat</strong> arvot muutetaan automaattisesti "
-"<strong>parillisiksi</strong>, jos <strong>Yhdistetty tausta</strong> -"
-"ominaisuus on käytössä."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Custom font:"
@@ -723,8 +720,8 @@ msgstr "Tämä korvaa nykyiset asetuksesi!"
 
 #: ../contents/ui/components/WidgetCardConfig.qml
 #: ../contents/ui/components/WidgetCardHide.qml
+#: ../contents/ui/components/WidgetCardIslands.qml
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
 msgid "System Tray"
 msgstr "Ilmoitusalue"
 
@@ -735,6 +732,18 @@ msgstr "Lisää"
 #: ../contents/ui/components/WidgetCardHide.qml
 msgid "Hide"
 msgstr "Piilota"
+
+#: ../contents/ui/components/WidgetCardIslands.qml
+msgid "Disable"
+msgstr "Poista käytöstä"
+
+#: ../contents/ui/components/WidgetCardIslands.qml
+msgid "Start"
+msgstr "Alku"
+
+#: ../contents/ui/components/WidgetCardIslands.qml
+msgid "End"
+msgstr "Loppu"
 
 #: ../contents/ui/components/WidgetCardOverride.qml
 msgid "Edit"
@@ -756,18 +765,6 @@ msgstr "Efekti"
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "Refresh"
 msgstr "Päivitä"
-
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
-msgid "Disable"
-msgstr "Poista käytöstä"
-
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
-msgid "Start"
-msgstr "Alku"
-
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
-msgid "End"
-msgstr "Loppu"
 
 #: ../contents/ui/configAppearance.qml
 msgid ""
@@ -1489,7 +1486,7 @@ msgstr ""
 msgid "Copy rule"
 msgstr ""
 
-#: ../contents/ui/configUnifiedBackground.qml
+#: ../contents/ui/configWidgetIslands.qml
 msgid ""
 "Select start and end of widget islands, widgets between <b>Start</b> and "
 "<b>End</b> must be left <b>disabled</b>. Widget custom background or border "
@@ -1499,13 +1496,24 @@ msgstr ""
 "b> ja <b>Lopun</b> välissä, on oltava <b>pois käytöstä</b>. Tämä vaatii "
 "mukautetun taustan tai reunuksen toimiakseen."
 
-#: ../contents/ui/configUnifiedBackground.qml
-msgid "Remove all unified areas"
-msgstr "Poista kaikki yhdistetyt alueet"
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Remove all islands"
+msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Piilota pienoisohjelma (näkyvissä paneelin muokkaustilassa)"
+
+#~ msgid ""
+#~ "<strong>Odd</strong> values are automatically converted to <strong>evens</"
+#~ "strong> if <strong>Unified Background</strong> feature is used."
+#~ msgstr ""
+#~ "<strong>Parittomat</strong> arvot muutetaan automaattisesti "
+#~ "<strong>parillisiksi</strong>, jos <strong>Yhdistetty tausta</strong> -"
+#~ "ominaisuus on käytössä."
+
+#~ msgid "Remove all unified areas"
+#~ msgstr "Poista kaikki yhdistetyt alueet"
 
 #~ msgid ""
 #~ "Fix text and icon colors for widgets where the normal method doesn't work "

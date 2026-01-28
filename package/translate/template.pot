@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-01-28 06:20+0000\n"
+"POT-Creation-Date: 2026-01-28 07:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -441,7 +441,7 @@ msgid "Spacing:"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "<strong>Odd</strong> values are automatically converted to <strong>evens</strong> if <strong>Unified Background</strong> feature is used."
+msgid "<strong>Odd spacing</strong> values will be automatically converted to <strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -628,7 +628,7 @@ msgstr ""
 msgid "This will replace your current settings!"
 msgstr ""
 
-#: ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardHide.qml ../contents/ui/components/WidgetCardTextIconFixes.qml ../contents/ui/components/WidgetCardUnifiedBg.qml
+#: ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardHide.qml ../contents/ui/components/WidgetCardIslands.qml ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "System Tray"
 msgstr ""
 
@@ -638,6 +638,18 @@ msgstr ""
 
 #: ../contents/ui/components/WidgetCardHide.qml
 msgid "Hide"
+msgstr ""
+
+#: ../contents/ui/components/WidgetCardIslands.qml
+msgid "Disable"
+msgstr ""
+
+#: ../contents/ui/components/WidgetCardIslands.qml
+msgid "Start"
+msgstr ""
+
+#: ../contents/ui/components/WidgetCardIslands.qml
+msgid "End"
 msgstr ""
 
 #: ../contents/ui/components/WidgetCardOverride.qml
@@ -658,18 +670,6 @@ msgstr ""
 
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "Refresh"
-msgstr ""
-
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
-msgid "Disable"
-msgstr ""
-
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
-msgid "Start"
-msgstr ""
-
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
-msgid "End"
 msgstr ""
 
 #: ../contents/ui/configAppearance.qml
@@ -1292,13 +1292,13 @@ msgstr ""
 msgid "Copy rule"
 msgstr ""
 
-#: ../contents/ui/configUnifiedBackground.qml
+#: ../contents/ui/configWidgetIslands.qml
 msgid ""
 "Select start and end of widget islands, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Widget custom background or border is required for this option to have an effect."
 msgstr ""
 
-#: ../contents/ui/configUnifiedBackground.qml
-msgid "Remove all unified areas"
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Remove all islands"
 msgstr ""
 
 #: ../contents/ui/main.qml

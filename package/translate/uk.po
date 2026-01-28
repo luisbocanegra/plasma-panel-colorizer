@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-01-28 06:20+0000\n"
+"POT-Creation-Date: 2026-01-28 07:27+0000\n"
 "PO-Revision-Date: 2025-09-14 11:20-0600\n"
 "Last-Translator: https://github.com/devil6a <EMAIL@ADDRESS>\n"
 "Language-Team: Ukrainian <EMAIL@ADDRESS>\n"
@@ -509,12 +509,9 @@ msgstr "Відступи:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
-"<strong>Odd</strong> values are automatically converted to <strong>evens</"
-"strong> if <strong>Unified Background</strong> feature is used."
+"<strong>Odd spacing</strong> values will be automatically converted to "
+"<strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
 msgstr ""
-"<strong>Непарні</strong> значення автоматично перетворюються на "
-"<strong>парні</strong>, якщо використовується функція <strong>Уніфікований "
-"фон</strong>."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Custom font:"
@@ -714,8 +711,8 @@ msgstr "Це замінить ваші поточні налаштування!"
 
 #: ../contents/ui/components/WidgetCardConfig.qml
 #: ../contents/ui/components/WidgetCardHide.qml
+#: ../contents/ui/components/WidgetCardIslands.qml
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
 msgid "System Tray"
 msgstr "Системний лоток"
 
@@ -726,6 +723,18 @@ msgstr "Додати"
 #: ../contents/ui/components/WidgetCardHide.qml
 msgid "Hide"
 msgstr ""
+
+#: ../contents/ui/components/WidgetCardIslands.qml
+msgid "Disable"
+msgstr "Вимкнути"
+
+#: ../contents/ui/components/WidgetCardIslands.qml
+msgid "Start"
+msgstr "Початок"
+
+#: ../contents/ui/components/WidgetCardIslands.qml
+msgid "End"
+msgstr "Кінець"
 
 #: ../contents/ui/components/WidgetCardOverride.qml
 msgid "Edit"
@@ -747,18 +756,6 @@ msgstr "Ефект"
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "Refresh"
 msgstr "Оновити"
-
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
-msgid "Disable"
-msgstr "Вимкнути"
-
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
-msgid "Start"
-msgstr "Початок"
-
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
-msgid "End"
-msgstr "Кінець"
 
 #: ../contents/ui/configAppearance.qml
 msgid ""
@@ -1460,20 +1457,28 @@ msgstr ""
 msgid "Copy rule"
 msgstr ""
 
-#: ../contents/ui/configUnifiedBackground.qml
+#: ../contents/ui/configWidgetIslands.qml
 msgid ""
 "Select start and end of widget islands, widgets between <b>Start</b> and "
 "<b>End</b> must be left <b>disabled</b>. Widget custom background or border "
 "is required for this option to have an effect."
 msgstr ""
 
-#: ../contents/ui/configUnifiedBackground.qml
-msgid "Remove all unified areas"
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Remove all islands"
 msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Приховати віджет (видимий у режимі редагування панелі)"
+
+#~ msgid ""
+#~ "<strong>Odd</strong> values are automatically converted to <strong>evens</"
+#~ "strong> if <strong>Unified Background</strong> feature is used."
+#~ msgstr ""
+#~ "<strong>Непарні</strong> значення автоматично перетворюються на "
+#~ "<strong>парні</strong>, якщо використовується функція "
+#~ "<strong>Уніфікований фон</strong>."
 
 #~ msgid "visible in Panel Edit Mode"
 #~ msgstr "видимий у режимі редагування панелі"

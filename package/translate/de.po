@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-01-28 06:20+0000\n"
+"POT-Creation-Date: 2026-01-28 07:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -440,8 +440,8 @@ msgid "Spacing:"
 msgstr "Abstände"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "<strong>Odd</strong> values are automatically converted to <strong>evens</strong> if <strong>Unified Background</strong> feature is used."
-msgstr "<strong>ungerade</strong> Werte Werte werden automatisch in <strong>Gerade</strong> umgewandelt, wenn <strong> allgmeine Hintergründe</strong> genutzt werden."
+msgid "<strong>Odd spacing</strong> values will be automatically converted to <strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Custom font:"
@@ -627,7 +627,7 @@ msgstr "Das wird alle vorherigen Exporte überschreiben"
 msgid "This will replace your current settings!"
 msgstr "Das wird die aktuellen Einstellungen überschreiben"
 
-#: ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardHide.qml ../contents/ui/components/WidgetCardTextIconFixes.qml ../contents/ui/components/WidgetCardUnifiedBg.qml
+#: ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardHide.qml ../contents/ui/components/WidgetCardIslands.qml ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "System Tray"
 msgstr "Kontrollleiste"
 
@@ -638,6 +638,18 @@ msgstr "Hinzufügen"
 #: ../contents/ui/components/WidgetCardHide.qml
 msgid "Hide"
 msgstr ""
+
+#: ../contents/ui/components/WidgetCardIslands.qml
+msgid "Disable"
+msgstr "Abschalten"
+
+#: ../contents/ui/components/WidgetCardIslands.qml
+msgid "Start"
+msgstr "Starten"
+
+#: ../contents/ui/components/WidgetCardIslands.qml
+msgid "End"
+msgstr "Ende"
 
 #: ../contents/ui/components/WidgetCardOverride.qml
 msgid "Edit"
@@ -658,18 +670,6 @@ msgstr "Effekt"
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "Refresh"
 msgstr "Aktuallisieren"
-
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
-msgid "Disable"
-msgstr "Abschalten"
-
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
-msgid "Start"
-msgstr "Starten"
-
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
-msgid "End"
-msgstr "Ende"
 
 #: ../contents/ui/configAppearance.qml
 msgid "Not getting the expected result? Make sure you're editing the correct element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ plugin using the latest source, <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">see instructions</a>."
@@ -1269,17 +1269,20 @@ msgstr ""
 msgid "Copy rule"
 msgstr ""
 
-#: ../contents/ui/configUnifiedBackground.qml
+#: ../contents/ui/configWidgetIslands.qml
 msgid "Select start and end of widget islands, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Widget custom background or border is required for this option to have an effect."
 msgstr ""
 
-#: ../contents/ui/configUnifiedBackground.qml
-msgid "Remove all unified areas"
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Remove all islands"
 msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Verstecke Widget (sichtbar im Editmodus)"
+
+#~ msgid "<strong>Odd</strong> values are automatically converted to <strong>evens</strong> if <strong>Unified Background</strong> feature is used."
+#~ msgstr "<strong>ungerade</strong> Werte Werte werden automatisch in <strong>Gerade</strong> umgewandelt, wenn <strong> allgmeine Hintergründe</strong> genutzt werden."
 
 #~ msgid "visible in Panel Edit Mode"
 #~ msgstr "Sichtbar im Kontrollleisteneinstellungsmodus"

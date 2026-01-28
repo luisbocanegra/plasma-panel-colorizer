@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-01-28 06:20+0000\n"
+"POT-Creation-Date: 2026-01-28 07:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -442,8 +442,8 @@ msgid "Spacing:"
 msgstr "Espaiat:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "<strong>Odd</strong> values are automatically converted to <strong>evens</strong> if <strong>Unified Background</strong> feature is used."
-msgstr "Els valors <strong>imparells</strong> es converteixen automàticament en <strong>parells</strong> si es fa servir l'opció <strong>Fons Unificat</strong>."
+msgid "<strong>Odd spacing</strong> values will be automatically converted to <strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Custom font:"
@@ -629,7 +629,7 @@ msgstr "Això sobreescriurà qualsevol exportació prèvia."
 msgid "This will replace your current settings!"
 msgstr "Això reemplaçarà la configuració actual."
 
-#: ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardHide.qml ../contents/ui/components/WidgetCardTextIconFixes.qml ../contents/ui/components/WidgetCardUnifiedBg.qml
+#: ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardHide.qml ../contents/ui/components/WidgetCardIslands.qml ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "System Tray"
 msgstr "Safata del sistema"
 
@@ -640,6 +640,18 @@ msgstr "Afegeix"
 #: ../contents/ui/components/WidgetCardHide.qml
 msgid "Hide"
 msgstr "Amaga"
+
+#: ../contents/ui/components/WidgetCardIslands.qml
+msgid "Disable"
+msgstr "Desactiva"
+
+#: ../contents/ui/components/WidgetCardIslands.qml
+msgid "Start"
+msgstr "Inici"
+
+#: ../contents/ui/components/WidgetCardIslands.qml
+msgid "End"
+msgstr "Final"
 
 #: ../contents/ui/components/WidgetCardOverride.qml
 msgid "Edit"
@@ -660,18 +672,6 @@ msgstr "Efecte"
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "Refresh"
 msgstr "Actualitza"
-
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
-msgid "Disable"
-msgstr "Desactiva"
-
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
-msgid "Start"
-msgstr "Inici"
-
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
-msgid "End"
-msgstr "Final"
 
 #: ../contents/ui/configAppearance.qml
 msgid "Not getting the expected result? Make sure you're editing the correct element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ plugin using the latest source, <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">see instructions</a>."
@@ -1275,17 +1275,23 @@ msgstr "Copia a les regles d'usuari"
 msgid "Copy rule"
 msgstr "Copia la regla"
 
-#: ../contents/ui/configUnifiedBackground.qml
+#: ../contents/ui/configWidgetIslands.qml
 msgid "Select start and end of widget islands, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Widget custom background or border is required for this option to have an effect."
 msgstr "Seleccioneu l'inici i final de les illes de ginys. Els ginys entre <b>Inici</b> i <b>Final</b> s'han de deixar <b>desactivats</b>. Cal un fons o vores del giny personalitzats per tal que tingui efecte."
 
-#: ../contents/ui/configUnifiedBackground.qml
-msgid "Remove all unified areas"
-msgstr "Trau totes les àrees unificades"
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Remove all islands"
+msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Amaga el giny (visible en Mode d'Edició del Panell)"
+
+#~ msgid "<strong>Odd</strong> values are automatically converted to <strong>evens</strong> if <strong>Unified Background</strong> feature is used."
+#~ msgstr "Els valors <strong>imparells</strong> es converteixen automàticament en <strong>parells</strong> si es fa servir l'opció <strong>Fons Unificat</strong>."
+
+#~ msgid "Remove all unified areas"
+#~ msgstr "Trau totes les àrees unificades"
 
 #~ msgid ""
 #~ "Fix text and icon colors for widgets where the normal method doesn't work or isn't permanent.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color at a fixed interval, useful for widgets "

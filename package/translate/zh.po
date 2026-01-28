@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-01-28 06:20+0000\n"
+"POT-Creation-Date: 2026-01-28 07:27+0000\n"
 "PO-Revision-Date: 2026-01-24 16:46+0800\n"
 "Last-Translator: Mill Haruto <mill413@outlook.com>\n"
 "Language-Team: \n"
@@ -495,11 +495,9 @@ msgstr "间距："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
-"<strong>Odd</strong> values are automatically converted to <strong>evens</"
-"strong> if <strong>Unified Background</strong> feature is used."
+"<strong>Odd spacing</strong> values will be automatically converted to "
+"<strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
 msgstr ""
-"若启用<strong>统一背景</strong>功能，<strong>奇数</strong>值将自动转换为"
-"<strong>偶数</strong>。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Custom font:"
@@ -698,8 +696,8 @@ msgstr "这将替换您当前的设置！"
 
 #: ../contents/ui/components/WidgetCardConfig.qml
 #: ../contents/ui/components/WidgetCardHide.qml
+#: ../contents/ui/components/WidgetCardIslands.qml
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
 msgid "System Tray"
 msgstr "系统托盘"
 
@@ -710,6 +708,18 @@ msgstr "添加"
 #: ../contents/ui/components/WidgetCardHide.qml
 msgid "Hide"
 msgstr ""
+
+#: ../contents/ui/components/WidgetCardIslands.qml
+msgid "Disable"
+msgstr "禁用"
+
+#: ../contents/ui/components/WidgetCardIslands.qml
+msgid "Start"
+msgstr "起始"
+
+#: ../contents/ui/components/WidgetCardIslands.qml
+msgid "End"
+msgstr "结束"
 
 #: ../contents/ui/components/WidgetCardOverride.qml
 msgid "Edit"
@@ -731,18 +741,6 @@ msgstr "效果"
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "Refresh"
 msgstr "刷新"
-
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
-msgid "Disable"
-msgstr "禁用"
-
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
-msgid "Start"
-msgstr "起始"
-
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
-msgid "End"
-msgstr "结束"
 
 #: ../contents/ui/configAppearance.qml
 msgid ""
@@ -1438,7 +1436,7 @@ msgstr ""
 msgid "Copy rule"
 msgstr ""
 
-#: ../contents/ui/configUnifiedBackground.qml
+#: ../contents/ui/configWidgetIslands.qml
 msgid ""
 "Select start and end of widget islands, widgets between <b>Start</b> and "
 "<b>End</b> must be left <b>disabled</b>. Widget custom background or border "
@@ -1447,13 +1445,20 @@ msgstr ""
 "选择widget islands的起始和结束，在<b>起始</b>和<b>结束</b>间的挂件需保持禁"
 "用。 设置挂件自定义背景或边框后才会生效。"
 
-#: ../contents/ui/configUnifiedBackground.qml
-msgid "Remove all unified areas"
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Remove all islands"
 msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "隐藏挂件（面板编辑模式下可见）"
+
+#~ msgid ""
+#~ "<strong>Odd</strong> values are automatically converted to <strong>evens</"
+#~ "strong> if <strong>Unified Background</strong> feature is used."
+#~ msgstr ""
+#~ "若启用<strong>统一背景</strong>功能，<strong>奇数</strong>值将自动转换为"
+#~ "<strong>偶数</strong>。"
 
 #~ msgid "visible in Panel Edit Mode"
 #~ msgstr "在面板编辑模式下可见"
