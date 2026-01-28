@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-01-28 06:20+0000\n"
+"POT-Creation-Date: 2026-01-28 07:27+0000\n"
 "PO-Revision-Date: 2026-01-20 10:36+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -520,12 +520,9 @@ msgstr "Afstand:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
-"<strong>Odd</strong> values are automatically converted to <strong>evens</"
-"strong> if <strong>Unified Background</strong> feature is used."
+"<strong>Odd spacing</strong> values will be automatically converted to "
+"<strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
 msgstr ""
-"<strong>Oneven</strong> waarden worden automatisch omgezet in <strong>even</"
-"strong> waarden indien de optie <strong>Gelijke achtergronden</strong> is "
-"ingeschakeld."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Custom font:"
@@ -727,8 +724,8 @@ msgstr "Let op: de huidige instellingen worden vervangen!"
 
 #: ../contents/ui/components/WidgetCardConfig.qml
 #: ../contents/ui/components/WidgetCardHide.qml
+#: ../contents/ui/components/WidgetCardIslands.qml
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
 msgid "System Tray"
 msgstr "Systeemvak"
 
@@ -739,6 +736,18 @@ msgstr "Toevoegen"
 #: ../contents/ui/components/WidgetCardHide.qml
 msgid "Hide"
 msgstr "Verbergen"
+
+#: ../contents/ui/components/WidgetCardIslands.qml
+msgid "Disable"
+msgstr "Uitschakelen"
+
+#: ../contents/ui/components/WidgetCardIslands.qml
+msgid "Start"
+msgstr "Begin"
+
+#: ../contents/ui/components/WidgetCardIslands.qml
+msgid "End"
+msgstr "Einde"
 
 #: ../contents/ui/components/WidgetCardOverride.qml
 msgid "Edit"
@@ -760,18 +769,6 @@ msgstr "Effect"
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "Refresh"
 msgstr "Herladen"
-
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
-msgid "Disable"
-msgstr "Uitschakelen"
-
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
-msgid "Start"
-msgstr "Begin"
-
-#: ../contents/ui/components/WidgetCardUnifiedBg.qml
-msgid "End"
-msgstr "Einde"
 
 #: ../contents/ui/configAppearance.qml
 msgid ""
@@ -1527,7 +1524,7 @@ msgstr "Kopiëren naar eigen regels"
 msgid "Copy rule"
 msgstr "Regel kopiëren"
 
-#: ../contents/ui/configUnifiedBackground.qml
+#: ../contents/ui/configWidgetIslands.qml
 msgid ""
 "Select start and end of widget islands, widgets between <b>Start</b> and "
 "<b>End</b> must be left <b>disabled</b>. Widget custom background or border "
@@ -1537,13 +1534,24 @@ msgstr ""
 "<b>einde</b> dienen <b>uitgeschakeld</b> te blijven. Voorzie widgets van een "
 "zelfgekozen achtergrond of kader om deze optie te kunnen gebruiken."
 
-#: ../contents/ui/configUnifiedBackground.qml
-msgid "Remove all unified areas"
-msgstr "Alle samengetrokken gebieden verwijderen"
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Remove all islands"
+msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Widget verbergen (zichtbaar in paneelbewerkmodus)"
+
+#~ msgid ""
+#~ "<strong>Odd</strong> values are automatically converted to <strong>evens</"
+#~ "strong> if <strong>Unified Background</strong> feature is used."
+#~ msgstr ""
+#~ "<strong>Oneven</strong> waarden worden automatisch omgezet in "
+#~ "<strong>even</strong> waarden indien de optie <strong>Gelijke "
+#~ "achtergronden</strong> is ingeschakeld."
+
+#~ msgid "Remove all unified areas"
+#~ msgstr "Alle samengetrokken gebieden verwijderen"
 
 #~ msgid ""
 #~ "Fix text and icon colors for widgets where the normal method doesn't work "
