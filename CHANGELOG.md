@@ -1,5 +1,19 @@
 # Changelog
 
+## [6.6.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.5.0...v6.6.0) (2026-01-28)
+
+
+### Features
+
+* update Catalan translation ([6bd4f86](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/6bd4f868da13eb92889939b45f1022d02745b697))
+* update Chinese translation ([#446](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/446)) ([8839452](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/88394523bff79a49f80f9728f09ae1bd9ae9b58e))
+
+
+### Bug Fixes
+
+* islands not being recreated when hidden widgets reappear ([6268e4d](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/6268e4ded19720bd9051e7fbd5fdf39b4538770e))
+* only force even widget spacing if islands feature is used ([79b6ed8](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/79b6ed89c997a2c21b8ad7ee74fe04102dc7e050))
+
 ## [6.5.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.4.0...v6.5.0) (2026-01-20)
 
 
