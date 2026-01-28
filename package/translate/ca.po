@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-01-17 23:04+0000\n"
+"POT-Creation-Date: 2026-01-28 06:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -80,6 +80,10 @@ msgstr "Activa"
 #: ../contents/ui/components/ColorPickerGradientList.qml ../contents/ui/components/ColorPickerList.qml ../contents/ui/components/FormColors.qml
 msgid "Widget background"
 msgstr "Fons del giny"
+
+#: ../contents/ui/components/DesktopView.qml
+msgid "Panel not found, this widget must be placed on a panel to work"
+msgstr "El panell no s'ha trobat. Aquest giny s'ha de posar a dins d'un panell per tal que funcioni."
 
 #: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormWidgetSettings.qml
 msgid "Border"
@@ -585,9 +589,17 @@ msgstr "Espònsors del GitHub"
 msgid "My other projects"
 msgstr "Altres projectes meus"
 
-#: ../contents/ui/components/Header.qml ../contents/ui/main.qml
+#: ../contents/ui/components/Header.qml ../contents/ui/components/PopupView.qml
 msgid "Running version of the widget (%1) is different to the one on disk (%2), please log out and back in (or restart plasmashell user unit) to ensure things work correctly!"
 msgstr "La versió del giny que s'executa (%1) és diferent de la del disc (%2). Sortiu de la sessió i torneu a entrar ‒o reinicieu la unitat d'usuari del plasmashell‒ per a assegurar que funciona correctament!"
+
+#: ../contents/ui/components/PopupView.qml
+msgid "Select a preset"
+msgstr "Tria un perfil"
+
+#: ../contents/ui/components/PopupView.qml
+msgid "Running outdated version of %1"
+msgstr "S'executa la versió desactualitzada de %1"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "Import"
@@ -1274,18 +1286,6 @@ msgstr "Trau totes les àrees unificades"
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Amaga el giny (visible en Mode d'Edició del Panell)"
-
-#: ../contents/ui/main.qml
-msgid "Select a preset"
-msgstr "Tria un perfil"
-
-#: ../contents/ui/main.qml
-msgid "Running outdated version of %1"
-msgstr "S'executa la versió desactualitzada de %1"
-
-#: ../contents/ui/main.qml
-msgid "Panel not found, this widget must be placed on a panel to work"
-msgstr "El panell no s'ha trobat. Aquest giny s'ha de posar a dins d'un panell per tal que funcioni."
 
 #~ msgid ""
 #~ "Fix text and icon colors for widgets where the normal method doesn't work or isn't permanent.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color at a fixed interval, useful for widgets "

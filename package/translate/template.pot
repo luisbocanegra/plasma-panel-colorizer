@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-01-17 23:04+0000\n"
+"POT-Creation-Date: 2026-01-28 06:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,6 +79,10 @@ msgstr ""
 
 #: ../contents/ui/components/ColorPickerGradientList.qml ../contents/ui/components/ColorPickerList.qml ../contents/ui/components/FormColors.qml
 msgid "Widget background"
+msgstr ""
+
+#: ../contents/ui/components/DesktopView.qml
+msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr ""
 
 #: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormWidgetSettings.qml
@@ -584,8 +588,16 @@ msgstr ""
 msgid "My other projects"
 msgstr ""
 
-#: ../contents/ui/components/Header.qml ../contents/ui/main.qml
+#: ../contents/ui/components/Header.qml ../contents/ui/components/PopupView.qml
 msgid "Running version of the widget (%1) is different to the one on disk (%2), please log out and back in (or restart plasmashell user unit) to ensure things work correctly!"
+msgstr ""
+
+#: ../contents/ui/components/PopupView.qml
+msgid "Select a preset"
+msgstr ""
+
+#: ../contents/ui/components/PopupView.qml
+msgid "Running outdated version of %1"
 msgstr ""
 
 #: ../contents/ui/components/SettingImportExport.qml
@@ -1291,16 +1303,4 @@ msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
-msgstr ""
-
-#: ../contents/ui/main.qml
-msgid "Select a preset"
-msgstr ""
-
-#: ../contents/ui/main.qml
-msgid "Running outdated version of %1"
-msgstr ""
-
-#: ../contents/ui/main.qml
-msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr ""
