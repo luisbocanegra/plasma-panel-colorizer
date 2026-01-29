@@ -1,3 +1,4 @@
+pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Effects
@@ -664,16 +665,14 @@ Rectangle {
         layer.enabled: rect.cfg.border.customSides
         layer.effect: OpacityMask {
             maskSource: Item {
-                id: mask
-                required property var rect
                 width: rect.width
                 height: rect.height
                 Rectangle {
                     anchors.fill: parent
-                    topLeftRadius: mask.rect.topLeftRadius
-                    topRightRadius: mask.rect.topRightRadius
-                    bottomLeftRadius: mask.rect.bottomLeftRadius
-                    bottomRightRadius: mask.rect.bottomRightRadius
+                    topLeftRadius: rect.topLeftRadius
+                    topRightRadius: rect.topRightRadius
+                    bottomLeftRadius: rect.bottomLeftRadius
+                    bottomRightRadius: rect.bottomRightRadius
                 }
             }
         }
@@ -737,18 +736,15 @@ Rectangle {
     property int ps: Math.max(bgShadow.size, bgShadow.xOffset, bgShadow.yOffset)
     layer.effect: MultiEffect {
         autoPaddingEnabled: true
-        required property var unifyBgType
-        required property var horizontal
-        required property var ps
         paddingRect: {
-            if (unifyBgType === 1) {
-                return horizontal ? Qt.rect(ps, ps, 0, ps) : Qt.rect(ps, ps, ps, 0);
+            if (rect.unifyBgType === 1) {
+                return rect.horizontal ? Qt.rect(rect.ps, rect.ps, 0, rect.ps) : Qt.rect(rect.ps, rect.ps, rect.ps, 0);
             }
-            if (unifyBgType === 2) {
-                return horizontal ? Qt.rect(0, ps, 0, ps) : Qt.rect(ps, 0, ps, 0);
+            if (rect.unifyBgType === 2) {
+                return rect.horizontal ? Qt.rect(0, rect.ps, 0, rect.ps) : Qt.rect(rect.ps, 0, rect.ps, 0);
             }
-            if (unifyBgType === 3) {
-                return horizontal ? Qt.rect(0, ps, ps, ps) : Qt.rect(ps, 0, ps, ps);
+            if (rect.unifyBgType === 3) {
+                return rect.horizontal ? Qt.rect(0, rect.ps, rect.ps, rect.ps) : Qt.rect(rect.ps, 0, rect.ps, rect.ps);
             }
         }
     }
