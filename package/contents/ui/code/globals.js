@@ -196,6 +196,7 @@ const basePanelConfig = {
     enabled: false,
     blurBehind: false,
     flattenOnDeFloat: false,
+    backgroundClipping: false,
     backgroundColor: basePanelBgColor,
     foregroundColor: baseFgColor,
     radius: baseRadius,
@@ -209,6 +210,7 @@ const basePanelConfig = {
 const baseWidgetConfig = {
     enabled: false,
     blurBehind: false,
+    backgroundClipping: false,
     backgroundColor: baseBgColor,
     foregroundColor: baseFgColor,
     radius: baseRadius,
@@ -224,6 +226,7 @@ const baseWidgetConfig = {
 const baseTrayConfig = {
     enabled: false,
     blurBehind: false,
+    backgroundClipping: false,
     backgroundColor: baseBgColor,
     foregroundColor: baseFgColor,
     radius: baseRadius,
@@ -236,6 +239,7 @@ const baseTrayConfig = {
 
 const baseOverride = {
     blurBehind: false,
+    backgroundClipping: false,
     backgroundColor: baseBgColor,
     foregroundColor: baseFgColor,
     radius: baseRadius,

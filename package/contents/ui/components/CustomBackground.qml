@@ -162,6 +162,7 @@ Rectangle {
     property bool blurBehind: {
         return (isPanel && !main.anyWidgetDoingBlur && !main.anyTrayItemDoingBlur) || (isWidget) || (inTray && !main.trayWidgetBgItem?.blurBehind) ? cfg.blurBehind : false;
     }
+    property bool backgroundClipping: isWidget && (cfg.backgroundClipping ?? false) && cfgEnabled
     property string fgColor: {
         if (inTray && fgEnabled && cfgEnabled) {
             return Utils.getColor(fgColorCfg, targetIndex, color, itemType, fgColorHolder);
@@ -978,5 +979,40 @@ Rectangle {
     HoverHandler {
         id: hoverHandler
         parent: rect.target
+    }
+
+    Rectangle {
+        id: mask
+        anchors.centerIn: parent
+        height: rect.height
+        width: rect.width
+        topLeftRadius: rect.topLeftRadius
+        bottomLeftRadius: rect.bottomLeftRadius
+        topRightRadius: rect.topRightRadius
+        bottomRightRadius: rect.bottomRightRadius
+        color: "white"
+        visible: false
+    }
+
+    // clip widget content to custom background shape
+    // TODO: figure out how to do the same with the panel
+    OpacityMask {
+        anchors.fill: parent
+        anchors.leftMargin: rect.horizontal ? rect.marginLeft : undefined
+        anchors.rightMargin: rect.horizontal ? rect.marginRight : undefined
+        anchors.topMargin: rect.horizontal ? undefined : rect.marginTop
+        anchors.bottomMargin: rect.horizontal ? undefined : rect.marginBottom
+        maskSource: mask
+        visible: !!source
+        source: ShaderEffectSource {
+            live: true
+            sourceItem: {
+                if (rect.backgroundClipping) {
+                    return rect.target?.applet ?? null;
+                }
+                return null;
+            }
+            hideSource: true
+        }
     }
 }

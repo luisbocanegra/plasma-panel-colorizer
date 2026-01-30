@@ -385,6 +385,34 @@ ColumnLayout {
             }
         }
 
+        RowLayout {
+            Kirigami.FormData.label: i18n("Clipping (Experimental)")
+            visible: root.showFontConfig
+            CheckBox {
+                enabled: isEnabled.checked
+
+                checked: root.configLocal.backgroundClipping
+                onCheckedChanged: {
+                    root.configLocal.backgroundClipping = checked;
+                    root.updateConfig();
+                }
+            }
+        }
+
+        Label {
+            visible: root.showFontConfig
+            text: i18n("Clip the widget content to the custom background radius.<br>Clipping widgets against the panel is not supported yet but is planned for a later version, see <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/275\">#275</a>.")
+            onLinkActivated: link => Qt.openUrlExternally(link)
+            font: Kirigami.Theme.smallFont
+            wrapMode: Label.Wrap
+            color: Kirigami.Theme.disabledTextColor
+            Layout.maximumWidth: 400
+            Layout.alignment: Qt.AlignTop
+            HoverHandler {
+                cursorShape: Qt.PointingHandCursor
+            }
+        }
+
         ColumnLayout {
             visible: !plasmoid.configuration.pluginFound
             Layout.preferredWidth: 300
