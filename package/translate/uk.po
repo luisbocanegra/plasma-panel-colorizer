@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-01-28 07:27+0000\n"
+"POT-Creation-Date: 2026-01-30 23:07+0000\n"
 "PO-Revision-Date: 2025-09-14 11:20-0600\n"
 "Last-Translator: https://github.com/devil6a <EMAIL@ADDRESS>\n"
 "Language-Team: Ukrainian <EMAIL@ADDRESS>\n"
@@ -125,7 +125,7 @@ msgstr "Ширина:"
 msgid ""
 "Use an integer when using <strong>Widget Islands</strong> to avoid rendering "
 "issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
-"issues/64\">See #64<a/>"
+"issues/64\">See #64</a>"
 msgstr ""
 
 #: ../contents/ui/components/FormBorder.qml
@@ -481,6 +481,18 @@ msgstr ""
 "Створює користувацьку маску розмиття за користувацьким фоном.<br><strong>Фон "
 "нативної панелі має бути увімкнений з непрозорістю 0, щоб це працювало "
 "належним чином.</strong>"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Clipping (Experimental)"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Clip the widget content to the custom background radius.<br>Clipping widgets "
+"against the panel is not supported yet but is planned for a later version, "
+"see <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
+"issues/275\">#275</a>."
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
