@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-01-28 07:27+0000\n"
+"POT-Creation-Date: 2026-01-30 23:07+0000\n"
 "PO-Revision-Date: 2026-01-20 10:36+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -125,12 +125,8 @@ msgstr "Breedte:"
 msgid ""
 "Use an integer when using <strong>Widget Islands</strong> to avoid rendering "
 "issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
-"issues/64\">See #64<a/>"
+"issues/64\">See #64</a>"
 msgstr ""
-"Let op: kies altijd voor een geheel getal bij het gebruik van "
-"<strong>widgeteislanden</strong> om problemen te voorkomen! <a "
-"href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
-"issues/64\">Zie #64 (Engels)<a/>"
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Custom widths:"
@@ -493,6 +489,18 @@ msgstr ""
 "Voorzie de eigen achtergrond(en) van een zelfgekozen vervagingsniveau."
 "<br><strong>Let op: de standaardachtergrond dient ingeschakeld te zijn met "
 "een doorzichtigheidsniveau van 0.</strong>"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Clipping (Experimental)"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Clip the widget content to the custom background radius.<br>Clipping widgets "
+"against the panel is not supported yet but is planned for a later version, "
+"see <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
+"issues/275\">#275</a>."
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
@@ -1541,6 +1549,16 @@ msgstr ""
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Widget verbergen (zichtbaar in paneelbewerkmodus)"
+
+#~ msgid ""
+#~ "Use an integer when using <strong>Widget Islands</strong> to avoid "
+#~ "rendering issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-"
+#~ "colorizer/issues/64\">See #64<a/>"
+#~ msgstr ""
+#~ "Let op: kies altijd voor een geheel getal bij het gebruik van "
+#~ "<strong>widgeteislanden</strong> om problemen te voorkomen! <a "
+#~ "href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
+#~ "issues/64\">Zie #64 (Engels)<a/>"
 
 #~ msgid ""
 #~ "<strong>Odd</strong> values are automatically converted to <strong>evens</"

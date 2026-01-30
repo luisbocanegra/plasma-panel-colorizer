@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-01-28 07:27+0000\n"
+"POT-Creation-Date: 2026-01-30 23:07+0000\n"
 "PO-Revision-Date: 2025-12-25 13:03+0200\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
@@ -122,11 +122,8 @@ msgstr "Leveys:"
 msgid ""
 "Use an integer when using <strong>Widget Islands</strong> to avoid rendering "
 "issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
-"issues/64\">See #64<a/>"
+"issues/64\">See #64</a>"
 msgstr ""
-"Käytä kokonaislukua <strong>pienoisohjelmasaarten</strong> kanssa "
-"välttääksesi piirtovirheitä! <a href=\"https://github.com/luisbocanegra/"
-"plasma-panel-colorizer/issues/64\">Katso #64<a/>"
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Custom widths:"
@@ -491,6 +488,18 @@ msgstr ""
 "Piirtää mukautetun sumennusmaskin mukautetun taustan taakse."
 "<br><strong>Paneelin natiivin taustan on oltava käytössä ja sen peittävyyden "
 "0, jotta tämä toimii oikein.</strong>"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Clipping (Experimental)"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Clip the widget content to the custom background radius.<br>Clipping widgets "
+"against the panel is not supported yet but is planned for a later version, "
+"see <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
+"issues/275\">#275</a>."
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
@@ -1503,6 +1512,15 @@ msgstr ""
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Piilota pienoisohjelma (näkyvissä paneelin muokkaustilassa)"
+
+#~ msgid ""
+#~ "Use an integer when using <strong>Widget Islands</strong> to avoid "
+#~ "rendering issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-"
+#~ "colorizer/issues/64\">See #64<a/>"
+#~ msgstr ""
+#~ "Käytä kokonaislukua <strong>pienoisohjelmasaarten</strong> kanssa "
+#~ "välttääksesi piirtovirheitä! <a href=\"https://github.com/luisbocanegra/"
+#~ "plasma-panel-colorizer/issues/64\">Katso #64<a/>"
 
 #~ msgid ""
 #~ "<strong>Odd</strong> values are automatically converted to <strong>evens</"
