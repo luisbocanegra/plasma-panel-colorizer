@@ -66,7 +66,7 @@ Kirigami.FormLayout {
     }
     Label {
         visible: root.elementName === "widgets" && !Number.isInteger(borderWidth.value / 100)
-        text: i18n("Use an integer when using <strong>Widget Islands</strong> to avoid rendering issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">See #64<a/>")
+        text: i18n("Use an integer when using <strong>Widget Islands</strong> to avoid rendering issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">See #64</a>")
         onLinkActivated: link => Qt.openUrlExternally(link)
         font: Kirigami.Theme.smallFont
         Layout.maximumWidth: 400
