@@ -103,7 +103,7 @@ msgstr "Amplada:"
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Use an integer when using <strong>Widget Islands</strong> to avoid rendering issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">See #64</a>"
-msgstr ""
+msgstr "Feu servir un enter quan feu servir les <strong>Illes de ginys</strong> per a evitar problemes de renderització! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">Vegeu #64</a>"
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Custom widths:"
@@ -423,11 +423,11 @@ msgstr "Dibuixa una màscara difuminada personalitzada al darrera dels fons pers
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Clipping (Experimental)"
-msgstr ""
+msgstr "Retallat (experimental)"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Clip the widget content to the custom background radius.<br>Clipping widgets against the panel is not supported yet but is planned for a later version, see <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/275\">#275</a>."
-msgstr ""
+msgstr "Retalla les vores del contingut del giny segons el radi del fons personalitzat.<br>Retallar els ginys respecte el panell encara no se suporta, però està planificat per a properes versions. Vegeu <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/275\">#275</a>."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it."
@@ -451,7 +451,7 @@ msgstr "Espaiat:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "<strong>Odd spacing</strong> values will be automatically converted to <strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
-msgstr ""
+msgstr "Els valors d'<strong>espaiat imparells</strong> es convertiran automàticament a <strong>parells</strong> si es fan servir les <strong>Illes de ginys</strong>."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Custom font:"
@@ -1289,7 +1289,7 @@ msgstr "Seleccioneu l'inici i final de les illes de ginys. Els ginys entre <b>In
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Remove all islands"
-msgstr ""
+msgstr "Trau totes les illes"
 
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
