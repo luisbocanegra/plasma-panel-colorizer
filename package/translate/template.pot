@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-01-30 23:07+0000\n"
+"POT-Creation-Date: 2026-02-05 20:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,6 +67,10 @@ msgstr ""
 
 #: ../contents/config/config.qml
 msgid "General"
+msgstr ""
+
+#: ../contents/config/config.qml
+msgid "Support Me"
 msgstr ""
 
 #: ../contents/ui/components/CategoryDisabled.qml
@@ -543,10 +547,6 @@ msgid "Releases"
 msgstr ""
 
 #: ../contents/ui/components/Header.qml
-msgid "Matrix chat"
-msgstr ""
-
-#: ../contents/ui/components/Header.qml
 msgid "Home page"
 msgstr ""
 
@@ -579,7 +579,7 @@ msgid "FAQ"
 msgstr ""
 
 #: ../contents/ui/components/Header.qml
-msgid "Discussions"
+msgid "GitHub Discussions"
 msgstr ""
 
 #: ../contents/ui/components/Header.qml
@@ -587,15 +587,15 @@ msgid "Send an email"
 msgstr ""
 
 #: ../contents/ui/components/Header.qml
+msgid "Translate"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
 msgid "Donate"
 msgstr ""
 
 #: ../contents/ui/components/Header.qml
-msgid "GitHub sponsors"
-msgstr ""
-
-#: ../contents/ui/components/Header.qml
-msgid "My other projects"
+msgid "More projects"
 msgstr ""
 
 #: ../contents/ui/components/Header.qml ../contents/ui/components/PopupView.qml
@@ -636,6 +636,32 @@ msgstr ""
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "This will replace your current settings!"
+msgstr ""
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Thank you for using %1!"
+msgstr ""
+
+#: ../contents/ui/components/SupportMe.qml
+msgid ""
+"If you enjoy using the plugin please consider sponsoring or donating so I can dedicate more time to maintain and improve this and <a href=\"https://github.com/luisbocanegra?"
+"tab=repositories&q=&type=source&language=&sort=stargazers\">my other projects</a>."
+msgstr ""
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "You can also"
+msgstr ""
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Star the project on GitHub"
+msgstr ""
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Rate in the KDE Store"
+msgstr ""
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Translate %1 to your language"
 msgstr ""
 
 #: ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardHide.qml ../contents/ui/components/WidgetCardIslands.qml ../contents/ui/components/WidgetCardTextIconFixes.qml

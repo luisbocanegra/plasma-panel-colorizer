@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-01-30 23:07+0000\n"
+"POT-Creation-Date: 2026-02-05 20:38+0000\n"
 "PO-Revision-Date: 2025-12-25 13:03+0200\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
@@ -71,6 +71,10 @@ msgstr ""
 #: ../contents/config/config.qml
 msgid "General"
 msgstr "Yleiset"
+
+#: ../contents/config/config.qml
+msgid "Support Me"
+msgstr ""
 
 #: ../contents/ui/components/CategoryDisabled.qml
 msgid "Panel Colorizer is disabled"
@@ -622,10 +626,6 @@ msgid "Releases"
 msgstr "Julkaisut"
 
 #: ../contents/ui/components/Header.qml
-msgid "Matrix chat"
-msgstr "Matrix-chat"
-
-#: ../contents/ui/components/Header.qml
 msgid "Home page"
 msgstr "Kotisivu"
 
@@ -658,24 +658,24 @@ msgid "FAQ"
 msgstr "UKK"
 
 #: ../contents/ui/components/Header.qml
-msgid "Discussions"
-msgstr "Keskustelut"
+msgid "GitHub Discussions"
+msgstr ""
 
 #: ../contents/ui/components/Header.qml
 msgid "Send an email"
 msgstr "Lähetä sähköpostia"
 
 #: ../contents/ui/components/Header.qml
+msgid "Translate"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
 msgid "Donate"
 msgstr "Lahjoita"
 
 #: ../contents/ui/components/Header.qml
-msgid "GitHub sponsors"
-msgstr "GitHub-sponsorit"
-
-#: ../contents/ui/components/Header.qml
-msgid "My other projects"
-msgstr "Muut projektini"
+msgid "More projects"
+msgstr ""
 
 #: ../contents/ui/components/Header.qml ../contents/ui/components/PopupView.qml
 msgid ""
@@ -726,6 +726,35 @@ msgstr "Tämä ylikirjoittaa aiemman viennin!"
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "This will replace your current settings!"
 msgstr "Tämä korvaa nykyiset asetuksesi!"
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Thank you for using %1!"
+msgstr ""
+
+#: ../contents/ui/components/SupportMe.qml
+msgid ""
+"If you enjoy using the plugin please consider sponsoring or donating so I "
+"can dedicate more time to maintain and improve this and <a href=\"https://"
+"github.com/luisbocanegra?"
+"tab=repositories&q=&type=source&language=&sort=stargazers\">my other "
+"projects</a>."
+msgstr ""
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "You can also"
+msgstr ""
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Star the project on GitHub"
+msgstr ""
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Rate in the KDE Store"
+msgstr ""
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Translate %1 to your language"
+msgstr ""
 
 #: ../contents/ui/components/WidgetCardConfig.qml
 #: ../contents/ui/components/WidgetCardHide.qml
@@ -1512,6 +1541,18 @@ msgstr ""
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Piilota pienoisohjelma (näkyvissä paneelin muokkaustilassa)"
+
+#~ msgid "Matrix chat"
+#~ msgstr "Matrix-chat"
+
+#~ msgid "Discussions"
+#~ msgstr "Keskustelut"
+
+#~ msgid "GitHub sponsors"
+#~ msgstr "GitHub-sponsorit"
+
+#~ msgid "My other projects"
+#~ msgstr "Muut projektini"
 
 #~ msgid ""
 #~ "Use an integer when using <strong>Widget Islands</strong> to avoid "
