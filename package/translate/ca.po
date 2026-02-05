@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-01-30 23:07+0000\n"
+"POT-Creation-Date: 2026-02-05 20:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,6 +68,10 @@ msgstr "Substitució d'icones de la safata d'entrada"
 #: ../contents/config/config.qml
 msgid "General"
 msgstr "General"
+
+#: ../contents/config/config.qml
+msgid "Support Me"
+msgstr ""
 
 #: ../contents/ui/components/CategoryDisabled.qml
 msgid "Panel Colorizer is disabled"
@@ -542,10 +546,6 @@ msgid "Releases"
 msgstr "Publicacions"
 
 #: ../contents/ui/components/Header.qml
-msgid "Matrix chat"
-msgstr "Xat Matrix"
-
-#: ../contents/ui/components/Header.qml
 msgid "Home page"
 msgstr "Pàgina d'inici"
 
@@ -578,24 +578,24 @@ msgid "FAQ"
 msgstr "Preguntes freqüents"
 
 #: ../contents/ui/components/Header.qml
-msgid "Discussions"
-msgstr "Discussions"
+msgid "GitHub Discussions"
+msgstr ""
 
 #: ../contents/ui/components/Header.qml
 msgid "Send an email"
 msgstr "Envia un correu"
 
 #: ../contents/ui/components/Header.qml
+msgid "Translate"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
 msgid "Donate"
 msgstr "Dóna"
 
 #: ../contents/ui/components/Header.qml
-msgid "GitHub sponsors"
-msgstr "Espònsors del GitHub"
-
-#: ../contents/ui/components/Header.qml
-msgid "My other projects"
-msgstr "Altres projectes meus"
+msgid "More projects"
+msgstr ""
 
 #: ../contents/ui/components/Header.qml ../contents/ui/components/PopupView.qml
 msgid "Running version of the widget (%1) is different to the one on disk (%2), please log out and back in (or restart plasmashell user unit) to ensure things work correctly!"
@@ -636,6 +636,30 @@ msgstr "Això sobreescriurà qualsevol exportació prèvia."
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "This will replace your current settings!"
 msgstr "Això reemplaçarà la configuració actual."
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Thank you for using %1!"
+msgstr ""
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "If you enjoy using the plugin please consider sponsoring or donating so I can dedicate more time to maintain and improve this and <a href=\"https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers\">my other projects</a>."
+msgstr ""
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "You can also"
+msgstr ""
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Star the project on GitHub"
+msgstr ""
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Rate in the KDE Store"
+msgstr ""
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Translate %1 to your language"
+msgstr ""
 
 #: ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardHide.qml ../contents/ui/components/WidgetCardIslands.qml ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "System Tray"
@@ -1294,6 +1318,18 @@ msgstr "Trau totes les illes"
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Amaga el giny (visible en Mode d'Edició del Panell)"
+
+#~ msgid "Matrix chat"
+#~ msgstr "Xat Matrix"
+
+#~ msgid "Discussions"
+#~ msgstr "Discussions"
+
+#~ msgid "GitHub sponsors"
+#~ msgstr "Espònsors del GitHub"
+
+#~ msgid "My other projects"
+#~ msgstr "Altres projectes meus"
 
 #~ msgid "Use an integer when using <strong>Widget Islands</strong> to avoid rendering issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">See #64<a/>"
 #~ msgstr "Feu servir enters per a les <strong>Illes de ginys</strong> per a evitar problemes de renderització. <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">Vegeu #64<a/>"

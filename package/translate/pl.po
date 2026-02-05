@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-01-30 23:07+0000\n"
+"POT-Creation-Date: 2026-02-05 20:38+0000\n"
 "PO-Revision-Date: 2026-01-18 08:43+0100\n"
 "Last-Translator: RygorrMortis <rygorrmortis@github.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -75,6 +75,10 @@ msgstr "Zamiennik ikon tacki systemowej"
 #: ../contents/config/config.qml
 msgid "General"
 msgstr "Ogólne"
+
+#: ../contents/config/config.qml
+msgid "Support Me"
+msgstr ""
 
 #: ../contents/ui/components/CategoryDisabled.qml
 msgid "Panel Colorizer is disabled"
@@ -629,10 +633,6 @@ msgid "Releases"
 msgstr "Wydania"
 
 #: ../contents/ui/components/Header.qml
-msgid "Matrix chat"
-msgstr "Czat Matrix"
-
-#: ../contents/ui/components/Header.qml
 msgid "Home page"
 msgstr "Strona główna"
 
@@ -665,24 +665,24 @@ msgid "FAQ"
 msgstr "FAQ"
 
 #: ../contents/ui/components/Header.qml
-msgid "Discussions"
-msgstr "Dyskusje"
+msgid "GitHub Discussions"
+msgstr ""
 
 #: ../contents/ui/components/Header.qml
 msgid "Send an email"
 msgstr "Wyślij e-mail"
 
 #: ../contents/ui/components/Header.qml
+msgid "Translate"
+msgstr ""
+
+#: ../contents/ui/components/Header.qml
 msgid "Donate"
 msgstr "Wesprzyj"
 
 #: ../contents/ui/components/Header.qml
-msgid "GitHub sponsors"
-msgstr "Sponsorzy GitHub"
-
-#: ../contents/ui/components/Header.qml
-msgid "My other projects"
-msgstr "Moje inne projekty"
+msgid "More projects"
+msgstr ""
 
 #: ../contents/ui/components/Header.qml ../contents/ui/components/PopupView.qml
 msgid ""
@@ -733,6 +733,35 @@ msgstr "To nadpisze poprzedni eksport!"
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "This will replace your current settings!"
 msgstr "To zastąpi bieżące ustawienia!"
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Thank you for using %1!"
+msgstr ""
+
+#: ../contents/ui/components/SupportMe.qml
+msgid ""
+"If you enjoy using the plugin please consider sponsoring or donating so I "
+"can dedicate more time to maintain and improve this and <a href=\"https://"
+"github.com/luisbocanegra?"
+"tab=repositories&q=&type=source&language=&sort=stargazers\">my other "
+"projects</a>."
+msgstr ""
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "You can also"
+msgstr ""
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Star the project on GitHub"
+msgstr ""
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Rate in the KDE Store"
+msgstr ""
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Translate %1 to your language"
+msgstr ""
 
 #: ../contents/ui/components/WidgetCardConfig.qml
 #: ../contents/ui/components/WidgetCardHide.qml
@@ -1549,6 +1578,18 @@ msgstr ""
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Ukryj widżet (widoczny w trybie edycji panelu)"
+
+#~ msgid "Matrix chat"
+#~ msgstr "Czat Matrix"
+
+#~ msgid "Discussions"
+#~ msgstr "Dyskusje"
+
+#~ msgid "GitHub sponsors"
+#~ msgstr "Sponsorzy GitHub"
+
+#~ msgid "My other projects"
+#~ msgstr "Moje inne projekty"
 
 #~ msgid ""
 #~ "Use an integer when using <strong>Widget Islands</strong> to avoid "
