@@ -994,6 +994,18 @@ Rectangle {
         visible: false
     }
 
+    ShaderEffectSource {
+        id: clipSourceShaderItem
+        live: true
+        sourceItem: {
+            if (rect.backgroundClipping) {
+                return rect.target?.applet ?? null;
+            }
+            return null;
+        }
+        hideSource: true
+    }
+
     // clip widget content to custom background shape
     // TODO: figure out how to do the same with the panel
     OpacityMask {
@@ -1004,15 +1016,6 @@ Rectangle {
         anchors.bottomMargin: rect.horizontal ? undefined : rect.marginBottom
         maskSource: mask
         visible: !!source
-        source: ShaderEffectSource {
-            live: true
-            sourceItem: {
-                if (rect.backgroundClipping) {
-                    return rect.target?.applet ?? null;
-                }
-                return null;
-            }
-            hideSource: true
-        }
+        source: clipSourceShaderItem
     }
 }
