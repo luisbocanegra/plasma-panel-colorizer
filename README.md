@@ -2,45 +2,59 @@
 
 # Panel Colorizer
 
-[![AUR version](https://img.shields.io/aur/version/plasma6-applets-panel-colorizer?logo=archlinux&labelColor=2d333b&color=1f425f)](https://aur.archlinux.org/packages/plasma6-applets-panel-colorizer)
-[![Store version](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opendesktop.org%2Focs%2Fv1%2Fcontent%2Fdata%2F2130967&query=%2Focs%2Fdata%2Fcontent%2Fversion%2Ftext()&color=1f425f&labelColor=2d333b&logo=kde&label=KDE%20Store)](https://store.kde.org/p/2130967)
-[![OBS Fedora 43](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FFedora_43%2Fx86_64%2Fplasma-panel-colorizer%2F_buildinfo&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=fedora&label=Fedora%2043&color=1f425f&labelColor=2d333b)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
-[![OBS Fedora Rawhide](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FFedora_Rawhide%2Fx86_64%2Fplasma-panel-colorizer%2F_buildinfo&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=fedora&label=Fedora%20Rawhide&color=1f425f&labelColor=2d333b)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
-[![OBS openSUSE Tumbleweed](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FopenSUSE_Tumbleweed%2Fx86_64%2Fplasma-panel-colorizer%2F_buildinfo&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=opensuse&label=openSUSE%20Tumbleweed&color=1f425f&labelColor=2d333b)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
-[![OBS openSUSE Slowroll](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FopenSUSE_Slowroll%2Fx86_64%2Fplasma-panel-colorizer%2F_buildinfo&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=opensuse&label=openSUSE%20Slowroll&color=1f425f&labelColor=2d333b)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
-[![nixpkgs unstable package](https://repology.org/badge/version-for-repo/nix_unstable/plasma-panel-colorizer.svg?header=nixpkgs%20unstable)](https://repology.org/project/plasma-panel-colorizer/versions)
+[![AUR version](https://img.shields.io/aur/version/plasma6-applets-panel-colorizer?logo=archlinux&labelColor=2d333b&style=for-the-badge&color=1378AD)](https://aur.archlinux.org/packages/plasma6-applets-panel-colorizer)
+[![Store version](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opendesktop.org%2Focs%2Fv1%2Fcontent%2Fdata%2F2130967&query=%2Focs%2Fdata%2Fcontent%2Fversion%2Ftext()&labelColor=2d333b&style=for-the-badge&color=1378AD&logo=kde&label=KDE%20Store)](https://store.kde.org/p/2130967)
+[![OBS Fedora 43](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FFedora_43%2Fx86_64%2Fplasma-panel-colorizer%2F_buildinfo&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=fedora&label=Fedora%2043&labelColor=2d333b&style=for-the-badge&color=1378AD)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
+[![OBS Fedora Rawhide](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FFedora_Rawhide%2Fx86_64%2Fplasma-panel-colorizer%2F_buildinfo&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=fedora&label=Fedora%20Rawhide&labelColor=2d333b&style=for-the-badge&color=1378AD)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
+[![OBS openSUSE Tumbleweed](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FopenSUSE_Tumbleweed%2Fx86_64%2Fplasma-panel-colorizer%2F_buildinfo&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=opensuse&label=openSUSE%20Tumbleweed&labelColor=2d333b&style=for-the-badge&color=13ad28)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
+[![OBS openSUSE Slowroll](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FopenSUSE_Slowroll%2Fx86_64%2Fplasma-panel-colorizer%2F_buildinfo&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=opensuse&label=openSUSE%20Slowroll&labelColor=2d333b&style=for-the-badge&color=13ad28)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
+[![nixpkgs unstable](https://img.shields.io/badge/dynamic/regex?url=https%3A%2F%2Fgithub.com%2FNixOS%2Fnixpkgs%2Fblob%2Fnixos-unstable%2Fpkgs%2Fby-name%2Fpl%2Fplasma-panel-colorizer%2Fpackage.nix&search=version%5Cs*%3D%5Cs*.*%3F(%5B0-9%5D%2B%5C.%5B0-9%5D%2B%5C.%5B0-9%5D%2B)&replace=%241&style=for-the-badge&logo=nixos&label=nixpkgs%20unstable&labelColor=2d333b&color=395DA7)](https://repology.org/project/plasma-panel-colorizer/versions)
 
-Fully-featured widget to bring Latte-Dock and WM status bar customization features to the default Plasma panel.
+Fully-featured widget to bring Latte-Dock and WM status bar customization features to the default Plasma panels.
 
 ![panel](screenshots/panel.png)
 
 </div>
 
-> [!IMPORTANT]
-> Always log out and back in (or restart plasmashell user unit) after a Panel Colorizer or Plasma update to ensure things work correctly. **Please don't report bugs without doing that first.**
+If you enjoy using the plugin consider sponsoring or donating so I can dedicate more time to maintain and improve this and [my other projects](https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers).
 
-> [!WARNING]
-> **Project is under active development. Look for BREAKING CHANGES in the [Release notes](https://github.com/luisbocanegra/plasma-panel-colorizer/releases)**.
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsors-%2329313C?logo=githubsponsors&style=for-the-badge)](https://github.com/sponsors/luisbocanegra)
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-supporter?logo=ko-fi&logoColor=%23ffffff&color=%23467BEB&style=for-the-badge)](https://ko-fi.com/luisbocanegra)
+[!["Buy Me A Coffee"](https://img.shields.io/badge/Buy%20me%20a%20coffee-supporter?logo=buymeacoffee&logoColor=%23282828&color=%23FF803F&style=for-the-badge)](https://www.buymeacoffee.com/luisbocanegra)
+[![PayPal](https://img.shields.io/badge/PayPal-supporter?logo=paypal&logoColor=%23ffffff&color=%23003087&style=for-the-badge)](https://www.paypal.com/donate/?hosted_button_id=Y5TMH3Z4YZRDA)
+[![Patreon](https://img.shields.io/badge/Patreon-%23000000?logo=patreon&logoColor=%23ffffff&style=for-the-badge)](https://patreon.com/luisbocanegra?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink)
+
+## Join our Discord / Matrix
+
+Help/Support/Discussion about my projects
+
+[![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/ZqD75dzKTe)
+[![Matrix](https://img.shields.io/badge/Matrix-%23121212.svg?style=for-the-badge&logo=matrix&logoColor=white)](https://matrix.to/#/#kde-plasma-panel-colorizer:matrix.org)
+
+> Not bridged
+
+## Demo
+
+[![Demo](https://img.shields.io/badge/watch%20on%20youtube-demo?logo=youtube&logoColor=white&labelColor=%23c30000&color=%23222222&style=for-the-badge
+)](https://www.youtube.com/watch?v=0QLyEexa9Y4) (outdated)
+
+## Features
+
+> [!IMPORTANT]
+> Always log out and back in (or restart plasmashell user unit) after a Panel Colorizer or Plasma update to ensure things work correctly. **Please don't report bugs without doing that.**
 >
 > - Found a bug while using Panel Colorizer? Please report it [here](https://github.com/luisbocanegra/plasma-panel-colorizer/issues?q=sort%3Aupdated-desc+is%3Aissue+is%3Aopen) first, only report it to KDE after we conclude is a upstream issue or you removed the widget and can still reproduce the problem.
 >
 > - Make sure you're using the latest version of the widget and as close as possible to the [latest Plasma](https://kde.org/search/?s=KDE+Plasma6) to avoid compatibility issues.
 
 > [!CAUTION]
-> [The C++ plugin may stop working or cause Plasma to crash after a system update](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/209) and you will need to rebuild it, see [Build from source (With C++ Plugin)](#build-from-source-with-c-plugin).
+> The C++ plugin may stop working or cause Plasma to crash after a system update ([#209](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/209)) and will need to be rebuilt, see [Build from source (With C++ Plugin)](#build-from-source-with-c-plugin).
 >
 > To temporarily recover from the crashes, you can manually remove the plugin:
 >
 > ```sh
 > sudo rm -rf /usr/lib/qt6/qml/org/kde/plasma/panelcolorizer/ /usr/lib64/qt6/qml/org/kde/plasma/panelcolorizer/ $HOME/.local/lib/qml/org/kde/plasma/panelcolorizer/ $HOME/.local/lib64/qml/org/kde/plasma/panelcolorizer/
 > ```
-
-## Demo
-
-[![Demo](https://img.shields.io/badge/watch%20on%20youtube-demo?logo=youtube&logoColor=white&labelColor=%23c30000&color=%23222222
-)](https://www.youtube.com/watch?v=0QLyEexa9Y4) (outdated)
-
-## Features
 
 **Presets**
 
@@ -365,19 +379,11 @@ Only the panel for now, the Desktop widgets might be possible, for the others ha
 
 Please read the [Contributing guidelines in this repository](https://github.com/luisbocanegra/plasma-panel-colorizer/blob/main/CONTRIBUTING.md)
 
-## Support the development
-
-- If you like the project please consider donating/sponsoring this and [my other open source work](https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers)
-
-  [![GitHub Sponsors](https://img.shields.io/badge/GitHub_Sponsors-supporter?logo=githubsponsors&color=%2329313C)](https://github.com/sponsors/luisbocanegra) [![Ko-fi](https://img.shields.io/badge/Ko--fi-supporter?logo=ko-fi&logoColor=%23ffffff&color=%23467BEB)](https://ko-fi.com/luisbocanegra) [!["Buy Me A Coffee"](https://img.shields.io/badge/Buy%20me%20a%20coffe-supporter?logo=buymeacoffee&logoColor=%23282828&color=%23FF803F)](https://www.buymeacoffee.com/luisbocanegra) [![Liberapay](https://img.shields.io/badge/Liberapay-supporter?logo=liberapay&logoColor=%23282828&color=%23F6C814)](https://liberapay.com/luisbocanegra/) [![PayPal](https://img.shields.io/badge/PayPal-supporter?logo=paypal&logoColor=%23ffffff&color=%23003087)](https://www.paypal.com/donate/?hosted_button_id=Y5TMH3Z4YZRDA)
-
-- [Give it a star on GitHub](https://github.com/luisbocanegra/plasma-panel-colorizer)
-- Rate / leave review in the [KDE Store](https://store.kde.org/p/2130967)
-
 ## Acknowledgements & useful resources
 
 - [Search the actual gridLayout of the panel from Plasma panel spacer](https://invent.kde.org/plasma/plasma-workspace/-/blob/Plasma/5.27/applets/panelspacer/package/contents/ui/main.qml?ref_type=heads#L37) that inspired this project.
 - [Google LLC. / Pictogrammers](https://pictogrammers.com/library/mdi/) assets used for panel icon.
+- [Simple Icons](https://simpleicons.org) brand icons
 - [sanjay-kr-commit/panelTransparencyToggleForPlasma6](https://github.com/sanjay-kr-commit/panelTransparencyToggleForPlasma6) / [psifidotos/paneltransparencybutton](https://github.com/psifidotos/paneltransparencybutton) for the implementation of panel transparency
 - [olib14/pinpanel](https://github.com/olib14/pinpanel) for the hint on how to toggle a panel
 - [Zren/plasma-applet-lib/kpac](https://github.com/Zren/plasma-applet-lib) to manage translations
