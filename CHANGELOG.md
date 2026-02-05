@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.7.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.6.0...v6.7.0) (2026-02-05)
+
+
+### Features
+
+* update Catalan translation ([b1349a4](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/b1349a4890abd83d385cbb6a5b18d23e86814e35))
+
+
+### Bug Fixes
+
+* plasmashell crash when monitors are disconnected ([06e0362](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/06e0362fd47f5e489d1c4ce7cd29b90c44508d4f))
+
 ## [6.6.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.5.0...v6.6.0) (2026-01-30)
 
 

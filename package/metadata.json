@@ -29,7 +29,7 @@
         "Name[pl]": "Koloryzator panelu",
         "Name[uk]": "Колоризатор панелі",
         "Name[zh]": "Panel colorizer",
-        "Version": "6.6.0",
+        "Version": "6.7.0",
         "Website": "https://github.com/luisbocanegra/plasma-panel-colorizer"
     },
     "X-Plasma-API-Minimum-Version": "6.0"
