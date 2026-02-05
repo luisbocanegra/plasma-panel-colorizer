@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="16"
+   height="16"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="paypal.svg"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="17.681818"
+     inkscape:cx="2.7994859"
+     inkscape:cy="14.902314"
+     inkscape:window-width="1129"
+     inkscape:window-height="983"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg1" />
+  <defs
+     id="defs1">
+    <style
+       id="current-color-scheme"
+       type="text/css">
+   .ColorScheme-Text { color:#dfdfdf; } .ColorScheme-Highlight { color:#4285f4; } .ColorScheme-NeutralText { color:#ff9800; } .ColorScheme-PositiveText { color:#4caf50; } .ColorScheme-NegativeText { color:#f44336; }
+  </style>
+  </defs>
+  <path
+     d="M 9.8039865,4.3265 H 6.4709863 l -1.1479995,7.299 H 2.9104865 l 1.521,-9.6254999 h 3.9975 c 1.8769995,0 3.1874995,1.147 3.2364995,2.7565001 -0.324,-0.2390001 -1.0525,-0.4300001 -1.8609995,-0.4300001 m 3.2849995,2.773 c 0,1.7050002 -1.505,3.4264999 -3.4789995,3.4264999 H 8.3639863 L 7.7979868,14 H 5.3704865 l 0.9225,-5.769 h 1.7960003 c 2.1039992,0 3.6729992,-1.8169999 3.5764992,-3.4744999 a 2.6200001,2.6200001 0 0 1 1.424,2.3429999 M 6.8269865,4.7730001 h 3.2039995 c 0.4535,0 0.971,0.111 1.1815,0.2704999 -0.0975,1.3705001 -1.3274995,2.7414997 -3.2204997,2.7414997 H 6.3574865 Z"
+     id="path1-5"
+     class="ColorScheme-Text"
+     style="fill:#ffffff;stroke-width:0.341797" />
+</svg>

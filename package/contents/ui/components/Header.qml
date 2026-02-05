@@ -20,6 +20,7 @@ ColumnLayout {
     property bool ready: false
     spacing: 0
     RowLayout {
+        spacing: 0
         Layout.leftMargin: Kirigami.Units.mediumSpacing
         RowLayout {
             Label {
@@ -61,11 +62,20 @@ ColumnLayout {
             }
         }
 
-        Menu {
-            id: menu
+        ToolButton {
+            id: linksButton
 
-            y: linksButton.height
-            x: linksButton.x
+            icon.name: "application-menu"
+            onClicked: {
+                if (linksMenu.visible)
+                    linksMenu.dismiss();
+                else
+                    linksMenu.popup(this, x, y + height);
+            }
+        }
+
+        Menu {
+            id: linksMenu
 
             Action {
                 text: i18n("Changelog")
@@ -80,7 +90,13 @@ ColumnLayout {
             }
 
             Action {
-                text: i18n("Matrix chat")
+                text: "Discord"
+                icon.source: Qt.resolvedUrl("../../icons/discord.svg")
+                onTriggered: Qt.openUrlExternally("https://discord.gg/ZqD75dzKTe")
+            }
+
+            Action {
+                text: "Matrix"
                 icon.name: Qt.resolvedUrl("../../icons/matrix_logo.svg").toString().replace("file://", "")
                 onTriggered: Qt.openUrlExternally("https://matrix.to/#/#kde-plasma-panel-colorizer:matrix.org")
             }
@@ -104,7 +120,7 @@ ColumnLayout {
 
             Menu {
                 title: i18n("Issues")
-                icon.name: "project-open-symbolic"
+                icon.source: Qt.resolvedUrl("../../icons/github.svg")
 
                 Action {
                     text: i18n("Current issues")
@@ -132,7 +148,7 @@ ColumnLayout {
                 }
 
                 Action {
-                    text: i18n("Discussions")
+                    text: i18n("GitHub Discussions")
                     onTriggered: Qt.openUrlExternally("https://github.com/luisbocanegra/plasma-panel-colorizer/discussions")
                 }
 
@@ -142,44 +158,59 @@ ColumnLayout {
                 }
             }
 
+            Action {
+                text: i18n("Translate")
+                onTriggered: Qt.openUrlExternally("https://github.com/luisbocanegra/plasma-panel-colorizer/tree/main/package/translate")
+                icon.name: "translate-symbolic"
+            }
+
             MenuSeparator {}
 
             Menu {
+                id: donateMenu
                 title: i18n("Donate")
-                icon.name: "love"
+                icon.name: "emblem-favorite-symbolic"
 
-                Action {
-                    text: i18n("GitHub sponsors")
-                    onTriggered: Qt.openUrlExternally("https://github.com/sponsors/luisbocanegra")
-                }
-
-                Action {
-                    text: "Ko-fi"
-                    onTriggered: Qt.openUrlExternally("https://ko-fi.com/luisbocanegra")
-                }
-
-                Action {
-                    text: "Paypal"
-                    onTriggered: Qt.openUrlExternally("https://www.paypal.com/donate/?hosted_button_id=Y5TMH3Z4YZRDA")
+                Instantiator {
+                    model: [
+                        {
+                            label: "GitHub Sponsors",
+                            url: "https://github.com/sponsors/luisbocanegra"
+                        },
+                        {
+                            label: "Ko-fi",
+                            url: "https://ko-fi.com/luisbocanegra"
+                        },
+                        {
+                            label: "Patreon",
+                            url: "https://www.patreon.com/luisbocanegra"
+                        },
+                        {
+                            label: "PayPal",
+                            url: "https://www.paypal.com/donate/?hosted_button_id=Y5TMH3Z4YZRDA"
+                        },
+                        {
+                            label: "Liberapay",
+                            url: "https://liberapay.com/luisbocanegra"
+                        },
+                        {
+                            label: "Buy Me A Coffee",
+                            url: "https://buymeacoffee.com/luisbocanegra"
+                        },
+                    ]
+                    delegate: MenuItem {
+                        required property var modelData
+                        text: modelData.label
+                        onTriggered: Qt.openUrlExternally(modelData.url)
+                    }
+                    onObjectAdded: (index, object) => donateMenu.insertItem(index, object)
                 }
             }
 
             Action {
-                text: i18n("My other projects")
+                text: i18n("More projects")
                 onTriggered: Qt.openUrlExternally("https://github.com/luisbocanegra?tab=repositories&type=source")
                 icon.name: "starred"
-            }
-        }
-
-        ToolButton {
-            id: linksButton
-
-            icon.name: "application-menu"
-            onClicked: {
-                if (menu.opened)
-                    menu.close();
-                else
-                    menu.open();
             }
         }
     }

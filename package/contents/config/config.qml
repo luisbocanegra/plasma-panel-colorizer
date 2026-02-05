@@ -67,4 +67,10 @@ ConfigModel {
         icon: "configure-symbolic"
         source: "configGeneral.qml"
     }
+
+    ConfigCategory {
+        name: i18n("Support Me")
+        icon: "emblem-favorite-symbolic"
+        source: "configSupportMe.qml"
+    }
 }
