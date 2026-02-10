@@ -132,9 +132,9 @@ msgid ""
 "issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
 "issues/64\">See #64</a>"
 msgstr ""
-"Użyj liczby całkowitej przy użyciu <strong>Wysp widżetów</strong>, aby uniknąć problemów z renderowaniem! "
-"<a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
-"issues/64\">Zobacz #64</a>"
+"Użyj liczby całkowitej przy użyciu <strong>Wysp widżetów</strong>, aby "
+"uniknąć problemów z renderowaniem! <a href=\"https://github.com/"
+"luisbocanegra/plasma-panel-colorizer/issues/64\">Zobacz #64</a>"
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Custom widths:"
@@ -361,8 +361,8 @@ msgid ""
 "Requires plasmashell restart after disabling to restore the default. <a "
 "href=\"#\">Restart now</a>."
 msgstr ""
-"Wymaga ponownego uruchomienia plasmashell po wyłączeniu, aby przywrócić wartości domyślne. "
-"<a href=\"#\">Uruchom ponownie teraz</a>."
+"Wymaga ponownego uruchomienia plasmashell po wyłączeniu, aby przywrócić "
+"wartości domyślne. <a href=\"#\">Uruchom ponownie teraz</a>."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel:"
@@ -410,7 +410,8 @@ msgid ""
 msgstr ""
 "Od wersji 6.4.0 Plasma ma wbudowaną opcję <b>Pływający panel i aplety</b>, "
 "włączenie tej opcji nadpisuje tamtą.\n"
-"⚠️ Zmiana opcji <b>Pływający</b> w konfiguracji panelu nie będzie działać, gdy ta opcja jest włączona!"
+"⚠️ Zmiana opcji <b>Pływający</b> w konfiguracji panelu nie będzie działać, "
+"gdy ta opcja jest włączona!"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Wide expand button:"
@@ -420,7 +421,8 @@ msgstr "Szeroki przycisk rozwijania:"
 msgid ""
 "Make the System Tray expand button be the same width as the other tray items"
 msgstr ""
-"Spraw, aby przycisk rozwijania tacki systemowej miał taką samą szerokość jak inne elementy tacki"
+"Spraw, aby przycisk rozwijania tacki systemowej miał taką samą szerokość jak "
+"inne elementy tacki"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Force floating applets"
@@ -508,10 +510,10 @@ msgid ""
 "see <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
 "issues/275\">#275</a>."
 msgstr ""
-"Przycinaj zawartość widżetu do promienia niestandardowego tła.<br>Przycinanie widżetów "
-"do panelu nie jest jeszcze obsługiwane, ale jest planowane w późniejszej wersji, "
-"zobacz <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
-"issues/275\">#275</a>."
+"Przycinaj zawartość widżetu do promienia niestandardowego tła."
+"<br>Przycinanie widżetów do panelu nie jest jeszcze obsługiwane, ale jest "
+"planowane w późniejszej wersji, zobacz <a href=\"https://github.com/"
+"luisbocanegra/plasma-panel-colorizer/issues/275\">#275</a>."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
@@ -519,8 +521,8 @@ msgid ""
 "reboot or restart plasmashell to be able to use it."
 msgstr ""
 "Nie znaleziono wtyczki C++, ta funkcja nie będzie działać. Zainstaluj "
-"wtyczkę i uruchom ponownie komputer lub zrestartuj plasmashell, aby móc z niej "
-"korzystać."
+"wtyczkę i uruchom ponownie komputer lub zrestartuj plasmashell, aby móc z "
+"niej korzystać."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Plugin install instructions"
@@ -543,8 +545,9 @@ msgid ""
 "<strong>Odd spacing</strong> values will be automatically converted to "
 "<strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
 msgstr ""
-"<strong>Nieparzyste wartości odstępu</strong> będą automatycznie konwertowane na "
-"<strong>parzyste</strong>, jeśli używana jest funkcja <strong>Wysp widżetów</strong>."
+"<strong>Nieparzyste wartości odstępu</strong> będą automatycznie "
+"konwertowane na <strong>parzyste</strong>, jeśli używana jest funkcja "
+"<strong>Wysp widżetów</strong>."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Custom font:"
@@ -555,8 +558,9 @@ msgid ""
 "A plasmashell restart is required to restore the original values after "
 "disabling any font setting. <a href=\"#\">Restart now</a>."
 msgstr ""
-"Do przywrócenia oryginalnych wartości po wyłączeniu dowolnego ustawienia czcionki "
-"wymagane jest ponowne uruchomienie plasmashell. <a href=\"#\">Uruchom ponownie teraz</a>."
+"Do przywrócenia oryginalnych wartości po wyłączeniu dowolnego ustawienia "
+"czcionki wymagane jest ponowne uruchomienie plasmashell. <a "
+"href=\"#\">Uruchom ponownie teraz</a>."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Font family:"
@@ -752,9 +756,9 @@ msgid ""
 "tab=repositories&q=&type=source&language=&sort=stargazers\">my other "
 "projects</a>."
 msgstr ""
-"Jeśli podoba Ci się używanie tej wtyczki, rozważ sponsoring lub darowiznę, abym mógł "
-"poświęcić więcej czasu na utrzymanie i ulepszanie tej oraz <a href=\"https://"
-"github.com/luisbocanegra?"
+"Jeśli podoba Ci się używanie tej wtyczki, rozważ sponsoring lub darowiznę, "
+"abym mógł poświęcić więcej czasu na utrzymanie i ulepszanie tej oraz <a "
+"href=\"https://github.com/luisbocanegra?"
 "tab=repositories&q=&type=source&language=&sort=stargazers\">moich innych "
 "projektów</a>."
 
@@ -802,14 +806,13 @@ msgid "End"
 msgstr "Koniec"
 
 #: ../contents/ui/components/WidgetCardOverride.qml
-#: ../contents/ui/configPresets.qml
-msgid "Delete"
-msgstr "Usuń"
+msgid "Edit"
+msgstr "Edytuj"
 
 #: ../contents/ui/components/WidgetCardOverride.qml
 #: ../contents/ui/configPresets.qml
-msgid "Edit"
-msgstr "Edytuj"
+msgid "Delete"
+msgstr "Usuń"
 
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "Mask"
@@ -838,8 +841,142 @@ msgstr ""
 "source-with-c-plugin\">zobacz instrukcje</a>."
 
 #: ../contents/ui/configAppearance.qml
-msgid "Restore default (removes a..."
-msgstr "Przywróć domyślne (usuwa wszystkie nadpisywania)"
+msgid "Restore default (removes all customizations)"
+msgstr ""
+
+#: ../contents/ui/configAppearance.qml
+msgid "Panel"
+msgstr ""
+
+#: ../contents/ui/configAppearance.qml
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Widgets"
+msgstr ""
+
+#: ../contents/ui/configAppearance.qml
+msgid "Tray widgets"
+msgstr ""
+
+#: ../contents/ui/configAppearance.qml
+msgid "Part of the panel on which the options below will be applied."
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide widget:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Visible in Panel Edit Mode"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Configure from any widget:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid ""
+"Disable to remove <b>%1</b> option from other widget's context (right-click) "
+"menu."
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Debug mode:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Show debugging information"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Grid"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Enabled"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Visible while configuring"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Minor line:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "spacing"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Major line:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "every"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Property change animations"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Duration:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "D-Bus Service"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "D-Bus name:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Each Panel Colorizer instance has its own D-Bus name."
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Python 3 executable:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Required to run the D-Bus service in the background"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Usage examples:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Apply a preset:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Preview and switch presets using fzf + qdbus6 + jq:"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide/show this panel"
+msgstr ""
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide/show all panels"
+msgstr ""
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+msgid ""
+"Create configuration overrides and apply them to one or multiple widgets. "
+"These overrides are independent of presets and will be applied on top of the "
+"current settings and across presets.<br>To blacklist a widget from "
+"modifications, <b>uncheck</b> options <b>Enable</b> and <b>Fallback</b>, and "
+"apply the override to the widget."
+msgstr ""
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Restore default (removes all overrides)"
+msgstr ""
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 #: ../contents/ui/configPresetWidgetOverrides.qml
@@ -1122,8 +1259,8 @@ msgid ""
 msgstr ""
 "Opcje nieprzezroczystości i ekranu wymagają <b>Plasma 6.3</b> lub nowszej."
 "<br>Nieprzezroczystość zależy od bieżącego motywu Plasma, dla dokładniejszej "
-"kontroli lub pełnej przezroczystości użyj opcji <b>Nieprzezroczystość panelu</"
-"b> i <b>Domyślne tło panelu</b> na karcie <b>Wygląd</b> zamiast tego."
+"kontroli lub pełnej przezroczystości użyj opcji <b>Nieprzezroczystość "
+"panelu</b> i <b>Domyślne tło panelu</b> na karcie <b>Wygląd</b> zamiast tego."
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Screen"
@@ -1326,9 +1463,9 @@ msgid ""
 "file. The built-in rules icons are part of <a href=\"https://github.com/"
 "PapirusDevelopmentTeam/papirus-icon-theme\">Papirus icon theme</a>."
 msgstr ""
-"Zamienia ikony tacki systemowej na ikony z bieżącego motywu ikon lub "
-"pliku lokalnego. Ikony wbudowanych reguł są częścią <a href=\"https://github."
-"com/PapirusDevelopmentTeam/papirus-icon-theme\">motywu ikon Papirus</a>."
+"Zamienia ikony tacki systemowej na ikony z bieżącego motywu ikon lub pliku "
+"lokalnego. Ikony wbudowanych reguł są częścią <a href=\"https://github.com/"
+"PapirusDevelopmentTeam/papirus-icon-theme\">motywu ikon Papirus</a>."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid ""
@@ -1449,6 +1586,9 @@ msgstr "Usuń wszystkie wyspy"
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Ukryj widżet (widoczny w trybie edycji panelu)"
+
+#~ msgid "Restore default (removes a..."
+#~ msgstr "Przywróć domyślne (usuwa wszystkie nadpisywania)"
 
 #~ msgid "Matrix chat"
 #~ msgstr "Czat Matrix"

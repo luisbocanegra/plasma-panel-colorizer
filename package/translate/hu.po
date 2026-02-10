@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
-"Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer"
-"\n"
+"Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
+"colorizer\n"
 "POT-Creation-Date: 2026-02-05 20:38+0000\n"
 "PO-Revision-Date: 2026-02-09 22:02+0100\n"
 "Last-Translator: Levente Pál Szíjártó <szijartoleventepal@gmail.com>\n"
@@ -25,11 +25,11 @@ msgstr "Panelszínező"
 
 #: ../metadata.json
 msgid ""
-"Latte-Dock and WM status bar customization features for the default Plasma pan"
-"el"
+"Latte-Dock and WM status bar customization features for the default Plasma "
+"panel"
 msgstr ""
-"Az alapértelmezett Plasma-panel személyre szabása Latte-Dockhoz és ablakkezelő"
-"i állapotsorhoz hasonlóan."
+"Az alapértelmezett Plasma-panel személyre szabása Latte-Dockhoz és "
+"ablakkezelői állapotsorhoz hasonlóan."
 
 #: ../contents/config/config.qml
 msgid "Presets"
@@ -83,11 +83,15 @@ msgstr "Támogatás"
 msgid "Panel Colorizer is disabled"
 msgstr "A Panelszínező le van tiltva"
 
-#: ../contents/ui/components/CategoryDisabled.qml ../contents/ui/components/FormWidgetSettings.qml ../contents/ui/configTrayIconsReplacer.qml
+#: ../contents/ui/components/CategoryDisabled.qml
+#: ../contents/ui/components/FormWidgetSettings.qml
+#: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Enable"
 msgstr "Engedélyezés"
 
-#: ../contents/ui/components/ColorPickerGradientList.qml ../contents/ui/components/ColorPickerList.qml ../contents/ui/components/FormColors.qml
+#: ../contents/ui/components/ColorPickerGradientList.qml
+#: ../contents/ui/components/ColorPickerList.qml
+#: ../contents/ui/components/FormColors.qml
 msgid "Widget background"
 msgstr "Elemháttér"
 
@@ -95,16 +99,24 @@ msgstr "Elemháttér"
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr "Panel nem található. Ezt az elemet egy panelre kell helyezni."
 
-#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormWidgetSettings.qml
+#: ../contents/ui/components/FormBorder.qml
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Border"
 msgstr "Körvonal"
 
-#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml
-#: ../contents/ui/configPresetAutoload.qml ../contents/ui/configStockPanelSettings.qml
+#: ../contents/ui/components/FormBorder.qml
+#: ../contents/ui/components/FormPadding.qml
+#: ../contents/ui/components/FormShadow.qml
+#: ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml
+#: ../contents/ui/configPresetAutoload.qml
+#: ../contents/ui/configStockPanelSettings.qml
 msgid "Enabled:"
 msgstr "Engedélyezve:"
 
-#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormColors.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml
+#: ../contents/ui/components/FormBorder.qml
+#: ../contents/ui/components/FormColors.qml
+#: ../contents/ui/components/FormShadow.qml
+#: ../contents/ui/components/FormShape.qml
 msgid "Disabled"
 msgstr "Letiltva"
 
@@ -114,23 +126,26 @@ msgstr "Vastagság:"
 
 #: ../contents/ui/components/FormBorder.qml
 msgid ""
-"Use an integer when using <strong>Widget Islands</strong> to avoid rendering i"
-"ssues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issue"
-"s/64\">See #64</a>"
+"Use an integer when using <strong>Widget Islands</strong> to avoid rendering "
+"issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
+"issues/64\">See #64</a>"
 msgstr ""
-"<strong>Elemszigetek</string> használata mellett csak egész számokat használjo"
-"n a megjelenítési problémák elkerülése érdekében! Lásd: <a href=\"https://gith"
-"ub.com/luisbocanegra/plasma-panel-colorizer/issues/64\">#64</a>."
+"<strong>Elemszigetek</string> használata mellett csak egész számokat "
+"használjon a megjelenítési problémák elkerülése érdekében! Lásd: <a "
+"href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
+"issues/64\">#64</a>."
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Custom widths:"
 msgstr "Eltérő vastagságok:"
 
-#: ../contents/ui/components/FormColors.qml ../contents/ui/components/FormWidgetSettings.qml
+#: ../contents/ui/components/FormColors.qml
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Color"
 msgstr "Szín"
 
-#: ../contents/ui/components/FormColors.qml ../contents/ui/components/FormWidgetSettings.qml
+#: ../contents/ui/components/FormColors.qml
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Enable:"
 msgstr "Engedélyezés:"
 
@@ -150,7 +165,8 @@ msgstr "Simítás (ms-ban):"
 msgid "Color source:"
 msgstr "Szín forrása:"
 
-#: ../contents/ui/components/FormColors.qml ../contents/ui/configStockPanelSettings.qml
+#: ../contents/ui/components/FormColors.qml
+#: ../contents/ui/configStockPanelSettings.qml
 msgid "Custom"
 msgstr "Egyéni"
 
@@ -172,12 +188,12 @@ msgstr "Egyéni lista"
 
 #: ../contents/ui/components/FormColors.qml
 msgid ""
-"Define a list of colors that will be applied to all the elements, wraps around"
-" if there are more elements than colors"
+"Define a list of colors that will be applied to all the elements, wraps "
+"around if there are more elements than colors"
 msgstr ""
-"Színlista megadása, amelyből a különböző elemek sorban lesznek átszínezve. Ha "
-"kevesebb szín van definiálva, mint elem, akkor a lista végére érve a következő"
-" elem ismét a lista elejéről indul"
+"Színlista megadása, amelyből a különböző elemek sorban lesznek átszínezve. "
+"Ha kevesebb szín van definiálva, mint elem, akkor a lista végére érve a "
+"következő elem ismét a lista elejéről indul"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Random"
@@ -209,11 +225,11 @@ msgstr "Kép"
 
 #: ../contents/ui/components/FormColors.qml
 msgid ""
-"High resolution images can slow down the desktop when the panel or widget size"
-" changes!"
+"High resolution images can slow down the desktop when the panel or widget "
+"size changes!"
 msgstr ""
-"Figyelem: a magas felbontású képek rendszerszintű lassulást okozhatnak a panel"
-" vagy elem méretváltoztatásakor!"
+"Figyelem: a magas felbontású képek rendszerszintű lassulást okozhatnak a "
+"panel vagy elem méretváltoztatásakor!"
 
 #: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
 msgid "Element:"
@@ -309,12 +325,13 @@ msgstr "Kitöltés"
 
 #: ../contents/ui/components/FormPadding.qml
 msgid ""
-"Horizontal and vertical padding only work properly when the panel is on the sa"
-"me orientation."
+"Horizontal and vertical padding only work properly when the panel is on the "
+"same orientation."
 msgstr ""
 "A kitöltés csak akkor működik helyesen, ha a tájolása megegyezik a panelével."
 
-#: ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormWidgetSettings.qml
+#: ../contents/ui/components/FormShadow.qml
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Shadow"
 msgstr "Árnyék"
 
@@ -340,17 +357,18 @@ msgstr "Margó"
 
 #: ../contents/ui/components/FormShape.qml
 msgid ""
-"Requires plasmashell restart after disabling to restore the default. <a href="
-"\"#\">Restart now</a>."
+"Requires plasmashell restart after disabling to restore the default. <a "
+"href=\"#\">Restart now</a>."
 msgstr ""
-"Letiltás után az alapértelmezett beállítások visszaállításához a plasmashell ú"
-"jraindítása szükséges. <a href=\"#\">Újraindítás most</a>."
+"Letiltás után az alapértelmezett beállítások visszaállításához a plasmashell "
+"újraindítása szükséges. <a href=\"#\">Újraindítás most</a>."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Native panel:"
 msgstr "Natív panel:"
 
-#: ../contents/ui/components/FormWidgetSettings.qml ../contents/ui/configGeneral.qml
+#: ../contents/ui/components/FormWidgetSettings.qml
+#: ../contents/ui/configGeneral.qml
 msgid "Background"
 msgstr "Háttér"
 
@@ -358,8 +376,8 @@ msgstr "Háttér"
 msgid ""
 "Disable to make panel fully transparent, removes contrast and blur effects."
 msgstr ""
-"A panel háttere, kontrasztja és elmosási hatásai. Letiltással a panel átlátszó"
-"vá válik."
+"A panel háttere, kontrasztja és elmosási hatásai. Letiltással a panel "
+"átlátszóvá válik."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "The shadow from the Plasma theme"
@@ -384,16 +402,16 @@ msgstr "Változtatások engedélyezése (Plasma 6.4.0 és későbbieknél)"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
-"Since version 6.4.0, Plasma now has a built-in <b>Floating panel and applets</"
-"b> option, enabling this overrides that option.\n"
-"⚠️Changing <b>Floating</b> from the panel configuration will not work with thi"
-"s is enabled!"
+"Since version 6.4.0, Plasma now has a built-in <b>Floating panel and "
+"applets</b> option, enabling this overrides that option.\n"
+"⚠️Changing <b>Floating</b> from the panel configuration will not work with "
+"this is enabled!"
 msgstr ""
-"A Plasma 6.4.0 és későbbi változatai rendelkeznek beépített lebegő <b>panellel"
-" és kisalkalmazásokkal</b>. Ezen beállítás engedélyezése felülbírálja a beépít"
-"ett rendszert.\n"
-"⚠️ Figyelem: A funkció használata mellett a beépített <b>lebegő</b> panelbeáll"
-"ítások hatástalanok!"
+"A Plasma 6.4.0 és későbbi változatai rendelkeznek beépített lebegő "
+"<b>panellel és kisalkalmazásokkal</b>. Ezen beállítás engedélyezése "
+"felülbírálja a beépített rendszert.\n"
+"⚠️ Figyelem: A funkció használata mellett a beépített <b>lebegő</b> "
+"panelbeállítások hatástalanok!"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Wide expand button:"
@@ -403,8 +421,8 @@ msgstr "Szélesebb megjelenítőgomb:"
 msgid ""
 "Make the System Tray expand button be the same width as the other tray items"
 msgstr ""
-"A paneltálca rejtett elemeit megjelenítő gomb kiszélesítése a többi elemmel eg"
-"yezőre"
+"A paneltálca rejtett elemeit megjelenítő gomb kiszélesítése a többi elemmel "
+"egyezőre"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Force floating applets"
@@ -425,11 +443,11 @@ msgstr "Panel lebegéstelenítése:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
-"Remove custom background rounded corners and borders on screen edge when panel"
-" is not floating"
+"Remove custom background rounded corners and borders on screen edge when "
+"panel is not floating"
 msgstr ""
-"Az egyéni háttér lekerekített sarkainak és körvonalainak elrejtése, amíg a pan"
-"el nem lebeg."
+"Az egyéni háttér lekerekített sarkainak és körvonalainak elrejtése, amíg a "
+"panel nem lebeg."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Customization"
@@ -461,11 +479,11 @@ msgstr "Elfoglalt"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
-"Change element appearance based on their state, configuration is stacked on to"
-"p of the current appearance"
+"Change element appearance based on their state, configuration is stacked on "
+"top of the current appearance"
 msgstr ""
-"Az elem megjelenésének megváltoztatása állapottól függően. Ez a beállítás a je"
-"lenlegit veszi alapul."
+"Az elem megjelenésének megváltoztatása állapottól függően. Ez a beállítás a "
+"jelenlegit veszi alapul."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Blur custom background (Beta)"
@@ -473,12 +491,12 @@ msgstr "Egyéni háttérelmosás (kísérleti)"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
-"Draw a custom blur mask behind the custom background(s).<br><strong>Native pan"
-"el background must be enabled with opacity of 0 for this to work as intended.<"
-"/strong>"
+"Draw a custom blur mask behind the custom background(s).<br><strong>Native "
+"panel background must be enabled with opacity of 0 for this to work as "
+"intended.</strong>"
 msgstr ""
-"Egyéni elmosómaszk használata.<br><strong>A funkció használatához a natív pane"
-"lháttér átlátszatlanságát 0-ra kell állítani.</strong>"
+"Egyéni elmosómaszk használata.<br><strong>A funkció használatához a natív "
+"panelháttér átlátszatlanságát 0-ra kell állítani.</strong>"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Clipping (Experimental)"
@@ -486,23 +504,23 @@ msgstr "Körülvágás (kísérleti)"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
-"Clip the widget content to the custom background radius.<br>Clipping widgets a"
-"gainst the panel is not supported yet but is planned for a later version, see "
-"<a href=\"https://github.com/"
-"luisbocanegra/plasma-panel-colorizer/issues/275\">#275</a>."
+"Clip the widget content to the custom background radius.<br>Clipping widgets "
+"against the panel is not supported yet but is planned for a later version, "
+"see <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
+"issues/275\">#275</a>."
 msgstr ""
-"Panelelemek sarkainak levágása az egyéni háttér sarkainak sugara alapján.<br>A"
-" panellel történő körülvágás még nem támogatott, de a megvalósítása tervezett."
-" Lásd: <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issue"
-"s/275\">#275</a>."
+"Panelelemek sarkainak levágása az egyéni háttér sarkainak sugara alapján."
+"<br>A panellel történő körülvágás még nem támogatott, de a megvalósítása "
+"tervezett. Lásd: <a href=\"https://github.com/luisbocanegra/plasma-panel-"
+"colorizer/issues/275\">#275</a>."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
-"C++ plugin not found, this feature will not work. Install the plugin and reboo"
-"t or restart plasmashell to be able to use it."
+"C++ plugin not found, this feature will not work. Install the plugin and "
+"reboot or restart plasmashell to be able to use it."
 msgstr ""
-"A funkció használatához a C++ bővítmény szükséges. Telepítse a bővítményt, maj"
-"d indítsa újra a plasmashellt."
+"A funkció használatához a C++ bővítmény szükséges. Telepítse a bővítményt, "
+"majd indítsa újra a plasmashellt."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Plugin install instructions"
@@ -522,11 +540,11 @@ msgstr "Térköz:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
-"<strong>Odd spacing</strong> values will be automatically converted to <strong"
-">evens</strong> if <strong>Widget Islands</strong> feature is used."
+"<strong>Odd spacing</strong> values will be automatically converted to "
+"<strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
 msgstr ""
-"<strong>Elemszigetek</strong> használata mellett a <strong>páratlan</strong> é"
-"rtékek automatikusan <strong>párosra</strong> lesznek kerekítve."
+"<strong>Elemszigetek</strong> használata mellett a <strong>páratlan</strong> "
+"értékek automatikusan <strong>párosra</strong> lesznek kerekítve."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Custom font:"
@@ -534,11 +552,11 @@ msgstr "Egyéni betűkészlet:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
-"A plasmashell restart is required to restore the original values after disabli"
-"ng any font setting. <a href=\"#\">Restart now</a>."
+"A plasmashell restart is required to restore the original values after "
+"disabling any font setting. <a href=\"#\">Restart now</a>."
 msgstr ""
-"Letiltás után az alapértelmezett beállítások visszaállításához a plasmashell ú"
-"jraindítása szükséges <a href=\"#\">Újraindítás most</a>."
+"Letiltás után az alapértelmezett beállítások visszaállításához a plasmashell "
+"újraindítása szükséges <a href=\"#\">Újraindítás most</a>."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Font family:"
@@ -675,13 +693,13 @@ msgstr "További projektek"
 
 #: ../contents/ui/components/Header.qml ../contents/ui/components/PopupView.qml
 msgid ""
-"Running version of the widget (%1) is different to the one on disk (%2), pleas"
-"e log out and back in (or restart plasmashell user unit) to ensure things work"
-" correctly!"
+"Running version of the widget (%1) is different to the one on disk (%2), "
+"please log out and back in (or restart plasmashell user unit) to ensure "
+"things work correctly!"
 msgstr ""
-"A program jelenleg futó verziója (%1) és a lemezre telepített változat (%2) ne"
-"m egyezik. Jelentkezzen ki és ismét be (vagy indítsa újra a plasmashellt) a hi"
-"bák elkerülése érdekében!"
+"A program jelenleg futó verziója (%1) és a lemezre telepített változat (%2) "
+"nem egyezik. Jelentkezzen ki és ismét be (vagy indítsa újra a plasmashellt) "
+"a hibák elkerülése érdekében!"
 
 #: ../contents/ui/components/PopupView.qml
 msgid "Select a preset"
@@ -701,11 +719,11 @@ msgstr "Exportálás"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid ""
-"Export these settings to the default configuration folder and import them in o"
-"ther instances of Panel Colorizer"
+"Export these settings to the default configuration folder and import them in "
+"other instances of Panel Colorizer"
 msgstr ""
-"A jelenlegi beállítások exportálása az alapértelmezett konfigurációs könyvtárb"
-"a. Az exportált beállítások importálhatók más számítógépeken is."
+"A jelenlegi beállítások exportálása az alapértelmezett konfigurációs "
+"könyvtárba. Az exportált beállítások importálhatók más számítógépeken is."
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "Export current settings?"
@@ -718,7 +736,8 @@ msgstr "Mentett beállítások importálása"
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "This will overwrite any previous export!"
 msgstr ""
-"Ha léteznek korábban exportált beállítások, akkor ez a művelet felülírja őket!"
+"Ha léteznek korábban exportált beállítások, akkor ez a művelet felülírja "
+"őket!"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "This will replace your current settings!"
@@ -731,17 +750,17 @@ msgstr "Köszönjük, hogy a %1t használja!"
 
 #: ../contents/ui/components/SupportMe.qml
 msgid ""
-"If you enjoy using the plugin please consider sponsoring or donating so I can "
-"dedicate more time to maintain and improve this and <a href=\"https://github.c"
-"om/luisbocanegra?"
-"tab=repositories&q=&type=source&language=&sort=stargazers\">my other projects<"
-"/a>."
+"If you enjoy using the plugin please consider sponsoring or donating so I "
+"can dedicate more time to maintain and improve this and <a href=\"https://"
+"github.com/luisbocanegra?"
+"tab=repositories&q=&type=source&language=&sort=stargazers\">my other "
+"projects</a>."
 msgstr ""
-"Ha tetszik Önnek ez a Plasma-elem, akkor kérem, fontolja meg a támogatásomat, "
-"hogy még több időt szentelhessek ezen és <a href=\"https://github.com/luisboca"
-"negra?"
-"tab=repositories&q=&type=source&language=&sort=stargazers\">más projektjeim</a"
-"> fenntartására és fejlesztésére."
+"Ha tetszik Önnek ez a Plasma-elem, akkor kérem, fontolja meg a "
+"támogatásomat, hogy még több időt szentelhessek ezen és <a href=\"https://"
+"github.com/luisbocanegra?"
+"tab=repositories&q=&type=source&language=&sort=stargazers\">más projektjeim</"
+"a> fenntartására és fejlesztésére."
 
 #: ../contents/ui/components/SupportMe.qml
 msgid "You can also"
@@ -759,7 +778,10 @@ msgstr "Értékelés a KDE Store-ban"
 msgid "Translate %1 to your language"
 msgstr "Lefordítás az Ön nyelvére"
 
-#: ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardHide.qml ../contents/ui/components/WidgetCardIslands.qml ../contents/ui/components/WidgetCardTextIconFixes.qml
+#: ../contents/ui/components/WidgetCardConfig.qml
+#: ../contents/ui/components/WidgetCardHide.qml
+#: ../contents/ui/components/WidgetCardIslands.qml
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "System Tray"
 msgstr "Paneltálca"
 
@@ -787,7 +809,8 @@ msgstr "Vége"
 msgid "Edit"
 msgstr "Szerkesztés"
 
-#: ../contents/ui/components/WidgetCardOverride.qml ../contents/ui/configPresets.qml
+#: ../contents/ui/components/WidgetCardOverride.qml
+#: ../contents/ui/configPresets.qml
 msgid "Delete"
 msgstr "Törlés"
 
@@ -805,17 +828,17 @@ msgstr "Frissítés"
 
 #: ../contents/ui/configAppearance.qml
 msgid ""
-"Not getting the expected result? Make sure you're editing the correct element."
-"<br>Custom blur not working? Try reinstalling/rebuilding the C++ plugin using "
-"the latest source, <a href=\"https://"
-"github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugi"
-"n\">see instructions</a>."
+"Not getting the expected result? Make sure you're editing the correct "
+"element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ "
+"plugin using the latest source, <a href=\"https://github.com/luisbocanegra/"
+"plasma-panel-colorizer#build-from-source-with-c-plugin\">see instructions</"
+"a>."
 msgstr ""
-"Nem várt eredményeket kapott? Ellenőrizze, hogy biztosan a helyes elemet szerk"
-"eszti-e!<br>Ha az egyéni elmosás nem működik, akkor próbálja meg újratelepíten"
-"i/újrafordítani a C++ bővítmény legújabb forráskódját. <a href=\"https://githu"
-"b.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">Ú"
-"tmutató megtekintése (angol nyelven)</a>."
+"Nem várt eredményeket kapott? Ellenőrizze, hogy biztosan a helyes elemet "
+"szerkeszti-e!<br>Ha az egyéni elmosás nem működik, akkor próbálja meg "
+"újratelepíteni/újrafordítani a C++ bővítmény legújabb forráskódját. <a "
+"href=\"https://github.com/luisbocanegra/plasma-panel-colorizer#build-from-"
+"source-with-c-plugin\">Útmutató megtekintése (angol nyelven)</a>."
 
 #: ../contents/ui/configAppearance.qml
 msgid "Restore default (removes all customizations)"
@@ -825,7 +848,9 @@ msgstr "Alapállapot (minden személyre szabás eltávolítása)"
 msgid "Panel"
 msgstr "Panel"
 
-#: ../contents/ui/configAppearance.qml ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+#: ../contents/ui/configAppearance.qml
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Widgets"
 msgstr "Plasma-elemek"
 
@@ -852,8 +877,8 @@ msgstr "Beállítás bármely elemről:"
 # Itt kihagytam a névelőt, mert az idézett menüelem amúgy is azzal kezdődik: „A(z) Panelszínező beállítása…”
 #: ../contents/ui/configGeneral.qml
 msgid ""
-"Disable to remove <b>%1</b> option from other widget's context (right-click) m"
-"enu."
+"Disable to remove <b>%1</b> option from other widget's context (right-click) "
+"menu."
 msgstr ""
 "<b>%1</b> elem megjelenítése bármely másik Plasma-elem helyi menüjében."
 
@@ -944,40 +969,46 @@ msgstr "Minden panel megjelenítése/elrejtése"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid ""
-"Create configuration overrides and apply them to one or multiple widgets. Thes"
-"e overrides are independent of presets and will be applied on top of the curre"
-"nt settings and across presets.<br>To "
-"blacklist a widget from modifications, <b>uncheck</b> options <b>Enable</b> an"
-"d <b>Fallback</b>, and apply the override to the widget."
+"Create configuration overrides and apply them to one or multiple widgets. "
+"These overrides are independent of presets and will be applied on top of the "
+"current settings and across presets.<br>To blacklist a widget from "
+"modifications, <b>uncheck</b> options <b>Enable</b> and <b>Fallback</b>, and "
+"apply the override to the widget."
 msgstr ""
-"Ezen a fülön felülírókészleteket hozhat létre, amelyekkel egy vagy több Plasma"
-"-elem beállításait is felülbírálhatja. Ezek a beállítások függetlenek az előbe"
-"állításoktól és mindig megmaradnak.<br>Ha szeretne egy elemet kizárni az előbe"
-"állítások általi módosításokból, akkor <b>vegye ki</b> a pipát az <b>Engedélye"
-"zés</b> és a <b>Tartalék</b> beállítások elől, majd alkalmazzon rá egy felülír"
-"ást."
+"Ezen a fülön felülírókészleteket hozhat létre, amelyekkel egy vagy több "
+"Plasma-elem beállításait is felülbírálhatja. Ezek a beállítások függetlenek "
+"az előbeállításoktól és mindig megmaradnak.<br>Ha szeretne egy elemet "
+"kizárni az előbeállítások általi módosításokból, akkor <b>vegye ki</b> a "
+"pipát az <b>Engedélyezés</b> és a <b>Tartalék</b> beállítások elől, majd "
+"alkalmazzon rá egy felülírást."
 
-#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Restore default (removes all overrides)"
 msgstr "Alaphelyzet (minden felülírókészlet érvénytelenítése)"
 
-#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Configuration overrides"
 msgstr "Felülírókészletek"
 
-#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "New override"
 msgstr "Új felülírókészlet"
 
-#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Override settings"
 msgstr "Felülírókészlet beállításai"
 
-#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Override name"
 msgstr "Felülírókészlet neve"
 
-#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Rename"
 msgstr "Átnevezés"
 
@@ -987,31 +1018,34 @@ msgstr "Tartalék:"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid ""
-"Fallback to the Global/Preset widget settings for disabled options, except for"
-" <b>Enable</b> and <b>Blur</>."
+"Fallback to the Global/Preset widget settings for disabled options, except "
+"for <b>Enable</b> and <b>Blur</>."
 msgstr ""
-"Globális- és előbeállítás alkalmazása a letiltott lehetőségeknél, kivéve: <b>E"
-"ngedélyezés</b> és <b>Elmosás</b>."
+"Globális- és előbeállítás alkalmazása a letiltott lehetőségeknél, kivéve: "
+"<b>Engedélyezés</b> és <b>Elmosás</b>."
 
-#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+#: ../contents/ui/configPresetWidgetOverrides.qml
 msgid ""
-"Overrides are applied from top to bottom, if two or more configuration overrid"
-"es share the same option, the last occurence replaces the value of the previou"
-"s one."
+"Overrides are applied from top to bottom, if two or more configuration "
+"overrides share the same option, the last occurence replaces the value of "
+"the previous one."
 msgstr ""
-"A felülírókészleteket a program sorrendben alkalmazza egymás után, tehát az ut"
-"óbbi felülírókészletek beállításai ütközés esetén felülbírálják a korábbiakat."
+"A felülírókészleteket a program sorrendben alkalmazza egymás után, tehát az "
+"utóbbi felülírókészletek beállításai ütközés esetén felülbírálják a "
+"korábbiakat."
 
 #: ../contents/ui/configHideWidgets.qml
 msgid ""
-"Hidden widgets can still be activated using keyboard shortcuts and are always "
-"visible in the Desktop Edit Mode.<br>The activation shortcut can be configured"
-" from the <b>Keyboard Shortcuts</b> page "
-"on each widget's configuration window."
+"Hidden widgets can still be activated using keyboard shortcuts and are "
+"always visible in the Desktop Edit Mode.<br>The activation shortcut can be "
+"configured from the <b>Keyboard Shortcuts</b> page on each widget's "
+"configuration window."
 msgstr ""
-"A rejtett Plasma-elemek gyorsbillentyűkkel továbbra is aktiválhatók és szerkes"
-"ztőmódban mindig meg vannak jelenítve.<br>Az aktiválóbillentyűt minden elem sa"
-"ját beállításaiban, a <b>Gyorsbillentyűk</b> fülön lehet rögzíteni."
+"A rejtett Plasma-elemek gyorsbillentyűkkel továbbra is aktiválhatók és "
+"szerkesztőmódban mindig meg vannak jelenítve.<br>Az aktiválóbillentyűt "
+"minden elem saját beállításaiban, a <b>Gyorsbillentyűk</b> fülön lehet "
+"rögzíteni."
 
 #: ../contents/ui/configHideWidgets.qml
 msgid "Restore default (controlled by each widget)"
@@ -1035,14 +1069,14 @@ msgstr "Semmi"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid ""
-"Automatically switch between different presets based on the Panel and window s"
-"tates.<br>Disable preset auto-loading before making changes to presets, unsave"
-"d preset settings will be lost when auto-"
-"loading switches to other preset!"
+"Automatically switch between different presets based on the Panel and window "
+"states.<br>Disable preset auto-loading before making changes to presets, "
+"unsaved preset settings will be lost when auto-loading switches to other "
+"preset!"
 msgstr ""
-"Automatikus váltás előbeállítások között a panel és ablakok állapota alapján.<"
-"br>Az előbeállítások módosítása előtt javasolt ezt kikapcsolni, ugyanis a nem "
-"mentett módosítások váltáskor elvesznek!"
+"Automatikus váltás előbeállítások között a panel és ablakok állapota alapján."
+"<br>Az előbeállítások módosítása előtt javasolt ezt kikapcsolni, ugyanis a "
+"nem mentett módosítások váltáskor elvesznek!"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Remove all auto-loading conditions"
@@ -1054,15 +1088,15 @@ msgstr "Automatikus váltási feltételek"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid ""
-"Priorities go in descending order. E.g. if both <b>Maximized window is shown</"
-"b> and <b>Panel touching window</b> have a preset selected, and there is a max"
-"imized window on the screen, the "
-"<b>Maximized</b> preset will be applied."
+"Priorities go in descending order. E.g. if both <b>Maximized window is "
+"shown</b> and <b>Panel touching window</b> have a preset selected, and there "
+"is a maximized window on the screen, the <b>Maximized</b> preset will be "
+"applied."
 msgstr ""
-"Az alábbi beállítások prioritási sorrendbe vannak téve. Pl.: ha mind a <b>Van "
-"maximalizált ablak</b> és az <b>Van panellel érintkező ablak</b> rendelkezik b"
-"eállítással, akkor egy maximalizált ablak jelenléte esetén az előbbi előbeállí"
-"tás lesz alkalmazva."
+"Az alábbi beállítások prioritási sorrendbe vannak téve. Pl.: ha mind a "
+"<b>Van maximalizált ablak</b> és az <b>Van panellel érintkező ablak</b> "
+"rendelkezik beállítással, akkor egy maximalizált ablak jelenléte esetén az "
+"előbbi előbeállítás lesz alkalmazva."
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Window tracking:"
@@ -1083,8 +1117,8 @@ msgstr "Tartalék aktív ablak"
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Track KWin's top window when there is no active one in the screen."
 msgstr ""
-"Ha nincs aktív ablak a panel monitorján, akkor a KWin szerinti aktív ablak les"
-"z figyelembe véve."
+"Ha nincs aktív ablak a panel monitorján, akkor a KWin szerinti aktív ablak "
+"lesz figyelembe véve."
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Fullscreen window:"
@@ -1128,14 +1162,14 @@ msgstr "Művelet:"
 
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid ""
-"Create configuration overrides and apply them to one or multiple widgets. Thes"
-"e overrides should be saved to a preset in <strong>Presets</strong> tab or the"
-"y will be lost when presets change!"
+"Create configuration overrides and apply them to one or multiple widgets. "
+"These overrides should be saved to a preset in <strong>Presets</strong> tab "
+"or they will be lost when presets change!"
 msgstr ""
-"Ezen a fülön felülírókészleteket hozhat létre, amelyekkel egy vagy több Plasma"
-"-elem beállításait is felülbírálhatja. Ezeket a beállításokat javasolt <strong"
-">előbeállításként</strong> menteni, különben egy másik előbeállítás betöltések"
-"or elvesznek!"
+"Ezen a fülön felülírókészleteket hozhat létre, amelyekkel egy vagy több "
+"Plasma-elem beállításait is felülbírálhatja. Ezeket a beállításokat javasolt "
+"<strong>előbeállításként</strong> menteni, különben egy másik előbeállítás "
+"betöltésekor elvesznek!"
 
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Name:"
@@ -1164,8 +1198,8 @@ msgstr "Előnézet létrehozása"
 #: ../contents/ui/configPresets.qml
 msgid "Current preview will be overwritten!"
 msgstr ""
-"Szeretne létrehozni egy előnézetet az előbeállításhoz? Ezzel a művelettel a ko"
-"rábbi előnézet elvész!"
+"Szeretne létrehozni egy előnézetet az előbeállításhoz? Ezzel a művelettel a "
+"korábbi előnézet elvész!"
 
 #: ../contents/ui/configPresets.qml
 msgid "Create preset"
@@ -1173,14 +1207,14 @@ msgstr "Előnézet létrehozása"
 
 #: ../contents/ui/configPresets.qml
 msgid ""
-"Changes to the current preset are not synced to disk automatically. You should"
-" come back to this tab and update it manually before switching to a different "
-"preset, otherwise unsaved preset settings "
-"will be lost when presets change!"
+"Changes to the current preset are not synced to disk automatically. You "
+"should come back to this tab and update it manually before switching to a "
+"different preset, otherwise unsaved preset settings will be lost when "
+"presets change!"
 msgstr ""
-"A használatban lévő előbeállítás módosításai nem kerülnek automatikusan mentés"
-"re. Javasolt ezen a fülön kézileg menteni a módosításokat, ugyanis egy másik e"
-"lőbeállítás betöltésekor azok elvesznek."
+"A használatban lévő előbeállítás módosításai nem kerülnek automatikusan "
+"mentésre. Javasolt ezen a fülön kézileg menteni a módosításokat, ugyanis egy "
+"másik előbeállítás betöltésekor azok elvesznek."
 
 #: ../contents/ui/configPresets.qml
 msgid "Restore default preset"
@@ -1220,23 +1254,24 @@ msgstr "Előnézet frissítése"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
-"Changing panel position is currently unstable and may cause Plasma to crash wh"
-"en moving panels between non-parallel edges (e.g from top to left)."
+"Changing panel position is currently unstable and may cause Plasma to crash "
+"when moving panels between non-parallel edges (e.g from top to left)."
 msgstr ""
-"A panel pozíciójának módosítása jelenleg még nem stabil és a tájolás megváltoz"
-"ása (pl.: felülről a bal szélre) a Plasma összeomlását okozhatja."
+"A panel pozíciójának módosítása jelenleg még nem stabil és a tájolás "
+"megváltozása (pl.: felülről a bal szélre) a Plasma összeomlását okozhatja."
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
-"Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depe"
-"nds on the current Plasma Theme, for finer control or full transparency use <b"
-">Panel Opacity</b> and <b>Native panel "
-"background</b> options in <b>Appearance</b> tab instead."
+"Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity "
+"depends on the current Plasma Theme, for finer control or full transparency "
+"use <b>Panel Opacity</b> and <b>Native panel background</b> options in "
+"<b>Appearance</b> tab instead."
 msgstr ""
-"Az átlátszatlanság és monitor megváltoztatásához <b>Plasma 6.3</b> vagy újabb "
-"verzió szükséges.<br>Az átlátszatlanság a jelenlegi Plasma-témától függ. A fin"
-"omabb beállításért javasolt a <b>Megjelenés</b> fül alatt található (Panel) <b"
-">Átlátszatlanság</b> és (Natív panel:) <b>Háttér</b> lehetőségeket használni."
+"Az átlátszatlanság és monitor megváltoztatásához <b>Plasma 6.3</b> vagy "
+"újabb verzió szükséges.<br>Az átlátszatlanság a jelenlegi Plasma-témától "
+"függ. A finomabb beállításért javasolt a <b>Megjelenés</b> fül alatt "
+"található (Panel) <b>Átlátszatlanság</b> és (Natív panel:) <b>Háttér</b> "
+"lehetőségeket használni."
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Screen"
@@ -1360,54 +1395,54 @@ msgstr "Megjelenítés:"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
-"WARNING: Use Show/Hide with caution, if you hide the panel and have not config"
-"ured preset auto-loading or know how to switch presets using D-Bus (or have di"
-"sabled it), you will have no way to make "
-"it visible again without manually removing the configuration or Panel Colorize"
-"r, use the command below in terminal/tty then log out or reboot, it will renov"
-"e the configuration from all Panel "
-"Colorizer instances so make sure to save the others first"
+"WARNING: Use Show/Hide with caution, if you hide the panel and have not "
+"configured preset auto-loading or know how to switch presets using D-Bus (or "
+"have disabled it), you will have no way to make it visible again without "
+"manually removing the configuration or Panel Colorizer, use the command "
+"below in terminal/tty then log out or reboot, it will renove the "
+"configuration from all Panel Colorizer instances so make sure to save the "
+"others first"
 msgstr ""
-"FIGYELMEZTETÉS: a panel elrejtését csak különös óvatossággal hajtsa végre! Ha "
-"elrejti a panelt, de nem állított be egy automatikus szabályt, amelytől az ism"
-"ét megjelenik, vagy nem ismeri (vagy letiltotta) a D-Busos előbeállítás-váltás"
-"t, akkor a konfiguráció törlésén vagy a Panelszínező eltávolításán kívül nem l"
-"esz módja ismét láthatóvá tenni azt. A konfiguráció törléséhez futtassa az alá"
-"bbi parancsot terminálban/tty-ban, majd jelentkezzen ki vagy indítsa újra a sz"
-"ámítógépet. Ez a parancs MINDEN Panelszínező-példány beállításait törli"
+"FIGYELMEZTETÉS: a panel elrejtését csak különös óvatossággal hajtsa végre! "
+"Ha elrejti a panelt, de nem állított be egy automatikus szabályt, amelytől "
+"az ismét megjelenik, vagy nem ismeri (vagy letiltotta) a D-Busos "
+"előbeállítás-váltást, akkor a konfiguráció törlésén vagy a Panelszínező "
+"eltávolításán kívül nem lesz módja ismét láthatóvá tenni azt. A konfiguráció "
+"törléséhez futtassa az alábbi parancsot terminálban/tty-ban, majd "
+"jelentkezzen ki vagy indítsa újra a számítógépet. Ez a parancs MINDEN "
+"Panelszínező-példány beállításait törli"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
-"If you have D-Bus enabled is it recommended that you use that with shortcuts i"
-"nstead. Consult the README to learn more or see the General tab for some examp"
-"les."
+"If you have D-Bus enabled is it recommended that you use that with shortcuts "
+"instead. Consult the README to learn more or see the General tab for some "
+"examples."
 msgstr ""
-"Ha engedélyezve van a D-Bus-szolgáltatás, akkor javasolt annak a használata bi"
-"llentyűparancsokkal. Olvassa el a README fájlt további információért vagy lapo"
-"zzon az Általános fülre példákért."
+"Ha engedélyezve van a D-Bus-szolgáltatás, akkor javasolt annak a használata "
+"billentyűparancsokkal. Olvassa el a README fájlt további információért vagy "
+"lapozzon az Általános fülre példákért."
 
 #: ../contents/ui/configTextIconFix.qml
 msgid ""
-"Fix text and icon colors/font for widgets where the normal method doesn't work"
-" or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG ic"
-"ons, useful for symbolic icons.<br> - "
-"<strong>Color Effect</strong>: Force color on text and icons using post-proces"
-"sing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re"
-"-apply color/font at a fixed interval, "
-"useful for widgets that recreate or recolor content themselves.<br>To restore "
-"the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart"
-" Plasma or logout."
+"Fix text and icon colors/font for widgets where the normal method doesn't "
+"work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on "
+"SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: "
+"Force color on text and icons using post-processing effect, useful for non-"
+"symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a "
+"fixed interval, useful for widgets that recreate or recolor content "
+"themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</"
+"strong> disable and restart Plasma or logout."
 msgstr ""
-"Ezen a fülön lehetősége van kézileg felülbírálni Plasma-elemek színeit/betűkés"
-"zleteit, ha az alapértelmezett módszer nem működne vagy az adott elem átállíta"
-"ná azt.<br> - <strong>Maszk:</strong> SVG-ikonok színének kényszerítése. Szimb"
-"olikus ikonoknál hasznos lehet.<br> - <strong>Színhatás:</strong> Szöveg és ik"
-"onok színének kényszerítése utófeldolgozással. Nem-szimbolikus ikonoknál haszn"
-"os.<br> - <strong>Frissítés:</strong> A szín ismételt alkalmazása bizonyos idő"
-"intervallumonként. Hasznos, ha egy Plasma-elem rendszeresen újra létrehozza va"
-"gy átszínezi a tartalmát.<br>A <strong>maszkolás</strong> és <strong>színhatás"
-"</strong> alaphelyzetbe állításához letiltás után a Plasma újraindítása vagy k"
-"ijelentkezés szükséges."
+"Ezen a fülön lehetősége van kézileg felülbírálni Plasma-elemek színeit/"
+"betűkészleteit, ha az alapértelmezett módszer nem működne vagy az adott elem "
+"átállítaná azt.<br> - <strong>Maszk:</strong> SVG-ikonok színének "
+"kényszerítése. Szimbolikus ikonoknál hasznos lehet.<br> - <strong>Színhatás:"
+"</strong> Szöveg és ikonok színének kényszerítése utófeldolgozással. Nem-"
+"szimbolikus ikonoknál hasznos.<br> - <strong>Frissítés:</strong> A szín "
+"ismételt alkalmazása bizonyos időintervallumonként. Hasznos, ha egy Plasma-"
+"elem rendszeresen újra létrehozza vagy átszínezi a tartalmát.<br>A "
+"<strong>maszkolás</strong> és <strong>színhatás</strong> alaphelyzetbe "
+"állításához letiltás után a Plasma újraindítása vagy kijelentkezés szükséges."
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
@@ -1435,39 +1470,39 @@ msgstr "Rendezés"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid ""
-"Replace System Tray icons with icons from the current icon theme or a local fi"
-"le. The built-in rules icons are part of <a href=\"https://github.com/PapirusD"
-"evelopmentTeam/papirus-icon-"
-"theme\">Papirus icon theme</a>."
+"Replace System Tray icons with icons from the current icon theme or a local "
+"file. The built-in rules icons are part of <a href=\"https://github.com/"
+"PapirusDevelopmentTeam/papirus-icon-theme\">Papirus icon theme</a>."
 msgstr ""
-"Ezen a fülön kicserélheti a paneltálca ikonjait a jelenlegi téma ikonjaival va"
-"gy helyi fájlból. A beépített ikonok a <a href=\"https://github.com/PapirusDev"
-"elopmentTeam/papirus-icon-"
-"theme\">Papirus ikontémából</a> származnak."
+"Ezen a fülön kicserélheti a paneltálca ikonjait a jelenlegi téma ikonjaival "
+"vagy helyi fájlból. A beépített ikonok a <a href=\"https://github.com/"
+"PapirusDevelopmentTeam/papirus-icon-theme\">Papirus ikontémából</a> "
+"származnak."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid ""
-"C++ plugin not found, this feature will not work. Install the plugin and reboo"
-"t or restart plasmashell to be able to use it <a href=\"https://github.com/lui"
-"sbocanegra/plasma-panel-colorizer?"
-"tab=readme-ov-file#manually\">Install instructions</a>."
+"C++ plugin not found, this feature will not work. Install the plugin and "
+"reboot or restart plasmashell to be able to use it <a href=\"https://github."
+"com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-"
+"file#manually\">Install instructions</a>."
 msgstr ""
-"A funkció használatához a C++ bővítmény szükséges. Telepítse a bővítményt, maj"
-"d indítsa újra a számítógépet vagy a plasmashellt. <a href=\"https://github.co"
-"m/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Telepítés"
-"i útmutató (angol nyelven)</a>."
+"A funkció használatához a C++ bővítmény szükséges. Telepítse a bővítményt, "
+"majd indítsa újra a számítógépet vagy a plasmashellt. <a href=\"https://"
+"github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-"
+"file#manually\">Telepítési útmutató (angol nyelven)</a>."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid ""
-"The installed version of the C++ plugin doesn't support this feature, update t"
-"he plugin and reboot or restart plasmashell to be able to use it <a href=\"htt"
-"ps://github.com/luisbocanegra/plasma-"
-"panel-colorizer?tab=readme-ov-file#manually\">Install instructions</a>."
+"The installed version of the C++ plugin doesn't support this feature, update "
+"the plugin and reboot or restart plasmashell to be able to use it <a "
+"href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-"
+"file#manually\">Install instructions</a>."
 msgstr ""
-"A C++ bővítmény jelenleg telepített verziója nem támogatja ezt a funkciót. Fri"
-"ssítse a bővítményt, majd indítsa újra a számítógépet vagy a plasmashellt. <a "
-"href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-f"
-"ile#manually\">Telepítési útmutató (angol nyelven)</a>."
+"A C++ bővítmény jelenleg telepített verziója nem támogatja ezt a funkciót. "
+"Frissítse a bővítményt, majd indítsa újra a számítógépet vagy a "
+"plasmashellt. <a href=\"https://github.com/luisbocanegra/plasma-panel-"
+"colorizer?tab=readme-ov-file#manually\">Telepítési útmutató (angol nyelven)</"
+"a>."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Log icon changes:"
@@ -1549,13 +1584,13 @@ msgstr "Szabály másolása"
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid ""
-"Select start and end of widget islands, widgets between <b>Start</b> and <b>En"
-"d</b> must be left <b>disabled</b>. Widget custom background or border is requ"
-"ired for this option to have an effect."
+"Select start and end of widget islands, widgets between <b>Start</b> and "
+"<b>End</b> must be left <b>disabled</b>. Widget custom background or border "
+"is required for this option to have an effect."
 msgstr ""
-"Válassza ki az elemszigetek <b>elejét</b> és <b>végét</b>. A köztes elemeknek "
-"<b>letiltottnak</b> kell maradniuk. A funkció használatához egyéni elemháttér "
-"vagy -körvonal szükséges."
+"Válassza ki az elemszigetek <b>elejét</b> és <b>végét</b>. A köztes "
+"elemeknek <b>letiltottnak</b> kell maradniuk. A funkció használatához egyéni "
+"elemháttér vagy -körvonal szükséges."
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Remove all islands"
