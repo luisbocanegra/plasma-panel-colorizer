@@ -39,7 +39,7 @@ msgstr "Aparença"
 
 #: ../contents/config/config.qml
 msgid "Stock Panel Settings"
-msgstr "Configuració d'accions de panell"
+msgstr "Accions de panell"
 
 #: ../contents/config/config.qml
 msgid "Widget Islands"
@@ -47,11 +47,11 @@ msgstr "Illes de ginys"
 
 #: ../contents/config/config.qml
 msgid "Preset Overrides"
-msgstr "Sobreescriptures de perfils"
+msgstr "Reescriptura de perfils"
 
 #: ../contents/config/config.qml
 msgid "Global Overrides"
-msgstr "Sobreescriptures globals"
+msgstr "Reescriptura global"
 
 #: ../contents/config/config.qml
 msgid "Text/Icon Fixes"
@@ -71,7 +71,7 @@ msgstr "General"
 
 #: ../contents/config/config.qml
 msgid "Support Me"
-msgstr ""
+msgstr "Donar-hi suport"
 
 #: ../contents/ui/components/CategoryDisabled.qml
 msgid "Panel Colorizer is disabled"
@@ -579,7 +579,7 @@ msgstr "Preguntes freqüents"
 
 #: ../contents/ui/components/Header.qml
 msgid "GitHub Discussions"
-msgstr ""
+msgstr "Discussions de GitHub"
 
 #: ../contents/ui/components/Header.qml
 msgid "Send an email"
@@ -587,7 +587,7 @@ msgstr "Envia un correu"
 
 #: ../contents/ui/components/Header.qml
 msgid "Translate"
-msgstr ""
+msgstr "Tradueix"
 
 #: ../contents/ui/components/Header.qml
 msgid "Donate"
@@ -595,7 +595,7 @@ msgstr "Dóna"
 
 #: ../contents/ui/components/Header.qml
 msgid "More projects"
-msgstr ""
+msgstr "Més projectes"
 
 #: ../contents/ui/components/Header.qml ../contents/ui/components/PopupView.qml
 msgid "Running version of the widget (%1) is different to the one on disk (%2), please log out and back in (or restart plasmashell user unit) to ensure things work correctly!"
@@ -639,27 +639,27 @@ msgstr "Això reemplaçarà la configuració actual."
 
 #: ../contents/ui/components/SupportMe.qml
 msgid "Thank you for using %1!"
-msgstr ""
+msgstr "Gràcies per fer servir l'%1!"
 
 #: ../contents/ui/components/SupportMe.qml
 msgid "If you enjoy using the plugin please consider sponsoring or donating so I can dedicate more time to maintain and improve this and <a href=\"https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers\">my other projects</a>."
-msgstr ""
+msgstr "Si us agrada el complement, considereu fer una donació perquè pugui dedicar més temps a mantenir i millorar l'Acoloridor de panells i <a href=\"https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers\">altres projectes meus</a>."
 
 #: ../contents/ui/components/SupportMe.qml
 msgid "You can also"
-msgstr ""
+msgstr "També podeu"
 
 #: ../contents/ui/components/SupportMe.qml
 msgid "Star the project on GitHub"
-msgstr ""
+msgstr "Donar-li una estrella al projecte al GitHub"
 
 #: ../contents/ui/components/SupportMe.qml
 msgid "Rate in the KDE Store"
-msgstr ""
+msgstr "Valorar el complement a la botiga del KDE"
 
 #: ../contents/ui/components/SupportMe.qml
 msgid "Translate %1 to your language"
-msgstr ""
+msgstr "Traduir l'%1 al vostre idioma"
 
 #: ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardHide.qml ../contents/ui/components/WidgetCardIslands.qml ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "System Tray"
