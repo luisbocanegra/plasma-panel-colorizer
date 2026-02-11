@@ -1,5 +1,14 @@
 # Changelog
 
+## [6.8.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.7.0...v6.8.0) (2026-02-11)
+
+
+### Features
+
+* add Hungarian translation ([#463](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/463)) ([3335f59](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/3335f59def9ccf9cc3ca38ff2ecd5c075600cbc9))
+* update Catalan translation ([29924bf](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/29924bf950382f7dd4763b190e896faaf2a57dbf))
+* update Polish translation ([72893de](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/72893deab9ab728e32e53360040a7ca624d9b537))
+
 ## [6.7.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.6.0...v6.7.0) (2026-02-05)
 
 
