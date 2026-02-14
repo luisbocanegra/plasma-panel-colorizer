@@ -808,27 +808,40 @@ PlasmoidItem {
         }
     }
 
+    activationTogglesExpanded: false
+    onExpandedChanged: {
+        if (Plasmoid.configuration.widgetClickMode !== Enum.WidgetClickModes.ShowPopup) {
+            main.expanded = false;
+        }
+    }
+
+    function widgetClickAction() {
+        switch (Plasmoid.configuration.widgetClickMode) {
+        case (Enum.WidgetClickModes.TogglePanelColorizer):
+            console.log("Toggle Pane Colorizer");
+            Plasmoid.configuration.isEnabled = !Plasmoid.configuration.isEnabled;
+            Plasmoid.configuration.writeConfig();
+            break;
+        case (Enum.WidgetClickModes.SwitchPresets):
+            console.log("Switch presets");
+            Plasmoid.configuration.switchPresetsIndex = (Plasmoid.configuration.switchPresetsIndex + 1) % main.switchPresets.length;
+            console.log(Plasmoid.configuration.switchPresetsIndex);
+            Plasmoid.configuration.writeConfig();
+            main.applyPreset(main.switchPresets[Plasmoid.configuration.switchPresetsIndex]);
+            break;
+        case (Enum.WidgetClickModes.ShowPopup):
+            console.log("Popup");
+            main.expanded = !main.expanded;
+            break;
+        }
+    }
+
+    preferredRepresentation: compactRepresentation
+
     compactRepresentation: CompactRepresentation {
         icon: main.icon
         onWidgetClicked: {
-            switch (Plasmoid.configuration.widgetClickMode) {
-            case (Enum.WidgetClickModes.TogglePanelColorizer):
-                console.log("Toggle Pane Colorizer");
-                Plasmoid.configuration.isEnabled = !Plasmoid.configuration.isEnabled;
-                Plasmoid.configuration.writeConfig();
-                break;
-            case (Enum.WidgetClickModes.SwitchPresets):
-                console.log("Switch presets");
-                Plasmoid.configuration.switchPresetsIndex = (Plasmoid.configuration.switchPresetsIndex + 1) % main.switchPresets.length;
-                console.log(Plasmoid.configuration.switchPresetsIndex);
-                Plasmoid.configuration.writeConfig();
-                main.applyPreset(main.switchPresets[Plasmoid.configuration.switchPresetsIndex]);
-                break;
-            case (Enum.WidgetClickModes.ShowPopup):
-                console.log("Popup");
-                main.expanded = !main.expanded;
-                break;
-            }
+            main.widgetClickAction();
         }
     }
 
@@ -935,5 +948,9 @@ PlasmoidItem {
     TaskManager.ActivityInfo {
         id: activityInfo
         readonly property string nullUuid: "00000000-0000-0000-0000-000000000000"
+    }
+
+    Plasmoid.onActivated: {
+        main.widgetClickAction();
     }
 }
