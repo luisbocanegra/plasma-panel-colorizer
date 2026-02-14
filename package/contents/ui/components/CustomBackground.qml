@@ -751,7 +751,7 @@ Rectangle {
     }
 
     DropShadow {
-        id: dropShadow
+        id: foregroundShadow
         anchors.fill: parent
         // we need to compensate because we now space widgets with margins
         // instead of the layout spacing for the widget islands feature
@@ -769,7 +769,7 @@ Rectangle {
         samples: radius * 2 + 1
         spread: 0.35
         color: {
-            return Utils.getColor(shadowColorCfg, rect.targetIndex, rect.color, rect.itemType, dropShadow);
+            return Utils.getColor(shadowColorCfg, rect.targetIndex, rect.color, rect.itemType, foregroundShadow);
         }
         source: rect.target?.applet ?? null
         visible: rect.fgShadowEnabled
@@ -995,11 +995,23 @@ Rectangle {
     }
 
     ShaderEffectSource {
-        id: clipSourceShaderItem
+        id: clipAppletSource
         live: true
         sourceItem: {
             if (rect.backgroundClipping) {
                 return rect.target?.applet ?? null;
+            }
+            return null;
+        }
+        hideSource: true
+    }
+
+    ShaderEffectSource {
+        id: clipShadowSource
+        live: true
+        sourceItem: {
+            if (rect.backgroundClipping && rect.fgShadowEnabled) {
+                return foregroundShadow;
             }
             return null;
         }
@@ -1016,6 +1028,16 @@ Rectangle {
         anchors.bottomMargin: rect.horizontal ? undefined : rect.marginBottom
         maskSource: mask
         visible: !!source
-        source: clipSourceShaderItem
+        source: clipAppletSource
+    }
+    OpacityMask {
+        anchors.fill: parent
+        anchors.leftMargin: rect.horizontal ? rect.marginLeft : undefined
+        anchors.rightMargin: rect.horizontal ? rect.marginRight : undefined
+        anchors.topMargin: rect.horizontal ? undefined : rect.marginTop
+        anchors.bottomMargin: rect.horizontal ? undefined : rect.marginBottom
+        maskSource: mask
+        visible: !!source
+        source: clipShadowSource
     }
 }
