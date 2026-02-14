@@ -146,12 +146,36 @@ Rectangle {
         return false;
     }
 
-    topLeftRadius: (!radiusEnabled || unifyBgType === 2 || unifyBgType === 3 || cornerForcedZero("topLeft")) ? 0 : cfg.radius.corner.topLeft ?? 0
-    topRightRadius: (!radiusEnabled || (rect.horizontal && (unifyBgType === 1 || unifyBgType === 2)) || (!rect.horizontal && (unifyBgType === 2 || unifyBgType === 3)) || cornerForcedZero("topRight")) ? 0 : cfg.radius.corner.topRight ?? 0
+    function limitRadius(cornerName) {
+        const cfgVal = cfg?.radius?.corner?.[cornerName] ?? 0;
+        const limit = Math.floor(Math.min(rect.height, rect.width) / 2);
+        return Math.min(cfgVal, limit);
+    }
 
-    bottomLeftRadius: (!radiusEnabled || (rect.horizontal && (unifyBgType === 2 || unifyBgType === 3)) || (!rect.horizontal && (unifyBgType === 1 || unifyBgType === 2)) || cornerForcedZero("bottomLeft")) ? 0 : cfg.radius.corner.bottomLeft ?? 0
+    function cornerDisabled(cornerName) {
+        if (!radiusEnabled)
+            return true;
+        if (cornerForcedZero(cornerName))
+            return true;
 
-    bottomRightRadius: (!radiusEnabled || unifyBgType === 1 || unifyBgType === 2 || (!rect.horizontal && (unifyBgType === 1 || unifyBgType === 2)) || cornerForcedZero("bottomRight")) ? 0 : cfg.radius.corner.bottomRight ?? 0
+        switch (cornerName) {
+        case "topLeft":
+            return (unifyBgType === 2 || unifyBgType === 3);
+        case "topRight":
+            return rect.horizontal ? (unifyBgType === 1 || unifyBgType === 2) : (unifyBgType === 2 || unifyBgType === 3);
+        case "bottomLeft":
+            return rect.horizontal ? (unifyBgType === 2 || unifyBgType === 3) : (unifyBgType === 1 || unifyBgType === 2);
+        case "bottomRight":
+            return (unifyBgType === 1 || unifyBgType === 2);
+        default:
+            return false;
+        }
+    }
+
+    topLeftRadius: cornerDisabled("topLeft") ? 0 : limitRadius("topLeft")
+    topRightRadius: cornerDisabled("topRight") ? 0 : limitRadius("topRight")
+    bottomLeftRadius: cornerDisabled("bottomLeft") ? 0 : limitRadius("bottomLeft")
+    bottomRightRadius: cornerDisabled("bottomRight") ? 0 : limitRadius("bottomRight")
 
     property bool marginEnabled: cfg.margin.enabled && cfgEnabled
     property bool borderEnabled: cfg.border.enabled && cfgEnabled
