@@ -1,5 +1,14 @@
 # Changelog
 
+## [6.8.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.8.0...v6.8.1) (2026-02-14)
+
+
+### Bug Fixes
+
+* limit corner radius to background size ([7a64b3b](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/7a64b3b25ff833649197004c562bb04581b85f57))
+* run click action on keyboard shortcut activation ([54f408b](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/54f408bcd506cad25ce7c7c2a9d39cc601f8029f))
+* widget background clipping not working with foreground shadow ([4e693de](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/4e693de46fe0604465b4767af44018c464f9bdc4))
+
 ## [6.8.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.7.0...v6.8.0) (2026-02-11)
 
 
