@@ -19,7 +19,7 @@ KCM.SimpleKCM {
     property var hiddenWidgetsConfig
     property bool loaded: false
     property string configDir: StandardPaths.writableLocation(StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/"
-    property string importCmd: "cat '" + configDir + "forceForegroundColor.json'"
+    property string importCmd: "cat '" + configDir + "hiddenWidgets.json'"
     property string crateConfigDirCmd: "mkdir -p " + configDir
 
     function updateConfig() {
