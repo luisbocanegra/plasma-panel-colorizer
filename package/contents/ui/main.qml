@@ -210,6 +210,17 @@ PlasmoidItem {
         }
     }
 
+    property var blacklistedWidgets: {
+        try {
+            return JSON.parse(Plasmoid.configuration.blacklistedWidgets);
+        } catch (e) {
+            console.error(e, e.stack);
+            return {
+                widgets: []
+            };
+        }
+    }
+
     function applyStockPanelSettings() {
         let script = Utils.setPanelModeScript(Plasmoid.containment.id, stockPanelSettings);
         if (stockPanelSettings.visible.enabled) {
