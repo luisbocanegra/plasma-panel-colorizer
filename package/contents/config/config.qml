@@ -51,6 +51,12 @@ ConfigModel {
     }
 
     ConfigCategory {
+        name: i18n("Blacklist Widgets")
+        icon: "action-unavailable-symbolic"
+        source: "configBlacklistWidgets.qml"
+    }
+
+    ConfigCategory {
         name: i18n("Hide Widgets")
         icon: "view-hidden-symbolic"
         source: "configHideWidgets.qml"

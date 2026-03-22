@@ -114,7 +114,7 @@ Rectangle {
     property int maxDepth: 0
     opacity: cfgEnabled ? 1 : 0
     property bool isVisible: target.visibleChildren.length > 0 && opacity !== 0
-    property bool cfgEnabled: cfg.enabled && main.isEnabled
+    property bool cfgEnabled: cfg.enabled && main.isEnabled && !blacklisted
     property bool bgEnabled: bgColorCfg.enabled
     property bool fgEnabled: fgColorCfg.enabled
     property var fontCfg: cfg.fontConfig
@@ -129,6 +129,7 @@ Rectangle {
     property bool panelTouchingRight: isPanel && main.panelElement && !main.panelIsFloating && main.panelPosition.location === "right"
 
     property var hideCfg: main.hiddenWidgets.widgets.find(widget => widget.id === widgetId && widget.name === widgetName)
+    property var blacklisted: main.blacklistedWidgets.widgets.find(widget => widget.id === widgetId && widget.name === widgetName)?.blacklisted ?? false
 
     function cornerForcedZero(cornerName) {
         if (!isPanel || !(cfg.flattenOnDeFloat ?? false))
