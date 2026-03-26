@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.9.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.8.1...v6.9.0) (2026-03-26)
+
+
+### Features
+
+* add Traditional Chinese translation ([e68b766](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/e68b766221e77d46265b85986ae7ca967d757f9a))
+* allow to blacklist widgets like before (without overrides) ([b4ab25c](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/b4ab25c745a0c67440132adeee0c7beb0cfbff12))
+
+
+### Bug Fixes
+
+* use correct file in hidden widgets config import ([5173203](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/5173203011f84277bd1405fcc22faf4f05158dca))
+
 ## [6.8.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.8.0...v6.8.1) (2026-02-14)
 
 
