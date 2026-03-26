@@ -18,6 +18,7 @@
         "Description[pl]": "Funkcje personalizacji paska stanu Latte-Dock i WM dla domyślnego panelu Plasma",
         "Description[uk]": "Функції налаштування Latte-Dock та рядка стану WM для стандартної панелі Plasma",
         "Description[zh]": "为默认 Plasma 面板提供 Latte-Dock 和窗口管理器状态栏的自定义功能",
+        "Description[zh_TW]": "為 Plasma 預設面板提供如 Latte-Dock 和視窗管理員的狀態列的自定義功能",
         "EnabledByDefault": false,
         "Icon": "desktop",
         "Id": "luisbocanegra.panel.colorizer",
@@ -31,6 +32,7 @@
         "Name[pl]": "Koloryzator panelu",
         "Name[uk]": "Колоризатор панелі",
         "Name[zh]": "Panel colorizer",
+        "Name[zh_TW]": "Panel colorizer",
         "Version": "6.9.0",
         "Website": "https://github.com/luisbocanegra/plasma-panel-colorizer"
     },
