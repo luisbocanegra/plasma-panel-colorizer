@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.9.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.9.0...v6.9.1) (2026-03-27)
+
+
+### Bug Fixes
+
+* broken DoubleSpinBox after Qt 6.11 update ([bf1d624](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/bf1d624b7729d9d81188f0bc5a9cb8357e336f61))
+
 ## [6.9.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.8.1...v6.9.0) (2026-03-26)
 
 
