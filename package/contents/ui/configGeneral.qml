@@ -98,7 +98,7 @@ KCM.SimpleKCM {
                     text: i18n("Alpha:")
                 }
 
-                Components.DoubleSpinBox {
+                Components.DoubleSpinBoxCompat {
                     id: bgAlphaSpinbox
                     from: 0 * multiplier
                     to: 1 * multiplier
@@ -130,7 +130,7 @@ KCM.SimpleKCM {
                     text: i18n("Alpha:")
                 }
 
-                Components.DoubleSpinBox {
+                Components.DoubleSpinBoxCompat {
                     id: minorLineSpinbox
                     from: 0 * multiplier
                     to: 1 * multiplier
@@ -178,7 +178,7 @@ KCM.SimpleKCM {
                     text: i18n("Alpha:")
                 }
 
-                Components.DoubleSpinBox {
+                Components.DoubleSpinBoxCompat {
                     id: majorLineSpinbox
                     from: 0 * multiplier
                     to: 1 * multiplier

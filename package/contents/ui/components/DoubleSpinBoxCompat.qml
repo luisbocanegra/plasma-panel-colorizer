@@ -20,10 +20,10 @@ SpinBox {
     }
 
     textFromValue: function (value, locale) {
-        return Number(value / multiplier).toLocaleString(locale, 'f', decimals);
+        return Number(value / multiplier).toFixed(2);
     }
 
     valueFromText: function (text, locale) {
-        return Number.fromLocaleString(locale, text) * multiplier;
+        return Number(text) * multiplier;
     }
 }

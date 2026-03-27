@@ -170,7 +170,7 @@ ColumnLayout {
             }
         }
 
-        DoubleSpinBox {
+        DoubleSpinBoxCompat {
             id: widgetOpacity
             visible: root.elementName !== "panel"
             Kirigami.FormData.label: i18n("Opacity:")
@@ -188,7 +188,7 @@ ColumnLayout {
             Label {
                 text: i18n("Opacity:")
             }
-            DoubleSpinBox {
+            DoubleSpinBoxCompat {
                 id: opacitySpinbox
                 enabled: nativePanelBackgroundCheckbox.checked
                 from: 0 * multiplier
