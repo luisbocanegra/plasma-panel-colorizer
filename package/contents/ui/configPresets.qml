@@ -62,7 +62,7 @@ KCM.SimpleKCM {
     signal reloadPresetList
 
     onReloadPresetList: {
-        runCommand.run(listPresetsCmd);
+        runCommand.exec(listPresetsCmd);
     }
 
     Connections {
@@ -116,7 +116,7 @@ KCM.SimpleKCM {
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {
             root.deletePreset(root.editingPreset);
-            runCommand.run(root.listPresetsCmd);
+            runCommand.exec(root.listPresetsCmd);
         }
     }
 
@@ -136,7 +136,7 @@ KCM.SimpleKCM {
         subtitle: i18n("Current preview will be overwritten!")
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {
-            runCommand.run(root.spectaclePreviewCmd + "'" + root.editingPreset + "/preview.png'");
+            runCommand.exec(root.spectaclePreviewCmd + "'" + root.editingPreset + "/preview.png'");
         }
     }
 
@@ -152,7 +152,7 @@ KCM.SimpleKCM {
 
     function applyPreset(presetDir) {
         console.log("Reading preset:", presetDir);
-        runCommand.run("cat '" + presetDir + "/settings.json'");
+        runCommand.exec("cat '" + presetDir + "/settings.json'");
     }
 
     function restoreSettings() {
@@ -183,8 +183,8 @@ KCM.SimpleKCM {
                 output[name] = parsed;
             }
         }
-        runCommand2.run("mkdir -p '" + presetDir + "'");
-        runCommand2.run("echo '" + JSON.stringify(output) + "' > '" + presetDir + "/settings.json'");
+        runCommand2.exec("mkdir -p '" + presetDir + "'");
+        runCommand2.exec("echo '" + JSON.stringify(output) + "' > '" + presetDir + "/settings.json'");
     }
 
     function deletePreset(path) {
@@ -193,13 +193,13 @@ KCM.SimpleKCM {
             return;
         }
         console.warn("rm -r '" + path + "'");
-        runCommand.run("rm -r '" + path + "'");
+        runCommand.exec("rm -r '" + path + "'");
     }
 
     Component.onCompleted: {
         Utils.delay(100, () => {
-            runCommand.run(cratePresetsDirCmd);
-            runCommand.run(listPresetsCmd);
+            runCommand.exec(cratePresetsDirCmd);
+            runCommand.exec(listPresetsCmd);
         }, root);
     }
 
@@ -263,7 +263,7 @@ KCM.SimpleKCM {
                         text: i18n("Refresh presets")
                         icon.name: "view-refresh-symbolic"
                         onClicked: {
-                            runCommand.run(root.listPresetsCmd);
+                            runCommand.exec(root.listPresetsCmd);
                         }
                     }
                 }
@@ -347,7 +347,7 @@ KCM.SimpleKCM {
                                 visible: !scrollView.visible
                                 Layout.alignment: Qt.AlignHCenter
                                 onClicked: {
-                                    runCommand.run(root.spectaclePreviewCmd + "'" + content.dir + "/preview.png'");
+                                    runCommand.exec(root.spectaclePreviewCmd + "'" + content.dir + "/preview.png'");
                                 }
                             }
                             Item {
@@ -392,7 +392,7 @@ KCM.SimpleKCM {
                                     icon.name: "edit-image-symbolic"
                                     enabled: !content.builtin
                                     onClicked: {
-                                        runCommand.run(root.spectaclePreviewCmd + "'" + content.dir + "/preview.png" + "'");
+                                        runCommand.exec(root.spectaclePreviewCmd + "'" + content.dir + "/preview.png" + "'");
                                     }
                                     property bool showTooltip: false
                                     property bool hasPosition: tooltipX !== 0 && tooltipY !== 0
@@ -430,7 +430,7 @@ KCM.SimpleKCM {
                                         }
                                         TapHandler {
                                             enabled: !content.builtin
-                                            onTapped: runCommand.run(root.spectaclePreviewCmd + "'" + content.dir + "/preview.png" + "'")
+                                            onTapped: runCommand.exec(root.spectaclePreviewCmd + "'" + content.dir + "/preview.png" + "'")
                                         }
                                         Timer {
                                             id: hoverTimer

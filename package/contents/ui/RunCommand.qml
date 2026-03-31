@@ -1,54 +1,48 @@
 import QtQuick
 import org.kde.plasma.plasma5support as P5Support
 
-Item {
-    id: root
+P5Support.DataSource {
+    id: dataSource
 
     property string output: ""
+    property var callbacks: ({})
+
+    function exec(cmd, callback) {
+        if (callback && typeof callback === "function") {
+            callbacks[cmd] = callback;
+        }
+        dataSource.connectSource(cmd);
+    }
+
+    function exit(cmd) {
+        dataSource.disconnectSource(cmd);
+    }
 
     signal exited(string cmd, int exitCode, int exitStatus, string stdout, string stderr)
 
-    function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
-        if (exitCode !== 0)
-            return;
-
-        if (stdout.length > 0) {
-            try {
-                output = stdout.trim();
-            } catch (e) {
-                console.error(e, e.stack);
+    onExited: (cmd, exitCode, exitStatus, stdout, stderr) => {
+        if (cmd in callbacks) {
+            if (typeof callbacks[cmd] === "function") {
+                callbacks[cmd]({
+                    cmd,
+                    exitCode,
+                    exitStatus,
+                    stdout,
+                    stderr
+                });
             }
+            delete callbacks[cmd];
         }
     }
 
-    function run(cmd) {
-        runCommand.exec(cmd);
-    }
-
-    function terminate(cmd) {
-        runCommand.exit(cmd);
-    }
-
-    P5Support.DataSource {
-        id: runCommand
-
-        function exec(cmd) {
-            runCommand.connectSource(cmd);
-        }
-
-        function exit(cmd) {
-            runCommand.disconnectSource(cmd);
-        }
-
-        engine: "executable"
-        connectedSources: []
-        onNewData: function (source, data) {
-            var exitCode = data["exit code"];
-            var exitStatus = data["exit status"];
-            var stdout = data["stdout"];
-            var stderr = data["stderr"];
-            root.exited(source, exitCode, exitStatus, stdout, stderr);
-            disconnectSource(source);
-        }
+    engine: "executable"
+    connectedSources: []
+    onNewData: function (source, data) {
+        var exitCode = data["exit code"];
+        var exitStatus = data["exit status"];
+        var stdout = data["stdout"];
+        var stderr = data["stderr"];
+        exited(source, exitCode, exitStatus, stdout, stderr);
+        disconnectSource(source);
     }
 }

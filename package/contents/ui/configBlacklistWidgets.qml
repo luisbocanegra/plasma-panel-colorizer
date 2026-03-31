@@ -169,10 +169,10 @@ KCM.SimpleKCM {
 
         Components.SettingImportExport {
             onExportConfirmed: {
-                runCommand.run(crateConfigDirCmd);
-                runCommand.run("echo '" + cfg_blacklistedWidgets + "' > '" + configDir + "blacklistWidgets.json'");
+                runCommand.exec(crateConfigDirCmd);
+                runCommand.exec("echo '" + cfg_blacklistedWidgets + "' > '" + configDir + "blacklistWidgets.json'");
             }
-            onImportConfirmed: runCommand.run(importCmd)
+            onImportConfirmed: runCommand.exec(importCmd)
         }
 
         ColumnLayout {

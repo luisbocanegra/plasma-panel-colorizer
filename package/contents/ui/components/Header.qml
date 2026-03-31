@@ -238,6 +238,6 @@ ColumnLayout {
         }
     }
     Component.onCompleted: {
-        runCommand.run(root.localVersionCmd);
+        runCommand.exec(root.localVersionCmd);
     }
 }

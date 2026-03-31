@@ -108,8 +108,8 @@ KCM.SimpleKCM {
     }
 
     Component.onCompleted: {
-        runCommand.run(cratePresetsDirCmd);
-        runCommand.run(listPresetsCmd);
+        runCommand.exec(cratePresetsDirCmd);
+        runCommand.exec(listPresetsCmd);
     }
 
     header: ColumnLayout {

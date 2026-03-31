@@ -198,10 +198,10 @@ KCM.ScrollViewKCM {
         }
         Components.SettingImportExport {
             onExportConfirmed: {
-                runCommand.run(root.crateConfigDirCmd);
-                runCommand.run("echo '" + root.cfg_systemTrayIconUserReplacements + "' > '" + root.configDir + "trayIconReplacements.json'");
+                runCommand.exec(root.crateConfigDirCmd);
+                runCommand.exec("echo '" + root.cfg_systemTrayIconUserReplacements + "' > '" + root.configDir + "trayIconReplacements.json'");
             }
-            onImportConfirmed: runCommand.run(root.importCmd)
+            onImportConfirmed: runCommand.exec(root.importCmd)
             Layout.margins: Kirigami.Units.mediumSpacing
             enabled: root.cfg_isEnabled && root.cfg_systemTrayIconsReplacementEnabled
         }

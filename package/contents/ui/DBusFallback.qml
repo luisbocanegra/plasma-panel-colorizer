@@ -61,6 +61,6 @@ Item {
             callbackRef = callback;
             callFinished.connect(callback);
         }
-        runCommand.run(builCmd());
+        runCommand.exec(builCmd());
     }
 }

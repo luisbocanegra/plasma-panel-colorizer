@@ -126,7 +126,7 @@ ColumnLayout {
     }
     Component.onCompleted: {
         Utils.delay(50, () => ready = true, root);
-        runCommand.run('plasmashell --version');
+        runCommand.exec('plasmashell --version');
     }
 
     Kirigami.FormLayout {
@@ -527,7 +527,7 @@ ColumnLayout {
             visible: (root.showFontConfig) && root.currentTab === 4
             text: i18n("A plasmashell restart is required to restore the original values after disabling any font setting. <a href=\"#\">Restart now</a>.")
             onLinkActivated: {
-                runCommand.run("systemctl restart --user plasma-plasmashell");
+                runCommand.exec("systemctl restart --user plasma-plasmashell");
             }
             font: Kirigami.Theme.smallFont
             color: Kirigami.Theme.disabledTextColor

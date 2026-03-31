@@ -14,7 +14,7 @@ Item {
 
     function toggleService() {
         if (enabled)
-            runCommand.run(serviceCmd);
+            runCommand.exec(serviceCmd);
         else
             (dbusQuit.call());
     }

@@ -147,10 +147,10 @@ KCM.SimpleKCM {
         }
         Components.SettingImportExport {
             onExportConfirmed: {
-                runCommand.run(crateConfigDirCmd);
-                runCommand.run("echo '" + cfg_configurationOverrides + "' > '" + configDir + "overrides.json'");
+                runCommand.exec(crateConfigDirCmd);
+                runCommand.exec("echo '" + cfg_configurationOverrides + "' > '" + configDir + "overrides.json'");
             }
-            onImportConfirmed: runCommand.run(importCmd)
+            onImportConfirmed: runCommand.exec(importCmd)
         }
 
         Kirigami.FormLayout {

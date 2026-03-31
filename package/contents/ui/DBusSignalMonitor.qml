@@ -36,14 +36,14 @@ Item {
             root.signalReceived(root.getMessage(stdout.trim()));
             // for some reason it won't restart without a delay???
             Utils.delay(50, () => {
-                runCommand.run(root.monitorCmd);
+                runCommand.exec(root.monitorCmd);
             }, root);
         }
     }
 
     function toggleMontitor() {
         if (enabled) {
-            runCommand.run(monitorCmd);
+            runCommand.exec(monitorCmd);
         } else {
             runCommand.terminate(monitorCmd);
         }

@@ -187,7 +187,7 @@ Kirigami.FormLayout {
         visible: root.elementName === "widgets"
         text: i18n("Requires plasmashell restart after disabling to restore the default. <a href=\"#\">Restart now</a>.")
         onLinkActivated: {
-            runCommand.run("systemctl restart --user plasma-plasmashell");
+            runCommand.exec("systemctl restart --user plasma-plasmashell");
         }
         font: Kirigami.Theme.smallFont
         Layout.maximumWidth: 400

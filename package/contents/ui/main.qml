@@ -593,7 +593,7 @@ PlasmoidItem {
         if (!presetDir || presetDir === lastPreset)
             return;
         console.log("Reading preset:", presetDir);
-        runCommand.run("cat '" + presetDir + "/settings.json'");
+        runCommand.exec("cat '" + presetDir + "/settings.json'");
         lastPreset = presetDir;
     }
 
@@ -749,7 +749,7 @@ PlasmoidItem {
 
     Component.onCompleted: {
         updatePlasmoidStatus();
-        runCommand.run("plasmashell --version");
+        runCommand.exec("plasmashell --version");
         let pluginFound = false;
         try {
             panelColorizer = Qt.createQmlObject("import org.kde.plasma.panelcolorizer 1.0; PanelColorizer { id: panelColorizer }", main);
@@ -913,7 +913,7 @@ PlasmoidItem {
         repeat: true
         triggeredOnStart: true
         onTriggered: {
-            versionChecker.run(main.localVersionCmd);
+            versionChecker.exec(main.localVersionCmd);
         }
     }
 

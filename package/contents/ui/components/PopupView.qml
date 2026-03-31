@@ -32,7 +32,7 @@ ColumnLayout {
     }
 
     Component.onCompleted: {
-        listPresets.run(listPresetsCmd);
+        listPresets.exec(listPresetsCmd);
     }
 
     Connections {

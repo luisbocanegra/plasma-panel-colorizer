@@ -185,10 +185,10 @@ KCM.SimpleKCM {
 
         Components.SettingImportExport {
             onExportConfirmed: {
-                runCommand.run(crateConfigDirCmd);
-                runCommand.run("echo '" + cfg_forceForegroundColor + "' > '" + configDir + "forceForegroundColor.json'");
+                runCommand.exec(crateConfigDirCmd);
+                runCommand.exec("echo '" + cfg_forceForegroundColor + "' > '" + configDir + "forceForegroundColor.json'");
             }
-            onImportConfirmed: runCommand.run(importCmd)
+            onImportConfirmed: runCommand.exec(importCmd)
         }
 
         Kirigami.FormLayout {
