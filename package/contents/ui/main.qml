@@ -943,6 +943,7 @@ PlasmoidItem {
                 Plasmoid.configuration.globalSettings = JSON.stringify(main.cfg);
             }
         }
+        instanceId: Plasmoid.id
     }
 
     DBusSignalMonitor {
@@ -955,6 +956,7 @@ PlasmoidItem {
                 main.applyPreset(message);
             }
         }
+        instanceId: Plasmoid.id
     }
     TaskManager.ActivityInfo {
         id: activityInfo
