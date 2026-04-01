@@ -351,7 +351,9 @@ The location where they are stored has changed, the new locations are:
 
 ### How to blacklist or customize individual widgets? (v1.0.0 or later)
 
-Use overrides, see [How do I blacklist widgets like before?](https://github.com/luisbocanegra/plasma-panel-colorizer/discussions/146)
+~~Use overrides, see [How do I blacklist widgets like before?](https://github.com/luisbocanegra/plasma-panel-colorizer/discussions/146)~~
+
+Since version 6.9.0 it is possible to exclude widgets from customization using the **Blacklist widgets** tab.
 
 ### Will you add support to drag/close/maximize/minimize... windows like latte had?
 
@@ -396,7 +398,7 @@ Please read the [Contributing guidelines in this repository](https://github.com/
 
 Configurations
 
-![tooltip](screenshots/settings.png)
+![settings](screenshots/settings.png)
 
 Built-in presets
 
