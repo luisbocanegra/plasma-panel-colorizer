@@ -492,7 +492,7 @@ Rectangle {
             if (rect.marginEnabled && rect.marginLeft !== 0) {
                 margin = rect.marginLeft;
             }
-            if (rect.main.fillAreaOnDeFloat && rect.main.panelElement?.floating && (rect.main.panelElement?.floatingness !== 1)) {
+            if (rect.main.fillAreaOnDeFloat && rect.main.panelElement?.floating && (rect.main.panelElement?.floatingness !== 1) && rect.horizontal) {
                 margin -= (8 * (1 - rect.main.panelElement?.floatingness));
             }
             return margin;
@@ -509,7 +509,7 @@ Rectangle {
             if (rect.marginEnabled && rect.marginRight !== 0) {
                 margin = rect.marginRight;
             }
-            if (rect.main.fillAreaOnDeFloat && rect.main.panelElement?.floating && (rect.main.panelElement?.floatingness !== 1)) {
+            if (rect.main.fillAreaOnDeFloat && rect.main.panelElement?.floating && (rect.main.panelElement?.floatingness !== 1) && rect.horizontal) {
                 margin -= (8 * (1 - rect.main.panelElement?.floatingness));
             }
             return margin;
@@ -521,16 +521,34 @@ Rectangle {
     Binding {
         target: rect.target
         property: "anchors.topMargin"
-        value: rect.marginEnabled ? rect.marginTop : 0
-        when: rect.isPanel
+        value: {
+            let margin = 0;
+            if (rect.marginEnabled && rect.marginTop !== 0) {
+                margin = rect.marginTop;
+            }
+            if (rect.main.fillAreaOnDeFloat && rect.main.panelElement?.floating && (rect.main.panelElement?.floatingness !== 1) && !rect.horizontal) {
+                margin -= (8 * (1 - rect.main.panelElement?.floatingness));
+            }
+            return margin;
+        }
+        when: rect.isPanel && rect.main.isEnabled
         delayed: true
     }
 
     Binding {
         target: rect.target
         property: "anchors.bottomMargin"
-        value: rect.marginEnabled ? rect.marginBottom : 0
-        when: rect.isPanel
+        value: {
+            let margin = 0;
+            if (rect.marginEnabled && rect.marginBottom !== 0) {
+                margin = rect.marginBottom;
+            }
+            if (rect.main.fillAreaOnDeFloat && rect.main.panelElement?.floating && (rect.main.panelElement?.floatingness !== 1) && !rect.horizontal) {
+                margin -= (8 * (1 - rect.main.panelElement?.floatingness));
+            }
+            return margin;
+        }
+        when: rect.isPanel && rect.main.isEnabled
         delayed: true
     }
 
