@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.10.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.9.1...v6.10.0) (2026-04-01)
+
+
+### Features
+
+* reword some settings for clarity & add warning about [#80](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/80) ([49aa082](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/49aa08218b558f449e76167c714c7c5d47b2f309))
+
+
+### Bug Fixes
+
+* dbus signal monitor not returning due to old tail version ([22073fa](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/22073fa89c3101a3a7899483b414b1e646f03133))
+* vertical floating panel width when anchor to edges ([17017b6](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/17017b64842fe3a8689ccf21201a49d10dff91ba))
+
 ## [6.9.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.9.0...v6.9.1) (2026-03-27)
 
 
