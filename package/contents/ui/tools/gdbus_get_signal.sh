@@ -7,21 +7,15 @@ SERVICE=${2}
 INTERFACE=${3}
 DBUS_PATH=${4}
 METHOD=${5}
-TMPFILE=$(mktemp)
-gdbus monitor --"${BUS_TYPE}" --dest "${SERVICE}" >"$TMPFILE" &
-PID=$!
-exit_code=130
-tail -f "$TMPFILE" | while IFS= read -r line; do
+
+while IFS= read -r line; do
   if [[ "$line" == *"${INTERFACE}.${METHOD}"* ]] && [[ "$line" == *"${DBUS_PATH}"* ]]; then
     echo "$line"
-    kill "$PID"
-    break
+    exit 0
   fi
   if [[ "$line" == *"Error"* ]]; then
-    ((exit_code = 1))
-    kill "$PID"
-    break
+    exit 1
   fi
-done
-rm -f "$TMPFILE"
-exit "$exit_code"
+done < <(gdbus monitor --"${BUS_TYPE}" --dest "${SERVICE}")
+
+exit 1

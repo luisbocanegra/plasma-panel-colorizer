@@ -50,8 +50,7 @@ Item {
 
     function start() {
         runCommand.exec(root.monitorCmd, o => {
-            // exit code 130 indicates received signal from the script
-            if (o.exitCode === 130) {
+            if (o.exitCode === 0) {
                 root.signalReceived(root.getMessage(o.stdout.trim()));
                 // restart for the next signal
                 // for some reason it won't restart without a delay???
