@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-03-22 16:58+0000\n"
+"POT-Creation-Date: 2026-04-01 09:07+0000\n"
 "PO-Revision-Date: 2025-12-25 13:03+0200\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
@@ -57,8 +57,8 @@ msgid "Global Overrides"
 msgstr "Globaalit ohitukset"
 
 #: ../contents/config/config.qml
-msgid "Text/Icon Fixes"
-msgstr "Teksti- ja ikonikorjaukset"
+msgid "Text/Icon Color Fixes"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Blacklist Widgets"
@@ -378,6 +378,12 @@ msgstr ""
 "kontrasti- ja sumennusefektit)."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"⚠️ Disabling this breaks the panel clickable area and applet dialogs "
+"positioning when the panel is in floating mode! See <a href=\"%1\">#80</a>."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "The shadow from the Plasma theme"
 msgstr "Plasma-teeman mukainen varjo"
 
@@ -427,17 +433,9 @@ msgid "Force floating applets"
 msgstr "Pakota kelluvat sovelmat"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Anchor to edges:"
-msgstr "Ankkuroi reunoihin:"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Resize content when panel enters/exits floating state"
-msgstr ""
-"Muuta sisällön kokoa, kun paneeli siirtyy kelluvaan tilaan tai poistuu siitä"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Panel de-float:"
-msgstr "Paneelin kellunnan poisto:"
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Floating panel:"
+msgstr "Kelluva paneeli:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
@@ -446,6 +444,12 @@ msgid ""
 msgstr ""
 "Poista mukautetun taustan pyöristetyt kulmat ja reunat näytön reunalta, kun "
 "paneeli ei kellu"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Resize panel length when panel enters/exits floating state (instead of just "
+"moving)"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Customization"
@@ -498,28 +502,21 @@ msgstr ""
 "0, jotta tämä toimii oikein.</strong>"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"C++ plugin not found, this feature will not work. Install the plugin and "
+"reboot or restart plasmashell to be able to use it. See <a "
+"href=\"%1\">install instructions</a>."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Clipping (Experimental)"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
 "Clip the widget content to the custom background radius.<br>Clipping widgets "
-"against the panel is not supported yet but is planned for a later version, "
-"see <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
-"issues/275\">#275</a>."
+"against the panel is not supported yet, see <a href=\"%1\">#275</a>."
 msgstr ""
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid ""
-"C++ plugin not found, this feature will not work. Install the plugin and "
-"reboot or restart plasmashell to be able to use it."
-msgstr ""
-"C++-liitännäistä ei löytynyt, tämä ominaisuus ei toimi. Asenna liitännäinen "
-"ja käynnistä tietokone tai plasmashell uudelleen käyttääksesi sitä."
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Plugin install instructions"
-msgstr "Liitännäisen asennusohjeet"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Shape"
@@ -1133,10 +1130,6 @@ msgid "At least one window is visible:"
 msgstr "Vähintään yksi ikkuna on näkyvissä:"
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "Floating panel:"
-msgstr "Kelluva paneeli:"
-
-#: ../contents/ui/configPresetAutoload.qml
 msgid "activity:"
 msgstr "aktiviteetti:"
 
@@ -1552,6 +1545,31 @@ msgstr ""
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Piilota pienoisohjelma (näkyvissä paneelin muokkaustilassa)"
+
+#~ msgid "Text/Icon Fixes"
+#~ msgstr "Teksti- ja ikonikorjaukset"
+
+#~ msgid "Anchor to edges:"
+#~ msgstr "Ankkuroi reunoihin:"
+
+#~ msgid "Resize content when panel enters/exits floating state"
+#~ msgstr ""
+#~ "Muuta sisällön kokoa, kun paneeli siirtyy kelluvaan tilaan tai poistuu "
+#~ "siitä"
+
+#~ msgid "Panel de-float:"
+#~ msgstr "Paneelin kellunnan poisto:"
+
+#~ msgid ""
+#~ "C++ plugin not found, this feature will not work. Install the plugin and "
+#~ "reboot or restart plasmashell to be able to use it."
+#~ msgstr ""
+#~ "C++-liitännäistä ei löytynyt, tämä ominaisuus ei toimi. Asenna "
+#~ "liitännäinen ja käynnistä tietokone tai plasmashell uudelleen "
+#~ "käyttääksesi sitä."
+
+#~ msgid "Plugin install instructions"
+#~ msgstr "Liitännäisen asennusohjeet"
 
 #~ msgid ""
 #~ "WARNING: Use Show/Hide with caution, if you hide the panel and have not "

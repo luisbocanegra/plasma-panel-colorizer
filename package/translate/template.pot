@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-03-22 16:58+0000\n"
+"POT-Creation-Date: 2026-04-01 09:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,7 +54,7 @@ msgid "Global Overrides"
 msgstr ""
 
 #: ../contents/config/config.qml
-msgid "Text/Icon Fixes"
+msgid "Text/Icon Color Fixes"
 msgstr ""
 
 #: ../contents/config/config.qml
@@ -335,6 +335,10 @@ msgid "Disable to make panel fully transparent, removes contrast and blur effect
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid "⚠️ Disabling this breaks the panel clickable area and applet dialogs positioning when the panel is in floating mode! See <a href=\"%1\">#80</a>."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "The shadow from the Plasma theme"
 msgstr ""
 
@@ -372,20 +376,16 @@ msgstr ""
 msgid "Force floating applets"
 msgstr ""
 
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Anchor to edges:"
-msgstr ""
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Resize content when panel enters/exits floating state"
-msgstr ""
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Panel de-float:"
+#: ../contents/ui/components/FormWidgetSettings.qml ../contents/ui/configPresetAutoload.qml
+msgid "Floating panel:"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Remove custom background rounded corners and borders on screen edge when panel is not floating"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Resize panel length when panel enters/exits floating state (instead of just moving)"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -429,21 +429,15 @@ msgid "Draw a custom blur mask behind the custom background(s).<br><strong>Nativ
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it. See <a href=\"%1\">install instructions</a>."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Clipping (Experimental)"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid ""
-"Clip the widget content to the custom background radius.<br>Clipping widgets against the panel is not supported yet but is planned for a later version, see <a href=\"https://github.com/"
-"luisbocanegra/plasma-panel-colorizer/issues/275\">#275</a>."
-msgstr ""
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it."
-msgstr ""
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Plugin install instructions"
+msgid "Clip the widget content to the custom background radius.<br>Clipping widgets against the panel is not supported yet, see <a href=\"%1\">#275</a>."
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -977,10 +971,6 @@ msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "At least one window is visible:"
-msgstr ""
-
-#: ../contents/ui/configPresetAutoload.qml
-msgid "Floating panel:"
 msgstr ""
 
 #: ../contents/ui/configPresetAutoload.qml

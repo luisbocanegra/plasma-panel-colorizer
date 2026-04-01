@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-03-22 16:58+0000\n"
+"POT-Creation-Date: 2026-04-01 09:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,8 +54,8 @@ msgid "Global Overrides"
 msgstr "Reescriptura global"
 
 #: ../contents/config/config.qml
-msgid "Text/Icon Fixes"
-msgstr "Reparació de text i icones"
+msgid "Text/Icon Color Fixes"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Blacklist Widgets"
@@ -334,6 +334,10 @@ msgid "Disable to make panel fully transparent, removes contrast and blur effect
 msgstr "Desactiveu-ho per tal que el panell sigui transparent del tot i traure'n tots els efectes de contrast i difuminat."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid "⚠️ Disabling this breaks the panel clickable area and applet dialogs positioning when the panel is in floating mode! See <a href=\"%1\">#80</a>."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "The shadow from the Plasma theme"
 msgstr "L'ombra del tema del Plasma"
 
@@ -373,21 +377,17 @@ msgstr "Fes que el botó d'expansió a l'ample tingui la mateixa amplada que els
 msgid "Force floating applets"
 msgstr "Força miniaplicacions flotants"
 
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Anchor to edges:"
-msgstr "Ancora a les vores:"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Resize content when panel enters/exits floating state"
-msgstr "Redimensiona el contingut quan el panell entri o surti de l'estat flotant."
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Panel de-float:"
-msgstr "Desflotització del panell:"
+#: ../contents/ui/components/FormWidgetSettings.qml ../contents/ui/configPresetAutoload.qml
+msgid "Floating panel:"
+msgstr "Panell flotant:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Remove custom background rounded corners and borders on screen edge when panel is not floating"
 msgstr "Trau el fons personalitzat i vores i cantonades arrodonides a la vora de la pantalla quan el panell no està flotant"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Resize panel length when panel enters/exits floating state (instead of just moving)"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Customization"
@@ -430,20 +430,16 @@ msgid "Draw a custom blur mask behind the custom background(s).<br><strong>Nativ
 msgstr "Dibuixa una màscara difuminada personalitzada al darrera dels fons personalitzats.<br><strong>El fons nadiu del panell s'ha d'activar amb opacitat 0 per tal que pugui funcionar com s'espera.</strong>"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it. See <a href=\"%1\">install instructions</a>."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Clipping (Experimental)"
 msgstr "Retallat (experimental)"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Clip the widget content to the custom background radius.<br>Clipping widgets against the panel is not supported yet but is planned for a later version, see <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/275\">#275</a>."
-msgstr "Retalla les vores del contingut del giny segons el radi del fons personalitzat.<br>Retallar els ginys respecte el panell encara no se suporta, però està planificat per a properes versions. Vegeu <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/275\">#275</a>."
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it."
-msgstr "No s'ha trobat el complement C++. Aquesta opció no funcionarà. Instal·leu el complement i reinicieu l'ordinador o el plasmashell per a fer-ho servir."
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Plugin install instructions"
-msgstr "Instruccions d'instal·lació del complement"
+msgid "Clip the widget content to the custom background radius.<br>Clipping widgets against the panel is not supported yet, see <a href=\"%1\">#275</a>."
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Shape"
@@ -966,10 +962,6 @@ msgid "At least one window is visible:"
 msgstr "Almenys una finestra visible"
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "Floating panel:"
-msgstr "Panell flotant:"
-
-#: ../contents/ui/configPresetAutoload.qml
 msgid "activity:"
 msgstr "activitat:"
 
@@ -1328,6 +1320,27 @@ msgstr "Trau totes les illes"
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Amaga el giny (visible en Mode d'Edició del Panell)"
+
+#~ msgid "Text/Icon Fixes"
+#~ msgstr "Reparació de text i icones"
+
+#~ msgid "Anchor to edges:"
+#~ msgstr "Ancora a les vores:"
+
+#~ msgid "Resize content when panel enters/exits floating state"
+#~ msgstr "Redimensiona el contingut quan el panell entri o surti de l'estat flotant."
+
+#~ msgid "Panel de-float:"
+#~ msgstr "Desflotització del panell:"
+
+#~ msgid "Clip the widget content to the custom background radius.<br>Clipping widgets against the panel is not supported yet but is planned for a later version, see <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/275\">#275</a>."
+#~ msgstr "Retalla les vores del contingut del giny segons el radi del fons personalitzat.<br>Retallar els ginys respecte el panell encara no se suporta, però està planificat per a properes versions. Vegeu <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/275\">#275</a>."
+
+#~ msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it."
+#~ msgstr "No s'ha trobat el complement C++. Aquesta opció no funcionarà. Instal·leu el complement i reinicieu l'ordinador o el plasmashell per a fer-ho servir."
+
+#~ msgid "Plugin install instructions"
+#~ msgstr "Instruccions d'instal·lació del complement"
 
 #~ msgid ""
 #~ "WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will renove the configuration from all Panel "

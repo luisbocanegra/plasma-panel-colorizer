@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-03-22 16:58+0000\n"
+"POT-Creation-Date: 2026-04-01 09:07+0000\n"
 "PO-Revision-Date: 2026-02-09 22:02+0100\n"
 "Last-Translator: Levente Pál Szíjártó <szijartoleventepal@gmail.com>\n"
 "Language-Team: hu\n"
@@ -60,8 +60,8 @@ msgid "Global Overrides"
 msgstr "Globális beállítások felülbírálása"
 
 #: ../contents/config/config.qml
-msgid "Text/Icon Fixes"
-msgstr "Szöveg- és ikonjavítások"
+msgid "Text/Icon Color Fixes"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Blacklist Widgets"
@@ -384,6 +384,12 @@ msgstr ""
 "átlátszóvá válik."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"⚠️ Disabling this breaks the panel clickable area and applet dialogs "
+"positioning when the panel is in floating mode! See <a href=\"%1\">#80</a>."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "The shadow from the Plasma theme"
 msgstr "A Plasma-téma árnyéka"
 
@@ -433,17 +439,9 @@ msgid "Force floating applets"
 msgstr "Lebegő kisalkalmazások kényszerítése"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Anchor to edges:"
-msgstr "Szélekhez rögzítés:"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Resize content when panel enters/exits floating state"
-msgstr ""
-"Tartalom átméretezése, amikor a panel be- és kilép a lebegő állapotából."
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Panel de-float:"
-msgstr "Panel lebegéstelenítése:"
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Floating panel:"
+msgstr "A panel lebeg:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
@@ -452,6 +450,12 @@ msgid ""
 msgstr ""
 "Az egyéni háttér lekerekített sarkainak és körvonalainak elrejtése, amíg a "
 "panel nem lebeg."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Resize panel length when panel enters/exits floating state (instead of just "
+"moving)"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Customization"
@@ -503,32 +507,21 @@ msgstr ""
 "panelháttér átlátszatlanságát 0-ra kell állítani.</strong>"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"C++ plugin not found, this feature will not work. Install the plugin and "
+"reboot or restart plasmashell to be able to use it. See <a "
+"href=\"%1\">install instructions</a>."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Clipping (Experimental)"
 msgstr "Körülvágás (kísérleti)"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
 "Clip the widget content to the custom background radius.<br>Clipping widgets "
-"against the panel is not supported yet but is planned for a later version, "
-"see <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
-"issues/275\">#275</a>."
+"against the panel is not supported yet, see <a href=\"%1\">#275</a>."
 msgstr ""
-"Panelelemek sarkainak levágása az egyéni háttér sarkainak sugara alapján."
-"<br>A panellel történő körülvágás még nem támogatott, de a megvalósítása "
-"tervezett. Lásd: <a href=\"https://github.com/luisbocanegra/plasma-panel-"
-"colorizer/issues/275\">#275</a>."
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid ""
-"C++ plugin not found, this feature will not work. Install the plugin and "
-"reboot or restart plasmashell to be able to use it."
-msgstr ""
-"A funkció használatához a C++ bővítmény szükséges. Telepítse a bővítményt, "
-"majd indítsa újra a plasmashellt."
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Plugin install instructions"
-msgstr "Telepítési útmutató (angol nyelven)"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Shape"
@@ -1161,10 +1154,6 @@ msgid "At least one window is visible:"
 msgstr "Legalább egy ablak látható:"
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "Floating panel:"
-msgstr "A panel lebeg:"
-
-#: ../contents/ui/configPresetAutoload.qml
 msgid "activity:"
 msgstr "tevékenység:"
 
@@ -1607,6 +1596,40 @@ msgstr "Összes sziget felbontása"
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Megjelenítés csak szerkesztőmódban"
+
+#~ msgid "Text/Icon Fixes"
+#~ msgstr "Szöveg- és ikonjavítások"
+
+#~ msgid "Anchor to edges:"
+#~ msgstr "Szélekhez rögzítés:"
+
+#~ msgid "Resize content when panel enters/exits floating state"
+#~ msgstr ""
+#~ "Tartalom átméretezése, amikor a panel be- és kilép a lebegő állapotából."
+
+#~ msgid "Panel de-float:"
+#~ msgstr "Panel lebegéstelenítése:"
+
+#~ msgid ""
+#~ "Clip the widget content to the custom background radius.<br>Clipping "
+#~ "widgets against the panel is not supported yet but is planned for a later "
+#~ "version, see <a href=\"https://github.com/luisbocanegra/plasma-panel-"
+#~ "colorizer/issues/275\">#275</a>."
+#~ msgstr ""
+#~ "Panelelemek sarkainak levágása az egyéni háttér sarkainak sugara alapján."
+#~ "<br>A panellel történő körülvágás még nem támogatott, de a megvalósítása "
+#~ "tervezett. Lásd: <a href=\"https://github.com/luisbocanegra/plasma-panel-"
+#~ "colorizer/issues/275\">#275</a>."
+
+#~ msgid ""
+#~ "C++ plugin not found, this feature will not work. Install the plugin and "
+#~ "reboot or restart plasmashell to be able to use it."
+#~ msgstr ""
+#~ "A funkció használatához a C++ bővítmény szükséges. Telepítse a "
+#~ "bővítményt, majd indítsa újra a plasmashellt."
+
+#~ msgid "Plugin install instructions"
+#~ msgstr "Telepítési útmutató (angol nyelven)"
 
 #~ msgid ""
 #~ "WARNING: Use Show/Hide with caution, if you hide the panel and have not "

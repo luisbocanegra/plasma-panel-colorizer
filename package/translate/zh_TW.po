@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-03-22 16:58+0000\n"
+"POT-Creation-Date: 2026-04-01 09:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: scoutJ <jerry2714@gmail.com>\n"
 "Language-Team: \n"
@@ -54,8 +54,8 @@ msgid "Global Overrides"
 msgstr "全域覆寫"
 
 #: ../contents/config/config.qml
-msgid "Text/Icon Fixes"
-msgstr "文字/圖示修正"
+msgid "Text/Icon Color Fixes"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Blacklist Widgets"
@@ -334,6 +334,10 @@ msgid "Disable to make panel fully transparent, removes contrast and blur effect
 msgstr "停用以使面板完全透明，並移除對比和模糊效果"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid "⚠️ Disabling this breaks the panel clickable area and applet dialogs positioning when the panel is in floating mode! See <a href=\"%1\">#80</a>."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "The shadow from the Plasma theme"
 msgstr "來自 Plasma 主題的陰影"
 
@@ -373,21 +377,17 @@ msgstr "使系統匣的彈出按鈕與系統匣中其他的物件有相同的寬
 msgid "Force floating applets"
 msgstr "強制浮動小程式"
 
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Anchor to edges:"
-msgstr "貼齊邊緣："
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Resize content when panel enters/exits floating state"
-msgstr "面板進入/退出浮動狀態時，重新調整尺寸"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Panel de-float:"
-msgstr "取消面板浮動"
+#: ../contents/ui/components/FormWidgetSettings.qml ../contents/ui/configPresetAutoload.qml
+msgid "Floating panel:"
+msgstr "浮動面板："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Remove custom background rounded corners and borders on screen edge when panel is not floating"
 msgstr "當面板不是浮動狀態的時候，移除自訂的背景圓角和邊框"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Resize panel length when panel enters/exits floating state (instead of just moving)"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Customization"
@@ -430,20 +430,16 @@ msgid "Draw a custom blur mask behind the custom background(s).<br><strong>Nativ
 msgstr "在自訂背景後繪製模糊遮罩。<br><strong>必須啟用原生背景並且將不透明度設成 0 才能生效。</strong>"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it. See <a href=\"%1\">install instructions</a>."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Clipping (Experimental)"
 msgstr "裁切(實驗性)"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Clip the widget content to the custom background radius.<br>Clipping widgets against the panel is not supported yet but is planned for a later version, see <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/275\">#275</a>."
-msgstr "按照自訂背景的圓角半徑裁切元件內容。<br>目前不支援按照面板來裁切元件，但是這個功能已經計畫在後續版本中實現，請見 <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/275\">#275</a>。"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it."
-msgstr "找不到 C++ 外掛，無法使用此功能。安裝外掛並重新系統或是 plasmashell 後可使用此功能。"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Plugin install instructions"
-msgstr "外掛安裝指引"
+msgid "Clip the widget content to the custom background radius.<br>Clipping widgets against the panel is not supported yet, see <a href=\"%1\">#275</a>."
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Shape"
@@ -966,10 +962,6 @@ msgid "At least one window is visible:"
 msgstr "至少一個視窗可見時："
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "Floating panel:"
-msgstr "浮動面板："
-
-#: ../contents/ui/configPresetAutoload.qml
 msgid "activity:"
 msgstr "活動"
 
@@ -1328,6 +1320,27 @@ msgstr "移除所有元件島"
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "隱藏元件 (在面板設定模式下可見)"
+
+#~ msgid "Text/Icon Fixes"
+#~ msgstr "文字/圖示修正"
+
+#~ msgid "Anchor to edges:"
+#~ msgstr "貼齊邊緣："
+
+#~ msgid "Resize content when panel enters/exits floating state"
+#~ msgstr "面板進入/退出浮動狀態時，重新調整尺寸"
+
+#~ msgid "Panel de-float:"
+#~ msgstr "取消面板浮動"
+
+#~ msgid "Clip the widget content to the custom background radius.<br>Clipping widgets against the panel is not supported yet but is planned for a later version, see <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/275\">#275</a>."
+#~ msgstr "按照自訂背景的圓角半徑裁切元件內容。<br>目前不支援按照面板來裁切元件，但是這個功能已經計畫在後續版本中實現，請見 <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/275\">#275</a>。"
+
+#~ msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it."
+#~ msgstr "找不到 C++ 外掛，無法使用此功能。安裝外掛並重新系統或是 plasmashell 後可使用此功能。"
+
+#~ msgid "Plugin install instructions"
+#~ msgstr "外掛安裝指引"
 
 #~ msgid ""
 #~ "WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will renove the configuration from all Panel "
