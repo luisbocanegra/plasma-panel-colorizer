@@ -152,6 +152,19 @@ ColumnLayout {
                 toolTipText: i18n("Disable to make panel fully transparent, removes contrast and blur effects.")
             }
         }
+        Label {
+            visible: !!!root.config.nativePanel.background.enabled && elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+            text: i18n("⚠️ Disabling this breaks the panel clickable area and applet dialogs positioning when the panel is in floating mode! See <a href=\"%1\">#80</a>.", "https://github.com/luisbocanegra/plasma-panel-colorizer/issues/80")
+            onLinkActivated: link => Qt.openUrlExternally(link)
+            font: Kirigami.Theme.smallFont
+            color: Kirigami.Theme.neutralTextColor
+            wrapMode: Label.Wrap
+            Layout.maximumWidth: 400
+            Layout.alignment: Qt.AlignTop
+            HoverHandler {
+                cursorShape: Qt.PointingHandCursor
+            }
+        }
         RowLayout {
             visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
             CheckBox {
@@ -252,29 +265,33 @@ ColumnLayout {
             visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal && (floatingDialogsEnabledCheckbox.checked || root.plasmaVersion.isLowerThan("6.4.0"))
         }
 
-        CheckBox {
-            Kirigami.FormData.label: i18n("Anchor to edges:")
-            text: i18n("Resize content when panel enters/exits floating state")
-            checked: root.config.nativePanel.fillAreaOnDeFloat
-            onCheckedChanged: {
-                root.config.nativePanel.fillAreaOnDeFloat = checked;
-                root.updateConfig();
-            }
-            visible: root.plasmaVersion.isGreaterThan("6.3.5") && root.elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
-        }
-
-        CheckBox {
-            id: flattenOnDeFloatCheckbox
-            Kirigami.FormData.label: i18n("Panel de-float:")
-            text: i18n("Remove custom background rounded corners and borders on screen edge when panel is not floating")
-            checked: configLocal.flattenOnDeFloat
-            onCheckedChanged: {
-                configLocal.flattenOnDeFloat = checked;
-                updateConfig();
-            }
-            Layout.maximumWidth: 400
-            Layout.alignment: Qt.AlignTop
+        ColumnLayout {
+            Kirigami.FormData.label: i18n("Floating panel:")
+            Kirigami.FormData.buddyFor: flattenOnDeFloatCheckbox
+            Kirigami.FormData.labelAlignment: Qt.AlignTop
+            spacing: Kirigami.Units.smallSpacing
             visible: root.elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+            CheckBox {
+                id: flattenOnDeFloatCheckbox
+                text: i18n("Remove custom background rounded corners and borders on screen edge when panel is not floating")
+                checked: root.configLocal.flattenOnDeFloat
+                onCheckedChanged: {
+                    root.configLocal.flattenOnDeFloat = checked;
+                    root.updateConfig();
+                }
+                Layout.maximumWidth: 400
+            }
+
+            CheckBox {
+                text: i18n("Resize panel length when panel enters/exits floating state (instead of just moving)")
+                checked: root.config.nativePanel.fillAreaOnDeFloat
+                onCheckedChanged: {
+                    root.config.nativePanel.fillAreaOnDeFloat = checked;
+                    root.updateConfig();
+                }
+                Layout.maximumWidth: 400
+                visible: root.plasmaVersion.isGreaterThan("6.3.5") && root.elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+            }
         }
 
         Kirigami.Separator {
@@ -385,6 +402,19 @@ ColumnLayout {
             }
         }
 
+        Label {
+            visible: !plasmoid.configuration.pluginFound
+            text: i18n("C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it. See <a href=\"%1\">install instructions</a>.", "https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually")
+            onLinkActivated: link => Qt.openUrlExternally(link)
+            font: Kirigami.Theme.smallFont
+            wrapMode: Label.Wrap
+            Layout.maximumWidth: 400
+            Layout.alignment: Qt.AlignTop
+            HoverHandler {
+                cursorShape: Qt.PointingHandCursor
+            }
+        }
+
         RowLayout {
             Kirigami.FormData.label: i18n("Clipping (Experimental)")
             visible: root.showFontConfig
@@ -401,32 +431,14 @@ ColumnLayout {
 
         Label {
             visible: root.showFontConfig
-            text: i18n("Clip the widget content to the custom background radius.<br>Clipping widgets against the panel is not supported yet but is planned for a later version, see <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/275\">#275</a>.")
+            text: i18n("Clip the widget content to the custom background radius.<br>Clipping widgets against the panel is not supported yet, see <a href=\"%1\">#275</a>.", "https://github.com/luisbocanegra/plasma-panel-colorizer/issues/275")
             onLinkActivated: link => Qt.openUrlExternally(link)
             font: Kirigami.Theme.smallFont
             wrapMode: Label.Wrap
-            color: Kirigami.Theme.disabledTextColor
             Layout.maximumWidth: 400
             Layout.alignment: Qt.AlignTop
             HoverHandler {
                 cursorShape: Qt.PointingHandCursor
-            }
-        }
-
-        ColumnLayout {
-            visible: !plasmoid.configuration.pluginFound
-            Layout.preferredWidth: 300
-            Label {
-                text: i18n("C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it.")
-                Layout.fillWidth: true
-                wrapMode: Text.Wrap
-            }
-            Button {
-                text: i18n("Plugin install instructions")
-                icon.name: "view-readermode-symbolic"
-                onClicked: {
-                    Qt.openUrlExternally("https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually");
-                }
             }
         }
     }

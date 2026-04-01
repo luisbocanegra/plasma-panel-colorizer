@@ -75,6 +75,10 @@ KCM.SimpleKCM {
             Layout.fillWidth: true
         }
 
+        Item {
+            Layout.preferredHeight: Kirigami.Units.largeSpacing
+        }
+
         Kirigami.FormLayout {
             id: parentLayout
 
