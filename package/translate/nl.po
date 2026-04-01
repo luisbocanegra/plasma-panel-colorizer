@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-03-22 16:58+0000\n"
+"POT-Creation-Date: 2026-04-01 09:07+0000\n"
 "PO-Revision-Date: 2026-01-20 10:36+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -60,8 +60,8 @@ msgid "Global Overrides"
 msgstr "Globale voorrangsregels"
 
 #: ../contents/config/config.qml
-msgid "Text/Icon Fixes"
-msgstr "Tekst- en pictogramoplossingen"
+msgid "Text/Icon Color Fixes"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Blacklist Widgets"
@@ -380,6 +380,12 @@ msgstr ""
 "vervaging te ontdoen."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"⚠️ Disabling this breaks the panel clickable area and applet dialogs "
+"positioning when the panel is in floating mode! See <a href=\"%1\">#80</a>."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "The shadow from the Plasma theme"
 msgstr "De schaduw van het Plasma-thema"
 
@@ -428,17 +434,9 @@ msgid "Force floating applets"
 msgstr "Zwevende applets afdwingen"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Anchor to edges:"
-msgstr "Vastmaken aan randen:"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Resize content when panel enters/exits floating state"
-msgstr ""
-"Pas de inhoudsgrootte aan als een paneel zwevend of juist niet wordt gemaakt"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Panel de-float:"
-msgstr "Niet-zwevend paneel:"
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Floating panel:"
+msgstr "Zwevend paneel:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
@@ -447,6 +445,12 @@ msgid ""
 msgstr ""
 "Verwijder de zelfgekozen achtergrond, afgeronde hoeken en kaders op de "
 "schermrand als een paneel niet zweeft"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Resize panel length when panel enters/exits floating state (instead of just "
+"moving)"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Customization"
@@ -499,28 +503,21 @@ msgstr ""
 "een doorzichtigheidsniveau van 0.</strong>"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"C++ plugin not found, this feature will not work. Install the plugin and "
+"reboot or restart plasmashell to be able to use it. See <a "
+"href=\"%1\">install instructions</a>."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Clipping (Experimental)"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
 "Clip the widget content to the custom background radius.<br>Clipping widgets "
-"against the panel is not supported yet but is planned for a later version, "
-"see <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
-"issues/275\">#275</a>."
+"against the panel is not supported yet, see <a href=\"%1\">#275</a>."
 msgstr ""
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid ""
-"C++ plugin not found, this feature will not work. Install the plugin and "
-"reboot or restart plasmashell to be able to use it."
-msgstr ""
-"Deze functie werkt niet, omdat de C++-plug-in niet is aangetroffen. "
-"Installeer de plug-in en herstart (plasmashell) om er gebruik van te maken."
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Plugin install instructions"
-msgstr "Installatie-instructies"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Shape"
@@ -1142,10 +1139,6 @@ msgid "At least one window is visible:"
 msgstr "Bij minimaal één zichtbaar venster:"
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "Floating panel:"
-msgstr "Zwevend paneel:"
-
-#: ../contents/ui/configPresetAutoload.qml
 msgid "activity:"
 msgstr "Activiteit:"
 
@@ -1588,6 +1581,31 @@ msgstr ""
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Widget verbergen (zichtbaar in paneelbewerkmodus)"
+
+#~ msgid "Text/Icon Fixes"
+#~ msgstr "Tekst- en pictogramoplossingen"
+
+#~ msgid "Anchor to edges:"
+#~ msgstr "Vastmaken aan randen:"
+
+#~ msgid "Resize content when panel enters/exits floating state"
+#~ msgstr ""
+#~ "Pas de inhoudsgrootte aan als een paneel zwevend of juist niet wordt "
+#~ "gemaakt"
+
+#~ msgid "Panel de-float:"
+#~ msgstr "Niet-zwevend paneel:"
+
+#~ msgid ""
+#~ "C++ plugin not found, this feature will not work. Install the plugin and "
+#~ "reboot or restart plasmashell to be able to use it."
+#~ msgstr ""
+#~ "Deze functie werkt niet, omdat de C++-plug-in niet is aangetroffen. "
+#~ "Installeer de plug-in en herstart (plasmashell) om er gebruik van te "
+#~ "maken."
+
+#~ msgid "Plugin install instructions"
+#~ msgstr "Installatie-instructies"
 
 #~ msgid ""
 #~ "WARNING: Use Show/Hide with caution, if you hide the panel and have not "

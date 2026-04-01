@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-03-22 16:58+0000\n"
+"POT-Creation-Date: 2026-04-01 09:07+0000\n"
 "PO-Revision-Date: 2026-01-24 16:46+0800\n"
 "Last-Translator: Mill Haruto <mill413@outlook.com>\n"
 "Language-Team: \n"
@@ -58,8 +58,8 @@ msgid "Global Overrides"
 msgstr "全局覆盖"
 
 #: ../contents/config/config.qml
-msgid "Text/Icon Fixes"
-msgstr "文本/图标修复"
+msgid "Text/Icon Color Fixes"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Blacklist Widgets"
@@ -369,6 +369,12 @@ msgid ""
 msgstr "禁用可使面板完全透明，移除此对比度和模糊效果。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"⚠️ Disabling this breaks the panel clickable area and applet dialogs "
+"positioning when the panel is in floating mode! See <a href=\"%1\">#80</a>."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "The shadow from the Plasma theme"
 msgstr "来自 Plasma 主题的阴影"
 
@@ -413,22 +419,21 @@ msgid "Force floating applets"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Anchor to edges:"
-msgstr ""
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Resize content when panel enters/exits floating state"
-msgstr "当面板进入/退出浮动状态时，调整内容大小"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Panel de-float:"
-msgstr "取消面板浮动"
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Floating panel:"
+msgstr "浮动面板时："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
 "Remove custom background rounded corners and borders on screen edge when "
 "panel is not floating"
 msgstr "当面板未浮动时，移除屏幕边缘的自定义背景圆角与边框。"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Resize panel length when panel enters/exits floating state (instead of just "
+"moving)"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Customization"
@@ -478,28 +483,21 @@ msgstr ""
 "才能生效。</strong>"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"C++ plugin not found, this feature will not work. Install the plugin and "
+"reboot or restart plasmashell to be able to use it. See <a "
+"href=\"%1\">install instructions</a>."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Clipping (Experimental)"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
 "Clip the widget content to the custom background radius.<br>Clipping widgets "
-"against the panel is not supported yet but is planned for a later version, "
-"see <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
-"issues/275\">#275</a>."
+"against the panel is not supported yet, see <a href=\"%1\">#275</a>."
 msgstr ""
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid ""
-"C++ plugin not found, this feature will not work. Install the plugin and "
-"reboot or restart plasmashell to be able to use it."
-msgstr ""
-"未找到 C++ 插件，该功能将无法使用。请安装插件并重启系统或 plasmashell 以启用"
-"此功能。"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Plugin install instructions"
-msgstr "插件安装说明"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Shape"
@@ -1095,10 +1093,6 @@ msgid "At least one window is visible:"
 msgstr "至少有一个窗口可见："
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "Floating panel:"
-msgstr "浮动面板时："
-
-#: ../contents/ui/configPresetAutoload.qml
 msgid "activity:"
 msgstr "活动："
 
@@ -1509,6 +1503,25 @@ msgstr ""
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "隐藏挂件（面板编辑模式下可见）"
+
+#~ msgid "Text/Icon Fixes"
+#~ msgstr "文本/图标修复"
+
+#~ msgid "Resize content when panel enters/exits floating state"
+#~ msgstr "当面板进入/退出浮动状态时，调整内容大小"
+
+#~ msgid "Panel de-float:"
+#~ msgstr "取消面板浮动"
+
+#~ msgid ""
+#~ "C++ plugin not found, this feature will not work. Install the plugin and "
+#~ "reboot or restart plasmashell to be able to use it."
+#~ msgstr ""
+#~ "未找到 C++ 插件，该功能将无法使用。请安装插件并重启系统或 plasmashell 以启"
+#~ "用此功能。"
+
+#~ msgid "Plugin install instructions"
+#~ msgstr "插件安装说明"
 
 #~ msgid ""
 #~ "<strong>Odd</strong> values are automatically converted to <strong>evens</"

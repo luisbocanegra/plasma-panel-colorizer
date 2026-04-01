@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-03-22 16:58+0000\n"
+"POT-Creation-Date: 2026-04-01 09:07+0000\n"
 "PO-Revision-Date: 2026-02-07 12:00+0100\n"
 "Last-Translator: RygorrMortis <rygorrmortis@github.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -61,8 +61,8 @@ msgid "Global Overrides"
 msgstr "Globalne nadpisywanie"
 
 #: ../contents/config/config.qml
-msgid "Text/Icon Fixes"
-msgstr "Poprawki tekstu/ikon"
+msgid "Text/Icon Color Fixes"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Blacklist Widgets"
@@ -385,6 +385,12 @@ msgstr ""
 "rozmycia."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"⚠️ Disabling this breaks the panel clickable area and applet dialogs "
+"positioning when the panel is in floating mode! See <a href=\"%1\">#80</a>."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "The shadow from the Plasma theme"
 msgstr "Cień z motywu Plasma"
 
@@ -433,17 +439,9 @@ msgid "Force floating applets"
 msgstr "Wymuś pływające aplety"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Anchor to edges:"
-msgstr "Przyczep do krawędzi:"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Resize content when panel enters/exits floating state"
-msgstr ""
-"Zmieniaj rozmiar zawartości, gdy panel wchodzi/wychodzi ze stanu pływającego"
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Panel de-float:"
-msgstr "Panel de-float:"
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Floating panel:"
+msgstr "Pływający panel:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
@@ -452,6 +450,12 @@ msgid ""
 msgstr ""
 "Usuń niestandardowe zaokrąglone rogi i ramki tła na krawędzi ekranu, gdy "
 "panel nie jest pływający"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Resize panel length when panel enters/exits floating state (instead of just "
+"moving)"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Customization"
@@ -504,33 +508,21 @@ msgstr ""
 "aby to działało zgodnie z zamierzeniem.</strong>"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"C++ plugin not found, this feature will not work. Install the plugin and "
+"reboot or restart plasmashell to be able to use it. See <a "
+"href=\"%1\">install instructions</a>."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Clipping (Experimental)"
 msgstr "Przycinanie (eksperymentalne)"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
 "Clip the widget content to the custom background radius.<br>Clipping widgets "
-"against the panel is not supported yet but is planned for a later version, "
-"see <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
-"issues/275\">#275</a>."
+"against the panel is not supported yet, see <a href=\"%1\">#275</a>."
 msgstr ""
-"Przycinaj zawartość widżetu do promienia niestandardowego tła."
-"<br>Przycinanie widżetów do panelu nie jest jeszcze obsługiwane, ale jest "
-"planowane w późniejszej wersji, zobacz <a href=\"https://github.com/"
-"luisbocanegra/plasma-panel-colorizer/issues/275\">#275</a>."
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid ""
-"C++ plugin not found, this feature will not work. Install the plugin and "
-"reboot or restart plasmashell to be able to use it."
-msgstr ""
-"Nie znaleziono wtyczki C++, ta funkcja nie będzie działać. Zainstaluj "
-"wtyczkę i uruchom ponownie komputer lub zrestartuj plasmashell, aby móc z "
-"niej korzystać."
-
-#: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Plugin install instructions"
-msgstr "Instrukcje instalacji wtyczki"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Shape"
@@ -1151,10 +1143,6 @@ msgid "At least one window is visible:"
 msgstr "Przynajmniej jedno okno jest widoczne:"
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid "Floating panel:"
-msgstr "Pływający panel:"
-
-#: ../contents/ui/configPresetAutoload.qml
 msgid "activity:"
 msgstr "aktywność:"
 
@@ -1594,6 +1582,42 @@ msgstr "Usuń wszystkie wyspy"
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Ukryj widżet (widoczny w trybie edycji panelu)"
+
+#~ msgid "Text/Icon Fixes"
+#~ msgstr "Poprawki tekstu/ikon"
+
+#~ msgid "Anchor to edges:"
+#~ msgstr "Przyczep do krawędzi:"
+
+#~ msgid "Resize content when panel enters/exits floating state"
+#~ msgstr ""
+#~ "Zmieniaj rozmiar zawartości, gdy panel wchodzi/wychodzi ze stanu "
+#~ "pływającego"
+
+#~ msgid "Panel de-float:"
+#~ msgstr "Panel de-float:"
+
+#~ msgid ""
+#~ "Clip the widget content to the custom background radius.<br>Clipping "
+#~ "widgets against the panel is not supported yet but is planned for a later "
+#~ "version, see <a href=\"https://github.com/luisbocanegra/plasma-panel-"
+#~ "colorizer/issues/275\">#275</a>."
+#~ msgstr ""
+#~ "Przycinaj zawartość widżetu do promienia niestandardowego tła."
+#~ "<br>Przycinanie widżetów do panelu nie jest jeszcze obsługiwane, ale jest "
+#~ "planowane w późniejszej wersji, zobacz <a href=\"https://github.com/"
+#~ "luisbocanegra/plasma-panel-colorizer/issues/275\">#275</a>."
+
+#~ msgid ""
+#~ "C++ plugin not found, this feature will not work. Install the plugin and "
+#~ "reboot or restart plasmashell to be able to use it."
+#~ msgstr ""
+#~ "Nie znaleziono wtyczki C++, ta funkcja nie będzie działać. Zainstaluj "
+#~ "wtyczkę i uruchom ponownie komputer lub zrestartuj plasmashell, aby móc z "
+#~ "niej korzystać."
+
+#~ msgid "Plugin install instructions"
+#~ msgstr "Instrukcje instalacji wtyczki"
 
 #~ msgid ""
 #~ "WARNING: Use Show/Hide with caution, if you hide the panel and have not "
