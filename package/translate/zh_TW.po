@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-04-01 09:07+0000\n"
+"POT-Creation-Date: 2026-04-03 04:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: scoutJ <jerry2714@gmail.com>\n"
 "Language-Team: \n"
@@ -370,8 +370,16 @@ msgid "Wide expand button:"
 msgstr "較寬的彈出按鈕："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Make the System Tray expand button be the same width as the other tray items"
-msgstr "使系統匣的彈出按鈕與系統匣中其他的物件有相同的寬度"
+msgid "Make the System Tray expand button use the same size as the other tray items"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Custom cell height:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Custom cell width:"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Force floating applets"
@@ -1320,6 +1328,9 @@ msgstr "移除所有元件島"
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "隱藏元件 (在面板設定模式下可見)"
+
+#~ msgid "Make the System Tray expand button be the same width as the other tray items"
+#~ msgstr "使系統匣的彈出按鈕與系統匣中其他的物件有相同的寬度"
 
 #~ msgid "Text/Icon Fixes"
 #~ msgstr "文字/圖示修正"

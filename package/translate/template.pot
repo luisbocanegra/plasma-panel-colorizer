@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-04-01 09:07+0000\n"
+"POT-Creation-Date: 2026-04-03 04:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -369,7 +369,15 @@ msgid "Wide expand button:"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Make the System Tray expand button be the same width as the other tray items"
+msgid "Make the System Tray expand button use the same size as the other tray items"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Custom cell height:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Custom cell width:"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
