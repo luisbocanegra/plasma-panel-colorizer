@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.11.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.10.0...v6.11.0) (2026-04-03)
+
+
+### Features
+
+* system tray icons custom cell width/height ([cd693a8](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/cd693a803fc7ef1962688a2df145aa98e77becd0))
+
 ## [6.10.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.9.1...v6.10.0) (2026-04-01)
 
 
