@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
+import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.plasmoid
 import "../code/enum.js" as Enum
 import "../code/utils.js" as Utils
@@ -27,6 +28,13 @@ ColumnLayout {
     property var config: handleString ? JSON.parse(configString) : undefined
 
     property bool showFontConfig: elementName === "" || elementName === "widgets"
+
+    readonly property bool vertical: {
+        if (Plasmoid.formFactor == PlasmaCore.Types.Vertical) {
+            return true;
+        }
+        return false;
+    }
 
     property var fontsModel: {
         let arr = [];
@@ -250,9 +258,34 @@ ColumnLayout {
                 }
             }
             Kirigami.ContextualHelpButton {
-                toolTipText: i18n("Make the System Tray expand button be the same width as the other tray items")
+                toolTipText: i18n("Make the System Tray expand button use the same size as the other tray items")
             }
-            visible: elementName === "trayWidgets" && root.elementState === Enum.WidgetStates.Normal
+            visible: elementName === "trayWidgets"
+        }
+
+        RowLayout {
+            visible: root.elementName === "trayWidgets"
+            Kirigami.FormData.label: root.vertical ? i18n("Custom cell height:") : i18n("Custom cell width:")
+            CheckBox {
+                checked: root.config.trayWidgets.customCellSizeEnabled
+                onCheckedChanged: {
+                    root.config.trayWidgets.customCellSizeEnabled = checked;
+                    root.updateConfig();
+                }
+            }
+
+            SpinBox {
+                id: trayCellSize
+                from: 20
+                to: 64
+                stepSize: 2
+                value: root.config.trayWidgets.customCellSize
+                onValueModified: {
+                    root.config.trayWidgets.customCellSize = value;
+                    root.updateConfig();
+                }
+                enabled: root.config.trayWidgets.customCellSizeEnabled
+            }
         }
 
         CheckBox {
