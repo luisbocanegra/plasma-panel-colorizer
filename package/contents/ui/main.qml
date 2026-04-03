@@ -609,6 +609,20 @@ PlasmoidItem {
         switchPreset();
     }
 
+    Binding {
+        target: main.trayGridView
+        property: "cellWidth"
+        value: main.trayWidgetSettings.customCellSize
+        when: (main.trayWidgetSettings.customCellSizeEnabled ?? false) && main.horizontal
+    }
+
+    Binding {
+        target: main.trayGridView
+        property: "cellHeight"
+        value: main.trayWidgetSettings.customCellSize
+        when: (main.trayWidgetSettings.customCellSizeEnabled ?? false) && !main.horizontal
+    }
+
     property Timer trayInitTimer: Timer {
         interval: 100
         onTriggered: {

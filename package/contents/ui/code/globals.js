@@ -323,6 +323,8 @@ const defaultConfig = {
         needsAttention: baseTrayConfig,
         expanded: baseTrayConfig,
         wideTrayArrow: false,
+        customCellSizeEnabled: false,
+        customCellSize: 22,
     },
     nativePanel: {
         background: {
