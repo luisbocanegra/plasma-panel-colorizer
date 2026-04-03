@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-04-01 09:07+0000\n"
+"POT-Creation-Date: 2026-04-03 04:22+0000\n"
 "PO-Revision-Date: 2025-12-25 13:03+0200\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
@@ -423,10 +423,16 @@ msgstr "Leveä laajennuspainike:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
-"Make the System Tray expand button be the same width as the other tray items"
+"Make the System Tray expand button use the same size as the other tray items"
 msgstr ""
-"Aseta ilmoitusalueen laajennuspainike samanlevuiseksi muiden kuvakkeiden "
-"kanssa"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Custom cell height:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Custom cell width:"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Force floating applets"
@@ -1545,6 +1551,13 @@ msgstr ""
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Piilota pienoisohjelma (näkyvissä paneelin muokkaustilassa)"
+
+#~ msgid ""
+#~ "Make the System Tray expand button be the same width as the other tray "
+#~ "items"
+#~ msgstr ""
+#~ "Aseta ilmoitusalueen laajennuspainike samanlevuiseksi muiden kuvakkeiden "
+#~ "kanssa"
 
 #~ msgid "Text/Icon Fixes"
 #~ msgstr "Teksti- ja ikonikorjaukset"

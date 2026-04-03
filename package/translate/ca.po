@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-04-01 09:07+0000\n"
+"POT-Creation-Date: 2026-04-03 04:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -370,8 +370,16 @@ msgid "Wide expand button:"
 msgstr "Botó d'expandeix a l'ample:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Make the System Tray expand button be the same width as the other tray items"
-msgstr "Fes que el botó d'expansió a l'ample tingui la mateixa amplada que els altres elements."
+msgid "Make the System Tray expand button use the same size as the other tray items"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Custom cell height:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Custom cell width:"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Force floating applets"
@@ -1320,6 +1328,9 @@ msgstr "Trau totes les illes"
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Amaga el giny (visible en Mode d'Edició del Panell)"
+
+#~ msgid "Make the System Tray expand button be the same width as the other tray items"
+#~ msgstr "Fes que el botó d'expansió a l'ample tingui la mateixa amplada que els altres elements."
 
 #~ msgid "Text/Icon Fixes"
 #~ msgstr "Reparació de text i icones"
