@@ -5,7 +5,7 @@ import org.kde.kirigami as Kirigami
 import org.kde.plasma.components as PC3
 
 Item {
-    property bool unified: false
+    property bool island: false
     height: 32
     width: 300
     property color borderColor: Kirigami.ColorUtils.linearInterpolation(Kirigami.Theme.textColor, Kirigami.Theme.backgroundColor, 0.6)
@@ -15,7 +15,7 @@ Item {
 
     Timer {
         interval: 500
-        onTriggered: unified = !unified
+        onTriggered: island = !island
         repeat: true
         running: true
     }
@@ -61,7 +61,7 @@ Item {
                 color: "transparent"
                 border.width: 2
                 border.color: highlightColor
-                Layout.preferredWidth: unified ? 117 : 82
+                Layout.preferredWidth: island ? 117 : 82
                 Layout.fillHeight: true
                 radius: 3
 
@@ -108,7 +108,7 @@ Item {
                     }
                     //clock
                     Rectangle {
-                        visible: unified
+                        visible: island
                         color: "transparent"
                         Layout.preferredWidth: 30
                         Layout.fillHeight: true
@@ -124,7 +124,7 @@ Item {
 
             //clock
             Rectangle {
-                visible: !unified
+                visible: !island
                 color: "transparent"
                 border.width: 2
                 border.color: highlightColor

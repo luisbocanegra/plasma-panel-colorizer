@@ -2,6 +2,7 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Effects
 import org.kde.kirigami as Kirigami
+import "../code/enum.js" as Enum
 
 Rectangle {
     id: root
@@ -23,7 +24,7 @@ Rectangle {
         "bottomRightRadius": 0
     }
     property bool horizontal: false
-    property int unifyBgType: 0
+    property int unifyBgType: Enum.IslandSectionType.Default
 
     Rectangle {
         id: customBorderTop
@@ -86,11 +87,11 @@ Rectangle {
         source: normalBorder
         anchors.fill: normalBorder
         maskEnabled: true
-        maskSource: unifiedBorderMask
+        maskSource: islandBorderMask
         maskInverted: true
     }
     Item {
-        id: unifiedBorderMask
+        id: islandBorderMask
         layer.enabled: true
         visible: false
         width: root.width
@@ -100,7 +101,7 @@ Rectangle {
             id: rect1
             width: root.horizontal ? root.cfgBorder.width : root.width - (root.cfgBorder.width * 2)
             height: root.horizontal ? root.height - (root.cfgBorder.width * 2) : root.cfgBorder.width
-            color: (root.unifyBgType === 1 || root.unifyBgType === 2) ? "black" : "transparent"
+            color: (root.unifyBgType === Enum.IslandSectionType.Start || root.unifyBgType === Enum.IslandSectionType.Middle) ? "black" : "transparent"
             anchors.right: root.horizontal ? parent.right : undefined
             anchors.bottom: !root.horizontal ? parent.bottom : undefined
             anchors.verticalCenter: root.horizontal ? parent.verticalCenter : undefined
@@ -113,7 +114,7 @@ Rectangle {
             id: rect2
             width: root.horizontal ? root.cfgBorder.width : root.width - (root.cfgBorder.width * 2)
             height: root.horizontal ? root.height - (root.cfgBorder.width * 2) : root.cfgBorder.width
-            color: (root.unifyBgType === 2 || root.unifyBgType === 3) ? "black" : "transparent"
+            color: (root.unifyBgType === Enum.IslandSectionType.Middle || root.unifyBgType === Enum.IslandSectionType.End) ? "black" : "transparent"
             anchors.left: root.horizontal ? parent.left : undefined
             anchors.top: !root.horizontal ? parent.top : undefined
             anchors.verticalCenter: root.horizontal ? parent.verticalCenter : undefined

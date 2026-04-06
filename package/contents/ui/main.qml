@@ -67,6 +67,10 @@ PlasmoidItem {
     property bool animatePropertyChanges: Plasmoid.configuration.animatePropertyChanges
     property int animationDuration: Plasmoid.configuration.animationDuration
     property int animationEasingType: Easing.OutCubic
+    property bool islandSeparatorPairing: Plasmoid.configuration.islandSeparatorPairing
+    property string islandSeparatorWidget: Plasmoid.configuration.islandSeparatorWidget
+    property bool blacklistIslandSeparator: Plasmoid.configuration.blacklistIslandSeparator
+    property bool islandsEnabled: Plasmoid.configuration.islandsEnabled
     property var panelState: {
         "fullscreenWindow": tasksModel.fullscreenExists,
         "maximized": tasksModel.maximizedExists,
@@ -85,8 +89,11 @@ PlasmoidItem {
         return Object.values(trayItemsDoingBlur).some(state => state);
     }
 
-    property var unifiedBackgroundTracker: []
-    property var unifiedBackgroundFinal: []
+    // custom background disabled or blacklisted widgets
+    property var noBgTracker: new Set()
+    // hidden widgets Plasmoid.status === PlasmaCore.Types.HiddenStatus
+    property var hiddenTracker: new Set()
+
     property bool doPanelClickFix: false
     property bool doPanelLengthFix: false
 
@@ -148,20 +155,14 @@ PlasmoidItem {
     property var trayWidgetSettings: cfg.trayWidgets
     property var stockPanelSettings: cfg.stockPanelSettings
     property var widgetsSpacing: {
-        if (unifiedBackgroundSettings.length) {
+        if (islandWidgetTypes.length) {
             return Utils.makeEven(widgetSettings?.normal?.spacing ?? 4);
         } else {
             return widgetSettings?.normal?.spacing ?? 4;
         }
     }
-    property var unifiedBackgroundSettings: Utils.fixV2UnifiedWidgetConfig(Utils.clearOldWidgetConfig(cfg.unifiedBackground))
-    onUnifiedBackgroundSettingsChanged: {
-        // fix config from v2
-        if (Plasmoid.configuration.globalSettings !== JSON.stringify(cfg)) {
-            Plasmoid.configuration.globalSettings = JSON.stringify(cfg);
-            Plasmoid.configuration.writeConfig();
-        }
-    }
+
+    property var islandWidgetTypes: []
     property var forceRecolorList: Utils.clearOldWidgetConfig(forceForegroundColor?.widgets ?? [])
     property int forceRecolorInterval: forceForegroundColor?.reloadInterval ?? 0
     property int forceRecolorCount: forceRecolorList.length
@@ -192,8 +193,27 @@ PlasmoidItem {
     property real pixelsPerInch: Screen.pixelDensity * 25.4
     signal recolorCountChanged
     signal refreshNeeded
-    signal updateUnified
+    signal updateIslands
     signal updateMasks
+
+    property Timer updateIslandsTimer: Timer {
+        interval: 50
+        repeat: false
+        onTriggered: {
+            main.islandWidgetTypes = Utils.updateIslandWidgetTypes(main.panelLayout, main.noBgTracker, main.hiddenTracker, main.islandSeparatorWidget, main.islandsEnabled, main.islandSeparatorPairing);
+        }
+    }
+
+    Connections {
+        target: main
+        function onUpdateIslands() {
+            main.updateIslandsTimer.restart();
+        }
+    }
+
+    onIslandSeparatorPairingChanged: updateIslands()
+    onIslandSeparatorWidgetChanged: updateIslands()
+    onIslandsEnabledChanged: updateIslands()
 
     property var switchPresets: JSON.parse(Plasmoid.configuration.switchPresets)
     property var panelView: null
@@ -567,6 +587,7 @@ PlasmoidItem {
             updateCurrentWidgets();
             showPanelBg(panelBg);
             updateContextualActions(configureFromAllWidgets);
+            updateIslands();
         });
     }
 

@@ -341,7 +341,6 @@ const defaultConfig = {
         overrides: {},
         associations: [],
     },
-    unifiedBackground: [],
 };
 
 const ignoredConfigs = [
@@ -369,6 +368,11 @@ const ignoredConfigs = [
     "systemTrayIconUserReplacements",
     "systemTrayIconBuiltinReplacementsEnabled",
     "logSystemTrayIconChanges",
+    "islandSeparatorPairing",
+    "islandSeparatorWidget",
+    "islandSeparatorWidget",
+    "islandsEnabled",
+    "blacklistIslandSeparator"
 ];
 
 const editModeGridSettings = {
