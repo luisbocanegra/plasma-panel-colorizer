@@ -911,7 +911,6 @@
             "overrides": {},
             "associations": []
         },
-        "unifiedBackground": [],
         "nativePanel": {
             "background": {
                 "enabled": false,

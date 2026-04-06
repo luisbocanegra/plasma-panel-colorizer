@@ -8,6 +8,7 @@ import org.kde.kirigami as Kirigami
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.plasmoid
 import "../code/utils.js" as Utils
+import "../code/enum.js" as Enum
 import "../code/statusNotifierItemIconRules.js" as SNIIconRules
 import "../"
 
@@ -34,6 +35,8 @@ Rectangle {
     property bool isPanel: itemType === Enums.ItemType.PanelBgItem
     property bool isWidget: itemType === Enums.ItemType.WidgetItem
     property bool isTray: widgetName === "org.kde.plasma.systemtray"
+    property bool isIslandSeparator: widgetName === main.islandSeparatorWidget
+    property bool blacklistIslandSeparator: main.blacklistIslandSeparator
     property bool isTrayArrow: itemType === Enums.ItemType.TrayArrow
     property bool inTray: itemType === Enums.ItemType.TrayItem || isTrayArrow
     property bool luisbocanegraPanelColorizerBgManaged: true
@@ -88,22 +91,9 @@ Rectangle {
     }
     property var wRecolorCfg: Utils.getForceFgWidgetConfig(widgetId, widgetName, main.forceRecolorList)
     property bool requiresRefresh: wRecolorCfg?.reload ?? false
-    // 0: default | 1: start | 2: end
-    property var wUnifyCfg: Utils.getForceFgWidgetConfig(widgetId, widgetName, main.unifiedBackgroundSettings)
-    property int unifySection: wUnifyCfg?.unifyBgType ?? 0
 
     // 0: default | 1: start | 2: middle | 3: end
-    property int unifyBgType: main.unifiedBackgroundFinal.find(item => item.index === maskIndex)?.type ?? 0
-    onUnifySectionChanged: {
-        Qt.callLater(main.updateUnified);
-    }
-
-    function updateUnifyType() {
-        if (inTray || isPanel) {
-            return;
-        }
-        main.unifiedBackgroundFinal = Utils.updateUnifiedBackgroundTracker(maskIndex, unifySection, isVisible, main.unifiedBackgroundTracker);
-    }
+    property int unifyBgType: main.islandWidgetTypes.find(item => item.id === widgetId)?.type ?? Enum.IslandSectionType.Default
 
     property var itemConfig: Utils.getItemCfg(itemType, widgetName, widgetId, main.cfg, main.configurationOverrides, widgetProperties.busy, widgetProperties.needsAttention, widgetProperties.hovered, widgetProperties.expanded)
     property var cfg: itemConfig.settings
@@ -113,8 +103,9 @@ Rectangle {
     property int itemCount: 0
     property int maxDepth: 0
     opacity: cfgEnabled ? 1 : 0
-    property bool isVisible: target.visibleChildren.length > 0 && opacity !== 0
-    property bool cfgEnabled: cfg.enabled && main.isEnabled && !blacklisted
+    property bool isVisible: opacity !== 0 && !isHidden
+    property bool isHidden: (rect.target.applet?.plasmoid?.status ?? null) === PlasmaCore.Types.HiddenStatus
+    property bool cfgEnabled: cfg.enabled && main.isEnabled && !blacklisted && !(isIslandSeparator && blacklistIslandSeparator)
     property bool bgEnabled: bgColorCfg.enabled
     property bool fgEnabled: fgColorCfg.enabled
     property var fontCfg: cfg.fontConfig
@@ -153,6 +144,7 @@ Rectangle {
         return Math.min(cfgVal, limit);
     }
 
+    // qmlformat off
     function cornerDisabled(cornerName) {
         if (!radiusEnabled)
             return true;
@@ -161,17 +153,22 @@ Rectangle {
 
         switch (cornerName) {
         case "topLeft":
-            return (unifyBgType === 2 || unifyBgType === 3);
+            return (unifyBgType === Enum.IslandSectionType.Middle || unifyBgType === Enum.IslandSectionType.End);
         case "topRight":
-            return rect.horizontal ? (unifyBgType === 1 || unifyBgType === 2) : (unifyBgType === 2 || unifyBgType === 3);
+            return rect.horizontal
+                ? (unifyBgType === Enum.IslandSectionType.Start || unifyBgType === Enum.IslandSectionType.Middle)
+                : (unifyBgType === Enum.IslandSectionType.Middle || unifyBgType === Enum.IslandSectionType.End);
         case "bottomLeft":
-            return rect.horizontal ? (unifyBgType === 2 || unifyBgType === 3) : (unifyBgType === 1 || unifyBgType === 2);
+            return rect.horizontal
+            ? (unifyBgType === Enum.IslandSectionType.Middle || unifyBgType === Enum.IslandSectionType.End)
+            : (unifyBgType === Enum.IslandSectionType.Start || unifyBgType === Enum.IslandSectionType.Middle);
         case "bottomRight":
-            return (unifyBgType === 1 || unifyBgType === 2);
+            return (unifyBgType === Enum.IslandSectionType.Start || unifyBgType === Enum.IslandSectionType.Middle);
         default:
             return false;
         }
     }
+    // qmlformat on
 
     topLeftRadius: cornerDisabled("topLeft") ? 0 : limitRadius("topLeft")
     topRightRadius: cornerDisabled("topRight") ? 0 : limitRadius("topRight")
@@ -354,8 +351,16 @@ Rectangle {
     }
 
     Component.onCompleted: {
+        if (!inTray) {
+            if (isHidden) {
+                main.hiddenTracker.add(widgetId);
+            }
+            if (!isVisible) {
+                main.noBgTracker.add(widgetId);
+            }
+        }
+
         main.recolorCountChanged.connect(recolorTimer.restart);
-        main.updateUnified.connect(updateUnifyType);
         main.updateMasks.connect(updateMaskDebounced);
         recolorTimer.start();
     }
@@ -365,7 +370,6 @@ Rectangle {
             main.panelColorizer.popLastVisibleMaskRegion();
         }
         main.recolorCountChanged.disconnect(recolorTimer.restart);
-        main.updateUnified.disconnect(updateUnifyType);
         main.updateMasks.disconnect(updateMaskDebounced);
         main.refreshNeeded.disconnect(recolorTimer.restart);
         main.trayInitTimer.restart();
@@ -390,10 +394,28 @@ Rectangle {
     anchors.centerIn: (inTray || isTrayArrow) ? parent : undefined
     anchors.fill: (isPanel || inTray || isTrayArrow) ? parent : undefined
 
-    property int extraLSpacing: ((unifyBgType === 2 || unifyBgType === 3) && rect.horizontal ? main.widgetsSpacing : 0) / 2
-    property int extraRSpacing: ((unifyBgType === 1 || unifyBgType === 2) && rect.horizontal ? main.widgetsSpacing : 0) / 2
-    property int extraTSpacing: ((unifyBgType === 2 || unifyBgType === 3) && !rect.horizontal ? main.widgetsSpacing : 0) / 2
-    property int extraBSpacing: ((unifyBgType === 1 || unifyBgType === 2) && !rect.horizontal ? main.widgetsSpacing : 0) / 2
+    // qmlformat off
+    property int extraLSpacing: (
+        (unifyBgType === Enum.IslandSectionType.Middle || unifyBgType === Enum.IslandSectionType.End) && rect.horizontal
+        ? main.widgetsSpacing
+        : 0
+    ) / 2
+    property int extraRSpacing: (
+        (unifyBgType === Enum.IslandSectionType.Start || unifyBgType === Enum.IslandSectionType.Middle) && rect.horizontal
+        ? main.widgetsSpacing
+        : 0
+    ) / 2
+    property int extraTSpacing: (
+        (unifyBgType === Enum.IslandSectionType.Middle || unifyBgType === Enum.IslandSectionType.End) && !rect.horizontal
+        ? main.widgetsSpacing
+        : 0
+    ) / 2
+    property int extraBSpacing: (
+        (unifyBgType === Enum.IslandSectionType.Start || unifyBgType === Enum.IslandSectionType.Middle) && !rect.horizontal
+        ? main.widgetsSpacing
+        : 0
+    ) / 2
+    // qmlformat on
 
     property int marginLeft: (marginEnabled ? cfg.margin.side.left : 0) + extraLSpacing
     property int marginRight: (marginEnabled ? cfg.margin.side.right : 0) + extraRSpacing
@@ -671,10 +693,32 @@ Rectangle {
             property real parentBorderRight: rect.cfg.border.customSides ? rect.cfg.border.custom.widths.right : rect.cfg.border.width
             property real parentBorderTop: rect.cfg.border.customSides ? rect.cfg.border.custom.widths.top : rect.cfg.border.width
             property real parentBorderBottom: rect.cfg.border.customSides ? rect.cfg.border.custom.widths.bottom : rect.cfg.border.width
-            property real extraLMargin: ((rect.unifyBgType === 2 || rect.unifyBgType === 3) && rect.horizontal) ? 0 : parentBorderLeft
-            property real extraRMargin: ((rect.unifyBgType === 1 || rect.unifyBgType === 2) && rect.horizontal) ? 0 : parentBorderRight
-            property real extraTMargin: ((rect.unifyBgType === 2 || rect.unifyBgType === 3) && !rect.horizontal) ? 0 : parentBorderTop
-            property real extraBMargin: ((rect.unifyBgType === 1 || rect.unifyBgType === 2) && !rect.horizontal) ? 0 : parentBorderBottom
+            // qmlformat off
+            property real extraLMargin: (
+                    (rect.unifyBgType === Enum.IslandSectionType.Middle
+                    || rect.unifyBgType === Enum.IslandSectionType.End) && rect.horizontal
+                )
+                ? 0
+                : parentBorderLeft
+            property real extraRMargin: (
+                    (rect.unifyBgType === Enum.IslandSectionType.Start
+                    || rect.unifyBgType === Enum.IslandSectionType.Middle) && rect.horizontal
+                )
+                ? 0
+                : parentBorderRight
+            property real extraTMargin: (
+                    (rect.unifyBgType === Enum.IslandSectionType.Middle
+                    || rect.unifyBgType === Enum.IslandSectionType.End) && !rect.horizontal
+                )
+                ? 0
+                : parentBorderTop
+            property real extraBMargin: (
+                    (rect.unifyBgType === Enum.IslandSectionType.Start
+                    || rect.unifyBgType === Enum.IslandSectionType.Middle) && !rect.horizontal
+                )
+                ? 0
+                : parentBorderBottom
+            // qmlformat on
             anchors.topMargin: rect.cfg.border.enabled ? extraTMargin : 0
             anchors.bottomMargin: rect.cfg.border.enabled ? extraBMargin : 0
             anchors.leftMargin: rect.cfg.border.enabled ? extraLMargin : 0
@@ -775,19 +819,19 @@ Rectangle {
     }
 
     // paddingRect to hide the shadow in one or two sides Qt.rect(left,top,right,bottom)
-    layer.enabled: bgShadowEnabled && unifyBgType !== 0
+    layer.enabled: bgShadowEnabled && unifyBgType !== Enum.IslandSectionType.Default
     // how much padding are we hiding
     property int ps: Math.max(bgShadow.size, bgShadow.xOffset, bgShadow.yOffset)
     layer.effect: MultiEffect {
         autoPaddingEnabled: true
         paddingRect: {
-            if (rect.unifyBgType === 1) {
+            if (rect.unifyBgType === Enum.IslandSectionType.Start) {
                 return rect.horizontal ? Qt.rect(rect.ps, rect.ps, 0, rect.ps) : Qt.rect(rect.ps, rect.ps, rect.ps, 0);
             }
-            if (rect.unifyBgType === 2) {
+            if (rect.unifyBgType === Enum.IslandSectionType.Middle) {
                 return rect.horizontal ? Qt.rect(0, rect.ps, 0, rect.ps) : Qt.rect(rect.ps, 0, rect.ps, 0);
             }
-            if (rect.unifyBgType === 3) {
+            if (rect.unifyBgType === Enum.IslandSectionType.End) {
                 return rect.horizontal ? Qt.rect(0, rect.ps, rect.ps, rect.ps) : Qt.rect(rect.ps, 0, rect.ps, rect.ps);
             }
         }
@@ -891,7 +935,7 @@ Rectangle {
             }
         }
         Label {
-            text: rect.unifySection + "," + rect.unifyBgType//blurBehind+","+anyWidgetDoingBlur //parseInt(position.x)+","+parseInt(position.y)
+            text: rect.unifyBgType//blurBehind+","+anyWidgetDoingBlur //parseInt(position.x)+","+parseInt(position.y)
             font.pixelSize: 8
             Rectangle {
                 anchors.fill: parent
@@ -965,19 +1009,31 @@ Rectangle {
 
     onIsVisibleChanged: {
         Qt.callLater(function () {
-            main.updateUnified();
+            if (!inTray) {
+                if (!isVisible) {
+                    main.noBgTracker.add(widgetId);
+                } else {
+                    main.noBgTracker.delete(widgetId);
+                }
+            }
+            main.updateIslands();
             updateMaskDebounced();
         });
     }
 
     // PlasmaCore.Types.HiddenStatus != !visible
     onTargetIsHiddenChanged: {
-        if (!targetIsHidden) {
-            Qt.callLater(function () {
-                main.updateUnified();
-                updateMaskDebounced();
-            });
-        }
+        Qt.callLater(function () {
+            if (!inTray) {
+                if (isHidden) {
+                    main.hiddenTracker.add(widgetId);
+                } else {
+                    main.hiddenTracker.delete(widgetId);
+                }
+            }
+            main.updateIslands();
+            updateMaskDebounced();
+        });
     }
 
     onBlurBehindChanged: {

@@ -11,3 +11,10 @@ const WidgetStates = {
     Hovered: 3,
     Expanded: 4,
 };
+
+const IslandSectionType = {
+    Default: 0,
+    Start: 1,
+    Middle: 2,
+    End: 3
+};

@@ -132,5 +132,25 @@
         type="Bool">
         <default>true</default>
     </entry>
+    <entry
+        name="islandSeparatorPairing"
+        type="Bool">
+        <default>false</default>
+    </entry>
+    <entry
+        name="islandSeparatorWidget"
+        type="String">
+        <default>org.kde.plasma.panelspacer</default>
+    </entry>
+    <entry
+        name="islandsEnabled"
+        type="Bool">
+        <default>true</default>
+    </entry>
+    <entry
+        name="blacklistIslandSeparator"
+        type="Bool">
+        <default>true</default>
+    </entry>
   </group>
 </kcfg>
