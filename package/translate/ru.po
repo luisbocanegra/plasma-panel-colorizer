@@ -703,10 +703,6 @@ msgstr "Конец"
 
 #: ../contents/ui/components/WidgetCardOverride.qml
 msgid "Edit"
-msgstr ""
-
-#: ../contents/ui/components/WidgetCardOverride.qml
-msgid "Edit"
 msgstr "Редактировать"
 
 #: ../contents/ui/components/WidgetCardOverride.qml ../contents/ui/configPresets.qml
