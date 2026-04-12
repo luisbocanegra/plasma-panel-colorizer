@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-04-03 04:22+0000\n"
+"POT-Creation-Date: 2026-04-12 03:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: scoutJ <jerry2714@gmail.com>\n"
 "Language-Team: \n"
@@ -97,7 +97,7 @@ msgstr "找不到面板，此元件須要被放置在面板中才能運作"
 msgid "Border"
 msgstr "邊框"
 
-#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml ../contents/ui/configPresetAutoload.qml ../contents/ui/configStockPanelSettings.qml
+#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml ../contents/ui/configPresetAutoload.qml ../contents/ui/configStockPanelSettings.qml ../contents/ui/configWidgetIslands.qml
 msgid "Enabled:"
 msgstr "已啟用："
 
@@ -669,7 +669,7 @@ msgstr "在 KDE Store 上評分"
 msgid "Translate %1 to your language"
 msgstr "將 %1 翻譯成您的語言"
 
-#: ../contents/ui/components/WidgetCardBlacklist.qml ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardHide.qml ../contents/ui/components/WidgetCardIslands.qml ../contents/ui/components/WidgetCardTextIconFixes.qml
+#: ../contents/ui/components/WidgetCardBlacklist.qml ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardHide.qml ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "System Tray"
 msgstr "系統匣"
 
@@ -684,18 +684,6 @@ msgstr "新增"
 #: ../contents/ui/components/WidgetCardHide.qml
 msgid "Hide"
 msgstr "隱藏"
-
-#: ../contents/ui/components/WidgetCardIslands.qml
-msgid "Disable"
-msgstr "停用"
-
-#: ../contents/ui/components/WidgetCardIslands.qml
-msgid "Start"
-msgstr "開頭"
-
-#: ../contents/ui/components/WidgetCardIslands.qml
-msgid "End"
-msgstr "結尾"
 
 #: ../contents/ui/components/WidgetCardOverride.qml
 msgid "Edit"
@@ -1318,16 +1306,65 @@ msgid "Copy rule"
 msgstr "複製規則"
 
 #: ../contents/ui/configWidgetIslands.qml
-msgid "Select start and end of widget islands, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Widget custom background or border is required for this option to have an effect."
-msgstr "選擇元件島的開頭和結尾，<b>開頭</b>和<b>結尾</b>之間的元件需要保持<b>停用</b>。需要設定元件自訂背景或邊框後，此功能才能生效。"
+msgid "Create widget islands by placing separator widgets around them."
+msgstr ""
 
 #: ../contents/ui/configWidgetIslands.qml
-msgid "Remove all islands"
-msgstr "移除所有元件島"
+msgid "<strong>How to use</strong><br>1. Add the widget that will act as islands separator to the panel(by default the Plasma's Panel Spacer widget will be used)<br>2. Select the separator widget below<br>3. Add as many separators as you need and move them to create islands."
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "<strong>Notes</strong><br>- Widget custom background or border is required for this option to have a visible effect.<br>- If the widgets in your panel have different thickness, add margins to the widgets custom background in the Appearance tab."
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "<strong>Need a separator widget?</strong><br>- <a href=\"%1\">Panel Colorizer Islands Separator</a> visible only in Edit Mode.<br>- <a href=\"%2\">Advanced Separator</a> always visible and configurable."
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Separator widget:"
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Select the widget that will act as separator for the islands.<br><br>Note that the separator widget itself does not need to be visible for it to work, so you can use an invisible spacer/separator for example."
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Require two separators per island:"
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid ""
+"Always require two separators for a group of widgets to become an island. By default, an arrangement of<br>%1 creates two islands.<br><br>Enabling this option makes it so that islands do not share separators, so for example an arrangement of<br>%2 is required to create two islands.<br><br>Enable this if your islands separator is not a panel spacer and you want to explicitly define the start and "
+"end of each island."
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Blacklist separator widgets:"
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Disable customization from separator widgets"
+msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "隱藏元件 (在面板設定模式下可見)"
+
+#~ msgid "Disable"
+#~ msgstr "停用"
+
+#~ msgid "Start"
+#~ msgstr "開頭"
+
+#~ msgid "End"
+#~ msgstr "結尾"
+
+#~ msgid "Select start and end of widget islands, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Widget custom background or border is required for this option to have an effect."
+#~ msgstr "選擇元件島的開頭和結尾，<b>開頭</b>和<b>結尾</b>之間的元件需要保持<b>停用</b>。需要設定元件自訂背景或邊框後，此功能才能生效。"
+
+#~ msgid "Remove all islands"
+#~ msgstr "移除所有元件島"
 
 #~ msgid "Make the System Tray expand button be the same width as the other tray items"
 #~ msgstr "使系統匣的彈出按鈕與系統匣中其他的物件有相同的寬度"

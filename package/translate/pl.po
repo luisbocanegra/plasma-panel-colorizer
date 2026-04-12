@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-04-03 04:22+0000\n"
+"POT-Creation-Date: 2026-04-12 03:26+0000\n"
 "PO-Revision-Date: 2026-02-07 12:00+0100\n"
 "Last-Translator: RygorrMortis <rygorrmortis@github.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -116,6 +116,7 @@ msgstr "Ramka"
 #: ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml
 #: ../contents/ui/configPresetAutoload.qml
 #: ../contents/ui/configStockPanelSettings.qml
+#: ../contents/ui/configWidgetIslands.qml
 msgid "Enabled:"
 msgstr "Włączone:"
 
@@ -783,7 +784,6 @@ msgstr "Przetłumacz %1 na swój język"
 #: ../contents/ui/components/WidgetCardBlacklist.qml
 #: ../contents/ui/components/WidgetCardConfig.qml
 #: ../contents/ui/components/WidgetCardHide.qml
-#: ../contents/ui/components/WidgetCardIslands.qml
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "System Tray"
 msgstr "Tacka systemowa"
@@ -799,18 +799,6 @@ msgstr "Dodaj"
 #: ../contents/ui/components/WidgetCardHide.qml
 msgid "Hide"
 msgstr "Ukryj"
-
-#: ../contents/ui/components/WidgetCardIslands.qml
-msgid "Disable"
-msgstr "Wyłącz"
-
-#: ../contents/ui/components/WidgetCardIslands.qml
-msgid "Start"
-msgstr "Start"
-
-#: ../contents/ui/components/WidgetCardIslands.qml
-msgid "End"
-msgstr "Koniec"
 
 #: ../contents/ui/components/WidgetCardOverride.qml
 msgid "Edit"
@@ -1572,22 +1560,89 @@ msgid "Copy rule"
 msgstr "Kopiuj regułę"
 
 #: ../contents/ui/configWidgetIslands.qml
-msgid ""
-"Select start and end of widget islands, widgets between <b>Start</b> and "
-"<b>End</b> must be left <b>disabled</b>. Widget custom background or border "
-"is required for this option to have an effect."
+msgid "Create widget islands by placing separator widgets around them."
 msgstr ""
-"Wybierz początek i koniec wysp widżetów, widżety między <b>Start</b> a "
-"<b>End</b> muszą być pozostawione <b>wyłączone</b>. Niestandardowe tło lub "
-"ramka widżetu jest wymagana, aby ta opcja miała efekt."
 
 #: ../contents/ui/configWidgetIslands.qml
-msgid "Remove all islands"
-msgstr "Usuń wszystkie wyspy"
+msgid ""
+"<strong>How to use</strong><br>1. Add the widget that will act as islands "
+"separator to the panel(by default the Plasma's Panel Spacer widget will be "
+"used)<br>2. Select the separator widget below<br>3. Add as many separators "
+"as you need and move them to create islands."
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid ""
+"<strong>Notes</strong><br>- Widget custom background or border is required "
+"for this option to have a visible effect.<br>- If the widgets in your panel "
+"have different thickness, add margins to the widgets custom background in "
+"the Appearance tab."
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid ""
+"<strong>Need a separator widget?</strong><br>- <a href=\"%1\">Panel "
+"Colorizer Islands Separator</a> visible only in Edit Mode.<br>- <a "
+"href=\"%2\">Advanced Separator</a> always visible and configurable."
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Separator widget:"
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid ""
+"Select the widget that will act as separator for the islands.<br><br>Note "
+"that the separator widget itself does not need to be visible for it to work, "
+"so you can use an invisible spacer/separator for example."
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Require two separators per island:"
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid ""
+"Always require two separators for a group of widgets to become an island. By "
+"default, an arrangement of<br>%1 creates two islands.<br><br>Enabling this "
+"option makes it so that islands do not share separators, so for example an "
+"arrangement of<br>%2 is required to create two islands.<br><br>Enable this "
+"if your islands separator is not a panel spacer and you want to explicitly "
+"define the start and end of each island."
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Blacklist separator widgets:"
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Disable customization from separator widgets"
+msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Ukryj widżet (widoczny w trybie edycji panelu)"
+
+#~ msgid "Disable"
+#~ msgstr "Wyłącz"
+
+#~ msgid "Start"
+#~ msgstr "Start"
+
+#~ msgid "End"
+#~ msgstr "Koniec"
+
+#~ msgid ""
+#~ "Select start and end of widget islands, widgets between <b>Start</b> and "
+#~ "<b>End</b> must be left <b>disabled</b>. Widget custom background or "
+#~ "border is required for this option to have an effect."
+#~ msgstr ""
+#~ "Wybierz początek i koniec wysp widżetów, widżety między <b>Start</b> a "
+#~ "<b>End</b> muszą być pozostawione <b>wyłączone</b>. Niestandardowe tło "
+#~ "lub ramka widżetu jest wymagana, aby ta opcja miała efekt."
+
+#~ msgid "Remove all islands"
+#~ msgstr "Usuń wszystkie wyspy"
 
 #~ msgid ""
 #~ "Make the System Tray expand button be the same width as the other tray "

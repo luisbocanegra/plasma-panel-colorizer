@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-04-03 04:22+0000\n"
+"POT-Creation-Date: 2026-04-12 03:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,7 +97,7 @@ msgstr "Kontrollleiste nicht gefunden, dieses Widget muss in der Kontrollleiste 
 msgid "Border"
 msgstr "Ränder"
 
-#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml ../contents/ui/configPresetAutoload.qml ../contents/ui/configStockPanelSettings.qml
+#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml ../contents/ui/configPresetAutoload.qml ../contents/ui/configStockPanelSettings.qml ../contents/ui/configWidgetIslands.qml
 msgid "Enabled:"
 msgstr "Angeschaltet"
 
@@ -667,7 +667,7 @@ msgstr ""
 msgid "Translate %1 to your language"
 msgstr ""
 
-#: ../contents/ui/components/WidgetCardBlacklist.qml ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardHide.qml ../contents/ui/components/WidgetCardIslands.qml ../contents/ui/components/WidgetCardTextIconFixes.qml
+#: ../contents/ui/components/WidgetCardBlacklist.qml ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardHide.qml ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "System Tray"
 msgstr "Kontrollleiste"
 
@@ -682,18 +682,6 @@ msgstr "Hinzufügen"
 #: ../contents/ui/components/WidgetCardHide.qml
 msgid "Hide"
 msgstr ""
-
-#: ../contents/ui/components/WidgetCardIslands.qml
-msgid "Disable"
-msgstr "Abschalten"
-
-#: ../contents/ui/components/WidgetCardIslands.qml
-msgid "Start"
-msgstr "Starten"
-
-#: ../contents/ui/components/WidgetCardIslands.qml
-msgid "End"
-msgstr "Ende"
 
 #: ../contents/ui/components/WidgetCardOverride.qml
 msgid "Edit"
@@ -1314,16 +1302,59 @@ msgid "Copy rule"
 msgstr ""
 
 #: ../contents/ui/configWidgetIslands.qml
-msgid "Select start and end of widget islands, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Widget custom background or border is required for this option to have an effect."
+msgid "Create widget islands by placing separator widgets around them."
 msgstr ""
 
 #: ../contents/ui/configWidgetIslands.qml
-msgid "Remove all islands"
+msgid "<strong>How to use</strong><br>1. Add the widget that will act as islands separator to the panel(by default the Plasma's Panel Spacer widget will be used)<br>2. Select the separator widget below<br>3. Add as many separators as you need and move them to create islands."
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "<strong>Notes</strong><br>- Widget custom background or border is required for this option to have a visible effect.<br>- If the widgets in your panel have different thickness, add margins to the widgets custom background in the Appearance tab."
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "<strong>Need a separator widget?</strong><br>- <a href=\"%1\">Panel Colorizer Islands Separator</a> visible only in Edit Mode.<br>- <a href=\"%2\">Advanced Separator</a> always visible and configurable."
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Separator widget:"
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Select the widget that will act as separator for the islands.<br><br>Note that the separator widget itself does not need to be visible for it to work, so you can use an invisible spacer/separator for example."
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Require two separators per island:"
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid ""
+"Always require two separators for a group of widgets to become an island. By default, an arrangement of<br>%1 creates two islands.<br><br>Enabling this option makes it so that islands do not share separators, so for example an arrangement of<br>%2 is required to create two islands.<br><br>Enable this if your islands separator is not a panel spacer and you want to explicitly define the start and "
+"end of each island."
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Blacklist separator widgets:"
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Disable customization from separator widgets"
 msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Verstecke Widget (sichtbar im Editmodus)"
+
+#~ msgid "Disable"
+#~ msgstr "Abschalten"
+
+#~ msgid "Start"
+#~ msgstr "Starten"
+
+#~ msgid "End"
+#~ msgstr "Ende"
 
 #~ msgid "<strong>Odd</strong> values are automatically converted to <strong>evens</strong> if <strong>Unified Background</strong> feature is used."
 #~ msgstr "<strong>ungerade</strong> Werte Werte werden automatisch in <strong>Gerade</strong> umgewandelt, wenn <strong> allgmeine Hintergründe</strong> genutzt werden."

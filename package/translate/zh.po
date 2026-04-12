@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-04-03 04:22+0000\n"
+"POT-Creation-Date: 2026-04-12 03:26+0000\n"
 "PO-Revision-Date: 2026-01-24 16:46+0800\n"
 "Last-Translator: Mill Haruto <mill413@outlook.com>\n"
 "Language-Team: \n"
@@ -112,6 +112,7 @@ msgstr "边框"
 #: ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml
 #: ../contents/ui/configPresetAutoload.qml
 #: ../contents/ui/configStockPanelSettings.qml
+#: ../contents/ui/configWidgetIslands.qml
 msgid "Enabled:"
 msgstr "已启用："
 
@@ -748,7 +749,6 @@ msgstr ""
 #: ../contents/ui/components/WidgetCardBlacklist.qml
 #: ../contents/ui/components/WidgetCardConfig.qml
 #: ../contents/ui/components/WidgetCardHide.qml
-#: ../contents/ui/components/WidgetCardIslands.qml
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "System Tray"
 msgstr "系统托盘"
@@ -764,18 +764,6 @@ msgstr "添加"
 #: ../contents/ui/components/WidgetCardHide.qml
 msgid "Hide"
 msgstr ""
-
-#: ../contents/ui/components/WidgetCardIslands.qml
-msgid "Disable"
-msgstr "禁用"
-
-#: ../contents/ui/components/WidgetCardIslands.qml
-msgid "Start"
-msgstr "起始"
-
-#: ../contents/ui/components/WidgetCardIslands.qml
-msgid "End"
-msgstr "结束"
 
 #: ../contents/ui/components/WidgetCardOverride.qml
 msgid "Edit"
@@ -1496,21 +1484,85 @@ msgid "Copy rule"
 msgstr ""
 
 #: ../contents/ui/configWidgetIslands.qml
-msgid ""
-"Select start and end of widget islands, widgets between <b>Start</b> and "
-"<b>End</b> must be left <b>disabled</b>. Widget custom background or border "
-"is required for this option to have an effect."
+msgid "Create widget islands by placing separator widgets around them."
 msgstr ""
-"选择widget islands的起始和结束，在<b>起始</b>和<b>结束</b>间的挂件需保持禁"
-"用。 设置挂件自定义背景或边框后才会生效。"
 
 #: ../contents/ui/configWidgetIslands.qml
-msgid "Remove all islands"
+msgid ""
+"<strong>How to use</strong><br>1. Add the widget that will act as islands "
+"separator to the panel(by default the Plasma's Panel Spacer widget will be "
+"used)<br>2. Select the separator widget below<br>3. Add as many separators "
+"as you need and move them to create islands."
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid ""
+"<strong>Notes</strong><br>- Widget custom background or border is required "
+"for this option to have a visible effect.<br>- If the widgets in your panel "
+"have different thickness, add margins to the widgets custom background in "
+"the Appearance tab."
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid ""
+"<strong>Need a separator widget?</strong><br>- <a href=\"%1\">Panel "
+"Colorizer Islands Separator</a> visible only in Edit Mode.<br>- <a "
+"href=\"%2\">Advanced Separator</a> always visible and configurable."
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Separator widget:"
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid ""
+"Select the widget that will act as separator for the islands.<br><br>Note "
+"that the separator widget itself does not need to be visible for it to work, "
+"so you can use an invisible spacer/separator for example."
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Require two separators per island:"
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid ""
+"Always require two separators for a group of widgets to become an island. By "
+"default, an arrangement of<br>%1 creates two islands.<br><br>Enabling this "
+"option makes it so that islands do not share separators, so for example an "
+"arrangement of<br>%2 is required to create two islands.<br><br>Enable this "
+"if your islands separator is not a panel spacer and you want to explicitly "
+"define the start and end of each island."
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Blacklist separator widgets:"
+msgstr ""
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Disable customization from separator widgets"
 msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "隐藏挂件（面板编辑模式下可见）"
+
+#~ msgid "Disable"
+#~ msgstr "禁用"
+
+#~ msgid "Start"
+#~ msgstr "起始"
+
+#~ msgid "End"
+#~ msgstr "结束"
+
+#~ msgid ""
+#~ "Select start and end of widget islands, widgets between <b>Start</b> and "
+#~ "<b>End</b> must be left <b>disabled</b>. Widget custom background or "
+#~ "border is required for this option to have an effect."
+#~ msgstr ""
+#~ "选择widget islands的起始和结束，在<b>起始</b>和<b>结束</b>间的挂件需保持禁"
+#~ "用。 设置挂件自定义背景或边框后才会生效。"
 
 #~ msgid "Text/Icon Fixes"
 #~ msgstr "文本/图标修复"
