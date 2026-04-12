@@ -1,5 +1,18 @@
 # Changelog
 
+## [7.0.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.10.0...v7.0.0) (2026-04-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* Islands configuration has been reworked, islands are now created by specifying a widget that will act as the separator and adding/positioning them around other widgets. Previously configured islands need to be recreated using the new method.
+
+### Features
+
+* add Russian translation ([#498](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/498)) ([281f6a6](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/281f6a6fe1e5e3468a189eb7879acb80c5e5d015))
+* create widget islands using another widget as the separator ([b2d6e94](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/b2d6e941d09ec7faec93217add53cc7fe791d270))
+* system tray icons custom cell width/height ([cd693a8](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/cd693a803fc7ef1962688a2df145aa98e77becd0))
+
 ## [6.10.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.9.1...v6.10.0) (2026-04-01)
 
 
