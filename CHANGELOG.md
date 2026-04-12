@@ -1,5 +1,15 @@
 # Changelog
 
+## [7.0.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v7.0.0...v7.0.1) (2026-04-12)
+
+
+### Bug Fixes
+
+* blacklisted hidden widget should not split islands ([ac28d67](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/ac28d67cb2ee5632fcddac65263464454e4a72f4))
+* disable widget islands by default ([499229d](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/499229d5f0b7c6fd3d55b93ec9f1a21d4e192f57))
+* don't blacklist separator when widget islands is disabled ([38d349d](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/38d349d901f3c90ebbec2ed66f630ffe4ffa5708))
+* hidden widgets should not split islands ([c79410f](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/c79410f3e8bb251db252454335876f1c6a2d3e94))
+
 ## [7.0.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v6.10.0...v7.0.0) (2026-04-12)
 
 
