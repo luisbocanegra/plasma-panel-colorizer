@@ -1112,8 +1112,8 @@ function updateIslandWidgetTypes(panelLayout, noBgTracker, hiddenTracker, island
 
         const currentName = current.applet.plasmoid.pluginName;
         const currentId = current.applet.plasmoid.id;
-        const currentIsBlank = noBgTracker.has(currentId);
         const currentIsHidden = hiddenTracker.has(currentId);
+        const currentIsBlank = noBgTracker.has(currentId) && !currentIsHidden;
         const currentIsSeparator = currentName === islandSeparatorWidget;
 
         if (currentIsSeparator) {
