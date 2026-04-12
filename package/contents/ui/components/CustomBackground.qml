@@ -37,6 +37,7 @@ Rectangle {
     property bool isTray: widgetName === "org.kde.plasma.systemtray"
     property bool isIslandSeparator: widgetName === main.islandSeparatorWidget
     property bool blacklistIslandSeparator: main.blacklistIslandSeparator
+    property bool islandsEnabled: main.islandsEnabled
     property bool isTrayArrow: itemType === Enums.ItemType.TrayArrow
     property bool inTray: itemType === Enums.ItemType.TrayItem || isTrayArrow
     property bool luisbocanegraPanelColorizerBgManaged: true
@@ -105,7 +106,7 @@ Rectangle {
     opacity: cfgEnabled ? 1 : 0
     property bool isVisible: opacity !== 0 && !isHidden
     property bool isHidden: (rect.target.applet?.plasmoid?.status ?? null) === PlasmaCore.Types.HiddenStatus
-    property bool cfgEnabled: cfg.enabled && main.isEnabled && !blacklisted && !(isIslandSeparator && blacklistIslandSeparator)
+    property bool cfgEnabled: cfg.enabled && main.isEnabled && !blacklisted && !(isIslandSeparator && blacklistIslandSeparator && islandsEnabled)
     property bool bgEnabled: bgColorCfg.enabled
     property bool fgEnabled: fgColorCfg.enabled
     property var fontCfg: cfg.fontConfig
