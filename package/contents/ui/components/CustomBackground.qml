@@ -104,7 +104,7 @@ Rectangle {
     property int itemCount: 0
     property int maxDepth: 0
     opacity: cfgEnabled ? 1 : 0
-    property bool isVisible: opacity !== 0 && !isHidden
+    property bool isVisible: opacity !== 0
     property bool isHidden: (rect.target.applet?.plasmoid?.status ?? null) === PlasmaCore.Types.HiddenStatus
     property bool cfgEnabled: cfg.enabled && main.isEnabled && !blacklisted && !(isIslandSeparator && blacklistIslandSeparator && islandsEnabled)
     property bool bgEnabled: bgColorCfg.enabled
@@ -182,9 +182,20 @@ Rectangle {
     property var bgShadow: cfg.shadow.background
     property bool fgShadowEnabled: cfg.shadow.foreground.enabled && cfgEnabled
     property var fgShadow: cfg.shadow.foreground
+    // qmlformat off
     property bool blurBehind: {
-        return (isPanel && !main.anyWidgetDoingBlur && !main.anyTrayItemDoingBlur) || (isWidget) || (inTray && !main.trayWidgetBgItem?.blurBehind) ? cfg.blurBehind : false;
+        if (isHidden) {
+            return false;
+        }
+        return (
+            (isPanel && !main.anyWidgetDoingBlur && !main.anyTrayItemDoingBlur)
+                || (isWidget)
+                || (inTray && !main.trayWidgetBgItem?.blurBehind)
+        )
+        ? cfg.blurBehind
+        : false;
     }
+    // qmlformat on
     property bool backgroundClipping: isWidget && (cfg.backgroundClipping ?? false) && cfgEnabled
     property string fgColor: {
         if (inTray && fgEnabled && cfgEnabled) {
