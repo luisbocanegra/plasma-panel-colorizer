@@ -96,8 +96,7 @@ msgstr "Panel no encontrado, este widget debe colocarse en un panel para funcion
 msgid "Border"
 msgstr "Borde"
 
-#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml
-#: ../contents/ui/configPresetAutoload.qml ../contents/ui/configStockPanelSettings.qml ../contents/ui/configWidgetIslands.qml
+#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml ../contents/ui/configPresetAutoload.qml ../contents/ui/configStockPanelSettings.qml ../contents/ui/configWidgetIslands.qml
 msgid "Enabled:"
 msgstr "Activado:"
 
@@ -607,10 +606,7 @@ msgstr "Más proyectos"
 
 #: ../contents/ui/components/Header.qml ../contents/ui/components/PopupView.qml
 msgid "Running version of the widget (%1) is different to the one on disk (%2), please log out and back in (or restart plasmashell user unit) to ensure things work correctly!"
-msgstr ""
-"La versión del widget en ejecución (%1) es diferente a la instalada en el sistema (%2). "
-"Por favor, cierra sesión y vuelve a entrar (o reinicia "
-"plasmashell) para asegurar que todo funcione correctamente."
+msgstr "La versión del widget en ejecución (%1) es diferente a la instalada en el sistema (%2). Por favor, cierra sesión y vuelve a entrar (o reinicia plasmashell) para asegurar que todo funcione correctamente."
 
 #: ../contents/ui/components/PopupView.qml
 msgid "Select a preset"
@@ -630,9 +626,7 @@ msgstr "Exportar"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "Export these settings to the default configuration folder and import them in other instances of Panel Colorizer"
-msgstr ""
-"Exporta estos ajustes a la carpeta de configuración predeterminada e "
-"impórtalos en otras instancias de Panel Colorizer"
+msgstr "Exporta estos ajustes a la carpeta de configuración predeterminada e impórtalos en otras instancias de Panel Colorizer"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "Export current settings?"
@@ -655,12 +649,8 @@ msgid "Thank you for using %1!"
 msgstr "Gracias por usar %1!"
 
 #: ../contents/ui/components/SupportMe.qml
-msgid ""
-"If you enjoy using the plugin please consider sponsoring or donating so I can dedicate more time to maintain and improve this and <a href=\"https://github.com/luisbocanegra?"
-"tab=repositories&q=&type=source&language=&sort=stargazers\">my other projects</a>."
-msgstr ""
-"Si te gusta este plugin por favor considera donar, asi podré dedicar más tiempo para mantener y mejorar este y <a href=\"https://github.com/luisbocanegra?"
-"tab=repositories&q=&type=source&language=&sort=stargazers\">mis otros proyectos</a>."
+msgid "If you enjoy using the plugin please consider sponsoring or donating so I can dedicate more time to maintain and improve this and <a href=\"https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers\">my other projects</a>."
+msgstr "Si te gusta este plugin por favor considera donar, asi podré dedicar más tiempo para mantener y mejorar este y <a href=\"https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers\">mis otros proyectos</a>."
 
 #: ../contents/ui/components/SupportMe.qml
 msgid "You can also"
@@ -715,12 +705,8 @@ msgid "Refresh"
 msgstr "Actualizar"
 
 #: ../contents/ui/configAppearance.qml
-msgid ""
-"Not getting the expected result? Make sure you're editing the correct element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ plugin using the latest source, <a href=\"https://"
-"github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">see instructions</a>."
-msgstr ""
-"¿No obtienes el resultado esperado? Asegúrate de estar editando el elemento correcto.<br>¿El desenfoque no funciona? Prueba a reinstalar o recompilar el complemento C++ usando el código fuente más reciente, <a href=\"https://"
-"github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">ver instrucciones</a>."
+msgid "Not getting the expected result? Make sure you're editing the correct element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ plugin using the latest source, <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">see instructions</a>."
+msgstr "¿No obtienes el resultado esperado? Asegúrate de estar editando el elemento correcto.<br>¿El desenfoque no funciona? Prueba a reinstalar o recompilar el complemento C++ usando el código fuente más reciente, <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">ver instrucciones</a>."
 
 #: ../contents/ui/configAppearance.qml
 msgid "Restore default (removes all customizations)"
@@ -851,15 +837,8 @@ msgid "Hide/show all panels"
 msgstr "Ocultar/mostrar todos los paneles"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
-msgid ""
-"Create configuration overrides and apply them to one or multiple widgets. These overrides are independent of presets and will be applied on top of the current settings and across presets.<br>To "
-"blacklist a widget from modifications, <b>uncheck</b> options <b>Enable</b> and <b>Fallback</b>, and apply the override to the widget."
-msgstr ""
-"Crea Sobreescrituras de configuración y aplícalas a uno o varios widgets. Estas "
-"Sobreescrituras son independientes de los ajustes y se aplicarán "
-"sobre la configuración actual en todos ellos.<br>Para añadir un widget a la "
-"lista de exclusión y evitar modificaciones, <b>desmarca</b> las opciones "
-"<b>Activar</b> y <b>Fallback</b>, y aplica la sobreescritura al widget."
+msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides are independent of presets and will be applied on top of the current settings and across presets.<br>To blacklist a widget from modifications, <b>uncheck</b> options <b>Enable</b> and <b>Fallback</b>, and apply the override to the widget."
+msgstr "Crea Sobreescrituras de configuración y aplícalas a uno o varios widgets. Estas Sobreescrituras son independientes de los ajustes y se aplicarán sobre la configuración actual en todos ellos.<br>Para añadir un widget a la lista de exclusión y evitar modificaciones, <b>desmarca</b> las opciones <b>Activar</b> y <b>Fallback</b>, y aplica la sobreescritura al widget."
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Restore default (removes all overrides)"
@@ -890,22 +869,16 @@ msgid "Fallback:"
 msgstr "Fallback:"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
-msgid "Fallback to the Global/Preset widget settings for disabled options, except for <b>Enable</b> and <b>Blur</b>."
-msgstr "Recurrir a los ajustes de widget Globales/Preestablecidos para las opciones desactivadas, excepto para <b>Activar</b> y <b>Desenfoque</b>."
+msgid "Fallback to the Global/Preset widget settings for disabled options, except for <b>Enable</b> and <b>Blur</>."
+msgstr ""
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Overrides are applied from top to bottom, if two or more configuration overrides share the same option, the last occurence replaces the value of the previous one."
 msgstr "Las sobreescrituras se aplican de arriba a abajo; si dos o más sobreescrituras de configuración comparten la misma opción, la última aparición reemplaza el valor de la anterior."
 
 #: ../contents/ui/configHideWidgets.qml
-msgid ""
-"Hidden widgets can still be activated using keyboard shortcuts and are always visible in the Desktop Edit Mode.<br>The activation shortcut can be configured from the <b>Keyboard Shortcuts</b> page "
-"on each widget's configuration window."
-msgstr ""
-"Los widgets ocultos pueden seguir activándose mediante atajos de teclado y "
-"siempre son visibles en el Modo de edición del escritorio.<br>El atajo de "
-"activación se puede configurar desde la página de <b>Atajos de teclado</b> "
-"en la ventana de configuración de cada widget."
+msgid "Hidden widgets can still be activated using keyboard shortcuts and are always visible in the Desktop Edit Mode.<br>The activation shortcut can be configured from the <b>Keyboard Shortcuts</b> page on each widget's configuration window."
+msgstr "Los widgets ocultos pueden seguir activándose mediante atajos de teclado y siempre son visibles en el Modo de edición del escritorio.<br>El atajo de activación se puede configurar desde la página de <b>Atajos de teclado</b> en la ventana de configuración de cada widget."
 
 #: ../contents/ui/configHideWidgets.qml
 msgid "Restore default (controlled by each widget)"
@@ -928,14 +901,8 @@ msgid "Do nothing"
 msgstr "No hacer nada"
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid ""
-"Automatically switch between different presets based on the Panel and window states.<br>Disable preset auto-loading before making changes to presets, unsaved preset settings will be lost when auto-"
-"loading switches to other preset!"
-msgstr ""
-"Cambia automáticamente entre diferentes ajustes según el "
-"estado del panel y las ventanas.<br>Desactiva la carga automática antes de "
-"realizar cambios en los ajustes; los cambios no guardados se perderán cuando "
-"la carga automática cambie a otro ajuste."
+msgid "Automatically switch between different presets based on the Panel and window states.<br>Disable preset auto-loading before making changes to presets, unsaved preset settings will be lost when auto-loading switches to other preset!"
+msgstr "Cambia automáticamente entre diferentes ajustes según el estado del panel y las ventanas.<br>Desactiva la carga automática antes de realizar cambios en los ajustes; los cambios no guardados se perderán cuando la carga automática cambie a otro ajuste."
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Remove all auto-loading conditions"
@@ -946,14 +913,8 @@ msgid "Auto-loading conditions"
 msgstr "Condiciones de carga automática"
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid ""
-"Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the "
-"<b>Maximized</b> preset will be applied."
-msgstr ""
-"Las prioridades van en orden descendente. Por ejemplo, si tanto "
-"<b>Se muestra una ventana maximizada</b> como <b>El panel toca una ventana</b> "
-"tienen un ajuste seleccionado, y hay una ventana maximizada en pantalla, se "
-"aplicará el ajuste <b>Maximizado</b>."
+msgid "Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the <b>Maximized</b> preset will be applied."
+msgstr "Las prioridades van en orden descendente. Por ejemplo, si tanto <b>Se muestra una ventana maximizada</b> como <b>El panel toca una ventana</b> tienen un ajuste seleccionado, y hay una ventana maximizada en pantalla, se aplicará el ajuste <b>Maximizado</b>."
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Window tracking:"
@@ -973,9 +934,7 @@ msgstr "Fallback de ventana activa"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Track KWin's top window when there is no active one in the screen."
-msgstr ""
-"Rastrear la ventana superior de KWin cuando no haya ninguna activa en la "
-"pantalla."
+msgstr "Rastrear la ventana superior de KWin cuando no haya ninguna activa en la pantalla."
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Fullscreen window:"
@@ -1015,11 +974,7 @@ msgstr "Acción:"
 
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides should be saved to a preset in <strong>Presets</strong> tab or they will be lost when presets change!"
-msgstr ""
-"Crea sobreescrituras de configuración y aplícalas a uno o varios widgets. "
-"¡Estas sobreescrituras deben guardarse en un ajuste de la pestaña "
-"<strong>Ajustes preestablecidos</strong> o se perderán cuando cambien los "
-"ajustes!"
+msgstr "Crea sobreescrituras de configuración y aplícalas a uno o varios widgets. ¡Estas sobreescrituras deben guardarse en un ajuste de la pestaña <strong>Ajustes preestablecidos</strong> o se perderán cuando cambien los ajustes!"
 
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Name:"
@@ -1054,14 +1009,8 @@ msgid "Create preset"
 msgstr "Crear ajuste"
 
 #: ../contents/ui/configPresets.qml
-msgid ""
-"Changes to the current preset are not synced to disk automatically. You should come back to this tab and update it manually before switching to a different preset, otherwise unsaved preset settings "
-"will be lost when presets change!"
-msgstr ""
-"Los cambios en el ajuste actual no se sincronizan en el disco "
-"automáticamente. Deberías volver a esta pestaña y actualizarlo manualmente "
-"antes de cambiar a un ajuste diferente; de lo contrario, ¡los cambios no "
-"guardados se perderán cuando cambien los ajustes!"
+msgid "Changes to the current preset are not synced to disk automatically. You should come back to this tab and update it manually before switching to a different preset, otherwise unsaved preset settings will be lost when presets change!"
+msgstr "Los cambios en el ajuste actual no se sincronizan en el disco automáticamente. Deberías volver a esta pestaña y actualizarlo manualmente antes de cambiar a un ajuste diferente; de lo contrario, ¡los cambios no guardados se perderán cuando cambien los ajustes!"
 
 #: ../contents/ui/configPresets.qml
 msgid "Restore default preset"
@@ -1101,20 +1050,11 @@ msgstr "Actualizar previsualización"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g from top to left)."
-msgstr ""
-"Cambiar la posición del panel es actualmente inestable y puede causar un "
-"crash de Plasma al mover paneles entre bordes no paralelos (e.g., de la "
-"parte superior a la izquierda)."
+msgstr "Cambiar la posición del panel es actualmente inestable y puede causar un crash de Plasma al mover paneles entre bordes no paralelos (e.g., de la parte superior a la izquierda)."
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid ""
-"Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel "
-"background</b> options in <b>Appearance</b> tab instead."
-msgstr ""
-"Las opciones de Opacidad y Pantalla requieren <b>Plasma 6.3</b> o posterior."
-"<br>La opacidad depende del tema actual de Plasma; para un control más fino "
-"o transparencia total, utiliza en su lugar las opciones <b>Opacidad del "
-"panel</b> y <b>Fondo de panel nativo</b> en la pestaña <b>Apariencia</b>."
+msgid "Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
+msgstr "Las opciones de Opacidad y Pantalla requieren <b>Plasma 6.3</b> o posterior.<br>La opacidad depende del tema actual de Plasma; para un control más fino o transparencia total, utiliza en su lugar las opciones <b>Opacidad del panel</b> y <b>Fondo de panel nativo</b> en la pestaña <b>Apariencia</b>."
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Screen"
@@ -1238,41 +1178,21 @@ msgstr "Mostrar:"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
-"WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make "
-"it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will remove the configuration from all Panel "
-"Colorizer instances so make sure to save the others first"
+"WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will remove the configuration from all Panel Colorizer "
+"instances so make sure to save the others first"
 msgstr ""
-"ADVERTENCIA: Usa Mostrar/Ocultar con precaución. Si ocultas el panel y no "
-"has configurado la carga automática de ajustes o no sabes cómo cambiar de "
-"ajuste usando D-Bus (o lo has desactivado), no habrá forma de volver a "
-"hacerlo visible sin eliminar manualmente la configuración o Panel Colorizer. "
-"Usa el siguiente comando en una terminal o TTY y luego cierra sesión o "
-"reinicia; esto eliminará la configuración de todas las instancias de Panel "
-"Colorizer, así que asegúrate de guardar las demás primero."
+"ADVERTENCIA: Usa Mostrar/Ocultar con precaución. Si ocultas el panel y no has configurado la carga automática de ajustes o no sabes cómo cambiar de ajuste usando D-Bus (o lo has desactivado), no habrá forma de volver a hacerlo visible sin eliminar manualmente la configuración o Panel Colorizer. Usa el siguiente comando en una terminal o TTY y luego cierra sesión o reinicia; esto eliminará la "
+"configuración de todas las instancias de Panel Colorizer, así que asegúrate de guardar las demás primero."
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
-msgstr ""
-"Si tienes D-Bus habilitado, se recomienda usarlo con atajos de teclado en su "
-"lugar. Consulta el archivo README para obtener más información o mira la "
-"pestaña General para ver algunos ejemplos."
+msgstr "Si tienes D-Bus habilitado, se recomienda usarlo con atajos de teclado en su lugar. Consulta el archivo README para obtener más información o mira la pestaña General para ver algunos ejemplos."
 
 #: ../contents/ui/configTextIconFix.qml
 msgid ""
-"Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - "
-"<strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, "
-"useful for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask</strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
+"Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, useful "
+"for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
 msgstr ""
-"Corrige los colores y la fuente de texto e iconos en widgets donde el "
-"método normal no funciona o el propio widget lo restablece.<br> - "
-"<strong>Máscara</strong>: Fuerza el color en iconos SVG, útil para iconos "
-"simbólicos.<br> - <strong>Efecto de color</strong>: Fuerza el color en texto "
-"e iconos mediante un efecto de postprocesado, útil para iconos no "
-"simbólicos.<br> - <strong>Refrescar</strong>: Vuelve a aplicar el color o la "
-"fuente en un intervalo fijo, útil para widgets que recrean o colorean su "
-"contenido por sí mismos.<br>Para restaurar la <strong>Máscara</strong> y el "
-"<strong>Efecto de color</strong>, desactívalos y reinicia Plasma o cierra "
-"sesión."
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
@@ -1295,34 +1215,16 @@ msgid "Sort"
 msgstr "Ordenar"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid ""
-"Replace System Tray icons with icons from the current icon theme or a local file. The built-in rules icons are part of <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-"
-"theme\">Papirus icon theme</a>."
-msgstr ""
-"Reemplaza los iconos de la bandeja del sistema con iconos del tema de iconos "
-"actual o un archivo local. Los iconos de las reglas integradas forman parte "
-"del <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme"
-"\">tema de iconos Papirus</a>."
+msgid "Replace System Tray icons with icons from the current icon theme or a local file. The built-in rules icons are part of <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus icon theme</a>."
+msgstr "Reemplaza los iconos de la bandeja del sistema con iconos del tema de iconos actual o un archivo local. Los iconos de las reglas integradas forman parte del <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">tema de iconos Papirus</a>."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid ""
-"C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?"
-"tab=readme-ov-file#manually\">Install instructions</a>."
-msgstr ""
-"No se ha encontrado el complemento de C++; esta función no funcionará. "
-"Instala el complemento y reinicia el equipo o plasmashell para poder "
-"utilizarlo. <a href=\"https://github.com/luisbocanegra/plasma-panel-"
-"colorizer?tab=readme-ov-file#manually\">Instrucciones de instalación</a>."
+msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Install instructions</a>."
+msgstr "No se ha encontrado el complemento de C++; esta función no funcionará. Instala el complemento y reinicia el equipo o plasmashell para poder utilizarlo. <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Instrucciones de instalación</a>."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid ""
-"The installed version of the C++ plugin doesn't support this feature, update the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-"
-"panel-colorizer?tab=readme-ov-file#manually\">Install instructions</a>."
-msgstr ""
-"La versión instalada del complemento de C++ no admite esta función; "
-"actualiza el complemento y reinicia el equipo o plasmashell para poder "
-"utilizarlo. <a href=\"https://github.com/luisbocanegra/plasma-panel-"
-"colorizer?tab=readme-ov-file#manually\">Instrucciones de instalación</a>."
+msgid "The installed version of the C++ plugin doesn't support this feature, update the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Install instructions</a>."
+msgstr "La versión instalada del complemento de C++ no admite esta función; actualiza el complemento y reinicia el equipo o plasmashell para poder utilizarlo. <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Instrucciones de instalación</a>."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Log icon changes:"
@@ -1407,53 +1309,24 @@ msgid "Create widget islands by placing separator widgets around them."
 msgstr "Crea islas de widgets colocando widgets separadores a su alrededor."
 
 #: ../contents/ui/configWidgetIslands.qml
-msgid ""
-"<strong>How to use</strong><br>1. Add the widget that will act as islands "
-"separator to the panel(by default the Plasma's Panel Spacer widget will be "
-"used)<br>2. Select the separator widget below<br>3. Add as many separators "
-"as you need and move them to create islands."
-msgstr ""
-"<strong>Modo de uso</strong><br>1. Añade al panel el widget que servirá como "
-"separador de islas (por defecto se usará el Espaciador del panel de Plasma)"
-"<br>2. Selecciona el widget separador a continuación<br>3. Añade tantos "
-"separadores como necesites y muévelos para crear las islas."
+msgid "<strong>How to use</strong><br>1. Add the widget that will act as islands separator to the panel(by default the Plasma's Panel Spacer widget will be used)<br>2. Select the separator widget below<br>3. Add as many separators as you need and move them to create islands."
+msgstr "<strong>Modo de uso</strong><br>1. Añade al panel el widget que servirá como separador de islas (por defecto se usará el Espaciador del panel de Plasma)<br>2. Selecciona el widget separador a continuación<br>3. Añade tantos separadores como necesites y muévelos para crear las islas."
 
 #: ../contents/ui/configWidgetIslands.qml
-msgid ""
-"<strong>Notes</strong><br>- Widget custom background or border is required "
-"for this option to have a visible effect.<br>- If the widgets in your panel "
-"have different thickness, add margins to the widgets custom background in "
-"the Appearance tab."
-msgstr ""
-"<strong>Notas</strong><br>- Se requiere un fondo o borde personalizado para "
-"que esta opción tenga un efecto visible.<br>- Si los widgets de tu panel "
-"tienen grosores diferentes, añade márgenes al fondo personalizado de los "
-"widgets en la pestaña Apariencia."
+msgid "<strong>Notes</strong><br>- Widget custom background or border is required for this option to have a visible effect.<br>- If the widgets in your panel have different thickness, add margins to the widgets custom background in the Appearance tab."
+msgstr "<strong>Notas</strong><br>- Se requiere un fondo o borde personalizado para que esta opción tenga un efecto visible.<br>- Si los widgets de tu panel tienen grosores diferentes, añade márgenes al fondo personalizado de los widgets en la pestaña Apariencia."
 
 #: ../contents/ui/configWidgetIslands.qml
-msgid ""
-"<strong>Need a separator widget?</strong><br>- <a href=\"%1\">Panel "
-"Colorizer Islands Separator</a> visible only in Edit Mode.<br>- <a href="
-"\"%2\">Advanced Separator</a> always visible and configurable."
-msgstr ""
-"<strong>¿Necesitas un widget separador?</strong><br>- <a href=\"%1"
-"\">Separador de islas de Panel Colorizer</a> visible solo en el Modo edición."
-"<br>- <a href=\"%2\">Advanced Separator</a> siempre visible y configurable."
+msgid "<strong>Need a separator widget?</strong><br>- <a href=\"%1\">Panel Colorizer Islands Separator</a> visible only in Edit Mode.<br>- <a href=\"%2\">Advanced Separator</a> always visible and configurable."
+msgstr "<strong>¿Necesitas un widget separador?</strong><br>- <a href=\"%1\">Separador de islas de Panel Colorizer</a> visible solo en el Modo edición.<br>- <a href=\"%2\">Advanced Separator</a> siempre visible y configurable."
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Separator widget:"
 msgstr "Widget separador:"
 
 #: ../contents/ui/configWidgetIslands.qml
-msgid ""
-"Select the widget that will act as separator for the islands.<br><br>Note "
-"that the separator widget itself does not need to be visible for it to work, "
-"so you can use an invisible spacer/separator for example."
-msgstr ""
-"Selecciona el widget que actuará como separador para las islas.<br><br>Ten "
-"en cuenta que el widget separador en sí mismo no necesita ser visible para "
-"funcionar, por lo que puedes usar un espaciador o separador invisible, por "
-"ejemplo."
+msgid "Select the widget that will act as separator for the islands.<br><br>Note that the separator widget itself does not need to be visible for it to work, so you can use an invisible spacer/separator for example."
+msgstr "Selecciona el widget que actuará como separador para las islas.<br><br>Ten en cuenta que el widget separador en sí mismo no necesita ser visible para funcionar, por lo que puedes usar un espaciador o separador invisible, por ejemplo."
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Require two separators per island:"
@@ -1461,19 +1334,11 @@ msgstr "Requerir dos separadores por isla:"
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid ""
-"Always require two separators for a group of widgets to become an island. By "
-"default, an arrangement of<br>%1 creates two islands.<br><br>Enabling this "
-"option makes it so that islands do not share separators, so for example an "
-"arrangement of<br>%2 is required to create two islands.<br><br>Enable this "
-"if your islands separator is not a panel spacer and you want to explicitly "
-"define the start and end of each island."
+"Always require two separators for a group of widgets to become an island. By default, an arrangement of<br>%1 creates two islands.<br><br>Enabling this option makes it so that islands do not share separators, so for example an arrangement of<br>%2 is required to create two islands.<br><br>Enable this if your islands separator is not a panel spacer and you want to explicitly define the start and "
+"end of each island."
 msgstr ""
-"Obliga siempre a usar dos separadores para que un grupo de widgets se "
-"convierta en una isla. Por defecto, una disposición de<br>%1 crea dos "
-"islas.<br><br>Activar esta opción hace que las islas no compartan "
-"separadores; por ejemplo, se requeriría una disposición de<br>%2 para crear "
-"dos islas.<br><br>Activa esto si tu separador de islas no es un espaciador "
-"de panel y quieres definir explícitamente el inicio y el fin de cada isla."
+"Obliga siempre a usar dos separadores para que un grupo de widgets se convierta en una isla. Por defecto, una disposición de<br>%1 crea dos islas.<br><br>Activar esta opción hace que las islas no compartan separadores; por ejemplo, se requeriría una disposición de<br>%2 para crear dos islas.<br><br>Activa esto si tu separador de islas no es un espaciador de panel y quieres definir "
+"explícitamente el inicio y el fin de cada isla."
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Blacklist separator widgets:"
@@ -1486,3 +1351,13 @@ msgstr "Desactivar personalización de los widgets separadores"
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Ocultar widget (visible en el Modo edición del panel)"
+
+#~ msgid "Fallback to the Global/Preset widget settings for disabled options, except for <b>Enable</b> and <b>Blur</b>."
+#~ msgstr "Recurrir a los ajustes de widget Globales/Preestablecidos para las opciones desactivadas, excepto para <b>Activar</b> y <b>Desenfoque</b>."
+
+#~ msgid ""
+#~ "Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, "
+#~ "useful for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask</strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
+#~ msgstr ""
+#~ "Corrige los colores y la fuente de texto e iconos en widgets donde el método normal no funciona o el propio widget lo restablece.<br> - <strong>Máscara</strong>: Fuerza el color en iconos SVG, útil para iconos simbólicos.<br> - <strong>Efecto de color</strong>: Fuerza el color en texto e iconos mediante un efecto de postprocesado, útil para iconos no simbólicos.<br> - <strong>Refrescar</"
+#~ "strong>: Vuelve a aplicar el color o la fuente en un intervalo fijo, útil para widgets que recrean o colorean su contenido por sí mismos.<br>Para restaurar la <strong>Máscara</strong> y el <strong>Efecto de color</strong>, desactívalos y reinicia Plasma o cierra sesión."
