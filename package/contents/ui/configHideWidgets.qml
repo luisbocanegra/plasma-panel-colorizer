@@ -1,3 +1,4 @@
+pragma ComponentBehavior: Bound
 import QtCore
 import QtQuick
 import QtQuick.Controls
@@ -69,7 +70,6 @@ KCM.SimpleKCM {
             const title = widget.title;
             const icon = widget.icon;
             const inTray = widget.inTray;
-            const globalShortcut = widget.globalShortcut ?? "";
             if (inTray)
                 continue;
             widgetsModel.append({
@@ -78,8 +78,7 @@ KCM.SimpleKCM {
                 title,
                 icon,
                 inTray,
-                hide: false,
-                globalShortcut
+                hide: false
             });
         }
     }
@@ -180,11 +179,10 @@ KCM.SimpleKCM {
             Layout.alignment: Qt.AlignHCenter
             Repeater {
                 model: widgetsModel
-
                 delegate: Components.WidgetCardHide {
-                    widget: model
+                    required property int index
                     onUpdateWidget: hide => {
-                        if (!loaded)
+                        if (!root.loaded)
                             return;
 
                         widgetsModel.set(index, {

@@ -163,6 +163,7 @@ PlasmoidItem {
     }
 
     property var islandWidgetTypes: []
+    property var widgetTypes: []
     property var forceRecolorList: Utils.clearOldWidgetConfig(forceForegroundColor?.widgets ?? [])
     property int forceRecolorInterval: forceForegroundColor?.reloadInterval ?? 0
     property int forceRecolorCount: forceRecolorList.length
@@ -198,9 +199,10 @@ PlasmoidItem {
 
     property Timer updateIslandsTimer: Timer {
         interval: 50
-        repeat: false
         onTriggered: {
-            main.islandWidgetTypes = Utils.updateIslandWidgetTypes(main.panelLayout, main.noBgTracker, main.hiddenTracker, main.islandSeparatorWidget, main.islandsEnabled, main.islandSeparatorPairing);
+            const o = Utils.updateIslandWidgetTypes(main.panelLayout, main.noBgTracker, main.hiddenTracker, main.islandSeparatorWidget, main.islandsEnabled, main.islandSeparatorPairing);
+            main.islandWidgetTypes = o.islandTypes;
+            main.widgetTypes = o.widgetTypes;
         }
     }
 
@@ -243,11 +245,6 @@ PlasmoidItem {
 
     function applyStockPanelSettings() {
         let script = Utils.setPanelModeScript(Plasmoid.containment.id, stockPanelSettings);
-        if (stockPanelSettings.visible.enabled) {
-            panelView.visible = stockPanelSettings.visible.value;
-        } else {
-            panelView.visible = true;
-        }
         dbusEvaluateScript.arguments = [script.toString().replace(/\n/g, ' ').trim()];
         dbusEvaluateScript.call(() => {
             Utils.delay(250, () => {
@@ -256,9 +253,35 @@ PlasmoidItem {
         });
     }
 
-    onStockPanelSettingsChanged: {
-        Qt.callLater(applyStockPanelSettings);
+    Binding {
+        target: main.panelView
+        property: "visible"
+        value: {
+            if (!main.isEnabled) {
+                return true;
+            }
+            if (main.editMode) {
+                return true;
+            }
+            if (main.stockPanelSettings.visible.enabled) {
+                return main.stockPanelSettings.visible.value;
+            }
+            if (main.cfg.nativePanel.hideWhenNoWidgetsAreVisible ?? false) {
+                return main.widgetTypes.some(w => !w.hidden);
+            }
+            return true;
+        }
+        when: main.panelView !== null
     }
+
+    readonly property var stockPanelSettingsDeps: ({
+            stockPanelSettings,
+            isEnabled,
+            editMode
+        })
+
+    onStockPanelSettingsDepsChanged: Qt.callLater(applyStockPanelSettings)
+    onIsEnabledChanged: Qt.callLater(applyStockPanelSettings)
 
     onForceRecolorCountChanged: {
         // console.error("onForceRecolorCountChanged ->", forceRecolorCount)
@@ -797,9 +820,7 @@ PlasmoidItem {
             Plasmoid.configuration.pluginFound = pluginFound;
             Plasmoid.configuration.writeConfig();
         }
-        Utils.delay(100, () => {
-            applyStockPanelSettings();
-        }, main);
+        Qt.callLater(applyStockPanelSettings);
         Utils.delay(500, () => {
             updateContextualActions(configureFromAllWidgets);
         }, main);

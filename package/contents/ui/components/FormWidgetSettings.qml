@@ -327,6 +327,17 @@ ColumnLayout {
             }
         }
 
+        CheckBox {
+            Kirigami.FormData.label: i18n("Hide panel:")
+            text: i18n("When there are no widgets visible")
+            checked: root.config.nativePanel.hideWhenNoWidgetsAreVisible
+            onCheckedChanged: {
+                root.config.nativePanel.hideWhenNoWidgetsAreVisible = checked;
+                root.updateConfig();
+            }
+            visible: root.elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+        }
+
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
             Kirigami.FormData.label: i18n("Customization")
