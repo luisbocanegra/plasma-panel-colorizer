@@ -286,8 +286,7 @@ function getWidgetProperties(
                 title = applet?.plasmoid.title ?? "";
                 id = inTray ? -1 : (applet.plasmoid.id ?? -1);
                 expanded = applet.compactRepresentationItem !== null && applet.expanded;
-                needsAttention =
-                    pcTypes.NeedsAttentionStatus === applet.plasmoid.status;
+                needsAttention = pcTypes.NeedsAttentionStatus === applet.plasmoid.status;
                 busy = applet.plasmoid.busy;
                 break;
             }
@@ -857,7 +856,7 @@ function showTrayAreas(trayGridView, backgroundComponent) {
         let index = 0;
         for (let i = 0; i < trayGridView.count; i++) {
             const item = trayGridView.itemAtIndex(i);
-            if (!item.visible) continue;
+            if (!item || !item.visible) continue;
             const bgItem = getBgManaged(item);
             if (!bgItem) {
                 backgroundComponent.createObject(item, {
@@ -869,9 +868,7 @@ function showTrayAreas(trayGridView, backgroundComponent) {
             } else {
                 bgItem.targetIndex = index;
             }
-            if (item.visible) {
-                index++;
-            }
+            index++;
         }
 
         for (let i in trayGridView.parent.children) {

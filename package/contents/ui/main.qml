@@ -17,7 +17,6 @@ PlasmoidItem {
     id: main
     property int panelLayoutCount: panelLayout?.children.length || 0
     property int trayGridViewCount: trayGridView?.count || 0
-    property int trayGridViewCountOld: 0
     property var panelPosition: {
         var location;
         var screen = main.screen;
@@ -587,7 +586,7 @@ PlasmoidItem {
 
     onPanelLayoutCountChanged: {
         // console.log("onPanelLayoutCountChanged")
-        initAll();
+        Qt.callLater(initAll);
         // re-apply customizations after the widget stops being dragged around
         if (!panelLayout?.children.length) {
             return;
@@ -604,27 +603,24 @@ PlasmoidItem {
     function initAll() {
         if (!panelLayout || panelLayoutCount === 0)
             return;
-        Qt.callLater(function () {
-            trayInitTimer.restart();
-            Utils.showWidgets(panelLayout, backgroundComponent, Plasmoid);
-            updateCurrentWidgets();
-            showPanelBg(panelBg);
-            updateContextualActions(configureFromAllWidgets);
-            updateIslands();
-        });
+        updateTray();
+        Utils.showWidgets(panelLayout, backgroundComponent, Plasmoid);
+        updateCurrentWidgets();
+        showPanelBg(panelBg);
+        updateContextualActions(configureFromAllWidgets);
+        updateIslands();
     }
 
     onEditModeChanged: {
         if (editMode)
             return;
-        initAll();
+        Qt.callLater(initAll);
     }
 
     onTrayGridViewCountChanged: {
         if (trayGridViewCount === 0)
             return;
-        // console.error(trayGridViewCount);
-        trayInitTimer.restart();
+        Qt.callLater(updateTray);
     }
 
     function switchPreset() {
@@ -667,14 +663,11 @@ PlasmoidItem {
         when: (main.trayWidgetSettings.customCellSizeEnabled ?? false) && !main.horizontal
     }
 
-    property Timer trayInitTimer: Timer {
-        interval: 100
-        onTriggered: {
-            if (main.trayGridView && main.trayGridViewCount !== 0) {
-                Utils.showTrayAreas(main.trayGridView, main.backgroundComponent);
-            }
-            main.updateCurrentWidgets();
+    function updateTray() {
+        if (trayGridView && trayGridViewCount !== 0) {
+            Utils.showTrayAreas(trayGridView, backgroundComponent);
         }
+        updateCurrentWidgets();
     }
 
     DBusMethodCall {

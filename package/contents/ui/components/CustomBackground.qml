@@ -48,7 +48,7 @@ Rectangle {
                 "id": -1,
                 "name": "org.kde.plasma.systemtray.expand",
                 "hovered": hovered,
-                "expanded": (systemTrayState?.expanded) && systemTrayState?.activeApplet === null,
+                "expanded": (systemTrayState?.expanded ?? false) && systemTrayState?.activeApplet === null,
                 "needsAttention": false,
                 "busy": false,
                 "trayIconHash": "",
@@ -88,7 +88,6 @@ Rectangle {
         property: "source"
         value: rect.customIcon
         when: rect.customIcon !== ""
-        delayed: true
     }
     property var wRecolorCfg: Utils.getForceFgWidgetConfig(widgetId, widgetName, main.forceRecolorList)
     property bool requiresRefresh: wRecolorCfg?.reload ?? false
@@ -105,7 +104,6 @@ Rectangle {
     property int maxDepth: 0
     opacity: cfgEnabled ? 1 : 0
     property bool isVisible: opacity !== 0
-    property bool isHidden: (rect.target.applet?.plasmoid?.status ?? null) === PlasmaCore.Types.HiddenStatus
     property bool cfgEnabled: cfg.enabled && main.isEnabled && !blacklisted && !(isIslandSeparator && blacklistIslandSeparator && islandsEnabled)
     property bool bgEnabled: bgColorCfg.enabled
     property bool fgEnabled: fgColorCfg.enabled
@@ -121,6 +119,9 @@ Rectangle {
     property bool panelTouchingRight: isPanel && main.panelElement && !main.panelIsFloating && main.panelPosition.location === "right"
 
     property var hideCfg: main.hiddenWidgets.widgets.find(widget => widget.id === widgetId && widget.name === widgetName)
+    property bool shouldHide: hideCfg?.hide ?? false
+    property var widgetStatus: rect.target.applet?.plasmoid?.status ?? null
+    property bool isHidden: widgetStatus === PlasmaCore.Types.HiddenStatus
     property var blacklisted: main.blacklistedWidgets.widgets.find(widget => widget.id === widgetId && widget.name === widgetName)?.blacklisted ?? false
 
     function cornerForcedZero(cornerName) {
@@ -371,7 +372,6 @@ Rectangle {
                 main.noBgTracker.add(widgetId);
             }
         }
-
         main.recolorCountChanged.connect(recolorTimer.restart);
         main.updateMasks.connect(updateMaskDebounced);
         recolorTimer.start();
@@ -384,7 +384,9 @@ Rectangle {
         main.recolorCountChanged.disconnect(recolorTimer.restart);
         main.updateMasks.disconnect(updateMaskDebounced);
         main.refreshNeeded.disconnect(recolorTimer.restart);
-        main.trayInitTimer.restart();
+        if (inTray) {
+            Qt.callLater(main.updateTray);
+        }
     }
 
     height: inTray ? (target?.height ?? 0) : parent.height
@@ -664,8 +666,14 @@ Rectangle {
     Binding {
         target: rect.target.applet?.plasmoid ?? null
         property: "status"
-        when: (rect.hideCfg?.hide ?? false) && !rect.main.editMode
+        when: rect.shouldHide && !rect.main.editMode
         value: PlasmaCore.Types.HiddenStatus
+    }
+
+    onWidgetStatusChanged: {
+        if (widgetStatus !== PlasmaCore.Types.HiddenStatus) {
+            recolorTimer.restart();
+        }
     }
 
     Item {
