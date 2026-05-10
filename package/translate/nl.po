@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-04-12 03:26+0000\n"
+"POT-Creation-Date: 2026-05-10 01:57+0000\n"
 "PO-Revision-Date: 2026-01-20 10:36+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -458,6 +458,14 @@ msgstr ""
 msgid ""
 "Resize panel length when panel enters/exits floating state (instead of just "
 "moving)"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Hide panel:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "When there are no widgets visible"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml

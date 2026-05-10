@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-04-12 03:26+0000\n"
+"POT-Creation-Date: 2026-05-10 01:57+0000\n"
 "PO-Revision-Date: 2026-04-15 16:01-0300\n"
 "Last-Translator: Lucas Cesa <lucascesa455@gmail.com>\n"
 "Language-Team: spanish <LL@li.org>\n"
@@ -395,6 +395,14 @@ msgstr "Quitar las esquinas redondeadas del fondo personalizado cuando el panel 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Resize panel length when panel enters/exits floating state (instead of just moving)"
 msgstr "Cambiar longitud del panel cuando el panel entra/sale del modo flotante (en lugar de solo moverse)"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Hide panel:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "When there are no widgets visible"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Customization"
