@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-05-10 01:57+0000\n"
+"POT-Creation-Date: 2026-05-10 04:38+0000\n"
 "PO-Revision-Date: 2026-04-15 16:01-0300\n"
 "Last-Translator: Lucas Cesa <lucascesa455@gmail.com>\n"
 "Language-Team: spanish <LL@li.org>\n"
@@ -739,6 +739,10 @@ msgstr "Parte del panel en la que se aplicarán las siguientes opciones."
 #: ../contents/ui/configBlacklistWidgets.qml
 msgid "Blacklist widgets to keep their default appearance. A logout may be required for some widgets to fully restore their default appearance."
 msgstr "Añadir widgets a la lista de excluidos para mantener su apariencia predeterminada. Puede que sea necesario cerrar la sesión para que algunos widgets restauren completamente su apariencia por defecto."
+
+#: ../contents/ui/configBlacklistWidgets.qml
+msgid "Blacklist spacers"
+msgstr ""
 
 #: ../contents/ui/configBlacklistWidgets.qml ../contents/ui/configTrayIconsReplacer.qml
 msgid "Remove all"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-05-10 01:57+0000\n"
+"POT-Creation-Date: 2026-05-10 04:38+0000\n"
 "PO-Revision-Date: 2026-02-09 22:02+0100\n"
 "Last-Translator: Levente Pál Szíjártó <szijartoleventepal@gmail.com>\n"
 "Language-Team: hu\n"
@@ -870,6 +870,10 @@ msgstr "A panel azon része, amelyre az alábbi beállítások vonatkoznak."
 msgid ""
 "Blacklist widgets to keep their default appearance. A logout may be required "
 "for some widgets to fully restore their default appearance."
+msgstr ""
+
+#: ../contents/ui/configBlacklistWidgets.qml
+msgid "Blacklist spacers"
 msgstr ""
 
 #: ../contents/ui/configBlacklistWidgets.qml
