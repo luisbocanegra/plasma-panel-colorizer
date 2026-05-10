@@ -1,8 +1,10 @@
+pragma ComponentBehavior: Bound
 import QtCore
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import "code/utils.js" as Utils
+import "code/globals.js" as Globals
 import "components" as Components
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
@@ -21,6 +23,7 @@ KCM.SimpleKCM {
     property string configDir: StandardPaths.writableLocation(StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/"
     property string importCmd: "cat '" + configDir + "blacklistWidgets.json'"
     property string crateConfigDirCmd: "mkdir -p " + configDir
+    property alias cfg_blacklistSpacers: blacklistSpacers.checked
 
     function updateConfig() {
         console.log("updateConfig()");
@@ -70,7 +73,8 @@ KCM.SimpleKCM {
             const icon = widget.icon;
             const inTray = widget.inTray;
             const globalShortcut = widget.globalShortcut ?? "";
-            if (inTray)
+            const isSpacer = Globals.spacerWidgets.includes(name);
+            if (inTray || (isSpacer && cfg_blacklistSpacers))
                 continue;
             widgetsModel.append({
                 id,
@@ -118,6 +122,13 @@ KCM.SimpleKCM {
         updateWidgetsModel();
     }
 
+    onCfg_blacklistSpacersChanged: {
+        if (!loaded)
+            return;
+
+        initWidgets();
+    }
+
     ListModel {
         id: widgetsModel
     }
@@ -156,6 +167,17 @@ KCM.SimpleKCM {
             type: Kirigami.MessageType.Information
         }
 
+        Kirigami.FormLayout {
+            CheckBox {
+                id: blacklistSpacers
+                text: i18n("Blacklist spacers")
+                checked: root.cfg_blacklistSpacers
+                onCheckedChanged: {
+                    root.updateConfig();
+                }
+            }
+        }
+
         RowLayout {
             Button {
                 text: i18n("Remove all")
@@ -182,9 +204,9 @@ KCM.SimpleKCM {
                 model: widgetsModel
 
                 delegate: Components.WidgetCardBlacklist {
-                    widget: model
+                    required property int index
                     onUpdateWidget: blacklisted => {
-                        if (!loaded)
+                        if (!root.loaded)
                             return;
 
                         widgetsModel.set(index, {

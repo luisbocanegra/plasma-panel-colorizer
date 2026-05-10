@@ -113,6 +113,11 @@
         <default>{"widgets":[]}</default>
     </entry>
     <entry
+        name="blacklistSpacers"
+        type="Bool">
+        <default>true</default>
+    </entry>
+    <entry
         name="systemTrayIconsReplacementEnabled"
         type="Bool">
         <default>false</default>

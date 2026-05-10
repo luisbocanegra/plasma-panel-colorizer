@@ -9,6 +9,7 @@ import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.plasmoid
 import "../code/utils.js" as Utils
 import "../code/enum.js" as Enum
+import "../code/globals.js" as Globals
 import "../code/statusNotifierItemIconRules.js" as SNIIconRules
 import "../"
 
@@ -122,7 +123,9 @@ Rectangle {
     property bool shouldHide: hideCfg?.hide ?? false
     property var widgetStatus: rect.target.applet?.plasmoid?.status ?? null
     property bool isHidden: widgetStatus === PlasmaCore.Types.HiddenStatus
-    property var blacklisted: main.blacklistedWidgets.widgets.find(widget => widget.id === widgetId && widget.name === widgetName)?.blacklisted ?? false
+    property bool blacklistSpacers: Plasmoid.configuration.blacklistSpacers
+    property bool isSpacer: Globals.spacerWidgets.includes(widgetName)
+    property var blacklisted: (main.blacklistedWidgets.widgets.find(widget => widget.id === widgetId && widget.name === widgetName)?.blacklisted ?? false) || (isSpacer && blacklistSpacers)
 
     function cornerForcedZero(cornerName) {
         if (!isPanel || !(cfg.flattenOnDeFloat ?? false))

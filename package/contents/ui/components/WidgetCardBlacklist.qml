@@ -6,7 +6,7 @@ import org.kde.kirigami as Kirigami
 Kirigami.AbstractCard {
     id: root
 
-    property var widget
+    required property var model
 
     signal updateWidget(bool hide)
 
@@ -14,21 +14,21 @@ Kirigami.AbstractCard {
 
     contentItem: RowLayout {
         Kirigami.Icon {
-            width: Kirigami.Units.gridUnit
-            height: width
-            source: root.widget.icon
+            Layout.preferredWidth: Kirigami.Units.iconSizes.medium
+            Layout.preferredHeight: Layout.preferredWidth
+            source: root.model.icon
         }
 
         ColumnLayout {
             Label {
-                text: root.widget.title
+                text: root.model.title
                 Layout.fillWidth: true
                 wrapMode: Label.Wrap
             }
 
             RowLayout {
                 TextEdit {
-                    text: root.widget.name
+                    text: root.model.name
                     opacity: 0.6
                     readOnly: true
                     color: Kirigami.Theme.textColor
@@ -38,7 +38,7 @@ Kirigami.AbstractCard {
                 }
 
                 TextEdit {
-                    text: root.widget.id
+                    text: root.model.id
                     opacity: 0.6
                     readOnly: true
                     color: Kirigami.Theme.textColor
@@ -54,7 +54,7 @@ Kirigami.AbstractCard {
         }
 
         Rectangle {
-            visible: root.widget.inTray
+            visible: root.model.inTray
             color: Kirigami.Theme.highlightColor
             Kirigami.Theme.colorSet: root.Kirigami.Theme["Selection"]
             radius: parent.height / 2
@@ -78,7 +78,7 @@ Kirigami.AbstractCard {
 
             text: i18n("Blacklist")
             checkable: true
-            checked: root.widget.blacklisted ?? false
+            checked: root.model.blacklisted ?? false
             icon.name: checked ? "checkmark-symbolic" : "dialog-close-symbolic"
             onCheckedChanged: {
                 root.updateWidget(hideCheckbox.checked);

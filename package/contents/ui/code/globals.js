@@ -385,3 +385,8 @@ const editModeGridSettings = {
     majorLine: { color: "#ff0000", alpha: 0 },
     mayorLineEvery: 2,
 };
+
+const spacerWidgets = [
+    "org.kde.plasma.panelspacer",
+    "luisbocanegra.panelspacer.extended",
+];
