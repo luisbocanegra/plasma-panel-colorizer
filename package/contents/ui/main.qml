@@ -6,6 +6,7 @@ import org.kde.kirigami as Kirigami
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.plasmoid
 import org.kde.taskmanager as TaskManager
+import org.kde.notification
 
 import "code/utils.js" as Utils
 import "code/globals.js" as Globals
@@ -1007,6 +1008,7 @@ PlasmoidItem {
                 Plasmoid.configuration.isEnabled = false;
                 main.updatePanelVisibility();
                 main.updateContextualActions(false);
+                widgetRemovedNotification.sendEvent();
             }
         }
 
@@ -1015,7 +1017,18 @@ PlasmoidItem {
                 Plasmoid.configuration.isEnabled = main.wasEnabled;
                 main.updatePanelVisibility();
                 main.updateContextualActions(main.configureFromAllWidgets);
+                widgetRemovedNotification.close();
             }
         }
+    }
+
+    Notification {
+        id: widgetRemovedNotification
+        componentName: "plasma_workspace"
+        eventId: "notification"
+        title: i18n("Panel Colorizer")
+        text: i18n("A Plasmashell restart is required to remove all the modifications made by Panel Colorizer. Run journalctl restart --user plasma-plasmashell or log out and log back in.")
+        flags: Notification.Persistent
+        iconName: main.icon
     }
 }
