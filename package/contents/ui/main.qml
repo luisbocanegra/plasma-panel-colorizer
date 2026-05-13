@@ -51,6 +51,7 @@ PlasmoidItem {
     property bool floatingDialogsAllowOverride: main.isEnabled ? cfg.nativePanel.floatingDialogsAllowOverride : false
     property bool fillAreaOnDeFloat: main.isEnabled ? cfg.nativePanel.fillAreaOnDeFloat : false
     property bool isEnabled: Plasmoid.configuration.isEnabled
+    property bool wasEnabled: true
     property bool nativePanelBackgroundEnabled: (isEnabled ? cfg.nativePanel.background.enabled : true) || doPanelClickFix
     property real nativePanelBackgroundOpacity: isEnabled ? cfg.nativePanel.background.opacity : 1.0
     property bool nativePanelBackgroundShadowEnabled: isEnabled ? cfg.nativePanel.background.shadow : true
@@ -465,16 +466,7 @@ PlasmoidItem {
         return null;
     }
 
-    property var containmentItem: {
-        let candidate = main.parent;
-        while (candidate) {
-            if (candidate.toString().indexOf("ContainmentItem_QML") > -1) {
-                return candidate;
-            }
-            candidate = candidate.parent;
-        }
-        return null;
-    }
+    property var containmentItem: Plasmoid.containment
 
     onPanelElementChanged: {
         Utils.panelOpacity(panelElement, isEnabled, nativePanelBackgroundOpacity);
@@ -806,10 +798,6 @@ PlasmoidItem {
         }, main);
     }
 
-    Component.onDestruction: {
-        updateContextualActions(false);
-    }
-
     TasksModel {
         id: tasksModel
         screenGeometry: Plasmoid.containment.screenGeometry
@@ -1005,5 +993,29 @@ PlasmoidItem {
 
     Plasmoid.onActivated: {
         main.widgetClickAction();
+    }
+
+    // Disable panel colorizer when the widget is about to be removed
+    // using containment because:
+    // Component.onDestroyed is fired too late
+    // Plasmoid.destroyedChanged is also fired when the panel is removed
+    Connections {
+        target: Plasmoid.containment
+        function onAppletAboutToBeRemoved(applet) {
+            if (Plasmoid.id === applet.id) {
+                main.wasEnabled = main.isEnabled;
+                Plasmoid.configuration.isEnabled = false;
+                main.updatePanelVisibility();
+                main.updateContextualActions(false);
+            }
+        }
+
+        function onAppletAdded(applet) {
+            if (Plasmoid.id === applet.id) {
+                Plasmoid.configuration.isEnabled = main.wasEnabled;
+                main.updatePanelVisibility();
+                main.updateContextualActions(main.configureFromAllWidgets);
+            }
+        }
     }
 }
