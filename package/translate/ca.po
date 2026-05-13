@@ -55,11 +55,11 @@ msgstr "Reescriptura global"
 
 #: ../contents/config/config.qml
 msgid "Text/Icon Color Fixes"
-msgstr ""
+msgstr "Canvis de color de text/icones"
 
 #: ../contents/config/config.qml
 msgid "Blacklist Widgets"
-msgstr ""
+msgstr "Llista negra de ginys"
 
 #: ../contents/config/config.qml
 msgid "Hide Widgets"
@@ -371,15 +371,15 @@ msgstr "Botó d'expandeix a l'ample:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Make the System Tray expand button use the same size as the other tray items"
-msgstr ""
+msgstr "Botó d'expansió de la safata del sistema amb la mateixa mida que els altres elements de la safata"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Custom cell height:"
-msgstr ""
+msgstr "Alçària personalitzada de la casella:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Custom cell width:"
-msgstr ""
+msgstr "Amplada personalitzada de la casella:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Force floating applets"
@@ -395,15 +395,15 @@ msgstr "Trau el fons personalitzat i vores i cantonades arrodonides a la vora de
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Resize panel length when panel enters/exits floating state (instead of just moving)"
-msgstr ""
+msgstr "Canvia la llargada del panell quan entri o surti de l'estat flotant (en lloc de només quan es mou)"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Hide panel:"
-msgstr ""
+msgstr "Amaga el panell:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "When there are no widgets visible"
-msgstr ""
+msgstr "Quan no hi hagi ginys visibles"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Customization"
@@ -743,7 +743,7 @@ msgstr ""
 
 #: ../contents/ui/configBlacklistWidgets.qml
 msgid "Blacklist spacers"
-msgstr ""
+msgstr "Posa els espaiadors a la llista negra"
 
 #: ../contents/ui/configBlacklistWidgets.qml ../contents/ui/configTrayIconsReplacer.qml
 msgid "Remove all"
@@ -1335,7 +1335,7 @@ msgstr ""
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Separator widget:"
-msgstr ""
+msgstr "Giny separador:"
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Select the widget that will act as separator for the islands.<br><br>Note that the separator widget itself does not need to be visible for it to work, so you can use an invisible spacer/separator for example."
@@ -1343,7 +1343,7 @@ msgstr ""
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Require two separators per island:"
-msgstr ""
+msgstr "Requereix dos separadors per illa:"
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid ""
@@ -1353,155 +1353,12 @@ msgstr ""
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Blacklist separator widgets:"
-msgstr ""
+msgstr "Ginys separadors de la llista negra"
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Disable customization from separator widgets"
-msgstr ""
+msgstr "Desactiva la personalització dels ginys separadors"
 
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Amaga el giny (visible en Mode d'Edició del Panell)"
-
-#~ msgid "Disable"
-#~ msgstr "Desactiva"
-
-#~ msgid "Start"
-#~ msgstr "Inici"
-
-#~ msgid "End"
-#~ msgstr "Final"
-
-#~ msgid "Select start and end of widget islands, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Widget custom background or border is required for this option to have an effect."
-#~ msgstr "Seleccioneu l'inici i final de les illes de ginys. Els ginys entre <b>Inici</b> i <b>Final</b> s'han de deixar <b>desactivats</b>. Cal un fons o vores del giny personalitzats per tal que tingui efecte."
-
-#~ msgid "Remove all islands"
-#~ msgstr "Trau totes les illes"
-
-#~ msgid "Make the System Tray expand button be the same width as the other tray items"
-#~ msgstr "Fes que el botó d'expansió a l'ample tingui la mateixa amplada que els altres elements."
-
-#~ msgid "Text/Icon Fixes"
-#~ msgstr "Reparació de text i icones"
-
-#~ msgid "Anchor to edges:"
-#~ msgstr "Ancora a les vores:"
-
-#~ msgid "Resize content when panel enters/exits floating state"
-#~ msgstr "Redimensiona el contingut quan el panell entri o surti de l'estat flotant."
-
-#~ msgid "Panel de-float:"
-#~ msgstr "Desflotització del panell:"
-
-#~ msgid "Clip the widget content to the custom background radius.<br>Clipping widgets against the panel is not supported yet but is planned for a later version, see <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/275\">#275</a>."
-#~ msgstr "Retalla les vores del contingut del giny segons el radi del fons personalitzat.<br>Retallar els ginys respecte el panell encara no se suporta, però està planificat per a properes versions. Vegeu <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/275\">#275</a>."
-
-#~ msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it."
-#~ msgstr "No s'ha trobat el complement C++. Aquesta opció no funcionarà. Instal·leu el complement i reinicieu l'ordinador o el plasmashell per a fer-ho servir."
-
-#~ msgid "Plugin install instructions"
-#~ msgstr "Instruccions d'instal·lació del complement"
-
-#~ msgid ""
-#~ "WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will renove the configuration from all Panel "
-#~ "Colorizer instances so make sure to save the others first"
-#~ msgstr ""
-#~ "AVÍS: Feu servir Mostra/Amaga amb compte. Si amagueu el panell i no teniu configurada la càrrega automàtica de perfils o no sabeu com canviar de perfil amb el D-Bus (o l'heu desactivat), no podreu tornar-lo a visibilitzar sense eliminar manualment la configuració o l'Acoloridor de panells. Feu servir la comanda de més a sota al terminal/tty i sortiu de la sessió o reinicieu. Així, es "
-#~ "reiniciarà la configuració de totes les instàncies de l'Acoloridor de panells. Abans, però, potser us aniria bé desar una còpia de seguretat de totes les altres instàncies."
-
-#~ msgid "Matrix chat"
-#~ msgstr "Xat Matrix"
-
-#~ msgid "Discussions"
-#~ msgstr "Discussions"
-
-#~ msgid "GitHub sponsors"
-#~ msgstr "Espònsors del GitHub"
-
-#~ msgid "My other projects"
-#~ msgstr "Altres projectes meus"
-
-#~ msgid "Use an integer when using <strong>Widget Islands</strong> to avoid rendering issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">See #64<a/>"
-#~ msgstr "Feu servir enters per a les <strong>Illes de ginys</strong> per a evitar problemes de renderització. <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">Vegeu #64<a/>"
-
-#~ msgid "<strong>Odd</strong> values are automatically converted to <strong>evens</strong> if <strong>Unified Background</strong> feature is used."
-#~ msgstr "Els valors <strong>imparells</strong> es converteixen automàticament en <strong>parells</strong> si es fa servir l'opció <strong>Fons Unificat</strong>."
-
-#~ msgid "Remove all unified areas"
-#~ msgstr "Trau totes les àrees unificades"
-
-#~ msgid ""
-#~ "Fix text and icon colors for widgets where the normal method doesn't work or isn't permanent.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color at a fixed interval, useful for widgets "
-#~ "that recreate or recolor content themselves<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
-#~ msgstr ""
-#~ "Arregla els colors de les icones i els textos dels ginys on el mètode normal no funciona o no és permanent.<br> - <strong>Màscara</strong>: Força un color a les icones SVG. Útil per a icones simbòliques.<br> - <strong>Efecte de color</strong>: Força un color al text i les icones amb un efecte de post-processat. Útil per a icones no simbòliques.<br> - <strong>Actualitza</strong>: Torna a "
-#~ "aplicar el color regularment cada determinat període de temps. Útil per a ginys que recreen o canvien el color per si mateixos.<br>Per a restaurar la <strong>Màscara<strong> i l'<strong>Efecte de color</strong>, desactiveu i reinicieu el Plasma o sortiu de la sessió."
-
-#~ msgid "SHA1"
-#~ msgstr "SHA1"
-
-#~ msgid "Original icon SHA1"
-#~ msgstr "SHA1 de la icona original"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid "Icon name is \"%1\""
-#~ msgstr "El nom de la icona és «%1»."
-
-#~ msgid "Text and icon fixes"
-#~ msgstr "Arranjaments de text i icones"
-
-#~ msgid "visible in Panel Edit Mode"
-#~ msgstr "Visible en Mode d'Edició del Panell"
-
-#~ msgid "Unified widget backgrounds"
-#~ msgstr "Fons unificats dels ginys"
-
-#~ msgid "Text and icons"
-#~ msgstr "Text i icones"
-
-#~ msgid "customization"
-#~ msgstr "personalització"
-
-#~ msgid "Not getting the expected result? Make sure you're editing the correct element."
-#~ msgstr "No aconseguiu el resultat esperat? Assegureu-vos que editeu l'element correcte."
-
-#~ msgid ""
-#~ "Fix text and icon colors for widgets where the normal method doesn't work or isn't permanent.<br><strong>Mask</strong>: Force Icon colorization (symbolic icons).<br><strong>Color Effect</strong>: Force Text/Icons colorization using post-processing effect (any icon).<br><strong>Refresh</strong>: Re-apply colorization at a fixed interval, for widgets that recreate or recolor content "
-#~ "themselves<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
-#~ msgstr ""
-#~ "Arregla els colors de text i d'icona per als ginys per als quals el mètode normal no funciona o l'efecte no és permanent.<br><strong>Màscara</strong>: Força l'acoloriment d'icones (icones simbòliques).<br><strong>Efecte de color</strong>: Força l'acoloriment de text/icones fent servir un efecte de post-processat (per a qualsevol icona).<br><strong>Actualitza</strong>: Torna a aplicar "
-#~ "l'acoloriment a un interval fixat, per a ginys que recreen o canvien el color del contingut per si mateixos<br>Per a restaura la <strong>Màscara<strong> i l'<strong>Efecte de color</strong>, desactiveu i reinicieu el Plasma o sortiu de la sessió."
-
-#~ msgid "Each Panel Colorizer instance has its D-Bus name."
-#~ msgstr "Cada instància de l'Acoloridor de Panells té el seu nom de D-Bus."
-
-#~ msgid "Usage:"
-#~ msgstr "Ús:"
-
-#~ msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides are independent and will be applied on top of the current settings and across presets."
-#~ msgstr "Crea una configuració de sobreescriptura i l'aplica a un o diversos ginys. Aquestes sobreescriptures són independents i s'aplicaran al damunt de la configuració actual i als diferents perfils."
-
-#~ msgid "Switch between different presets based on the Panel and window states.<br>Disable preset auto-loading when making changes to presets, unsaved preset settings will be lost when presets change!"
-#~ msgstr "Canvia entre perfils diferents segons els estats del panell i de les finestres.<br>Si es desactiva la càrrega automàtica de perfils mentre es fan canvis als perfils, els canvis sense desar es perdran quan canvieu de perfil."
-
-#~ msgid "Restore default (removes all autoloading conditions)"
-#~ msgstr "Restaura els valors per defecte (trau totes les condicions de càrrega automàtica)"
-
-#~ msgid "Environment"
-#~ msgstr "Entorn"
-
-#~ msgid ""
-#~ "WARNING: Use with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration, use the command below in terminal/tty then log out or reboot, it will renove the configuratiob from all Panel Colorizer instances so make sure to "
-#~ "save the others first"
-#~ msgstr ""
-#~ "AVÍS: Feu-ho servir amb compte. Si amagueu el panell i no heu configurat la càrrega automàtica de perfils o sabeu com canviar de perfil amb el D-Bus ‒o l'heu desactivat‒, no podreu fer-lo visible de nou sense traure manualment la configuració. Feu servir l'ordre següent al terminal/tty i tanqueu sessió o reinicieu. Renovarà la configuració de totes les instàncies de l'Acoloridor de Panells "
-#~ "per a assegurar que es desin primer les altres"
-
-#~ msgid "Select start and end of unified background areas, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Note: <strong>odd</strong> widget spacing values are automatically converted to <strong>evens</strong> when this feature is used."
-#~ msgstr "Trieu l'inici i final de les àrees de fons unificat. Els ginys entre l'<b>Inici</b> i el <b>Final</b> han d'estar <b>desactivats</b> a l'esquerra. Nota: els valors d'espaiat <strong>imparells</strong> es convertiran automàticament a <strong>parells</strong> quan es fa servir aquesta funció."
-
-#~ msgid "Restore default (removes all unified areas)"
-#~ msgstr "Restaura els valors per defecte (trau les àrees unificades)"
-
-#~ msgid "Force floating dialogs"
-#~ msgstr "Força els diàlegs flotants"
