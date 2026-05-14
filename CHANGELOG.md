@@ -1,5 +1,26 @@
 # Changelog
 
+## [7.1.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v7.0.1...v7.1.0) (2026-05-14)
+
+
+### Features
+
+* add option to blacklist spacers and enable it by default ([f59df10](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/f59df10c3833c096e8406c163ddc0edbba676b95))
+* add Spanish translation ([32fd909](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/32fd909240a806b5c8e484d6a877a5ffe51b2a4c))
+* disable most modifications when the widget about to be removed ([8a975d6](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/8a975d676667d1f12a25a9ace0f66ee5092e9ce4))
+* hide panel when no widgets are visible ([89ca32e](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/89ca32ea3e60dfd98689e99b2307b348dccd291a))
+* notify of required Plasmashell restart after widget is removed ([a35b9fa](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/a35b9fa87a46676de9c49ed6b424a6f844ae1596))
+* slightly faster system tray icon replacement ([6932e32](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/6932e326f90ee391ac6ae761854493e957a6bd0c))
+* update Catalan translation ([8edefa1](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/8edefa1af2fc10a970a513b21fb6192d601fdbf5))
+
+
+### Bug Fixes
+
+* background image not updating after changing images ([0e2a684](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/0e2a684efb786205d2cf3fda22862305368de8dc))
+* crashes and slowness in appearance/override configuration tabs ([46db0fe](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/46db0feafde0128134eac4d01b3fafcf7ecb0e79))
+* restore panel/widgets visibility when panel colorizer is disabled ([1ce6de5](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/1ce6de5d50e81cab1022865ef59419ac58366447))
+* small gap in widget border when using widget islands ([e43d1d3](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/e43d1d369975edbcf5222f36bd29d2a1b3c5b901))
+
 ## [7.0.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v7.0.0...v7.0.1) (2026-04-12)
 
 
