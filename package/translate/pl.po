@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-05-14 14:39+0000\n"
+"POT-Creation-Date: 2026-05-14 15:28+0000\n"
 "PO-Revision-Date: 2026-02-07 12:00+0100\n"
 "Last-Translator: RygorrMortis <rygorrmortis@github.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -572,6 +572,13 @@ msgstr ""
 "Do przywrócenia oryginalnych wartości po wyłączeniu dowolnego ustawienia "
 "czcionki wymagane jest ponowne uruchomienie plasmashell. <a "
 "href=\"#\">Uruchom ponownie teraz</a>."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"12345678900\n"
+"ABCDEFGHIJKLMNOPQRSTUVWXYZ\n"
+"abcdefghijklmnopqrstuvwxyz"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Font family:"

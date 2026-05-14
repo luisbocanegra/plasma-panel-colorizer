@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-05-14 14:39+0000\n"
+"POT-Creation-Date: 2026-05-14 15:28+0000\n"
 "PO-Revision-Date: 2025-12-25 13:03+0200\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
@@ -559,6 +559,13 @@ msgstr ""
 msgid ""
 "A plasmashell restart is required to restore the original values after "
 "disabling any font setting. <a href=\"#\">Restart now</a>."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"12345678900\n"
+"ABCDEFGHIJKLMNOPQRSTUVWXYZ\n"
+"abcdefghijklmnopqrstuvwxyz"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml

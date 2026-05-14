@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-05-14 14:39+0000\n"
+"POT-Creation-Date: 2026-05-14 15:28+0000\n"
 "PO-Revision-Date: 2026-04-15 16:01-0300\n"
 "Last-Translator: Lucas Cesa <lucascesa455@gmail.com>\n"
 "Language-Team: spanish <LL@li.org>\n"
@@ -479,6 +479,13 @@ msgstr "Fuente personalizada:"
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "A plasmashell restart is required to restore the original values after disabling any font setting. <a href=\"#\">Restart now</a>."
 msgstr "Se requiere un reinicio de plasmashell para restaurar los valores por defecto luego de desactivar cualquier preferencia de fuente. <a href=\"#\">Reiniciar ahora</a>."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"12345678900\n"
+"ABCDEFGHIJKLMNOPQRSTUVWXYZ\n"
+"abcdefghijklmnopqrstuvwxyz"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Font family:"

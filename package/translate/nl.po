@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-05-14 14:39+0000\n"
+"POT-Creation-Date: 2026-05-14 15:28+0000\n"
 "PO-Revision-Date: 2026-01-20 10:36+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -564,6 +564,13 @@ msgid ""
 msgstr ""
 "Herstart plasmashell om de oorspronkelijke instellingen terug te zetten na "
 "het uitschakelen hiervan. <a href=\"#\">Nu herstarten</a>."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"12345678900\n"
+"ABCDEFGHIJKLMNOPQRSTUVWXYZ\n"
+"abcdefghijklmnopqrstuvwxyz"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Font family:"
