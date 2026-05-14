@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-05-10 04:38+0000\n"
+"POT-Creation-Date: 2026-05-14 14:39+0000\n"
 "PO-Revision-Date: 2026-01-24 16:46+0800\n"
 "Last-Translator: Mill Haruto <mill413@outlook.com>\n"
 "Language-Team: \n"
@@ -1558,6 +1558,13 @@ msgstr ""
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "隐藏挂件（面板编辑模式下可见）"
+
+#: ../contents/ui/main.qml
+msgid ""
+"A Plasmashell restart is required to remove all the modifications made by "
+"%1. Run journalctl restart --user plasma-plasmashell or log out and log back "
+"in."
+msgstr ""
 
 #~ msgid "Disable"
 #~ msgstr "禁用"

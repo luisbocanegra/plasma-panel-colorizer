@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-05-10 04:38+0000\n"
+"POT-Creation-Date: 2026-05-14 14:39+0000\n"
 "PO-Revision-Date: 2026-04-15 16:01-0300\n"
 "Last-Translator: Lucas Cesa <lucascesa455@gmail.com>\n"
 "Language-Team: spanish <LL@li.org>\n"
@@ -1363,6 +1363,10 @@ msgstr "Desactivar personalización de los widgets separadores"
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
 msgstr "Ocultar widget (visible en el Modo edición del panel)"
+
+#: ../contents/ui/main.qml
+msgid "A Plasmashell restart is required to remove all the modifications made by %1. Run journalctl restart --user plasma-plasmashell or log out and log back in."
+msgstr ""
 
 #~ msgid "Fallback to the Global/Preset widget settings for disabled options, except for <b>Enable</b> and <b>Blur</b>."
 #~ msgstr "Recurrir a los ajustes de widget Globales/Preestablecidos para las opciones desactivadas, excepto para <b>Activar</b> y <b>Desenfoque</b>."
