@@ -1,7 +1,7 @@
+pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import "code/utils.js" as Utils
 import "code/globals.js" as Globals
 import "components" as Components
 import org.kde.kcmutils as KCM
@@ -9,13 +9,15 @@ import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
 
 KCM.SimpleKCM {
-    id: root
+    id: appearanceRoot
+    property alias parentLayout: parentLayout
 
     property int currentTab
     property int currentState
     property string cfg_globalSettings
     property alias cfg_isEnabled: headerComponent.isEnabled
     property bool ready: false
+    property var settingsItem: null
     property var followVisbility: {
         "widgets": {
             "background": {
@@ -56,7 +58,11 @@ KCM.SimpleKCM {
     }
 
     ColumnLayout {
+        id: layout
         enabled: cfg_isEnabled
+        width: appearanceRoot.availableWidth
+        height: Math.max(implicitHeight, appearanceRoot.availableHeight)
+        spacing: 0
 
         Kirigami.InlineMessage {
             Layout.fillWidth: true
@@ -83,7 +89,6 @@ KCM.SimpleKCM {
             id: parentLayout
 
             Layout.fillWidth: true
-
             RowLayout {
                 Kirigami.FormData.label: i18n("Element:")
                 ComboBox {
@@ -116,21 +121,61 @@ KCM.SimpleKCM {
             }
         }
 
-        Components.FormWidgetSettings {
+        Component {
             id: settingsComp
-            currentTab: root.currentTab
-            configString: root.cfg_globalSettings
-            handleString: true
-            elementState: root.currentState
-            elementName: targetComponent.currentValue
-            elementFriendlyName: targetComponent.currentText
-            followVisbility: root.followVisbility[targetComponent.currentValue]
-            onElementStateChanged: root.currentState = elementState
-            onTabChanged: currentTab => {
-                root.currentTab = currentTab;
+            Components.FormWidgetSettings {
+                currentTab: appearanceRoot.currentTab
+                configString: appearanceRoot.cfg_globalSettings
+                handleString: true
+                elementState: appearanceRoot.currentState
+                elementName: targetComponent.currentValue
+                elementFriendlyName: targetComponent.currentText
+                followVisbility: appearanceRoot.followVisbility[targetComponent.currentValue]
+                onElementStateChanged: appearanceRoot.currentState = elementState
+                onTabChanged: currentTab => {
+                    appearanceRoot.currentTab = currentTab;
+                }
+                onUpdateConfigString: (newString, newConfig) => {
+                    if (!appearanceRoot.ready) {
+                        return;
+                    }
+                    Qt.callLater(() => {
+                        console.error("Components.FormWidgetSettings, Updated config string");
+                        appearanceRoot.cfg_globalSettings = JSON.stringify(newConfig);
+                    });
+                }
             }
-            onUpdateConfigString: (newString, newConfig) => {
-                root.cfg_globalSettings = JSON.stringify(newConfig);
+        }
+
+        Component.onCompleted: {
+            Qt.callLater(() => {
+                appearanceRoot.settingsItem = settingsComp.createObject(layout);
+                appearanceRoot.ready = true;
+            });
+        }
+        Item {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            visible: !appearanceRoot.settingsItem
+            Kirigami.LoadingPlaceholder {
+                anchors.centerIn: parent
+            }
+        }
+    }
+
+    Component.onDestruction: {
+        if (appearanceRoot.settingsItem) {
+            appearanceRoot.settingsItem.destroy();
+            appearanceRoot.settingsItem = null;
+        }
+    }
+
+    Connections {
+        target: Qt.application
+        function onAboutToQuit() {
+            if (appearanceRoot.settingsItem) {
+                appearanceRoot.settingsItem.destroy();
+                appearanceRoot.settingsItem = null;
             }
         }
     }

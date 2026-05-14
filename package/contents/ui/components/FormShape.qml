@@ -7,8 +7,6 @@ import "../"
 Kirigami.FormLayout {
     id: shapeRoot
 
-    // required to align with parent form
-    property alias formLayout: shapeRoot
     property bool isSection: true
     // wether read from the string or existing config object
     property bool handleString
@@ -22,9 +20,6 @@ Kirigami.FormLayout {
     function updateConfig() {
         updateConfigString(configString, config);
     }
-
-    twinFormLayouts: parentLayout
-    Layout.fillWidth: true
 
     Kirigami.Separator {
         Kirigami.FormData.isSection: true

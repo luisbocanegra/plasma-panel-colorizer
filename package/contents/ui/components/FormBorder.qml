@@ -6,8 +6,6 @@ import org.kde.kirigami as Kirigami
 Kirigami.FormLayout {
     id: root
 
-    // required to align with parent form
-    property alias formLayout: root
     property bool isSection: true
     property string sectionName
     // wether read from the string or existing config object
@@ -23,9 +21,6 @@ Kirigami.FormLayout {
     function updateConfig() {
         updateConfigString(configString, config);
     }
-
-    twinFormLayouts: parentLayout
-    Layout.fillWidth: true
 
     Kirigami.Separator {
         Kirigami.FormData.isSection: isSection

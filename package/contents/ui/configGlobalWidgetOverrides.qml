@@ -10,7 +10,8 @@ import "code/utils.js" as Utils
 import "code/globals.js" as Globals
 
 KCM.SimpleKCM {
-    id: root
+    id: appearanceRoot
+    property alias parentLayout: parentLayout
     property alias cfg_isEnabled: headerComponent.isEnabled
     property string cfg_panelWidgets
     property bool clearing: false
@@ -80,7 +81,7 @@ KCM.SimpleKCM {
                 const content = stdout.trim().split("\n");
                 try {
                     const newConfig = JSON.parse(content);
-                    root.importConfig(newConfig);
+                    appearanceRoot.importConfig(newConfig);
                 } catch (e) {
                     console.error(e);
                 }
@@ -137,7 +138,7 @@ KCM.SimpleKCM {
                 text: i18n("Restore default (removes all overrides)")
                 icon.name: "kt-restore-defaults-symbolic"
                 onClicked: {
-                    root.restoreSettings();
+                    appearanceRoot.restoreSettings();
                 }
                 Layout.fillWidth: true
             }
@@ -166,12 +167,12 @@ KCM.SimpleKCM {
             Layout.maximumWidth: 500
             Layout.alignment: Qt.AlignHCenter
             Repeater {
-                model: Object.keys(root.configOverrides)
+                model: Object.keys(appearanceRoot.configOverrides)
                 delegate: Components.WidgetCardOverride {
                     onDeleteOverride: name => {
                         delete configOverrides[name];
                         showingConfig = false;
-                        root.updateConfig();
+                        appearanceRoot.updateConfig();
                     }
                     onEditingName: name => {
                         overrideName = name;
@@ -188,16 +189,11 @@ KCM.SimpleKCM {
                         nextOverride++;
                     }
                     configOverrides[`Global Override ${nextOverride}`] = Globals.baseOverrideConfig;
-                    root.updateConfig();
+                    appearanceRoot.updateConfig();
                 }
             }
         }
 
-        // Label {
-        //     text: overrideName
-        // }
-
-        property alias parentLayout: parentLayout
         ColumnLayout {
             visible: showingConfig && userInput
             Kirigami.FormLayout {
@@ -224,7 +220,7 @@ KCM.SimpleKCM {
                             configOverrides[nameField.text] = configOverrides[overrideName];
                             delete configOverrides[overrideName];
                             overrideName = nameField.text;
-                            root.updateConfig();
+                            appearanceRoot.updateConfig();
                         }
                     }
                 }
@@ -234,7 +230,7 @@ KCM.SimpleKCM {
                         checked: configOverrides[overrideName]?.disabledFallback || false
                         onCheckedChanged: {
                             configOverrides[overrideName].disabledFallback = checked;
-                            root.updateConfig();
+                            appearanceRoot.updateConfig();
                         }
                     }
                     Kirigami.ContextualHelpButton {
@@ -247,20 +243,20 @@ KCM.SimpleKCM {
                 asynchronous: true
                 sourceComponent: showingConfig ? settingsComp : null
                 onLoaded: {
-                    item.width = root.availableWidth;
+                    item.width = appearanceRoot.availableWidth;
                     item.config = configOverrides[overrideName];
                     item.onUpdateConfigString.connect((newString, config) => {
                         configOverrides[overrideName] = config;
-                        root.updateConfig();
+                        appearanceRoot.updateConfig();
                     });
-                    item.elementState = root.currentState;
-                    item.currentTab = root.currentTab;
+                    item.elementState = appearanceRoot.currentState;
+                    item.currentTab = appearanceRoot.currentTab;
                     item.elementFriendlyName = i18n("Widgets");
                     item.tabChanged.connect(currentTab => {
-                        root.currentTab = currentTab;
+                        appearanceRoot.currentTab = currentTab;
                     });
                     item.elementStateChanged.connect(() => {
-                        root.currentState = item.elementState;
+                        appearanceRoot.currentState = item.elementState;
                         componentLoader.sourceComponent = null;
                         componentLoader.sourceComponent = Qt.binding(() => showingConfig ? settingsComp : null);
                     });
@@ -295,7 +291,7 @@ KCM.SimpleKCM {
                 model: widgetsModel
                 delegate: Components.WidgetCardConfig {
                     widget: model
-                    configOverrides: Object.keys(root.configOverrides)
+                    configOverrides: Object.keys(appearanceRoot.configOverrides)
                     overrideAssociations: associationsModel
                     currentOverrides: associationsModel[Utils.getWidgetConfigIdx(id, name, associationsModel)]?.presets || []
                     onAddOverride: (preset, index) => {
@@ -316,17 +312,17 @@ KCM.SimpleKCM {
                         } else {
                             associationsModel[asocIndex].presets[index] = preset;
                         }
-                        root.updateConfig();
+                        appearanceRoot.updateConfig();
                     }
                     onRemoveOverride: index => {
                         const asocIndex = Utils.getWidgetConfigIdx(id, name, associationsModel);
                         associationsModel[asocIndex].presets.splice(index, 1);
-                        root.updateConfig();
+                        appearanceRoot.updateConfig();
                     }
                     onClearOverrides: () => {
                         const asocIndex = Utils.getWidgetConfigIdx(id, name, associationsModel);
                         associationsModel[asocIndex].presets = [];
-                        root.updateConfig();
+                        appearanceRoot.updateConfig();
                     }
                 }
             }

@@ -6,8 +6,6 @@ import org.kde.kirigami as Kirigami
 Kirigami.FormLayout {
     id: shapeRoot
 
-    // required to align with parent form
-    property alias formLayout: shapeRoot
     property bool isSection: true
     // wether read from the string or existing config object
     property bool handleString
@@ -20,9 +18,6 @@ Kirigami.FormLayout {
     function updateConfig() {
         updateConfigString(configString, config);
     }
-
-    twinFormLayouts: parentLayout
-    Layout.fillWidth: true
 
     Kirigami.Separator {
         Kirigami.FormData.isSection: isSection
@@ -93,7 +88,6 @@ Kirigami.FormLayout {
                     toolTipText: i18n("Horizontal and vertical padding only work properly when the panel is on the same orientation.")
                 }
             }
-
         }
     }
 }
