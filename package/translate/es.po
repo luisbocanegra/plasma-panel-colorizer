@@ -46,11 +46,11 @@ msgstr "Islas de Widgets"
 
 #: ../contents/config/config.qml
 msgid "Preset Overrides"
-msgstr "Sobreescrituras de Ajustes"
+msgstr "Sobrescrituras de Ajustes"
 
 #: ../contents/config/config.qml
 msgid "Global Overrides"
-msgstr "Sobreescrituras Globales"
+msgstr "Sobrescrituras Globales"
 
 #: ../contents/config/config.qml
 msgid "Text/Icon Color Fixes"
@@ -110,7 +110,7 @@ msgstr "Ancho:"
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Use an integer when using <strong>Widget Islands</strong> to avoid rendering issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">See #64</a>"
-msgstr "Usa números enteros al utilizar <strong>Islas de Widgets</strong> para evitar problemas de renderizado! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">Más información #64</a>"
+msgstr "¡Usa números enteros al utilizar <strong>Islas de Widgets</strong> para evitar problemas de renderizado! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">Más información #64</a>"
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Custom widths:"
@@ -194,7 +194,7 @@ msgstr "Imagen"
 
 #: ../contents/ui/components/FormColors.qml
 msgid "High resolution images can slow down the desktop when the panel or widget size changes!"
-msgstr "Las imágenes de alta resolución pueden ralentizar el escritorio cuando el panel o widget cambia de tamaño!"
+msgstr "¡Las imágenes de alta resolución pueden ralentizar el escritorio cuando el panel o widget cambia de tamaño!"
 
 #: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
 msgid "Element:"
@@ -334,7 +334,7 @@ msgstr "Desactiva para hacer el panel totalmente transparente, quita el contrast
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "⚠️ Disabling this breaks the panel clickable area and applet dialogs positioning when the panel is in floating mode! See <a href=\"%1\">#80</a>."
-msgstr "   Desactivar esto rompe la clickeabilidad del panel y la posición del diálogo del applet cuando el panel está en modo flotante! Más información <a href=\"%1\">#80</a>."
+msgstr "   ¡Desactivar esto rompe la clickeabilidad del panel y la posición del diálogo del applet cuando el panel está en modo flotante! Más información <a href=\"%1\">#80</a>."
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "The shadow from the Plasma theme"
@@ -361,8 +361,8 @@ msgid ""
 "Since version 6.4.0, Plasma now has a built-in <b>Floating panel and applets</b> option, enabling this overrides that option.\n"
 "⚠️Changing <b>Floating</b> from the panel configuration will not work with this is enabled!"
 msgstr ""
-"Desde la versión 6.4.0, Plasma tiene los <b>paneles y applets flotantes</b> como opción nativa, activar esta función sobreescribe la función nativa.\n"
-"⚠️Cambiar al <b> modo flotante</b> desde el panel no funcionará con esto activado!"
+"Desde la versión 6.4.0, Plasma tiene los <b>paneles y applets flotantes</b> como opción nativa, activar esta función sobrescribe la función nativa.\n"
+"⚠️¡Cambiar al <b> modo flotante</b> desde el panel no funcionará con esto activado!"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Wide expand button:"
@@ -398,11 +398,11 @@ msgstr "Cambiar longitud del panel cuando el panel entra/sale del modo flotante 
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Hide panel:"
-msgstr ""
+msgstr "Ocultar panel:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "When there are no widgets visible"
-msgstr ""
+msgstr "Cuando no haya widgets visibles"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Customization"
@@ -486,7 +486,7 @@ msgstr "Familia de fuente:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Override"
-msgstr "Sobreescritura"
+msgstr "Sobrescritura"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Italic:"
@@ -614,7 +614,7 @@ msgstr "Más proyectos"
 
 #: ../contents/ui/components/Header.qml ../contents/ui/components/PopupView.qml
 msgid "Running version of the widget (%1) is different to the one on disk (%2), please log out and back in (or restart plasmashell user unit) to ensure things work correctly!"
-msgstr "La versión del widget en ejecución (%1) es diferente a la instalada en el sistema (%2). Por favor, cierra sesión y vuelve a entrar (o reinicia plasmashell) para asegurar que todo funcione correctamente."
+msgstr "La versión del widget en ejecución (%1) es diferente de la instalada en el sistema (%2). ¡Por favor, cierre sesión y vuelva a entrar (o reinicie plasmashell) para asegurarse de que todo funcione correctamente!"
 
 #: ../contents/ui/components/PopupView.qml
 msgid "Select a preset"
@@ -638,23 +638,23 @@ msgstr "Exporta estos ajustes a la carpeta de configuración predeterminada e im
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "Export current settings?"
-msgstr "Exportar preferencias actuales?"
+msgstr "¿Exportar preferencias actuales?"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "Import saved settings?"
-msgstr "Importar las preferencias guardadas?"
+msgstr "¿Importar las preferencias guardadas?"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "This will overwrite any previous export!"
-msgstr "Esto sobreescribirá cualquiera exportación previa!"
+msgstr "¡Esto sobrescribirá cualquiera exportación previa!"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "This will replace your current settings!"
-msgstr "Esto reemplazará tus preferencias actuales!"
+msgstr "¡Esto reemplazará tus preferencias actuales!"
 
 #: ../contents/ui/components/SupportMe.qml
 msgid "Thank you for using %1!"
-msgstr "Gracias por usar %1!"
+msgstr "¡Gracias por usar %1!"
 
 #: ../contents/ui/components/SupportMe.qml
 msgid "If you enjoy using the plugin please consider sponsoring or donating so I can dedicate more time to maintain and improve this and <a href=\"https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers\">my other projects</a>."
@@ -742,7 +742,7 @@ msgstr "Añadir widgets a la lista de excluidos para mantener su apariencia pred
 
 #: ../contents/ui/configBlacklistWidgets.qml
 msgid "Blacklist spacers"
-msgstr ""
+msgstr "Excluir separadores"
 
 #: ../contents/ui/configBlacklistWidgets.qml ../contents/ui/configTrayIconsReplacer.qml
 msgid "Remove all"
@@ -850,27 +850,27 @@ msgstr "Ocultar/mostrar todos los paneles"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides are independent of presets and will be applied on top of the current settings and across presets.<br>To blacklist a widget from modifications, <b>uncheck</b> options <b>Enable</b> and <b>Fallback</b>, and apply the override to the widget."
-msgstr "Crea Sobreescrituras de configuración y aplícalas a uno o varios widgets. Estas Sobreescrituras son independientes de los ajustes y se aplicarán sobre la configuración actual en todos ellos.<br>Para añadir un widget a la lista de exclusión y evitar modificaciones, <b>desmarca</b> las opciones <b>Activar</b> y <b>Fallback</b>, y aplica la sobreescritura al widget."
+msgstr "Crea sobrescrituras de configuración y aplícalas a uno o varios widgets. Estas sobrescrituras son independientes de los ajustes y se aplicarán sobre la configuración actual en todos ellos.<br>Para añadir un widget a la lista de exclusión y evitar modificaciones, <b>desmarca</b> las opciones <b>Activar</b> y <b>Fallback</b>, y aplica la sobrescritura al widget."
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Restore default (removes all overrides)"
-msgstr "Restaurar valores predeterminados (elimina todas las sobreescrituras)"
+msgstr "Restaurar valores predeterminados (elimina todas las sobrescrituras)"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Configuration overrides"
-msgstr "Sobreescrituras de configuración"
+msgstr "Sobrescrituras de configuración"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "New override"
-msgstr "Nueva sobreescritura"
+msgstr "Nueva sobrescritura"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Override settings"
-msgstr "Ajustes de sobreescritura"
+msgstr "Ajustes de sobrescritura"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Override name"
-msgstr "Nombre de la sobreescritura"
+msgstr "Nombre de la sobrescritura"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Rename"
@@ -882,11 +882,11 @@ msgstr "Fallback:"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 msgid "Fallback to the Global/Preset widget settings for disabled options, except for <b>Enable</b> and <b>Blur</>."
-msgstr ""
+msgstr "Usar como fallback la configuración Global/Preestablecida del widget para las opciones deshabilitadas, excepto <b>Activar</b> y <b>Desenfoque</b>."
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Overrides are applied from top to bottom, if two or more configuration overrides share the same option, the last occurence replaces the value of the previous one."
-msgstr "Las sobreescrituras se aplican de arriba a abajo; si dos o más sobreescrituras de configuración comparten la misma opción, la última aparición reemplaza el valor de la anterior."
+msgstr "Las sobrescrituras se aplican de arriba a abajo; si dos o más sobrescrituras de configuración comparten la misma opción, la última aparición reemplaza el valor de la anterior."
 
 #: ../contents/ui/configHideWidgets.qml
 msgid "Hidden widgets can still be activated using keyboard shortcuts and are always visible in the Desktop Edit Mode.<br>The activation shortcut can be configured from the <b>Keyboard Shortcuts</b> page on each widget's configuration window."
@@ -914,7 +914,7 @@ msgstr "No hacer nada"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Automatically switch between different presets based on the Panel and window states.<br>Disable preset auto-loading before making changes to presets, unsaved preset settings will be lost when auto-loading switches to other preset!"
-msgstr "Cambia automáticamente entre diferentes ajustes según el estado del panel y las ventanas.<br>Desactiva la carga automática antes de realizar cambios en los ajustes; los cambios no guardados se perderán cuando la carga automática cambie a otro ajuste."
+msgstr "Cambia automáticamente entre diferentes ajustes según el estado del panel y las ventanas.<br>Desactiva la carga automática antes de realizar cambios en los ajustes. ¡Los cambios no guardados se perderán cuando la carga automática cambie a otro ajuste!"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Remove all auto-loading conditions"
@@ -986,7 +986,7 @@ msgstr "Acción:"
 
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides should be saved to a preset in <strong>Presets</strong> tab or they will be lost when presets change!"
-msgstr "Crea sobreescrituras de configuración y aplícalas a uno o varios widgets. ¡Estas sobreescrituras deben guardarse en un ajuste de la pestaña <strong>Ajustes preestablecidos</strong> o se perderán cuando cambien los ajustes!"
+msgstr "Crea sobrescrituras de configuración y aplícalas a uno o varios widgets. ¡Estas sobrescrituras deben guardarse en un ajuste de la pestaña <strong>Ajustes preestablecidos</strong> o se perderán cuando cambien los ajustes!"
 
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Name:"
@@ -998,7 +998,7 @@ msgstr "Eliminar ajuste"
 
 #: ../contents/ui/configPresets.qml
 msgid "This will permanently delete the file from your system!"
-msgstr "Esto eliminará el archivo de forma permanente!"
+msgstr "¡Esto eliminará el archivo de forma permanente!"
 
 #: ../contents/ui/configPresets.qml
 msgid "Update preset"
@@ -1006,15 +1006,15 @@ msgstr "Actualizar ajuste"
 
 #: ../contents/ui/configPresets.qml
 msgid "Preset configuration will be overwritten!"
-msgstr "La configuración del ajuste será reemplazada!"
+msgstr "¡La configuración del ajuste será reemplazada!"
 
 #: ../contents/ui/configPresets.qml
 msgid "Create preset preview?"
-msgstr "Crear previsualización del ajuste?"
+msgstr "¿Crear previsualización del ajuste?"
 
 #: ../contents/ui/configPresets.qml
 msgid "Current preview will be overwritten!"
-msgstr "La previsualización actual sera reemplazada!"
+msgstr "¡La previsualización actual sera reemplazada!"
 
 #: ../contents/ui/configPresets.qml
 msgid "Create preset"
@@ -1042,7 +1042,7 @@ msgstr "Recargar ajustes"
 
 #: ../contents/ui/configPresets.qml
 msgid "Built-in"
-msgstr "Integrados"
+msgstr "Integrado"
 
 #: ../contents/ui/configPresets.qml
 msgid "Load"
@@ -1205,6 +1205,8 @@ msgid ""
 "Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, useful "
 "for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
 msgstr ""
+"Corrige los colores y la fuente del texto y los iconos en widgets donde el método normal no funciona o el widget lo restablece.<br> - <strong>Máscara</strong>: fuerza el color en iconos SVG, útil para iconos simbólicos.<br> - <strong>Efecto de color</strong>: fuerza el color en texto e iconos usando un efecto de posprocesado, útil para iconos no simbólicos.<br> - <strong>Actualizar</strong>: vuelve a aplicar el color/la fuente a intervalos fijos, útil "
+"para widgets que recrean o recolorean el contenido por sí mismos.<br>Para restaurar <strong>Máscara<strong> y <strong>Efecto de color</strong>, desactiva y reinicia Plasma o cierra sesión."
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
@@ -1366,7 +1368,7 @@ msgstr "Ocultar widget (visible en el Modo edición del panel)"
 
 #: ../contents/ui/main.qml
 msgid "A Plasmashell restart is required to remove all the modifications made by %1. Run journalctl restart --user plasma-plasmashell or log out and log back in."
-msgstr ""
+msgstr "Se requiere reiniciar Plasmashell para eliminar todas las modificaciones hechas por %1. Ejecute journalctl restart --user plasma-plasmashell o cierre sesión y vuelva a ingresar."
 
 #~ msgid "Fallback to the Global/Preset widget settings for disabled options, except for <b>Enable</b> and <b>Blur</b>."
 #~ msgstr "Recurrir a los ajustes de widget Globales/Preestablecidos para las opciones desactivadas, excepto para <b>Activar</b> y <b>Desenfoque</b>."
