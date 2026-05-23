@@ -96,8 +96,7 @@ msgstr "Panel bulunamadı, bu araç takımının çalışması için bir panele 
 msgid "Border"
 msgstr "Kenarlık"
 
-#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml
-#: ../contents/ui/configPresetAutoload.qml ../contents/ui/configStockPanelSettings.qml ../contents/ui/configWidgetIslands.qml
+#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml ../contents/ui/configPresetAutoload.qml ../contents/ui/configStockPanelSettings.qml ../contents/ui/configWidgetIslands.qml
 msgid "Enabled:"
 msgstr "Etkin:"
 
@@ -658,12 +657,8 @@ msgid "Thank you for using %1!"
 msgstr "%1 kullandığınız için teşekkürler!"
 
 #: ../contents/ui/components/SupportMe.qml
-msgid ""
-"If you enjoy using the plugin please consider sponsoring or donating so I can dedicate more time to maintain and improve this and <a href=\"https://github.com/luisbocanegra?"
-"tab=repositories&q=&type=source&language=&sort=stargazers\">my other projects</a>."
-msgstr ""
-"Eğer eklentiyi kullanmaktan keyif alıyorsanız, lütfen buna ve <a href=\"https://github.com/luisbocanegra?"
-"tab=repositories&q=&type=source&language=&sort=stargazers\">diğer projelerime</a> bakım yapmak ve geliştirmek için daha fazla zaman ayırabilmem için sponsor olmayı veya bağış yapmayı düşünün."
+msgid "If you enjoy using the plugin please consider sponsoring or donating so I can dedicate more time to maintain and improve this and <a href=\"https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers\">my other projects</a>."
+msgstr "Eğer eklentiyi kullanmaktan keyif alıyorsanız, lütfen buna ve <a href=\"https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers\">diğer projelerime</a> bakım yapmak ve geliştirmek için daha fazla zaman ayırabilmem için sponsor olmayı veya bağış yapmayı düşünün."
 
 #: ../contents/ui/components/SupportMe.qml
 msgid "You can also"
@@ -718,12 +713,8 @@ msgid "Refresh"
 msgstr "Yenile"
 
 #: ../contents/ui/configAppearance.qml
-msgid ""
-"Not getting the expected result? Make sure you're editing the correct element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ plugin using the latest source, <a href=\"https://"
-"github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">see instructions</a>."
-msgstr ""
-"Beklenen sonucu alamıyor musunuz? Doğru ögeyi düzenlediğinizden emin olun.<br>Özel bulanıklık çalışmıyor mu? En son kaynağı kullanarak C++ eklentisini yeniden yüklemeyi/oluşturmayı deneyin, <a href=\"https://"
-"github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">talimatlara bakın</a>."
+msgid "Not getting the expected result? Make sure you're editing the correct element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ plugin using the latest source, <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">see instructions</a>."
+msgstr "Beklenen sonucu alamıyor musunuz? Doğru ögeyi düzenlediğinizden emin olun.<br>Özel bulanıklık çalışmıyor mu? En son kaynağı kullanarak C++ eklentisini yeniden yüklemeyi/oluşturmayı deneyin, <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">talimatlara bakın</a>."
 
 #: ../contents/ui/configAppearance.qml
 msgid "Restore default (removes all customizations)"
@@ -858,12 +849,10 @@ msgid "Hide/show all panels"
 msgstr "Tüm panelleri gizle/göster"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
-msgid ""
-"Create configuration overrides and apply them to one or multiple widgets. These overrides are independent of presets and will be applied on top of the current settings and across presets.<br>To "
-"blacklist a widget from modifications, <b>uncheck</b> options <b>Enable</b> and <b>Fallback</b>, and apply the override to the widget."
+msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides are independent of presets and will be applied on top of the current settings and across presets.<br>To blacklist a widget from modifications, <b>uncheck</b> options <b>Enable</b> and <b>Fallback</b>, and apply the override to the widget."
 msgstr ""
-"Yapılandırma geçersiz kılmaları oluşturun ve bunları bir veya birden fazla araç takımına uygulayın. Bu geçersiz kılmalar ön ayarlardan bağımsızdır; mevcut ayarların üzerine ve tüm ön ayarlara uygulanır.<br>Bir "
-"araç takımının değiştirilmesini kara listeye almak için <b>Etkinleştir</b> ve <b>Geri Dön (Fallback)</b> seçeneklerinin <b>işaretini kaldırın</b> ve geçersiz kılmayı araç takımına uygulayın."
+"Yapılandırma geçersiz kılmaları oluşturun ve bunları bir veya birden fazla araç takımına uygulayın. Bu geçersiz kılmalar ön ayarlardan bağımsızdır; mevcut ayarların üzerine ve tüm ön ayarlara uygulanır.<br>Bir araç takımının değiştirilmesini kara listeye almak için <b>Etkinleştir</b> ve <b>Geri Dön (Fallback)</b> seçeneklerinin <b>işaretini kaldırın</b> ve geçersiz kılmayı araç takımına "
+"uygulayın."
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Restore default (removes all overrides)"
@@ -902,12 +891,8 @@ msgid "Overrides are applied from top to bottom, if two or more configuration ov
 msgstr "Geçersiz kılmalar yukarıdan aşağıya doğru uygulanır; iki veya daha fazla yapılandırma geçersiz kılma aynı seçeneği paylaşıyorsa, sonuncusu öncekinin değerinin yerini alır."
 
 #: ../contents/ui/configHideWidgets.qml
-msgid ""
-"Hidden widgets can still be activated using keyboard shortcuts and are always visible in the Desktop Edit Mode.<br>The activation shortcut can be configured from the <b>Keyboard Shortcuts</b> page "
-"on each widget's configuration window."
-msgstr ""
-"Gizli araç takımları klavye kısayolları kullanılarak hala etkinleştirilebilir ve Masaüstü Düzenleme Modunda her zaman görünürdür.<br>Etkinleştirme kısayolu, her araç takımının yapılandırma penceresindeki <b>Klavye Kısayolları</b> sayfasından "
-"yapılandırılabilir."
+msgid "Hidden widgets can still be activated using keyboard shortcuts and are always visible in the Desktop Edit Mode.<br>The activation shortcut can be configured from the <b>Keyboard Shortcuts</b> page on each widget's configuration window."
+msgstr "Gizli araç takımları klavye kısayolları kullanılarak hala etkinleştirilebilir ve Masaüstü Düzenleme Modunda her zaman görünürdür.<br>Etkinleştirme kısayolu, her araç takımının yapılandırma penceresindeki <b>Klavye Kısayolları</b> sayfasından yapılandırılabilir."
 
 #: ../contents/ui/configHideWidgets.qml
 msgid "Restore default (controlled by each widget)"
@@ -930,12 +915,8 @@ msgid "Do nothing"
 msgstr "Hiçbir şey yapma"
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid ""
-"Automatically switch between different presets based on the Panel and window states.<br>Disable preset auto-loading before making changes to presets, unsaved preset settings will be lost when auto-"
-"loading switches to other preset!"
-msgstr ""
-"Panel ve pencere durumlarına göre farklı ön ayarlar arasında otomatik olarak geçiş yapın.<br>Ön ayarlarda değişiklik yapmadan önce otomatik ön ayar yüklemeyi devre dışı bırakın, otomatik "
-"yükleme başka bir ön ayara geçtiğinde kaydedilmemiş ön ayar ayarları kaybolacaktır!"
+msgid "Automatically switch between different presets based on the Panel and window states.<br>Disable preset auto-loading before making changes to presets, unsaved preset settings will be lost when auto-loading switches to other preset!"
+msgstr "Panel ve pencere durumlarına göre farklı ön ayarlar arasında otomatik olarak geçiş yapın.<br>Ön ayarlarda değişiklik yapmadan önce otomatik ön ayar yüklemeyi devre dışı bırakın, otomatik yükleme başka bir ön ayara geçtiğinde kaydedilmemiş ön ayar ayarları kaybolacaktır!"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Remove all auto-loading conditions"
@@ -946,12 +927,8 @@ msgid "Auto-loading conditions"
 msgstr "Otomatik yükleme koşulları"
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid ""
-"Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the "
-"<b>Maximized</b> preset will be applied."
-msgstr ""
-"Öncelikler azalan sıradadır. Örneğin; hem <b>Büyütülmüş pencere gösteriliyor</b> hem de <b>Panele dokunan pencere</b> için bir ön ayar seçiliyse ve ekranda büyütülmüş (maximized) bir pencere varsa, "
-"<b>Büyütülmüş</b> ön ayar uygulanır."
+msgid "Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the <b>Maximized</b> preset will be applied."
+msgstr "Öncelikler azalan sıradadır. Örneğin; hem <b>Büyütülmüş pencere gösteriliyor</b> hem de <b>Panele dokunan pencere</b> için bir ön ayar seçiliyse ve ekranda büyütülmüş (maximized) bir pencere varsa, <b>Büyütülmüş</b> ön ayar uygulanır."
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Window tracking:"
@@ -1046,12 +1023,8 @@ msgid "Create preset"
 msgstr "Ön ayar oluştur"
 
 #: ../contents/ui/configPresets.qml
-msgid ""
-"Changes to the current preset are not synced to disk automatically. You should come back to this tab and update it manually before switching to a different preset, otherwise unsaved preset settings "
-"will be lost when presets change!"
-msgstr ""
-"Mevcut ön ayardaki değişiklikler otomatik olarak diske eşitlenmez. Farklı bir ön ayara geçmeden önce bu sekmeye geri dönmeli ve manuel olarak güncellemelisiniz, aksi takdirde ön ayarlar değiştiğinde kaydedilmemiş ayarlar "
-"kaybolur!"
+msgid "Changes to the current preset are not synced to disk automatically. You should come back to this tab and update it manually before switching to a different preset, otherwise unsaved preset settings will be lost when presets change!"
+msgstr "Mevcut ön ayardaki değişiklikler otomatik olarak diske eşitlenmez. Farklı bir ön ayara geçmeden önce bu sekmeye geri dönmeli ve manuel olarak güncellemelisiniz, aksi takdirde ön ayarlar değiştiğinde kaydedilmemiş ayarlar kaybolur!"
 
 #: ../contents/ui/configPresets.qml
 msgid "Restore default preset"
@@ -1094,12 +1067,8 @@ msgid "Changing panel position is currently unstable and may cause Plasma to cra
 msgstr "Panel konumunu değiştirmek şu anda kararsızdır ve panelleri paralel olmayan kenarlar arasında taşırken (ör. üstten sola) Plasma'nın çökmesine neden olabilir."
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid ""
-"Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel "
-"background</b> options in <b>Appearance</b> tab instead."
-msgstr ""
-"Opaklık ve Ekran seçenekleri <b>Plasma 6.3</b> veya daha yenisini gerektirir.<br>Opaklık mevcut Plasma Temasına bağlıdır, daha ince kontrol veya tam şeffaflık için bunun yerine <b>Görünüm</b> sekmesindeki <b>Panel Opaklığı</b> ve <b>Yerel panel arka planı</b> "
-"seçeneklerini kullanın."
+msgid "Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
+msgstr "Opaklık ve Ekran seçenekleri <b>Plasma 6.3</b> veya daha yenisini gerektirir.<br>Opaklık mevcut Plasma Temasına bağlıdır, daha ince kontrol veya tam şeffaflık için bunun yerine <b>Görünüm</b> sekmesindeki <b>Panel Opaklığı</b> ve <b>Yerel panel arka planı</b> seçeneklerini kullanın."
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Screen"
@@ -1223,13 +1192,11 @@ msgstr "Göster:"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
-"WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make "
-"it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will remove the configuration from all Panel "
-"Colorizer instances so make sure to save the others first"
+"WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will remove the configuration from all Panel Colorizer "
+"instances so make sure to save the others first"
 msgstr ""
-"UYARI: Göster/Gizle'yi dikkatli kullanın, paneli gizlerseniz ve otomatik ön ayar yüklemesini yapılandırmadıysanız veya D-Bus kullanarak ön ayarları nasıl değiştireceğinizi bilmiyorsanız (veya devre dışı bıraktıysanız), yapılandırmayı veya Panel Renklendiriciyi manuel "
-"olarak kaldırmadan paneli tekrar görünür hale getirmenin hiçbir yolu olmayacaktır. Terminalde/tty'de aşağıdaki komutu kullanıp oturumu kapatın veya yeniden başlatın; bu işlem yapılandırmayı tüm Panel "
-"Renklendirici örneklerinden kaldıracaktır, bu nedenle önce diğerlerini kaydettiğinizden emin olun"
+"UYARI: Göster/Gizle'yi dikkatli kullanın, paneli gizlerseniz ve otomatik ön ayar yüklemesini yapılandırmadıysanız veya D-Bus kullanarak ön ayarları nasıl değiştireceğinizi bilmiyorsanız (veya devre dışı bıraktıysanız), yapılandırmayı veya Panel Renklendiriciyi manuel olarak kaldırmadan paneli tekrar görünür hale getirmenin hiçbir yolu olmayacaktır. Terminalde/tty'de aşağıdaki komutu kullanıp "
+"oturumu kapatın veya yeniden başlatın; bu işlem yapılandırmayı tüm Panel Renklendirici örneklerinden kaldıracaktır, bu nedenle önce diğerlerini kaydettiğinizden emin olun"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
@@ -1237,12 +1204,11 @@ msgstr "D-Bus etkinse, bunun yerine onu kısayollarla kullanmanız önerilir. Da
 
 #: ../contents/ui/configTextIconFix.qml
 msgid ""
-"Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - "
-"<strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, "
-"useful for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
+"Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, useful "
+"for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
 msgstr ""
-"Normal yöntemin çalışmadığı veya araç takımı tarafından sıfırlandığı araç takımları için metin ve simge renklerini/yazı tipini düzeltin.<br> - <strong>Maskele</strong>: Sembolik simgeler için yararlı olan SVG simgelerinde rengi zorla.<br> - "
-"<strong>Renk Efekti</strong>: Sembolik olmayan simgeler için yararlı olan sonradan işleme (post-processing) efektini kullanarak metin ve simgeler üzerinde rengi zorla.<br> - <strong>Yenile</strong>: Kendi içeriğini yeniden oluşturan veya yeniden renklendiren araç takımları için yararlı olan sabit bir aralıkla rengi/yazı tipini yeniden uygula.<br><strong>Maskele<strong> ve <strong>Renk Efekti</strong> özelliklerini eski haline getirmek için devre dışı bırakın ve Plasma'yı yeniden başlatın veya oturumu kapatın."
+"Normal yöntemin çalışmadığı veya araç takımı tarafından sıfırlandığı araç takımları için metin ve simge renklerini/yazı tipini düzeltin.<br> - <strong>Maskele</strong>: Sembolik simgeler için yararlı olan SVG simgelerinde rengi zorla.<br> - <strong>Renk Efekti</strong>: Sembolik olmayan simgeler için yararlı olan sonradan işleme (post-processing) efektini kullanarak metin ve simgeler üzerinde "
+"rengi zorla.<br> - <strong>Yenile</strong>: Kendi içeriğini yeniden oluşturan veya yeniden renklendiren araç takımları için yararlı olan sabit bir aralıkla rengi/yazı tipini yeniden uygula.<br><strong>Maskele<strong> ve <strong>Renk Efekti</strong> özelliklerini eski haline getirmek için devre dışı bırakın ve Plasma'yı yeniden başlatın veya oturumu kapatın."
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
@@ -1265,28 +1231,16 @@ msgid "Sort"
 msgstr "Sırala"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid ""
-"Replace System Tray icons with icons from the current icon theme or a local file. The built-in rules icons are part of <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-"
-"theme\">Papirus icon theme</a>."
-msgstr ""
-"Sistem Tepsisi simgelerini mevcut simge temasından veya yerel bir dosyadan gelen simgelerle değiştirin. Yerleşik kural simgeleri <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-"
-"theme\">Papirus simge temasının</a> bir parçasıdır."
+msgid "Replace System Tray icons with icons from the current icon theme or a local file. The built-in rules icons are part of <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus icon theme</a>."
+msgstr "Sistem Tepsisi simgelerini mevcut simge temasından veya yerel bir dosyadan gelen simgelerle değiştirin. Yerleşik kural simgeleri <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus simge temasının</a> bir parçasıdır."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid ""
-"C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?"
-"tab=readme-ov-file#manually\">Install instructions</a>."
-msgstr ""
-"C++ eklentisi bulunamadı, bu özellik çalışmayacaktır. Eklentiyi kurun ve kullanabilmek için yeniden başlatın veya plasmashell'i yeniden başlatın <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?"
-"tab=readme-ov-file#manually\">Kurulum talimatları</a>."
+msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Install instructions</a>."
+msgstr "C++ eklentisi bulunamadı, bu özellik çalışmayacaktır. Eklentiyi kurun ve kullanabilmek için yeniden başlatın veya plasmashell'i yeniden başlatın <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Kurulum talimatları</a>."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid ""
-"The installed version of the C++ plugin doesn't support this feature, update the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-"
-"panel-colorizer?tab=readme-ov-file#manually\">Install instructions</a>."
-msgstr ""
-"C++ eklentisinin kurulu sürümü bu özelliği desteklemiyor, eklentiyi güncelleyin ve kullanabilmek için yeniden başlatın veya plasmashell'i yeniden başlatın <a href=\"https://github.com/luisbocanegra/plasma-"
-"panel-colorizer?tab=readme-ov-file#manually\">Kurulum talimatları</a>."
+msgid "The installed version of the C++ plugin doesn't support this feature, update the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Install instructions</a>."
+msgstr "C++ eklentisinin kurulu sürümü bu özelliği desteklemiyor, eklentiyi güncelleyin ve kullanabilmek için yeniden başlatın veya plasmashell'i yeniden başlatın <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Kurulum talimatları</a>."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Log icon changes:"
@@ -1371,40 +1325,24 @@ msgid "Create widget islands by placing separator widgets around them."
 msgstr "Etrafına ayırıcı araç takımları yerleştirerek araç takımı adaları oluşturun."
 
 #: ../contents/ui/configWidgetIslands.qml
-msgid ""
-"<strong>How to use</strong><br>1. Add the widget that will act as islands separator to the panel(by default the Plasma's Panel Spacer widget will be used)<br>2. Select the separator widget "
-"below<br>3. Add as many separators as you need and move them to create islands."
-msgstr ""
-"<strong>Nasıl kullanılır</strong><br>1. Adalar ayırıcısı olarak işlev görecek araç takımını panele ekleyin (varsayılan olarak Plasma'nın Panel Boşluk (Spacer) araç takımı kullanılacaktır)<br>2. Aşağıdan ayırıcı araç takımını seçin<br>3. "
-"İhtiyacınız olan kadar ayırıcı ekleyin ve adalar oluşturmak için onları hareket ettirin."
+msgid "<strong>How to use</strong><br>1. Add the widget that will act as islands separator to the panel(by default the Plasma's Panel Spacer widget will be used)<br>2. Select the separator widget below<br>3. Add as many separators as you need and move them to create islands."
+msgstr "<strong>Nasıl kullanılır</strong><br>1. Adalar ayırıcısı olarak işlev görecek araç takımını panele ekleyin (varsayılan olarak Plasma'nın Panel Boşluk (Spacer) araç takımı kullanılacaktır)<br>2. Aşağıdan ayırıcı araç takımını seçin<br>3. İhtiyacınız olan kadar ayırıcı ekleyin ve adalar oluşturmak için onları hareket ettirin."
 
 #: ../contents/ui/configWidgetIslands.qml
-msgid ""
-"<strong>Notes</strong><br>- Widget custom background or border is required for this option to have a visible effect.<br>- If the widgets in your panel have different thickness, add margins to the "
-"widgets custom background in the Appearance tab."
-msgstr ""
-"<strong>Notlar</strong><br>- Bu seçeneğin görünür bir etkiye sahip olması için araç takımı özel arka planı veya kenarlığı gerekir.<br>- Panelinizdeki araç takımlarının farklı kalınlıkları varsa, Görünüm sekmesinden "
-"araç takımlarının özel arka planına kenar boşlukları ekleyin."
+msgid "<strong>Notes</strong><br>- Widget custom background or border is required for this option to have a visible effect.<br>- If the widgets in your panel have different thickness, add margins to the widgets custom background in the Appearance tab."
+msgstr "<strong>Notlar</strong><br>- Bu seçeneğin görünür bir etkiye sahip olması için araç takımı özel arka planı veya kenarlığı gerekir.<br>- Panelinizdeki araç takımlarının farklı kalınlıkları varsa, Görünüm sekmesinden araç takımlarının özel arka planına kenar boşlukları ekleyin."
 
 #: ../contents/ui/configWidgetIslands.qml
-msgid ""
-"<strong>Need a separator widget?</strong><br>- <a href=\"%1\">Panel Colorizer Islands Separator</a> visible only in Edit Mode.<br>- <a href=\"%2\">Advanced Separator</a> always visible and "
-"configurable."
-msgstr ""
-"<strong>Bir ayırıcı araç takımına mı ihtiyacınız var?</strong><br>- <a href=\"%1\">Panel Renklendirici Adalar Ayırıcısı</a> yalnızca Düzenleme Modunda görünür.<br>- <a href=\"%2\">Gelişmiş Ayırıcı</a> her zaman görünür ve "
-"yapılandırılabilirdir."
+msgid "<strong>Need a separator widget?</strong><br>- <a href=\"%1\">Panel Colorizer Islands Separator</a> visible only in Edit Mode.<br>- <a href=\"%2\">Advanced Separator</a> always visible and configurable."
+msgstr "<strong>Bir ayırıcı araç takımına mı ihtiyacınız var?</strong><br>- <a href=\"%1\">Panel Renklendirici Adalar Ayırıcısı</a> yalnızca Düzenleme Modunda görünür.<br>- <a href=\"%2\">Gelişmiş Ayırıcı</a> her zaman görünür ve yapılandırılabilirdir."
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Separator widget:"
 msgstr "Ayırıcı araç takımı:"
 
 #: ../contents/ui/configWidgetIslands.qml
-msgid ""
-"Select the widget that will act as separator for the islands.<br><br>Note that the separator widget itself does not need to be visible for it to work, so you can use an invisible spacer/separator "
-"for example."
-msgstr ""
-"Adalar için ayırıcı görevi görecek araç takımını seçin.<br><br>Unutmayın ki ayırıcı araç takımının kendisinin çalışması için görünür olması gerekmez, bu nedenle örneğin görünmez bir boşluk/ayırıcı "
-"kullanabilirsiniz."
+msgid "Select the widget that will act as separator for the islands.<br><br>Note that the separator widget itself does not need to be visible for it to work, so you can use an invisible spacer/separator for example."
+msgstr "Adalar için ayırıcı görevi görecek araç takımını seçin.<br><br>Unutmayın ki ayırıcı araç takımının kendisinin çalışması için görünür olması gerekmez, bu nedenle örneğin görünmez bir boşluk/ayırıcı kullanabilirsiniz."
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Require two separators per island:"
@@ -1412,13 +1350,11 @@ msgstr "Her ada için iki ayırıcı gerektir:"
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid ""
-"Always require two separators for a group of widgets to become an island. By default, an arrangement of<br>%1 creates two islands.<br><br>Enabling this option makes it so that islands do not share "
-"separators, so for example an arrangement of<br>%2 is required to create two islands.<br><br>Enable this if your islands separator is not a panel spacer and you want to explicitly define the start "
-"and end of each island."
+"Always require two separators for a group of widgets to become an island. By default, an arrangement of<br>%1 creates two islands.<br><br>Enabling this option makes it so that islands do not share separators, so for example an arrangement of<br>%2 is required to create two islands.<br><br>Enable this if your islands separator is not a panel spacer and you want to explicitly define the start and "
+"end of each island."
 msgstr ""
-"Bir araç takımı grubunun ada olabilmesi için her zaman iki ayırıcıya ihtiyaç duyun. Varsayılan olarak, <br>%1 dizilimi iki ada oluşturur.<br><br>Bu seçeneği etkinleştirmek adaların ayırıcıları paylaşmamasını "
-"sağlar, bu nedenle örneğin iki ada oluşturmak için <br>%2 dizilimi gerekir.<br><br>Adalar ayırıcınız bir panel boşluğu (spacer) değilse ve her adanın başlangıcını ve sonunu açıkça tanımlamak istiyorsanız "
-"bunu etkinleştirin."
+"Bir araç takımı grubunun ada olabilmesi için her zaman iki ayırıcıya ihtiyaç duyun. Varsayılan olarak, <br>%1 dizilimi iki ada oluşturur.<br><br>Bu seçeneği etkinleştirmek adaların ayırıcıları paylaşmamasını sağlar, bu nedenle örneğin iki ada oluşturmak için <br>%2 dizilimi gerekir.<br><br>Adalar ayırıcınız bir panel boşluğu (spacer) değilse ve her adanın başlangıcını ve sonunu açıkça "
+"tanımlamak istiyorsanız bunu etkinleştirin."
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Blacklist separator widgets:"
