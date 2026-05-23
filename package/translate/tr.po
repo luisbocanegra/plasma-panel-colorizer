@@ -1,0 +1,1437 @@
+# Translation of colorizer in Turkish
+# Copyright (C) 2026
+# This file is distributed under the same license as the colorizer package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: colorizer\n"
+"Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
+"POT-Creation-Date: 2026-05-14 14:39+0000\n"
+"PO-Revision-Date: 2026-05-21 13:40+0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Turkish <tr@li.org>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../metadata.json
+msgid "Panel colorizer"
+msgstr "Panel Renklendirici"
+
+#: ../metadata.json
+msgid "Latte-Dock and WM status bar customization features for the default Plasma panel"
+msgstr "Varsayılan Plasma paneli için Latte-Dock ve WM durum çubuğu özelleştirme özellikleri"
+
+#: ../contents/config/config.qml
+msgid "Presets"
+msgstr "Ön Ayarlar"
+
+#: ../contents/config/config.qml
+msgid "Presets auto-loading"
+msgstr "Otomatik ön ayar yükleme"
+
+#: ../contents/config/config.qml
+msgid "Appearance"
+msgstr "Görünüm"
+
+#: ../contents/config/config.qml
+msgid "Stock Panel Settings"
+msgstr "Varsayılan Panel Ayarları"
+
+#: ../contents/config/config.qml
+msgid "Widget Islands"
+msgstr "Araç Takımı (Widget) Adaları"
+
+#: ../contents/config/config.qml
+msgid "Preset Overrides"
+msgstr "Ön Ayar Geçersiz Kılmaları"
+
+#: ../contents/config/config.qml
+msgid "Global Overrides"
+msgstr "Genel Geçersiz Kılmalar"
+
+#: ../contents/config/config.qml
+msgid "Text/Icon Color Fixes"
+msgstr "Metin/Simge Renk Düzeltmeleri"
+
+#: ../contents/config/config.qml
+msgid "Blacklist Widgets"
+msgstr "Araç Takımlarını Kara Listeye Al"
+
+#: ../contents/config/config.qml
+msgid "Hide Widgets"
+msgstr "Araç Takımlarını Gizle"
+
+#: ../contents/config/config.qml
+msgid "System Tray Icons Replacer"
+msgstr "Sistem Tepsisi Simge Değiştirici"
+
+#: ../contents/config/config.qml
+msgid "General"
+msgstr "Genel"
+
+#: ../contents/config/config.qml
+msgid "Support Me"
+msgstr "Bana Destek Ol"
+
+#: ../contents/ui/components/CategoryDisabled.qml
+msgid "Panel Colorizer is disabled"
+msgstr "Panel Renklendirici devre dışı"
+
+#: ../contents/ui/components/CategoryDisabled.qml ../contents/ui/components/FormWidgetSettings.qml ../contents/ui/configTrayIconsReplacer.qml
+msgid "Enable"
+msgstr "Etkinleştir"
+
+#: ../contents/ui/components/ColorPickerGradientList.qml ../contents/ui/components/ColorPickerList.qml ../contents/ui/components/FormColors.qml
+msgid "Widget background"
+msgstr "Araç takımı arka planı"
+
+#: ../contents/ui/components/DesktopView.qml
+msgid "Panel not found, this widget must be placed on a panel to work"
+msgstr "Panel bulunamadı, bu araç takımının çalışması için bir panele yerleştirilmesi gerekir"
+
+#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormWidgetSettings.qml
+msgid "Border"
+msgstr "Kenarlık"
+
+#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml
+#: ../contents/ui/configPresetAutoload.qml ../contents/ui/configStockPanelSettings.qml ../contents/ui/configWidgetIslands.qml
+msgid "Enabled:"
+msgstr "Etkin:"
+
+#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormColors.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml
+msgid "Disabled"
+msgstr "Devre dışı"
+
+#: ../contents/ui/components/FormBorder.qml
+msgid "Width:"
+msgstr "Genişlik:"
+
+#: ../contents/ui/components/FormBorder.qml
+msgid "Use an integer when using <strong>Widget Islands</strong> to avoid rendering issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">See #64</a>"
+msgstr "Oluşturma (rendering) sorunlarını önlemek için <strong>Araç Takımı Adaları</strong> kullanırken bir tam sayı (integer) kullanın! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">Bkz: #64</a>"
+
+#: ../contents/ui/components/FormBorder.qml
+msgid "Custom widths:"
+msgstr "Özel genişlikler:"
+
+#: ../contents/ui/components/FormColors.qml ../contents/ui/components/FormWidgetSettings.qml
+msgid "Color"
+msgstr "Renk"
+
+#: ../contents/ui/components/FormColors.qml ../contents/ui/components/FormWidgetSettings.qml
+msgid "Enable:"
+msgstr "Etkinleştir:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Animation:"
+msgstr "Animasyon:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Interval (ms):"
+msgstr "Aralık (ms):"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Smoothing (ms):"
+msgstr "Yumuşatma (ms):"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Color source:"
+msgstr "Renk kaynağı:"
+
+#: ../contents/ui/components/FormColors.qml ../contents/ui/configStockPanelSettings.qml
+msgid "Custom"
+msgstr "Özel"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "A fixed custom color"
+msgstr "Sabit bir özel renk"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "System"
+msgstr "Sistem"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Color that updates with your System theme"
+msgstr "Sistem temanızla güncellenen renk"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Custom list"
+msgstr "Özel liste"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Define a list of colors that will be applied to all the elements, wraps around if there are more elements than colors"
+msgstr "Tüm ögelere uygulanacak bir renk listesi tanımlayın; renk sayısından daha fazla öge varsa liste başa döner"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Random"
+msgstr "Rastgele"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Random color for each element"
+msgstr "Her öge için rastgele renk"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Follow"
+msgstr "İzle"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Follow the color of a parent element"
+msgstr "Bir üst ögenin rengini izle"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Gradient"
+msgstr "Gradyan (Renk Geçişi)"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Horizontal or vertical customizable color gradient"
+msgstr "Yatay veya dikey özelleştirilebilir renk gradyanı"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Image"
+msgstr "Görsel"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "High resolution images can slow down the desktop when the panel or widget size changes!"
+msgstr "Yüksek çözünürlüklü görseller, panel veya araç takımı boyutu değiştiğinde masaüstünü yavaşlatabilir!"
+
+#: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
+msgid "Element:"
+msgstr "Öge:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Panel background"
+msgstr "Panel arka planı"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Tray widget background"
+msgstr "Tepsi araç takımı arka planı"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Positioning:"
+msgstr "Konumlandırma:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Stretch"
+msgstr "Uzat"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Tile"
+msgstr "Döşe"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Scaled and Cropped"
+msgstr "Ölçeklendi ve Kırpıldı"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Image:"
+msgstr "Görsel:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Pick a image file"
+msgstr "Bir görsel dosyası seçin"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Image files"
+msgstr "Görsel dosyaları"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "All files"
+msgstr "Tüm dosyalar"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Color:"
+msgstr "Renk:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Color set:"
+msgstr "Renk seti:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Colors:"
+msgstr "Renkler:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Orientation:"
+msgstr "Yönelim:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Horizontal"
+msgstr "Yatay"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Vertical"
+msgstr "Dikey"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Gradient steps:"
+msgstr "Gradyan adımları:"
+
+#: ../contents/ui/components/FormColors.qml ../contents/ui/configGeneral.qml
+msgid "Alpha:"
+msgstr "Alfa:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Contrast Correction"
+msgstr "Kontrast Düzeltme"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Saturation:"
+msgstr "Doygunluk:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Lightness:"
+msgstr "Aydınlık:"
+
+#: ../contents/ui/components/FormPadding.qml
+msgid "Padding"
+msgstr "Dolgu"
+
+#: ../contents/ui/components/FormPadding.qml
+msgid "Horizontal and vertical padding only work properly when the panel is on the same orientation."
+msgstr "Yatay ve dikey dolgu yalnızca panel aynı yöndeyken düzgün çalışır."
+
+#: ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormWidgetSettings.qml
+msgid "Shadow"
+msgstr "Gölge"
+
+#: ../contents/ui/components/FormShadow.qml
+msgid "Size:"
+msgstr "Boyut:"
+
+#: ../contents/ui/components/FormShadow.qml
+msgid "X offset:"
+msgstr "X ofseti:"
+
+#: ../contents/ui/components/FormShadow.qml
+msgid "Y offset:"
+msgstr "Y ofseti:"
+
+#: ../contents/ui/components/FormShape.qml
+msgid "Radius"
+msgstr "Yarıçap"
+
+#: ../contents/ui/components/FormShape.qml
+msgid "Margin"
+msgstr "Kenar Boşluğu"
+
+#: ../contents/ui/components/FormShape.qml
+msgid "Requires plasmashell restart after disabling to restore the default. <a href=\"#\">Restart now</a>."
+msgstr "Varsayılanı geri yüklemek için devre dışı bıraktıktan sonra plasmashell'in yeniden başlatılması gerekir. <a href=\"#\">Şimdi yeniden başlat</a>."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Native panel:"
+msgstr "Yerel panel:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml ../contents/ui/configGeneral.qml
+msgid "Background"
+msgstr "Arka plan"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Disable to make panel fully transparent, removes contrast and blur effects."
+msgstr "Paneli tamamen şeffaf yapmak için devre dışı bırakın, kontrastı ve bulanıklık efektlerini kaldırır."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "⚠️ Disabling this breaks the panel clickable area and applet dialogs positioning when the panel is in floating mode! See <a href=\"%1\">#80</a>."
+msgstr "⚠️ Bunu devre dışı bırakmak, panel yüzer (floating) moddayken tıklanabilir alanı ve küçük uygulama iletişim kutularının konumlandırılmasını bozar! <a href=\"%1\">Bkz: #80</a>."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "The shadow from the Plasma theme"
+msgstr "Plasma temasından gelen gölge"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Opacity:"
+msgstr "Opaklık:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Set to 0 to keep the mask required for custom background blur."
+msgstr "Özel arka plan bulanıklığı için gereken maskeyi korumak için 0'a ayarlayın."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Floating applets:"
+msgstr "Yüzer (floating) küçük uygulamalar:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Allow changes (Plasma 6.4.0 and later)"
+msgstr "Değişikliklere izin ver (Plasma 6.4.0 ve sonrası)"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Since version 6.4.0, Plasma now has a built-in <b>Floating panel and applets</b> option, enabling this overrides that option.\n"
+"⚠️Changing <b>Floating</b> from the panel configuration will not work with this is enabled!"
+msgstr ""
+"6.4.0 sürümünden itibaren, Plasma artık yerleşik bir <b>Yüzer panel ve küçük uygulamalar</b> seçeneğine sahiptir, bunu etkinleştirmek o seçeneği geçersiz kılar.\n"
+"⚠️Bunu etkinleştirirseniz panel yapılandırmasından <b>Yüzer</b> seçeneğini değiştirmek çalışmaz!"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Wide expand button:"
+msgstr "Geniş genişletme düğmesi:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Make the System Tray expand button use the same size as the other tray items"
+msgstr "Sistem Tepsisi genişletme düğmesinin diğer tepsi ögeleriyle aynı boyutu kullanmasını sağla"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Custom cell height:"
+msgstr "Özel hücre yüksekliği:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Custom cell width:"
+msgstr "Özel hücre genişliği:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Force floating applets"
+msgstr "Küçük uygulamaları yüzer olmaya zorla"
+
+#: ../contents/ui/components/FormWidgetSettings.qml ../contents/ui/configPresetAutoload.qml
+msgid "Floating panel:"
+msgstr "Yüzer panel:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Remove custom background rounded corners and borders on screen edge when panel is not floating"
+msgstr "Panel yüzer durumda değilken ekran kenarındaki özel arka planın yuvarlatılmış köşelerini ve kenarlıklarını kaldır"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Resize panel length when panel enters/exits floating state (instead of just moving)"
+msgstr "Panel yüzer duruma girdiğinde/çıktığında panel uzunluğunu yeniden boyutlandır (sadece hareket etmek yerine)"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Hide panel:"
+msgstr "Paneli gizle:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "When there are no widgets visible"
+msgstr "Görünür hiçbir araç takımı olmadığında"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Customization"
+msgstr "Özelleştirme"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "State:"
+msgstr "Durum:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Normal"
+msgstr "Normal"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Hover"
+msgstr "Üzerine Gelindiğinde (Hover)"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Expanded"
+msgstr "Genişletilmiş"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Needs attention"
+msgstr "Dikkat gerektiriyor"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Busy"
+msgstr "Meşgul"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Change element appearance based on their state, configuration is stacked on top of the current appearance"
+msgstr "Ögelerin görünümlerini durumlarına göre değiştirin, yapılandırma mevcut görünümün üzerine eklenir"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Blur custom background (Beta)"
+msgstr "Özel arka planı bulanıklaştır (Beta)"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Draw a custom blur mask behind the custom background(s).<br><strong>Native panel background must be enabled with opacity of 0 for this to work as intended.</strong>"
+msgstr "Özel arka plan(lar)ın arkasında özel bir bulanıklık maskesi çizin.<br><strong>Bunun amaçlandığı gibi çalışması için yerel panel arka planı 0 opaklık ile etkinleştirilmelidir.</strong>"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it. See <a href=\"%1\">install instructions</a>."
+msgstr "C++ eklentisi bulunamadı, bu özellik çalışmayacaktır. Eklentiyi kurun ve kullanabilmek için yeniden başlatın veya plasmashell'i yeniden başlatın. <a href=\"%1\">Kurulum talimatlarına</a> bakın."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Clipping (Experimental)"
+msgstr "Kırpma (Deneysel)"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Clip the widget content to the custom background radius.<br>Clipping widgets against the panel is not supported yet, see <a href=\"%1\">#275</a>."
+msgstr "Araç takımı içeriğini özel arka plan yarıçapına kırpın.<br>Araç takımlarını panele göre kırpmak henüz desteklenmiyor, <a href=\"%1\">bkz: #275</a>."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Shape"
+msgstr "Şekil"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Font"
+msgstr "Yazı Tipi"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Spacing:"
+msgstr "Boşluk:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "<strong>Odd spacing</strong> values will be automatically converted to <strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
+msgstr "<strong>Araç Takımı Adaları</strong> özelliği kullanılırsa <strong>Tek (odd) boşluk</strong> değerleri otomatik olarak <strong>çift (even)</strong> değerlere dönüştürülür."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Custom font:"
+msgstr "Özel yazı tipi:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "A plasmashell restart is required to restore the original values after disabling any font setting. <a href=\"#\">Restart now</a>."
+msgstr "Herhangi bir yazı tipi ayarını devre dışı bıraktıktan sonra orijinal değerleri geri yüklemek için plasmashell'in yeniden başlatılması gerekir. <a href=\"#\">Şimdi yeniden başlat</a>."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Font family:"
+msgstr "Yazı tipi ailesi:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Override"
+msgstr "Geçersiz Kıl"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Italic:"
+msgstr "İtalik:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Underline:"
+msgstr "Altı Çizili:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Font weight:"
+msgstr "Yazı tipi kalınlığı:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Font size:"
+msgstr "Yazı tipi boyutu:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Background Color"
+msgstr "Arka Plan Rengi"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Foreground Color"
+msgstr "Ön Plan Rengi"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Primary Border"
+msgstr "Birincil Kenarlık"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Secondary Border"
+msgstr "İkincil Kenarlık"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Background Shadow"
+msgstr "Arka Plan Gölgesi"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Background Shadow Color"
+msgstr "Arka Plan Gölge Rengi"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Foreground Shadow"
+msgstr "Ön Plan Gölgesi"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Foreground Shadow Color"
+msgstr "Ön Plan Gölge Rengi"
+
+#: ../contents/ui/components/Header.qml
+msgid "None"
+msgstr "Yok"
+
+#: ../contents/ui/components/Header.qml
+msgid "Enable %1:"
+msgstr "%1 Etkinleştir:"
+
+#: ../contents/ui/components/Header.qml ../contents/ui/main.qml
+msgid "Last preset loaded:"
+msgstr "Yüklenen son ön ayar:"
+
+#: ../contents/ui/components/Header.qml
+msgid "Version:"
+msgstr "Sürüm:"
+
+#: ../contents/ui/components/Header.qml
+msgid "Changelog"
+msgstr "Değişiklik Günlüğü (Changelog)"
+
+#: ../contents/ui/components/Header.qml
+msgid "Releases"
+msgstr "Sürümler"
+
+#: ../contents/ui/components/Header.qml
+msgid "Home page"
+msgstr "Ana sayfa"
+
+#: ../contents/ui/components/Header.qml
+msgid "KDE Store"
+msgstr "KDE Mağazası"
+
+#: ../contents/ui/components/Header.qml
+msgid "Issues"
+msgstr "Sorunlar"
+
+#: ../contents/ui/components/Header.qml
+msgid "Current issues"
+msgstr "Mevcut sorunlar"
+
+#: ../contents/ui/components/Header.qml
+msgid "Report a bug"
+msgstr "Hata bildir"
+
+#: ../contents/ui/components/Header.qml
+msgid "Request a feature"
+msgstr "Özellik iste"
+
+#: ../contents/ui/components/Header.qml
+msgid "Help"
+msgstr "Yardım"
+
+#: ../contents/ui/components/Header.qml
+msgid "FAQ"
+msgstr "SSS"
+
+#: ../contents/ui/components/Header.qml
+msgid "GitHub Discussions"
+msgstr "GitHub Tartışmaları"
+
+#: ../contents/ui/components/Header.qml
+msgid "Send an email"
+msgstr "E-posta gönder"
+
+#: ../contents/ui/components/Header.qml
+msgid "Translate"
+msgstr "Çevir"
+
+#: ../contents/ui/components/Header.qml
+msgid "Donate"
+msgstr "Bağış Yap"
+
+#: ../contents/ui/components/Header.qml
+msgid "More projects"
+msgstr "Daha fazla proje"
+
+#: ../contents/ui/components/Header.qml ../contents/ui/components/PopupView.qml
+msgid "Running version of the widget (%1) is different to the one on disk (%2), please log out and back in (or restart plasmashell user unit) to ensure things work correctly!"
+msgstr "Çalışan araç takımı sürümü (%1), diskteki sürümden (%2) farklı, işlerin doğru çalıştığından emin olmak için lütfen oturumu kapatıp tekrar açın (veya plasmashell kullanıcı birimini yeniden başlatın)!"
+
+#: ../contents/ui/components/PopupView.qml
+msgid "Select a preset"
+msgstr "Bir ön ayar seçin"
+
+#: ../contents/ui/components/PopupView.qml
+msgid "Running outdated version of %1"
+msgstr "%1 güncel olmayan sürümü çalışıyor"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "Import"
+msgstr "İçe Aktar"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "Export"
+msgstr "Dışa Aktar"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "Export these settings to the default configuration folder and import them in other instances of Panel Colorizer"
+msgstr "Bu ayarları varsayılan yapılandırma klasörüne dışa aktarın ve Panel Renklendirici'nin diğer örneklerinde (instances) içe aktarın"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "Export current settings?"
+msgstr "Mevcut ayarlar dışa aktarılsın mı?"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "Import saved settings?"
+msgstr "Kaydedilen ayarlar içe aktarılsın mı?"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "This will overwrite any previous export!"
+msgstr "Bu, önceki dışa aktarımların üzerine yazacaktır!"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "This will replace your current settings!"
+msgstr "Bu, mevcut ayarlarınızı değiştirecektir!"
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Thank you for using %1!"
+msgstr "%1 kullandığınız için teşekkürler!"
+
+#: ../contents/ui/components/SupportMe.qml
+msgid ""
+"If you enjoy using the plugin please consider sponsoring or donating so I can dedicate more time to maintain and improve this and <a href=\"https://github.com/luisbocanegra?"
+"tab=repositories&q=&type=source&language=&sort=stargazers\">my other projects</a>."
+msgstr ""
+"Eğer eklentiyi kullanmaktan keyif alıyorsanız, lütfen buna ve <a href=\"https://github.com/luisbocanegra?"
+"tab=repositories&q=&type=source&language=&sort=stargazers\">diğer projelerime</a> bakım yapmak ve geliştirmek için daha fazla zaman ayırabilmem için sponsor olmayı veya bağış yapmayı düşünün."
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "You can also"
+msgstr "Ayrıca şunları da yapabilirsiniz:"
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Star the project on GitHub"
+msgstr "Projeyi GitHub'da yıldızlayın"
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Rate in the KDE Store"
+msgstr "KDE Mağazası'nda değerlendirin"
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Translate %1 to your language"
+msgstr "%1 projesini kendi dilinize çevirin"
+
+#: ../contents/ui/components/WidgetCardBlacklist.qml ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardHide.qml ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "System Tray"
+msgstr "Sistem Tepsisi"
+
+#: ../contents/ui/components/WidgetCardBlacklist.qml
+msgid "Blacklist"
+msgstr "Kara Liste"
+
+#: ../contents/ui/components/WidgetCardConfig.qml
+msgid "Add"
+msgstr "Ekle"
+
+#: ../contents/ui/components/WidgetCardHide.qml
+msgid "Hide"
+msgstr "Gizle"
+
+#: ../contents/ui/components/WidgetCardOverride.qml
+msgid "Edit"
+msgstr "Düzenle"
+
+#: ../contents/ui/components/WidgetCardOverride.qml ../contents/ui/configPresets.qml
+msgid "Delete"
+msgstr "Sil"
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Mask"
+msgstr "Maskele"
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Effect"
+msgstr "Efekt"
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Refresh"
+msgstr "Yenile"
+
+#: ../contents/ui/configAppearance.qml
+msgid ""
+"Not getting the expected result? Make sure you're editing the correct element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ plugin using the latest source, <a href=\"https://"
+"github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">see instructions</a>."
+msgstr ""
+"Beklenen sonucu alamıyor musunuz? Doğru ögeyi düzenlediğinizden emin olun.<br>Özel bulanıklık çalışmıyor mu? En son kaynağı kullanarak C++ eklentisini yeniden yüklemeyi/oluşturmayı deneyin, <a href=\"https://"
+"github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">talimatlara bakın</a>."
+
+#: ../contents/ui/configAppearance.qml
+msgid "Restore default (removes all customizations)"
+msgstr "Varsayılana geri yükle (tüm özelleştirmeleri kaldırır)"
+
+#: ../contents/ui/configAppearance.qml
+msgid "Panel"
+msgstr "Panel"
+
+#: ../contents/ui/configAppearance.qml ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Widgets"
+msgstr "Araç Takımları"
+
+#: ../contents/ui/configAppearance.qml
+msgid "Tray widgets"
+msgstr "Tepsi araç takımları"
+
+#: ../contents/ui/configAppearance.qml
+msgid "Part of the panel on which the options below will be applied."
+msgstr "Aşağıdaki seçeneklerin uygulanacağı panel bölümü."
+
+#: ../contents/ui/configBlacklistWidgets.qml
+msgid "Blacklist widgets to keep their default appearance. A logout may be required for some widgets to fully restore their default appearance."
+msgstr "Araç takımlarını varsayılan görünümlerinde tutmak için kara listeye alın. Bazı araç takımlarının varsayılan görünümünü tamamen geri yüklemek için oturumu kapatmak gerekebilir."
+
+#: ../contents/ui/configBlacklistWidgets.qml
+msgid "Blacklist spacers"
+msgstr "Boşlukları (spacers) kara listeye al"
+
+#: ../contents/ui/configBlacklistWidgets.qml ../contents/ui/configTrayIconsReplacer.qml
+msgid "Remove all"
+msgstr "Tümünü kaldır"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide widget:"
+msgstr "Araç takımını gizle:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Visible in Panel Edit Mode"
+msgstr "Panel Düzenleme Modunda Görünür"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Configure from any widget:"
+msgstr "Herhangi bir araç takımından yapılandır:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Disable to remove <b>%1</b> option from other widget's context (right-click) menu."
+msgstr "<b>%1</b> seçeneğini diğer araç takımlarının bağlam (sağ tık) menüsünden kaldırmak için devre dışı bırakın."
+
+#: ../contents/ui/configGeneral.qml
+msgid "Debug mode:"
+msgstr "Hata ayıklama modu:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Show debugging information"
+msgstr "Hata ayıklama bilgilerini göster"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Grid"
+msgstr "Izgara"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Enabled"
+msgstr "Etkin"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Visible while configuring"
+msgstr "Yapılandırma sırasında görünür"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Minor line:"
+msgstr "İkincil çizgi:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "spacing"
+msgstr "boşluk"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Major line:"
+msgstr "Ana çizgi:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "every"
+msgstr "her"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Property change animations"
+msgstr "Özellik değiştirme animasyonları"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Duration:"
+msgstr "Süre:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "D-Bus Service"
+msgstr "D-Bus Hizmeti"
+
+#: ../contents/ui/configGeneral.qml
+msgid "D-Bus name:"
+msgstr "D-Bus adı:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Each Panel Colorizer instance has its own D-Bus name."
+msgstr "Her Panel Renklendirici örneğinin (instance) kendi D-Bus adı vardır."
+
+#: ../contents/ui/configGeneral.qml
+msgid "Python 3 executable:"
+msgstr "Python 3 çalıştırılabilir dosyası:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Required to run the D-Bus service in the background"
+msgstr "D-Bus hizmetini arka planda çalıştırmak için gereklidir"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Usage examples:"
+msgstr "Kullanım örnekleri:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Apply a preset:"
+msgstr "Bir ön ayar uygula:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Preview and switch presets using fzf + qdbus6 + jq:"
+msgstr "fzf + qdbus6 + jq kullanarak ön ayarları önizle ve değiştir:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide/show this panel"
+msgstr "Bu paneli gizle/göster"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide/show all panels"
+msgstr "Tüm panelleri gizle/göster"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+msgid ""
+"Create configuration overrides and apply them to one or multiple widgets. These overrides are independent of presets and will be applied on top of the current settings and across presets.<br>To "
+"blacklist a widget from modifications, <b>uncheck</b> options <b>Enable</b> and <b>Fallback</b>, and apply the override to the widget."
+msgstr ""
+"Yapılandırma geçersiz kılmaları oluşturun ve bunları bir veya birden fazla araç takımına uygulayın. Bu geçersiz kılmalar ön ayarlardan bağımsızdır; mevcut ayarların üzerine ve tüm ön ayarlara uygulanır.<br>Bir "
+"araç takımının değiştirilmesini kara listeye almak için <b>Etkinleştir</b> ve <b>Geri Dön (Fallback)</b> seçeneklerinin <b>işaretini kaldırın</b> ve geçersiz kılmayı araç takımına uygulayın."
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Restore default (removes all overrides)"
+msgstr "Varsayılana geri dön (tüm geçersiz kılmaları kaldırır)"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Configuration overrides"
+msgstr "Yapılandırma geçersiz kılmaları"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "New override"
+msgstr "Yeni geçersiz kılma"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Override settings"
+msgstr "Ayarları geçersiz kıl"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Override name"
+msgstr "Geçersiz kılma adı"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Rename"
+msgstr "Yeniden adlandır"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+msgid "Fallback:"
+msgstr "Geri dön (Fallback):"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+msgid "Fallback to the Global/Preset widget settings for disabled options, except for <b>Enable</b> and <b>Blur</>."
+msgstr "<b>Etkinleştir</b> ve <b>Bulanıklaştır</> dışında devre dışı bırakılan seçenekler için Genel/Ön Ayar araç takımı ayarlarına geri dönün."
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Overrides are applied from top to bottom, if two or more configuration overrides share the same option, the last occurence replaces the value of the previous one."
+msgstr "Geçersiz kılmalar yukarıdan aşağıya doğru uygulanır; iki veya daha fazla yapılandırma geçersiz kılma aynı seçeneği paylaşıyorsa, sonuncusu öncekinin değerinin yerini alır."
+
+#: ../contents/ui/configHideWidgets.qml
+msgid ""
+"Hidden widgets can still be activated using keyboard shortcuts and are always visible in the Desktop Edit Mode.<br>The activation shortcut can be configured from the <b>Keyboard Shortcuts</b> page "
+"on each widget's configuration window."
+msgstr ""
+"Gizli araç takımları klavye kısayolları kullanılarak hala etkinleştirilebilir ve Masaüstü Düzenleme Modunda her zaman görünürdür.<br>Etkinleştirme kısayolu, her araç takımının yapılandırma penceresindeki <b>Klavye Kısayolları</b> sayfasından "
+"yapılandırılabilir."
+
+#: ../contents/ui/configHideWidgets.qml
+msgid "Restore default (controlled by each widget)"
+msgstr "Varsayılana geri yükle (her araç takımı tarafından kontrol edilir)"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Toggle Panel Colorizer"
+msgstr "Panel Renklendirici'yi Aç/Kapat"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Switch presets"
+msgstr "Ön ayarları değiştir"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Show popup"
+msgstr "Açılır pencereyi göster"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Do nothing"
+msgstr "Hiçbir şey yapma"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid ""
+"Automatically switch between different presets based on the Panel and window states.<br>Disable preset auto-loading before making changes to presets, unsaved preset settings will be lost when auto-"
+"loading switches to other preset!"
+msgstr ""
+"Panel ve pencere durumlarına göre farklı ön ayarlar arasında otomatik olarak geçiş yapın.<br>Ön ayarlarda değişiklik yapmadan önce otomatik ön ayar yüklemeyi devre dışı bırakın, otomatik "
+"yükleme başka bir ön ayara geçtiğinde kaydedilmemiş ön ayar ayarları kaybolacaktır!"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Remove all auto-loading conditions"
+msgstr "Tüm otomatik yükleme koşullarını kaldır"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Auto-loading conditions"
+msgstr "Otomatik yükleme koşulları"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid ""
+"Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the "
+"<b>Maximized</b> preset will be applied."
+msgstr ""
+"Öncelikler azalan sıradadır. Örneğin; hem <b>Büyütülmüş pencere gösteriliyor</b> hem de <b>Panele dokunan pencere</b> için bir ön ayar seçiliyse ve ekranda büyütülmüş (maximized) bir pencere varsa, "
+"<b>Büyütülmüş</b> ön ayar uygulanır."
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Window tracking:"
+msgstr "Pencere izleme:"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Per screen"
+msgstr "Ekran başına"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Active only"
+msgstr "Sadece aktif olan"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Active window fallback"
+msgstr "Aktif pencere yedeği"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Track KWin's top window when there is no active one in the screen."
+msgstr "Ekranda aktif bir pencere olmadığında KWin'in en üst penceresini izle."
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Fullscreen window:"
+msgstr "Tam ekran pencere:"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Maximized window:"
+msgstr "Büyütülmüş pencere:"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Window touching panel:"
+msgstr "Panele dokunan pencere:"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Active window:"
+msgstr "Aktif pencere:"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "At least one window is visible:"
+msgstr "En az bir pencere görünür:"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "activity:"
+msgstr "etkinlik:"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Normal:"
+msgstr "Normal:"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Widget Click"
+msgstr "Araç Takımı Tıklaması"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Action:"
+msgstr "Eylem:"
+
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides should be saved to a preset in <strong>Presets</strong> tab or they will be lost when presets change!"
+msgstr "Yapılandırma geçersiz kılmaları oluşturun ve bunları bir veya birden fazla araç takımına uygulayın. Bu geçersiz kılmalar <strong>Ön Ayarlar</strong> sekmesinde bir ön ayara kaydedilmelidir, aksi takdirde ön ayarlar değiştiğinde kaybolurlar!"
+
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Name:"
+msgstr "Ad:"
+
+#: ../contents/ui/configPresets.qml
+msgid "Delete preset"
+msgstr "Ön ayarı sil"
+
+#: ../contents/ui/configPresets.qml
+msgid "This will permanently delete the file from your system!"
+msgstr "Bu, dosyayı sisteminizden kalıcı olarak silecektir!"
+
+#: ../contents/ui/configPresets.qml
+msgid "Update preset"
+msgstr "Ön ayarı güncelle"
+
+#: ../contents/ui/configPresets.qml
+msgid "Preset configuration will be overwritten!"
+msgstr "Ön ayar yapılandırmasının üzerine yazılacak!"
+
+#: ../contents/ui/configPresets.qml
+msgid "Create preset preview?"
+msgstr "Ön ayar önizlemesi oluşturulsun mu?"
+
+#: ../contents/ui/configPresets.qml
+msgid "Current preview will be overwritten!"
+msgstr "Mevcut önizlemenin üzerine yazılacak!"
+
+#: ../contents/ui/configPresets.qml
+msgid "Create preset"
+msgstr "Ön ayar oluştur"
+
+#: ../contents/ui/configPresets.qml
+msgid ""
+"Changes to the current preset are not synced to disk automatically. You should come back to this tab and update it manually before switching to a different preset, otherwise unsaved preset settings "
+"will be lost when presets change!"
+msgstr ""
+"Mevcut ön ayardaki değişiklikler otomatik olarak diske eşitlenmez. Farklı bir ön ayara geçmeden önce bu sekmeye geri dönmeli ve manuel olarak güncellemelisiniz, aksi takdirde ön ayarlar değiştiğinde kaydedilmemiş ayarlar "
+"kaybolur!"
+
+#: ../contents/ui/configPresets.qml
+msgid "Restore default preset"
+msgstr "Varsayılan ön ayarı geri yükle"
+
+#: ../contents/ui/configPresets.qml
+msgid "New from current settings"
+msgstr "Mevcut ayarlardan yeni oluştur"
+
+#: ../contents/ui/configPresets.qml
+msgid "Save"
+msgstr "Kaydet"
+
+#: ../contents/ui/configPresets.qml
+msgid "Refresh presets"
+msgstr "Ön ayarları yenile"
+
+#: ../contents/ui/configPresets.qml
+msgid "Built-in"
+msgstr "Yerleşik"
+
+#: ../contents/ui/configPresets.qml
+msgid "Load"
+msgstr "Yükle"
+
+#: ../contents/ui/configPresets.qml
+msgid "Update"
+msgstr "Güncelle"
+
+#: ../contents/ui/configPresets.qml
+msgid "Create preview"
+msgstr "Önizleme oluştur"
+
+#: ../contents/ui/configPresets.qml
+msgid "Update preview"
+msgstr "Önizlemeyi güncelle"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g from top to left)."
+msgstr "Panel konumunu değiştirmek şu anda kararsızdır ve panelleri paralel olmayan kenarlar arasında taşırken (ör. üstten sola) Plasma'nın çökmesine neden olabilir."
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid ""
+"Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel "
+"background</b> options in <b>Appearance</b> tab instead."
+msgstr ""
+"Opaklık ve Ekran seçenekleri <b>Plasma 6.3</b> veya daha yenisini gerektirir.<br>Opaklık mevcut Plasma Temasına bağlıdır, daha ince kontrol veya tam şeffaflık için bunun yerine <b>Görünüm</b> sekmesindeki <b>Panel Opaklığı</b> ve <b>Yerel panel arka planı</b> "
+"seçeneklerini kullanın."
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Screen"
+msgstr "Ekran"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Screen:"
+msgstr "Ekran:"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Position"
+msgstr "Konum"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Position:"
+msgstr "Konum:"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Top"
+msgstr "Üst"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Bottom"
+msgstr "Alt"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Left"
+msgstr "Sol"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Right"
+msgstr "Sağ"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Alignment"
+msgstr "Hizalama"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Alignment:"
+msgstr "Hizalama:"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Center"
+msgstr "Orta"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Length mode"
+msgstr "Uzunluk modu"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Mode:"
+msgstr "Mod:"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Fill"
+msgstr "Doldur"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Fit content"
+msgstr "İçeriğe sığdır"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Visibility"
+msgstr "Görünürlük"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Always visible"
+msgstr "Her zaman görünür"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Auto hide"
+msgstr "Otomatik gizle"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Dodge windows"
+msgstr "Pencerelerden kaç"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Windows go below"
+msgstr "Pencereler altta kalsın"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Opacity"
+msgstr "Opaklık"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Adaptive"
+msgstr "Uyarlanabilir"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Opaque"
+msgstr "Opak"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Translucent"
+msgstr "Yarı saydam"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Floating"
+msgstr "Yüzer (Floating)"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Floating:"
+msgstr "Yüzer (Floating):"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Thickness"
+msgstr "Kalınlık"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Thickness:"
+msgstr "Kalınlık:"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Show/Hide"
+msgstr "Göster/Gizle"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Show:"
+msgstr "Göster:"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid ""
+"WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make "
+"it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will remove the configuration from all Panel "
+"Colorizer instances so make sure to save the others first"
+msgstr ""
+"UYARI: Göster/Gizle'yi dikkatli kullanın, paneli gizlerseniz ve otomatik ön ayar yüklemesini yapılandırmadıysanız veya D-Bus kullanarak ön ayarları nasıl değiştireceğinizi bilmiyorsanız (veya devre dışı bıraktıysanız), yapılandırmayı veya Panel Renklendiriciyi manuel "
+"olarak kaldırmadan paneli tekrar görünür hale getirmenin hiçbir yolu olmayacaktır. Terminalde/tty'de aşağıdaki komutu kullanıp oturumu kapatın veya yeniden başlatın; bu işlem yapılandırmayı tüm Panel "
+"Renklendirici örneklerinden kaldıracaktır, bu nedenle önce diğerlerini kaydettiğinizden emin olun"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
+msgstr "D-Bus etkinse, bunun yerine onu kısayollarla kullanmanız önerilir. Daha fazla bilgi edinmek için README dosyasına başvurun veya bazı örnekler için Genel sekmesine bakın."
+
+#: ../contents/ui/configTextIconFix.qml
+msgid ""
+"Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - "
+"<strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, "
+"useful for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
+msgstr ""
+"Normal yöntemin çalışmadığı veya araç takımı tarafından sıfırlandığı araç takımları için metin ve simge renklerini/yazı tipini düzeltin.<br> - <strong>Maskele</strong>: Sembolik simgeler için yararlı olan SVG simgelerinde rengi zorla.<br> - "
+"<strong>Renk Efekti</strong>: Sembolik olmayan simgeler için yararlı olan sonradan işleme (post-processing) efektini kullanarak metin ve simgeler üzerinde rengi zorla.<br> - <strong>Yenile</strong>: Kendi içeriğini yeniden oluşturan veya yeniden renklendiren araç takımları için yararlı olan sabit bir aralıkla rengi/yazı tipini yeniden uygula.<br><strong>Maskele<strong> ve <strong>Renk Efekti</strong> özelliklerini eski haline getirmek için devre dışı bırakın ve Plasma'yı yeniden başlatın veya oturumu kapatın."
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Restore default (removes all icon and text fixes)"
+msgstr "Varsayılana geri yükle (tüm simge ve metin düzeltmelerini kaldırır)"
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Force Text/Icon color"
+msgstr "Metin/Simge rengini zorla"
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Refresh interval:"
+msgstr "Yenileme aralığı:"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Add new"
+msgstr "Yeni ekle"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Sort"
+msgstr "Sırala"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid ""
+"Replace System Tray icons with icons from the current icon theme or a local file. The built-in rules icons are part of <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-"
+"theme\">Papirus icon theme</a>."
+msgstr ""
+"Sistem Tepsisi simgelerini mevcut simge temasından veya yerel bir dosyadan gelen simgelerle değiştirin. Yerleşik kural simgeleri <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-"
+"theme\">Papirus simge temasının</a> bir parçasıdır."
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid ""
+"C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?"
+"tab=readme-ov-file#manually\">Install instructions</a>."
+msgstr ""
+"C++ eklentisi bulunamadı, bu özellik çalışmayacaktır. Eklentiyi kurun ve kullanabilmek için yeniden başlatın veya plasmashell'i yeniden başlatın <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?"
+"tab=readme-ov-file#manually\">Kurulum talimatları</a>."
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid ""
+"The installed version of the C++ plugin doesn't support this feature, update the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-"
+"panel-colorizer?tab=readme-ov-file#manually\">Install instructions</a>."
+msgstr ""
+"C++ eklentisinin kurulu sürümü bu özelliği desteklemiyor, eklentiyi güncelleyin ve kullanabilmek için yeniden başlatın veya plasmashell'i yeniden başlatın <a href=\"https://github.com/luisbocanegra/plasma-"
+"panel-colorizer?tab=readme-ov-file#manually\">Kurulum talimatları</a>."
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Log icon changes:"
+msgstr "Simge değişikliklerini günlüğe kaydet:"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Icon hashes will be printed to the system log"
+msgstr "Simge karmaları (hashes) sistem günlüğüne yazdırılacaktır"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Enable built-in rules:"
+msgstr "Yerleşik kuralları etkinleştir:"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Show"
+msgstr "Göster"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "How to use"
+msgstr "Nasıl kullanılır"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Built-in Rules (read only)"
+msgstr "Yerleşik Kurallar (salt okunur)"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "User Rules"
+msgstr "Kullanıcı Kuralları"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Whether or not this replacement is enabled"
+msgstr "Bu değişimin etkin olup olmadığı"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Description (optional)"
+msgstr "Açıklama (isteğe bağlı)"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Description"
+msgstr "Açıklama"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "SHA1, string or regex to match"
+msgstr "Eşleştirilecek SHA1, dize veya düzenli ifade (regex)"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Icon SHA1, title or name of the target tray item"
+msgstr "Hedef tepsi ögesinin simge SHA1'i, başlığı veya adı"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Custom icon"
+msgstr "Özel simge"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Icon name or file"
+msgstr "Simge adı veya dosyası"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Edit icon"
+msgstr "Simgeyi düzenle"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgctxt "@item:inmenu Open icon chooser dialog"
+msgid "Choose…"
+msgstr "Seç…"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgctxt "@action:inmenu"
+msgid "Remove icon"
+msgstr "Simgeyi kaldır"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Copy to User Rules"
+msgstr "Kullanıcı Kurallarına Kopyala"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Copy rule"
+msgstr "Kuralı kopyala"
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Create widget islands by placing separator widgets around them."
+msgstr "Etrafına ayırıcı araç takımları yerleştirerek araç takımı adaları oluşturun."
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid ""
+"<strong>How to use</strong><br>1. Add the widget that will act as islands separator to the panel(by default the Plasma's Panel Spacer widget will be used)<br>2. Select the separator widget "
+"below<br>3. Add as many separators as you need and move them to create islands."
+msgstr ""
+"<strong>Nasıl kullanılır</strong><br>1. Adalar ayırıcısı olarak işlev görecek araç takımını panele ekleyin (varsayılan olarak Plasma'nın Panel Boşluk (Spacer) araç takımı kullanılacaktır)<br>2. Aşağıdan ayırıcı araç takımını seçin<br>3. "
+"İhtiyacınız olan kadar ayırıcı ekleyin ve adalar oluşturmak için onları hareket ettirin."
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid ""
+"<strong>Notes</strong><br>- Widget custom background or border is required for this option to have a visible effect.<br>- If the widgets in your panel have different thickness, add margins to the "
+"widgets custom background in the Appearance tab."
+msgstr ""
+"<strong>Notlar</strong><br>- Bu seçeneğin görünür bir etkiye sahip olması için araç takımı özel arka planı veya kenarlığı gerekir.<br>- Panelinizdeki araç takımlarının farklı kalınlıkları varsa, Görünüm sekmesinden "
+"araç takımlarının özel arka planına kenar boşlukları ekleyin."
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid ""
+"<strong>Need a separator widget?</strong><br>- <a href=\"%1\">Panel Colorizer Islands Separator</a> visible only in Edit Mode.<br>- <a href=\"%2\">Advanced Separator</a> always visible and "
+"configurable."
+msgstr ""
+"<strong>Bir ayırıcı araç takımına mı ihtiyacınız var?</strong><br>- <a href=\"%1\">Panel Renklendirici Adalar Ayırıcısı</a> yalnızca Düzenleme Modunda görünür.<br>- <a href=\"%2\">Gelişmiş Ayırıcı</a> her zaman görünür ve "
+"yapılandırılabilirdir."
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Separator widget:"
+msgstr "Ayırıcı araç takımı:"
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid ""
+"Select the widget that will act as separator for the islands.<br><br>Note that the separator widget itself does not need to be visible for it to work, so you can use an invisible spacer/separator "
+"for example."
+msgstr ""
+"Adalar için ayırıcı görevi görecek araç takımını seçin.<br><br>Unutmayın ki ayırıcı araç takımının kendisinin çalışması için görünür olması gerekmez, bu nedenle örneğin görünmez bir boşluk/ayırıcı "
+"kullanabilirsiniz."
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Require two separators per island:"
+msgstr "Her ada için iki ayırıcı gerektir:"
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid ""
+"Always require two separators for a group of widgets to become an island. By default, an arrangement of<br>%1 creates two islands.<br><br>Enabling this option makes it so that islands do not share "
+"separators, so for example an arrangement of<br>%2 is required to create two islands.<br><br>Enable this if your islands separator is not a panel spacer and you want to explicitly define the start "
+"and end of each island."
+msgstr ""
+"Bir araç takımı grubunun ada olabilmesi için her zaman iki ayırıcıya ihtiyaç duyun. Varsayılan olarak, <br>%1 dizilimi iki ada oluşturur.<br><br>Bu seçeneği etkinleştirmek adaların ayırıcıları paylaşmamasını "
+"sağlar, bu nedenle örneğin iki ada oluşturmak için <br>%2 dizilimi gerekir.<br><br>Adalar ayırıcınız bir panel boşluğu (spacer) değilse ve her adanın başlangıcını ve sonunu açıkça tanımlamak istiyorsanız "
+"bunu etkinleştirin."
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Blacklist separator widgets:"
+msgstr "Ayırıcı araç takımlarını kara listeye al:"
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Disable customization from separator widgets"
+msgstr "Ayırıcı araç takımlarından özelleştirmeyi devre dışı bırak"
+
+#: ../contents/ui/main.qml
+msgid "Hide widget (visible in panel Edit Mode)"
+msgstr "Araç takımını gizle (panel Düzenleme Modunda görünür)"
+
+#: ../contents/ui/main.qml
+msgid "A Plasmashell restart is required to remove all the modifications made by %1. Run journalctl restart --user plasma-plasmashell or log out and log back in."
+msgstr "%1 tarafından yapılan tüm değişiklikleri kaldırmak için Plasmashell'in yeniden başlatılması gerekir. journalctl restart --user plasma-plasmashell komutunu çalıştırın veya oturumu kapatıp tekrar açın."
