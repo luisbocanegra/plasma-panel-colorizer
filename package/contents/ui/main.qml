@@ -1027,7 +1027,7 @@ PlasmoidItem {
         componentName: "plasma_workspace"
         eventId: "notification"
         title: Plasmoid.metaData.name
-        text: i18n("A Plasmashell restart is required to remove all the modifications made by %1. Run journalctl restart --user plasma-plasmashell or log out and log back in.", Plasmoid.metaData.name)
+        text: i18n("A Plasmashell restart is required to remove all the modifications made by %1. Run systemctl restart --user plasma-plasmashell or log out and log back in.", Plasmoid.metaData.name)
         flags: Notification.Persistent
         iconName: main.icon
     }
