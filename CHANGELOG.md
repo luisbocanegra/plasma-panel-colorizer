@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.2.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v7.2.0...v7.2.1) (2026-06-23)
+
+
+### Bug Fixes
+
+* typo in Plasmashell restart message ([1be31fd](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/1be31fd075678947a09532e0dbc064cd2e351f58))
+
 ## [7.2.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v7.1.0...v7.2.0) (2026-05-23)
 
 
