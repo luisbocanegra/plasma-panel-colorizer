@@ -21,7 +21,7 @@ class PanelColorizer : public QObject {
                                      int radiusCompensation, bool visible);
     Q_INVOKABLE void popLastVisibleMaskRegion();
 
-    Q_INVOKABLE QString getIconHash(const QVariant &variant, bool logIconNames);
+    Q_INVOKABLE QString getIconHash(const QVariant &variant);
 
     explicit PanelColorizer(QObject *parent = nullptr);
 

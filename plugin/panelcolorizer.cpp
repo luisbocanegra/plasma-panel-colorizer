@@ -100,7 +100,7 @@ void PanelColorizer::popLastVisibleMaskRegion() {
     }
 };
 
-QString PanelColorizer::getIconHash(const QVariant &variant, bool logIconNames) {
+QString PanelColorizer::getIconHash(const QVariant &variant) {
 
     QString hashString;
 
@@ -127,8 +127,5 @@ QString PanelColorizer::getIconHash(const QVariant &variant, bool logIconNames) 
     QByteArray ba(reinterpret_cast<const char *>(img.bits()), img.sizeInBytes());
     QByteArray hash = QCryptographicHash::hash(ba, QCryptographicHash::Sha1);
     hashString = QString::fromUtf8(hash.toHex());
-    if (logIconNames && !icon.name().isEmpty()) {
-        qDebug() << "QIcon name:" << icon.name();
-    }
     return hashString;
 }

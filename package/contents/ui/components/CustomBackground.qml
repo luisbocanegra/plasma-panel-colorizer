@@ -53,21 +53,26 @@ Rectangle {
                 "needsAttention": false,
                 "busy": false,
                 "trayIconHash": "",
-                "title": ""
+                "title": "",
+                "iconName": ""
             };
         } else {
-            return Utils.getWidgetProperties(target, PlasmaCore.Types, hovered, main.plasmaVersion, inTray, main.panelColorizer, main.logSystemTrayIconChanges && rect.hovered);
+            return Utils.getWidgetProperties(target, PlasmaCore.Types, hovered, main.plasmaVersion, inTray, main.panelColorizer);
         }
     }
     property string widgetName: widgetProperties.name
     property string widgetTitle: widgetProperties.title
     property int widgetId: widgetProperties.id
     property string trayIconHash: widgetProperties.trayIconHash
-    onTrayIconHashChanged: {
+    property string iconName: widgetProperties.iconName
+    function logTrayIcon() {
         if (main.logSystemTrayIconChanges) {
-            console.log("Tray icon changed, title:", rect.widgetTitle, "name:", rect.widgetName, "\nSHA1:", rect.trayIconHash, "\nReplacement:", rect.customIcon);
+            console.log("Tray icon, title:", rect.widgetTitle, "name:", rect.widgetName, "\nSHA1:", rect.trayIconHash, "\nIcon Name:", rect.iconName, "\nReplacement:", rect.customIcon);
         }
     }
+    onTrayIconHashChanged: Qt.callLater(logTrayIcon)
+
+    onIconNameChanged: Qt.callLater(logTrayIcon)
 
     property string customIcon: {
         if (!main.systemTrayIconsReplacementEnabled || !main.isEnabled) {
@@ -1096,13 +1101,14 @@ Rectangle {
 
     property bool hovered: hoverHandler.hovered
     onHoveredChanged: {
-        if (main.logSystemTrayIconChanges && hovered && rect.inTray && rect.trayIconHash) {
-            console.log("Hovered tray item, title:", rect.widgetTitle, "name:", rect.widgetName, "\nSHA1:", rect.trayIconHash, "\nReplacement:", rect.customIcon);
+        if (hovered) {
+            logTrayIcon();
         }
     }
     HoverHandler {
         id: hoverHandler
         parent: rect.target
+        enabled: rect.inTray && (rect.iconName || rect.trayIconHash)
     }
 
     Rectangle {

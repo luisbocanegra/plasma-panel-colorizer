@@ -220,7 +220,6 @@ function getWidgetProperties(
     plasmaVersion,
     inTray,
     panelColorizer,
-    logIconChanges,
 ) {
     let name = "";
     let id = -1;
@@ -228,6 +227,7 @@ function getWidgetProperties(
     let needsAttention = false;
     let busy = false;
     let trayIconHash = "";
+    let iconName = "";
     let title = "";
     if (item.applet?.plasmoid?.pluginName) {
         const applet = item.applet;
@@ -259,7 +259,8 @@ function getWidgetProperties(
                         iconSource = model.AttentionIconName;
                     }
                 } else {
-                    iconSource = model.Icon || model.IconName;
+                    iconSource = model.Icon;
+                    iconName = model.Icon?.name || model.IconName;
                 }
                 if (panelColorizer && iconSource) {
                     if (typeof panelColorizer.getIconHash !== "function") {
@@ -270,10 +271,7 @@ function getWidgetProperties(
                         );
                     } else {
                         try {
-                            trayIconHash = panelColorizer.getIconHash(
-                                iconSource,
-                                logIconChanges,
-                            );
+                            trayIconHash = panelColorizer.getIconHash(iconSource);
                         } catch (e) {
                             console.error(e.message, "\n", e.stack);
                         }
@@ -301,6 +299,7 @@ function getWidgetProperties(
         busy,
         hovered,
         trayIconHash,
+        iconName
     };
 }
 

@@ -173,7 +173,7 @@ KCM.ScrollViewKCM {
             Layout.margins: Kirigami.Units.mediumSpacing
         }
         Label {
-            text: "1. Enable <b>Log icon changes</b> above<br>2. Run <b>journalctl -f</b> from terminal<br>3. Hover the System tray entry or trigger an icon change<br>4. Copy the icon SHA1 (long string of numbers and letters), title or name <br>5. Add a new rule with the SHA1/title/name and your icon name or icon file"
+            text: "1. Enable <b>Log icon changes</b> above<br>2. Run <b>journalctl -f</b> from terminal<br>3. Hover the System tray entry or trigger an icon change<br>4. Copy any of the properties: icon SHA1/name, title or name <br>5. Add a new rule with the SHA1/icon name/title/name you choose and specify the custom icon name or file"
             wrapMode: Label.WordWrap
             font.features: {
                 "tnum": 1
@@ -190,7 +190,21 @@ KCM.ScrollViewKCM {
             Layout.fillWidth: true
         }
         Label {
-            text: "<b>Note</b>: Some applications like Signal are missing accumulated notification icons, contribution of missing icons via GitHub pull request or issue is very welcome, please do so by providing the the description + SHA1/title/name + icon-name from Papirus (panel/status icons only if no matching icon exists, otherwise it can be omitted)</b>"
+            text: "<b>Note</b>: Some applications like Signal are missing accumulated notification icons, contribution of missing icons via GitHub pull request or issue is very welcome, please do so by providing the the description + SHA1/title/name + icon-name from Papirus (panel/status icons only if no matching icon exists, otherwise it can be omitted)"
+            wrapMode: Label.WordWrap
+            visible: showHowToLabel.checked
+            Layout.margins: Kirigami.Units.mediumSpacing
+            Layout.fillWidth: true
+        }
+        Label {
+            text: "<b>Note</b>: Matching properties (especially the SHA1) may change when applications get updated, rules will need to be updated when that happens."
+            wrapMode: Label.WordWrap
+            visible: showHowToLabel.checked
+            Layout.margins: Kirigami.Units.mediumSpacing
+            Layout.fillWidth: true
+        }
+        Label {
+            text: "<b>Note</b>: Plasma widgets in the system tray are not supported by this feature as widgets provide their own visual content and logic."
             wrapMode: Label.WordWrap
             visible: showHowToLabel.checked
             Layout.margins: Kirigami.Units.mediumSpacing
