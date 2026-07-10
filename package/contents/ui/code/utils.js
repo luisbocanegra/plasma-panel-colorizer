@@ -278,6 +278,12 @@ function getWidgetProperties(
                     }
                 }
                 break;
+            } else if (model.itemType === "BackgroundApp") {
+                name = model.itemId;
+                title = model.name || model.message;
+                needsAttention = pcTypes.NeedsAttentionStatus === model.status;
+                iconName = model.icon;
+                break;
             } else if (model.itemType === "Plasmoid") {
                 const applet = model.applet;
                 name = applet.plasmoid.pluginName ?? "";
