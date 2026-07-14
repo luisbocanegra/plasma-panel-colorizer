@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-06-23 01:32+0000\n"
+"POT-Creation-Date: 2026-07-14 19:38+0000\n"
 "PO-Revision-Date: 2026-07-11 15:30-0300\n"
 "Last-Translator: \n"
 "Language-Team: Brazilian Portuguese\n"
@@ -92,6 +92,10 @@ msgstr "Fundo do widget"
 msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr "Painel não encontrado, este widget precisa estar em um painel para funcionar"
 
+#: ../contents/ui/components/FontFamilyChooser.qml
+msgid "Search fonts"
+msgstr ""
+
 #: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormWidgetSettings.qml
 msgid "Border"
 msgstr "Borda"
@@ -109,8 +113,8 @@ msgid "Width:"
 msgstr "Largura:"
 
 #: ../contents/ui/components/FormBorder.qml
-msgid "Use an integer when using <strong>Widget Islands</strong> to avoid rendering issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">See #64</a>"
-msgstr "Use um número inteiro ao usar <strong>Ilhas de widgets</strong> para evitar problemas de renderização! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">Veja #64</a>"
+msgid "Use an integer when using <strong>Widget Islands</strong> to avoid rendering issues! See <a href=\"%1\">#64</a>."
+msgstr ""
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Custom widths:"
@@ -657,8 +661,8 @@ msgid "Thank you for using %1!"
 msgstr "Obrigado por usar o %1!"
 
 #: ../contents/ui/components/SupportMe.qml
-msgid "If you enjoy using the plugin please consider sponsoring or donating so I can dedicate more time to maintain and improve this and <a href=\"https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers\">my other projects</a>."
-msgstr "Se você gosta do plugin, considere patrocinar ou doar para que eu possa dedicar mais tempo a manter e melhorar este e <a href=\"https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers\">meus outros projetos</a>."
+msgid "If you enjoy using the plugin please consider sponsoring or donating so I can dedicate more time to maintain and improve this and <a href=\"%1\">my other projects</a>."
+msgstr ""
 
 #: ../contents/ui/components/SupportMe.qml
 msgid "You can also"
@@ -683,6 +687,10 @@ msgstr "Área de notificação"
 #: ../contents/ui/components/WidgetCardBlacklist.qml
 msgid "Blacklist"
 msgstr "Lista negra"
+
+#: ../contents/ui/components/WidgetCardConfig.qml
+msgid "Clear"
+msgstr ""
 
 #: ../contents/ui/components/WidgetCardConfig.qml
 msgid "Add"
@@ -713,8 +721,8 @@ msgid "Refresh"
 msgstr "Atualizar"
 
 #: ../contents/ui/configAppearance.qml
-msgid "Not getting the expected result? Make sure you're editing the correct element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ plugin using the latest source, <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">see instructions</a>."
-msgstr "Não está obtendo o resultado esperado? Verifique se está editando o elemento correto.<br>O desfoque personalizado não funciona? Tente reinstalar/recompilar o plugin C++ usando o código-fonte mais recente, <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">veja as instruções</a>."
+msgid "Not getting the expected result? Make sure you're editing the correct element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ plugin using the latest source, <a href=\"%1\">see instructions</a>."
+msgstr ""
 
 #: ../contents/ui/configAppearance.qml
 msgid "Restore default (removes all customizations)"
@@ -1200,6 +1208,10 @@ msgstr ""
 msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
 msgstr "Se você tem o D-Bus ativado, é recomendável usá-lo com atalhos. Consulte o README para saber mais ou veja a aba Geral para alguns exemplos."
 
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "D-Bus usage"
+msgstr ""
+
 #: ../contents/ui/configTextIconFix.qml
 msgid ""
 "Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, useful "
@@ -1229,16 +1241,16 @@ msgid "Sort"
 msgstr "Ordenar"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid "Replace System Tray icons with icons from the current icon theme or a local file. The built-in rules icons are part of <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus icon theme</a>."
-msgstr "Substitua os ícones da área de notificação por ícones do tema de ícones atual ou de um arquivo local. Os ícones das regras integradas fazem parte do <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">tema de ícones Papirus</a>."
+msgid "Replace System Tray icons with icons from the current icon theme or a local file. The built-in rules icons are part of <a href=\"%1\">Papirus icon theme</a>."
+msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Install instructions</a>."
-msgstr "Plugin C++ não encontrado, este recurso não funcionará. Instale o plugin e reinicie o computador ou o plasmashell para poder usá-lo <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Instruções de instalação</a>."
+msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it <a href=\"%1\">Install instructions</a>."
+msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid "The installed version of the C++ plugin doesn't support this feature, update the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Install instructions</a>."
-msgstr "A versão instalada do plugin C++ não suporta este recurso. Atualize o plugin e reinicie o computador ou o plasmashell para poder usá-lo <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Instruções de instalação</a>."
+msgid "The installed version of the C++ plugin doesn't support this feature, update the plugin and reboot or restart plasmashell to be able to use it <a href=\"%1\">Install instructions</a>."
+msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Log icon changes:"
@@ -1259,6 +1271,26 @@ msgstr "Mostrar"
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "How to use"
 msgstr "Como usar"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "1. Enable <b>Log icon changes</b> above<br>2. Run <b>journalctl -f</b> from terminal<br>3. Hover the System tray entry or trigger an icon change<br>4. Copy any of the properties: icon SHA1/name, title or name <br>5. Add a new rule with the SHA1/icon name/title/name you choose and specify the custom icon name or file"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "<b>Note</b>: There are some rules without icon as there was no matching one in Papirus, you can override those with your own icons by copying the rule to <b>User Replacements</b>"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "<b>Note</b>: Some applications like Signal are missing accumulated notification icons, contribution of missing icons via GitHub pull request or issue is very welcome, please do so by providing the the description + SHA1/title/name + icon-name from Papirus (panel/status icons only if no matching icon exists, otherwise it can be omitted)"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "<b>Note</b>: Matching properties (especially the SHA1) may change when applications get updated, rules will need to be updated when that happens."
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "<b>Note</b>: Plasma widgets in the system tray are not supported by this feature as widgets provide their own visual content and logic."
+msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Built-in Rules (read only)"
@@ -1315,8 +1347,8 @@ msgid "Copy to User Rules"
 msgstr "Copiar para Regras do usuário"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid "Copy rule"
-msgstr "Copiar regra"
+msgid "Duplicate rule"
+msgstr ""
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Create widget islands by placing separator widgets around them."
@@ -1369,6 +1401,27 @@ msgstr "Ocultar widget (visível no modo de edição do painel)"
 #: ../contents/ui/main.qml
 msgid "A Plasmashell restart is required to remove all the modifications made by %1. Run systemctl restart --user plasma-plasmashell or log out and log back in."
 msgstr ""
+
+#~ msgid "Use an integer when using <strong>Widget Islands</strong> to avoid rendering issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">See #64</a>"
+#~ msgstr "Use um número inteiro ao usar <strong>Ilhas de widgets</strong> para evitar problemas de renderização! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">Veja #64</a>"
+
+#~ msgid "If you enjoy using the plugin please consider sponsoring or donating so I can dedicate more time to maintain and improve this and <a href=\"https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers\">my other projects</a>."
+#~ msgstr "Se você gosta do plugin, considere patrocinar ou doar para que eu possa dedicar mais tempo a manter e melhorar este e <a href=\"https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers\">meus outros projetos</a>."
+
+#~ msgid "Not getting the expected result? Make sure you're editing the correct element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ plugin using the latest source, <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">see instructions</a>."
+#~ msgstr "Não está obtendo o resultado esperado? Verifique se está editando o elemento correto.<br>O desfoque personalizado não funciona? Tente reinstalar/recompilar o plugin C++ usando o código-fonte mais recente, <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">veja as instruções</a>."
+
+#~ msgid "Replace System Tray icons with icons from the current icon theme or a local file. The built-in rules icons are part of <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus icon theme</a>."
+#~ msgstr "Substitua os ícones da área de notificação por ícones do tema de ícones atual ou de um arquivo local. Os ícones das regras integradas fazem parte do <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">tema de ícones Papirus</a>."
+
+#~ msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Install instructions</a>."
+#~ msgstr "Plugin C++ não encontrado, este recurso não funcionará. Instale o plugin e reinicie o computador ou o plasmashell para poder usá-lo <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Instruções de instalação</a>."
+
+#~ msgid "The installed version of the C++ plugin doesn't support this feature, update the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Install instructions</a>."
+#~ msgstr "A versão instalada do plugin C++ não suporta este recurso. Atualize o plugin e reinicie o computador ou o plasmashell para poder usá-lo <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Instruções de instalação</a>."
+
+#~ msgid "Copy rule"
+#~ msgstr "Copiar regra"
 
 #~ msgid "A Plasmashell restart is required to remove all the modifications made by %1. Run journalctl restart --user plasma-plasmashell or log out and log back in."
 #~ msgstr "É necessário reiniciar o Plasmashell para remover todas as modificações feitas pelo %1. Execute journalctl restart --user plasma-plasmashell ou encerre a sessão e entre novamente."

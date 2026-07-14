@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-06-23 01:32+0000\n"
+"POT-Creation-Date: 2026-07-14 19:38+0000\n"
 "PO-Revision-Date: 2026-02-07 12:00+0100\n"
 "Last-Translator: RygorrMortis <rygorrmortis@github.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -105,6 +105,10 @@ msgid "Panel not found, this widget must be placed on a panel to work"
 msgstr ""
 "Nie znaleziono panelu, ten widżet musi być umieszczony na panelu, aby działał"
 
+#: ../contents/ui/components/FontFamilyChooser.qml
+msgid "Search fonts"
+msgstr ""
+
 #: ../contents/ui/components/FormBorder.qml
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Border"
@@ -134,12 +138,8 @@ msgstr "Szerokość:"
 #: ../contents/ui/components/FormBorder.qml
 msgid ""
 "Use an integer when using <strong>Widget Islands</strong> to avoid rendering "
-"issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/"
-"issues/64\">See #64</a>"
+"issues! See <a href=\"%1\">#64</a>."
 msgstr ""
-"Użyj liczby całkowitej przy użyciu <strong>Wysp widżetów</strong>, aby "
-"uniknąć problemów z renderowaniem! <a href=\"https://github.com/"
-"luisbocanegra/plasma-panel-colorizer/issues/64\">Zobacz #64</a>"
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Custom widths:"
@@ -762,16 +762,9 @@ msgstr "Dziękuję za używanie %1!"
 #: ../contents/ui/components/SupportMe.qml
 msgid ""
 "If you enjoy using the plugin please consider sponsoring or donating so I "
-"can dedicate more time to maintain and improve this and <a href=\"https://"
-"github.com/luisbocanegra?"
-"tab=repositories&q=&type=source&language=&sort=stargazers\">my other "
-"projects</a>."
+"can dedicate more time to maintain and improve this and <a href=\"%1\">my "
+"other projects</a>."
 msgstr ""
-"Jeśli podoba Ci się używanie tej wtyczki, rozważ sponsoring lub darowiznę, "
-"abym mógł poświęcić więcej czasu na utrzymanie i ulepszanie tej oraz <a "
-"href=\"https://github.com/luisbocanegra?"
-"tab=repositories&q=&type=source&language=&sort=stargazers\">moich innych "
-"projektów</a>."
 
 #: ../contents/ui/components/SupportMe.qml
 msgid "You can also"
@@ -798,6 +791,10 @@ msgstr "Tacka systemowa"
 
 #: ../contents/ui/components/WidgetCardBlacklist.qml
 msgid "Blacklist"
+msgstr ""
+
+#: ../contents/ui/components/WidgetCardConfig.qml
+msgid "Clear"
 msgstr ""
 
 #: ../contents/ui/components/WidgetCardConfig.qml
@@ -833,15 +830,8 @@ msgstr "Odśwież"
 msgid ""
 "Not getting the expected result? Make sure you're editing the correct "
 "element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ "
-"plugin using the latest source, <a href=\"https://github.com/luisbocanegra/"
-"plasma-panel-colorizer#build-from-source-with-c-plugin\">see instructions</"
-"a>."
+"plugin using the latest source, <a href=\"%1\">see instructions</a>."
 msgstr ""
-"Nie uzyskujesz oczekiwanego rezultatu? Upewnij się, że edytujesz poprawny "
-"element.<br>Niestandardowe rozmycie nie działa? Spróbuj ponownie "
-"zainstalować/odbudować wtyczkę C++ używając najnowszego źródła, <a "
-"href=\"https://github.com/luisbocanegra/plasma-panel-colorizer#build-from-"
-"source-with-c-plugin\">zobacz instrukcje</a>."
 
 #: ../contents/ui/configAppearance.qml
 msgid "Restore default (removes all customizations)"
@@ -1417,6 +1407,10 @@ msgstr ""
 "Skonsultuj README, aby dowiedzieć się więcej lub zobacz kartę Ogólne dla "
 "niektórych przykładów."
 
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "D-Bus usage"
+msgstr ""
+
 #: ../contents/ui/configTextIconFix.qml
 msgid ""
 "Fix text and icon colors/font for widgets where the normal method doesn't "
@@ -1462,36 +1456,23 @@ msgstr "Sortuj"
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid ""
 "Replace System Tray icons with icons from the current icon theme or a local "
-"file. The built-in rules icons are part of <a href=\"https://github.com/"
-"PapirusDevelopmentTeam/papirus-icon-theme\">Papirus icon theme</a>."
+"file. The built-in rules icons are part of <a href=\"%1\">Papirus icon "
+"theme</a>."
 msgstr ""
-"Zamienia ikony tacki systemowej na ikony z bieżącego motywu ikon lub pliku "
-"lokalnego. Ikony wbudowanych reguł są częścią <a href=\"https://github.com/"
-"PapirusDevelopmentTeam/papirus-icon-theme\">motywu ikon Papirus</a>."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid ""
 "C++ plugin not found, this feature will not work. Install the plugin and "
-"reboot or restart plasmashell to be able to use it <a href=\"https://github."
-"com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-"
-"file#manually\">Install instructions</a>."
+"reboot or restart plasmashell to be able to use it <a href=\"%1\">Install "
+"instructions</a>."
 msgstr ""
-"Wtyczka C++ nie znaleziona, ta funkcja nie będzie działać. Zainstaluj "
-"wtyczkę i uruchom ponownie komputer lub zrestartuj plasmashell, aby móc z "
-"niej korzystać <a href=\"https://github.com/luisbocanegra/plasma-panel-"
-"colorizer?tab=readme-ov-file#manually\">Instrukcje instalacji</a>."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid ""
 "The installed version of the C++ plugin doesn't support this feature, update "
 "the plugin and reboot or restart plasmashell to be able to use it <a "
-"href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-"
-"file#manually\">Install instructions</a>."
+"href=\"%1\">Install instructions</a>."
 msgstr ""
-"Zainstalowana wersja wtyczki C++ nie obsługuje tej funkcji, zaktualizuj "
-"wtyczkę i uruchom ponownie komputer lub zrestartuj plasmashell, aby móc z "
-"niej korzystać <a href=\"https://github.com/luisbocanegra/plasma-panel-"
-"colorizer?tab=readme-ov-file#manually\">Instrukcje instalacji</a>."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Log icon changes:"
@@ -1512,6 +1493,43 @@ msgstr "Pokaż"
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "How to use"
 msgstr "Jak używać"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid ""
+"1. Enable <b>Log icon changes</b> above<br>2. Run <b>journalctl -f</b> from "
+"terminal<br>3. Hover the System tray entry or trigger an icon change<br>4. "
+"Copy any of the properties: icon SHA1/name, title or name <br>5. Add a new "
+"rule with the SHA1/icon name/title/name you choose and specify the custom "
+"icon name or file"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid ""
+"<b>Note</b>: There are some rules without icon as there was no matching one "
+"in Papirus, you can override those with your own icons by copying the rule "
+"to <b>User Replacements</b>"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid ""
+"<b>Note</b>: Some applications like Signal are missing accumulated "
+"notification icons, contribution of missing icons via GitHub pull request or "
+"issue is very welcome, please do so by providing the the description + SHA1/"
+"title/name + icon-name from Papirus (panel/status icons only if no matching "
+"icon exists, otherwise it can be omitted)"
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid ""
+"<b>Note</b>: Matching properties (especially the SHA1) may change when "
+"applications get updated, rules will need to be updated when that happens."
+msgstr ""
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid ""
+"<b>Note</b>: Plasma widgets in the system tray are not supported by this "
+"feature as widgets provide their own visual content and logic."
+msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Built-in Rules (read only)"
@@ -1568,8 +1586,8 @@ msgid "Copy to User Rules"
 msgstr "Kopiuj do reguł użytkownika"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid "Copy rule"
-msgstr "Kopiuj regułę"
+msgid "Duplicate rule"
+msgstr ""
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Create widget islands by placing separator widgets around them."
@@ -1641,6 +1659,76 @@ msgid ""
 "%1. Run systemctl restart --user plasma-plasmashell or log out and log back "
 "in."
 msgstr ""
+
+#~ msgid ""
+#~ "Use an integer when using <strong>Widget Islands</strong> to avoid "
+#~ "rendering issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-"
+#~ "colorizer/issues/64\">See #64</a>"
+#~ msgstr ""
+#~ "Użyj liczby całkowitej przy użyciu <strong>Wysp widżetów</strong>, aby "
+#~ "uniknąć problemów z renderowaniem! <a href=\"https://github.com/"
+#~ "luisbocanegra/plasma-panel-colorizer/issues/64\">Zobacz #64</a>"
+
+#~ msgid ""
+#~ "If you enjoy using the plugin please consider sponsoring or donating so I "
+#~ "can dedicate more time to maintain and improve this and <a href=\"https://"
+#~ "github.com/luisbocanegra?"
+#~ "tab=repositories&q=&type=source&language=&sort=stargazers\">my other "
+#~ "projects</a>."
+#~ msgstr ""
+#~ "Jeśli podoba Ci się używanie tej wtyczki, rozważ sponsoring lub "
+#~ "darowiznę, abym mógł poświęcić więcej czasu na utrzymanie i ulepszanie "
+#~ "tej oraz <a href=\"https://github.com/luisbocanegra?"
+#~ "tab=repositories&q=&type=source&language=&sort=stargazers\">moich innych "
+#~ "projektów</a>."
+
+#~ msgid ""
+#~ "Not getting the expected result? Make sure you're editing the correct "
+#~ "element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ "
+#~ "plugin using the latest source, <a href=\"https://github.com/"
+#~ "luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-"
+#~ "plugin\">see instructions</a>."
+#~ msgstr ""
+#~ "Nie uzyskujesz oczekiwanego rezultatu? Upewnij się, że edytujesz poprawny "
+#~ "element.<br>Niestandardowe rozmycie nie działa? Spróbuj ponownie "
+#~ "zainstalować/odbudować wtyczkę C++ używając najnowszego źródła, <a "
+#~ "href=\"https://github.com/luisbocanegra/plasma-panel-colorizer#build-from-"
+#~ "source-with-c-plugin\">zobacz instrukcje</a>."
+
+#~ msgid ""
+#~ "Replace System Tray icons with icons from the current icon theme or a "
+#~ "local file. The built-in rules icons are part of <a href=\"https://github."
+#~ "com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus icon theme</a>."
+#~ msgstr ""
+#~ "Zamienia ikony tacki systemowej na ikony z bieżącego motywu ikon lub "
+#~ "pliku lokalnego. Ikony wbudowanych reguł są częścią <a href=\"https://"
+#~ "github.com/PapirusDevelopmentTeam/papirus-icon-theme\">motywu ikon "
+#~ "Papirus</a>."
+
+#~ msgid ""
+#~ "C++ plugin not found, this feature will not work. Install the plugin and "
+#~ "reboot or restart plasmashell to be able to use it <a href=\"https://"
+#~ "github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-"
+#~ "file#manually\">Install instructions</a>."
+#~ msgstr ""
+#~ "Wtyczka C++ nie znaleziona, ta funkcja nie będzie działać. Zainstaluj "
+#~ "wtyczkę i uruchom ponownie komputer lub zrestartuj plasmashell, aby móc z "
+#~ "niej korzystać <a href=\"https://github.com/luisbocanegra/plasma-panel-"
+#~ "colorizer?tab=readme-ov-file#manually\">Instrukcje instalacji</a>."
+
+#~ msgid ""
+#~ "The installed version of the C++ plugin doesn't support this feature, "
+#~ "update the plugin and reboot or restart plasmashell to be able to use it "
+#~ "<a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?"
+#~ "tab=readme-ov-file#manually\">Install instructions</a>."
+#~ msgstr ""
+#~ "Zainstalowana wersja wtyczki C++ nie obsługuje tej funkcji, zaktualizuj "
+#~ "wtyczkę i uruchom ponownie komputer lub zrestartuj plasmashell, aby móc z "
+#~ "niej korzystać <a href=\"https://github.com/luisbocanegra/plasma-panel-"
+#~ "colorizer?tab=readme-ov-file#manually\">Instrukcje instalacji</a>."
+
+#~ msgid "Copy rule"
+#~ msgstr "Kopiuj regułę"
 
 #~ msgid "Disable"
 #~ msgstr "Wyłącz"
