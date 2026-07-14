@@ -1,5 +1,24 @@
 # Changelog
 
+## [7.3.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v7.2.0...v7.3.0) (2026-07-14)
+
+
+### Features
+
+* Add Brazilian Portuguese translation ([#549](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/549)) ([a449aab](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/a449aab0abc8c862aa02398cd399eb191926b5bd))
+* allow replacing icons of background apps ([968d6d6](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/968d6d66e9b865624c7db936c01165f20129709d))
+* allow setting opacity for gradient and image background types ([38b5669](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/38b5669dcb24b1fbf2494ce4c5f074f5ac4f3d1a))
+* allow to replace system tray icons by icon name ([e91ecf5](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/e91ecf5b25dc4bdd322170d59aad7c0078cf37e1))
+
+
+### Bug Fixes
+
+* active window fallback when there is only one window in the stack ([fbd604d](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/fbd604ddc2a20dc4abc13f9adeb01e39518cab83))
+* active window preset auto-loading ([5b74889](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/5b7488931b97df40f65fb2f62f0b13a1aecf321f))
+* black background when using images with alpha channel ([a2a6502](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/a2a6502664b08db62f5e5620a167ceb8115faf8c))
+* support Plasma 6.7 per-output virtual desktops ([8de0714](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/8de0714d15cc5c80ceb8c09003987bef461ae9dc))
+* typo in Plasmashell restart message ([1be31fd](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/1be31fd075678947a09532e0dbc064cd2e351f58))
+
 ## [7.2.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v7.1.0...v7.2.0) (2026-05-23)
 
 
