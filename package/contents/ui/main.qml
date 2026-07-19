@@ -805,7 +805,7 @@ PlasmoidItem {
         screenGeometry: Plasmoid.containment.screenGeometry
         filterByActive: main.presetAutoloading.filterByActive ?? false
         filterByScreen: main.presetAutoloading.filterByScreen ?? true
-        trackLastActive: main.presetAutoloading.trackLastActive ?? true
+        trackLastActive: main.presetAutoloading.trackLastActive ?? false
     }
 
     RunCommand {
