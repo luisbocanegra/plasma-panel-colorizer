@@ -1201,7 +1201,9 @@ msgstr "Mostra:"
 msgid ""
 "WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will remove the configuration from all Panel Colorizer "
 "instances so make sure to save the others first"
-msgstr "AVÍS: Feu servir Mostra/Amaga amb precaució. Si amagueu el panell i no heu configurat un perfil d'autocàrrega o no sabeu canviar de perfil amb el D-Bus (o ho teniu desactivat), no podreu tornar a fer-lo visible sense haver de traure tota la configuració o bé desinstal·lar l'Acoloridor de panells. Feu servir l'ordre de més avall en una terminal/tty quan sortiu de la sessió o reinicieu per tal de traure la configuració de totes les instàncies de l'Acoloridor de panells. Assegureu-vos de desar la configuració de totes les instàncies de l'Acoloridor abans de fer-ho."
+msgstr ""
+"AVÍS: Feu servir Mostra/Amaga amb precaució. Si amagueu el panell i no heu configurat un perfil d'autocàrrega o no sabeu canviar de perfil amb el D-Bus (o ho teniu desactivat), no podreu tornar a fer-lo visible sense haver de traure tota la configuració o bé desinstal·lar l'Acoloridor de panells. Feu servir l'ordre de més avall en una terminal/tty quan sortiu de la sessió o reinicieu per tal de "
+"traure la configuració de totes les instàncies de l'Acoloridor de panells. Assegureu-vos de desar la configuració de totes les instàncies de l'Acoloridor abans de fer-ho."
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
@@ -1216,8 +1218,8 @@ msgid ""
 "Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, useful "
 "for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
 msgstr ""
-"Canvia els colors de text, el tipus de lletra o la icona dels als ginys per als quals el mètode normal no funciona o l'efecte no és permanent.<br> ‒ <strong>Màscara</strong>: Força l'acoloriment d'icones (icones simbòliques).<br> ‒ <strong>Efecte de color</strong>: Força l'acoloriment de text/icones fent servir un efecte de post-processat (per a qualsevol icona).<br> ‒ <strong>Actualitza</strong>: Torna "
-"a aplicar l'acoloriment o el tipus de lletra a un interval fixat, per a ginys que recreen o canvien el color del contingut per si mateixos<br>Per a restaurar la <strong>Màscara<strong> i l'<strong>Efecte de color</strong>, desactiveu i reinicieu el Plasma o sortiu de la sessió."
+"Canvia els colors de text, el tipus de lletra o la icona dels als ginys per als quals el mètode normal no funciona o l'efecte no és permanent.<br> ‒ <strong>Màscara</strong>: Força l'acoloriment d'icones (icones simbòliques).<br> ‒ <strong>Efecte de color</strong>: Força l'acoloriment de text/icones fent servir un efecte de post-processat (per a qualsevol icona).<br> ‒ <strong>Actualitza</"
+"strong>: Torna a aplicar l'acoloriment o el tipus de lletra a un interval fixat, per a ginys que recreen o canvien el color del contingut per si mateixos<br>Per a restaurar la <strong>Màscara<strong> i l'<strong>Efecte de color</strong>, desactiveu i reinicieu el Plasma o sortiu de la sessió."
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
@@ -1273,7 +1275,9 @@ msgstr "Com fer servir"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "1. Enable <b>Log icon changes</b> above<br>2. Run <b>journalctl -f</b> from terminal<br>3. Hover the System tray entry or trigger an icon change<br>4. Copy any of the properties: icon SHA1/name, title or name <br>5. Add a new rule with the SHA1/icon name/title/name you choose and specify the custom icon name or file"
-msgstr "1. Activeu els <b>registre de canvis d'icones</b> de més amunt.<br>2. Executeu <b>journalctl -f</b> en un terminal.<br>3. Passeu el ratolí per sobre de la safata del sistema o provoqueu un canvi d'icona.<br>4. Copieu qualssevol de les propietats: SHA1/nom de la icona, títol o nom.<br>5. Afegiu una regla nova amb el SH1/nom de la icona/títol/nom que escolliu i especifiqueu el fitxer o nom de la icona personalitzat."
+msgstr ""
+"1. Activeu els <b>registre de canvis d'icones</b> de més amunt.<br>2. Executeu <b>journalctl -f</b> en un terminal.<br>3. Passeu el ratolí per sobre de la safata del sistema o provoqueu un canvi d'icona.<br>4. Copieu qualssevol de les propietats: SHA1/nom de la icona, títol o nom.<br>5. Afegiu una regla nova amb el SH1/nom de la icona/títol/nom que escolliu i especifiqueu el fitxer o nom de la "
+"icona personalitzat."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "<b>Note</b>: There are some rules without icon as there was no matching one in Papirus, you can override those with your own icons by copying the rule to <b>User Replacements</b>"
@@ -1281,7 +1285,9 @@ msgstr "<b>Nota</b>: Hi ha algunes regles sense icona, ja que el Papirus no té 
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "<b>Note</b>: Some applications like Signal are missing accumulated notification icons, contribution of missing icons via GitHub pull request or issue is very welcome, please do so by providing the the description + SHA1/title/name + icon-name from Papirus (panel/status icons only if no matching icon exists, otherwise it can be omitted)"
-msgstr "<b>Nota</b>: A algunes aplicacions com ara Signal els fan falta icones de notificacions acumulades. Si voleu, podeu ajudar el seu projecte si els feu arribar les icones que els fan falta a través d'una <i>pull request</i> o d'un <i>issue</i>via GitHub. Afegiu-hi una bona descripció + SHA1/títol/nom + nom de la icona del Papirus (les icones de panell/estat només si no hi ha cap icona coincident; altrament ho podeu ometre)."
+msgstr ""
+"<b>Nota</b>: A algunes aplicacions com ara Signal els fan falta icones de notificacions acumulades. Si voleu, podeu ajudar el seu projecte si els feu arribar les icones que els fan falta a través d'una <i>pull request</i> o d'un <i>issue</i>via GitHub. Afegiu-hi una bona descripció + SHA1/títol/nom + nom de la icona del Papirus (les icones de panell/estat només si no hi ha cap icona coincident; "
+"altrament ho podeu ometre)."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "<b>Note</b>: Matching properties (especially the SHA1) may change when applications get updated, rules will need to be updated when that happens."
@@ -1381,7 +1387,9 @@ msgstr "Requereix dos separadors per illa:"
 msgid ""
 "Always require two separators for a group of widgets to become an island. By default, an arrangement of<br>%1 creates two islands.<br><br>Enabling this option makes it so that islands do not share separators, so for example an arrangement of<br>%2 is required to create two islands.<br><br>Enable this if your islands separator is not a panel spacer and you want to explicitly define the start and "
 "end of each island."
-msgstr "Calen sempre dos separadors per tal que un grup de ginys formi una illa. Per defecte, una disposició de <br>%1 crea dues illes.<br><br>Si s'activa aquesta opció, fa que les illes no comparteixin separadors, com ara quan cal una disposició de <br>%2 per a crear dues illes.<br><br>Activeu-ho si el vostre separador d'illes no és un espaiador del panell i voleu definir explícitament l'inici i final de cada illa."
+msgstr ""
+"Calen sempre dos separadors per tal que un grup de ginys formi una illa. Per defecte, una disposició de <br>%1 crea dues illes.<br><br>Si s'activa aquesta opció, fa que les illes no comparteixin separadors, com ara quan cal una disposició de <br>%2 per a crear dues illes.<br><br>Activeu-ho si el vostre separador d'illes no és un espaiador del panell i voleu definir explícitament l'inici i final "
+"de cada illa."
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Blacklist separator widgets:"
