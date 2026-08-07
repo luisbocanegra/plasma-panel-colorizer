@@ -389,7 +389,7 @@ Rectangle {
 
     Component.onDestruction: {
         if (main.panelColorizer) {
-            main.panelColorizer.popLastVisibleMaskRegion();
+            main.panelColorizer.removeMaskRegion(maskIndex);
         }
         main.recolorCountChanged.disconnect(recolorTimer.restart);
         main.updateMasks.disconnect(updateMaskDebounced);

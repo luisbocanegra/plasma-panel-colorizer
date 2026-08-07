@@ -19,7 +19,7 @@ class PanelColorizer : public QObject {
     Q_INVOKABLE void updatePanelMask(int index, QRectF rect, double topLeftRadius, double topRightRadius,
                                      double bottomLeftRadius, double bottomRightRadius, QPointF offset,
                                      int radiusCompensation, bool visible);
-    Q_INVOKABLE void popLastVisibleMaskRegion();
+    Q_INVOKABLE void removeMaskRegion(int index);
 
     Q_INVOKABLE QString getIconHash(const QVariant &variant);
 
