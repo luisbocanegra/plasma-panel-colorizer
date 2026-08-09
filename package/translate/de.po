@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-07-14 19:38+0000\n"
+"POT-Creation-Date: 2026-08-09 07:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1385,6 +1385,10 @@ msgstr ""
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Disable customization from separator widgets"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "This widget must be placed in a panel to work!"
 msgstr ""
 
 #: ../contents/ui/main.qml
