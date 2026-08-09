@@ -1,5 +1,26 @@
 # Changelog
 
+## [8.0.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v7.3.0...v8.0.0) (2026-08-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* The C++ plugins needs to be rebuilt if it was installed manually from source, see https://github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin
+
+### Features
+
+* remove animation from configuring indicator ([ca95713](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/ca95713f59de1dbc4ec088bdaf3c096d08bcd8a8))
+* Update Catalan translation ([7d27d40](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/7d27d4064d588dfa92b20abd81b61238379715d3))
+
+
+### Bug Fixes
+
+* disable state customization by default for overrides ([548eac0](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/548eac080172df9c5b72c970d3103fe5f2422eb2))
+* don't track last active window by default ([ba6e369](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/ba6e369946d1e5c60eb46d620dcbb8a61e0603e5))
+* panel colorizer visibility not changing in Edit Mode ([51757fd](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/51757fd668c5bea66d36b58f70e8523317c3c842))
+* remove stale blur regions by id ([15c4935](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/15c493541b975b3aca0cc8163291082a769b4e0a))
+* widget hover state not working ([da86206](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/da86206a501597c767220181b9687bdb6b7ba18a))
+
 ## [7.3.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v7.2.0...v7.3.0) (2026-07-14)
 
 
