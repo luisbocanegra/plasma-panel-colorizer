@@ -1274,7 +1274,9 @@ msgstr "Cómo usar"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "1. Enable <b>Log icon changes</b> above<br>2. Run <b>journalctl -f</b> from terminal<br>3. Hover the System tray entry or trigger an icon change<br>4. Copy one of the properties: icon SHA1, icon name, name or title<br>5. Add a new rule with the matching property you choose and specify the replacement icon name or file"
-msgstr "1. Active <b>Registrar cambios de icono</b> más arriba<br>2. Ejecute <b>journalctl -f</b> desde la terminal<br>3. Pase el cursor sobre la entrada de la bandeja del sistema o provoque un cambio de icono<br>4. Copie una de las propiedades: SHA1 del icono, nombre del icono, nombre o título<br>5. Añada una nueva regla con la propiedad coincidente que elija y especifique el icono o archivo de reemplazo"
+msgstr ""
+"1. Active <b>Registrar cambios de icono</b> más arriba<br>2. Ejecute <b>journalctl -f</b> desde la terminal<br>3. Pase el cursor sobre la entrada de la bandeja del sistema o provoque un cambio de icono<br>4. Copie una de las propiedades: SHA1 del icono, nombre del icono, nombre o título<br>5. Añada una nueva regla con la propiedad coincidente que elija y especifique el icono o archivo de "
+"reemplazo"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "<b>Note</b>: There are some rules without icon as there was no matching one in Papirus, you can override those with your own icons by copying the rule to <b>User Replacements</b>"
@@ -1282,7 +1284,9 @@ msgstr "<b>Nota</b>: Hay algunas reglas sin icono ya que no había uno coinciden
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "<b>Note</b>: Some applications like Signal are missing accumulated notification icons, contribution of missing icons via GitHub pull request or issue is very welcome, please do so by providing the the description + icon SHA1/icon name/title/name + icon-name from Papirus (panel/status icons only if no matching icon exists, otherwise it can be omitted)"
-msgstr "<b>Nota</b>: Algunas aplicaciones como Signal carecen de iconos de notificación acumulados; se agradece mucho la contribución de los iconos faltantes mediante una pull request o un issue en GitHub, indicando la descripción + SHA1 del icono/nombre del icono/título/nombre + el nombre del icono de Papirus (solo iconos de panel/estado, si no existe un icono coincidente; en caso contrario, puede omitirse)"
+msgstr ""
+"<b>Nota</b>: Algunas aplicaciones como Signal carecen de iconos de notificación acumulados; se agradece mucho la contribución de los iconos faltantes mediante una pull request o un issue en GitHub, indicando la descripción + SHA1 del icono/nombre del icono/título/nombre + el nombre del icono de Papirus (solo iconos de panel/estado, si no existe un icono coincidente; en caso contrario, puede "
+"omitirse)"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "<b>Note</b>: Matching properties (especially the SHA1) may change when applications get updated, rules will need to be updated when that happens."
