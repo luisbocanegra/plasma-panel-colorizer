@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-08-09 07:39+0000\n"
+"POT-Creation-Date: 2026-08-13 18:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1274,20 +1274,16 @@ msgid "How to use"
 msgstr "Com fer servir"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid "1. Enable <b>Log icon changes</b> above<br>2. Run <b>journalctl -f</b> from terminal<br>3. Hover the System tray entry or trigger an icon change<br>4. Copy any of the properties: icon SHA1/name, title or name <br>5. Add a new rule with the SHA1/icon name/title/name you choose and specify the custom icon name or file"
+msgid "1. Enable <b>Log icon changes</b> above<br>2. Run <b>journalctl -f</b> from terminal<br>3. Hover the System tray entry or trigger an icon change<br>4. Copy one of the properties: icon SHA1, icon name, name or title<br>5. Add a new rule with the matching property you choose and specify the replacement icon name or file"
 msgstr ""
-"1. Activeu els <b>registre de canvis d'icones</b> de més amunt.<br>2. Executeu <b>journalctl -f</b> en un terminal.<br>3. Passeu el ratolí per sobre de la safata del sistema o provoqueu un canvi d'icona.<br>4. Copieu qualssevol de les propietats: SHA1/nom de la icona, títol o nom.<br>5. Afegiu una regla nova amb el SH1/nom de la icona/títol/nom que escolliu i especifiqueu el fitxer o nom de la "
-"icona personalitzat."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "<b>Note</b>: There are some rules without icon as there was no matching one in Papirus, you can override those with your own icons by copying the rule to <b>User Replacements</b>"
 msgstr "<b>Nota</b>: Hi ha algunes regles sense icona, ja que el Papirus no té la icona corresponent. Podeu sobreescriure-ho amb les vostres pròpies icones si copieu la regla als <b>reemplaçaments d'usuari</b>."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid "<b>Note</b>: Some applications like Signal are missing accumulated notification icons, contribution of missing icons via GitHub pull request or issue is very welcome, please do so by providing the the description + SHA1/title/name + icon-name from Papirus (panel/status icons only if no matching icon exists, otherwise it can be omitted)"
+msgid "<b>Note</b>: Some applications like Signal are missing accumulated notification icons, contribution of missing icons via GitHub pull request or issue is very welcome, please do so by providing the the description + icon SHA1/icon name/title/name + icon-name from Papirus (panel/status icons only if no matching icon exists, otherwise it can be omitted)"
 msgstr ""
-"<b>Nota</b>: A algunes aplicacions com ara Signal els fan falta icones de notificacions acumulades. Si voleu, podeu ajudar el seu projecte si els feu arribar les icones que els fan falta a través d'una <i>pull request</i> o d'un <i>issue</i>via GitHub. Afegiu-hi una bona descripció + SHA1/títol/nom + nom de la icona del Papirus (les icones de panell/estat només si no hi ha cap icona coincident; "
-"altrament ho podeu ometre)."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "<b>Note</b>: Matching properties (especially the SHA1) may change when applications get updated, rules will need to be updated when that happens."
@@ -1410,6 +1406,16 @@ msgstr "Amaga el giny (visible en Mode d'Edició del Panell)"
 #: ../contents/ui/main.qml
 msgid "A Plasmashell restart is required to remove all the modifications made by %1. Run systemctl restart --user plasma-plasmashell or log out and log back in."
 msgstr "Cal reiniciar el Plasmashell per a traure totes les modificacions de %1. Executeu systemctl restart --user plasma-plasmashell o sortiu i torneu a entrar a la sessió."
+
+#~ msgid "1. Enable <b>Log icon changes</b> above<br>2. Run <b>journalctl -f</b> from terminal<br>3. Hover the System tray entry or trigger an icon change<br>4. Copy any of the properties: icon SHA1/name, title or name <br>5. Add a new rule with the SHA1/icon name/title/name you choose and specify the custom icon name or file"
+#~ msgstr ""
+#~ "1. Activeu els <b>registre de canvis d'icones</b> de més amunt.<br>2. Executeu <b>journalctl -f</b> en un terminal.<br>3. Passeu el ratolí per sobre de la safata del sistema o provoqueu un canvi d'icona.<br>4. Copieu qualssevol de les propietats: SHA1/nom de la icona, títol o nom.<br>5. Afegiu una regla nova amb el SH1/nom de la icona/títol/nom que escolliu i especifiqueu el fitxer o nom de "
+#~ "la icona personalitzat."
+
+#~ msgid "<b>Note</b>: Some applications like Signal are missing accumulated notification icons, contribution of missing icons via GitHub pull request or issue is very welcome, please do so by providing the the description + SHA1/title/name + icon-name from Papirus (panel/status icons only if no matching icon exists, otherwise it can be omitted)"
+#~ msgstr ""
+#~ "<b>Nota</b>: A algunes aplicacions com ara Signal els fan falta icones de notificacions acumulades. Si voleu, podeu ajudar el seu projecte si els feu arribar les icones que els fan falta a través d'una <i>pull request</i> o d'un <i>issue</i>via GitHub. Afegiu-hi una bona descripció + SHA1/títol/nom + nom de la icona del Papirus (les icones de panell/estat només si no hi ha cap icona "
+#~ "coincident; altrament ho podeu ometre)."
 
 #~ msgid "Use an integer when using <strong>Widget Islands</strong> to avoid rendering issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">See #64</a>"
 #~ msgstr "Feu servir un enter quan feu servir les <strong>Illes de ginys</strong> per a evitar problemes de renderització! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">Vegeu #64</a>"

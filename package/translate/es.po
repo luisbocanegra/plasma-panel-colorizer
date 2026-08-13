@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-08-09 07:39+0000\n"
+"POT-Creation-Date: 2026-08-13 18:33+0000\n"
 "PO-Revision-Date: 2026-04-15 16:01-0300\n"
 "Last-Translator: Lucas Cesa <lucascesa455@gmail.com>\n"
 "Language-Team: spanish <LL@li.org>\n"
@@ -1273,7 +1273,7 @@ msgid "How to use"
 msgstr "Cómo usar"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid "1. Enable <b>Log icon changes</b> above<br>2. Run <b>journalctl -f</b> from terminal<br>3. Hover the System tray entry or trigger an icon change<br>4. Copy any of the properties: icon SHA1/name, title or name <br>5. Add a new rule with the SHA1/icon name/title/name you choose and specify the custom icon name or file"
+msgid "1. Enable <b>Log icon changes</b> above<br>2. Run <b>journalctl -f</b> from terminal<br>3. Hover the System tray entry or trigger an icon change<br>4. Copy one of the properties: icon SHA1, icon name, name or title<br>5. Add a new rule with the matching property you choose and specify the replacement icon name or file"
 msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
@@ -1281,7 +1281,7 @@ msgid "<b>Note</b>: There are some rules without icon as there was no matching o
 msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid "<b>Note</b>: Some applications like Signal are missing accumulated notification icons, contribution of missing icons via GitHub pull request or issue is very welcome, please do so by providing the the description + SHA1/title/name + icon-name from Papirus (panel/status icons only if no matching icon exists, otherwise it can be omitted)"
+msgid "<b>Note</b>: Some applications like Signal are missing accumulated notification icons, contribution of missing icons via GitHub pull request or issue is very welcome, please do so by providing the the description + icon SHA1/icon name/title/name + icon-name from Papirus (panel/status icons only if no matching icon exists, otherwise it can be omitted)"
 msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
