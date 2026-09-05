@@ -210,6 +210,8 @@ To install the widget use one of these methods:
     sudo pacman -S git gcc cmake extra-cmake-modules libplasma spectacle python python-dbus python-gobject gettext
     # Fedora
     sudo dnf install git gcc-c++ cmake extra-cmake-modules libplasma-devel kf6-kcoreaddons-devel spectacle python3 python3-dbus python3-gobject gettext
+    # Solus
+    sudo eopkg it -c system.devel && sudo eopkg it libplasma-devel kf6-kcoreaddons-devel kf6-kirigami-devel spectacle python3 python3-dbus gettext
     # Kubuntu
     sudo apt install git build-essential cmake extra-cmake-modules libplasma-dev kde-spectacle python3 python3-dbus python3-gi gettext
     ```
