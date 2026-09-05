@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v8.0.0...v8.1.0) (2026-09-05)
+
+
+### Features
+
+* update Spanish translation ([1f9b575](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/1f9b57531b02183d793a402234f319dd5c62d187))
+
 ## [8.0.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v7.3.0...v8.0.0) (2026-08-09)
 
 
