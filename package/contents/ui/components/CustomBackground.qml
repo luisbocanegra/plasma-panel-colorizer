@@ -228,12 +228,14 @@ Rectangle {
         height: 6
         width: height
         opacity: 0
+        Kirigami.Theme.inherit: false
     }
     Rectangle {
         id: fgColorHolder
         height: 6
         width: height
         opacity: 0
+        Kirigami.Theme.inherit: false
         Kirigami.Theme.colorSet: Kirigami.Theme[rect.fgColorCfg.systemColorSet]
     }
 
