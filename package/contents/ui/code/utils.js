@@ -963,10 +963,22 @@ function applyFgColor(
     let maxDepth = depth;
     const forceMask = wRecolorCfg?.method?.mask ?? false;
     const forceEffect = wRecolorCfg?.method?.multiEffect ?? false;
+    const targetTypes = [Text, ToolButton, Label, Canvas, Kirigami.Icon];
+
+    if (isForegroundThemeBoundary(target)) {
+        return {
+            count: count,
+            depth: maxDepth,
+        };
+    }
+    applyForegroundTheme(target, newColor, fgColorCfg);
 
     for (var i = 0; i < target.visibleChildren.length; i++) {
         var child = target.visibleChildren[i];
-        let targetTypes = [Text, ToolButton, Label, Canvas, Kirigami.Icon];
+        if (isForegroundThemeBoundary(child)) {
+            continue;
+        }
+        applyForegroundTheme(child, newColor, fgColorCfg);
         if (
             targetTypes.some(function (type) {
                 return child instanceof type;
@@ -979,12 +991,6 @@ function applyFgColor(
             if (fgColorModified && "color" in child) {
                 child.color = newColor;
             }
-            if (child.Kirigami?.Theme) {
-                child.Kirigami.Theme.textColor = newColor;
-                child.Kirigami.Theme.colorSet =
-                    main.Kirigami.Theme[fgColorCfg.systemColorSet];
-            }
-
             if ("isMask" in child && forceMask) {
                 child.isMask = true;
             }
@@ -1052,6 +1058,19 @@ function applyFgColor(
         count: count,
         depth: maxDepth,
     };
+}
+
+function isForegroundThemeBoundary(item) {
+    return item.Kirigami?.Theme && item.Kirigami.Theme.inherit === false;
+}
+
+function applyForegroundTheme(item, newColor, fgColorCfg) {
+    if (!item.Kirigami?.Theme) {
+        return;
+    }
+
+    item.Kirigami.Theme.textColor = newColor;
+    item.Kirigami.Theme.colorSet = main.Kirigami.Theme[fgColorCfg.systemColorSet];
 }
 
 /**
