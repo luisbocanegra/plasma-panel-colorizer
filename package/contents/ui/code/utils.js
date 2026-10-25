@@ -1255,3 +1255,34 @@ function updateIslandWidgetTypes(panelLayout, noBgTracker, hiddenTracker, island
 
     return { islandTypes, widgetTypes };
 }
+
+/**
+ * Writes a file in chunks
+ * @param {string} path - The file path to write to.
+ * @param {string} text - The text content to write.
+ * @param {number} [chunkSize] - The size of each chunk to write. Defaults to 20000.
+ * @param {object} runCommand - RunCommand
+ * @param {function} callback - The callback to invoke after writing is complete.
+ */
+function writeFileChunked(path, text, chunkSize, runCommand, callback) {
+    chunkSize = chunkSize || 20000;
+    const writeChunk = offset => {
+        const chunk = text.substr(offset, chunkSize).replace(/'/g, "'\\''");
+        const redirect = offset === 0 ? ">" : ">>";
+        const nextOffset = offset + chunkSize;
+        runCommand.exec("printf '%s' '" + chunk + "' " + redirect + " '" + path + "'", result => {
+            if (result.exitCode !== 0) {
+                console.error(result.stderr || result.stdout);
+                return;
+            }
+            if (nextOffset < text.length) {
+                writeChunk(nextOffset);
+            } else {
+                if (callback) {
+                    callback();
+                }
+            }
+        });
+    };
+    writeChunk(0);
+}
