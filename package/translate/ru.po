@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
 "POT-Creation-Date: 2026-08-13 18:33+0000\n"
-"PO-Revision-Date: 2026-04-08 18:15+ZONE\n"
+"PO-Revision-Date: 2026-10-14 20:25+0300\n"
 "Last-Translator: qud0\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -94,7 +94,7 @@ msgstr "Панель не найдена; для работы этот видж�
 
 #: ../contents/ui/components/FontFamilyChooser.qml
 msgid "Search fonts"
-msgstr ""
+msgstr "Поиск шрифтов"
 
 #: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormWidgetSettings.qml
 msgid "Border"
@@ -114,7 +114,7 @@ msgstr "Ширина:"
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Use an integer when using <strong>Widget Islands</strong> to avoid rendering issues! See <a href=\"%1\">#64</a>."
-msgstr ""
+msgstr "При использовании <strong>Островков виджетов</strong> указывайте целое число, чтобы избежать проблем с отрисовкой! См. <a href=\"%1\">#64</a>."
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Custom widths:"
@@ -402,11 +402,11 @@ msgstr "Изменять длину панели при переходе в пл
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Hide panel:"
-msgstr ""
+msgstr "Скрыть панель:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "When there are no widgets visible"
-msgstr ""
+msgstr "Когда нет видимых виджетов"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Customization"
@@ -662,7 +662,7 @@ msgstr "Спасибо за использование %1!"
 
 #: ../contents/ui/components/SupportMe.qml
 msgid "If you enjoy using the plugin please consider sponsoring or donating so I can dedicate more time to maintain and improve this and <a href=\"%1\">my other projects</a>."
-msgstr ""
+msgstr "Если вам нравится этот плагин, пожалуйста, рассмотрите возможность спонсорства или пожертвования. Это позволит мне уделять больше времени поддержке и улучшению этого и <a href=\"%1\">других моих проектов</a>."
 
 #: ../contents/ui/components/SupportMe.qml
 msgid "You can also"
@@ -690,7 +690,7 @@ msgstr "Черный список"
 
 #: ../contents/ui/components/WidgetCardConfig.qml
 msgid "Clear"
-msgstr ""
+msgstr "Очистить"
 
 #: ../contents/ui/components/WidgetCardConfig.qml
 msgid "Add"
@@ -722,7 +722,7 @@ msgstr "Обновить"
 
 #: ../contents/ui/configAppearance.qml
 msgid "Not getting the expected result? Make sure you're editing the correct element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ plugin using the latest source, <a href=\"%1\">see instructions</a>."
-msgstr ""
+msgstr "Не получаете ожидаемый результат? Убедитесь, что вы редактируете нужный элемент.<br>Не работает настраиваемое размытие? Попробуйте переустановить или пересобрать C++ плагин из свежих исходников, <a href=\"%1\">см. инструкции</a>."
 
 #: ../contents/ui/configAppearance.qml
 msgid "Restore default (removes all customizations)"
@@ -750,7 +750,7 @@ msgstr "Добавьте виджеты в черный список, чтобы
 
 #: ../contents/ui/configBlacklistWidgets.qml
 msgid "Blacklist spacers"
-msgstr ""
+msgstr "Добавить разделители в черный список"
 
 #: ../contents/ui/configBlacklistWidgets.qml ../contents/ui/configTrayIconsReplacer.qml
 msgid "Remove all"
@@ -1197,9 +1197,7 @@ msgid "Show:"
 msgstr "Показать:"
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid ""
-"WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will remove the configuration from all Panel Colorizer "
-"instances so make sure to save the others first"
+msgid "WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will remove the configuration from all Panel Colorizer instances so make sure to save the others first"
 msgstr "ВНИМАНИЕ: Используйте Показать/Скрыть с осторожностью. Если вы скроете панель и не настроите автозагрузку пресетов или не умеете переключать их через D-Bus, вы не сможете вернуть её видимость без удаления конфига. Команда ниже удалит настройки ВСЕХ экземпляров Panel Colorizer — сначала сохраните данные других панелей."
 
 #: ../contents/ui/configStockPanelSettings.qml
@@ -1208,15 +1206,11 @@ msgstr "Если у вас включен D-Bus, рекомендуется ис
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "D-Bus usage"
-msgstr ""
+msgstr "Использование D-Bus"
 
 #: ../contents/ui/configTextIconFix.qml
-msgid ""
-"Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, useful "
-"for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
-msgstr ""
-"Исправление цветов и шрифтов для виджетов, где стандартный метод не работает.<br> - <strong>Маска</strong>: Принудительный цвет для SVG (символьные иконки).<br> - <strong>Цветовой эффект</strong>: Пост-обработка для текста и обычных иконок.<br> - <strong>Обновление</strong>: Повторное применение настроек через интервал для динамичных виджетов.<br>Для сброса эффектов отключите их и перезапустите "
-"Plasma."
+msgid "Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, useful for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
+msgstr "Исправление цветов и шрифтов для виджетов, где стандартный метод не работает.<br> - <strong>Маска</strong>: Принудительный цвет для SVG (символьные иконки).<br> - <strong>Цветовой эффект</strong>: Пост-обработка для текста и обычных иконок.<br> - <strong>Обновление</strong>: Повторное применение настроек через интервал для динамичных виджетов.<br>Для сброса эффектов отключите их и перезапустите Plasma."
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
@@ -1240,15 +1234,15 @@ msgstr "Сортировать"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Replace System Tray icons with icons from the current icon theme or a local file. The built-in rules icons are part of <a href=\"%1\">Papirus icon theme</a>."
-msgstr ""
+msgstr "Заменяйте иконки системного трея иконками из текущей темы или локальными файлами. Встроенные правила используют иконки из темы <a href=\"%1\">Papirus</a>."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it <a href=\"%1\">Install instructions</a>."
-msgstr ""
+msgstr "Плагин C++ не найден, эта функция не будет работать. Установите плагин и перезагрузитесь или перезапустите plasmashell. <a href=\"%1\">Инструкции по установке</a>."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "The installed version of the C++ plugin doesn't support this feature, update the plugin and reboot or restart plasmashell to be able to use it <a href=\"%1\">Install instructions</a>."
-msgstr ""
+msgstr "Установленная версия плагина C++ не поддерживает эту функцию. Обновите плагин и перезагрузитесь или перезапустите plasmashell. <a href=\"%1\">Инструкции по установке</a>."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Log icon changes:"
@@ -1272,23 +1266,23 @@ msgstr "Как использовать"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "1. Enable <b>Log icon changes</b> above<br>2. Run <b>journalctl -f</b> from terminal<br>3. Hover the System tray entry or trigger an icon change<br>4. Copy one of the properties: icon SHA1, icon name, name or title<br>5. Add a new rule with the matching property you choose and specify the replacement icon name or file"
-msgstr ""
+msgstr "1. Включите <b>Логировать изменения иконок</b> выше<br>2. Запустите <b>journalctl -f</b> в терминале<br>3. Наведите курсор на элемент системного трея или вызовите смену иконки<br>4. Скопируйте одно из свойств: SHA1 иконки, имя иконки, имя или заголовок<br>5. Добавьте новое правило с выбранным свойством и укажите имя иконки или файл для замены"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "<b>Note</b>: There are some rules without icon as there was no matching one in Papirus, you can override those with your own icons by copying the rule to <b>User Replacements</b>"
-msgstr ""
+msgstr "<b>Примечание</b>: некоторые правила не содержат иконки, так как в Papirus не нашлось подходящей. Вы можете задать для них собственные иконки, скопировав правило в <b>Пользовательские правила</b>"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "<b>Note</b>: Some applications like Signal are missing accumulated notification icons, contribution of missing icons via GitHub pull request or issue is very welcome, please do so by providing the the description + icon SHA1/icon name/title/name + icon-name from Papirus (panel/status icons only if no matching icon exists, otherwise it can be omitted)"
-msgstr ""
+msgstr "<b>Примечание</b>: для некоторых приложений, например Signal, отсутствуют иконки с накопленными уведомлениями. Мы будем рады помощи с недостающими иконками через pull request или issue на GitHub — укажите описание + SHA1 иконки/имя иконки/заголовок/имя + имя иконки из Papirus (иконки panel/status — только если подходящей нет, иначе это можно опустить)"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "<b>Note</b>: Matching properties (especially the SHA1) may change when applications get updated, rules will need to be updated when that happens."
-msgstr ""
+msgstr "<b>Примечание</b>: свойства для сопоставления (особенно SHA1) могут меняться при обновлении приложений — в этом случае правила нужно будет обновить."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "<b>Note</b>: Plasma widgets in the system tray are not supported by this feature as widgets provide their own visual content and logic."
-msgstr ""
+msgstr "<b>Примечание</b>: виджеты Plasma в системном трее не поддерживаются этой функцией, так как они сами отвечают за свое оформление и логику."
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Built-in Rules (read only)"
@@ -1346,53 +1340,51 @@ msgstr "Копировать в пользовательские правила"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Duplicate rule"
-msgstr ""
+msgstr "Дублировать правило"
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Create widget islands by placing separator widgets around them."
-msgstr ""
+msgstr "Создавайте островки виджетов, размещая вокруг них виджеты-разделители."
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "<strong>How to use</strong><br>1. Add the widget that will act as islands separator to the panel(by default the Plasma's Panel Spacer widget will be used)<br>2. Select the separator widget below<br>3. Add as many separators as you need and move them to create islands."
-msgstr ""
+msgstr "<strong>Как использовать</strong><br>1. Добавьте на панель виджет, который будет служить разделителем островков (по умолчанию используется стандартный «Разделитель панели» Plasma)<br>2. Выберите виджет-разделитель ниже<br>3. Добавьте нужное количество разделителей и расставьте их, чтобы сформировать островки."
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "<strong>Notes</strong><br>- Widget custom background or border is required for this option to have a visible effect.<br>- If the widgets in your panel have different thickness, add margins to the widgets custom background in the Appearance tab."
-msgstr ""
+msgstr "<strong>Примечания</strong><br>- Чтобы эффект был заметен, у виджетов должен быть настроен пользовательский фон или рамка.<br>- Если виджеты на панели имеют разную толщину, добавьте поля к пользовательскому фону виджетов во вкладке «Внешний вид»."
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "<strong>Need a separator widget?</strong><br>- <a href=\"%1\">Panel Colorizer Islands Separator</a> visible only in Edit Mode.<br>- <a href=\"%2\">Advanced Separator</a> always visible and configurable."
-msgstr ""
+msgstr "<strong>Нужен виджет-разделитель?</strong><br>- <a href=\"%1\">Panel Colorizer Islands Separator</a> — виден только в режиме редактирования.<br>- <a href=\"%2\">Advanced Separator</a> — виден всегда и настраивается."
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Separator widget:"
-msgstr ""
+msgstr "Виджет-разделитель:"
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Select the widget that will act as separator for the islands.<br><br>Note that the separator widget itself does not need to be visible for it to work, so you can use an invisible spacer/separator for example."
-msgstr ""
+msgstr "Выберите виджет, который будет служить разделителем островков.<br><br>Сам разделитель не обязательно должен быть видимым, поэтому можно использовать, например, невидимый разделитель/отступ."
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Require two separators per island:"
-msgstr ""
+msgstr "Два разделителя на островок:"
 
 #: ../contents/ui/configWidgetIslands.qml
-msgid ""
-"Always require two separators for a group of widgets to become an island. By default, an arrangement of<br>%1 creates two islands.<br><br>Enabling this option makes it so that islands do not share separators, so for example an arrangement of<br>%2 is required to create two islands.<br><br>Enable this if your islands separator is not a panel spacer and you want to explicitly define the start and "
-"end of each island."
-msgstr ""
+msgid "Always require two separators for a group of widgets to become an island. By default, an arrangement of<br>%1 creates two islands.<br><br>Enabling this option makes it so that islands do not share separators, so for example an arrangement of<br>%2 is required to create two islands.<br><br>Enable this if your islands separator is not a panel spacer and you want to explicitly define the start and end of each island."
+msgstr "Всегда требовать два разделителя, чтобы группа виджетов стала островком. По умолчанию расстановка<br>%1 создает два островка.<br><br>При включении этой опции островки не используют общие разделители, поэтому, например, для создания двух островков потребуется расстановка<br>%2.<br><br>Включите эту опцию, если в качестве разделителя используется не «Разделитель панели» и вы хотите явно задавать начало и конец каждого островка."
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Blacklist separator widgets:"
-msgstr ""
+msgstr "Разделители в черный список:"
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Disable customization from separator widgets"
-msgstr ""
+msgstr "Отключить оформление виджетов-разделителей"
 
 #: ../contents/ui/main.qml
 msgid "This widget must be placed in a panel to work!"
-msgstr ""
+msgstr "Для работы этот виджет должен быть размещен на панели!"
 
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
@@ -1400,40 +1392,4 @@ msgstr "Скрыть виджет (виден в режиме настройки
 
 #: ../contents/ui/main.qml
 msgid "A Plasmashell restart is required to remove all the modifications made by %1. Run systemctl restart --user plasma-plasmashell or log out and log back in."
-msgstr ""
-
-#~ msgid "Use an integer when using <strong>Widget Islands</strong> to avoid rendering issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">See #64</a>"
-#~ msgstr "При использовании <strong>Островков виджетов</strong> используйте целые числа, чтобы избежать проблем с отрисовкой! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">См. #64</a>"
-
-#~ msgid "If you enjoy using the plugin please consider sponsoring or donating so I can dedicate more time to maintain and improve this and <a href=\"https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers\">my other projects</a>."
-#~ msgstr "Если вам нравится этот плагин, пожалуйста, рассмотрите возможность поддержки или пожертвования. Это позволит мне уделять больше времени поддержке и улучшению этого и <a href=\"https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers\">других моих проектов</a>."
-
-#~ msgid "Not getting the expected result? Make sure you're editing the correct element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ plugin using the latest source, <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">see instructions</a>."
-#~ msgstr "Не получаете ожидаемый результат? Убедитесь, что вы редактируете нужный элемент.<br>Не работает настраиваемое размытие? Попробуйте переустановить или пересобрать C++ плагин из свежих исходников, <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer#build-from-source-with-c-plugin\">см. инструкции</a>."
-
-#~ msgid "Replace System Tray icons with icons from the current icon theme or a local file. The built-in rules icons are part of <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus icon theme</a>."
-#~ msgstr "Заменяйте иконки системного трея иконками из текущей темы или локальными файлами. Встроенные правила используют иконки из темы <a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus</a>."
-
-#~ msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Install instructions</a>."
-#~ msgstr "C++ плагин не найден. Установите его и перезапустите plasmashell для работы этой функции. <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Инструкции</a>."
-
-#~ msgid "The installed version of the C++ plugin doesn't support this feature, update the plugin and reboot or restart plasmashell to be able to use it <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Install instructions</a>."
-#~ msgstr "Установленная версия C++ плагина не поддерживает эту функцию. Обновите плагин и перезапустите plasmashell. <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#manually\">Инструкции</a>."
-
-#~ msgid "Copy rule"
-#~ msgstr "Копировать правило"
-
-#~ msgid "Disable"
-#~ msgstr "Отключить"
-
-#~ msgid "Start"
-#~ msgstr "Начало"
-
-#~ msgid "End"
-#~ msgstr "Конец"
-
-#~ msgid "Select start and end of widget islands, widgets between <b>Start</b> and <b>End</b> must be left <b>disabled</b>. Widget custom background or border is required for this option to have an effect."
-#~ msgstr "Выберите начало и конец островков виджетов. Виджеты между <b>Началом</b> и <b>Концом</b> должны быть <b>отключены</b>. Для работы функции необходим настраиваемый фон или рамка."
-
-#~ msgid "Remove all islands"
-#~ msgstr "Удалить все островки"
+msgstr "Чтобы убрать все изменения, внесенные %1, требуется перезапуск plasmashell. Выполните systemctl restart --user plasma-plasmashell или перезайдите в систему."
