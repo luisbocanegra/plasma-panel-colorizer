@@ -10,7 +10,7 @@ import "code/utils.js" as Utils
 import "code/globals.js" as Globals
 
 KCM.SimpleKCM {
-    id: appearanceRoot
+    id: root
     property alias parentLayout: parentLayout
     property alias cfg_isEnabled: headerComponent.isEnabled
     property string cfg_panelWidgets
@@ -72,22 +72,6 @@ KCM.SimpleKCM {
     RunCommand {
         id: runCommand
     }
-    Connections {
-        target: runCommand
-        function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
-            if (exitCode !== 0)
-                return;
-            if (cmd.startsWith("cat")) {
-                const content = stdout.trim().split("\n");
-                try {
-                    const newConfig = JSON.parse(content);
-                    appearanceRoot.importConfig(newConfig);
-                } catch (e) {
-                    console.error(e);
-                }
-            }
-        }
-    }
 
     function importConfig(newConfig) {
         loaded = false;
@@ -138,7 +122,7 @@ KCM.SimpleKCM {
                 text: i18n("Restore default (removes all overrides)")
                 icon.name: "kt-restore-defaults-symbolic"
                 onClicked: {
-                    appearanceRoot.restoreSettings();
+                    root.restoreSettings();
                 }
                 Layout.fillWidth: true
             }
@@ -148,10 +132,27 @@ KCM.SimpleKCM {
         }
         Components.SettingImportExport {
             onExportConfirmed: {
-                runCommand.exec(crateConfigDirCmd);
-                runCommand.exec("echo '" + cfg_configurationOverrides + "' > '" + configDir + "overrides.json'");
+                runCommand.exec(root.crateConfigDirCmd, output => {
+                    if (output.exitCode !== 0) {
+                        console.error(output.stderr || output.stdout);
+                        return;
+                    }
+                    Utils.writeFileChunked(root.configDir + "overrides.json", JSON.stringify(root.configOverrides), null, runCommand, () => {});
+                });
             }
-            onImportConfirmed: runCommand.exec(importCmd)
+            onImportConfirmed: runCommand.exec(root.importCmd, output => {
+                if (output.exitCode !== 0) {
+                    console.error(output.stderr || output.stdout);
+                    return;
+                }
+                const content = output.stdout.trim().split("\n");
+                try {
+                    const newConfig = JSON.parse(content);
+                    root.importConfig(newConfig);
+                } catch (e) {
+                    console.error(e);
+                }
+            })
         }
 
         Kirigami.FormLayout {
@@ -167,12 +168,12 @@ KCM.SimpleKCM {
             Layout.maximumWidth: 500
             Layout.alignment: Qt.AlignHCenter
             Repeater {
-                model: Object.keys(appearanceRoot.configOverrides)
+                model: Object.keys(root.configOverrides)
                 delegate: Components.WidgetCardOverride {
                     onDeleteOverride: name => {
                         delete configOverrides[name];
                         showingConfig = false;
-                        appearanceRoot.updateConfig();
+                        root.updateConfig();
                     }
                     onEditingName: name => {
                         overrideName = name;
@@ -189,7 +190,7 @@ KCM.SimpleKCM {
                         nextOverride++;
                     }
                     configOverrides[`Global Override ${nextOverride}`] = Globals.baseOverrideConfig;
-                    appearanceRoot.updateConfig();
+                    root.updateConfig();
                 }
             }
         }
@@ -220,7 +221,7 @@ KCM.SimpleKCM {
                             configOverrides[nameField.text] = configOverrides[overrideName];
                             delete configOverrides[overrideName];
                             overrideName = nameField.text;
-                            appearanceRoot.updateConfig();
+                            root.updateConfig();
                         }
                     }
                 }
@@ -230,7 +231,7 @@ KCM.SimpleKCM {
                         checked: configOverrides[overrideName]?.disabledFallback || false
                         onCheckedChanged: {
                             configOverrides[overrideName].disabledFallback = checked;
-                            appearanceRoot.updateConfig();
+                            root.updateConfig();
                         }
                     }
                     Kirigami.ContextualHelpButton {
@@ -243,20 +244,20 @@ KCM.SimpleKCM {
                 asynchronous: true
                 sourceComponent: showingConfig ? settingsComp : null
                 onLoaded: {
-                    item.width = appearanceRoot.availableWidth;
+                    item.width = root.availableWidth;
                     item.config = configOverrides[overrideName];
                     item.onUpdateConfigString.connect((newString, config) => {
                         configOverrides[overrideName] = config;
-                        appearanceRoot.updateConfig();
+                        root.updateConfig();
                     });
-                    item.elementState = appearanceRoot.currentState;
-                    item.currentTab = appearanceRoot.currentTab;
+                    item.elementState = root.currentState;
+                    item.currentTab = root.currentTab;
                     item.elementFriendlyName = i18n("Widgets");
                     item.tabChanged.connect(currentTab => {
-                        appearanceRoot.currentTab = currentTab;
+                        root.currentTab = currentTab;
                     });
                     item.elementStateChanged.connect(() => {
-                        appearanceRoot.currentState = item.elementState;
+                        root.currentState = item.elementState;
                         componentLoader.sourceComponent = null;
                         componentLoader.sourceComponent = Qt.binding(() => showingConfig ? settingsComp : null);
                     });
@@ -291,7 +292,7 @@ KCM.SimpleKCM {
                 model: widgetsModel
                 delegate: Components.WidgetCardConfig {
                     widget: model
-                    configOverrides: Object.keys(appearanceRoot.configOverrides)
+                    configOverrides: Object.keys(root.configOverrides)
                     overrideAssociations: associationsModel
                     currentOverrides: associationsModel[Utils.getWidgetConfigIdx(id, name, associationsModel)]?.presets || []
                     onAddOverride: (preset, index) => {
@@ -312,17 +313,17 @@ KCM.SimpleKCM {
                         } else {
                             associationsModel[asocIndex].presets[index] = preset;
                         }
-                        appearanceRoot.updateConfig();
+                        root.updateConfig();
                     }
                     onRemoveOverride: index => {
                         const asocIndex = Utils.getWidgetConfigIdx(id, name, associationsModel);
                         associationsModel[asocIndex].presets.splice(index, 1);
-                        appearanceRoot.updateConfig();
+                        root.updateConfig();
                     }
                     onClearOverrides: () => {
                         const asocIndex = Utils.getWidgetConfigIdx(id, name, associationsModel);
                         associationsModel[asocIndex].presets = [];
-                        appearanceRoot.updateConfig();
+                        root.updateConfig();
                     }
                 }
             }

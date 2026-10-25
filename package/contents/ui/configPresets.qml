@@ -20,9 +20,18 @@ KCM.SimpleKCM {
     property string listUserPresetsCmd: "'" + toolsDir + "list_presets.sh' '" + presetsDir + "'"
     property string listBuiltinPresetsCmd: "'" + toolsDir + "list_presets.sh' '" + presetsBuiltinDir + "' b"
     property string listPresetsCmd: listBuiltinPresetsCmd + ";" + listUserPresetsCmd
-    property string spectaclePreviewCmd: "spectacle -bn -r -o "
-    property var presets: ({})
-    property var presetContent: ""
+
+    ListModel {
+        id: presetListModel
+        function presetExists(name) {
+            for (let i = 0; i < count; i++) {
+                if (get(i).name === name) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
 
     property string editingPreset
     property string cfg_globalSettings
@@ -32,7 +41,7 @@ KCM.SimpleKCM {
 
     Connections {
         target: plasmoid.configuration
-        onValueChanged: {
+        function onValueChanged() {
             plasmoid.configuration.lastPreset = root.lastPreset;
             plasmoid.configuration.writeConfig();
         }
@@ -42,71 +51,43 @@ KCM.SimpleKCM {
         id: runCommand
     }
 
-    RunCommand {
-        id: runCommand2
-
-        onExited: (cmd, exitCode, exitStatus, stdout, stderr) => {
-            if (exitCode !== 0) {
-                console.error(cmd, exitCode, exitStatus, stdout, stderr);
-                return;
-            }
-            if (cmd.startsWith("echo")) {
-                root.reloadPresetList();
-                createPreviewDialog.open();
-            }
-        }
-    }
-
     signal refreshImage(editingPreset: string)
 
-    signal reloadPresetList
-
-    onReloadPresetList: {
-        runCommand.exec(listPresetsCmd);
+    function reloadPresetList() {
+        runCommand.exec(listPresetsCmd, o => {
+            if (o.exitCode !== 0) {
+                console.error(o.cmd, o.exitCode, o.stdout, o.stderr);
+                return;
+            }
+            if (o.stdout.length === 0)
+                return;
+            const out = o.stdout.trim().split("\n");
+            var tmp = [];
+            presetListModel.clear();
+            for (const line of out) {
+                const parts = line.split(":");
+                const builtin = parts[parts.length - 1] === "b";
+                const path = parts.slice(0, parts.length - 2).join("");
+                const name = path.split("/").pop();
+                const hasPreview = parts[parts.length - 2] === "1";
+                presetListModel.append({
+                    name,
+                    "dir": path,
+                    hasPreview,
+                    builtin
+                });
+            }
+        });
     }
 
     Connections {
         target: runCommand
-        function onExited(cmd, exitCode, exitStatus, stdout, stderr) {
-            if (exitCode !== 0) {
-                console.error(cmd, exitCode, exitStatus, stdout, stderr);
-                return;
-            }
-            if (cmd === root.listPresetsCmd) {
-                root.presets = ({});
-                if (stdout.length === 0)
-                    return;
-                const out = stdout.trim().split("\n");
-                var tmp = {};
-                for (const line of out) {
-                    let builtin = false;
-                    const parts = line.split(":");
-                    const path = parts[parts.length - 1];
-                    let name = path.split("/");
-                    name = name[name.length - 1];
-                    if (line.startsWith("b:")) {
-                        builtin = true;
-                    }
-                    console.log("Found preset:", parts[1]);
-                    tmp[name] = {
-                        "dir": parts[1],
-                        "builtin": builtin
-                    };
-                }
-                root.presets = tmp;
-            }
-            if (cmd.startsWith("cat")) {
-                root.presetContent = JSON.parse(stdout.trim());
-                Utils.loadPreset(root.presetContent, root, Globals.ignoredConfigs, Globals.defaultConfig, false);
-            }
-            if (cmd.startsWith("echo")) {
-                root.reloadPresetList();
-                createPreviewDialog.open();
-            }
-            if (cmd.startsWith("spectacle")) {
-                root.reloadPresetList();
-            }
-        }
+    }
+
+    function createPreview(presetDir) {
+        runCommand.exec(`spectacle -bn -r -o '${presetDir}/preview.png'`, output => {
+            root.reloadPresetList();
+        });
     }
 
     Kirigami.PromptDialog {
@@ -136,7 +117,7 @@ KCM.SimpleKCM {
         subtitle: i18n("Current preview will be overwritten!")
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {
-            runCommand.exec(root.spectaclePreviewCmd + "'" + root.editingPreset + "/preview.png'");
+            createPreview(root.editingPreset);
         }
     }
 
@@ -145,14 +126,21 @@ KCM.SimpleKCM {
         title: i18n("Create preset") + " '" + saveNameField.text + "'?"
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {
-            root.savePreset(root.editingPreset);
+            const isNew = true;
+            root.savePreset(root.editingPreset, isNew);
             saveNameField.text = "";
         }
     }
 
     function applyPreset(presetDir) {
         console.log("Reading preset:", presetDir);
-        runCommand.exec("cat '" + presetDir + "/settings.json'");
+        runCommand.exec("cat '" + presetDir + "/settings.json'", output => {
+            if (output.exitCode !== 0) {
+                console.error(output.stderr || output.stdout);
+                return;
+            }
+            Utils.loadPreset(JSON.parse(output.stdout.trim()), root, Globals.ignoredConfigs, Globals.defaultConfig, false);
+        });
     }
 
     function restoreSettings() {
@@ -160,11 +148,11 @@ KCM.SimpleKCM {
         cfg_globalSettings = JSON.stringify(Globals.defaultConfig, null, null);
     }
 
-    function savePreset(presetDir) {
+    function savePreset(presetDir, isNew) {
         console.log("Saving preset ", presetDir);
         var config = plasmoid.configuration;
         var output = {};
-        for (var key of Object.keys(config)) {
+        for (let key of Object.keys(config)) {
             if (typeof config[key] === "function")
                 continue;
             if (key.endsWith("Default")) {
@@ -177,14 +165,22 @@ KCM.SimpleKCM {
                 let parsed = JSON.parse(val);
                 if (name === "globalSettings") {
                     val = Utils.mergeConfigs(Globals.defaultConfig, parsed);
-                } else {
-                    parsed;
                 }
                 output[name] = parsed;
             }
         }
-        runCommand2.exec("mkdir -p '" + presetDir + "'");
-        runCommand2.exec("echo '" + JSON.stringify(output) + "' > '" + presetDir + "/settings.json'");
+        runCommand.exec(`mkdir -p '${presetDir}'`, result => {
+            if (result.exitCode !== 0) {
+                console.error(result.stderr || result.stdout);
+                return;
+            }
+            Utils.writeFileChunked(presetDir + "/settings.json", JSON.stringify(output), null, runCommand, () => {
+                createPreviewDialog.open();
+                if (isNew) {
+                    root.reloadPresetList();
+                }
+            });
+        });
     }
 
     function deletePreset(path) {
@@ -199,7 +195,7 @@ KCM.SimpleKCM {
     Component.onCompleted: {
         Utils.delay(100, () => {
             runCommand.exec(cratePresetsDirCmd);
-            runCommand.exec(listPresetsCmd);
+            reloadPresetList();
         }, root);
     }
 
@@ -245,7 +241,7 @@ KCM.SimpleKCM {
                 Button {
                     icon.name: "document-save-symbolic"
                     text: i18n("Save")
-                    enabled: saveNameField.acceptableInput && !(Object.keys(root.presets).includes(saveNameField.text))
+                    enabled: saveNameField.acceptableInput && !presetListModel.presetExists(saveNameField.text)
                     onClicked: {
                         root.editingPreset = root.presetsDir + saveNameField.text;
                         newPresetDialog.open();
@@ -268,13 +264,14 @@ KCM.SimpleKCM {
                     }
                 }
                 Repeater {
-                    model: Object.keys(root.presets)
-                    Kirigami.AbstractCard {
+                    model: presetListModel
+                    delegate: Kirigami.AbstractCard {
                         id: content
                         required property int index
-                        required property var modelData
-                        property string dir: root.presets[content.modelData].dir
-                        property bool builtin: root.presets[content.modelData].builtin
+                        required property string name
+                        required property string dir
+                        required property bool builtin
+                        required property bool hasPreview
                         contentItem: ColumnLayout {
                             width: row.implicitWidth
                             height: row.implicitHeight + scrollView.implicitHeight
@@ -285,7 +282,7 @@ KCM.SimpleKCM {
                                     font.bold: true
                                 }
                                 Label {
-                                    text: content.modelData
+                                    text: content.name
                                     elide: Text.ElideRight
                                 }
 
@@ -344,11 +341,9 @@ KCM.SimpleKCM {
                             Button {
                                 text: i18n("Create preview")
                                 icon.name: "insert-image-symbolic"
-                                visible: !scrollView.visible
+                                visible: !hasPreview
                                 Layout.alignment: Qt.AlignHCenter
-                                onClicked: {
-                                    runCommand.exec(root.spectaclePreviewCmd + "'" + content.dir + "/preview.png'");
-                                }
+                                onClicked: createPreview(content.dir)
                             }
                             Item {
                                 id: scrollView
@@ -368,21 +363,11 @@ KCM.SimpleKCM {
                                     } else {
                                         scrollView.visible = false;
                                     }
-                                    source: content.dir + "/preview.png"
+                                    source: hasPreview ? content.dir + "/preview.png" : ""
                                     fillMode: Image.PreserveAspectFit
                                     horizontalAlignment: Image.AlignHCenter
                                     cache: false
                                     asynchronous: true
-                                    function refresh(presetName) {
-                                        // only refresh preview of the changed preset
-                                        if (presetName !== content.dir)
-                                            return;
-                                        source = "";
-                                        source = content.dir + "/preview.png";
-                                    }
-                                    Component.onCompleted: {
-                                        root.refreshImage.connect(refresh);
-                                    }
                                 }
                                 Button {
                                     id: btn
@@ -391,9 +376,7 @@ KCM.SimpleKCM {
                                     anchors.fill: parent
                                     icon.name: "edit-image-symbolic"
                                     enabled: !content.builtin
-                                    onClicked: {
-                                        runCommand.exec(root.spectaclePreviewCmd + "'" + content.dir + "/preview.png" + "'");
-                                    }
+                                    onClicked: createPreview(content.dir)
                                     property bool showTooltip: false
                                     property bool hasPosition: tooltipX !== 0 && tooltipY !== 0
                                     property int tooltipX: 0
@@ -430,7 +413,7 @@ KCM.SimpleKCM {
                                         }
                                         TapHandler {
                                             enabled: !content.builtin
-                                            onTapped: runCommand.exec(root.spectaclePreviewCmd + "'" + content.dir + "/preview.png" + "'")
+                                            onTapped: createPreview(content.dir)
                                         }
                                         Timer {
                                             id: hoverTimer
