@@ -47,7 +47,7 @@ msgstr "原生面板设置"
 
 #: ../contents/config/config.qml
 msgid "Widget Islands"
-msgstr "Widget Islands"
+msgstr "挂件群岛"
 
 #: ../contents/config/config.qml
 msgid "Preset Overrides"
@@ -59,11 +59,11 @@ msgstr "全局覆盖"
 
 #: ../contents/config/config.qml
 msgid "Text/Icon Color Fixes"
-msgstr ""
+msgstr "文本与图标颜色修复"
 
 #: ../contents/config/config.qml
 msgid "Blacklist Widgets"
-msgstr ""
+msgstr "将挂件加入黑名单"
 
 #: ../contents/config/config.qml
 msgid "Hide Widgets"
@@ -79,7 +79,7 @@ msgstr "常规"
 
 #: ../contents/config/config.qml
 msgid "Support Me"
-msgstr ""
+msgstr "支持作者"
 
 #: ../contents/ui/components/CategoryDisabled.qml
 msgid "Panel Colorizer is disabled"
@@ -103,7 +103,7 @@ msgstr "未找到面板，此挂件需放置在面板上才能工作"
 
 #: ../contents/ui/components/FontFamilyChooser.qml
 msgid "Search fonts"
-msgstr ""
+msgstr "搜索字体"
 
 #: ../contents/ui/components/FormBorder.qml
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -118,14 +118,14 @@ msgstr "边框"
 #: ../contents/ui/configStockPanelSettings.qml
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Enabled:"
-msgstr "已启用："
+msgstr "启用："
 
 #: ../contents/ui/components/FormBorder.qml
 #: ../contents/ui/components/FormColors.qml
 #: ../contents/ui/components/FormShadow.qml
 #: ../contents/ui/components/FormShape.qml
 msgid "Disabled"
-msgstr "已禁用"
+msgstr "禁用"
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Width:"
@@ -135,7 +135,7 @@ msgstr "宽度："
 msgid ""
 "Use an integer when using <strong>Widget Islands</strong> to avoid rendering "
 "issues! See <a href=\"%1\">#64</a>."
-msgstr ""
+msgstr "启用<strong>挂件群岛</strong>时请使用整数，以免出现渲染问题！参见 <a href=\"%1\">#64</a>。"
 
 #: ../contents/ui/components/FormBorder.qml
 msgid "Custom widths:"
@@ -303,7 +303,7 @@ msgstr "渐变节点："
 
 #: ../contents/ui/components/FormColors.qml ../contents/ui/configGeneral.qml
 msgid "Alpha:"
-msgstr "透明度："
+msgstr "不透明度："
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Contrast Correction"
@@ -315,7 +315,7 @@ msgstr "饱和度："
 
 #: ../contents/ui/components/FormColors.qml
 msgid "Lightness:"
-msgstr "亮度："
+msgstr "明度："
 
 #: ../contents/ui/components/FormPadding.qml
 msgid "Padding"
@@ -325,7 +325,7 @@ msgstr "内边距"
 msgid ""
 "Horizontal and vertical padding only work properly when the panel is on the "
 "same orientation."
-msgstr "仅当面板方向一致时，水平与垂直内边距才能正常工作。"
+msgstr "水平或垂直内边距仅在面板方向与其一致时才能正常工作。"
 
 #: ../contents/ui/components/FormShadow.qml
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -370,13 +370,13 @@ msgstr "背景"
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
 "Disable to make panel fully transparent, removes contrast and blur effects."
-msgstr "禁用可使面板完全透明，移除此对比度和模糊效果。"
+msgstr "禁用可使面板完全透明，同时移除对比度和模糊效果。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
 "⚠️ Disabling this breaks the panel clickable area and applet dialogs "
 "positioning when the panel is in floating mode! See <a href=\"%1\">#80</a>."
-msgstr ""
+msgstr "⚠️ 禁用此选项会破坏面板的可点击区域，以及浮动模式下挂件对话框的定位！参见 <a href=\"%1\">#80</a>。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "The shadow from the Plasma theme"
@@ -392,7 +392,7 @@ msgstr "设置为 0 可保留自定义背景模糊所需的遮罩。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Floating applets:"
-msgstr "浮动小部件："
+msgstr "浮动挂件："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Allow changes (Plasma 6.4.0 and later)"
@@ -405,35 +405,34 @@ msgid ""
 "⚠️Changing <b>Floating</b> from the panel configuration will not work with "
 "this is enabled!"
 msgstr ""
-"自 6.4.0 版本起，Plasma 现已内置<b>浮动面板与小部件</b>选项。启用本功能将覆盖"
-"该内置选项。\n"
-"⚠️启用本功能后，从面板配置中更改<b>浮动</b>设置将无效！"
+"自 6.4.0 版本起，Plasma 已内置<b>浮动面板与挂件</b>选项。启用本功能将覆盖该选项。\n"
+"⚠️启用本功能后，在面板配置中更改<b>浮动</b>设置将无效！"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Wide expand button:"
-msgstr ""
+msgstr "加宽展开按钮："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
 "Make the System Tray expand button use the same size as the other tray items"
-msgstr ""
+msgstr "让系统托盘展开按钮与其他托盘项使用相同大小"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Custom cell height:"
-msgstr ""
+msgstr "自定义单元格高度："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Custom cell width:"
-msgstr ""
+msgstr "自定义单元格宽度："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Force floating applets"
-msgstr ""
+msgstr "强制挂件浮动"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Floating panel:"
-msgstr "浮动面板时："
+msgstr "浮动面板："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
@@ -445,15 +444,15 @@ msgstr "当面板未浮动时，移除屏幕边缘的自定义背景圆角与边
 msgid ""
 "Resize panel length when panel enters/exits floating state (instead of just "
 "moving)"
-msgstr ""
+msgstr "面板进入或退出浮动状态时调整面板长度（而不是仅移动面板）"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Hide panel:"
-msgstr ""
+msgstr "隐藏面板："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "When there are no widgets visible"
-msgstr ""
+msgstr "当没有可见挂件时"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Customization"
@@ -507,17 +506,17 @@ msgid ""
 "C++ plugin not found, this feature will not work. Install the plugin and "
 "reboot or restart plasmashell to be able to use it. See <a "
 "href=\"%1\">install instructions</a>."
-msgstr ""
+msgstr "未找到 C++ 插件，此功能无法工作。请安装插件并重启系统或重启 plasmashell 后才能使用。参见 <a href=\"%1\">安装说明</a>。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Clipping (Experimental)"
-msgstr ""
+msgstr "裁剪（实验性）"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
 "Clip the widget content to the custom background radius.<br>Clipping widgets "
 "against the panel is not supported yet, see <a href=\"%1\">#275</a>."
-msgstr ""
+msgstr "将挂件内容裁剪到自定义背景的圆角边界。<br>暂不支持沿面板边界裁剪挂件，参见 <a href=\"%1\">#275</a>。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Shape"
@@ -535,7 +534,7 @@ msgstr "间距："
 msgid ""
 "<strong>Odd spacing</strong> values will be automatically converted to "
 "<strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
-msgstr ""
+msgstr "启用<strong>挂件群岛</strong>功能时，<strong>奇数间距</strong>值会自动转换为<strong>偶数</strong>。"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Custom font:"
@@ -551,7 +550,7 @@ msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Font family:"
-msgstr "字体名称："
+msgstr "字体族："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Override"
@@ -623,72 +622,70 @@ msgstr "版本："
 
 #: ../contents/ui/components/Header.qml
 msgid "Changelog"
-msgstr ""
+msgstr "更新日志"
 
 #: ../contents/ui/components/Header.qml
 msgid "Releases"
-msgstr ""
+msgstr "版本发布"
 
 #: ../contents/ui/components/Header.qml
 msgid "Home page"
-msgstr ""
+msgstr "主页"
 
 #: ../contents/ui/components/Header.qml
 msgid "KDE Store"
-msgstr ""
+msgstr "KDE 商店"
 
 #: ../contents/ui/components/Header.qml
 msgid "Issues"
-msgstr ""
+msgstr "问题列表"
 
 #: ../contents/ui/components/Header.qml
 msgid "Current issues"
-msgstr ""
+msgstr "当前问题"
 
 #: ../contents/ui/components/Header.qml
 msgid "Report a bug"
-msgstr ""
+msgstr "报告错误"
 
 #: ../contents/ui/components/Header.qml
 msgid "Request a feature"
-msgstr ""
+msgstr "请求新功能"
 
 #: ../contents/ui/components/Header.qml
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: ../contents/ui/components/Header.qml
 msgid "FAQ"
-msgstr ""
+msgstr "常见问题"
 
 #: ../contents/ui/components/Header.qml
 msgid "GitHub Discussions"
-msgstr ""
+msgstr "GitHub 讨论"
 
 #: ../contents/ui/components/Header.qml
 msgid "Send an email"
-msgstr ""
+msgstr "发送邮件"
 
 #: ../contents/ui/components/Header.qml
 msgid "Translate"
-msgstr ""
+msgstr "参与翻译"
 
 #: ../contents/ui/components/Header.qml
 msgid "Donate"
-msgstr ""
+msgstr "捐赠"
 
 #: ../contents/ui/components/Header.qml
 msgid "More projects"
-msgstr ""
+msgstr "更多项目"
 
 #: ../contents/ui/components/Header.qml ../contents/ui/components/PopupView.qml
 msgid ""
 "Running version of the widget (%1) is different to the one on disk (%2), "
 "please log out and back in (or restart plasmashell user unit) to ensure "
 "things work correctly!"
-msgstr ""
-"正在运行的挂件版本（%1）与已安装的版本（%2）不一致，请注销并重新登录（或重启 "
-"plasmashell 用户单元）以确保功能正常运行！"
+msgstr "正在运行的挂件版本（%1）与磁盘上的版本（%2）不一致，请注销并重新登录（或重启 plasmashell 用户单元）以确保功能正常运行！"
 
 #: ../contents/ui/components/PopupView.qml
 msgid "Select a preset"
@@ -710,7 +707,7 @@ msgstr "导出"
 msgid ""
 "Export these settings to the default configuration folder and import them in "
 "other instances of Panel Colorizer"
-msgstr "将当前设置导出到默认配置文件夹，以便在其他实例中导入"
+msgstr "将当前设置导出到默认配置文件夹，以便在 Panel Colorizer 的其他实例中导入"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "Export current settings?"
@@ -726,34 +723,34 @@ msgstr "这将覆盖之前的导出！"
 
 #: ../contents/ui/components/SettingImportExport.qml
 msgid "This will replace your current settings!"
-msgstr "这将替换您当前的设置！"
+msgstr "这将替换当前设置！"
 
 #: ../contents/ui/components/SupportMe.qml
 msgid "Thank you for using %1!"
-msgstr ""
+msgstr "感谢使用 %1！"
 
 #: ../contents/ui/components/SupportMe.qml
 msgid ""
 "If you enjoy using the plugin please consider sponsoring or donating so I "
 "can dedicate more time to maintain and improve this and <a href=\"%1\">my "
 "other projects</a>."
-msgstr ""
+msgstr "如果你喜欢这个插件，请考虑赞助或捐赠，让我能有更多时间维护和改进它以及<a href=\"%1\">我的其他项目</a>。"
 
 #: ../contents/ui/components/SupportMe.qml
 msgid "You can also"
-msgstr ""
+msgstr "你还可以"
 
 #: ../contents/ui/components/SupportMe.qml
 msgid "Star the project on GitHub"
-msgstr ""
+msgstr "在 GitHub 上给项目加星"
 
 #: ../contents/ui/components/SupportMe.qml
 msgid "Rate in the KDE Store"
-msgstr ""
+msgstr "在 KDE 商店评分"
 
 #: ../contents/ui/components/SupportMe.qml
 msgid "Translate %1 to your language"
-msgstr ""
+msgstr "把 %1 翻译成你的语言"
 
 #: ../contents/ui/components/WidgetCardBlacklist.qml
 #: ../contents/ui/components/WidgetCardConfig.qml
@@ -764,11 +761,11 @@ msgstr "系统托盘"
 
 #: ../contents/ui/components/WidgetCardBlacklist.qml
 msgid "Blacklist"
-msgstr ""
+msgstr "加入黑名单"
 
 #: ../contents/ui/components/WidgetCardConfig.qml
 msgid "Clear"
-msgstr ""
+msgstr "清除"
 
 #: ../contents/ui/components/WidgetCardConfig.qml
 msgid "Add"
@@ -776,7 +773,7 @@ msgstr "添加"
 
 #: ../contents/ui/components/WidgetCardHide.qml
 msgid "Hide"
-msgstr ""
+msgstr "隐藏"
 
 #: ../contents/ui/components/WidgetCardOverride.qml
 msgid "Edit"
@@ -805,6 +802,8 @@ msgid ""
 "element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ "
 "plugin using the latest source, <a href=\"%1\">see instructions</a>."
 msgstr ""
+"效果不符合预期？请确认正在编辑正确的元素。<br>自定义模糊不生效？尝试用最新源码重新安装或重新构建 C++ 插件，"
+"<a href=\"%1\">参见说明</a>。"
 
 #: ../contents/ui/configAppearance.qml
 msgid "Restore default (removes all customizations)"
@@ -826,22 +825,22 @@ msgstr "托盘挂件"
 
 #: ../contents/ui/configAppearance.qml
 msgid "Part of the panel on which the options below will be applied."
-msgstr ""
+msgstr "以下选项将应用到的面板区域。"
 
 #: ../contents/ui/configBlacklistWidgets.qml
 msgid ""
 "Blacklist widgets to keep their default appearance. A logout may be required "
 "for some widgets to fully restore their default appearance."
-msgstr ""
+msgstr "将挂件加入黑名单以保留其默认外观。部分挂件可能需要注销才能完全恢复默认外观。"
 
 #: ../contents/ui/configBlacklistWidgets.qml
 msgid "Blacklist spacers"
-msgstr ""
+msgstr "将间隔件加入黑名单"
 
 #: ../contents/ui/configBlacklistWidgets.qml
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Remove all"
-msgstr ""
+msgstr "全部移除"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Hide widget:"
@@ -859,7 +858,7 @@ msgstr "从任意挂件进入配置："
 msgid ""
 "Disable to remove <b>%1</b> option from other widget's context (right-click) "
 "menu."
-msgstr "禁用以从其他挂件右键菜单中移除 <b>%1</b> 选项"
+msgstr "禁用后将从其他挂件的右键菜单中移除 <b>%1</b> 选项。"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Debug mode:"
@@ -875,7 +874,7 @@ msgstr "网格"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Enabled"
-msgstr "已启用"
+msgstr "启用"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Visible while configuring"
@@ -915,7 +914,7 @@ msgstr "D-Bus 名称："
 
 #: ../contents/ui/configGeneral.qml
 msgid "Each Panel Colorizer instance has its own D-Bus name."
-msgstr "每个 Panel Colorizer 实例都有自己的 D-Bus 名称。"
+msgstr "每个 Panel Colorizer 实例都有独立的 D-Bus 名称。"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Python 3 executable:"
@@ -923,7 +922,7 @@ msgstr "Python 3 可执行文件："
 
 #: ../contents/ui/configGeneral.qml
 msgid "Required to run the D-Bus service in the background"
-msgstr "需在后台运行 D-Bus 服务"
+msgstr "在后台运行 D-Bus 服务需要此程序"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Usage examples:"
@@ -939,14 +938,13 @@ msgstr "使用 fzf + qdbus6 + jq 预览并切换预设："
 
 #: ../contents/ui/configGeneral.qml
 msgid "Hide/show this panel"
-msgstr "隐藏/显示此面板"
+msgstr "隐藏或显示此面板"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Hide/show all panels"
-msgstr "隐藏/显示所有面板"
+msgstr "隐藏或显示所有面板"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
-#, fuzzy
 msgid ""
 "Create configuration overrides and apply them to one or multiple widgets. "
 "These overrides are independent of presets and will be applied on top of the "
@@ -954,8 +952,8 @@ msgid ""
 "modifications, <b>uncheck</b> options <b>Enable</b> and <b>Fallback</b>, and "
 "apply the override to the widget."
 msgstr ""
-"创建配置覆盖并应用于一个或多个挂件。这些覆盖独立于预设方案，将叠加于当前设置"
-"之上，并在所有预设方案中生效。<br>若要"
+"创建配置覆盖并应用于一个或多个挂件。这些覆盖独立于预设，会在当前设置之上生效，切换预设后仍然保留。"
+"<br>要将挂件加入黑名单，防止其被修改，请<b>取消勾选</b><b>启用</b>和<b>回退</b>选项，并将该覆盖应用于挂件。"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 #: ../contents/ui/configPresetWidgetOverrides.qml
@@ -995,8 +993,7 @@ msgstr "回退："
 msgid ""
 "Fallback to the Global/Preset widget settings for disabled options, except "
 "for <b>Enable</b> and <b>Blur</>."
-msgstr ""
-"对于已禁用的选项，回退到全局/预设挂件设置（<b>启用</b>和<b>模糊</b>除外）。"
+msgstr "对于已禁用的选项，回退到全局或预设挂件设置（<b>启用</b>和<b>模糊</b>除外）。"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
 #: ../contents/ui/configPresetWidgetOverrides.qml
@@ -1023,7 +1020,7 @@ msgstr "恢复默认（由各挂件控制）"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Toggle Panel Colorizer"
-msgstr ""
+msgstr "切换 Panel Colorizer 的启用状态"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Switch presets"
@@ -1031,7 +1028,7 @@ msgstr "切换预设"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Show popup"
-msgstr "显示弹出菜单"
+msgstr "显示弹出窗口"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Do nothing"
@@ -1043,7 +1040,7 @@ msgid ""
 "states.<br>Disable preset auto-loading before making changes to presets, "
 "unsaved preset settings will be lost when auto-loading switches to other "
 "preset!"
-msgstr ""
+msgstr "根据面板和窗口状态自动切换不同预设。<br>修改预设前请先禁用预设自动加载，否则自动加载切换到其他预设时，未保存的预设设置将会丢失！"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Remove all auto-loading conditions"
@@ -1059,9 +1056,7 @@ msgid ""
 "shown</b> and <b>Panel touching window</b> have a preset selected, and there "
 "is a maximized window on the screen, the <b>Maximized</b> preset will be "
 "applied."
-msgstr ""
-"优先级按降序排列。例如，若同时选中<b>最大化窗口显示时</b>和<b>面板接触窗口时"
-"</b>的预设，且屏幕存在最大化窗口，则应用<b>最大化</b>预设。"
+msgstr "优先级按降序排列。例如，若<b>最大化窗口</b>和<b>窗口接触面板</b>都选择了预设，且屏幕上存在最大化窗口，则应用<b>最大化</b>预设。"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Window tracking:"
@@ -1081,7 +1076,7 @@ msgstr "活动窗口回退"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Track KWin's top window when there is no active one in the screen."
-msgstr "当前屏幕上没有活动窗口时，追踪 KWin 的顶层窗口。"
+msgstr "当前屏幕上没有活动窗口时，跟踪 KWin 的顶层窗口。"
 
 #: ../contents/ui/configPresetAutoload.qml
 msgid "Fullscreen window:"
@@ -1124,17 +1119,15 @@ msgid ""
 "Create configuration overrides and apply them to one or multiple widgets. "
 "These overrides should be saved to a preset in <strong>Presets</strong> tab "
 "or they will be lost when presets change!"
-msgstr ""
-"创建配置覆盖，并应用于一个或多个挂件。这些覆盖需保存到<strong>预设</strong>标"
-"签页的预设中，否则切换预设时将丢失！"
+msgstr "创建配置覆盖并应用于一个或多个挂件。这些覆盖需要保存到<strong>预设</strong>标签页的预设中，否则切换预设时将会丢失！"
 
 #: ../contents/ui/configPresetWidgetOverrides.qml
 msgid "Name:"
-msgstr ""
+msgstr "名称："
 
 #: ../contents/ui/configPresets.qml
 msgid "Delete preset"
-msgstr ""
+msgstr "删除预设"
 
 #: ../contents/ui/configPresets.qml
 msgid "This will permanently delete the file from your system!"
@@ -1142,7 +1135,7 @@ msgstr "这将从系统中永久删除该文件！"
 
 #: ../contents/ui/configPresets.qml
 msgid "Update preset"
-msgstr ""
+msgstr "更新预设"
 
 #: ../contents/ui/configPresets.qml
 msgid "Preset configuration will be overwritten!"
@@ -1150,7 +1143,7 @@ msgstr "预设配置将被覆盖！"
 
 #: ../contents/ui/configPresets.qml
 msgid "Create preset preview?"
-msgstr ""
+msgstr "创建预设预览？"
 
 #: ../contents/ui/configPresets.qml
 msgid "Current preview will be overwritten!"
@@ -1158,7 +1151,7 @@ msgstr "当前预览将被覆盖！"
 
 #: ../contents/ui/configPresets.qml
 msgid "Create preset"
-msgstr ""
+msgstr "创建预设"
 
 #: ../contents/ui/configPresets.qml
 msgid ""
@@ -1210,9 +1203,7 @@ msgstr "更新预览"
 msgid ""
 "Changing panel position is currently unstable and may cause Plasma to crash "
 "when moving panels between non-parallel edges (e.g from top to left)."
-msgstr ""
-"目前更改面板位置不稳定，在将面板从非平行边（例如从顶部移动到底部）之间移动时"
-"可能会导致 Plasma 崩溃。"
+msgstr "目前更改面板位置不稳定，在非平行边缘之间移动面板（例如从顶部到左侧）可能导致 Plasma 崩溃。"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
@@ -1331,15 +1322,15 @@ msgstr "浮动："
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Thickness"
-msgstr "高度"
+msgstr "厚度"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Thickness:"
-msgstr "高度："
+msgstr "厚度："
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Show/Hide"
-msgstr "显示/隐藏"
+msgstr "显示与隐藏"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Show:"
@@ -1355,19 +1346,20 @@ msgid ""
 "configuration from all Panel Colorizer instances so make sure to save the "
 "others first"
 msgstr ""
+"警告：请谨慎使用显示与隐藏功能。如果隐藏了面板，而你既未配置预设自动加载，也不会通过 D-Bus 切换预设"
+"（或已禁用 D-Bus），则只能手动删除配置或移除 Panel Colorizer 才能再次显示面板。"
+"请在终端或 tty 中运行下方命令，然后注销或重启。此命令会删除所有 Panel Colorizer 实例的配置，请务必先保存其他实例的设置。"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
 "If you have D-Bus enabled is it recommended that you use that with shortcuts "
 "instead. Consult the README to learn more or see the General tab for some "
 "examples."
-msgstr ""
-"若已启用 D-Bus，建议改用快捷键操作。详情请参阅 README 或查看常规标签页的示"
-"例。"
+msgstr "若已启用 D-Bus，建议改用 D-Bus 配合快捷键操作。详情请参阅 README 或查看常规标签页中的示例。"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "D-Bus usage"
-msgstr ""
+msgstr "D-Bus 用法"
 
 #: ../contents/ui/configTextIconFix.qml
 msgid ""
@@ -1380,6 +1372,11 @@ msgid ""
 "themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</"
 "strong> disable and restart Plasma or logout."
 msgstr ""
+"对于常规方法无效或颜色、字体被挂件重置的情况，修复挂件的文本和图标颜色及字体。"
+"<br>· <strong>遮罩</strong>：强制为 SVG 图标着色，适用于符号图标。"
+"<br>· <strong>颜色效果</strong>：通过后处理效果强制为文本和图标着色，适用于非符号图标。"
+"<br>· <strong>刷新</strong>：按固定间隔重新应用颜色或字体，适用于会自行重建内容或重新着色的挂件。"
+"<br>要还原<strong>遮罩</strong>和<strong>颜色效果</strong>造成的更改，请禁用相关选项并重启 Plasma 或注销。"
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
@@ -1387,7 +1384,7 @@ msgstr "恢复默认（移除所有图标和文本的修复）"
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Force Text/Icon color"
-msgstr "强制文本/图标颜色"
+msgstr "强制文本与图标颜色"
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Refresh interval:"
@@ -1395,52 +1392,52 @@ msgstr "刷新间隔："
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Add new"
-msgstr ""
+msgstr "新增"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Sort"
-msgstr ""
+msgstr "排序"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid ""
 "Replace System Tray icons with icons from the current icon theme or a local "
 "file. The built-in rules icons are part of <a href=\"%1\">Papirus icon "
 "theme</a>."
-msgstr ""
+msgstr "将系统托盘图标替换为当前图标主题或本地文件中的图标。内置规则的图标来自 <a href=\"%1\">Papirus 图标主题</a>。"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid ""
 "C++ plugin not found, this feature will not work. Install the plugin and "
 "reboot or restart plasmashell to be able to use it <a href=\"%1\">Install "
 "instructions</a>."
-msgstr ""
+msgstr "未找到 C++ 插件，此功能无法工作。请安装插件并重启系统或重启 plasmashell 后才能使用。参见 <a href=\"%1\">安装说明</a>。"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid ""
 "The installed version of the C++ plugin doesn't support this feature, update "
 "the plugin and reboot or restart plasmashell to be able to use it <a "
 "href=\"%1\">Install instructions</a>."
-msgstr ""
+msgstr "已安装的 C++ 插件版本不支持此功能，请更新插件并重启系统或重启 plasmashell 后才能使用。参见 <a href=\"%1\">安装说明</a>。"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Log icon changes:"
-msgstr ""
+msgstr "记录图标变更："
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Icon hashes will be printed to the system log"
-msgstr ""
+msgstr "图标哈希将输出到系统日志"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Enable built-in rules:"
-msgstr ""
+msgstr "启用内置规则："
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Show"
-msgstr ""
+msgstr "显示"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "How to use"
-msgstr ""
+msgstr "使用方法"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid ""
@@ -1450,13 +1447,16 @@ msgid ""
 "new rule with the matching property you choose and specify the replacement "
 "icon name or file"
 msgstr ""
+"1、启用上方的<b>记录图标变更</b><br>2、在终端运行 <b>journalctl -f</b>"
+"<br>3、将鼠标悬停在系统托盘项上或触发一次图标变更<br>4、复制其中一项属性：图标 SHA1、图标名称、名称或标题"
+"<br>5、新建一条规则，填入选择的匹配属性，并指定替换图标的名称或文件"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid ""
 "<b>Note</b>: There are some rules without icon as there was no matching one "
 "in Papirus, you can override those with your own icons by copying the rule "
 "to <b>User Replacements</b>"
-msgstr ""
+msgstr "<b>注意</b>：部分规则没有图标，因为 Papirus 中没有匹配项。可以将规则复制到<b>用户规则</b>中，用自己的图标覆盖它们。"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid ""
@@ -1466,34 +1466,37 @@ msgid ""
 "SHA1/icon name/title/name + icon-name from Papirus (panel/status icons only "
 "if no matching icon exists, otherwise it can be omitted)"
 msgstr ""
+"<b>注意</b>：部分应用（如 Signal）缺少累积通知图标。欢迎通过 GitHub 拉取请求或议题贡献缺失的图标，"
+"请提供说明，以及图标 SHA1、图标名称、标题或名称中的一项，还需提供 Papirus 中的图标名称"
+"（若没有匹配图标，请提供面板或状态图标；否则可省略）。"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid ""
 "<b>Note</b>: Matching properties (especially the SHA1) may change when "
 "applications get updated, rules will need to be updated when that happens."
-msgstr ""
+msgstr "<b>注意</b>：应用更新后，匹配属性（尤其是 SHA1）可能会变化，届时需要更新相应规则。"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid ""
 "<b>Note</b>: Plasma widgets in the system tray are not supported by this "
 "feature as widgets provide their own visual content and logic."
-msgstr ""
+msgstr "<b>注意</b>：系统托盘中的 Plasma 挂件不受此功能支持，因为这类挂件自带视觉内容和逻辑。"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Built-in Rules (read only)"
-msgstr ""
+msgstr "内置规则（只读）"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "User Rules"
-msgstr ""
+msgstr "用户规则"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Whether or not this replacement is enabled"
-msgstr ""
+msgstr "是否启用此替换规则"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Description (optional)"
-msgstr ""
+msgstr "描述（可选）"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Description"
@@ -1501,45 +1504,45 @@ msgstr "描述"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "SHA1, string or regex to match"
-msgstr ""
+msgstr "用于匹配的 SHA1、字符串或正则表达式"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Icon SHA1, title or name of the target tray item"
-msgstr ""
+msgstr "目标托盘项的图标 SHA1、标题或名称"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Custom icon"
-msgstr ""
+msgstr "自定义图标"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Icon name or file"
-msgstr ""
+msgstr "图标名称或文件"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Edit icon"
-msgstr ""
+msgstr "编辑图标"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgctxt "@item:inmenu Open icon chooser dialog"
 msgid "Choose…"
-msgstr ""
+msgstr "选择……"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgctxt "@action:inmenu"
 msgid "Remove icon"
-msgstr ""
+msgstr "移除图标"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Copy to User Rules"
-msgstr ""
+msgstr "复制到用户规则"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Duplicate rule"
-msgstr ""
+msgstr "复制规则"
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Create widget islands by placing separator widgets around them."
-msgstr ""
+msgstr "在挂件两侧放置分隔挂件，即可创建挂件群岛。"
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid ""
@@ -1548,6 +1551,8 @@ msgid ""
 "used)<br>2. Select the separator widget below<br>3. Add as many separators "
 "as you need and move them to create islands."
 msgstr ""
+"<strong>使用方法</strong><br>1、将用作群岛分隔的挂件加入面板（默认使用 Plasma 的面板间隔件）"
+"<br>2、在下方选择该分隔挂件<br>3、按需添加多个分隔挂件并移动它们，即可创建群岛。"
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid ""
@@ -1556,6 +1561,8 @@ msgid ""
 "have different thickness, add margins to the widgets custom background in "
 "the Appearance tab."
 msgstr ""
+"<strong>注意</strong><br>· 挂件需要有自定义背景或边框，此选项才有可见效果。"
+"<br>· 如果面板中各挂件厚度不一，请在外观标签页中为挂件的自定义背景添加外边距。"
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid ""
@@ -1563,21 +1570,23 @@ msgid ""
 "Colorizer Islands Separator</a> visible only in Edit Mode.<br>- <a "
 "href=\"%2\">Advanced Separator</a> always visible and configurable."
 msgstr ""
+"<strong>需要分隔挂件？</strong><br>· <a href=\"%1\">Panel Colorizer Islands Separator</a> 仅在编辑模式下可见。"
+"<br>· <a href=\"%2\">Advanced Separator</a> 始终可见且可配置。"
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Separator widget:"
-msgstr ""
+msgstr "分隔挂件："
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid ""
 "Select the widget that will act as separator for the islands.<br><br>Note "
 "that the separator widget itself does not need to be visible for it to work, "
 "so you can use an invisible spacer/separator for example."
-msgstr ""
+msgstr "选择将用作群岛分隔的挂件。<br><br>注意：分隔挂件本身无需可见即可生效，例如可以使用不可见的间隔件或分隔挂件。"
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Require two separators per island:"
-msgstr ""
+msgstr "每个群岛需要两个分隔挂件："
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid ""
@@ -1588,18 +1597,21 @@ msgid ""
 "if your islands separator is not a panel spacer and you want to explicitly "
 "define the start and end of each island."
 msgstr ""
+"一组挂件始终需要两个分隔挂件才能构成群岛。默认情况下，<br>%1 的排列会创建两个群岛。"
+"<br><br>启用此选项后，群岛之间不共享分隔挂件，例如需要<br>%2 的排列才能创建两个群岛。"
+"<br><br>如果使用的群岛分隔挂件不是面板间隔件，并希望明确指定每个群岛的起点和终点，请启用此选项。"
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Blacklist separator widgets:"
-msgstr ""
+msgstr "将分隔挂件加入黑名单："
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid "Disable customization from separator widgets"
-msgstr ""
+msgstr "禁用分隔挂件的自定义"
 
 #: ../contents/ui/main.qml
 msgid "This widget must be placed in a panel to work!"
-msgstr ""
+msgstr "此挂件必须放在面板中才能工作！"
 
 #: ../contents/ui/main.qml
 msgid "Hide widget (visible in panel Edit Mode)"
@@ -1610,7 +1622,7 @@ msgid ""
 "A Plasmashell restart is required to remove all the modifications made by "
 "%1. Run systemctl restart --user plasma-plasmashell or log out and log back "
 "in."
-msgstr ""
+msgstr "需要重启 Plasmashell 才能移除 %1 所做的全部修改。运行 systemctl restart --user plasma-plasmashell，或注销后重新登录。"
 
 #~ msgid "Disable"
 #~ msgstr "禁用"
