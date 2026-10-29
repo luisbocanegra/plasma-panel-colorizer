@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-08-13 18:33+0000\n"
+"POT-Creation-Date: 2026-10-29 05:14+0000\n"
 "PO-Revision-Date: 2026-01-24 16:46+0800\n"
 "Last-Translator: Mill Haruto <mill413@outlook.com>\n"
 "Language-Team: \n"
@@ -788,6 +788,10 @@ msgid "Delete"
 msgstr "删除"
 
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Keep original"
+msgstr ""
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "Mask"
 msgstr "遮罩"
 
@@ -1370,18 +1374,6 @@ msgid "D-Bus usage"
 msgstr ""
 
 #: ../contents/ui/configTextIconFix.qml
-msgid ""
-"Fix text and icon colors/font for widgets where the normal method doesn't "
-"work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on "
-"SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: "
-"Force color on text and icons using post-processing effect, useful for non-"
-"symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a "
-"fixed interval, useful for widgets that recreate or recolor content "
-"themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</"
-"strong> disable and restart Plasma or logout."
-msgstr ""
-
-#: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
 msgstr "恢复默认（移除所有图标和文本的修复）"
 
@@ -1392,6 +1384,27 @@ msgstr "强制文本/图标颜色"
 #: ../contents/ui/configTextIconFix.qml
 msgid "Refresh interval:"
 msgstr "刷新间隔："
+
+#: ../contents/ui/configTextIconFix.qml
+msgid ""
+"Fix text and icon colors/font for widgets where the normal method doesn't "
+"work or is reset by the widget.<br> <strong>Mask</strong>: Force color on "
+"SVG icons, useful for symbolic icons.<br><strong>Color Effect</strong>: "
+"Force color on text and icons using post-processing effect, useful for non-"
+"symbolic icons.<br><strong>Refresh</strong>: Re-apply color/font at a fixed "
+"interval, useful for widgets that recreate or recolor content themselves."
+"<br><strong>Keep original</strong>: Do not change the text/icon color, "
+"useful for widgets that manage their own colors."
+msgstr ""
+
+#: ../contents/ui/configTextIconFix.qml
+msgid ""
+"Apply the changes and restart plasmashell for changes to take full effect."
+msgstr ""
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Restart plasmashell"
+msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Add new"

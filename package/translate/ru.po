@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-08-13 18:33+0000\n"
+"POT-Creation-Date: 2026-10-29 05:14+0000\n"
 "PO-Revision-Date: 2026-10-14 20:25+0300\n"
 "Last-Translator: qud0\n"
 "Language-Team: Russian\n"
@@ -709,6 +709,10 @@ msgid "Delete"
 msgstr "Удалить"
 
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Keep original"
+msgstr ""
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "Mask"
 msgstr "Маска"
 
@@ -1211,14 +1215,6 @@ msgid "D-Bus usage"
 msgstr "Использование D-Bus"
 
 #: ../contents/ui/configTextIconFix.qml
-msgid ""
-"Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, useful "
-"for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
-msgstr ""
-"Исправление цветов и шрифтов для виджетов, где стандартный метод не работает.<br> - <strong>Маска</strong>: Принудительный цвет для SVG (символьные иконки).<br> - <strong>Цветовой эффект</strong>: Пост-обработка для текста и обычных иконок.<br> - <strong>Обновление</strong>: Повторное применение настроек через интервал для динамичных виджетов.<br>Для сброса эффектов отключите их и перезапустите "
-"Plasma."
-
-#: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
 msgstr "Восстановить по умолчанию (удалит все исправления)"
 
@@ -1229,6 +1225,20 @@ msgstr "Принудительный цвет текста/иконок"
 #: ../contents/ui/configTextIconFix.qml
 msgid "Refresh interval:"
 msgstr "Интервал обновления:"
+
+#: ../contents/ui/configTextIconFix.qml
+msgid ""
+"Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br><strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br><strong>Refresh</strong>: Re-apply color/font at a fixed interval, useful for "
+"widgets that recreate or recolor content themselves.<br><strong>Keep original</strong>: Do not change the text/icon color, useful for widgets that manage their own colors."
+msgstr ""
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Apply the changes and restart plasmashell for changes to take full effect."
+msgstr ""
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Restart plasmashell"
+msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Add new"
@@ -1403,3 +1413,10 @@ msgstr "Скрыть виджет (виден в режиме настройки
 #: ../contents/ui/main.qml
 msgid "A Plasmashell restart is required to remove all the modifications made by %1. Run systemctl restart --user plasma-plasmashell or log out and log back in."
 msgstr "Чтобы убрать все изменения, внесенные %1, требуется перезапуск plasmashell. Выполните systemctl restart --user plasma-plasmashell или перезайдите в систему."
+
+#~ msgid ""
+#~ "Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, "
+#~ "useful for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
+#~ msgstr ""
+#~ "Исправление цветов и шрифтов для виджетов, где стандартный метод не работает.<br> - <strong>Маска</strong>: Принудительный цвет для SVG (символьные иконки).<br> - <strong>Цветовой эффект</strong>: Пост-обработка для текста и обычных иконок.<br> - <strong>Обновление</strong>: Повторное применение настроек через интервал для динамичных виджетов.<br>Для сброса эффектов отключите их и "
+#~ "перезапустите Plasma."

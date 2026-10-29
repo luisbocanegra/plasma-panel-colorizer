@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-08-13 18:33+0000\n"
+"POT-Creation-Date: 2026-10-29 05:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: scoutJ <jerry2714@gmail.com>\n"
 "Language-Team: \n"
@@ -710,6 +710,10 @@ msgid "Delete"
 msgstr "刪除"
 
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Keep original"
+msgstr ""
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "Mask"
 msgstr "遮蓋"
 
@@ -1212,14 +1216,6 @@ msgid "D-Bus usage"
 msgstr ""
 
 #: ../contents/ui/configTextIconFix.qml
-msgid ""
-"Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, useful "
-"for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
-msgstr ""
-"用於在一般的設定方式無效或是元件本身將其重設的情況下，修正元件文字和圖示的顏色/字型。，<br> - <strong>遮蔽</strong>：在 SVG 圖示上強制上色，適用於符號圖示。<br> - <strong>色彩效果</strong>：以後製效果對文字和圖示強制上色，適用於非符號圖示。<br> - <strong>重整</strong>: 以一個固定間隔時間重複套用顏色/字型，適用於元件會自行重建或是自行重新上色的情況。<br>若要還原 <strong>遮蔽</strong> 和 <strong>"
-"色彩效果</strong> ，請移除設定後重新啟動 Plasma 或是登出。"
-
-#: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
 msgstr "還原 (移除所有的圖示和文字修正)"
 
@@ -1230,6 +1226,20 @@ msgstr "強制設定文字/圖示色彩"
 #: ../contents/ui/configTextIconFix.qml
 msgid "Refresh interval:"
 msgstr "重整間隔："
+
+#: ../contents/ui/configTextIconFix.qml
+msgid ""
+"Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br><strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br><strong>Refresh</strong>: Re-apply color/font at a fixed interval, useful for "
+"widgets that recreate or recolor content themselves.<br><strong>Keep original</strong>: Do not change the text/icon color, useful for widgets that manage their own colors."
+msgstr ""
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Apply the changes and restart plasmashell for changes to take full effect."
+msgstr ""
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Restart plasmashell"
+msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Add new"
@@ -1402,6 +1412,13 @@ msgstr "隱藏元件 (在面板設定模式下可見)"
 #: ../contents/ui/main.qml
 msgid "A Plasmashell restart is required to remove all the modifications made by %1. Run systemctl restart --user plasma-plasmashell or log out and log back in."
 msgstr ""
+
+#~ msgid ""
+#~ "Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, "
+#~ "useful for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
+#~ msgstr ""
+#~ "用於在一般的設定方式無效或是元件本身將其重設的情況下，修正元件文字和圖示的顏色/字型。，<br> - <strong>遮蔽</strong>：在 SVG 圖示上強制上色，適用於符號圖示。<br> - <strong>色彩效果</strong>：以後製效果對文字和圖示強制上色，適用於非符號圖示。<br> - <strong>重整</strong>: 以一個固定間隔時間重複套用顏色/字型，適用於元件會自行重建或是自行重新上色的情況。<br>若要還原 <strong>遮蔽</strong> 和 "
+#~ "<strong>色彩效果</strong> ，請移除設定後重新啟動 Plasma 或是登出。"
 
 #~ msgid "Use an integer when using <strong>Widget Islands</strong> to avoid rendering issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">See #64</a>"
 #~ msgstr "當使用 <strong>元件島</strong> 時，使用整數來避免彩現問題! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">請見 #64</a>"
