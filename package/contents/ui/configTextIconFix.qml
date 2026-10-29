@@ -1,3 +1,4 @@
+pragma ComponentBehavior: Bound
 import QtCore
 import QtQuick
 import QtQuick.Controls
@@ -18,6 +19,7 @@ KCM.SimpleKCM {
     property var config: JSON.parse(cfg_forceForegroundColor)
     property var forceFgConfig
     property bool loaded: false
+    property bool isDirty: false
     property string configDir: StandardPaths.writableLocation(StandardPaths.HomeLocation).toString().substring(7) + "/.config/panel-colorizer/"
     property string importCmd: "cat '" + configDir + "forceForegroundColor.json'"
     property string crateConfigDirCmd: "mkdir -p " + configDir
@@ -32,17 +34,20 @@ KCM.SimpleKCM {
             const name = widget.name;
             const method = widget.method;
             const reload = widget.reload;
+            const keepOriginal = widget.keepOriginal;
             const cfgIndex = Utils.getWidgetConfigIdx(id, name, forceFgConfig);
-            if (method.mask || method.multiEffect || reload) {
+            if (method.mask || method.multiEffect || reload || keepOriginal) {
                 if (cfgIndex !== -1) {
                     forceFgConfig[cfgIndex].method = method;
                     forceFgConfig[cfgIndex].reload = reload;
+                    forceFgConfig[cfgIndex].keepOriginal = keepOriginal;
                 } else {
                     forceFgConfig.push({
                         "name": name,
                         "id": id,
                         "method": method,
-                        "reload": reload
+                        "reload": reload,
+                        "keepOriginal": keepOriginal
                     });
                 }
             } else {
@@ -84,7 +89,8 @@ KCM.SimpleKCM {
                     "mask": false,
                     "multiEffect": false
                 },
-                "reload": false
+                "reload": false,
+                "keepOriginal": false
             });
         }
     }
@@ -100,7 +106,8 @@ KCM.SimpleKCM {
                 const cfg = forceFgConfig[index];
                 widgetsModel.set(i, {
                     "method": cfg.method,
-                    "reload": cfg.reload
+                    "reload": cfg.reload,
+                    "keepOriginal": cfg.keepOriginal ?? false
                 });
             } else {
                 widgetsModel.set(i, {
@@ -108,7 +115,8 @@ KCM.SimpleKCM {
                         "mask": false,
                         "multiEffect": false
                     },
-                    "reload": false
+                    "reload": false,
+                    "keepOriginal": false
                 });
             }
         }
@@ -158,15 +166,18 @@ KCM.SimpleKCM {
         target: runCommand
     }
 
-    ColumnLayout {
-        enabled: cfg_isEnabled
-
-        Kirigami.InlineMessage {
-            Layout.fillWidth: true
-            text: i18n("Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, useful for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout.")
-            visible: true
-            type: Kirigami.MessageType.Information
+    Connections {
+        // https://invent.kde.org/plasma/plasma-desktop/-/blob/6ddedc3e53b066960be84eb447f9e02f31d45271/desktoppackage/contents/configuration/AppletConfiguration.qml#L422
+        target: applyButton
+        function onEnabledChanged() {
+            if (applyButton.enabled) {
+                root.isDirty = true;
+            }
         }
+    }
+
+    ColumnLayout {
+        enabled: root.cfg_isEnabled
 
         RowLayout {
             Button {
@@ -185,10 +196,10 @@ KCM.SimpleKCM {
 
         Components.SettingImportExport {
             onExportConfirmed: {
-                runCommand.exec(crateConfigDirCmd);
-                runCommand.exec("echo '" + cfg_forceForegroundColor + "' > '" + configDir + "forceForegroundColor.json'");
+                runCommand.exec(root.crateConfigDirCmd);
+                runCommand.exec("echo '" + root.cfg_forceForegroundColor + "' > '" + root.configDir + "forceForegroundColor.json'");
             }
-            onImportConfirmed: runCommand.exec(importCmd)
+            onImportConfirmed: runCommand.exec(root.importCmd)
         }
 
         Kirigami.FormLayout {
@@ -202,12 +213,17 @@ KCM.SimpleKCM {
                 from: 16
                 to: 1000
                 stepSize: 50
-                value: config.reloadInterval
+                value: root.config.reloadInterval
                 onValueModified: {
-                    config.reloadInterval = value;
+                    root.config.reloadInterval = value;
                     root.updateConfig();
                 }
             }
+        }
+
+        Label {
+            Layout.fillWidth: true
+            text: i18n("Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br><strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br><strong>Refresh</strong>: Re-apply color/font at a fixed interval, useful for widgets that recreate or recolor content themselves.<br><strong>Keep original</strong>: Do not change the text/icon color, useful for widgets that manage their own colors.")
         }
 
         ColumnLayout {
@@ -217,9 +233,8 @@ KCM.SimpleKCM {
                 model: widgetsModel
 
                 delegate: Components.WidgetCardTextIconFixes {
-                    widget: model
-                    onUpdateWidget: (maskEnabled, effectEnabled, reload) => {
-                        if (!loaded)
+                    onUpdateWidget: (maskEnabled, effectEnabled, reload, keepOriginal) => {
+                        if (!root.loaded)
                             return;
 
                         widgetsModel.set(index, {
@@ -227,7 +242,8 @@ KCM.SimpleKCM {
                                 "mask": maskEnabled,
                                 "multiEffect": effectEnabled
                             },
-                            "reload": reload
+                            "reload": reload,
+                            "keepOriginal": keepOriginal
                         });
                         root.updateConfig();
                     }
@@ -239,6 +255,20 @@ KCM.SimpleKCM {
     header: ColumnLayout {
         Components.Header {
             id: headerComponent
+        }
+        Kirigami.InlineMessage {
+            Layout.fillWidth: true
+            visible: root.isDirty
+            type: Kirigami.MessageType.Warning
+            Layout.margins: Kirigami.Units.mediumSpacing
+            text: i18n("Apply the changes and restart plasmashell for changes to take full effect.")
+            actions: [
+                Kirigami.Action {
+                    icon.name: "system-reboot-symbolic"
+                    text: i18n("Restart plasmashell")
+                    onTriggered: runCommand.exec("systemctl restart --user plasma-plasmashell")
+                }
+            ]
         }
     }
 }

@@ -96,7 +96,7 @@ Rectangle {
         when: rect.customIcon !== ""
     }
     property var wRecolorCfg: Utils.getForceFgWidgetConfig(widgetId, widgetName, main.forceRecolorList)
-    property bool requiresRefresh: wRecolorCfg?.reload ?? false
+    property bool requiresRefresh: (wRecolorCfg?.reload ?? false) && !(wRecolorCfg?.keepOriginal ?? false)
 
     // 0: default | 1: start | 2: middle | 3: end
     property int unifyBgType: main.islandWidgetTypes.find(item => item.id === widgetId)?.type ?? Enum.IslandSectionType.Default
@@ -357,7 +357,9 @@ Rectangle {
                 return;
             if (rect.isTray && rect.main.trayWidgetSettings.normal.foregroundColor.enabled)
                 return;
-            const result = Utils.applyFgColor(rect.target, rect.fgColor, rect.fgColorCfg, 0, rect.wRecolorCfg, rect.fgColorModified, rect.fontCfg);
+            if (rect.wRecolorCfg?.keepOriginal)
+                return;
+            const result = Utils.applyFgColor(rect.target, rect.fgColor, rect.fgColorCfg, 0, rect.wRecolorCfg, rect.fgColorModified, rect.fontCfg, defaultColorHolder);
             if (result) {
                 rect.itemCount = result.count;
                 rect.maxDepth = result.depth;
