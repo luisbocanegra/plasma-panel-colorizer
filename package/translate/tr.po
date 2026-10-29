@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-08-13 18:33+0000\n"
+"POT-Creation-Date: 2026-10-29 05:14+0000\n"
 "PO-Revision-Date: 2026-05-21 13:40+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Turkish <tr@li.org>\n"
@@ -709,6 +709,10 @@ msgid "Delete"
 msgstr "Sil"
 
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Keep original"
+msgstr ""
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "Mask"
 msgstr "Maskele"
 
@@ -1215,14 +1219,6 @@ msgid "D-Bus usage"
 msgstr ""
 
 #: ../contents/ui/configTextIconFix.qml
-msgid ""
-"Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, useful "
-"for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
-msgstr ""
-"Normal yöntemin çalışmadığı veya araç takımı tarafından sıfırlandığı araç takımları için metin ve simge renklerini/yazı tipini düzeltin.<br> - <strong>Maskele</strong>: Sembolik simgeler için yararlı olan SVG simgelerinde rengi zorla.<br> - <strong>Renk Efekti</strong>: Sembolik olmayan simgeler için yararlı olan sonradan işleme (post-processing) efektini kullanarak metin ve simgeler üzerinde "
-"rengi zorla.<br> - <strong>Yenile</strong>: Kendi içeriğini yeniden oluşturan veya yeniden renklendiren araç takımları için yararlı olan sabit bir aralıkla rengi/yazı tipini yeniden uygula.<br><strong>Maskele<strong> ve <strong>Renk Efekti</strong> özelliklerini eski haline getirmek için devre dışı bırakın ve Plasma'yı yeniden başlatın veya oturumu kapatın."
-
-#: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
 msgstr "Varsayılana geri yükle (tüm simge ve metin düzeltmelerini kaldırır)"
 
@@ -1233,6 +1229,20 @@ msgstr "Metin/Simge rengini zorla"
 #: ../contents/ui/configTextIconFix.qml
 msgid "Refresh interval:"
 msgstr "Yenileme aralığı:"
+
+#: ../contents/ui/configTextIconFix.qml
+msgid ""
+"Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br><strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br><strong>Refresh</strong>: Re-apply color/font at a fixed interval, useful for "
+"widgets that recreate or recolor content themselves.<br><strong>Keep original</strong>: Do not change the text/icon color, useful for widgets that manage their own colors."
+msgstr ""
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Apply the changes and restart plasmashell for changes to take full effect."
+msgstr ""
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Restart plasmashell"
+msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Add new"
@@ -1407,6 +1417,13 @@ msgstr "Araç takımını gizle (panel Düzenleme Modunda görünür)"
 #: ../contents/ui/main.qml
 msgid "A Plasmashell restart is required to remove all the modifications made by %1. Run systemctl restart --user plasma-plasmashell or log out and log back in."
 msgstr ""
+
+#~ msgid ""
+#~ "Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, "
+#~ "useful for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
+#~ msgstr ""
+#~ "Normal yöntemin çalışmadığı veya araç takımı tarafından sıfırlandığı araç takımları için metin ve simge renklerini/yazı tipini düzeltin.<br> - <strong>Maskele</strong>: Sembolik simgeler için yararlı olan SVG simgelerinde rengi zorla.<br> - <strong>Renk Efekti</strong>: Sembolik olmayan simgeler için yararlı olan sonradan işleme (post-processing) efektini kullanarak metin ve simgeler "
+#~ "üzerinde rengi zorla.<br> - <strong>Yenile</strong>: Kendi içeriğini yeniden oluşturan veya yeniden renklendiren araç takımları için yararlı olan sabit bir aralıkla rengi/yazı tipini yeniden uygula.<br><strong>Maskele<strong> ve <strong>Renk Efekti</strong> özelliklerini eski haline getirmek için devre dışı bırakın ve Plasma'yı yeniden başlatın veya oturumu kapatın."
 
 #~ msgid "Use an integer when using <strong>Widget Islands</strong> to avoid rendering issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">See #64</a>"
 #~ msgstr "Oluşturma (rendering) sorunlarını önlemek için <strong>Araç Takımı Adaları</strong> kullanırken bir tam sayı (integer) kullanın! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">Bkz: #64</a>"
