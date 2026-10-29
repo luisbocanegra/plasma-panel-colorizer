@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-08-13 18:33+0000\n"
+"POT-Creation-Date: 2026-10-29 05:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -710,6 +710,10 @@ msgid "Delete"
 msgstr "Esborra"
 
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Keep original"
+msgstr ""
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "Mask"
 msgstr "Màscara"
 
@@ -1214,14 +1218,6 @@ msgid "D-Bus usage"
 msgstr "Ús del D-Bus"
 
 #: ../contents/ui/configTextIconFix.qml
-msgid ""
-"Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, useful "
-"for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
-msgstr ""
-"Canvia els colors de text, el tipus de lletra o la icona dels als ginys per als quals el mètode normal no funciona o l'efecte no és permanent.<br> ‒ <strong>Màscara</strong>: Força l'acoloriment d'icones (icones simbòliques).<br> ‒ <strong>Efecte de color</strong>: Força l'acoloriment de text/icones fent servir un efecte de post-processat (per a qualsevol icona).<br> ‒ <strong>Actualitza</"
-"strong>: Torna a aplicar l'acoloriment o el tipus de lletra a un interval fixat, per a ginys que recreen o canvien el color del contingut per si mateixos<br>Per a restaurar la <strong>Màscara<strong> i l'<strong>Efecte de color</strong>, desactiveu i reinicieu el Plasma o sortiu de la sessió."
-
-#: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
 msgstr "Restaura els valors per defecte (trau tots els canvis d'icones i textos)"
 
@@ -1232,6 +1228,20 @@ msgstr "Força el color de text/icona"
 #: ../contents/ui/configTextIconFix.qml
 msgid "Refresh interval:"
 msgstr "Interval d'actualització"
+
+#: ../contents/ui/configTextIconFix.qml
+msgid ""
+"Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br><strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br><strong>Refresh</strong>: Re-apply color/font at a fixed interval, useful for "
+"widgets that recreate or recolor content themselves.<br><strong>Keep original</strong>: Do not change the text/icon color, useful for widgets that manage their own colors."
+msgstr ""
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Apply the changes and restart plasmashell for changes to take full effect."
+msgstr ""
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Restart plasmashell"
+msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Add new"
@@ -1406,6 +1416,13 @@ msgstr "Amaga el giny (visible en Mode d'Edició del Panell)"
 #: ../contents/ui/main.qml
 msgid "A Plasmashell restart is required to remove all the modifications made by %1. Run systemctl restart --user plasma-plasmashell or log out and log back in."
 msgstr "Cal reiniciar el Plasmashell per a traure totes les modificacions de %1. Executeu systemctl restart --user plasma-plasmashell o sortiu i torneu a entrar a la sessió."
+
+#~ msgid ""
+#~ "Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, "
+#~ "useful for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
+#~ msgstr ""
+#~ "Canvia els colors de text, el tipus de lletra o la icona dels als ginys per als quals el mètode normal no funciona o l'efecte no és permanent.<br> ‒ <strong>Màscara</strong>: Força l'acoloriment d'icones (icones simbòliques).<br> ‒ <strong>Efecte de color</strong>: Força l'acoloriment de text/icones fent servir un efecte de post-processat (per a qualsevol icona).<br> ‒ <strong>Actualitza</"
+#~ "strong>: Torna a aplicar l'acoloriment o el tipus de lletra a un interval fixat, per a ginys que recreen o canvien el color del contingut per si mateixos<br>Per a restaurar la <strong>Màscara<strong> i l'<strong>Efecte de color</strong>, desactiveu i reinicieu el Plasma o sortiu de la sessió."
 
 #~ msgid "1. Enable <b>Log icon changes</b> above<br>2. Run <b>journalctl -f</b> from terminal<br>3. Hover the System tray entry or trigger an icon change<br>4. Copy any of the properties: icon SHA1/name, title or name <br>5. Add a new rule with the SHA1/icon name/title/name you choose and specify the custom icon name or file"
 #~ msgstr ""

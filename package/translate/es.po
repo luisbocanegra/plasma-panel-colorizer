@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-08-13 18:33+0000\n"
+"POT-Creation-Date: 2026-10-29 05:14+0000\n"
 "PO-Revision-Date: 2026-04-15 16:01-0300\n"
 "Last-Translator: Lucas Cesa <lucascesa455@gmail.com>\n"
 "Language-Team: spanish <LL@li.org>\n"
@@ -709,6 +709,10 @@ msgid "Delete"
 msgstr "Eliminar"
 
 #: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Keep original"
+msgstr ""
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
 msgid "Mask"
 msgstr "Máscara"
 
@@ -1213,14 +1217,6 @@ msgid "D-Bus usage"
 msgstr "Uso de D-Bus"
 
 #: ../contents/ui/configTextIconFix.qml
-msgid ""
-"Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, useful "
-"for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
-msgstr ""
-"Corrige los colores y la fuente del texto y los iconos en widgets donde el método normal no funciona o el widget lo restablece.<br> - <strong>Máscara</strong>: fuerza el color en iconos SVG, útil para iconos simbólicos.<br> - <strong>Efecto de color</strong>: fuerza el color en texto e iconos usando un efecto de posprocesado, útil para iconos no simbólicos.<br> - <strong>Actualizar</strong>: "
-"vuelve a aplicar el color/la fuente a intervalos fijos, útil para widgets que recrean o recolorean el contenido por sí mismos.<br>Para restaurar <strong>Máscara<strong> y <strong>Efecto de color</strong>, desactiva y reinicia Plasma o cierra sesión."
-
-#: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
 msgstr "Restaurar valores predeterminados (elimina todas las correcciones de iconos y texto)"
 
@@ -1231,6 +1227,20 @@ msgstr "Forzar color de Texto/Icono"
 #: ../contents/ui/configTextIconFix.qml
 msgid "Refresh interval:"
 msgstr "Intervalo de actualización:"
+
+#: ../contents/ui/configTextIconFix.qml
+msgid ""
+"Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br><strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br><strong>Refresh</strong>: Re-apply color/font at a fixed interval, useful for "
+"widgets that recreate or recolor content themselves.<br><strong>Keep original</strong>: Do not change the text/icon color, useful for widgets that manage their own colors."
+msgstr ""
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Apply the changes and restart plasmashell for changes to take full effect."
+msgstr ""
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Restart plasmashell"
+msgstr ""
 
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Add new"
@@ -1409,6 +1419,13 @@ msgstr "Ocultar widget (visible en el Modo edición del panel)"
 #: ../contents/ui/main.qml
 msgid "A Plasmashell restart is required to remove all the modifications made by %1. Run systemctl restart --user plasma-plasmashell or log out and log back in."
 msgstr "Se requiere reiniciar Plasmashell para eliminar todas las modificaciones realizadas por %1. Ejecute systemctl restart --user plasma-plasmashell o cierre sesión y vuelva a iniciarla."
+
+#~ msgid ""
+#~ "Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, "
+#~ "useful for widgets that recreate or recolor content themselves.<br>To restore the <strong>Mask<strong> and <strong>Color Effect</strong> disable and restart Plasma or logout."
+#~ msgstr ""
+#~ "Corrige los colores y la fuente del texto y los iconos en widgets donde el método normal no funciona o el widget lo restablece.<br> - <strong>Máscara</strong>: fuerza el color en iconos SVG, útil para iconos simbólicos.<br> - <strong>Efecto de color</strong>: fuerza el color en texto e iconos usando un efecto de posprocesado, útil para iconos no simbólicos.<br> - <strong>Actualizar</strong>: "
+#~ "vuelve a aplicar el color/la fuente a intervalos fijos, útil para widgets que recrean o recolorean el contenido por sí mismos.<br>Para restaurar <strong>Máscara<strong> y <strong>Efecto de color</strong>, desactiva y reinicia Plasma o cierra sesión."
 
 #~ msgid "Use an integer when using <strong>Widget Islands</strong> to avoid rendering issues! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">See #64</a>"
 #~ msgstr "¡Usa números enteros al utilizar <strong>Islas de Widgets</strong> para evitar problemas de renderizado! <a href=\"https://github.com/luisbocanegra/plasma-panel-colorizer/issues/64\">Más información #64</a>"
