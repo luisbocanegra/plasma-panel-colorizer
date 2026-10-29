@@ -5,30 +5,40 @@ import org.kde.kirigami as Kirigami
 
 Kirigami.AbstractCard {
     id: root
+    required property var model
+    required property int index
+    required property string title
+    required property string name
+    required property var method
+    readonly property int widgetId: model.id
+    readonly property string iconName: model.icon
+    required property bool inTray
+    required property bool reload
+    required property bool keepOriginal
+    readonly property bool mask: method.mask ?? false
+    readonly property bool effect: method.multiEffect ?? false
 
-    property var widget
+    signal updateWidget(bool mask, bool effect, bool reload, bool keepOriginal)
 
-    signal updateWidget(bool mask, bool effect, bool reload)
-
-    checked: maskCheckbox.checked || effectCheckbox.checked || reloadCheckbox.checked
+    checked: root.mask || root.effect || root.reload || root.keepOriginal
 
     contentItem: RowLayout {
         Kirigami.Icon {
-            width: Kirigami.Units.gridUnit
-            height: width
-            source: widget.icon
+            Layout.preferredWidth: Kirigami.Units.gridUnit
+            Layout.preferredHeight: width
+            source: root.iconName
         }
 
         ColumnLayout {
             Label {
-                text: widget.title
+                text: root.title
                 Layout.fillWidth: true
                 wrapMode: Label.Wrap
             }
 
             RowLayout {
                 TextEdit {
-                    text: widget.name
+                    text: root.name
                     opacity: 0.6
                     readOnly: true
                     color: Kirigami.Theme.textColor
@@ -38,7 +48,7 @@ Kirigami.AbstractCard {
                 }
 
                 TextEdit {
-                    text: widget.id
+                    text: root.widgetId
                     opacity: 0.6
                     readOnly: true
                     color: Kirigami.Theme.textColor
@@ -54,12 +64,12 @@ Kirigami.AbstractCard {
         }
 
         Rectangle {
-            visible: widget.inTray
+            visible: root.inTray
             color: Kirigami.Theme.highlightColor
             Kirigami.Theme.colorSet: root.Kirigami.Theme["Selection"]
             radius: parent.height / 2
-            width: label.width + 12
-            height: label.height + 2
+            Layout.preferredWidth: label.width + 12
+            Layout.preferredHeight: label.height + 2
             Kirigami.Theme.inherit: false
 
             Label {
@@ -74,14 +84,27 @@ Kirigami.AbstractCard {
         }
 
         Button {
+            id: keepOriginalCheckbox
+
+            text: i18n("Keep original")
+            checkable: true
+            checked: root.keepOriginal
+            icon.name: checked ? "checkmark-symbolic" : "dialog-close-symbolic"
+            onCheckedChanged: {
+                root.updateWidget(root.mask, root.effect, root.reload, checked);
+            }
+        }
+
+        Button {
             id: maskCheckbox
 
             text: i18n("Mask")
+            enabled: !root.keepOriginal
             checkable: true
-            checked: widget.method.mask ?? false
+            checked: root.method.mask
             icon.name: checked ? "checkmark-symbolic" : "dialog-close-symbolic"
             onCheckedChanged: {
-                updateWidget(maskCheckbox.checked, effectCheckbox.checked, reloadCheckbox.checked);
+                root.updateWidget(checked, root.effect, root.reload, root.keepOriginal);
             }
         }
 
@@ -89,11 +112,12 @@ Kirigami.AbstractCard {
             id: effectCheckbox
 
             text: i18n("Effect")
+            enabled: !root.keepOriginal
             checkable: true
-            checked: widget.method.multiEffect ?? false
+            checked: root.method.multiEffect
             icon.name: checked ? "checkmark-symbolic" : "dialog-close-symbolic"
             onCheckedChanged: {
-                updateWidget(maskCheckbox.checked, effectCheckbox.checked, reloadCheckbox.checked);
+                root.updateWidget(root.mask, checked, root.reload, root.keepOriginal);
             }
         }
 
@@ -101,11 +125,12 @@ Kirigami.AbstractCard {
             id: reloadCheckbox
 
             text: i18n("Refresh")
+            enabled: !root.keepOriginal
             checkable: true
-            checked: widget.reload ?? false
+            checked: root.reload
             icon.name: checked ? "checkmark-symbolic" : "dialog-close-symbolic"
             onCheckedChanged: {
-                updateWidget(maskCheckbox.checked, effectCheckbox.checked, reloadCheckbox.checked);
+                root.updateWidget(root.mask, root.effect, checked, root.keepOriginal);
             }
         }
     }
