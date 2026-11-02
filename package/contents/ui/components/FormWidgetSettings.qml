@@ -608,12 +608,22 @@ ColumnLayout {
 
             Button {
                 visible: spacingCheckbox.value % 2 !== 0 && spacingCheckbox.visible
-                icon.name: "dialog-warning-symbolic"
-                ToolTip.text: i18n("<strong>Odd spacing</strong> values will be automatically converted to <strong>evens</strong> if <strong>Widget Islands</strong> feature is used.")
+                icon.name: "dialog-information-symbolic"
+                ToolTip.text: i18n("<strong>Odd spacing</strong> value will be automatically converted to <strong>even</strong> when <strong>Widget Islands</strong> feature is used.")
                 highlighted: true
                 hoverEnabled: true
                 ToolTip.visible: hovered
             }
+        }
+
+        Label {
+            visible: spacingCheckbox.visible && root.plasmaVersion.isLowerThan("6.8.3")
+            text: i18n("Spacing of 0 on Plasma 6.8.2 and older may cause plasmashell to freeze when dragging things on it outside of edit mode, see <a href=\"%1\">#593</a>.", "https://github.com/luisbocanegra/plasma-panel-colorizer/issues/593")
+            font: Kirigami.Theme.smallFont
+            color: Kirigami.Theme.neutralTextColor
+            wrapMode: Label.Wrap
+            Layout.maximumWidth: 400
+            onLinkActivated: link => Qt.openUrlExternally(link)
         }
 
         CheckBox {
