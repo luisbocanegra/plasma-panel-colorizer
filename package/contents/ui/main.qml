@@ -7,6 +7,7 @@ import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.plasmoid
 import org.kde.taskmanager as TaskManager
 import org.kde.notification
+import org.kde.draganddrop as DragDrop
 
 import "code/utils.js" as Utils
 import "code/globals.js" as Globals
@@ -153,14 +154,21 @@ PlasmoidItem {
     property var widgetSettings: cfg.widgets
     property var trayWidgetSettings: cfg.trayWidgets
     property var stockPanelSettings: cfg.stockPanelSettings
+
     property var widgetsSpacing: {
+        let spacing;
         if (islandWidgetTypes.length) {
-            return Utils.makeEven(widgetSettings?.normal?.spacing ?? 4);
+            spacing = Utils.makeEven(widgetSettings?.normal?.spacing ?? 4);
         } else {
-            return widgetSettings?.normal?.spacing ?? 4;
+            spacing = widgetSettings?.normal?.spacing ?? 4;
         }
+        // on Plasma 6.8.2 and older the panel will freeze when dragging widgets
+        // if the spacing is set to 0
+        // https://bugs.kde.org/show_bug.cgi?id=528228
+        return (panelContainsDrag || editMode) ? Math.max(1, spacing) : spacing;
     }
 
+    property bool panelContainsDrag: false
     property var islandWidgetTypes: []
     property var widgetTypes: []
     property var forceRecolorList: Utils.clearOldWidgetConfig(forceForegroundColor?.widgets ?? [])
@@ -336,6 +344,35 @@ PlasmoidItem {
         return null;
     }
 
+    property var dropArea: {
+        let candidate = panelLayout;
+        while (candidate) {
+            if (candidate instanceof DragDrop.DropArea) {
+                return candidate;
+            }
+            candidate = candidate.parent;
+        }
+    }
+
+    Timer {
+        id: containsDragTimer
+        interval: 1000
+        onTriggered: main.panelContainsDrag = false
+    }
+
+    Connections {
+        target: main.dropArea
+        enabled: main.plasmaVersion.isLowerThan("6.8.3")
+        function onContainsDragChanged() {
+            if (main.dropArea.containsDrag) {
+                containsDragTimer.stop();
+                main.panelContainsDrag = main.dropArea.containsDrag;
+            } else {
+                containsDragTimer.start();
+            }
+        }
+    }
+
     property Item panelLayoutContainer: {
         if (!panelLayout)
             return null;
@@ -395,20 +432,16 @@ PlasmoidItem {
         when: (!main.nativePanelBackgroundShadowEnabled && main.panelView !== null)
     }
 
-    // The panel doesn't like having its spacings set to 0
-    // while adding/dragging widgets in edit mode, so temporary restore them
     Binding {
         target: main.panelLayout
         property: "columnSpacing"
         value: main.widgetsSpacing
-        when: !main.editMode
     }
 
     Binding {
         target: main.panelLayout
         property: "rowSpacing"
         value: main.widgetsSpacing
-        when: !main.editMode
     }
 
     property QtObject panelBg: {
