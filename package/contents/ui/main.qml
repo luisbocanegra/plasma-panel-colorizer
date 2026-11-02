@@ -7,6 +7,7 @@ import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.plasmoid
 import org.kde.taskmanager as TaskManager
 import org.kde.notification
+import org.kde.draganddrop as DragDrop
 
 import "code/utils.js" as Utils
 import "code/globals.js" as Globals
@@ -343,6 +344,35 @@ PlasmoidItem {
         return null;
     }
 
+    property bool panelContainsDrag: false
+    property var dropArea: {
+        let candidate = panelLayout;
+        while (candidate) {
+            if (candidate instanceof DragDrop.DropArea) {
+                return candidate;
+            }
+            candidate = candidate.parent;
+        }
+    }
+
+    Timer {
+        id: containsDragTimer
+        interval: 100
+        onTriggered: main.panelContainsDrag = false
+    }
+
+    Connections {
+        target: main.dropArea
+        function onContainsDragChanged() {
+            if (main.dropArea.containsDrag) {
+                containsDragTimer.stop();
+                main.panelContainsDrag = main.dropArea.containsDrag;
+            } else {
+                containsDragTimer.start();
+            }
+        }
+    }
+
     property Item panelLayoutContainer: {
         if (!panelLayout)
             return null;
@@ -403,19 +433,20 @@ PlasmoidItem {
     }
 
     // The panel doesn't like having its spacings set to 0
-    // while adding/dragging widgets in edit mode, so temporary restore them
+    // while dragging widgets, so temporarily restore them
+    // https://bugs.kde.org/show_bug.cgi?id=528228
     Binding {
         target: main.panelLayout
         property: "columnSpacing"
         value: main.widgetsSpacing
-        when: !main.editMode
+        when: !main.panelContainsDrag
     }
 
     Binding {
         target: main.panelLayout
         property: "rowSpacing"
         value: main.widgetsSpacing
-        when: !main.editMode
+        when: !main.panelContainsDrag
     }
 
     property QtObject panelBg: {
