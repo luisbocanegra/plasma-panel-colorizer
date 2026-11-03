@@ -101,8 +101,7 @@ msgstr "Tìm phông chữ"
 msgid "Border"
 msgstr "Viền"
 
-#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml
-#: ../contents/ui/configPresetAutoload.qml ../contents/ui/configStockPanelSettings.qml ../contents/ui/configWidgetIslands.qml
+#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml ../contents/ui/configPresetAutoload.qml ../contents/ui/configStockPanelSettings.qml ../contents/ui/configWidgetIslands.qml
 msgid "Enabled:"
 msgstr "Bật:"
 
@@ -366,7 +365,9 @@ msgstr "Cho phép thay đổi (Plasma 6.4.0 trở lên)"
 msgid ""
 "Since version 6.4.0, Plasma now has a built-in <b>Floating panel and applets</b> option, enabling this overrides that option.\n"
 "⚠️Changing <b>Floating</b> from the panel configuration will not work with this is enabled!"
-msgstr "Từ phiên bản 6.4.0, Plasma đã có sẵn tùy chọn <b>Bảng điều khiển và tiện ích nổi</b>, bật mục này sẽ ghi đè tùy chọn đó.\n⚠️Thay đổi <b>Nổi</b> trong cấu hình bảng điều khiển sẽ không có tác dụng khi mục này đang bật!"
+msgstr ""
+"Từ phiên bản 6.4.0, Plasma đã có sẵn tùy chọn <b>Bảng điều khiển và tiện ích nổi</b>, bật mục này sẽ ghi đè tùy chọn đó.\n"
+"⚠️Thay đổi <b>Nổi</b> trong cấu hình bảng điều khiển sẽ không có tác dụng khi mục này đang bật!"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Wide expand button:"
@@ -725,9 +726,7 @@ msgid "Refresh"
 msgstr "Làm mới"
 
 #: ../contents/ui/configAppearance.qml
-msgid ""
-"Not getting the expected result? Make sure you're editing the correct element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ plugin using the latest source, <a href=\"%1\">see "
-"instructions</a>."
+msgid "Not getting the expected result? Make sure you're editing the correct element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ plugin using the latest source, <a href=\"%1\">see instructions</a>."
 msgstr "Không đạt kết quả như mong đợi? Hãy đảm bảo bạn đang chỉnh sửa đúng phần tử.<br>Làm mờ tùy chỉnh không hoạt động? Hãy thử cài đặt lại/biên dịch lại phần bổ trợ C++ từ mã nguồn mới nhất, <a href=\"%1\">xem hướng dẫn</a>."
 
 #: ../contents/ui/configAppearance.qml
@@ -863,9 +862,7 @@ msgid "Hide/show all panels"
 msgstr "Ẩn/hiện tất cả bảng điều khiển"
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml
-msgid ""
-"Create configuration overrides and apply them to one or multiple widgets. These overrides are independent of presets and will be applied on top of the current settings and across presets.<br>To "
-"blacklist a widget from modifications, <b>uncheck</b> options <b>Enable</b> and <b>Fallback</b>, and apply the override to the widget."
+msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides are independent of presets and will be applied on top of the current settings and across presets.<br>To blacklist a widget from modifications, <b>uncheck</b> options <b>Enable</b> and <b>Fallback</b>, and apply the override to the widget."
 msgstr "Tạo các ghi đè cấu hình và áp dụng chúng cho một hoặc nhiều tiện ích. Các ghi đè này độc lập với cấu hình sẵn và sẽ được áp dụng chồng lên cài đặt hiện tại, trên mọi cấu hình sẵn.<br>Để loại trừ một tiện ích khỏi mọi sửa đổi, hãy <b>bỏ chọn</b> các tùy chọn <b>Bật</b> và <b>Dự phòng</b>, rồi áp dụng ghi đè cho tiện ích đó."
 
 #: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
@@ -905,9 +902,7 @@ msgid "Overrides are applied from top to bottom, if two or more configuration ov
 msgstr "Các ghi đè được áp dụng từ trên xuống dưới, nếu hai hoặc nhiều ghi đè cấu hình có cùng một tùy chọn, lần xuất hiện sau cùng sẽ thay thế giá trị của lần trước đó."
 
 #: ../contents/ui/configHideWidgets.qml
-msgid ""
-"Hidden widgets can still be activated using keyboard shortcuts and are always visible in the Desktop Edit Mode.<br>The activation shortcut can be configured from the <b>Keyboard Shortcuts</b> page "
-"on each widget's configuration window."
+msgid "Hidden widgets can still be activated using keyboard shortcuts and are always visible in the Desktop Edit Mode.<br>The activation shortcut can be configured from the <b>Keyboard Shortcuts</b> page on each widget's configuration window."
 msgstr "Tiện ích bị ẩn vẫn có thể được kích hoạt bằng phím tắt và luôn hiển thị trong chế độ chỉnh sửa màn hình nền.<br>Phím tắt kích hoạt có thể được cấu hình ở trang <b>Phím tắt</b> trong cửa sổ cấu hình của từng tiện ích."
 
 #: ../contents/ui/configHideWidgets.qml
@@ -931,9 +926,7 @@ msgid "Do nothing"
 msgstr "Không làm gì"
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid ""
-"Automatically switch between different presets based on the Panel and window states.<br>Disable preset auto-loading before making changes to presets, unsaved preset settings will be lost when auto-"
-"loading switches to other preset!"
+msgid "Automatically switch between different presets based on the Panel and window states.<br>Disable preset auto-loading before making changes to presets, unsaved preset settings will be lost when auto-loading switches to other preset!"
 msgstr "Tự động chuyển giữa các cấu hình sẵn dựa trên trạng thái của bảng điều khiển và cửa sổ.<br>Hãy tắt tự động tải cấu hình sẵn trước khi thay đổi cấu hình sẵn, các cài đặt cấu hình sẵn chưa lưu sẽ bị mất khi tính năng tự động tải chuyển sang cấu hình sẵn khác!"
 
 #: ../contents/ui/configPresetAutoload.qml
@@ -945,9 +938,7 @@ msgid "Auto-loading conditions"
 msgstr "Điều kiện tự động tải"
 
 #: ../contents/ui/configPresetAutoload.qml
-msgid ""
-"Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the "
-"<b>Maximized</b> preset will be applied."
+msgid "Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the <b>Maximized</b> preset will be applied."
 msgstr "Mức ưu tiên giảm dần từ trên xuống. Ví dụ: nếu cả <b>Cửa sổ phóng to</b> và <b>Cửa sổ chạm bảng điều khiển</b> đều đã chọn cấu hình sẵn, và trên màn hình có cửa sổ phóng to, thì cấu hình sẵn của <b>Cửa sổ phóng to</b> sẽ được áp dụng."
 
 #: ../contents/ui/configPresetAutoload.qml
@@ -1043,9 +1034,7 @@ msgid "Create preset"
 msgstr "Tạo cấu hình sẵn"
 
 #: ../contents/ui/configPresets.qml
-msgid ""
-"Changes to the current preset are not synced to disk automatically. You should come back to this tab and update it manually before switching to a different preset, otherwise unsaved preset settings "
-"will be lost when presets change!"
+msgid "Changes to the current preset are not synced to disk automatically. You should come back to this tab and update it manually before switching to a different preset, otherwise unsaved preset settings will be lost when presets change!"
 msgstr "Các thay đổi đối với cấu hình sẵn hiện tại không được tự động đồng bộ vào đĩa. Bạn nên quay lại thẻ này và cập nhật thủ công trước khi chuyển sang cấu hình sẵn khác, nếu không các cài đặt cấu hình sẵn chưa lưu sẽ bị mất khi chuyển cấu hình sẵn!"
 
 #: ../contents/ui/configPresets.qml
@@ -1089,9 +1078,7 @@ msgid "Changing panel position is currently unstable and may cause Plasma to cra
 msgstr "Việc thay đổi vị trí bảng điều khiển hiện chưa ổn định và có thể khiến Plasma gặp sự cố khi di chuyển bảng điều khiển giữa các cạnh không song song (ví dụ: từ trên sang trái)."
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid ""
-"Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel "
-"background</b> options in <b>Appearance</b> tab instead."
+msgid "Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
 msgstr "Các tùy chọn Độ đục và Màn hình yêu cầu <b>Plasma 6.3</b> trở lên.<br>Độ đục phụ thuộc vào chủ đề Plasma hiện tại, để kiểm soát chi tiết hơn hoặc trong suốt hoàn toàn, hãy dùng các tùy chọn <b>Độ đục bảng điều khiển</b> và <b>Nền bảng điều khiển gốc</b> trong thẻ <b>Giao diện</b>."
 
 #: ../contents/ui/configStockPanelSettings.qml
@@ -1216,10 +1203,11 @@ msgstr "Hiện:"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
-"WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make "
-"it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will remove the configuration from all Panel "
-"Colorizer instances so make sure to save the others first"
-msgstr "CẢNH BÁO: Hãy cẩn thận khi dùng Hiện/Ẩn, nếu bạn ẩn bảng điều khiển mà chưa cấu hình tự động tải cấu hình sẵn hoặc không biết cách chuyển cấu hình sẵn bằng D-Bus (hoặc đã tắt D-Bus), bạn sẽ không có cách nào làm nó hiện lại ngoài việc gỡ bỏ thủ công cấu hình hoặc Panel Colorizer, hãy dùng lệnh bên dưới trong terminal/tty rồi đăng xuất hoặc khởi động lại máy, lệnh này sẽ xóa cấu hình khỏi mọi thực thể Panel Colorizer, vì vậy hãy lưu các thực thể khác trước"
+"WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will remove the configuration from all Panel Colorizer "
+"instances so make sure to save the others first"
+msgstr ""
+"CẢNH BÁO: Hãy cẩn thận khi dùng Hiện/Ẩn, nếu bạn ẩn bảng điều khiển mà chưa cấu hình tự động tải cấu hình sẵn hoặc không biết cách chuyển cấu hình sẵn bằng D-Bus (hoặc đã tắt D-Bus), bạn sẽ không có cách nào làm nó hiện lại ngoài việc gỡ bỏ thủ công cấu hình hoặc Panel Colorizer, hãy dùng lệnh bên dưới trong terminal/tty rồi đăng xuất hoặc khởi động lại máy, lệnh này sẽ xóa cấu hình khỏi mọi "
+"thực thể Panel Colorizer, vì vậy hãy lưu các thực thể khác trước"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
@@ -1243,10 +1231,11 @@ msgstr "Chu kỳ làm mới:"
 
 #: ../contents/ui/configTextIconFix.qml
 msgid ""
-"Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons."
-"<br><strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br><strong>Refresh</strong>: Re-apply color/font at a fixed interval, "
-"useful for widgets that recreate or recolor content themselves.<br><strong>Keep original</strong>: Do not change the text/icon color, useful for widgets that manage their own colors."
-msgstr "Sửa màu/phông chữ của chữ và biểu tượng cho các tiện ích mà cách thông thường không hoạt động hoặc bị tiện ích đặt lại.<br> <strong>Mặt nạ</strong>: Buộc màu trên biểu tượng SVG, hữu ích cho biểu tượng dạng ký hiệu.<br><strong>Hiệu ứng màu</strong>: Buộc màu trên chữ và biểu tượng bằng hiệu ứng hậu kỳ, hữu ích cho biểu tượng không phải dạng ký hiệu.<br><strong>Làm mới</strong>: Áp dụng lại màu/phông chữ theo chu kỳ cố định, hữu ích cho các tiện ích tự tạo lại hoặc tự đổi màu nội dung.<br><strong>Giữ nguyên gốc</strong>: Không thay đổi màu chữ/biểu tượng, hữu ích cho các tiện ích tự quản lý màu của chúng."
+"Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br><strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br><strong>Refresh</strong>: Re-apply color/font at a fixed interval, useful for "
+"widgets that recreate or recolor content themselves.<br><strong>Keep original</strong>: Do not change the text/icon color, useful for widgets that manage their own colors."
+msgstr ""
+"Sửa màu/phông chữ của chữ và biểu tượng cho các tiện ích mà cách thông thường không hoạt động hoặc bị tiện ích đặt lại.<br> <strong>Mặt nạ</strong>: Buộc màu trên biểu tượng SVG, hữu ích cho biểu tượng dạng ký hiệu.<br><strong>Hiệu ứng màu</strong>: Buộc màu trên chữ và biểu tượng bằng hiệu ứng hậu kỳ, hữu ích cho biểu tượng không phải dạng ký hiệu.<br><strong>Làm mới</strong>: Áp dụng lại màu/"
+"phông chữ theo chu kỳ cố định, hữu ích cho các tiện ích tự tạo lại hoặc tự đổi màu nội dung.<br><strong>Giữ nguyên gốc</strong>: Không thay đổi màu chữ/biểu tượng, hữu ích cho các tiện ích tự quản lý màu của chúng."
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Apply the changes and restart plasmashell for changes to take full effect."
@@ -1297,9 +1286,7 @@ msgid "How to use"
 msgstr "Cách sử dụng"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid ""
-"1. Enable <b>Log icon changes</b> above<br>2. Run <b>journalctl -f</b> from terminal<br>3. Hover the System tray entry or trigger an icon change<br>4. Copy one of the properties: icon SHA1, icon "
-"name, name or title<br>5. Add a new rule with the matching property you choose and specify the replacement icon name or file"
+msgid "1. Enable <b>Log icon changes</b> above<br>2. Run <b>journalctl -f</b> from terminal<br>3. Hover the System tray entry or trigger an icon change<br>4. Copy one of the properties: icon SHA1, icon name, name or title<br>5. Add a new rule with the matching property you choose and specify the replacement icon name or file"
 msgstr "1. Bật <b>Ghi nhật ký thay đổi biểu tượng</b> ở trên<br>2. Chạy <b>journalctl -f</b> từ terminal<br>3. Di chuột qua mục trong khay hệ thống hoặc kích hoạt việc thay đổi biểu tượng<br>4. Sao chép một trong các thuộc tính: SHA1 của biểu tượng, tên biểu tượng, tên hoặc tiêu đề<br>5. Thêm quy tắc mới với thuộc tính khớp mà bạn chọn và chỉ định tên hoặc tệp biểu tượng thay thế"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
@@ -1307,9 +1294,7 @@ msgid "<b>Note</b>: There are some rules without icon as there was no matching o
 msgstr "<b>Lưu ý</b>: Có một số quy tắc không có biểu tượng vì Papirus không có biểu tượng phù hợp, bạn có thể ghi đè chúng bằng biểu tượng của riêng mình bằng cách sao chép quy tắc sang <b>Quy tắc người dùng</b>"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
-msgid ""
-"<b>Note</b>: Some applications like Signal are missing accumulated notification icons, contribution of missing icons via GitHub pull request or issue is very welcome, please do so by providing the "
-"the description + icon SHA1/icon name/title/name + icon-name from Papirus (panel/status icons only if no matching icon exists, otherwise it can be omitted)"
+msgid "<b>Note</b>: Some applications like Signal are missing accumulated notification icons, contribution of missing icons via GitHub pull request or issue is very welcome, please do so by providing the the description + icon SHA1/icon name/title/name + icon-name from Papirus (panel/status icons only if no matching icon exists, otherwise it can be omitted)"
 msgstr "<b>Lưu ý</b>: Một số ứng dụng như Signal còn thiếu biểu tượng thông báo tích lũy, rất hoan nghênh đóng góp các biểu tượng còn thiếu qua pull request hoặc issue trên GitHub, khi đóng góp hãy cung cấp mô tả + SHA1 của biểu tượng/tên biểu tượng/tiêu đề/tên + icon-name từ Papirus (chỉ cung cấp biểu tượng panel/status nếu không có biểu tượng phù hợp, nếu không thì có thể bỏ qua)"
 
 #: ../contents/ui/configTrayIconsReplacer.qml
@@ -1383,21 +1368,15 @@ msgid "Create widget islands by placing separator widgets around them."
 msgstr "Tạo đảo tiện ích bằng cách đặt các tiện ích phân cách xung quanh chúng."
 
 #: ../contents/ui/configWidgetIslands.qml
-msgid ""
-"<strong>How to use</strong><br>1. Add the widget that will act as islands separator to the panel(by default the Plasma's Panel Spacer widget will be used)<br>2. Select the separator widget "
-"below<br>3. Add as many separators as you need and move them to create islands."
+msgid "<strong>How to use</strong><br>1. Add the widget that will act as islands separator to the panel(by default the Plasma's Panel Spacer widget will be used)<br>2. Select the separator widget below<br>3. Add as many separators as you need and move them to create islands."
 msgstr "<strong>Cách sử dụng</strong><br>1. Thêm tiện ích sẽ đóng vai trò phân cách đảo vào bảng điều khiển (mặc định sẽ dùng tiện ích Panel Spacer của Plasma)<br>2. Chọn tiện ích phân cách bên dưới<br>3. Thêm bao nhiêu dấu phân cách tùy ý và di chuyển chúng để tạo đảo."
 
 #: ../contents/ui/configWidgetIslands.qml
-msgid ""
-"<strong>Notes</strong><br>- Widget custom background or border is required for this option to have a visible effect.<br>- If the widgets in your panel have different thickness, add margins to the "
-"widgets custom background in the Appearance tab."
+msgid "<strong>Notes</strong><br>- Widget custom background or border is required for this option to have a visible effect.<br>- If the widgets in your panel have different thickness, add margins to the widgets custom background in the Appearance tab."
 msgstr "<strong>Lưu ý</strong><br>- Cần có nền hoặc viền tùy chỉnh cho tiện ích thì tùy chọn này mới có hiệu ứng nhìn thấy được.<br>- Nếu các tiện ích trên bảng điều khiển có độ dày khác nhau, hãy thêm lề cho nền tùy chỉnh của tiện ích trong thẻ Giao diện."
 
 #: ../contents/ui/configWidgetIslands.qml
-msgid ""
-"<strong>Need a separator widget?</strong><br>- <a href=\"%1\">Panel Colorizer Islands Separator</a> visible only in Edit Mode.<br>- <a href=\"%2\">Advanced Separator</a> always visible and "
-"configurable."
+msgid "<strong>Need a separator widget?</strong><br>- <a href=\"%1\">Panel Colorizer Islands Separator</a> visible only in Edit Mode.<br>- <a href=\"%2\">Advanced Separator</a> always visible and configurable."
 msgstr "<strong>Cần tiện ích phân cách?</strong><br>- <a href=\"%1\">Panel Colorizer Islands Separator</a> chỉ hiển thị trong chế độ chỉnh sửa.<br>- <a href=\"%2\">Advanced Separator</a> luôn hiển thị và có thể cấu hình."
 
 #: ../contents/ui/configWidgetIslands.qml
@@ -1405,9 +1384,7 @@ msgid "Separator widget:"
 msgstr "Tiện ích phân cách:"
 
 #: ../contents/ui/configWidgetIslands.qml
-msgid ""
-"Select the widget that will act as separator for the islands.<br><br>Note that the separator widget itself does not need to be visible for it to work, so you can use an invisible spacer/separator "
-"for example."
+msgid "Select the widget that will act as separator for the islands.<br><br>Note that the separator widget itself does not need to be visible for it to work, so you can use an invisible spacer/separator for example."
 msgstr "Chọn tiện ích sẽ đóng vai trò phân cách cho các đảo.<br><br>Lưu ý rằng bản thân tiện ích phân cách không cần hiển thị để hoạt động, ví dụ bạn có thể dùng một khoảng trống/dấu phân cách vô hình."
 
 #: ../contents/ui/configWidgetIslands.qml
@@ -1416,9 +1393,8 @@ msgstr "Yêu cầu hai dấu phân cách cho mỗi đảo:"
 
 #: ../contents/ui/configWidgetIslands.qml
 msgid ""
-"Always require two separators for a group of widgets to become an island. By default, an arrangement of<br>%1 creates two islands.<br><br>Enabling this option makes it so that islands do not share "
-"separators, so for example an arrangement of<br>%2 is required to create two islands.<br><br>Enable this if your islands separator is not a panel spacer and you want to explicitly define the start "
-"and end of each island."
+"Always require two separators for a group of widgets to become an island. By default, an arrangement of<br>%1 creates two islands.<br><br>Enabling this option makes it so that islands do not share separators, so for example an arrangement of<br>%2 is required to create two islands.<br><br>Enable this if your islands separator is not a panel spacer and you want to explicitly define the start and "
+"end of each island."
 msgstr "Luôn yêu cầu hai dấu phân cách để một nhóm tiện ích trở thành đảo. Theo mặc định, cách sắp xếp<br>%1 tạo ra hai đảo.<br><br>Bật tùy chọn này để các đảo không dùng chung dấu phân cách, ví dụ cần cách sắp xếp<br>%2 để tạo hai đảo.<br><br>Bật tùy chọn này nếu dấu phân cách đảo của bạn không phải là khoảng trống bảng điều khiển và bạn muốn xác định rõ điểm bắt đầu và kết thúc của mỗi đảo."
 
 #: ../contents/ui/configWidgetIslands.qml
