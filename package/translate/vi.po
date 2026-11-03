@@ -1,0 +1,1442 @@
+# Translation of colorizer in Vietnamese
+# Copyright (C) 2026
+# This file is distributed under the same license as the colorizer package.
+# dinhkarate <dinhkarat@gmail.com>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: colorizer\n"
+"Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
+"POT-Creation-Date: 2026-10-29 05:14+0000\n"
+"PO-Revision-Date: 2026-11-03 10:00+0700\n"
+"Last-Translator: dinhkarate <dinhkarat@gmail.com>\n"
+"Language-Team: Vietnamese\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../metadata.json
+msgid "Panel colorizer"
+msgstr "Panel colorizer"
+
+#: ../metadata.json
+msgid "Latte-Dock and WM status bar customization features for the default Plasma panel"
+msgstr "Các tính năng tùy biến kiểu Latte-Dock và thanh trạng thái của trình quản lý cửa sổ cho bảng điều khiển Plasma mặc định"
+
+#: ../contents/config/config.qml
+msgid "Presets"
+msgstr "Cấu hình sẵn"
+
+#: ../contents/config/config.qml
+msgid "Presets auto-loading"
+msgstr "Tự động tải cấu hình sẵn"
+
+#: ../contents/config/config.qml
+msgid "Appearance"
+msgstr "Giao diện"
+
+#: ../contents/config/config.qml
+msgid "Stock Panel Settings"
+msgstr "Cài đặt gốc của bảng điều khiển"
+
+#: ../contents/config/config.qml
+msgid "Widget Islands"
+msgstr "Đảo tiện ích"
+
+#: ../contents/config/config.qml
+msgid "Preset Overrides"
+msgstr "Ghi đè theo cấu hình sẵn"
+
+#: ../contents/config/config.qml
+msgid "Global Overrides"
+msgstr "Ghi đè toàn cục"
+
+#: ../contents/config/config.qml
+msgid "Text/Icon Color Fixes"
+msgstr "Sửa màu chữ/biểu tượng"
+
+#: ../contents/config/config.qml
+msgid "Blacklist Widgets"
+msgstr "Loại trừ tiện ích"
+
+#: ../contents/config/config.qml
+msgid "Hide Widgets"
+msgstr "Ẩn tiện ích"
+
+#: ../contents/config/config.qml
+msgid "System Tray Icons Replacer"
+msgstr "Thay biểu tượng khay hệ thống"
+
+#: ../contents/config/config.qml
+msgid "General"
+msgstr "Chung"
+
+#: ../contents/config/config.qml
+msgid "Support Me"
+msgstr "Ủng hộ tôi"
+
+#: ../contents/ui/components/CategoryDisabled.qml
+msgid "Panel Colorizer is disabled"
+msgstr "Panel Colorizer đã bị tắt"
+
+#: ../contents/ui/components/CategoryDisabled.qml ../contents/ui/components/FormWidgetSettings.qml ../contents/ui/configTrayIconsReplacer.qml
+msgid "Enable"
+msgstr "Bật"
+
+#: ../contents/ui/components/ColorPickerGradientList.qml ../contents/ui/components/ColorPickerList.qml ../contents/ui/components/FormColors.qml
+msgid "Widget background"
+msgstr "Nền tiện ích"
+
+#: ../contents/ui/components/DesktopView.qml
+msgid "Panel not found, this widget must be placed on a panel to work"
+msgstr "Không tìm thấy bảng điều khiển, tiện ích này phải được đặt trên bảng điều khiển mới hoạt động"
+
+#: ../contents/ui/components/FontFamilyChooser.qml
+msgid "Search fonts"
+msgstr "Tìm phông chữ"
+
+#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormWidgetSettings.qml
+msgid "Border"
+msgstr "Viền"
+
+#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormPadding.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml ../contents/ui/configGeneral.qml
+#: ../contents/ui/configPresetAutoload.qml ../contents/ui/configStockPanelSettings.qml ../contents/ui/configWidgetIslands.qml
+msgid "Enabled:"
+msgstr "Bật:"
+
+#: ../contents/ui/components/FormBorder.qml ../contents/ui/components/FormColors.qml ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormShape.qml
+msgid "Disabled"
+msgstr "Đã tắt"
+
+#: ../contents/ui/components/FormBorder.qml
+msgid "Width:"
+msgstr "Độ rộng:"
+
+#: ../contents/ui/components/FormBorder.qml
+msgid "Use an integer when using <strong>Widget Islands</strong> to avoid rendering issues! See <a href=\"%1\">#64</a>."
+msgstr "Hãy dùng số nguyên khi sử dụng <strong>Đảo tiện ích</strong> để tránh lỗi hiển thị! Xem <a href=\"%1\">#64</a>."
+
+#: ../contents/ui/components/FormBorder.qml
+msgid "Custom widths:"
+msgstr "Độ rộng tùy chỉnh:"
+
+#: ../contents/ui/components/FormColors.qml ../contents/ui/components/FormWidgetSettings.qml
+msgid "Color"
+msgstr "Màu"
+
+#: ../contents/ui/components/FormColors.qml ../contents/ui/components/FormWidgetSettings.qml
+msgid "Enable:"
+msgstr "Bật:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Animation:"
+msgstr "Hoạt ảnh:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Interval (ms):"
+msgstr "Chu kỳ (ms):"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Smoothing (ms):"
+msgstr "Làm mượt (ms):"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Color source:"
+msgstr "Nguồn màu:"
+
+#: ../contents/ui/components/FormColors.qml ../contents/ui/configStockPanelSettings.qml
+msgid "Custom"
+msgstr "Tùy chỉnh"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "A fixed custom color"
+msgstr "Một màu tùy chỉnh cố định"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "System"
+msgstr "Hệ thống"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Color that updates with your System theme"
+msgstr "Màu thay đổi theo chủ đề hệ thống"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Custom list"
+msgstr "Danh sách tùy chỉnh"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Define a list of colors that will be applied to all the elements, wraps around if there are more elements than colors"
+msgstr "Xác định danh sách màu sẽ áp dụng cho mọi phần tử, lặp lại từ đầu nếu số phần tử nhiều hơn số màu"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Random"
+msgstr "Ngẫu nhiên"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Random color for each element"
+msgstr "Màu ngẫu nhiên cho từng phần tử"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Follow"
+msgstr "Theo phần tử cha"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Follow the color of a parent element"
+msgstr "Theo màu của một phần tử cha"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Gradient"
+msgstr "Chuyển sắc"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Horizontal or vertical customizable color gradient"
+msgstr "Dải màu chuyển sắc ngang hoặc dọc có thể tùy chỉnh"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Image"
+msgstr "Hình ảnh"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "High resolution images can slow down the desktop when the panel or widget size changes!"
+msgstr "Hình ảnh độ phân giải cao có thể làm chậm màn hình nền khi kích thước bảng điều khiển hoặc tiện ích thay đổi!"
+
+#: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
+msgid "Element:"
+msgstr "Phần tử:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Panel background"
+msgstr "Nền bảng điều khiển"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Tray widget background"
+msgstr "Nền tiện ích trong khay"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Positioning:"
+msgstr "Bố trí:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Stretch"
+msgstr "Kéo giãn"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Tile"
+msgstr "Lát"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Scaled and Cropped"
+msgstr "Co giãn và cắt"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Image:"
+msgstr "Hình ảnh:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Pick a image file"
+msgstr "Chọn tệp hình ảnh"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Image files"
+msgstr "Tệp hình ảnh"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "All files"
+msgstr "Tất cả tệp"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Color:"
+msgstr "Màu:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Color set:"
+msgstr "Bộ màu:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Colors:"
+msgstr "Các màu:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Orientation:"
+msgstr "Hướng:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Horizontal"
+msgstr "Ngang"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Vertical"
+msgstr "Dọc"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Gradient steps:"
+msgstr "Điểm chuyển sắc:"
+
+#: ../contents/ui/components/FormColors.qml ../contents/ui/configGeneral.qml
+msgid "Alpha:"
+msgstr "Alpha:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Contrast Correction"
+msgstr "Hiệu chỉnh tương phản"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Saturation:"
+msgstr "Độ bão hòa:"
+
+#: ../contents/ui/components/FormColors.qml
+msgid "Lightness:"
+msgstr "Độ sáng:"
+
+#: ../contents/ui/components/FormPadding.qml
+msgid "Padding"
+msgstr "Khoảng đệm"
+
+#: ../contents/ui/components/FormPadding.qml
+msgid "Horizontal and vertical padding only work properly when the panel is on the same orientation."
+msgstr "Khoảng đệm ngang và dọc chỉ hoạt động đúng khi bảng điều khiển có cùng hướng."
+
+#: ../contents/ui/components/FormShadow.qml ../contents/ui/components/FormWidgetSettings.qml
+msgid "Shadow"
+msgstr "Đổ bóng"
+
+#: ../contents/ui/components/FormShadow.qml
+msgid "Size:"
+msgstr "Kích thước:"
+
+#: ../contents/ui/components/FormShadow.qml
+msgid "X offset:"
+msgstr "Độ lệch X:"
+
+#: ../contents/ui/components/FormShadow.qml
+msgid "Y offset:"
+msgstr "Độ lệch Y:"
+
+#: ../contents/ui/components/FormShape.qml
+msgid "Radius"
+msgstr "Bán kính"
+
+#: ../contents/ui/components/FormShape.qml
+msgid "Margin"
+msgstr "Lề"
+
+#: ../contents/ui/components/FormShape.qml
+msgid "Requires plasmashell restart after disabling to restore the default. <a href=\"#\">Restart now</a>."
+msgstr "Cần khởi động lại plasmashell sau khi tắt để khôi phục mặc định. <a href=\"#\">Khởi động lại ngay</a>."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Native panel:"
+msgstr "Bảng điều khiển gốc:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml ../contents/ui/configGeneral.qml
+msgid "Background"
+msgstr "Nền"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Disable to make panel fully transparent, removes contrast and blur effects."
+msgstr "Tắt để bảng điều khiển trong suốt hoàn toàn, loại bỏ hiệu ứng tương phản và làm mờ."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "⚠️ Disabling this breaks the panel clickable area and applet dialogs positioning when the panel is in floating mode! See <a href=\"%1\">#80</a>."
+msgstr "⚠️ Tắt mục này sẽ làm hỏng vùng có thể nhấp của bảng điều khiển và vị trí hộp thoại của tiện ích khi bảng điều khiển ở chế độ nổi! Xem <a href=\"%1\">#80</a>."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "The shadow from the Plasma theme"
+msgstr "Bóng đổ từ chủ đề Plasma"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Opacity:"
+msgstr "Độ đục:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Set to 0 to keep the mask required for custom background blur."
+msgstr "Đặt thành 0 để giữ mặt nạ cần thiết cho việc làm mờ nền tùy chỉnh."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Floating applets:"
+msgstr "Tiện ích nổi:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Allow changes (Plasma 6.4.0 and later)"
+msgstr "Cho phép thay đổi (Plasma 6.4.0 trở lên)"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Since version 6.4.0, Plasma now has a built-in <b>Floating panel and applets</b> option, enabling this overrides that option.\n"
+"⚠️Changing <b>Floating</b> from the panel configuration will not work with this is enabled!"
+msgstr "Từ phiên bản 6.4.0, Plasma đã có sẵn tùy chọn <b>Bảng điều khiển và tiện ích nổi</b>, bật mục này sẽ ghi đè tùy chọn đó.\n⚠️Thay đổi <b>Nổi</b> trong cấu hình bảng điều khiển sẽ không có tác dụng khi mục này đang bật!"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Wide expand button:"
+msgstr "Nút mở rộng khổ rộng:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Make the System Tray expand button use the same size as the other tray items"
+msgstr "Cho nút mở rộng của khay hệ thống có cùng kích thước với các mục khác trong khay"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Custom cell height:"
+msgstr "Chiều cao ô tùy chỉnh:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Custom cell width:"
+msgstr "Độ rộng ô tùy chỉnh:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Force floating applets"
+msgstr "Buộc tiện ích nổi"
+
+#: ../contents/ui/components/FormWidgetSettings.qml ../contents/ui/configPresetAutoload.qml
+msgid "Floating panel:"
+msgstr "Bảng điều khiển nổi:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Remove custom background rounded corners and borders on screen edge when panel is not floating"
+msgstr "Bỏ góc bo tròn và viền của nền tùy chỉnh ở cạnh màn hình khi bảng điều khiển không nổi"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Resize panel length when panel enters/exits floating state (instead of just moving)"
+msgstr "Thay đổi chiều dài bảng điều khiển khi bảng điều khiển vào/thoát trạng thái nổi (thay vì chỉ di chuyển)"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Hide panel:"
+msgstr "Ẩn bảng điều khiển:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "When there are no widgets visible"
+msgstr "Khi không có tiện ích nào hiển thị"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Customization"
+msgstr "Tùy biến"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "State:"
+msgstr "Trạng thái:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Normal"
+msgstr "Bình thường"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Hover"
+msgstr "Di chuột qua"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Expanded"
+msgstr "Đã mở rộng"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Needs attention"
+msgstr "Cần chú ý"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Busy"
+msgstr "Bận"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Change element appearance based on their state, configuration is stacked on top of the current appearance"
+msgstr "Thay đổi giao diện phần tử theo trạng thái của chúng, cấu hình được chồng lên trên giao diện hiện tại"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Blur custom background (Beta)"
+msgstr "Làm mờ nền tùy chỉnh (Beta)"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Draw a custom blur mask behind the custom background(s).<br><strong>Native panel background must be enabled with opacity of 0 for this to work as intended.</strong>"
+msgstr "Vẽ một mặt nạ làm mờ tùy chỉnh phía sau (các) nền tùy chỉnh.<br><strong>Phải bật nền bảng điều khiển gốc với độ đục bằng 0 để tính năng này hoạt động như mong muốn.</strong>"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it. See <a href=\"%1\">install instructions</a>."
+msgstr "Không tìm thấy phần bổ trợ C++, tính năng này sẽ không hoạt động. Hãy cài đặt phần bổ trợ rồi khởi động lại máy hoặc khởi động lại plasmashell để có thể sử dụng. Xem <a href=\"%1\">hướng dẫn cài đặt</a>."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Clipping (Experimental)"
+msgstr "Cắt xén (Thử nghiệm)"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Clip the widget content to the custom background radius.<br>Clipping widgets against the panel is not supported yet, see <a href=\"%1\">#275</a>."
+msgstr "Cắt nội dung tiện ích theo bán kính bo góc của nền tùy chỉnh.<br>Chưa hỗ trợ cắt tiện ích theo bảng điều khiển, xem <a href=\"%1\">#275</a>."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Shape"
+msgstr "Hình dạng"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Font"
+msgstr "Phông chữ"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Spacing:"
+msgstr "Khoảng cách:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "<strong>Odd spacing</strong> values will be automatically converted to <strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
+msgstr "Giá trị <strong>khoảng cách lẻ</strong> sẽ tự động được chuyển thành <strong>số chẵn</strong> nếu dùng tính năng <strong>Đảo tiện ích</strong>."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Custom font:"
+msgstr "Phông chữ tùy chỉnh:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "A plasmashell restart is required to restore the original values after disabling any font setting. <a href=\"#\">Restart now</a>."
+msgstr "Cần khởi động lại plasmashell để khôi phục giá trị ban đầu sau khi tắt bất kỳ cài đặt phông chữ nào. <a href=\"#\">Khởi động lại ngay</a>."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Font family:"
+msgstr "Họ phông chữ:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Override"
+msgstr "Ghi đè"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Italic:"
+msgstr "Nghiêng:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Underline:"
+msgstr "Gạch chân:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Font weight:"
+msgstr "Độ đậm:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Font size:"
+msgstr "Cỡ chữ:"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Background Color"
+msgstr "Màu nền"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Foreground Color"
+msgstr "Màu tiền cảnh"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Primary Border"
+msgstr "Viền chính"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Secondary Border"
+msgstr "Viền phụ"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Background Shadow"
+msgstr "Bóng nền"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Background Shadow Color"
+msgstr "Màu bóng nền"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Foreground Shadow"
+msgstr "Bóng tiền cảnh"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Foreground Shadow Color"
+msgstr "Màu bóng tiền cảnh"
+
+#: ../contents/ui/components/Header.qml
+msgid "None"
+msgstr "Không có"
+
+#: ../contents/ui/components/Header.qml
+msgid "Enable %1:"
+msgstr "Bật %1:"
+
+#: ../contents/ui/components/Header.qml ../contents/ui/main.qml
+msgid "Last preset loaded:"
+msgstr "Cấu hình sẵn đã tải gần nhất:"
+
+#: ../contents/ui/components/Header.qml
+msgid "Version:"
+msgstr "Phiên bản:"
+
+#: ../contents/ui/components/Header.qml
+msgid "Changelog"
+msgstr "Nhật ký thay đổi"
+
+#: ../contents/ui/components/Header.qml
+msgid "Releases"
+msgstr "Bản phát hành"
+
+#: ../contents/ui/components/Header.qml
+msgid "Home page"
+msgstr "Trang chủ"
+
+#: ../contents/ui/components/Header.qml
+msgid "KDE Store"
+msgstr "KDE Store"
+
+#: ../contents/ui/components/Header.qml
+msgid "Issues"
+msgstr "Vấn đề"
+
+#: ../contents/ui/components/Header.qml
+msgid "Current issues"
+msgstr "Các vấn đề hiện tại"
+
+#: ../contents/ui/components/Header.qml
+msgid "Report a bug"
+msgstr "Báo lỗi"
+
+#: ../contents/ui/components/Header.qml
+msgid "Request a feature"
+msgstr "Đề xuất tính năng"
+
+#: ../contents/ui/components/Header.qml
+msgid "Help"
+msgstr "Trợ giúp"
+
+#: ../contents/ui/components/Header.qml
+msgid "FAQ"
+msgstr "Câu hỏi thường gặp"
+
+#: ../contents/ui/components/Header.qml
+msgid "GitHub Discussions"
+msgstr "GitHub Discussions"
+
+#: ../contents/ui/components/Header.qml
+msgid "Send an email"
+msgstr "Gửi email"
+
+#: ../contents/ui/components/Header.qml
+msgid "Translate"
+msgstr "Dịch"
+
+#: ../contents/ui/components/Header.qml
+msgid "Donate"
+msgstr "Quyên góp"
+
+#: ../contents/ui/components/Header.qml
+msgid "More projects"
+msgstr "Dự án khác"
+
+#: ../contents/ui/components/Header.qml ../contents/ui/components/PopupView.qml
+msgid "Running version of the widget (%1) is different to the one on disk (%2), please log out and back in (or restart plasmashell user unit) to ensure things work correctly!"
+msgstr "Phiên bản tiện ích đang chạy (%1) khác với phiên bản trên đĩa (%2), hãy đăng xuất rồi đăng nhập lại (hoặc khởi động lại user unit của plasmashell) để đảm bảo mọi thứ hoạt động đúng!"
+
+#: ../contents/ui/components/PopupView.qml
+msgid "Select a preset"
+msgstr "Chọn cấu hình sẵn"
+
+#: ../contents/ui/components/PopupView.qml
+msgid "Running outdated version of %1"
+msgstr "Đang chạy phiên bản cũ của %1"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "Import"
+msgstr "Nhập"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "Export"
+msgstr "Xuất"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "Export these settings to the default configuration folder and import them in other instances of Panel Colorizer"
+msgstr "Xuất các cài đặt này vào thư mục cấu hình mặc định và nhập chúng vào các thực thể Panel Colorizer khác"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "Export current settings?"
+msgstr "Xuất cài đặt hiện tại?"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "Import saved settings?"
+msgstr "Nhập cài đặt đã lưu?"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "This will overwrite any previous export!"
+msgstr "Thao tác này sẽ ghi đè mọi bản xuất trước đó!"
+
+#: ../contents/ui/components/SettingImportExport.qml
+msgid "This will replace your current settings!"
+msgstr "Thao tác này sẽ thay thế cài đặt hiện tại của bạn!"
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Thank you for using %1!"
+msgstr "Cảm ơn bạn đã sử dụng %1!"
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "If you enjoy using the plugin please consider sponsoring or donating so I can dedicate more time to maintain and improve this and <a href=\"%1\">my other projects</a>."
+msgstr "Nếu bạn thích dùng phần bổ trợ này, hãy cân nhắc tài trợ hoặc quyên góp để tôi có thêm thời gian duy trì và cải thiện nó cũng như <a href=\"%1\">các dự án khác của tôi</a>."
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "You can also"
+msgstr "Bạn cũng có thể"
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Star the project on GitHub"
+msgstr "Gắn sao cho dự án trên GitHub"
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Rate in the KDE Store"
+msgstr "Đánh giá trên KDE Store"
+
+#: ../contents/ui/components/SupportMe.qml
+msgid "Translate %1 to your language"
+msgstr "Dịch %1 sang ngôn ngữ của bạn"
+
+#: ../contents/ui/components/WidgetCardBlacklist.qml ../contents/ui/components/WidgetCardConfig.qml ../contents/ui/components/WidgetCardHide.qml ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "System Tray"
+msgstr "Khay hệ thống"
+
+#: ../contents/ui/components/WidgetCardBlacklist.qml
+msgid "Blacklist"
+msgstr "Loại trừ"
+
+#: ../contents/ui/components/WidgetCardConfig.qml
+msgid "Clear"
+msgstr "Xóa hết"
+
+#: ../contents/ui/components/WidgetCardConfig.qml
+msgid "Add"
+msgstr "Thêm"
+
+#: ../contents/ui/components/WidgetCardHide.qml
+msgid "Hide"
+msgstr "Ẩn"
+
+#: ../contents/ui/components/WidgetCardOverride.qml
+msgid "Edit"
+msgstr "Sửa"
+
+#: ../contents/ui/components/WidgetCardOverride.qml ../contents/ui/configPresets.qml
+msgid "Delete"
+msgstr "Xóa"
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Keep original"
+msgstr "Giữ nguyên gốc"
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Mask"
+msgstr "Mặt nạ"
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Effect"
+msgstr "Hiệu ứng"
+
+#: ../contents/ui/components/WidgetCardTextIconFixes.qml
+msgid "Refresh"
+msgstr "Làm mới"
+
+#: ../contents/ui/configAppearance.qml
+msgid ""
+"Not getting the expected result? Make sure you're editing the correct element.<br>Custom blur not working? Try reinstalling/rebuilding the C++ plugin using the latest source, <a href=\"%1\">see "
+"instructions</a>."
+msgstr "Không đạt kết quả như mong đợi? Hãy đảm bảo bạn đang chỉnh sửa đúng phần tử.<br>Làm mờ tùy chỉnh không hoạt động? Hãy thử cài đặt lại/biên dịch lại phần bổ trợ C++ từ mã nguồn mới nhất, <a href=\"%1\">xem hướng dẫn</a>."
+
+#: ../contents/ui/configAppearance.qml
+msgid "Restore default (removes all customizations)"
+msgstr "Khôi phục mặc định (xóa mọi tùy biến)"
+
+#: ../contents/ui/configAppearance.qml
+msgid "Panel"
+msgstr "Bảng điều khiển"
+
+#: ../contents/ui/configAppearance.qml ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Widgets"
+msgstr "Tiện ích"
+
+#: ../contents/ui/configAppearance.qml
+msgid "Tray widgets"
+msgstr "Tiện ích trong khay"
+
+#: ../contents/ui/configAppearance.qml
+msgid "Part of the panel on which the options below will be applied."
+msgstr "Phần của bảng điều khiển mà các tùy chọn bên dưới sẽ áp dụng vào."
+
+#: ../contents/ui/configBlacklistWidgets.qml
+msgid "Blacklist widgets to keep their default appearance. A logout may be required for some widgets to fully restore their default appearance."
+msgstr "Loại trừ tiện ích để giữ giao diện mặc định của chúng. Một số tiện ích có thể cần đăng xuất để khôi phục hoàn toàn giao diện mặc định."
+
+#: ../contents/ui/configBlacklistWidgets.qml
+msgid "Blacklist spacers"
+msgstr "Loại trừ các khoảng trống"
+
+#: ../contents/ui/configBlacklistWidgets.qml ../contents/ui/configTrayIconsReplacer.qml
+msgid "Remove all"
+msgstr "Gỡ bỏ tất cả"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide widget:"
+msgstr "Ẩn tiện ích:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Visible in Panel Edit Mode"
+msgstr "Hiển thị trong chế độ chỉnh sửa bảng điều khiển"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Configure from any widget:"
+msgstr "Cấu hình từ mọi tiện ích:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Disable to remove <b>%1</b> option from other widget's context (right-click) menu."
+msgstr "Tắt để gỡ bỏ tùy chọn <b>%1</b> khỏi trình đơn ngữ cảnh (nhấp chuột phải) của các tiện ích khác."
+
+#: ../contents/ui/configGeneral.qml
+msgid "Debug mode:"
+msgstr "Chế độ gỡ lỗi:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Show debugging information"
+msgstr "Hiển thị thông tin gỡ lỗi"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Grid"
+msgstr "Lưới"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Enabled"
+msgstr "Bật"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Visible while configuring"
+msgstr "Hiển thị khi đang cấu hình"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Minor line:"
+msgstr "Đường phụ:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "spacing"
+msgstr "khoảng cách"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Major line:"
+msgstr "Đường chính:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "every"
+msgstr "mỗi"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Property change animations"
+msgstr "Hoạt ảnh khi thay đổi thuộc tính"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Duration:"
+msgstr "Thời lượng:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "D-Bus Service"
+msgstr "Dịch vụ D-Bus"
+
+#: ../contents/ui/configGeneral.qml
+msgid "D-Bus name:"
+msgstr "Tên D-Bus:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Each Panel Colorizer instance has its own D-Bus name."
+msgstr "Mỗi thực thể Panel Colorizer có tên D-Bus riêng."
+
+#: ../contents/ui/configGeneral.qml
+msgid "Python 3 executable:"
+msgstr "Tệp thực thi Python 3:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Required to run the D-Bus service in the background"
+msgstr "Cần để chạy dịch vụ D-Bus ở chế độ nền"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Usage examples:"
+msgstr "Ví dụ sử dụng:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Apply a preset:"
+msgstr "Áp dụng cấu hình sẵn:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Preview and switch presets using fzf + qdbus6 + jq:"
+msgstr "Xem trước và chuyển cấu hình sẵn bằng fzf + qdbus6 + jq:"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide/show this panel"
+msgstr "Ẩn/hiện bảng điều khiển này"
+
+#: ../contents/ui/configGeneral.qml
+msgid "Hide/show all panels"
+msgstr "Ẩn/hiện tất cả bảng điều khiển"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+msgid ""
+"Create configuration overrides and apply them to one or multiple widgets. These overrides are independent of presets and will be applied on top of the current settings and across presets.<br>To "
+"blacklist a widget from modifications, <b>uncheck</b> options <b>Enable</b> and <b>Fallback</b>, and apply the override to the widget."
+msgstr "Tạo các ghi đè cấu hình và áp dụng chúng cho một hoặc nhiều tiện ích. Các ghi đè này độc lập với cấu hình sẵn và sẽ được áp dụng chồng lên cài đặt hiện tại, trên mọi cấu hình sẵn.<br>Để loại trừ một tiện ích khỏi mọi sửa đổi, hãy <b>bỏ chọn</b> các tùy chọn <b>Bật</b> và <b>Dự phòng</b>, rồi áp dụng ghi đè cho tiện ích đó."
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Restore default (removes all overrides)"
+msgstr "Khôi phục mặc định (xóa mọi ghi đè)"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Configuration overrides"
+msgstr "Ghi đè cấu hình"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "New override"
+msgstr "Ghi đè mới"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Override settings"
+msgstr "Cài đặt ghi đè"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Override name"
+msgstr "Tên ghi đè"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Rename"
+msgstr "Đổi tên"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+msgid "Fallback:"
+msgstr "Dự phòng:"
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml
+msgid "Fallback to the Global/Preset widget settings for disabled options, except for <b>Enable</b> and <b>Blur</>."
+msgstr "Dùng cài đặt tiện ích Toàn cục/Cấu hình sẵn làm dự phòng cho các tùy chọn bị tắt, trừ <b>Bật</b> và <b>Làm mờ</>."
+
+#: ../contents/ui/configGlobalWidgetOverrides.qml ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Overrides are applied from top to bottom, if two or more configuration overrides share the same option, the last occurence replaces the value of the previous one."
+msgstr "Các ghi đè được áp dụng từ trên xuống dưới, nếu hai hoặc nhiều ghi đè cấu hình có cùng một tùy chọn, lần xuất hiện sau cùng sẽ thay thế giá trị của lần trước đó."
+
+#: ../contents/ui/configHideWidgets.qml
+msgid ""
+"Hidden widgets can still be activated using keyboard shortcuts and are always visible in the Desktop Edit Mode.<br>The activation shortcut can be configured from the <b>Keyboard Shortcuts</b> page "
+"on each widget's configuration window."
+msgstr "Tiện ích bị ẩn vẫn có thể được kích hoạt bằng phím tắt và luôn hiển thị trong chế độ chỉnh sửa màn hình nền.<br>Phím tắt kích hoạt có thể được cấu hình ở trang <b>Phím tắt</b> trong cửa sổ cấu hình của từng tiện ích."
+
+#: ../contents/ui/configHideWidgets.qml
+msgid "Restore default (controlled by each widget)"
+msgstr "Khôi phục mặc định (do từng tiện ích kiểm soát)"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Toggle Panel Colorizer"
+msgstr "Bật/tắt Panel Colorizer"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Switch presets"
+msgstr "Chuyển cấu hình sẵn"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Show popup"
+msgstr "Hiện cửa sổ bật lên"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Do nothing"
+msgstr "Không làm gì"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid ""
+"Automatically switch between different presets based on the Panel and window states.<br>Disable preset auto-loading before making changes to presets, unsaved preset settings will be lost when auto-"
+"loading switches to other preset!"
+msgstr "Tự động chuyển giữa các cấu hình sẵn dựa trên trạng thái của bảng điều khiển và cửa sổ.<br>Hãy tắt tự động tải cấu hình sẵn trước khi thay đổi cấu hình sẵn, các cài đặt cấu hình sẵn chưa lưu sẽ bị mất khi tính năng tự động tải chuyển sang cấu hình sẵn khác!"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Remove all auto-loading conditions"
+msgstr "Gỡ bỏ mọi điều kiện tự động tải"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Auto-loading conditions"
+msgstr "Điều kiện tự động tải"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid ""
+"Priorities go in descending order. E.g. if both <b>Maximized window is shown</b> and <b>Panel touching window</b> have a preset selected, and there is a maximized window on the screen, the "
+"<b>Maximized</b> preset will be applied."
+msgstr "Mức ưu tiên giảm dần từ trên xuống. Ví dụ: nếu cả <b>Cửa sổ phóng to</b> và <b>Cửa sổ chạm bảng điều khiển</b> đều đã chọn cấu hình sẵn, và trên màn hình có cửa sổ phóng to, thì cấu hình sẵn của <b>Cửa sổ phóng to</b> sẽ được áp dụng."
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Window tracking:"
+msgstr "Theo dõi cửa sổ:"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Per screen"
+msgstr "Theo từng màn hình"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Active only"
+msgstr "Chỉ cửa sổ đang hoạt động"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Active window fallback"
+msgstr "Dự phòng cửa sổ đang hoạt động"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Track KWin's top window when there is no active one in the screen."
+msgstr "Theo dõi cửa sổ trên cùng của KWin khi không có cửa sổ nào đang hoạt động trên màn hình."
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Fullscreen window:"
+msgstr "Cửa sổ toàn màn hình:"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Maximized window:"
+msgstr "Cửa sổ phóng to:"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Window touching panel:"
+msgstr "Cửa sổ chạm bảng điều khiển:"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Active window:"
+msgstr "Cửa sổ đang hoạt động:"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "At least one window is visible:"
+msgstr "Có ít nhất một cửa sổ hiển thị:"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "activity:"
+msgstr "(hoạt động):"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Normal:"
+msgstr "Bình thường:"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Widget Click"
+msgstr "Nhấp vào tiện ích"
+
+#: ../contents/ui/configPresetAutoload.qml
+msgid "Action:"
+msgstr "Hành động:"
+
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Create configuration overrides and apply them to one or multiple widgets. These overrides should be saved to a preset in <strong>Presets</strong> tab or they will be lost when presets change!"
+msgstr "Tạo các ghi đè cấu hình và áp dụng chúng cho một hoặc nhiều tiện ích. Các ghi đè này cần được lưu vào một cấu hình sẵn trong thẻ <strong>Cấu hình sẵn</strong>, nếu không chúng sẽ bị mất khi chuyển cấu hình sẵn!"
+
+#: ../contents/ui/configPresetWidgetOverrides.qml
+msgid "Name:"
+msgstr "Tên:"
+
+#: ../contents/ui/configPresets.qml
+msgid "Delete preset"
+msgstr "Xóa cấu hình sẵn"
+
+#: ../contents/ui/configPresets.qml
+msgid "This will permanently delete the file from your system!"
+msgstr "Thao tác này sẽ xóa vĩnh viễn tệp khỏi hệ thống của bạn!"
+
+#: ../contents/ui/configPresets.qml
+msgid "Update preset"
+msgstr "Cập nhật cấu hình sẵn"
+
+#: ../contents/ui/configPresets.qml
+msgid "Preset configuration will be overwritten!"
+msgstr "Nội dung cấu hình sẵn sẽ bị ghi đè!"
+
+#: ../contents/ui/configPresets.qml
+msgid "Create preset preview?"
+msgstr "Tạo ảnh xem trước cho cấu hình sẵn?"
+
+#: ../contents/ui/configPresets.qml
+msgid "Current preview will be overwritten!"
+msgstr "Ảnh xem trước hiện tại sẽ bị ghi đè!"
+
+#: ../contents/ui/configPresets.qml
+msgid "Create preset"
+msgstr "Tạo cấu hình sẵn"
+
+#: ../contents/ui/configPresets.qml
+msgid ""
+"Changes to the current preset are not synced to disk automatically. You should come back to this tab and update it manually before switching to a different preset, otherwise unsaved preset settings "
+"will be lost when presets change!"
+msgstr "Các thay đổi đối với cấu hình sẵn hiện tại không được tự động đồng bộ vào đĩa. Bạn nên quay lại thẻ này và cập nhật thủ công trước khi chuyển sang cấu hình sẵn khác, nếu không các cài đặt cấu hình sẵn chưa lưu sẽ bị mất khi chuyển cấu hình sẵn!"
+
+#: ../contents/ui/configPresets.qml
+msgid "Restore default preset"
+msgstr "Khôi phục cấu hình sẵn mặc định"
+
+#: ../contents/ui/configPresets.qml
+msgid "New from current settings"
+msgstr "Tạo mới từ cài đặt hiện tại"
+
+#: ../contents/ui/configPresets.qml
+msgid "Save"
+msgstr "Lưu"
+
+#: ../contents/ui/configPresets.qml
+msgid "Refresh presets"
+msgstr "Làm mới cấu hình sẵn"
+
+#: ../contents/ui/configPresets.qml
+msgid "Built-in"
+msgstr "Tích hợp sẵn"
+
+#: ../contents/ui/configPresets.qml
+msgid "Load"
+msgstr "Tải"
+
+#: ../contents/ui/configPresets.qml
+msgid "Update"
+msgstr "Cập nhật"
+
+#: ../contents/ui/configPresets.qml
+msgid "Create preview"
+msgstr "Tạo ảnh xem trước"
+
+#: ../contents/ui/configPresets.qml
+msgid "Update preview"
+msgstr "Cập nhật ảnh xem trước"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g from top to left)."
+msgstr "Việc thay đổi vị trí bảng điều khiển hiện chưa ổn định và có thể khiến Plasma gặp sự cố khi di chuyển bảng điều khiển giữa các cạnh không song song (ví dụ: từ trên sang trái)."
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid ""
+"Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel "
+"background</b> options in <b>Appearance</b> tab instead."
+msgstr "Các tùy chọn Độ đục và Màn hình yêu cầu <b>Plasma 6.3</b> trở lên.<br>Độ đục phụ thuộc vào chủ đề Plasma hiện tại, để kiểm soát chi tiết hơn hoặc trong suốt hoàn toàn, hãy dùng các tùy chọn <b>Độ đục bảng điều khiển</b> và <b>Nền bảng điều khiển gốc</b> trong thẻ <b>Giao diện</b>."
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Screen"
+msgstr "Màn hình"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Screen:"
+msgstr "Màn hình:"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Position"
+msgstr "Vị trí"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Position:"
+msgstr "Vị trí:"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Top"
+msgstr "Trên"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Bottom"
+msgstr "Dưới"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Left"
+msgstr "Trái"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Right"
+msgstr "Phải"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Alignment"
+msgstr "Căn chỉnh"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Alignment:"
+msgstr "Căn chỉnh:"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Center"
+msgstr "Giữa"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Length mode"
+msgstr "Chế độ chiều dài"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Mode:"
+msgstr "Chế độ:"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Fill"
+msgstr "Lấp đầy"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Fit content"
+msgstr "Vừa nội dung"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Visibility"
+msgstr "Hiển thị"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Always visible"
+msgstr "Luôn hiển thị"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Auto hide"
+msgstr "Tự động ẩn"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Dodge windows"
+msgstr "Tránh cửa sổ"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Windows go below"
+msgstr "Cửa sổ nằm bên dưới"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Opacity"
+msgstr "Độ đục"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Adaptive"
+msgstr "Thích ứng"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Opaque"
+msgstr "Đục"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Translucent"
+msgstr "Trong mờ"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Floating"
+msgstr "Nổi"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Floating:"
+msgstr "Nổi:"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Thickness"
+msgstr "Độ dày"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Thickness:"
+msgstr "Độ dày:"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Show/Hide"
+msgstr "Hiện/Ẩn"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "Show:"
+msgstr "Hiện:"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid ""
+"WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make "
+"it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will remove the configuration from all Panel "
+"Colorizer instances so make sure to save the others first"
+msgstr "CẢNH BÁO: Hãy cẩn thận khi dùng Hiện/Ẩn, nếu bạn ẩn bảng điều khiển mà chưa cấu hình tự động tải cấu hình sẵn hoặc không biết cách chuyển cấu hình sẵn bằng D-Bus (hoặc đã tắt D-Bus), bạn sẽ không có cách nào làm nó hiện lại ngoài việc gỡ bỏ thủ công cấu hình hoặc Panel Colorizer, hãy dùng lệnh bên dưới trong terminal/tty rồi đăng xuất hoặc khởi động lại máy, lệnh này sẽ xóa cấu hình khỏi mọi thực thể Panel Colorizer, vì vậy hãy lưu các thực thể khác trước"
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
+msgstr "Nếu đã bật D-Bus, bạn nên dùng D-Bus kết hợp với phím tắt thay cho cách này. Tham khảo README để tìm hiểu thêm hoặc xem thẻ Chung để có một số ví dụ."
+
+#: ../contents/ui/configStockPanelSettings.qml
+msgid "D-Bus usage"
+msgstr "Cách dùng D-Bus"
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Restore default (removes all icon and text fixes)"
+msgstr "Khôi phục mặc định (xóa mọi bản sửa biểu tượng và chữ)"
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Force Text/Icon color"
+msgstr "Buộc màu chữ/biểu tượng"
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Refresh interval:"
+msgstr "Chu kỳ làm mới:"
+
+#: ../contents/ui/configTextIconFix.qml
+msgid ""
+"Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons."
+"<br><strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br><strong>Refresh</strong>: Re-apply color/font at a fixed interval, "
+"useful for widgets that recreate or recolor content themselves.<br><strong>Keep original</strong>: Do not change the text/icon color, useful for widgets that manage their own colors."
+msgstr "Sửa màu/phông chữ của chữ và biểu tượng cho các tiện ích mà cách thông thường không hoạt động hoặc bị tiện ích đặt lại.<br> <strong>Mặt nạ</strong>: Buộc màu trên biểu tượng SVG, hữu ích cho biểu tượng dạng ký hiệu.<br><strong>Hiệu ứng màu</strong>: Buộc màu trên chữ và biểu tượng bằng hiệu ứng hậu kỳ, hữu ích cho biểu tượng không phải dạng ký hiệu.<br><strong>Làm mới</strong>: Áp dụng lại màu/phông chữ theo chu kỳ cố định, hữu ích cho các tiện ích tự tạo lại hoặc tự đổi màu nội dung.<br><strong>Giữ nguyên gốc</strong>: Không thay đổi màu chữ/biểu tượng, hữu ích cho các tiện ích tự quản lý màu của chúng."
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Apply the changes and restart plasmashell for changes to take full effect."
+msgstr "Áp dụng các thay đổi và khởi động lại plasmashell để thay đổi có hiệu lực đầy đủ."
+
+#: ../contents/ui/configTextIconFix.qml
+msgid "Restart plasmashell"
+msgstr "Khởi động lại plasmashell"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Add new"
+msgstr "Thêm mới"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Sort"
+msgstr "Sắp xếp"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Replace System Tray icons with icons from the current icon theme or a local file. The built-in rules icons are part of <a href=\"%1\">Papirus icon theme</a>."
+msgstr "Thay biểu tượng khay hệ thống bằng biểu tượng từ chủ đề biểu tượng hiện tại hoặc từ tệp cục bộ. Biểu tượng của các quy tắc có sẵn thuộc <a href=\"%1\">chủ đề biểu tượng Papirus</a>."
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "C++ plugin not found, this feature will not work. Install the plugin and reboot or restart plasmashell to be able to use it <a href=\"%1\">Install instructions</a>."
+msgstr "Không tìm thấy phần bổ trợ C++, tính năng này sẽ không hoạt động. Hãy cài đặt phần bổ trợ rồi khởi động lại máy hoặc khởi động lại plasmashell để có thể sử dụng <a href=\"%1\">Hướng dẫn cài đặt</a>."
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "The installed version of the C++ plugin doesn't support this feature, update the plugin and reboot or restart plasmashell to be able to use it <a href=\"%1\">Install instructions</a>."
+msgstr "Phiên bản phần bổ trợ C++ đã cài đặt không hỗ trợ tính năng này, hãy cập nhật phần bổ trợ rồi khởi động lại máy hoặc khởi động lại plasmashell để có thể sử dụng <a href=\"%1\">Hướng dẫn cài đặt</a>."
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Log icon changes:"
+msgstr "Ghi nhật ký thay đổi biểu tượng:"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Icon hashes will be printed to the system log"
+msgstr "Mã băm của biểu tượng sẽ được ghi vào nhật ký hệ thống"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Enable built-in rules:"
+msgstr "Bật quy tắc có sẵn:"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Show"
+msgstr "Hiện"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "How to use"
+msgstr "Cách sử dụng"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid ""
+"1. Enable <b>Log icon changes</b> above<br>2. Run <b>journalctl -f</b> from terminal<br>3. Hover the System tray entry or trigger an icon change<br>4. Copy one of the properties: icon SHA1, icon "
+"name, name or title<br>5. Add a new rule with the matching property you choose and specify the replacement icon name or file"
+msgstr "1. Bật <b>Ghi nhật ký thay đổi biểu tượng</b> ở trên<br>2. Chạy <b>journalctl -f</b> từ terminal<br>3. Di chuột qua mục trong khay hệ thống hoặc kích hoạt việc thay đổi biểu tượng<br>4. Sao chép một trong các thuộc tính: SHA1 của biểu tượng, tên biểu tượng, tên hoặc tiêu đề<br>5. Thêm quy tắc mới với thuộc tính khớp mà bạn chọn và chỉ định tên hoặc tệp biểu tượng thay thế"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "<b>Note</b>: There are some rules without icon as there was no matching one in Papirus, you can override those with your own icons by copying the rule to <b>User Replacements</b>"
+msgstr "<b>Lưu ý</b>: Có một số quy tắc không có biểu tượng vì Papirus không có biểu tượng phù hợp, bạn có thể ghi đè chúng bằng biểu tượng của riêng mình bằng cách sao chép quy tắc sang <b>Quy tắc người dùng</b>"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid ""
+"<b>Note</b>: Some applications like Signal are missing accumulated notification icons, contribution of missing icons via GitHub pull request or issue is very welcome, please do so by providing the "
+"the description + icon SHA1/icon name/title/name + icon-name from Papirus (panel/status icons only if no matching icon exists, otherwise it can be omitted)"
+msgstr "<b>Lưu ý</b>: Một số ứng dụng như Signal còn thiếu biểu tượng thông báo tích lũy, rất hoan nghênh đóng góp các biểu tượng còn thiếu qua pull request hoặc issue trên GitHub, khi đóng góp hãy cung cấp mô tả + SHA1 của biểu tượng/tên biểu tượng/tiêu đề/tên + icon-name từ Papirus (chỉ cung cấp biểu tượng panel/status nếu không có biểu tượng phù hợp, nếu không thì có thể bỏ qua)"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "<b>Note</b>: Matching properties (especially the SHA1) may change when applications get updated, rules will need to be updated when that happens."
+msgstr "<b>Lưu ý</b>: Các thuộc tính dùng để so khớp (đặc biệt là SHA1) có thể thay đổi khi ứng dụng được cập nhật, khi đó cần cập nhật lại các quy tắc."
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "<b>Note</b>: Plasma widgets in the system tray are not supported by this feature as widgets provide their own visual content and logic."
+msgstr "<b>Lưu ý</b>: Tính năng này không hỗ trợ các tiện ích Plasma trong khay hệ thống vì tiện ích tự cung cấp nội dung hiển thị và logic riêng."
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Built-in Rules (read only)"
+msgstr "Quy tắc có sẵn (chỉ đọc)"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "User Rules"
+msgstr "Quy tắc người dùng"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Whether or not this replacement is enabled"
+msgstr "Thay thế này có được bật hay không"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Description (optional)"
+msgstr "Mô tả (tùy chọn)"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Description"
+msgstr "Mô tả"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "SHA1, string or regex to match"
+msgstr "SHA1, chuỗi hoặc biểu thức chính quy để so khớp"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Icon SHA1, title or name of the target tray item"
+msgstr "SHA1 của biểu tượng, tiêu đề hoặc tên của mục khay cần thay"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Custom icon"
+msgstr "Biểu tượng tùy chỉnh"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Icon name or file"
+msgstr "Tên hoặc tệp biểu tượng"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Edit icon"
+msgstr "Sửa biểu tượng"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgctxt "@item:inmenu Open icon chooser dialog"
+msgid "Choose…"
+msgstr "Chọn…"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgctxt "@action:inmenu"
+msgid "Remove icon"
+msgstr "Gỡ bỏ biểu tượng"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Copy to User Rules"
+msgstr "Sao chép sang Quy tắc người dùng"
+
+#: ../contents/ui/configTrayIconsReplacer.qml
+msgid "Duplicate rule"
+msgstr "Nhân bản quy tắc"
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Create widget islands by placing separator widgets around them."
+msgstr "Tạo đảo tiện ích bằng cách đặt các tiện ích phân cách xung quanh chúng."
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid ""
+"<strong>How to use</strong><br>1. Add the widget that will act as islands separator to the panel(by default the Plasma's Panel Spacer widget will be used)<br>2. Select the separator widget "
+"below<br>3. Add as many separators as you need and move them to create islands."
+msgstr "<strong>Cách sử dụng</strong><br>1. Thêm tiện ích sẽ đóng vai trò phân cách đảo vào bảng điều khiển (mặc định sẽ dùng tiện ích Panel Spacer của Plasma)<br>2. Chọn tiện ích phân cách bên dưới<br>3. Thêm bao nhiêu dấu phân cách tùy ý và di chuyển chúng để tạo đảo."
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid ""
+"<strong>Notes</strong><br>- Widget custom background or border is required for this option to have a visible effect.<br>- If the widgets in your panel have different thickness, add margins to the "
+"widgets custom background in the Appearance tab."
+msgstr "<strong>Lưu ý</strong><br>- Cần có nền hoặc viền tùy chỉnh cho tiện ích thì tùy chọn này mới có hiệu ứng nhìn thấy được.<br>- Nếu các tiện ích trên bảng điều khiển có độ dày khác nhau, hãy thêm lề cho nền tùy chỉnh của tiện ích trong thẻ Giao diện."
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid ""
+"<strong>Need a separator widget?</strong><br>- <a href=\"%1\">Panel Colorizer Islands Separator</a> visible only in Edit Mode.<br>- <a href=\"%2\">Advanced Separator</a> always visible and "
+"configurable."
+msgstr "<strong>Cần tiện ích phân cách?</strong><br>- <a href=\"%1\">Panel Colorizer Islands Separator</a> chỉ hiển thị trong chế độ chỉnh sửa.<br>- <a href=\"%2\">Advanced Separator</a> luôn hiển thị và có thể cấu hình."
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Separator widget:"
+msgstr "Tiện ích phân cách:"
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid ""
+"Select the widget that will act as separator for the islands.<br><br>Note that the separator widget itself does not need to be visible for it to work, so you can use an invisible spacer/separator "
+"for example."
+msgstr "Chọn tiện ích sẽ đóng vai trò phân cách cho các đảo.<br><br>Lưu ý rằng bản thân tiện ích phân cách không cần hiển thị để hoạt động, ví dụ bạn có thể dùng một khoảng trống/dấu phân cách vô hình."
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Require two separators per island:"
+msgstr "Yêu cầu hai dấu phân cách cho mỗi đảo:"
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid ""
+"Always require two separators for a group of widgets to become an island. By default, an arrangement of<br>%1 creates two islands.<br><br>Enabling this option makes it so that islands do not share "
+"separators, so for example an arrangement of<br>%2 is required to create two islands.<br><br>Enable this if your islands separator is not a panel spacer and you want to explicitly define the start "
+"and end of each island."
+msgstr "Luôn yêu cầu hai dấu phân cách để một nhóm tiện ích trở thành đảo. Theo mặc định, cách sắp xếp<br>%1 tạo ra hai đảo.<br><br>Bật tùy chọn này để các đảo không dùng chung dấu phân cách, ví dụ cần cách sắp xếp<br>%2 để tạo hai đảo.<br><br>Bật tùy chọn này nếu dấu phân cách đảo của bạn không phải là khoảng trống bảng điều khiển và bạn muốn xác định rõ điểm bắt đầu và kết thúc của mỗi đảo."
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Blacklist separator widgets:"
+msgstr "Loại trừ tiện ích phân cách:"
+
+#: ../contents/ui/configWidgetIslands.qml
+msgid "Disable customization from separator widgets"
+msgstr "Tắt tùy biến cho các tiện ích phân cách"
+
+#: ../contents/ui/main.qml
+msgid "This widget must be placed in a panel to work!"
+msgstr "Tiện ích này phải được đặt trên bảng điều khiển mới hoạt động!"
+
+#: ../contents/ui/main.qml
+msgid "Hide widget (visible in panel Edit Mode)"
+msgstr "Ẩn tiện ích (hiển thị trong chế độ chỉnh sửa bảng điều khiển)"
+
+#: ../contents/ui/main.qml
+msgid "A Plasmashell restart is required to remove all the modifications made by %1. Run systemctl restart --user plasma-plasmashell or log out and log back in."
+msgstr "Cần khởi động lại Plasmashell để gỡ bỏ mọi sửa đổi do %1 tạo ra. Hãy chạy systemctl restart --user plasma-plasmashell hoặc đăng xuất rồi đăng nhập lại."
