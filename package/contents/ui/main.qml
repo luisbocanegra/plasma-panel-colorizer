@@ -53,7 +53,7 @@ PlasmoidItem {
     property bool fillAreaOnDeFloat: main.isEnabled ? cfg.nativePanel.fillAreaOnDeFloat : false
     property bool isEnabled: Plasmoid.configuration.isEnabled
     property bool wasEnabled: true
-    property bool nativePanelBackgroundEnabled: (isEnabled ? cfg.nativePanel.background.enabled : true) || doPanelClickFix
+    property bool nativePanelBackgroundEnabled: (isEnabled ? cfg.nativePanel.background.enabled : true)
     property real nativePanelBackgroundOpacity: isEnabled ? cfg.nativePanel.background.opacity : 1.0
     property bool nativePanelBackgroundShadowEnabled: isEnabled ? cfg.nativePanel.background.shadow : true
     property bool configureFromAllWidgets: Plasmoid.configuration.configureFromAllWidgets
@@ -95,9 +95,6 @@ PlasmoidItem {
     property var noBgTracker: new Set()
     // hidden widgets Plasmoid.status === PlasmaCore.Types.HiddenStatus
     property var hiddenTracker: new Set()
-
-    property bool doPanelClickFix: false
-    property bool doPanelLengthFix: false
 
     property var cfg: {
         let globalSettings;
@@ -248,11 +245,7 @@ PlasmoidItem {
     function applyStockPanelSettings() {
         let script = Utils.setPanelModeScript(Plasmoid.containment.id, stockPanelSettings);
         dbusEvaluateScript.arguments = [script.toString().replace(/\n/g, ' ').trim()];
-        dbusEvaluateScript.call(() => {
-            Utils.delay(250, () => {
-                reconfigure();
-            }, main);
-        });
+        dbusEvaluateScript.call();
         updatePanelVisibility();
     }
 
@@ -290,23 +283,11 @@ PlasmoidItem {
         recolorCountChanged();
     }
 
-    // HACK: temporary enable panel mask on geometry change
-    // to fix broken clickable area
-    // https://github.com/luisbocanegra/plasma-panel-colorizer/issues/100
-    // maybe also related to https://bugs.kde.org/show_bug.cgi?id=489086
-
-    function runPanelClickFix() {
-        doPanelClickFix = true;
-        doPanelClickFix = false;
-    }
-
     onPanelWidthChanged: {
-        runPanelClickFix();
         updateMasks();
     }
 
     onPanelHeightChanged: {
-        runPanelClickFix();
         updateMasks();
     }
 
@@ -316,9 +297,6 @@ PlasmoidItem {
         if ((main.floatingness === 1 || main.floatingness === 0) && !editMode) {
             Utils.delay(10, () => {
                 updateMasks();
-            // TODO this forces hidden panels to be always visible and is unclear
-            // if it actually helps
-            // activatePlasmoidCycle();
             }, main);
         }
     }
@@ -541,43 +519,6 @@ PlasmoidItem {
         containmentItem.Plasmoid.onContainmentDisplayHintsChanged.connect(setFloatingApplets);
     }
 
-    // HACK: change panelLayout spacing on startup to trigger a length reload
-    // BUG: https://bugs.kde.org/show_bug.cgi?id=489086
-    // https://github.com/luisbocanegra/plasma-panel-colorizer/issues/100
-
-    onPanelLayoutChanged: {
-        if (!panelLayout)
-            return;
-        panelFixTimer.restart();
-    }
-
-    Timer {
-        id: panelFixTimer
-        repeat: false
-        interval: 2000
-        onTriggered: {
-            main.doPanelLengthFix = true;
-            Utils.delay(200, () => {
-                main.doPanelLengthFix = false;
-                main.reconfigure();
-            }, main);
-        }
-    }
-
-    Binding {
-        target: main.panelLayout
-        property: "columnSpacing"
-        value: 0
-        when: main.doPanelLengthFix
-    }
-
-    Binding {
-        target: main.panelLayout
-        property: "rowSpacing"
-        value: 0
-        when: main.doPanelLengthFix
-    }
-
     onPanelLayoutCountChanged: {
         // console.log("onPanelLayoutCountChanged")
         Qt.callLater(initAll);
@@ -665,17 +606,6 @@ PlasmoidItem {
     }
 
     DBusMethodCall {
-        id: dbusKWinReconfigure
-        service: "org.kde.KWin"
-        objectPath: "/KWin"
-        iface: service
-        method: "reconfigure"
-        arguments: []
-        signature: null
-        inSignature: null
-    }
-
-    DBusMethodCall {
         id: dbusEvaluateScript
         service: "org.kde.plasmashell"
         objectPath: "/PlasmaShell"
@@ -685,24 +615,6 @@ PlasmoidItem {
         signature: null
         inSignature: null
         useGdbus: true
-    }
-
-    function reconfigure() {
-        // sometimes windows won't update when the panel visibility or height
-        // (and maybe other properties) changes, this is more noticeable with
-        // krohnkite tiling extension so we make the panel visible by
-        // activating the widget for a moment which in turn activates the panel
-        // and org.kde.KWin.reconfigure triggers the resize we need
-        // TODO figure out how the desktop edit mode informs the new available size
-        if (isWayland) {
-            // X11 doesn't seem to need it and also will flicker the panel/screen
-            dbusKWinReconfigure.call();
-        }
-    }
-
-    function activatePlasmoidCycle() {
-        Plasmoid.activated();
-        Plasmoid.activated();
     }
 
     // https://github.com/olib14/pinpanel/blob/2d126f0f3ac3e35a725f05b0060a3dd5c924cbe7/package/contents/ui/main.qml#L58 ♥
