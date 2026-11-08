@@ -122,3 +122,106 @@ QString PanelColorizer::getIconHash(const QVariant &variant) {
     hashString = QString::fromUtf8(hash.toHex());
     return hashString;
 }
+
+void PanelColorizer::setScreenEdgeMargin(QWindow *window, int margin) {
+    if (!window) {
+        qWarning() << "PanelColorizer::setScreenEdgeMargin: null window";
+        return;
+    }
+
+    if (!m_layerWindow && !(m_layerWindow = LayerShellQt::Window::get(window))) {
+        qWarning() << "PanelColorizer::setScreenEdgeMargin: " << window << " has no layer-shell window";
+        return;
+    }
+
+    if (margin < 0) {
+        qWarning() << "PanelColorizer::setScreenEdgeMargin: negative value is not allowed";
+        return;
+    }
+
+    m_margin = margin;
+
+    if (!m_panelWindow) {
+        m_panelWindow = window;
+
+        m_panelPositionOffset = QPoint();
+
+        connect(m_layerWindow, &LayerShellQt::Window::marginsChanged, this, &PanelColorizer::setMargins);
+        connect(m_layerWindow, &LayerShellQt::Window::anchorsChanged, this, &PanelColorizer::setMargins);
+
+        // panel positions popups relative to the window position so we need to update that too
+        connect(m_panelWindow, &QWindow::xChanged, this, &PanelColorizer::setPosition);
+        connect(m_panelWindow, &QWindow::yChanged, this, &PanelColorizer::setPosition);
+    }
+
+    setMargins();
+    syncPanelPosition(false);
+}
+
+void PanelColorizer::syncPanelPosition(bool positionSetByPlasma) {
+    const QPoint wanted(m_layerMargins.left() - m_layerMargins.right(), m_layerMargins.top() - m_layerMargins.bottom());
+    QPoint base = m_panelWindow->position();
+    if (!positionSetByPlasma) {
+        base -= m_panelPositionOffset;
+    }
+    m_panelPositionOffset = wanted;
+    m_panelPosition = base + wanted;
+    if (m_panelPosition != m_panelWindow->position()) {
+        m_syncingPosition = true;
+        m_panelWindow->setPosition(m_panelPosition);
+        m_syncingPosition = false;
+    }
+}
+
+void PanelColorizer::clearScreenEdgeMargin() {
+    if (!m_panelWindow) {
+        return;
+    }
+    m_margin = 0;
+    if (m_layerWindow) {
+        m_layerWindow->disconnect(this);
+        setMargins();
+    }
+    if (m_panelWindow) {
+        m_panelWindow->disconnect(this);
+        syncPanelPosition(false);
+    }
+
+    m_panelWindow = nullptr;
+    m_layerWindow = nullptr;
+}
+
+void PanelColorizer::setMargins() {
+    // setPosition() makes Plasma re-run updateLayerWindow()
+    // setting margins during that window can cause a crash
+    if (m_syncingPosition) {
+        return;
+    }
+    m_layerMargins = QMargins();
+    switch (m_layerWindow->exclusiveEdge()) {
+    case LayerShellQt::Window::AnchorTop:
+        m_layerMargins.setTop(m_margin);
+        break;
+    case LayerShellQt::Window::AnchorBottom:
+        m_layerMargins.setBottom(m_margin);
+        break;
+    case LayerShellQt::Window::AnchorLeft:
+        m_layerMargins.setLeft(m_margin);
+        break;
+    case LayerShellQt::Window::AnchorRight:
+        m_layerMargins.setRight(m_margin);
+        break;
+    default:
+        break;
+    }
+    if (m_layerWindow->margins() != m_layerMargins) {
+        m_layerWindow->setMargins(m_layerMargins);
+    }
+}
+
+void PanelColorizer::setPosition() {
+    if (m_syncingPosition || m_panelWindow->position() == m_panelPosition) {
+        return;
+    }
+    syncPanelPosition(true);
+}

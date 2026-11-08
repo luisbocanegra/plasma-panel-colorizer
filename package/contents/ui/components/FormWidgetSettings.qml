@@ -342,6 +342,45 @@ ColumnLayout {
             visible: root.elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
         }
 
+        RowLayout {
+            Kirigami.FormData.label: i18n("Distance from screen edge:")
+            visible: root.elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+            SpinBox {
+                from: 0
+                to: 9999
+                value: root.config.nativePanel.screenEdgeMargin ?? 0
+                onValueChanged: {
+                    root.config.nativePanel.screenEdgeMargin = value;
+                    root.updateConfig();
+                }
+            }
+            Kirigami.ContextualHelpButton {
+                toolTipText: i18n("Plasma 6.4 and newer only supports adjacent panels in the same screen edge, if two or more panels share the same space they will overlap.<br>By increasing this distance you can avoid that, simulating a stacked layout. Works best with panels that can hide.")
+            }
+        }
+
+        Label {
+            visible: !Qt.platform.pluginName.includes("wayland")
+            text: i18n("Requires a Wayland session.")
+            font: Kirigami.Theme.smallFont
+            wrapMode: Label.Wrap
+            color: Kirigami.Theme.negativeTextColor
+            Layout.maximumWidth: 400
+        }
+
+        Label {
+            visible: !Plasmoid.configuration.pluginFound
+            text: i18n("C++ plugin not found. Install the plugin and restart plasmashell to use this feature. See <a href=\"%1\">install instructions</a>.", "https://github.com/luisbocanegra/plasma-panel-colorizer#installation")
+            onLinkActivated: link => Qt.openUrlExternally(link)
+            font: Kirigami.Theme.smallFont
+            wrapMode: Label.Wrap
+            color: Kirigami.Theme.negativeTextColor
+            Layout.maximumWidth: 400
+            HoverHandler {
+                cursorShape: Qt.PointingHandCursor
+            }
+        }
+
         Kirigami.Separator {
             Kirigami.FormData.isSection: true
             Kirigami.FormData.label: i18n("Customization")
