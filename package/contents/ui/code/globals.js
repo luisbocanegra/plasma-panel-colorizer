@@ -320,6 +320,7 @@ const defaultConfig = {
         floatingDialogsAllowOverride: false,
         fillAreaOnDeFloat: true,
         hideWhenNoWidgetsAreVisible: false,
+        screenEdgeMargin: 0,
     },
     stockPanelSettings: baseStockPanelSettings,
     configurationOverrides: {

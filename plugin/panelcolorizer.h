@@ -3,12 +3,17 @@
 
 #pragma once
 
+#include <LayerShellQt/Window>
 #include <QCryptographicHash>
+#include <QMargins>
 #include <QObject>
 #include <QPixmap>
+#include <QPoint>
+#include <QPointer>
 #include <QRectF>
 #include <QRegion>
 #include <QVariant>
+#include <QWindow>
 
 class PanelColorizer : public QObject {
     Q_OBJECT
@@ -23,6 +28,9 @@ class PanelColorizer : public QObject {
 
     Q_INVOKABLE QString getIconHash(const QVariant &variant);
 
+    Q_INVOKABLE void setScreenEdgeMargin(QWindow *window, int margin);
+    Q_INVOKABLE void clearScreenEdgeMargin();
+
     explicit PanelColorizer(QObject *parent = nullptr);
 
     QVariant mask() const;
@@ -32,13 +40,25 @@ class PanelColorizer : public QObject {
     void maskChanged();
     void hasRegionsChanged();
 
+  private slots:
+    void setMargins();
+    void setPosition();
+
   private:
     QString m_time;
     qreal m_value;
-    // QVector<QRegion> m_regions;
     QMap<int, QPair<QRegion, bool>> m_regions;
     QRegion m_mask;
     void combineRegions();
+
+    QPointer<QWindow> m_panelWindow;
+    LayerShellQt::Window *m_layerWindow = nullptr;
+    QMargins m_layerMargins;
+    int m_margin;
+    QPoint m_panelPositionOffset;
+    QPoint m_panelPosition;
+    bool m_syncingPosition = false;
+    void syncPanelPosition(bool positionSetByPlasma);
 };
 
 #endif

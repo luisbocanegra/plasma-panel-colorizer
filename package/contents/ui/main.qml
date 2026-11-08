@@ -242,11 +242,23 @@ PlasmoidItem {
         }
     }
 
+    function updateScreenEdgeMargin() {
+        if (!panelView || !panelColorizer || !isWayland)
+            return;
+        const offset = cfg.nativePanel.screenEdgeMargin ?? 0;
+        if (!isEnabled || offset === 0) {
+            panelColorizer.clearScreenEdgeMargin();
+            return;
+        }
+        panelColorizer.setScreenEdgeMargin(panelView, offset);
+    }
+
     function applyStockPanelSettings() {
         let script = Utils.setPanelModeScript(Plasmoid.containment.id, stockPanelSettings);
         dbusEvaluateScript.arguments = [script.toString().replace(/\n/g, ' ').trim()];
         dbusEvaluateScript.call();
         updatePanelVisibility();
+        updateScreenEdgeMargin();
     }
 
     function updatePanelVisibility() {
@@ -267,13 +279,16 @@ PlasmoidItem {
         panelView.visible = true;
     }
 
-    readonly property var stockPanelSettingsDeps: ({
-            stockPanelSettings,
-            isEnabled,
-            editMode,
-            hideWhenNoWidgetsAreVisible: main.cfg.nativePanel.hideWhenNoWidgetsAreVisible ?? false,
-            hasVisibleWidgets: widgetTypes.some(w => !w.hidden)
-        })
+    // qmlformat off
+    readonly property string stockPanelSettingsDeps: JSON.stringify([
+        stockPanelSettings,
+        isEnabled,
+        editMode,
+        main.cfg.nativePanel.hideWhenNoWidgetsAreVisible ?? false,
+        main.cfg.nativePanel.screenEdgeMargin ?? 0,
+        widgetTypes.some(w => !w.hidden)
+    ]);
+    // qmlformat on
 
     onStockPanelSettingsDepsChanged: Qt.callLater(applyStockPanelSettings)
     onIsEnabledChanged: Qt.callLater(applyStockPanelSettings)
