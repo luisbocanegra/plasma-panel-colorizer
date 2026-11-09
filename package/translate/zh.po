@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-10-29 05:14+0000\n"
+"POT-Creation-Date: 2026-11-09 02:06+0000\n"
 "PO-Revision-Date: 2026-01-24 16:46+0800\n"
 "Last-Translator: Mill Haruto <mill413@outlook.com>\n"
 "Language-Team: \n"
@@ -458,6 +458,28 @@ msgstr "隐藏面板："
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "When there are no widgets visible"
 msgstr "当没有可见挂件时"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Distance from screen edge:"
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Plasma 6.4 and newer only supports adjacent panels in the same screen edge, "
+"if two or more panels share the same space they will overlap.<br>By "
+"increasing this distance you can avoid that, simulating a stacked layout. "
+"Works best with panels that can hide."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Requires a Wayland session."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"C++ plugin not found. Install the plugin and restart plasmashell to use this "
+"feature. See <a href=\"%1\">install instructions</a>."
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Customization"
