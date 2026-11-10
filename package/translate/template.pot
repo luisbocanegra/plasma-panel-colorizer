@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-11-09 02:06+0000\n"
+"POT-Creation-Date: 2026-11-10 09:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -491,7 +491,11 @@ msgid "Spacing:"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "<strong>Odd spacing</strong> values will be automatically converted to <strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
+msgid "<strong>Odd spacing</strong> value will be automatically converted to <strong>even</strong> when <strong>Widget Islands</strong> feature is used."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Spacing of 0 on Plasma 6.8.2 and older may cause plasmashell to freeze when dragging things on it outside of edit mode, see <a href=\"%1\">#593</a>."
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml

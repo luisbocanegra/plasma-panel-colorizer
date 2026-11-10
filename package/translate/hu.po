@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-11-09 02:06+0000\n"
+"POT-Creation-Date: 2026-11-10 09:15+0000\n"
 "PO-Revision-Date: 2026-02-09 22:02+0100\n"
 "Last-Translator: Levente Pál Szíjártó <szijartoleventepal@gmail.com>\n"
 "Language-Team: hu\n"
@@ -573,11 +573,15 @@ msgstr "Térköz:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
-"<strong>Odd spacing</strong> values will be automatically converted to "
-"<strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
+"<strong>Odd spacing</strong> value will be automatically converted to "
+"<strong>even</strong> when <strong>Widget Islands</strong> feature is used."
 msgstr ""
-"<strong>Elemszigetek</strong> használata mellett a <strong>páratlan</strong> "
-"értékek automatikusan <strong>párosra</strong> lesznek kerekítve."
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Spacing of 0 on Plasma 6.8.2 and older may cause plasmashell to freeze when "
+"dragging things on it outside of edit mode, see <a href=\"%1\">#593</a>."
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Custom font:"
@@ -1699,6 +1703,13 @@ msgid ""
 "%1. Run systemctl restart --user plasma-plasmashell or log out and log back "
 "in."
 msgstr ""
+
+#~ msgid ""
+#~ "<strong>Odd spacing</strong> values will be automatically converted to "
+#~ "<strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
+#~ msgstr ""
+#~ "<strong>Elemszigetek</strong> használata mellett a <strong>páratlan</"
+#~ "strong> értékek automatikusan <strong>párosra</strong> lesznek kerekítve."
 
 #~ msgid ""
 #~ "Fix text and icon colors/font for widgets where the normal method doesn't "
