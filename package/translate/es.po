@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-11-09 02:06+0000\n"
+"POT-Creation-Date: 2026-11-10 09:15+0000\n"
 "PO-Revision-Date: 2026-04-15 16:01-0300\n"
 "Last-Translator: Lucas Cesa <lucascesa455@gmail.com>\n"
 "Language-Team: spanish <LL@li.org>\n"
@@ -489,8 +489,12 @@ msgid "Spacing:"
 msgstr "Espaciado:"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "<strong>Odd spacing</strong> values will be automatically converted to <strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
-msgstr "<strong>Un espaciado impar</strong> será automáticamente reconvertido a <strong>par</strong> si la función <strong>Islas de Widgets</strong> está en uso."
+msgid "<strong>Odd spacing</strong> value will be automatically converted to <strong>even</strong> when <strong>Widget Islands</strong> feature is used."
+msgstr ""
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid "Spacing of 0 on Plasma 6.8.2 and older may cause plasmashell to freeze when dragging things on it outside of edit mode, see <a href=\"%1\">#593</a>."
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Custom font:"
@@ -1435,6 +1439,9 @@ msgstr "Ocultar widget (visible en el Modo edición del panel)"
 #: ../contents/ui/main.qml
 msgid "A Plasmashell restart is required to remove all the modifications made by %1. Run systemctl restart --user plasma-plasmashell or log out and log back in."
 msgstr "Se requiere reiniciar Plasmashell para eliminar todas las modificaciones realizadas por %1. Ejecute systemctl restart --user plasma-plasmashell o cierre sesión y vuelva a iniciarla."
+
+#~ msgid "<strong>Odd spacing</strong> values will be automatically converted to <strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
+#~ msgstr "<strong>Un espaciado impar</strong> será automáticamente reconvertido a <strong>par</strong> si la función <strong>Islas de Widgets</strong> está en uso."
 
 #~ msgid ""
 #~ "Fix text and icon colors/font for widgets where the normal method doesn't work or is reset by the widget.<br> - <strong>Mask</strong>: Force color on SVG icons, useful for symbolic icons.<br> - <strong>Color Effect</strong>: Force color on text and icons using post-processing effect, useful for non-symbolic icons.<br> - <strong>Refresh</strong>: Re-apply color/font at a fixed interval, "

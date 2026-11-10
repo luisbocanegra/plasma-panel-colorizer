@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-11-09 02:06+0000\n"
+"POT-Creation-Date: 2026-11-10 09:15+0000\n"
 "PO-Revision-Date: 2026-01-24 16:46+0800\n"
 "Last-Translator: Mill Haruto <mill413@outlook.com>\n"
 "Language-Team: \n"
@@ -563,11 +563,15 @@ msgstr "间距："
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
-"<strong>Odd spacing</strong> values will be automatically converted to "
-"<strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
+"<strong>Odd spacing</strong> value will be automatically converted to "
+"<strong>even</strong> when <strong>Widget Islands</strong> feature is used."
 msgstr ""
-"启用<strong>挂件群岛</strong>功能时，<strong>奇数间距</strong>值会自动转换为"
-"<strong>偶数</strong>。"
+
+#: ../contents/ui/components/FormWidgetSettings.qml
+msgid ""
+"Spacing of 0 on Plasma 6.8.2 and older may cause plasmashell to freeze when "
+"dragging things on it outside of edit mode, see <a href=\"%1\">#593</a>."
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Custom font:"
@@ -1711,6 +1715,13 @@ msgid ""
 msgstr ""
 "需要重启 Plasmashell 才能移除 %1 所做的全部修改。运行 systemctl restart --"
 "user plasma-plasmashell，或注销后重新登录。"
+
+#~ msgid ""
+#~ "<strong>Odd spacing</strong> values will be automatically converted to "
+#~ "<strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
+#~ msgstr ""
+#~ "启用<strong>挂件群岛</strong>功能时，<strong>奇数间距</strong>值会自动转换"
+#~ "为<strong>偶数</strong>。"
 
 #~ msgid ""
 #~ "Fix text and icon colors/font for widgets where the normal method doesn't "
