@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.1](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v8.1.0...v8.1.1) (2026-11-11)
+
+
+### Bug Fixes
+
+* binding loop on cfg whenever stored settings need migrating ([ad928a4](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/ad928a42bfc0b929afffcfa552e98aa880b736db))
+
 ## [8.1.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v8.0.0...v8.1.0) (2026-11-11)
 
 
