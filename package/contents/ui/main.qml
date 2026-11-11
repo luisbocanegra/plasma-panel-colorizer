@@ -107,13 +107,15 @@ PlasmoidItem {
         }
 
         Utils.fixGlobalSettingsV3(globalSettings);
-        const config = Utils.mergeConfigs(Globals.defaultConfig, globalSettings);
-        const configStr = JSON.stringify(config);
+        return Utils.mergeConfigs(Globals.defaultConfig, globalSettings);
+    }
+    onCfgChanged: Qt.callLater(main.saveMigratedSettings)
+    function saveMigratedSettings() {
+        const configStr = JSON.stringify(cfg);
         if (Plasmoid.configuration.globalSettings !== configStr) {
             Plasmoid.configuration.globalSettings = configStr;
             Plasmoid.configuration.writeConfig();
         }
-        return config;
     }
     property var presetAutoloading: {
         try {
