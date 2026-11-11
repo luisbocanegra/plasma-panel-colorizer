@@ -68,14 +68,13 @@ KCM.SimpleKCM {
                 const out = stdout.trim().split("\n");
                 for (const line of out) {
                     const parts = line.split(":");
-                    const path = parts[parts.length - 1];
-                    let name = path.split("/");
-                    name = name[name.length - 1];
-                    const dir = parts[1];
-                    console.log(dir);
+                    const builtin = parts[parts.length - 1] === "b";
+                    const path = parts.slice(0, parts.length - 2).join("");
+                    const name = path.split("/").pop();
+                    console.log(path);
                     const preset = {
                         "name": name,
-                        "value": dir
+                        "value": path
                     };
                     presetsModel.append(preset);
                     presetsList.push(preset);

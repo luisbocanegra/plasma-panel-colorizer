@@ -97,7 +97,6 @@ KCM.SimpleKCM {
         standardButtons: Kirigami.Dialog.Ok | Kirigami.Dialog.Cancel
         onAccepted: {
             root.deletePreset(root.editingPreset);
-            runCommand.exec(root.listPresetsCmd);
         }
     }
 
@@ -188,8 +187,14 @@ KCM.SimpleKCM {
             console.error(`Detected unsafe deletion of '${path}' aborting.`);
             return;
         }
-        console.warn("rm -r '" + path + "'");
-        runCommand.exec("rm -r '" + path + "'");
+        console.log("rm -r '" + path + "'");
+        runCommand.exec("rm -r '" + path + "'" , result => {
+            if (result.exitCode !== 0) {
+                console.error(result.stderr || result.stdout);
+                return;
+            }
+            root.reloadPresetList();
+        });
     }
 
     Component.onCompleted: {
