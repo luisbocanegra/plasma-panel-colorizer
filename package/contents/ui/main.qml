@@ -263,12 +263,16 @@ PlasmoidItem {
         panelColorizer.setScreenEdgeMargin(panelView, offset);
     }
 
+    // TODO: try to decouple scripting, edge margin and visibility
     function applyStockPanelSettings() {
         let script = Utils.setPanelModeScript(Plasmoid.containment.id, stockPanelSettings);
         dbusEvaluateScript.arguments = [script.toString().replace(/\n/g, ' ').trim()];
         dbusEvaluateScript.call();
-        updatePanelVisibility();
         updateScreenEdgeMargin();
+        // HACK: in some cases the panel does not hide on startup
+        // setting visibility in the next event loop iteration makes it work
+        // https://github.com/luisbocanegra/plasma-panel-colorizer/issues/609
+        Qt.callLater(updatePanelVisibility);
     }
 
     function updatePanelVisibility() {
@@ -301,7 +305,6 @@ PlasmoidItem {
     // qmlformat on
 
     onStockPanelSettingsDepsChanged: Qt.callLater(applyStockPanelSettings)
-    onIsEnabledChanged: Qt.callLater(applyStockPanelSettings)
 
     onForceRecolorCountChanged: {
         // console.error("onForceRecolorCountChanged ->", forceRecolorCount)
