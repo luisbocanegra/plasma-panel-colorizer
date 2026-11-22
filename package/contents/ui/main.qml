@@ -305,6 +305,16 @@ PlasmoidItem {
     // qmlformat on
 
     onStockPanelSettingsDepsChanged: Qt.callLater(applyStockPanelSettings)
+    onPanelViewChanged: {
+        if (!panelView)
+            return;
+        Qt.callLater(() => {
+            Qt.callLater(() => {
+                updateScreenEdgeMargin();
+                updatePanelVisibility();
+            });
+        });
+    }
 
     onForceRecolorCountChanged: {
         // console.error("onForceRecolorCountChanged ->", forceRecolorCount)
