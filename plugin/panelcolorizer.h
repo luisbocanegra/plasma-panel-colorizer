@@ -52,7 +52,7 @@ class PanelColorizer : public QObject {
     void combineRegions();
 
     QPointer<QWindow> m_panelWindow;
-    LayerShellQt::Window *m_layerWindow = nullptr;
+    QPointer<LayerShellQt::Window> m_layerWindow;
     QMargins m_layerMargins;
     int m_margin;
     QPoint m_panelPositionOffset;
