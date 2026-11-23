@@ -378,6 +378,7 @@ PlasmoidItem {
     Connections {
         target: main.dropArea
         enabled: main.plasmaVersion.isLowerThan("6.8.3")
+        ignoreUnknownSignals: true
         function onContainsDragChanged() {
             if (main.dropArea.containsDrag) {
                 containsDragTimer.stop();
@@ -883,12 +884,13 @@ PlasmoidItem {
 
     onHideWidgetChanged: updatePlasmoidStatus()
 
-    property PlasmaCore.Action hideWidgetAction: PlasmaCore.Action {
+    PlasmaCore.Action {
+        id: hideWidgetAction
         text: i18n("Hide widget (visible in panel Edit Mode)")
         checkable: true
         icon.name: "visibility-symbolic"
         checked: Plasmoid.configuration.hideWidget
-        onTriggered: {
+        onTriggered: checked => {
             Plasmoid.configuration.hideWidget = checked;
             Plasmoid.configuration.writeConfig();
         }
