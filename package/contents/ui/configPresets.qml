@@ -6,6 +6,7 @@ import QtQuick.Layouts
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
+import org.kde.kitemmodels as KItemModels
 
 import "components" as Components
 import "code/utils.js" as Utils
@@ -31,6 +32,14 @@ KCM.SimpleKCM {
             }
             return false;
         }
+    }
+
+    KItemModels.KSortFilterProxyModel {
+        id: filteredPresetsModel
+        sourceModel: presetListModel
+        filterRoleName: "name"
+        filterCaseSensitivity: Qt.CaseInsensitive
+        filterString: searchField.text
     }
 
     property string editingPreset
@@ -188,7 +197,7 @@ KCM.SimpleKCM {
             return;
         }
         console.log("rm -r '" + path + "'");
-        runCommand.exec("rm -r '" + path + "'" , result => {
+        runCommand.exec("rm -r '" + path + "'", result => {
             if (result.exitCode !== 0) {
                 console.error(result.stderr || result.stdout);
                 return;
@@ -268,8 +277,13 @@ KCM.SimpleKCM {
                         }
                     }
                 }
+                Kirigami.SearchField {
+                    id: searchField
+                    Layout.fillWidth: true
+                    placeholderText: i18n("Search presets")
+                }
                 Repeater {
-                    model: presetListModel
+                    model: filteredPresetsModel
                     delegate: Kirigami.AbstractCard {
                         id: content
                         required property int index
