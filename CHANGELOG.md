@@ -1,5 +1,23 @@
 # Changelog
 
+## [8.2.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v8.1.0...v8.2.0) (2026-11-25)
+
+
+### Features
+
+* improve Appearance settings page ([2fd7863](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/2fd786373d12fd28a0f62aa47aa63db4b0e856af))
+* search prests by name ([f5031a4](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/f5031a4b7aa295fc0457356b9df1ed5f9303c771))
+* stock panel settings &gt; opacity requires plasma 6.6 or newer ([6f40aa2](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/6f40aa29bbe70f7983a395dc348fd39bb6dee303))
+
+
+### Bug Fixes
+
+* binding loop on cfg whenever stored settings need migrating ([ad928a4](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/ad928a42bfc0b929afffcfa552e98aa880b736db))
+* hidden panel does not hide on startup ([c3952ec](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/c3952ec81020a44d08f172dfa4fafc307d2f16c1)), closes [#609](https://github.com/luisbocanegra/plasma-panel-colorizer/issues/609)
+* plasmashell crash when parent window changes ([f6f4882](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/f6f4882ecc738e165df55e671d570179cbbdf690))
+* restore screen edge spacing and visibility when outputs change ([f681df5](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/f681df56f4eb73a5025b81195807dc488e9a574c))
+* signal handler warnings ([e3c71af](https://github.com/luisbocanegra/plasma-panel-colorizer/commit/e3c71af640bf93c291be0843924821c891221c7e))
+
 ## [8.1.0](https://github.com/luisbocanegra/plasma-panel-colorizer/compare/v8.0.0...v8.1.0) (2026-11-11)
 
 
