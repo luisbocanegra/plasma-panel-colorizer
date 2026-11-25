@@ -37,14 +37,14 @@ KCM.SimpleKCM {
     ColumnLayout {
         Kirigami.InlineMessage {
             Layout.fillWidth: true
-            text: i18n("Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g from top to left).")
+            text: i18n("Changing panel position may cause Plasma to crash when moving panels between perpendicular edges (e.g from top to left).")
             visible: true
             type: Kirigami.MessageType.Warning
         }
 
         Kirigami.InlineMessage {
             Layout.fillWidth: true
-            text: i18n("Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead.")
+            text: i18n("Opacity and Screen options require <b>Plasma 6.3</b> or newer and depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead.")
             visible: true
             type: Kirigami.MessageType.Information
         }

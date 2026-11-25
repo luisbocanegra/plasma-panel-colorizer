@@ -203,11 +203,6 @@ KCM.SimpleKCM {
         }
 
         Kirigami.FormLayout {
-            Kirigami.Separator {
-                Kirigami.FormData.isSection: true
-                Kirigami.FormData.label: i18n("Force Text/Icon color")
-            }
-
             SpinBox {
                 Kirigami.FormData.label: i18n("Refresh interval:")
                 from: 16

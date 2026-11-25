@@ -162,20 +162,9 @@ KCM.SimpleKCM {
 
         Kirigami.InlineMessage {
             Layout.fillWidth: true
-            text: i18n("Blacklist widgets to keep their default appearance. A logout may be required for some widgets to fully restore their default appearance.")
+            text: i18n("Blacklist widgets to exclude them from customization. A logout may be required for some widgets to fully restore their original appearance.")
             visible: true
             type: Kirigami.MessageType.Information
-        }
-
-        Kirigami.FormLayout {
-            CheckBox {
-                id: blacklistSpacers
-                text: i18n("Blacklist spacers")
-                checked: root.cfg_blacklistSpacers
-                onCheckedChanged: {
-                    root.updateConfig();
-                }
-            }
         }
 
         RowLayout {
@@ -195,6 +184,17 @@ KCM.SimpleKCM {
                 runCommand.exec("echo '" + cfg_blacklistedWidgets + "' > '" + configDir + "blacklistWidgets.json'");
             }
             onImportConfirmed: runCommand.exec(importCmd)
+        }
+
+        Kirigami.FormLayout {
+            CheckBox {
+                id: blacklistSpacers
+                text: i18n("Blacklist spacers")
+                checked: root.cfg_blacklistSpacers
+                onCheckedChanged: {
+                    root.updateConfig();
+                }
+            }
         }
 
         ColumnLayout {

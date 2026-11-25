@@ -170,6 +170,7 @@ KCM.ScrollViewKCM {
             checkable: true
             Layout.alignment: Qt.AlignHCenter
             Layout.margins: Kirigami.Units.mediumSpacing
+            icon.name: "help-contextual-symbolic"
         }
         Label {
             text: i18n("1. Enable <b>Log icon changes</b> above<br>2. Run <b>journalctl -f</b> from terminal<br>3. Hover the System tray entry or trigger an icon change<br>4. Copy one of the properties: icon SHA1, icon name, name or title<br>5. Add a new rule with the matching property you choose and specify the replacement icon name or file")
