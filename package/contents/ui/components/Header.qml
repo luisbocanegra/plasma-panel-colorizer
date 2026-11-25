@@ -182,20 +182,20 @@ ColumnLayout {
                             url: "https://ko-fi.com/luisbocanegra"
                         },
                         {
+                            label: "Buy Me A Coffee",
+                            url: "https://buymeacoffee.com/luisbocanegra"
+                        },
+                        {
+                            label: "PayPal",
+                            url: "https://www.paypal.com/donate/?hosted_button_id=68SF5ZPAZ46UN"
+                        },
+                        {
                             label: "Patreon",
                             url: "https://www.patreon.com/luisbocanegra"
                         },
                         {
-                            label: "PayPal",
-                            url: "https://www.paypal.com/donate/?hosted_button_id=Y5TMH3Z4YZRDA"
-                        },
-                        {
                             label: "Liberapay",
                             url: "https://liberapay.com/luisbocanegra"
-                        },
-                        {
-                            label: "Buy Me A Coffee",
-                            url: "https://buymeacoffee.com/luisbocanegra"
                         },
                     ]
                     delegate: MenuItem {

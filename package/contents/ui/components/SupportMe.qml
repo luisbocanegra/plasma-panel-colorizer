@@ -14,7 +14,7 @@ ColumnLayout {
     }
 
     Label {
-        text: i18n("If you enjoy using the plugin please consider sponsoring or donating so I can dedicate more time to maintain and improve this and <a href=\"%1\">my other projects</a>.", "https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers")
+        text: i18n("Consider sponsoring or donating to support the continued maintenance of this and <a href=\"%1\">my other projects</a>.", "https://github.com/luisbocanegra?tab=repositories&q=&type=source")
         Layout.fillWidth: true
         wrapMode: Text.Wrap
         onLinkActivated: link => Qt.openUrlExternally(link)
@@ -44,15 +44,9 @@ ColumnLayout {
                     backgroundColor: "#FF7F41"
                 },
                 {
-                    label: "Liberapay",
-                    icon: Qt.resolvedUrl("../../icons/liberapay.svg"),
-                    url: "https://liberapay.com/luisbocanegra",
-                    backgroundColor: "#F6C915"
-                },
-                {
                     label: "PayPal",
                     icon: Qt.resolvedUrl("../../icons/paypal.svg"),
-                    url: "https://www.paypal.com/donate/?hosted_button_id=Y5TMH3Z4YZRDA",
+                    url: "https://www.paypal.com/donate/?hosted_button_id=68SF5ZPAZ46UN",
                     backgroundColor: "#002991"
                 },
                 {
@@ -60,6 +54,12 @@ ColumnLayout {
                     icon: Qt.resolvedUrl("../../icons/patreon.svg"),
                     url: "https://www.patreon.com/luisbocanegra",
                     backgroundColor: "#000000"
+                },
+                {
+                    label: "Liberapay",
+                    icon: Qt.resolvedUrl("../../icons/liberapay.svg"),
+                    url: "https://liberapay.com/luisbocanegra",
+                    backgroundColor: "#F6C915"
                 },
             ]
             delegate: ColoredButton {

@@ -2,13 +2,18 @@
 
 # Panel Colorizer
 
-[![AUR version](https://img.shields.io/aur/version/plasma6-applets-panel-colorizer?logo=archlinux&labelColor=2d333b&style=for-the-badge&color=1378AD)](https://aur.archlinux.org/packages/plasma6-applets-panel-colorizer)
-[![Store version](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opendesktop.org%2Focs%2Fv1%2Fcontent%2Fdata%2F2130967&query=%2Focs%2Fdata%2Fcontent%2Fversion%2Ftext()&labelColor=2d333b&style=for-the-badge&color=1378AD&logo=kde&label=KDE%20Store)](https://store.kde.org/p/2130967)
-[![OBS Fedora 43](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FFedora_43%2Fx86_64%2Fplasma-panel-colorizer%2F_buildinfo&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=fedora&label=Fedora%2043&labelColor=2d333b&style=for-the-badge&color=1378AD)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
-[![OBS Fedora Rawhide](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FFedora_Rawhide%2Fx86_64%2Fplasma-panel-colorizer%2F_buildinfo&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=fedora&label=Fedora%20Rawhide&labelColor=2d333b&style=for-the-badge&color=1378AD)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
-[![OBS openSUSE Tumbleweed](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FopenSUSE_Tumbleweed%2Fx86_64%2Fplasma-panel-colorizer%2F_buildinfo&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=opensuse&label=openSUSE%20Tumbleweed&labelColor=2d333b&style=for-the-badge&color=13ad28)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
-[![OBS openSUSE Slowroll](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FopenSUSE_Slowroll%2Fx86_64%2Fplasma-panel-colorizer%2F_buildinfo&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=opensuse&label=openSUSE%20Slowroll&labelColor=2d333b&style=for-the-badge&color=13ad28)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
-[![nixpkgs unstable](https://img.shields.io/badge/dynamic/regex?url=https%3A%2F%2Fgithub.com%2FNixOS%2Fnixpkgs%2Fblob%2Fnixos-unstable%2Fpkgs%2Fby-name%2Fpl%2Fplasma-panel-colorizer%2Fpackage.nix&search=version%5Cs*%3D%5Cs*.*%3F(%5B0-9%5D%2B%5C.%5B0-9%5D%2B%5C.%5B0-9%5D%2B)&replace=%241&style=for-the-badge&logo=nixos&label=nixpkgs%20unstable&labelColor=2d333b&color=395DA7)](https://repology.org/project/plasma-panel-colorizer/versions)
+[![AUR version](https://img.shields.io/aur/version/plasma6-applets-panel-colorizer?logo=archlinux&labelColor=2d333b&style=for-the-badge&color=7AD3FF)](https://aur.archlinux.org/packages/plasma6-applets-panel-colorizer)
+[![Store version](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opendesktop.org%2Focs%2Fv1%2Fcontent%2Fdata%2F2130967&query=%2Focs%2Fdata%2Fcontent%2Fversion%2Ftext()&labelColor=2d333b&style=for-the-badge&color=ffe587&logo=kde&label=KDE%20Store)](https://store.kde.org/p/2130967)
+[![OBS Fedora 40](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FFedora_40%2Fx86_64%2Fplasma-panel-colorizer%2F_buildenv&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=fedora&label=Fedora%2040&labelColor=2d333b&style=for-the-badge&color=9CC7FF)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
+[![OBS Fedora 41](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FFedora_41%2Fx86_64%2Fplasma-panel-colorizer%2F_buildenv&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=fedora&label=Fedora%2041&labelColor=2d333b&style=for-the-badge&color=9CC7FF)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
+[![OBS Fedora 42](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FFedora_42%2Fx86_64%2Fplasma-panel-colorizer%2F_buildenv&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=fedora&label=Fedora%2042&labelColor=2d333b&style=for-the-badge&color=9CC7FF)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
+[![OBS Fedora 43](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FFedora_43%2Fx86_64%2Fplasma-panel-colorizer%2F_buildenv&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=fedora&label=Fedora%2043&labelColor=2d333b&style=for-the-badge&color=9CC7FF)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
+[![OBS Fedora 44](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FFedora_44%2Fx86_64%2Fplasma-panel-colorizer%2F_buildenv&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=fedora&label=Fedora%2044&labelColor=2d333b&style=for-the-badge&color=9CC7FF)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
+[![OBS Fedora 45](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FFedora_45%2Fx86_64%2Fplasma-panel-colorizer%2F_buildenv&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=fedora&label=Fedora%2045&labelColor=2d333b&style=for-the-badge&color=9CC7FF)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
+[![OBS Fedora Rawhide](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FFedora_Rawhide%2Fx86_64%2Fplasma-panel-colorizer%2F_buildenv&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=fedora&label=Fedora%20Rawhide&labelColor=2d333b&style=for-the-badge&color=9CC7FF)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
+[![OBS openSUSE Tumbleweed](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FopenSUSE_Tumbleweed%2Fx86_64%2Fplasma-panel-colorizer%2F_buildenv&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=opensuse&label=openSUSE%20Tumbleweed&labelColor=2d333b&style=for-the-badge&color=D2FF8E)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
+[![OBS openSUSE Slowroll](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fapi.opensuse.org%2Fpublic%2Fbuild%2Fhome%3Aluisbocanegra%2FopenSUSE_Slowroll%2Fx86_64%2Fplasma-panel-colorizer%2F_buildenv&query=%2Fbuildinfo%2Fversrel%2Ftext()&logo=opensuse&label=openSUSE%20Slowroll&labelColor=2d333b&style=for-the-badge&color=D2FF8E)](https://software.opensuse.org//download.html?project=home%3Aluisbocanegra&package=plasma-panel-colorizer)
+[![nixpkgs unstable](https://img.shields.io/badge/dynamic/regex?url=https%3A%2F%2Fgithub.com%2FNixOS%2Fnixpkgs%2Fblob%2Fnixos-unstable%2Fpkgs%2Fby-name%2Fpl%2Fplasma-panel-colorizer%2Fpackage.nix&search=version%5Cs*%3D%5Cs*.*%3F(%5B0-9%5D%2B%5C.%5B0-9%5D%2B%5C.%5B0-9%5D%2B)&replace=%241&style=for-the-badge&logo=nixos&label=nixpkgs%20unstable&labelColor=2d333b&color=97b3ff)](https://repology.org/project/plasma-panel-colorizer/versions)
 
 Fully-featured widget to bring Latte-Dock and WM status bar customization features to the default Plasma panels.
 
@@ -16,12 +21,12 @@ Fully-featured widget to bring Latte-Dock and WM status bar customization featur
 
 </div>
 
-If you enjoy using the plugin consider sponsoring or donating so I can dedicate more time to maintain and improve this and [my other projects](https://github.com/luisbocanegra?tab=repositories&q=&type=source&language=&sort=stargazers).
+Consider sponsoring or donating to support the continued maintenance of this and [my other projects](https://github.com/luisbocanegra?tab=repositories&q=&type=source) ❤️
 
-[![GitHub Sponsors](https://img.shields.io/badge/Sponsors-%2329313C?logo=githubsponsors&style=for-the-badge)](https://github.com/sponsors/luisbocanegra)
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub%20Sponsors-%2329313C?logo=githubsponsors&style=for-the-badge)](https://github.com/sponsors/luisbocanegra)
 [![Ko-fi](https://img.shields.io/badge/Ko--fi-supporter?logo=ko-fi&logoColor=%23ffffff&color=%23467BEB&style=for-the-badge)](https://ko-fi.com/luisbocanegra)
 [!["Buy Me A Coffee"](https://img.shields.io/badge/Buy%20me%20a%20coffee-supporter?logo=buymeacoffee&logoColor=%23282828&color=%23FF803F&style=for-the-badge)](https://www.buymeacoffee.com/luisbocanegra)
-[![PayPal](https://img.shields.io/badge/PayPal-supporter?logo=paypal&logoColor=%23ffffff&color=%23003087&style=for-the-badge)](https://www.paypal.com/donate/?hosted_button_id=Y5TMH3Z4YZRDA)
+[![PayPal](https://img.shields.io/badge/PayPal-supporter?logo=paypal&logoColor=%23ffffff&color=%23003087&style=for-the-badge)](https://www.paypal.com/donate/?hosted_button_id=68SF5ZPAZ46UN)
 [![Patreon](https://img.shields.io/badge/Patreon-%23000000?logo=patreon&logoColor=%23ffffff&style=for-the-badge)](https://patreon.com/luisbocanegra?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink)
 
 ## Join our Discord / Matrix
@@ -30,8 +35,6 @@ Help/Support/Discussion about my projects
 
 [![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/ZqD75dzKTe)
 [![Matrix](https://img.shields.io/badge/Matrix-%23121212.svg?style=for-the-badge&logo=matrix&logoColor=white)](https://matrix.to/#/#kde-plasma-panel-colorizer:matrix.org)
-
-> Not bridged
 
 ## Demo
 
@@ -89,8 +92,9 @@ Help/Support/Discussion about my projects
   - Shadow
 - Blur behind custom background ([requires building and installing the C++ plugin](#build-from-source-with-c-plugin))
 - Replace applications system tray icons (requires the C++ plugin)
+- Hide widgets
 
-**Force Text/Icon color**
+**Text/Icons color**
 
 - Force color to icons that don't follow the theme color for specific widgets
   - Mask for symbolic icons
@@ -116,6 +120,8 @@ Help/Support/Discussion about my projects
 - Alignment
 - Opacity (Plasma 6.3.0)
 - *EXPERIMENTAL* Sow/hide panel "AKA toggle panel" with D-Bus, stays hidden when hovering on screen edges
+- Hide when there are no widgets visible
+- Distance from screen edge (to simulate stacking panels)
 
 **Widget Islands**
 
@@ -126,7 +132,7 @@ Help/Support/Discussion about my projects
 Overrides let you give a completely different configuration to one or more widgets
 
 - Preset overrides (saved in the current preset)
-- User overrides (sour own overrides that apply over the preset configuration and overrides)
+- User overrides (your own overrides that apply over the preset configuration and overrides)
 
 </details>
 
@@ -357,9 +363,23 @@ The location where they are stored has changed, the new locations are:
 
 Since version 6.9.0 it is possible to exclude widgets from customization using the **Blacklist widgets** tab.
 
-### Will you add support to drag/close/maximize/minimize... windows like latte had?
+### Will you add support to drag/close/maximize/minimize... windows from empty areas of the panel that Latte had?
 
-Not in this project, use my other project [Panel Spacer Extended](https://github.com/luisbocanegra/plasma-panel-spacer-extended) instead
+Not in this project, use my other project [Panel Spacer Extended](https://github.com/luisbocanegra/plasma-panel-spacer-extended) instead.
+
+### Can this widget change the appearance of other parts of Plasma (e.g Desktop view, widget popups/tooltips, overview)
+
+Only the panel for now, the Desktop widgets might be possible, for the others haven't looked into but most likely not.
+
+### Applied a preset but the colors don't look the same as the preview?
+
+Most built-in presets are configured to follow the current color scheme, most of the previews were taken with a color scheme generated by [KDE Material You Colors](https://github.com/luisbocanegra/kde-material-you-colors).
+
+Additionally, for the presets that rely on transparency and blur the final appearance depends on the Blur effect settings (System Settings > Window Management > Desktop Effects > Blur).
+
+### Applied a preset but the widgets didn't change?
+
+This is expected, panel colorizer does not change which widgets are in a panel, just the appearance and behavior.
 
 ### How does it work?
 
@@ -374,10 +394,6 @@ Time has passed and now the widget does a lot more than that, but the principle 
 **Performance & memory usage**
 
 I tried to optimize it so CPU usage only increases around 0.5-1% on my computer while idle, memory usage will vary depending on the amount of panels and how many widgets are in them.
-
-### Can this widget change the appearance of other parts of Plasma (e.g Desktop view, widget popups/tooltips, overview)
-
-Only the panel for now, the Desktop widgets might be possible, for the others haven't looked into but most likely not.
 
 ## Bug reporting / Feature requests / Contributing
 
