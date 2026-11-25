@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-11-25 04:10+0000\n"
+"POT-Creation-Date: 2026-11-25 05:37+0000\n"
 "PO-Revision-Date: 2026-11-03 10:00+0700\n"
 "Last-Translator: dinhkarate <dinhkarat@gmail.com>\n"
 "Language-Team: Vietnamese\n"
@@ -682,8 +682,8 @@ msgid "Thank you for using %1!"
 msgstr "Cảm ơn bạn đã sử dụng %1!"
 
 #: ../contents/ui/components/SupportMe.qml
-msgid "If you enjoy using the plugin please consider sponsoring or donating so I can dedicate more time to maintain and improve this and <a href=\"%1\">my other projects</a>."
-msgstr "Nếu bạn thích dùng phần bổ trợ này, hãy cân nhắc tài trợ hoặc quyên góp để tôi có thêm thời gian duy trì và cải thiện nó cũng như <a href=\"%1\">các dự án khác của tôi</a>."
+msgid "Consider sponsoring or donating to support the continued maintenance of this and <a href=\"%1\">my other projects</a>."
+msgstr ""
 
 #: ../contents/ui/components/SupportMe.qml
 msgid "You can also"
@@ -1420,6 +1420,9 @@ msgstr "Ẩn tiện ích (hiển thị trong chế độ chỉnh sửa bảng đ
 #: ../contents/ui/main.qml
 msgid "A Plasmashell restart is required to remove all the modifications made by %1. Run systemctl restart --user plasma-plasmashell or log out and log back in."
 msgstr "Cần khởi động lại Plasmashell để gỡ bỏ mọi sửa đổi do %1 tạo ra. Hãy chạy systemctl restart --user plasma-plasmashell hoặc đăng xuất rồi đăng nhập lại."
+
+#~ msgid "If you enjoy using the plugin please consider sponsoring or donating so I can dedicate more time to maintain and improve this and <a href=\"%1\">my other projects</a>."
+#~ msgstr "Nếu bạn thích dùng phần bổ trợ này, hãy cân nhắc tài trợ hoặc quyên góp để tôi có thêm thời gian duy trì và cải thiện nó cũng như <a href=\"%1\">các dự án khác của tôi</a>."
 
 #~ msgid "Change element appearance based on their state, configuration is stacked on top of the current appearance"
 #~ msgstr "Thay đổi giao diện phần tử theo trạng thái của chúng, cấu hình được chồng lên trên giao diện hiện tại"
