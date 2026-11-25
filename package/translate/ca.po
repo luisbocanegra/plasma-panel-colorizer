@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-11-10 09:15+0000\n"
+"POT-Creation-Date: 2026-11-25 04:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -201,7 +201,7 @@ msgstr "Imatge"
 msgid "High resolution images can slow down the desktop when the panel or widget size changes!"
 msgstr "Les imatges d'alta resolució poden alentir l'escriptori quan canvia la mida dels ginys o del panell!"
 
-#: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
+#: ../contents/ui/components/FormColors.qml
 msgid "Element:"
 msgstr "Element:"
 
@@ -454,8 +454,8 @@ msgid "Busy"
 msgstr "Ocupat"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Change element appearance based on their state, configuration is stacked on top of the current appearance"
-msgstr "Canvia l'aparença de l'element segons els seu estat. La configuració s'aplica al damunt de l'aparença actual."
+msgid "Change element appearance based on their state, configuration is stacked on top of the Normal appearance"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Blur custom background (Beta)"
@@ -762,24 +762,20 @@ msgid "Widgets"
 msgstr "Ginys"
 
 #: ../contents/ui/configAppearance.qml
-msgid "Tray widgets"
-msgstr "Ginys de la safata"
-
-#: ../contents/ui/configAppearance.qml
-msgid "Part of the panel on which the options below will be applied."
-msgstr "Part del panell a la qual s'aplicaran les opcions de sota."
+msgid "Tray Widgets"
+msgstr ""
 
 #: ../contents/ui/configBlacklistWidgets.qml
-msgid "Blacklist widgets to keep their default appearance. A logout may be required for some widgets to fully restore their default appearance."
-msgstr "Posa ginys a la llista negra per a mantenir-ne l'aparença. Potser caldrà sortir de la sessió perquè alguns ginys recuperin del tot la seva aparença per defecte."
-
-#: ../contents/ui/configBlacklistWidgets.qml
-msgid "Blacklist spacers"
-msgstr "Posa els espaiadors a la llista negra"
+msgid "Blacklist widgets to exclude them from customization. A logout may be required for some widgets to fully restore their original appearance."
+msgstr ""
 
 #: ../contents/ui/configBlacklistWidgets.qml ../contents/ui/configTrayIconsReplacer.qml
 msgid "Remove all"
 msgstr "Trau-ho tot"
+
+#: ../contents/ui/configBlacklistWidgets.qml
+msgid "Blacklist spacers"
+msgstr "Posa els espaiadors a la llista negra"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Hide widget:"
@@ -1074,6 +1070,10 @@ msgid "Refresh presets"
 msgstr "Actualitza els perfils"
 
 #: ../contents/ui/configPresets.qml
+msgid "Search presets"
+msgstr ""
+
+#: ../contents/ui/configPresets.qml
 msgid "Built-in"
 msgstr "Intern"
 
@@ -1094,12 +1094,12 @@ msgid "Update preview"
 msgstr "Actualitza la vista prèvia"
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g from top to left)."
-msgstr "Canviar la posició del panell és inestable ara mateix i pot provocar que el Plasma falli quan es mouen els panells entre vores no paral·leles, com ara de dalt a l'esquerra."
+msgid "Changing panel position may cause Plasma to crash when moving panels between perpendicular edges (e.g from top to left)."
+msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
-msgstr "Les opcions d'opacitat i pantalla requereixen la versió del <b>Plasma 6.3</b> o superior.<br>L'opacitat depèn del tema del Plasma actual. Si voleu un control més fi o transparència total, feu servir les opcions d'<b>Opacitat del Panell</b> i de <b>Fons nadiu del panell</b> de la pestanya <b>Aparença</b>."
+msgid "Screen option requires <b>Plasma 6.3</b> or newer.<br>Opacity option requires Plasma <b>6.6</b> or newer and depends on the current Plasma Theme. For finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
+msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Screen"
@@ -1218,32 +1218,16 @@ msgid "Show/Hide"
 msgstr "Mostra/Amaga"
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Show:"
-msgstr "Mostra:"
-
-#: ../contents/ui/configStockPanelSettings.qml
-msgid ""
-"WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will remove the configuration from all Panel Colorizer "
-"instances so make sure to save the others first"
+msgid "Hide:"
 msgstr ""
-"AVÍS: Feu servir Mostra/Amaga amb precaució. Si amagueu el panell i no heu configurat un perfil d'autocàrrega o no sabeu canviar de perfil amb el D-Bus (o ho teniu desactivat), no podreu tornar a fer-lo visible sense haver de traure tota la configuració o bé desinstal·lar l'Acoloridor de panells. Feu servir l'ordre de més avall en una terminal/tty quan sortiu de la sessió o reinicieu per tal de "
-"traure la configuració de totes les instàncies de l'Acoloridor de panells. Assegureu-vos de desar la configuració de totes les instàncies de l'Acoloridor abans de fer-ho."
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
-msgstr "Si teniu el D-Bus activat, es recomana que el feu servir en lloc de les dreceres. Consulteu el LLEGEIX-ME per a saber més de la pestanya General i veure'n alguns exemples."
-
-#: ../contents/ui/configStockPanelSettings.qml
-msgid "D-Bus usage"
-msgstr "Ús del D-Bus"
+msgid "Hidden panels are visible in Edit Mode."
+msgstr ""
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
 msgstr "Restaura els valors per defecte (trau tots els canvis d'icones i textos)"
-
-#: ../contents/ui/configTextIconFix.qml
-msgid "Force Text/Icon color"
-msgstr "Força el color de text/icona"
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Refresh interval:"
@@ -1436,6 +1420,43 @@ msgstr "Amaga el giny (visible en Mode d'Edició del Panell)"
 #: ../contents/ui/main.qml
 msgid "A Plasmashell restart is required to remove all the modifications made by %1. Run systemctl restart --user plasma-plasmashell or log out and log back in."
 msgstr "Cal reiniciar el Plasmashell per a traure totes les modificacions de %1. Executeu systemctl restart --user plasma-plasmashell o sortiu i torneu a entrar a la sessió."
+
+#~ msgid "Change element appearance based on their state, configuration is stacked on top of the current appearance"
+#~ msgstr "Canvia l'aparença de l'element segons els seu estat. La configuració s'aplica al damunt de l'aparença actual."
+
+#~ msgid "Tray widgets"
+#~ msgstr "Ginys de la safata"
+
+#~ msgid "Part of the panel on which the options below will be applied."
+#~ msgstr "Part del panell a la qual s'aplicaran les opcions de sota."
+
+#~ msgid "Blacklist widgets to keep their default appearance. A logout may be required for some widgets to fully restore their default appearance."
+#~ msgstr "Posa ginys a la llista negra per a mantenir-ne l'aparença. Potser caldrà sortir de la sessió perquè alguns ginys recuperin del tot la seva aparença per defecte."
+
+#~ msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g from top to left)."
+#~ msgstr "Canviar la posició del panell és inestable ara mateix i pot provocar que el Plasma falli quan es mouen els panells entre vores no paral·leles, com ara de dalt a l'esquerra."
+
+#~ msgid "Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
+#~ msgstr "Les opcions d'opacitat i pantalla requereixen la versió del <b>Plasma 6.3</b> o superior.<br>L'opacitat depèn del tema del Plasma actual. Si voleu un control més fi o transparència total, feu servir les opcions d'<b>Opacitat del Panell</b> i de <b>Fons nadiu del panell</b> de la pestanya <b>Aparença</b>."
+
+#~ msgid "Show:"
+#~ msgstr "Mostra:"
+
+#~ msgid ""
+#~ "WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will remove the configuration from all Panel "
+#~ "Colorizer instances so make sure to save the others first"
+#~ msgstr ""
+#~ "AVÍS: Feu servir Mostra/Amaga amb precaució. Si amagueu el panell i no heu configurat un perfil d'autocàrrega o no sabeu canviar de perfil amb el D-Bus (o ho teniu desactivat), no podreu tornar a fer-lo visible sense haver de traure tota la configuració o bé desinstal·lar l'Acoloridor de panells. Feu servir l'ordre de més avall en una terminal/tty quan sortiu de la sessió o reinicieu per tal "
+#~ "de traure la configuració de totes les instàncies de l'Acoloridor de panells. Assegureu-vos de desar la configuració de totes les instàncies de l'Acoloridor abans de fer-ho."
+
+#~ msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
+#~ msgstr "Si teniu el D-Bus activat, es recomana que el feu servir en lloc de les dreceres. Consulteu el LLEGEIX-ME per a saber més de la pestanya General i veure'n alguns exemples."
+
+#~ msgid "D-Bus usage"
+#~ msgstr "Ús del D-Bus"
+
+#~ msgid "Force Text/Icon color"
+#~ msgstr "Força el color de text/icona"
 
 #~ msgid "<strong>Odd spacing</strong> values will be automatically converted to <strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
 #~ msgstr "Els valors d'<strong>espaiat imparells</strong> es convertiran automàticament a <strong>parells</strong> si es fan servir les <strong>Illes de ginys</strong>."

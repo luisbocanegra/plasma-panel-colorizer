@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-11-10 09:15+0000\n"
+"POT-Creation-Date: 2026-11-25 04:10+0000\n"
 "PO-Revision-Date: 2026-07-11 15:30-0300\n"
 "Last-Translator: \n"
 "Language-Team: Brazilian Portuguese\n"
@@ -200,7 +200,7 @@ msgstr "Imagem"
 msgid "High resolution images can slow down the desktop when the panel or widget size changes!"
 msgstr "Imagens de alta resolução podem deixar o desktop lento quando o tamanho do painel ou do widget muda!"
 
-#: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
+#: ../contents/ui/components/FormColors.qml
 msgid "Element:"
 msgstr "Elemento:"
 
@@ -453,8 +453,8 @@ msgid "Busy"
 msgstr "Ocupado"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Change element appearance based on their state, configuration is stacked on top of the current appearance"
-msgstr "Altera a aparência dos elementos com base no estado deles; a configuração é aplicada sobre a aparência atual"
+msgid "Change element appearance based on their state, configuration is stacked on top of the Normal appearance"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Blur custom background (Beta)"
@@ -761,24 +761,20 @@ msgid "Widgets"
 msgstr "Widgets"
 
 #: ../contents/ui/configAppearance.qml
-msgid "Tray widgets"
-msgstr "Widgets da área de notificação"
-
-#: ../contents/ui/configAppearance.qml
-msgid "Part of the panel on which the options below will be applied."
-msgstr "Parte do painel na qual as opções abaixo serão aplicadas."
+msgid "Tray Widgets"
+msgstr ""
 
 #: ../contents/ui/configBlacklistWidgets.qml
-msgid "Blacklist widgets to keep their default appearance. A logout may be required for some widgets to fully restore their default appearance."
-msgstr "Adicione widgets à lista negra para manter a aparência padrão deles. Pode ser necessário encerrar a sessão para alguns widgets restaurarem totalmente a aparência padrão."
-
-#: ../contents/ui/configBlacklistWidgets.qml
-msgid "Blacklist spacers"
-msgstr "Colocar espaçadores na lista negra"
+msgid "Blacklist widgets to exclude them from customization. A logout may be required for some widgets to fully restore their original appearance."
+msgstr ""
 
 #: ../contents/ui/configBlacklistWidgets.qml ../contents/ui/configTrayIconsReplacer.qml
 msgid "Remove all"
 msgstr "Remover tudo"
+
+#: ../contents/ui/configBlacklistWidgets.qml
+msgid "Blacklist spacers"
+msgstr "Colocar espaçadores na lista negra"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Hide widget:"
@@ -1073,6 +1069,10 @@ msgid "Refresh presets"
 msgstr "Recarregar predefinições"
 
 #: ../contents/ui/configPresets.qml
+msgid "Search presets"
+msgstr ""
+
+#: ../contents/ui/configPresets.qml
 msgid "Built-in"
 msgstr "Integradas"
 
@@ -1093,12 +1093,12 @@ msgid "Update preview"
 msgstr "Atualizar prévia"
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g from top to left)."
-msgstr "Alterar a posição do painel está instável no momento e pode fazer o Plasma travar ao mover painéis entre bordas não paralelas (ex.: de cima para a esquerda)."
+msgid "Changing panel position may cause Plasma to crash when moving panels between perpendicular edges (e.g from top to left)."
+msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
-msgstr "As opções de Opacidade e Tela requerem o <b>Plasma 6.3</b> ou mais recente.<br>A opacidade depende do tema atual do Plasma; para um controle mais fino ou transparência total, use as opções <b>Opacidade do painel</b> e <b>Fundo nativo do painel</b> na aba <b>Aparência</b>."
+msgid "Screen option requires <b>Plasma 6.3</b> or newer.<br>Opacity option requires Plasma <b>6.6</b> or newer and depends on the current Plasma Theme. For finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
+msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Screen"
@@ -1217,32 +1217,16 @@ msgid "Show/Hide"
 msgstr "Mostrar/Ocultar"
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Show:"
-msgstr "Mostrar:"
-
-#: ../contents/ui/configStockPanelSettings.qml
-msgid ""
-"WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will remove the configuration from all Panel Colorizer "
-"instances so make sure to save the others first"
+msgid "Hide:"
 msgstr ""
-"AVISO: Use Mostrar/Ocultar com cautela. Se você ocultar o painel e não tiver configurado o carregamento automático de predefinições nem souber alternar predefinições via D-Bus (ou o tiver desativado), não haverá como torná-lo visível novamente sem remover manualmente a configuração ou o Panel Colorizer. Use o comando abaixo no terminal/tty e depois encerre a sessão ou reinicie o computador; ele "
-"removerá a configuração de todas as instâncias do Panel Colorizer, portanto salve as outras primeiro"
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
-msgstr "Se você tem o D-Bus ativado, é recomendável usá-lo com atalhos. Consulte o README para saber mais ou veja a aba Geral para alguns exemplos."
-
-#: ../contents/ui/configStockPanelSettings.qml
-msgid "D-Bus usage"
+msgid "Hidden panels are visible in Edit Mode."
 msgstr ""
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
 msgstr "Restaurar padrão (remove todas as correções de ícone e texto)"
-
-#: ../contents/ui/configTextIconFix.qml
-msgid "Force Text/Icon color"
-msgstr "Forçar cor de texto/ícone"
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Refresh interval:"
@@ -1435,6 +1419,40 @@ msgstr "Ocultar widget (visível no modo de edição do painel)"
 #: ../contents/ui/main.qml
 msgid "A Plasmashell restart is required to remove all the modifications made by %1. Run systemctl restart --user plasma-plasmashell or log out and log back in."
 msgstr ""
+
+#~ msgid "Change element appearance based on their state, configuration is stacked on top of the current appearance"
+#~ msgstr "Altera a aparência dos elementos com base no estado deles; a configuração é aplicada sobre a aparência atual"
+
+#~ msgid "Tray widgets"
+#~ msgstr "Widgets da área de notificação"
+
+#~ msgid "Part of the panel on which the options below will be applied."
+#~ msgstr "Parte do painel na qual as opções abaixo serão aplicadas."
+
+#~ msgid "Blacklist widgets to keep their default appearance. A logout may be required for some widgets to fully restore their default appearance."
+#~ msgstr "Adicione widgets à lista negra para manter a aparência padrão deles. Pode ser necessário encerrar a sessão para alguns widgets restaurarem totalmente a aparência padrão."
+
+#~ msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g from top to left)."
+#~ msgstr "Alterar a posição do painel está instável no momento e pode fazer o Plasma travar ao mover painéis entre bordas não paralelas (ex.: de cima para a esquerda)."
+
+#~ msgid "Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
+#~ msgstr "As opções de Opacidade e Tela requerem o <b>Plasma 6.3</b> ou mais recente.<br>A opacidade depende do tema atual do Plasma; para um controle mais fino ou transparência total, use as opções <b>Opacidade do painel</b> e <b>Fundo nativo do painel</b> na aba <b>Aparência</b>."
+
+#~ msgid "Show:"
+#~ msgstr "Mostrar:"
+
+#~ msgid ""
+#~ "WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will remove the configuration from all Panel "
+#~ "Colorizer instances so make sure to save the others first"
+#~ msgstr ""
+#~ "AVISO: Use Mostrar/Ocultar com cautela. Se você ocultar o painel e não tiver configurado o carregamento automático de predefinições nem souber alternar predefinições via D-Bus (ou o tiver desativado), não haverá como torná-lo visível novamente sem remover manualmente a configuração ou o Panel Colorizer. Use o comando abaixo no terminal/tty e depois encerre a sessão ou reinicie o computador; "
+#~ "ele removerá a configuração de todas as instâncias do Panel Colorizer, portanto salve as outras primeiro"
+
+#~ msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
+#~ msgstr "Se você tem o D-Bus ativado, é recomendável usá-lo com atalhos. Consulte o README para saber mais ou veja a aba Geral para alguns exemplos."
+
+#~ msgid "Force Text/Icon color"
+#~ msgstr "Forçar cor de texto/ícone"
 
 #~ msgid "<strong>Odd spacing</strong> values will be automatically converted to <strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
 #~ msgstr "Valores de <strong>espaçamento ímpares</strong> serão convertidos automaticamente para <strong>pares</strong> se o recurso <strong>Ilhas de widgets</strong> for usado."

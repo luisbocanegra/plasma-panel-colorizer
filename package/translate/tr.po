@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-11-10 09:15+0000\n"
+"POT-Creation-Date: 2026-11-25 04:10+0000\n"
 "PO-Revision-Date: 2026-05-21 13:40+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Turkish <tr@li.org>\n"
@@ -200,7 +200,7 @@ msgstr "Görsel"
 msgid "High resolution images can slow down the desktop when the panel or widget size changes!"
 msgstr "Yüksek çözünürlüklü görseller, panel veya araç takımı boyutu değiştiğinde masaüstünü yavaşlatabilir!"
 
-#: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
+#: ../contents/ui/components/FormColors.qml
 msgid "Element:"
 msgstr "Öge:"
 
@@ -453,8 +453,8 @@ msgid "Busy"
 msgstr "Meşgul"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Change element appearance based on their state, configuration is stacked on top of the current appearance"
-msgstr "Ögelerin görünümlerini durumlarına göre değiştirin, yapılandırma mevcut görünümün üzerine eklenir"
+msgid "Change element appearance based on their state, configuration is stacked on top of the Normal appearance"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Blur custom background (Beta)"
@@ -761,24 +761,20 @@ msgid "Widgets"
 msgstr "Araç Takımları"
 
 #: ../contents/ui/configAppearance.qml
-msgid "Tray widgets"
-msgstr "Tepsi araç takımları"
-
-#: ../contents/ui/configAppearance.qml
-msgid "Part of the panel on which the options below will be applied."
-msgstr "Aşağıdaki seçeneklerin uygulanacağı panel bölümü."
+msgid "Tray Widgets"
+msgstr ""
 
 #: ../contents/ui/configBlacklistWidgets.qml
-msgid "Blacklist widgets to keep their default appearance. A logout may be required for some widgets to fully restore their default appearance."
-msgstr "Araç takımlarını varsayılan görünümlerinde tutmak için kara listeye alın. Bazı araç takımlarının varsayılan görünümünü tamamen geri yüklemek için oturumu kapatmak gerekebilir."
-
-#: ../contents/ui/configBlacklistWidgets.qml
-msgid "Blacklist spacers"
-msgstr "Boşlukları (spacers) kara listeye al"
+msgid "Blacklist widgets to exclude them from customization. A logout may be required for some widgets to fully restore their original appearance."
+msgstr ""
 
 #: ../contents/ui/configBlacklistWidgets.qml ../contents/ui/configTrayIconsReplacer.qml
 msgid "Remove all"
 msgstr "Tümünü kaldır"
+
+#: ../contents/ui/configBlacklistWidgets.qml
+msgid "Blacklist spacers"
+msgstr "Boşlukları (spacers) kara listeye al"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Hide widget:"
@@ -1075,6 +1071,10 @@ msgid "Refresh presets"
 msgstr "Ön ayarları yenile"
 
 #: ../contents/ui/configPresets.qml
+msgid "Search presets"
+msgstr ""
+
+#: ../contents/ui/configPresets.qml
 msgid "Built-in"
 msgstr "Yerleşik"
 
@@ -1095,12 +1095,12 @@ msgid "Update preview"
 msgstr "Önizlemeyi güncelle"
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g from top to left)."
-msgstr "Panel konumunu değiştirmek şu anda kararsızdır ve panelleri paralel olmayan kenarlar arasında taşırken (ör. üstten sola) Plasma'nın çökmesine neden olabilir."
+msgid "Changing panel position may cause Plasma to crash when moving panels between perpendicular edges (e.g from top to left)."
+msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
-msgstr "Opaklık ve Ekran seçenekleri <b>Plasma 6.3</b> veya daha yenisini gerektirir.<br>Opaklık mevcut Plasma Temasına bağlıdır, daha ince kontrol veya tam şeffaflık için bunun yerine <b>Görünüm</b> sekmesindeki <b>Panel Opaklığı</b> ve <b>Yerel panel arka planı</b> seçeneklerini kullanın."
+msgid "Screen option requires <b>Plasma 6.3</b> or newer.<br>Opacity option requires Plasma <b>6.6</b> or newer and depends on the current Plasma Theme. For finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
+msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Screen"
@@ -1219,32 +1219,16 @@ msgid "Show/Hide"
 msgstr "Göster/Gizle"
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Show:"
-msgstr "Göster:"
-
-#: ../contents/ui/configStockPanelSettings.qml
-msgid ""
-"WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will remove the configuration from all Panel Colorizer "
-"instances so make sure to save the others first"
+msgid "Hide:"
 msgstr ""
-"UYARI: Göster/Gizle'yi dikkatli kullanın, paneli gizlerseniz ve otomatik ön ayar yüklemesini yapılandırmadıysanız veya D-Bus kullanarak ön ayarları nasıl değiştireceğinizi bilmiyorsanız (veya devre dışı bıraktıysanız), yapılandırmayı veya Panel Renklendiriciyi manuel olarak kaldırmadan paneli tekrar görünür hale getirmenin hiçbir yolu olmayacaktır. Terminalde/tty'de aşağıdaki komutu kullanıp "
-"oturumu kapatın veya yeniden başlatın; bu işlem yapılandırmayı tüm Panel Renklendirici örneklerinden kaldıracaktır, bu nedenle önce diğerlerini kaydettiğinizden emin olun"
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
-msgstr "D-Bus etkinse, bunun yerine onu kısayollarla kullanmanız önerilir. Daha fazla bilgi edinmek için README dosyasına başvurun veya bazı örnekler için Genel sekmesine bakın."
-
-#: ../contents/ui/configStockPanelSettings.qml
-msgid "D-Bus usage"
+msgid "Hidden panels are visible in Edit Mode."
 msgstr ""
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
 msgstr "Varsayılana geri yükle (tüm simge ve metin düzeltmelerini kaldırır)"
-
-#: ../contents/ui/configTextIconFix.qml
-msgid "Force Text/Icon color"
-msgstr "Metin/Simge rengini zorla"
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Refresh interval:"
@@ -1437,6 +1421,40 @@ msgstr "Araç takımını gizle (panel Düzenleme Modunda görünür)"
 #: ../contents/ui/main.qml
 msgid "A Plasmashell restart is required to remove all the modifications made by %1. Run systemctl restart --user plasma-plasmashell or log out and log back in."
 msgstr ""
+
+#~ msgid "Change element appearance based on their state, configuration is stacked on top of the current appearance"
+#~ msgstr "Ögelerin görünümlerini durumlarına göre değiştirin, yapılandırma mevcut görünümün üzerine eklenir"
+
+#~ msgid "Tray widgets"
+#~ msgstr "Tepsi araç takımları"
+
+#~ msgid "Part of the panel on which the options below will be applied."
+#~ msgstr "Aşağıdaki seçeneklerin uygulanacağı panel bölümü."
+
+#~ msgid "Blacklist widgets to keep their default appearance. A logout may be required for some widgets to fully restore their default appearance."
+#~ msgstr "Araç takımlarını varsayılan görünümlerinde tutmak için kara listeye alın. Bazı araç takımlarının varsayılan görünümünü tamamen geri yüklemek için oturumu kapatmak gerekebilir."
+
+#~ msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g from top to left)."
+#~ msgstr "Panel konumunu değiştirmek şu anda kararsızdır ve panelleri paralel olmayan kenarlar arasında taşırken (ör. üstten sola) Plasma'nın çökmesine neden olabilir."
+
+#~ msgid "Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
+#~ msgstr "Opaklık ve Ekran seçenekleri <b>Plasma 6.3</b> veya daha yenisini gerektirir.<br>Opaklık mevcut Plasma Temasına bağlıdır, daha ince kontrol veya tam şeffaflık için bunun yerine <b>Görünüm</b> sekmesindeki <b>Panel Opaklığı</b> ve <b>Yerel panel arka planı</b> seçeneklerini kullanın."
+
+#~ msgid "Show:"
+#~ msgstr "Göster:"
+
+#~ msgid ""
+#~ "WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will remove the configuration from all Panel "
+#~ "Colorizer instances so make sure to save the others first"
+#~ msgstr ""
+#~ "UYARI: Göster/Gizle'yi dikkatli kullanın, paneli gizlerseniz ve otomatik ön ayar yüklemesini yapılandırmadıysanız veya D-Bus kullanarak ön ayarları nasıl değiştireceğinizi bilmiyorsanız (veya devre dışı bıraktıysanız), yapılandırmayı veya Panel Renklendiriciyi manuel olarak kaldırmadan paneli tekrar görünür hale getirmenin hiçbir yolu olmayacaktır. Terminalde/tty'de aşağıdaki komutu kullanıp "
+#~ "oturumu kapatın veya yeniden başlatın; bu işlem yapılandırmayı tüm Panel Renklendirici örneklerinden kaldıracaktır, bu nedenle önce diğerlerini kaydettiğinizden emin olun"
+
+#~ msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
+#~ msgstr "D-Bus etkinse, bunun yerine onu kısayollarla kullanmanız önerilir. Daha fazla bilgi edinmek için README dosyasına başvurun veya bazı örnekler için Genel sekmesine bakın."
+
+#~ msgid "Force Text/Icon color"
+#~ msgstr "Metin/Simge rengini zorla"
 
 #~ msgid "<strong>Odd spacing</strong> values will be automatically converted to <strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
 #~ msgstr "<strong>Araç Takımı Adaları</strong> özelliği kullanılırsa <strong>Tek (odd) boşluk</strong> değerleri otomatik olarak <strong>çift (even)</strong> değerlere dönüştürülür."

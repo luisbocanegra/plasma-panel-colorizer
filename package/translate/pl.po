@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-11-10 09:15+0000\n"
+"POT-Creation-Date: 2026-11-25 04:10+0000\n"
 "PO-Revision-Date: 2026-02-07 12:00+0100\n"
 "Last-Translator: RygorrMortis <rygorrmortis@github.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -236,7 +236,7 @@ msgstr ""
 "Obrazy o wysokiej rozdzielczości mogą spowolnić pulpit przy zmianie rozmiaru "
 "panelu lub widżetu!"
 
-#: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
+#: ../contents/ui/components/FormColors.qml
 msgid "Element:"
 msgstr "Element:"
 
@@ -525,10 +525,8 @@ msgstr "Zajęty"
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
 "Change element appearance based on their state, configuration is stacked on "
-"top of the current appearance"
+"top of the Normal appearance"
 msgstr ""
-"Zmieniaj wygląd elementów na podstawie ich stanu, konfiguracja jest "
-"nakładana na bieżący wygląd"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Blur custom background (Beta)"
@@ -877,27 +875,23 @@ msgid "Widgets"
 msgstr ""
 
 #: ../contents/ui/configAppearance.qml
-msgid "Tray widgets"
-msgstr ""
-
-#: ../contents/ui/configAppearance.qml
-msgid "Part of the panel on which the options below will be applied."
+msgid "Tray Widgets"
 msgstr ""
 
 #: ../contents/ui/configBlacklistWidgets.qml
 msgid ""
-"Blacklist widgets to keep their default appearance. A logout may be required "
-"for some widgets to fully restore their default appearance."
-msgstr ""
-
-#: ../contents/ui/configBlacklistWidgets.qml
-msgid "Blacklist spacers"
+"Blacklist widgets to exclude them from customization. A logout may be "
+"required for some widgets to fully restore their original appearance."
 msgstr ""
 
 #: ../contents/ui/configBlacklistWidgets.qml
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Remove all"
 msgstr "Usuń wszystkie"
+
+#: ../contents/ui/configBlacklistWidgets.qml
+msgid "Blacklist spacers"
+msgstr ""
 
 #: ../contents/ui/configGeneral.qml
 msgid "Hide widget:"
@@ -1255,6 +1249,10 @@ msgid "Refresh presets"
 msgstr "Odśwież presety"
 
 #: ../contents/ui/configPresets.qml
+msgid "Search presets"
+msgstr ""
+
+#: ../contents/ui/configPresets.qml
 msgid "Built-in"
 msgstr "Wbudowane"
 
@@ -1276,24 +1274,17 @@ msgstr "Aktualizuj podgląd"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
-"Changing panel position is currently unstable and may cause Plasma to crash "
-"when moving panels between non-parallel edges (e.g from top to left)."
+"Changing panel position may cause Plasma to crash when moving panels between "
+"perpendicular edges (e.g from top to left)."
 msgstr ""
-"Zmiana pozycji panelu jest obecnie niestabilna i może powodować awarię "
-"Plasma przy przesuwaniu paneli między nie-równoległymi krawędziami (np. z "
-"góry na lewo)."
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
-"Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity "
-"depends on the current Plasma Theme, for finer control or full transparency "
-"use <b>Panel Opacity</b> and <b>Native panel background</b> options in "
-"<b>Appearance</b> tab instead."
+"Screen option requires <b>Plasma 6.3</b> or newer.<br>Opacity option "
+"requires Plasma <b>6.6</b> or newer and depends on the current Plasma Theme. "
+"For finer control or full transparency use <b>Panel Opacity</b> and "
+"<b>Native panel background</b> options in <b>Appearance</b> tab instead."
 msgstr ""
-"Opcje nieprzezroczystości i ekranu wymagają <b>Plasma 6.3</b> lub nowszej."
-"<br>Nieprzezroczystość zależy od bieżącego motywu Plasma, dla dokładniejszej "
-"kontroli lub pełnej przezroczystości użyj opcji <b>Nieprzezroczystość "
-"panelu</b> i <b>Domyślne tło panelu</b> na karcie <b>Wygląd</b> zamiast tego."
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Screen"
@@ -1412,41 +1403,16 @@ msgid "Show/Hide"
 msgstr "Pokaż/Ukryj"
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Show:"
-msgstr "Pokaż:"
-
-#: ../contents/ui/configStockPanelSettings.qml
-msgid ""
-"WARNING: Use Show/Hide with caution, if you hide the panel and have not "
-"configured preset auto-loading or know how to switch presets using D-Bus (or "
-"have disabled it), you will have no way to make it visible again without "
-"manually removing the configuration or Panel Colorizer, use the command "
-"below in terminal/tty then log out or reboot, it will remove the "
-"configuration from all Panel Colorizer instances so make sure to save the "
-"others first"
+msgid "Hide:"
 msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid ""
-"If you have D-Bus enabled is it recommended that you use that with shortcuts "
-"instead. Consult the README to learn more or see the General tab for some "
-"examples."
-msgstr ""
-"Jeśli masz włączony D-Bus, zaleca się używanie go ze skrótami zamiast tego. "
-"Skonsultuj README, aby dowiedzieć się więcej lub zobacz kartę Ogólne dla "
-"niektórych przykładów."
-
-#: ../contents/ui/configStockPanelSettings.qml
-msgid "D-Bus usage"
+msgid "Hidden panels are visible in Edit Mode."
 msgstr ""
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
 msgstr "Przywróć domyślne (usuwa wszystkie poprawki ikon i tekstu)"
-
-#: ../contents/ui/configTextIconFix.qml
-msgid "Force Text/Icon color"
-msgstr "Wymuś kolor tekstu/ikony"
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Refresh interval:"
@@ -1691,6 +1657,49 @@ msgid ""
 "%1. Run systemctl restart --user plasma-plasmashell or log out and log back "
 "in."
 msgstr ""
+
+#~ msgid ""
+#~ "Change element appearance based on their state, configuration is stacked "
+#~ "on top of the current appearance"
+#~ msgstr ""
+#~ "Zmieniaj wygląd elementów na podstawie ich stanu, konfiguracja jest "
+#~ "nakładana na bieżący wygląd"
+
+#~ msgid ""
+#~ "Changing panel position is currently unstable and may cause Plasma to "
+#~ "crash when moving panels between non-parallel edges (e.g from top to "
+#~ "left)."
+#~ msgstr ""
+#~ "Zmiana pozycji panelu jest obecnie niestabilna i może powodować awarię "
+#~ "Plasma przy przesuwaniu paneli między nie-równoległymi krawędziami (np. z "
+#~ "góry na lewo)."
+
+#~ msgid ""
+#~ "Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity "
+#~ "depends on the current Plasma Theme, for finer control or full "
+#~ "transparency use <b>Panel Opacity</b> and <b>Native panel background</b> "
+#~ "options in <b>Appearance</b> tab instead."
+#~ msgstr ""
+#~ "Opcje nieprzezroczystości i ekranu wymagają <b>Plasma 6.3</b> lub nowszej."
+#~ "<br>Nieprzezroczystość zależy od bieżącego motywu Plasma, dla "
+#~ "dokładniejszej kontroli lub pełnej przezroczystości użyj opcji "
+#~ "<b>Nieprzezroczystość panelu</b> i <b>Domyślne tło panelu</b> na karcie "
+#~ "<b>Wygląd</b> zamiast tego."
+
+#~ msgid "Show:"
+#~ msgstr "Pokaż:"
+
+#~ msgid ""
+#~ "If you have D-Bus enabled is it recommended that you use that with "
+#~ "shortcuts instead. Consult the README to learn more or see the General "
+#~ "tab for some examples."
+#~ msgstr ""
+#~ "Jeśli masz włączony D-Bus, zaleca się używanie go ze skrótami zamiast "
+#~ "tego. Skonsultuj README, aby dowiedzieć się więcej lub zobacz kartę "
+#~ "Ogólne dla niektórych przykładów."
+
+#~ msgid "Force Text/Icon color"
+#~ msgstr "Wymuś kolor tekstu/ikony"
 
 #~ msgid ""
 #~ "<strong>Odd spacing</strong> values will be automatically converted to "
