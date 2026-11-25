@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-11-10 09:15+0000\n"
+"POT-Creation-Date: 2026-11-25 04:10+0000\n"
 "PO-Revision-Date: 2026-11-03 10:00+0700\n"
 "Last-Translator: dinhkarate <dinhkarat@gmail.com>\n"
 "Language-Team: Vietnamese\n"
@@ -201,7 +201,7 @@ msgstr "Hình ảnh"
 msgid "High resolution images can slow down the desktop when the panel or widget size changes!"
 msgstr "Hình ảnh độ phân giải cao có thể làm chậm màn hình nền khi kích thước bảng điều khiển hoặc tiện ích thay đổi!"
 
-#: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
+#: ../contents/ui/components/FormColors.qml
 msgid "Element:"
 msgstr "Phần tử:"
 
@@ -454,8 +454,8 @@ msgid "Busy"
 msgstr "Bận"
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Change element appearance based on their state, configuration is stacked on top of the current appearance"
-msgstr "Thay đổi giao diện phần tử theo trạng thái của chúng, cấu hình được chồng lên trên giao diện hiện tại"
+msgid "Change element appearance based on their state, configuration is stacked on top of the Normal appearance"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Blur custom background (Beta)"
@@ -762,24 +762,20 @@ msgid "Widgets"
 msgstr "Tiện ích"
 
 #: ../contents/ui/configAppearance.qml
-msgid "Tray widgets"
-msgstr "Tiện ích trong khay"
-
-#: ../contents/ui/configAppearance.qml
-msgid "Part of the panel on which the options below will be applied."
-msgstr "Phần của bảng điều khiển mà các tùy chọn bên dưới sẽ áp dụng vào."
+msgid "Tray Widgets"
+msgstr ""
 
 #: ../contents/ui/configBlacklistWidgets.qml
-msgid "Blacklist widgets to keep their default appearance. A logout may be required for some widgets to fully restore their default appearance."
-msgstr "Loại trừ tiện ích để giữ giao diện mặc định của chúng. Một số tiện ích có thể cần đăng xuất để khôi phục hoàn toàn giao diện mặc định."
-
-#: ../contents/ui/configBlacklistWidgets.qml
-msgid "Blacklist spacers"
-msgstr "Loại trừ các khoảng trống"
+msgid "Blacklist widgets to exclude them from customization. A logout may be required for some widgets to fully restore their original appearance."
+msgstr ""
 
 #: ../contents/ui/configBlacklistWidgets.qml ../contents/ui/configTrayIconsReplacer.qml
 msgid "Remove all"
 msgstr "Gỡ bỏ tất cả"
+
+#: ../contents/ui/configBlacklistWidgets.qml
+msgid "Blacklist spacers"
+msgstr "Loại trừ các khoảng trống"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Hide widget:"
@@ -1074,6 +1070,10 @@ msgid "Refresh presets"
 msgstr "Làm mới cấu hình sẵn"
 
 #: ../contents/ui/configPresets.qml
+msgid "Search presets"
+msgstr ""
+
+#: ../contents/ui/configPresets.qml
 msgid "Built-in"
 msgstr "Tích hợp sẵn"
 
@@ -1094,12 +1094,12 @@ msgid "Update preview"
 msgstr "Cập nhật ảnh xem trước"
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g from top to left)."
-msgstr "Việc thay đổi vị trí bảng điều khiển hiện chưa ổn định và có thể khiến Plasma gặp sự cố khi di chuyển bảng điều khiển giữa các cạnh không song song (ví dụ: từ trên sang trái)."
+msgid "Changing panel position may cause Plasma to crash when moving panels between perpendicular edges (e.g from top to left)."
+msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
-msgstr "Các tùy chọn Độ đục và Màn hình yêu cầu <b>Plasma 6.3</b> trở lên.<br>Độ đục phụ thuộc vào chủ đề Plasma hiện tại, để kiểm soát chi tiết hơn hoặc trong suốt hoàn toàn, hãy dùng các tùy chọn <b>Độ đục bảng điều khiển</b> và <b>Nền bảng điều khiển gốc</b> trong thẻ <b>Giao diện</b>."
+msgid "Screen option requires <b>Plasma 6.3</b> or newer.<br>Opacity option requires Plasma <b>6.6</b> or newer and depends on the current Plasma Theme. For finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
+msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Screen"
@@ -1218,32 +1218,16 @@ msgid "Show/Hide"
 msgstr "Hiện/Ẩn"
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Show:"
-msgstr "Hiện:"
-
-#: ../contents/ui/configStockPanelSettings.qml
-msgid ""
-"WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will remove the configuration from all Panel Colorizer "
-"instances so make sure to save the others first"
+msgid "Hide:"
 msgstr ""
-"CẢNH BÁO: Hãy cẩn thận khi dùng Hiện/Ẩn, nếu bạn ẩn bảng điều khiển mà chưa cấu hình tự động tải cấu hình sẵn hoặc không biết cách chuyển cấu hình sẵn bằng D-Bus (hoặc đã tắt D-Bus), bạn sẽ không có cách nào làm nó hiện lại ngoài việc gỡ bỏ thủ công cấu hình hoặc Panel Colorizer, hãy dùng lệnh bên dưới trong terminal/tty rồi đăng xuất hoặc khởi động lại máy, lệnh này sẽ xóa cấu hình khỏi mọi "
-"thực thể Panel Colorizer, vì vậy hãy lưu các thực thể khác trước"
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
-msgstr "Nếu đã bật D-Bus, bạn nên dùng D-Bus kết hợp với phím tắt thay cho cách này. Tham khảo README để tìm hiểu thêm hoặc xem thẻ Chung để có một số ví dụ."
-
-#: ../contents/ui/configStockPanelSettings.qml
-msgid "D-Bus usage"
-msgstr "Cách dùng D-Bus"
+msgid "Hidden panels are visible in Edit Mode."
+msgstr ""
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
 msgstr "Khôi phục mặc định (xóa mọi bản sửa biểu tượng và chữ)"
-
-#: ../contents/ui/configTextIconFix.qml
-msgid "Force Text/Icon color"
-msgstr "Buộc màu chữ/biểu tượng"
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Refresh interval:"
@@ -1436,6 +1420,43 @@ msgstr "Ẩn tiện ích (hiển thị trong chế độ chỉnh sửa bảng đ
 #: ../contents/ui/main.qml
 msgid "A Plasmashell restart is required to remove all the modifications made by %1. Run systemctl restart --user plasma-plasmashell or log out and log back in."
 msgstr "Cần khởi động lại Plasmashell để gỡ bỏ mọi sửa đổi do %1 tạo ra. Hãy chạy systemctl restart --user plasma-plasmashell hoặc đăng xuất rồi đăng nhập lại."
+
+#~ msgid "Change element appearance based on their state, configuration is stacked on top of the current appearance"
+#~ msgstr "Thay đổi giao diện phần tử theo trạng thái của chúng, cấu hình được chồng lên trên giao diện hiện tại"
+
+#~ msgid "Tray widgets"
+#~ msgstr "Tiện ích trong khay"
+
+#~ msgid "Part of the panel on which the options below will be applied."
+#~ msgstr "Phần của bảng điều khiển mà các tùy chọn bên dưới sẽ áp dụng vào."
+
+#~ msgid "Blacklist widgets to keep their default appearance. A logout may be required for some widgets to fully restore their default appearance."
+#~ msgstr "Loại trừ tiện ích để giữ giao diện mặc định của chúng. Một số tiện ích có thể cần đăng xuất để khôi phục hoàn toàn giao diện mặc định."
+
+#~ msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g from top to left)."
+#~ msgstr "Việc thay đổi vị trí bảng điều khiển hiện chưa ổn định và có thể khiến Plasma gặp sự cố khi di chuyển bảng điều khiển giữa các cạnh không song song (ví dụ: từ trên sang trái)."
+
+#~ msgid "Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
+#~ msgstr "Các tùy chọn Độ đục và Màn hình yêu cầu <b>Plasma 6.3</b> trở lên.<br>Độ đục phụ thuộc vào chủ đề Plasma hiện tại, để kiểm soát chi tiết hơn hoặc trong suốt hoàn toàn, hãy dùng các tùy chọn <b>Độ đục bảng điều khiển</b> và <b>Nền bảng điều khiển gốc</b> trong thẻ <b>Giao diện</b>."
+
+#~ msgid "Show:"
+#~ msgstr "Hiện:"
+
+#~ msgid ""
+#~ "WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will remove the configuration from all Panel "
+#~ "Colorizer instances so make sure to save the others first"
+#~ msgstr ""
+#~ "CẢNH BÁO: Hãy cẩn thận khi dùng Hiện/Ẩn, nếu bạn ẩn bảng điều khiển mà chưa cấu hình tự động tải cấu hình sẵn hoặc không biết cách chuyển cấu hình sẵn bằng D-Bus (hoặc đã tắt D-Bus), bạn sẽ không có cách nào làm nó hiện lại ngoài việc gỡ bỏ thủ công cấu hình hoặc Panel Colorizer, hãy dùng lệnh bên dưới trong terminal/tty rồi đăng xuất hoặc khởi động lại máy, lệnh này sẽ xóa cấu hình khỏi mọi "
+#~ "thực thể Panel Colorizer, vì vậy hãy lưu các thực thể khác trước"
+
+#~ msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
+#~ msgstr "Nếu đã bật D-Bus, bạn nên dùng D-Bus kết hợp với phím tắt thay cho cách này. Tham khảo README để tìm hiểu thêm hoặc xem thẻ Chung để có một số ví dụ."
+
+#~ msgid "D-Bus usage"
+#~ msgstr "Cách dùng D-Bus"
+
+#~ msgid "Force Text/Icon color"
+#~ msgstr "Buộc màu chữ/biểu tượng"
 
 #~ msgid "<strong>Odd spacing</strong> values will be automatically converted to <strong>evens</strong> if <strong>Widget Islands</strong> feature is used."
 #~ msgstr "Giá trị <strong>khoảng cách lẻ</strong> sẽ tự động được chuyển thành <strong>số chẵn</strong> nếu dùng tính năng <strong>Đảo tiện ích</strong>."

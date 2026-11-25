@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-colorizer\n"
-"POT-Creation-Date: 2026-11-10 09:15+0000\n"
+"POT-Creation-Date: 2026-11-25 04:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -202,7 +202,7 @@ msgstr ""
 msgid "High resolution images can slow down the desktop when the panel or widget size changes!"
 msgstr ""
 
-#: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
+#: ../contents/ui/components/FormColors.qml
 msgid "Element:"
 msgstr ""
 
@@ -455,7 +455,7 @@ msgid "Busy"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
-msgid "Change element appearance based on their state, configuration is stacked on top of the current appearance"
+msgid "Change element appearance based on their state, configuration is stacked on top of the Normal appearance"
 msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
@@ -765,23 +765,19 @@ msgid "Widgets"
 msgstr ""
 
 #: ../contents/ui/configAppearance.qml
-msgid "Tray widgets"
-msgstr ""
-
-#: ../contents/ui/configAppearance.qml
-msgid "Part of the panel on which the options below will be applied."
+msgid "Tray Widgets"
 msgstr ""
 
 #: ../contents/ui/configBlacklistWidgets.qml
-msgid "Blacklist widgets to keep their default appearance. A logout may be required for some widgets to fully restore their default appearance."
-msgstr ""
-
-#: ../contents/ui/configBlacklistWidgets.qml
-msgid "Blacklist spacers"
+msgid "Blacklist widgets to exclude them from customization. A logout may be required for some widgets to fully restore their original appearance."
 msgstr ""
 
 #: ../contents/ui/configBlacklistWidgets.qml ../contents/ui/configTrayIconsReplacer.qml
 msgid "Remove all"
+msgstr ""
+
+#: ../contents/ui/configBlacklistWidgets.qml
+msgid "Blacklist spacers"
 msgstr ""
 
 #: ../contents/ui/configGeneral.qml
@@ -1087,6 +1083,10 @@ msgid "Refresh presets"
 msgstr ""
 
 #: ../contents/ui/configPresets.qml
+msgid "Search presets"
+msgstr ""
+
+#: ../contents/ui/configPresets.qml
 msgid "Built-in"
 msgstr ""
 
@@ -1107,13 +1107,13 @@ msgid "Update preview"
 msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Changing panel position is currently unstable and may cause Plasma to crash when moving panels between non-parallel edges (e.g from top to left)."
+msgid "Changing panel position may cause Plasma to crash when moving panels between perpendicular edges (e.g from top to left)."
 msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
-"Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity depends on the current Plasma Theme, for finer control or full transparency use <b>Panel Opacity</b> and <b>Native panel "
-"background</b> options in <b>Appearance</b> tab instead."
+"Screen option requires <b>Plasma 6.3</b> or newer.<br>Opacity option requires Plasma <b>6.6</b> or newer and depends on the current Plasma Theme. For finer control or full transparency use <b>Panel "
+"Opacity</b> and <b>Native panel background</b> options in <b>Appearance</b> tab instead."
 msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
@@ -1233,30 +1233,15 @@ msgid "Show/Hide"
 msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Show:"
+msgid "Hide:"
 msgstr ""
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid ""
-"WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make "
-"it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will remove the configuration from all Panel "
-"Colorizer instances so make sure to save the others first"
-msgstr ""
-
-#: ../contents/ui/configStockPanelSettings.qml
-msgid "If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples."
-msgstr ""
-
-#: ../contents/ui/configStockPanelSettings.qml
-msgid "D-Bus usage"
+msgid "Hidden panels are visible in Edit Mode."
 msgstr ""
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
-msgstr ""
-
-#: ../contents/ui/configTextIconFix.qml
-msgid "Force Text/Icon color"
 msgstr ""
 
 #: ../contents/ui/configTextIconFix.qml

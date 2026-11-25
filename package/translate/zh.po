@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-11-10 09:15+0000\n"
+"POT-Creation-Date: 2026-11-25 04:10+0000\n"
 "PO-Revision-Date: 2026-01-24 16:46+0800\n"
 "Last-Translator: Mill Haruto <mill413@outlook.com>\n"
 "Language-Team: \n"
@@ -231,7 +231,7 @@ msgid ""
 "size changes!"
 msgstr "在面板或挂件尺寸变化时，高分辨率图像可能会导致桌面运行缓慢！"
 
-#: ../contents/ui/components/FormColors.qml ../contents/ui/configAppearance.qml
+#: ../contents/ui/components/FormColors.qml
 msgid "Element:"
 msgstr "元素："
 
@@ -512,8 +512,8 @@ msgstr "繁忙"
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid ""
 "Change element appearance based on their state, configuration is stacked on "
-"top of the current appearance"
-msgstr "根据元素状态改变其外观，配置将叠加在当前外观之上"
+"top of the Normal appearance"
+msgstr ""
 
 #: ../contents/ui/components/FormWidgetSettings.qml
 msgid "Blur custom background (Beta)"
@@ -866,28 +866,23 @@ msgid "Widgets"
 msgstr "挂件"
 
 #: ../contents/ui/configAppearance.qml
-msgid "Tray widgets"
-msgstr "托盘挂件"
-
-#: ../contents/ui/configAppearance.qml
-msgid "Part of the panel on which the options below will be applied."
-msgstr "以下选项将应用到的面板区域。"
+msgid "Tray Widgets"
+msgstr ""
 
 #: ../contents/ui/configBlacklistWidgets.qml
 msgid ""
-"Blacklist widgets to keep their default appearance. A logout may be required "
-"for some widgets to fully restore their default appearance."
+"Blacklist widgets to exclude them from customization. A logout may be "
+"required for some widgets to fully restore their original appearance."
 msgstr ""
-"将挂件加入黑名单以保留其默认外观。部分挂件可能需要注销才能完全恢复默认外观。"
-
-#: ../contents/ui/configBlacklistWidgets.qml
-msgid "Blacklist spacers"
-msgstr "将间隔件加入黑名单"
 
 #: ../contents/ui/configBlacklistWidgets.qml
 #: ../contents/ui/configTrayIconsReplacer.qml
 msgid "Remove all"
 msgstr "全部移除"
+
+#: ../contents/ui/configBlacklistWidgets.qml
+msgid "Blacklist spacers"
+msgstr "将间隔件加入黑名单"
 
 #: ../contents/ui/configGeneral.qml
 msgid "Hide widget:"
@@ -1235,6 +1230,10 @@ msgid "Refresh presets"
 msgstr "刷新预设"
 
 #: ../contents/ui/configPresets.qml
+msgid "Search presets"
+msgstr ""
+
+#: ../contents/ui/configPresets.qml
 msgid "Built-in"
 msgstr "内置"
 
@@ -1256,22 +1255,17 @@ msgstr "更新预览"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
-"Changing panel position is currently unstable and may cause Plasma to crash "
-"when moving panels between non-parallel edges (e.g from top to left)."
+"Changing panel position may cause Plasma to crash when moving panels between "
+"perpendicular edges (e.g from top to left)."
 msgstr ""
-"目前更改面板位置不稳定，在非平行边缘之间移动面板（例如从顶部到左侧）可能导致 "
-"Plasma 崩溃。"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid ""
-"Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity "
-"depends on the current Plasma Theme, for finer control or full transparency "
-"use <b>Panel Opacity</b> and <b>Native panel background</b> options in "
-"<b>Appearance</b> tab instead."
+"Screen option requires <b>Plasma 6.3</b> or newer.<br>Opacity option "
+"requires Plasma <b>6.6</b> or newer and depends on the current Plasma Theme. "
+"For finer control or full transparency use <b>Panel Opacity</b> and "
+"<b>Native panel background</b> options in <b>Appearance</b> tab instead."
 msgstr ""
-"不透明度和屏幕选项需要 <b>Plasma 6.3</b> 或更高版本。<br>不透明度依赖于当前 "
-"Plasma 主题，如需更精细的控制或完全透明，请在<b>外观</b>标签页中使用<b>面板不"
-"透明度</b>和<b>原生面板背景</b>选项。"
 
 #: ../contents/ui/configStockPanelSettings.qml
 msgid "Screen"
@@ -1390,44 +1384,16 @@ msgid "Show/Hide"
 msgstr "显示与隐藏"
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid "Show:"
-msgstr "显示："
-
-#: ../contents/ui/configStockPanelSettings.qml
-msgid ""
-"WARNING: Use Show/Hide with caution, if you hide the panel and have not "
-"configured preset auto-loading or know how to switch presets using D-Bus (or "
-"have disabled it), you will have no way to make it visible again without "
-"manually removing the configuration or Panel Colorizer, use the command "
-"below in terminal/tty then log out or reboot, it will remove the "
-"configuration from all Panel Colorizer instances so make sure to save the "
-"others first"
+msgid "Hide:"
 msgstr ""
-"警告：请谨慎使用显示与隐藏功能。如果隐藏了面板，而你既未配置预设自动加载，也"
-"不会通过 D-Bus 切换预设（或已禁用 D-Bus），则只能手动删除配置或移除 Panel "
-"Colorizer 才能再次显示面板。请在终端或 tty 中运行下方命令，然后注销或重启。此"
-"命令会删除所有 Panel Colorizer 实例的配置，请务必先保存其他实例的设置。"
 
 #: ../contents/ui/configStockPanelSettings.qml
-msgid ""
-"If you have D-Bus enabled is it recommended that you use that with shortcuts "
-"instead. Consult the README to learn more or see the General tab for some "
-"examples."
+msgid "Hidden panels are visible in Edit Mode."
 msgstr ""
-"若已启用 D-Bus，建议改用 D-Bus 配合快捷键操作。详情请参阅 README 或查看常规标"
-"签页中的示例。"
-
-#: ../contents/ui/configStockPanelSettings.qml
-msgid "D-Bus usage"
-msgstr "D-Bus 用法"
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Restore default (removes all icon and text fixes)"
 msgstr "恢复默认（移除所有图标和文本的修复）"
-
-#: ../contents/ui/configTextIconFix.qml
-msgid "Force Text/Icon color"
-msgstr "强制文本与图标颜色"
 
 #: ../contents/ui/configTextIconFix.qml
 msgid "Refresh interval:"
@@ -1715,6 +1681,74 @@ msgid ""
 msgstr ""
 "需要重启 Plasmashell 才能移除 %1 所做的全部修改。运行 systemctl restart --"
 "user plasma-plasmashell，或注销后重新登录。"
+
+#~ msgid ""
+#~ "Change element appearance based on their state, configuration is stacked "
+#~ "on top of the current appearance"
+#~ msgstr "根据元素状态改变其外观，配置将叠加在当前外观之上"
+
+#~ msgid "Tray widgets"
+#~ msgstr "托盘挂件"
+
+#~ msgid "Part of the panel on which the options below will be applied."
+#~ msgstr "以下选项将应用到的面板区域。"
+
+#~ msgid ""
+#~ "Blacklist widgets to keep their default appearance. A logout may be "
+#~ "required for some widgets to fully restore their default appearance."
+#~ msgstr ""
+#~ "将挂件加入黑名单以保留其默认外观。部分挂件可能需要注销才能完全恢复默认外"
+#~ "观。"
+
+#~ msgid ""
+#~ "Changing panel position is currently unstable and may cause Plasma to "
+#~ "crash when moving panels between non-parallel edges (e.g from top to "
+#~ "left)."
+#~ msgstr ""
+#~ "目前更改面板位置不稳定，在非平行边缘之间移动面板（例如从顶部到左侧）可能导"
+#~ "致 Plasma 崩溃。"
+
+#~ msgid ""
+#~ "Opacity and Screen options require <b>Plasma 6.3</b> or newer.<br>Opacity "
+#~ "depends on the current Plasma Theme, for finer control or full "
+#~ "transparency use <b>Panel Opacity</b> and <b>Native panel background</b> "
+#~ "options in <b>Appearance</b> tab instead."
+#~ msgstr ""
+#~ "不透明度和屏幕选项需要 <b>Plasma 6.3</b> 或更高版本。<br>不透明度依赖于当"
+#~ "前 Plasma 主题，如需更精细的控制或完全透明，请在<b>外观</b>标签页中使用<b>"
+#~ "面板不透明度</b>和<b>原生面板背景</b>选项。"
+
+#~ msgid "Show:"
+#~ msgstr "显示："
+
+#~ msgid ""
+#~ "WARNING: Use Show/Hide with caution, if you hide the panel and have not "
+#~ "configured preset auto-loading or know how to switch presets using D-Bus "
+#~ "(or have disabled it), you will have no way to make it visible again "
+#~ "without manually removing the configuration or Panel Colorizer, use the "
+#~ "command below in terminal/tty then log out or reboot, it will remove the "
+#~ "configuration from all Panel Colorizer instances so make sure to save the "
+#~ "others first"
+#~ msgstr ""
+#~ "警告：请谨慎使用显示与隐藏功能。如果隐藏了面板，而你既未配置预设自动加载，"
+#~ "也不会通过 D-Bus 切换预设（或已禁用 D-Bus），则只能手动删除配置或移除 "
+#~ "Panel Colorizer 才能再次显示面板。请在终端或 tty 中运行下方命令，然后注销"
+#~ "或重启。此命令会删除所有 Panel Colorizer 实例的配置，请务必先保存其他实例"
+#~ "的设置。"
+
+#~ msgid ""
+#~ "If you have D-Bus enabled is it recommended that you use that with "
+#~ "shortcuts instead. Consult the README to learn more or see the General "
+#~ "tab for some examples."
+#~ msgstr ""
+#~ "若已启用 D-Bus，建议改用 D-Bus 配合快捷键操作。详情请参阅 README 或查看常"
+#~ "规标签页中的示例。"
+
+#~ msgid "D-Bus usage"
+#~ msgstr "D-Bus 用法"
+
+#~ msgid "Force Text/Icon color"
+#~ msgstr "强制文本与图标颜色"
 
 #~ msgid ""
 #~ "<strong>Odd spacing</strong> values will be automatically converted to "
