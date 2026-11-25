@@ -70,7 +70,7 @@ ColumnLayout {
     }
 
     property alias isEnabled: isEnabled.checked
-    property int currentTab
+    property int currentTab: 0
     property bool ready: false
     property bool showBlurMessage: false
     property var followVisbility: {
@@ -149,7 +149,7 @@ ColumnLayout {
 
         RowLayout {
             Kirigami.FormData.label: i18n("Native panel:")
-            visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+            visible: elementName === "panel" //&& root.elementState === Enum.WidgetStates.Normal
             CheckBox {
                 id: nativePanelBackgroundCheckbox
                 text: i18n("Background")
@@ -165,7 +165,7 @@ ColumnLayout {
             }
         }
         Label {
-            visible: (!!!root.config?.nativePanel?.background?.enabled) && elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+            visible: (!!!root.config?.nativePanel?.background?.enabled) && elementName === "panel"
             text: i18n("⚠️ Disabling this breaks the panel clickable area and applet dialogs positioning when the panel is in floating mode! See <a href=\"%1\">#80</a>.", "https://github.com/luisbocanegra/plasma-panel-colorizer/issues/80")
             onLinkActivated: link => Qt.openUrlExternally(link)
             font: Kirigami.Theme.smallFont
@@ -178,7 +178,7 @@ ColumnLayout {
             }
         }
         RowLayout {
-            visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+            visible: elementName === "panel"
             CheckBox {
                 id: nativePanelBackgroundShadowCheckbox
                 text: i18n("Shadow")
@@ -209,7 +209,7 @@ ColumnLayout {
         }
 
         RowLayout {
-            visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+            visible: elementName === "panel"
             Label {
                 text: i18n("Opacity:")
             }
@@ -231,7 +231,7 @@ ColumnLayout {
 
         Item {
             // spacing between controls
-            visible: root.elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+            visible: root.elementName === "panel"
             height: 0.5 * Kirigami.Units.gridUnit
         }
 
@@ -249,7 +249,7 @@ ColumnLayout {
             Kirigami.ContextualHelpButton {
                 toolTipText: i18n("Since version 6.4.0, Plasma now has a built-in <b>Floating panel and applets</b> option, enabling this overrides that option.\n⚠️Changing <b>Floating</b> from the panel configuration will not work with this is enabled!")
             }
-            visible: root.plasmaVersion.isGreaterThan("6.3.5") && elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+            visible: root.plasmaVersion.isGreaterThan("6.3.5") && elementName === "panel"
         }
 
         RowLayout {
@@ -299,7 +299,7 @@ ColumnLayout {
                 config.nativePanel.floatingDialogs = checked;
                 updateConfig();
             }
-            visible: elementName === "panel" && root.elementState === Enum.WidgetStates.Normal && (floatingDialogsEnabledCheckbox.checked || root.plasmaVersion.isLowerThan("6.4.0"))
+            visible: elementName === "panel" && (floatingDialogsEnabledCheckbox.checked || root.plasmaVersion.isLowerThan("6.4.0"))
         }
 
         ColumnLayout {
@@ -307,7 +307,7 @@ ColumnLayout {
             Kirigami.FormData.buddyFor: flattenOnDeFloatCheckbox
             Kirigami.FormData.labelAlignment: Qt.AlignTop
             spacing: Kirigami.Units.smallSpacing
-            visible: root.elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+            visible: root.elementName === "panel"
             CheckBox {
                 id: flattenOnDeFloatCheckbox
                 text: i18n("Remove custom background rounded corners and borders on screen edge when panel is not floating")
@@ -327,7 +327,7 @@ ColumnLayout {
                     root.updateConfig();
                 }
                 Layout.maximumWidth: 400
-                visible: root.plasmaVersion.isGreaterThan("6.3.5") && root.elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+                visible: root.plasmaVersion.isGreaterThan("6.3.5") && root.elementName === "panel"
             }
         }
 
@@ -339,12 +339,12 @@ ColumnLayout {
                 root.config.nativePanel.hideWhenNoWidgetsAreVisible = checked;
                 root.updateConfig();
             }
-            visible: root.elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+            visible: root.elementName === "panel"
         }
 
         RowLayout {
             Kirigami.FormData.label: i18n("Distance from screen edge:")
-            visible: root.elementName === "panel" && root.elementState === Enum.WidgetStates.Normal
+            visible: root.elementName === "panel"
             SpinBox {
                 from: 0
                 to: 9999
@@ -444,7 +444,7 @@ ColumnLayout {
                 model: options
             }
             Kirigami.ContextualHelpButton {
-                toolTipText: i18n("Change element appearance based on their state, configuration is stacked on top of the current appearance")
+                toolTipText: i18n("Change element appearance based on their state, configuration is stacked on top of the Normal appearance")
             }
         }
 
@@ -536,47 +536,60 @@ ColumnLayout {
     }
 
     Kirigami.NavigationTabBar {
+        id: stateTabBar
         enabled: root.isEnabled
-        Layout.maximumWidth: parentLayout.width
         Layout.alignment: Qt.AlignHCenter
         maximumContentWidth: {
             const minDelegateWidth = Kirigami.Units.gridUnit * 6;
             // Always have at least the width of 5 items, so that small amounts of actions look natural.
             return minDelegateWidth * Math.max(visibleActions.length, 5);
         }
-        actions: [
-            Kirigami.Action {
-                icon.name: "color-picker"
-                text: i18n("Color")
-                checked: currentTab === 0
-                onTriggered: currentTab = 0
+        property var statesModel: [
+            {
+                name: i18n("Color"),
+                value: "color",
+                icon: "color-picker",
+                enabled: true
             },
-            Kirigami.Action {
-                icon.name: "rectangle-shape-symbolic"
-                text: i18n("Shape")
-                checked: currentTab === 1
-                onTriggered: currentTab = 1
+            {
+                name: i18n("Shape"),
+                value: "widgets",
+                icon: "rectangle-shape-symbolic",
+                enabled: true
             },
-            Kirigami.Action {
-                icon.name: "bordertool-symbolic"
-                text: i18n("Border")
-                checked: currentTab === 2
-                onTriggered: currentTab = 2
+            {
+                name: i18n("Border"),
+                value: "trayWidgets",
+                icon: "bordertool-symbolic",
+                enabled: true
             },
-            Kirigami.Action {
-                icon.name: "kstars_horizon-symbolic"
-                text: i18n("Shadow")
-                checked: currentTab === 3
-                onTriggered: currentTab = 3
+            {
+                name: i18n("Shadow"),
+                value: "shadow",
+                icon: "kstars_horizon-symbolic",
+                enabled: true
             },
-            Kirigami.Action {
-                icon.name: "font-symbolic"
-                text: i18n("Font")
-                checked: currentTab === 4
-                onTriggered: currentTab = 4
-                visible: root.elementName === "" || root.elementName === "widgets"
+            {
+                name: i18n("Font"),
+                value: "font",
+                icon: "font-symbolic",
+                enabled: root.elementName === "" || root.elementName === "widgets"
             }
         ]
+        Repeater {
+            model: stateTabBar.statesModel
+            delegate: Kirigami.NavigationTabButton {
+                required property var model
+                checked: root.currentTab === model.index
+                onCheckedChanged: {
+                    root.currentTab = model.index;
+                }
+                text: model.name
+                icon.name: model.icon
+                Layout.preferredWidth: Kirigami.Units.gridUnit * 6
+                enabled: model.enabled
+            }
+        }
     }
 
     Kirigami.FormLayout {

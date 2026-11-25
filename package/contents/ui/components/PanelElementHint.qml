@@ -4,33 +4,21 @@ import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 
 Item {
+    id: root
     property int target: -1
     height: 32
-    width: 300
+    width: 200
     property color borderColor: Kirigami.ColorUtils.linearInterpolation(Kirigami.Theme.textColor, Kirigami.Theme.backgroundColor, 0.6)
     property color highlightColor: Kirigami.Theme.highlightColor
     property color backgroundColor: Kirigami.ColorUtils.linearInterpolation(Kirigami.Theme.textColor, Kirigami.Theme.backgroundColor, 0.9)
-    onTargetChanged: animation.restart()
-    SequentialAnimation on highlightColor {
-        id: animation
-        loops: 1
-        ColorAnimation {
-            to: "transparent"
-            duration: 250
-        }
-        ColorAnimation {
-            to: Kirigami.Theme.highlightColor
-            duration: 250
-        }
-    }
     // panel
     Rectangle {
         anchors.centerIn: parent
         height: 32
-        width: 300
-        color: backgroundColor
-        border.width: target === 0 ? 2 : 1
-        border.color: target === 0 ? highlightColor : borderColor
+        width: root.width
+        color: root.backgroundColor
+        border.width: root.target === 0 ? 2 : 1
+        border.color: root.target === 0 ? root.highlightColor : root.borderColor
         radius: 3
         RowLayout {
             anchors.fill: parent
@@ -39,8 +27,8 @@ Item {
             // launcher
             Rectangle {
                 color: "transparent"
-                border.width: target === 1 ? 2 : 0
-                border.color: target === 1 ? highlightColor : borderColor
+                border.width: root.target === 1 ? 2 : 0
+                border.color: root.target === 1 ? root.highlightColor : root.borderColor
                 Layout.preferredWidth: 24
                 Layout.fillHeight: true
                 radius: 3
@@ -54,8 +42,8 @@ Item {
             // spacer
             Rectangle {
                 color: "transparent"
-                border.width: target === 1 ? 2 : 0
-                border.color: target === 1 ? highlightColor : borderColor
+                border.width: root.target === 1 ? 2 : 0
+                border.color: root.target === 1 ? root.highlightColor : root.borderColor
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 radius: 3
@@ -64,8 +52,8 @@ Item {
             // tray
             Rectangle {
                 color: "transparent"
-                border.width: target === 1 ? 2 : 0
-                border.color: target === 1 ? highlightColor : borderColor
+                border.width: root.target === 1 ? 2 : 0
+                border.color: root.target === 1 ? root.highlightColor : root.borderColor
                 Layout.preferredWidth: 82
                 Layout.fillHeight: true
                 radius: 3
@@ -78,8 +66,8 @@ Item {
                     // tray widgets
                     Rectangle {
                         color: "transparent"
-                        border.width: target === 2 ? 2 : 0
-                        border.color: target === 2 ? highlightColor : borderColor
+                        border.width: root.target === 2 ? 2 : 0
+                        border.color: root.target === 2 ? root.highlightColor : root.borderColor
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         radius: 3
@@ -92,8 +80,8 @@ Item {
 
                     Rectangle {
                         color: "transparent"
-                        border.width: target === 2 ? 2 : 0
-                        border.color: target === 2 ? highlightColor : borderColor
+                        border.width: root.target === 2 ? 2 : 0
+                        border.color: root.target === 2 ? root.highlightColor : root.borderColor
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         radius: 3
@@ -106,8 +94,8 @@ Item {
 
                     Rectangle {
                         color: "transparent"
-                        border.width: target === 2 ? 2 : 0
-                        border.color: target === 2 ? highlightColor : borderColor
+                        border.width: root.target === 2 ? 2 : 0
+                        border.color: root.target === 2 ? root.highlightColor : root.borderColor
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         radius: 3
@@ -123,8 +111,8 @@ Item {
             //clock
             Rectangle {
                 color: "transparent"
-                border.width: target === 1 ? 2 : 0
-                border.color: target === 1 ? highlightColor : borderColor
+                border.width: root.target === 1 ? 2 : 0
+                border.color: root.target === 1 ? root.highlightColor : root.borderColor
                 Layout.preferredWidth: 30
                 Layout.fillHeight: true
                 radius: 3

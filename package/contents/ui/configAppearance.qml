@@ -12,7 +12,7 @@ KCM.SimpleKCM {
     id: appearanceRoot
     property alias parentLayout: parentLayout
 
-    property int currentTab
+    property int currentTab: 0
     property int currentState
     property string cfg_globalSettings
     property alias cfg_isEnabled: headerComponent.isEnabled
@@ -85,40 +85,70 @@ KCM.SimpleKCM {
             Layout.preferredHeight: Kirigami.Units.largeSpacing
         }
 
+        Kirigami.NavigationTabBar {
+            id: targetComponent
+            Layout.fillWidth: true
+
+            maximumContentWidth: Math.min(600, appearanceRoot.width)
+            property string currentValue: "panel"
+            property string currentText: ""
+            property var elementsModel: [
+                {
+                    name: i18n("Panel"),
+                    value: "panel"
+                },
+                {
+                    name: i18n("Widgets"),
+                    value: "widgets"
+                },
+                {
+                    name: i18n("Tray Widgets"),
+                    value: "trayWidgets"
+                }
+            ]
+
+            Repeater {
+                model: targetComponent.elementsModel
+                delegate: Kirigami.NavigationTabButton {
+                    required property var model
+                    checked: targetComponent.currentIndex === model.index
+                    onCheckedChanged: {
+                        targetComponent.currentIndex = model.index;
+                        targetComponent.currentValue = model.value;
+                        // only widgets support changing font so switch back to the first tab
+                        if (model.value !== "widgets" && appearanceRoot.currentTab === 4) {
+                            appearanceRoot.currentTab = 0;
+                            if (appearanceRoot.settingsItem) {
+                                appearanceRoot.settingsItem.currentTab = 0;
+                            }
+                        }
+                    }
+                    contentItem: ColumnLayout {
+                        spacing: Kirigami.Units.smallSpacing
+                        Components.PanelElementHint {
+                            id: prev
+                            target: model.index
+                            Layout.alignment: Qt.AlignHCenter
+                            Layout.margins: Kirigami.Units.smallSpacing
+                        }
+                        Label {
+                            text: model.name
+                            Layout.alignment: Qt.AlignHCenter
+                            Layout.bottomMargin: Kirigami.Units.smallSpacing
+                        }
+                    }
+                }
+            }
+
+            Component.onCompleted: {
+                currentIndex = 0;
+                targetComponent.currentText = elementsModel[0].name;
+            }
+        }
+
         Kirigami.FormLayout {
             id: parentLayout
-
             Layout.fillWidth: true
-            RowLayout {
-                Kirigami.FormData.label: i18n("Element:")
-                ComboBox {
-                    id: targetComponent
-                    textRole: "name"
-                    valueRole: "value"
-                    model: [
-                        {
-                            "name": i18n("Panel"),
-                            "value": "panel"
-                        },
-                        {
-                            "name": i18n("Widgets"),
-                            "value": "widgets"
-                        },
-                        {
-                            "name": i18n("Tray widgets"),
-                            "value": "trayWidgets"
-                        }
-                    ]
-                }
-                Kirigami.ContextualHelpButton {
-                    toolTipText: i18n("Part of the panel on which the options below will be applied.")
-                }
-            }
-            ColumnLayout {
-                Components.PanelElementHint {
-                    target: targetComponent.currentIndex
-                }
-            }
         }
 
         Component {
@@ -132,7 +162,7 @@ KCM.SimpleKCM {
                 elementFriendlyName: targetComponent.currentText
                 followVisbility: appearanceRoot.followVisbility[targetComponent.currentValue]
                 onElementStateChanged: appearanceRoot.currentState = elementState
-                onTabChanged: currentTab => {
+                onTabChanged: {
                     appearanceRoot.currentTab = currentTab;
                 }
                 onUpdateConfigString: (newString, newConfig) => {
