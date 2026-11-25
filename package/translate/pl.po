@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: colorizer\n"
 "Report-Msgid-Bugs-To: https://github.com/luisbocanegra/plasma-panel-"
 "colorizer\n"
-"POT-Creation-Date: 2026-11-25 04:10+0000\n"
+"POT-Creation-Date: 2026-11-25 05:37+0000\n"
 "PO-Revision-Date: 2026-02-07 12:00+0100\n"
 "Last-Translator: RygorrMortis <rygorrmortis@github.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -784,9 +784,8 @@ msgstr "Dziękuję za używanie %1!"
 
 #: ../contents/ui/components/SupportMe.qml
 msgid ""
-"If you enjoy using the plugin please consider sponsoring or donating so I "
-"can dedicate more time to maintain and improve this and <a href=\"%1\">my "
-"other projects</a>."
+"Consider sponsoring or donating to support the continued maintenance of this "
+"and <a href=\"%1\">my other projects</a>."
 msgstr ""
 
 #: ../contents/ui/components/SupportMe.qml
