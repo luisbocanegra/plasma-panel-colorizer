@@ -420,33 +420,22 @@ KCM.SimpleKCM {
                 }
             }
 
-            CheckBox {
-                id: visible
+            RowLayout {
+                Kirigami.FormData.label: i18n("Hide:")
+                CheckBox {
+                    id: visible
 
-                Kirigami.FormData.label: i18n("Show:")
-                checked: config.visible.value
-                onCheckedChanged: {
-                    config.visible.value = checked;
-                    updateConfig();
-                }
-                enabled: visibleEnabled.checked
-            }
-        }
-
-        Kirigami.InlineMessage {
-            Layout.fillWidth: true
-            text: i18n("WARNING: Use Show/Hide with caution, if you hide the panel and have not configured preset auto-loading or know how to switch presets using D-Bus (or have disabled it), you will have no way to make it visible again without manually removing the configuration or Panel Colorizer, use the command below in terminal/tty then log out or reboot, it will remove the configuration from all Panel Colorizer instances so make sure to save the others first") + ":<br><strong><code>sed -i '/^globalSettings={\"panel\"/d' \"$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc\"</code></strong> " + i18n("If you have D-Bus enabled is it recommended that you use that with shortcuts instead. Consult the README to learn more or see the General tab for some examples.")
-            visible: true
-            type: Kirigami.MessageType.Warning
-            actions: [
-                Kirigami.Action {
-                    icon.name: "view-readermode-symbolic"
-                    text: i18n("D-Bus usage")
-                    onTriggered: {
-                        Qt.openUrlExternally("https://github.com/luisbocanegra/plasma-panel-colorizer?tab=readme-ov-file#advanced-commandline-usage-with-d-bus-version-200-or-later");
+                    checked: !config.visible.value
+                    onCheckedChanged: {
+                        config.visible.value = !checked;
+                        updateConfig();
                     }
+                    enabled: visibleEnabled.checked
                 }
-            ]
+                Kirigami.ContextualHelpButton {
+                    toolTipText: i18n("Hidden panels are visible in Edit Mode.")
+                }
+            }
         }
     }
 
